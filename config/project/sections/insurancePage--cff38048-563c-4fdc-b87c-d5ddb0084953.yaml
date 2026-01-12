@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 1692277e-675a-4ebf-8998-6eb58cf9709f # Insurance
+handle: insurancePage
+maxAuthors: 1
+name: 'Insurance Page'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  904beb73-9861-43f3-8de7-90464f6457de: # foxplan
+    enabledByDefault: true
+    hasUrls: true
+    template: insurance-page/_entry.twig
+    uriFormat: insurance-page
+type: single

@@ -1,0 +1,60 @@
+{# _sections/equity-partners/equity-partners-B.twig #}
+
+{% set sectionData = {
+    subheading: 'WHY JOIN FOXPLAN?',
+    mainText: 'Our equity programme brings more surety and structure to the process of growing, selling, or creating a succession plan for your business. As part of FoxPlan you\'ll benefit from:',
+    benefits: [
+        'Equity ownership in a growing business',
+        'Compliance, marketing & operations support',
+        'Ongoing income even after you retire',
+        'A futureproofed business exit strategy'
+    ]
+} %}
+
+
+{# The main text uses a large, light serif font #}
+{% set mainTextClasses = 'font-serif text-5xl sm:text-6xl lg:text-[4rem] font-light leading-snug text-gray-900 mb-6' %}
+{% set subheadingClasses = 'text-sm font-light text-gray-700 uppercase tracking-widest ' %}
+{# UPDATED: Removed pr-6 padding, individual border kept. #}
+{% set benefitItemClasses = 'font-serif text-lg font-light text-gray-900 py-3 border-b border-gray-300' %}
+
+<section class="w-full pt-16 pb-16 md:pt-24 md:pb-24 min-h-[700px]">
+    <div class="mx-auto px-4 h-full">
+
+        {# Main Grid Container #}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 h-full">
+
+            {# Content Column: This single column now holds ALL the text content #}
+            <div class="md:col-span-12">
+
+                {# Subheading #}
+                <span class="{{ subheadingClasses }}">
+                    {{ sectionData.subheading }}
+                </span>
+
+                {# Main Text/Description #}
+                <h2 class="{{ mainTextClasses }} max-w-7xl">
+                    {{ sectionData.mainText }}
+                </h2>
+
+                {# FULL-WIDTH BORDER #}
+                <div class="w-full border-b border-gray-300 mt-0 mb-6"></div>
+
+                {# Benefits List - Wrapped to restrict width and push to the right #}
+                <div class="flex justify-end w-full">
+                    {# MODIFIED: Increased width from max-w-xs to max-w-lg to extend the borders to the left #}
+                    <ul class="space-y-0 pt-2 w-full max-w-4xl">
+                        {% for benefit in sectionData.benefits %}
+                            <li class="{{ benefitItemClasses }} text-left">
+                                {{ benefit }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

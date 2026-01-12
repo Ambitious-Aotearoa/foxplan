@@ -1,0 +1,135 @@
+{% set defaultTab = data.defaultTab ?? data.tabs[0].id %}
+{% set style = data.style ?? 'default' %}
+{% set backgroundColor = data.backgroundColor ?? 'bg-white' %}
+{% set textColor = data.textColor ?? 'text-gray-900' %}
+{% set layout = data.layout ?? 'horizontal' %}
+{% set titleClasses = data.titleClasses ?? 'font-serif text-3xl font-medium' %}
+
+{% set defaultLabel = '' %}
+{% set navTabs = [] %}
+
+{% for tab in data.tabs %}
+    {# Build a simplified list for Alpine.js to prevent HTML content breaking JSON #}
+    {% set navTabs = navTabs|merge([{ id: tab.id, label: tab.label, title: tab.title ?? tab.label }]) %}
+
+    {% if tab.id == defaultTab %}
+        {% set defaultLabel = tab.label %}
+    {% endif %}
+{% endfor %}
+
+<div class="tabs-component {{ backgroundColor }}" x-data="{
+    selectedTab: '{{ defaultTab }}',
+    accordionOpen: false,
+    defaultLabel: '{{ defaultLabel }}',
+    get currentLabel() {
+        let current = {{ navTabs | json_encode() }}
+            .find(tab => tab.id === this.selectedTab);
+        return current ? current.label : this.defaultLabel;
+    }
+}">
+
+    <div class="tabs-navigation p-4 sm:p-6 lg:p-8">
+
+        <div class="lg:hidden w-full mx-auto mb-8">
+            <div class="relative" @click.away="accordionOpen = false">
+                <button
+                        @click="accordionOpen = !accordionOpen"
+                        class="w-full text-left bg-transparent border-0 border-b border-gray-300 flex justify-between items-center
+                    font-semibold text-base {{ textColor }} px-0 py-3
+                    transition-colors duration-300 appearance-none cursor-pointer focus:outline-none"
+                >
+                    <span x-text="currentLabel"></span>
+                    <svg x-bind:class="{ 'rotate-180': accordionOpen, 'rotate-0': !accordionOpen }"
+                         class="w-4 h-4 transition-transform duration-300 {{ textColor }}"
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <div
+                        x-cloak
+                        x-show="accordionOpen"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-95"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
+                        class="mt-2 border border-gray-200 rounded-lg bg-white shadow-xl z-10 absolute w-full max-w-sm overflow-hidden"
+                >
+                    <ul class="space-y-1 p-2 bg-transparent text-gray-900">
+                        {% for tab in data.tabs %}
+                            <li class="tab-item">
+                                <button
+                                        x-on:click="selectedTab = '{{ tab.id }}'; accordionOpen = false"
+                                        x-bind:aria-selected="selectedTab === '{{ tab.id }}'"
+                                        class="w-full text-left py-2 px-4 transition-all duration-300 rounded-lg text-base"
+                                        :class="selectedTab === '{{ tab.id }}' ? 'bg-gray-100 text-gray-900 font-semibold' : 'hover:bg-gray-50'"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="tabpanel{{ tab.id|title }}"
+                                >
+                                    {{ tab.label }}
+                                </button>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {# >>> START OF WIDE SCREEN FIX #}
+        <div class="hidden lg:block w-full">
+            <div class="tabs-navigation flex w-full border-b border-gray-300 mb-12">
+                {% for tab in data.tabs %}
+                    <button
+                            x-on:click="selectedTab = '{{ tab.id }}'"
+                            x-bind:aria-selected="selectedTab === '{{ tab.id }}'"
+                            x-bind:tabindex="selectedTab === '{{ tab.id }}' ? '0' : '-1'"
+                            class="tab-button flex-1 py-3 px-4 font-semibold text-gray-700 tracking-wider transition-colors duration-300 relative text-center"
+                            :class="selectedTab === '{{ tab.id }}' ? 'text-gray-900 border-b-2 border-gray-900' : 'hover:text-gray-900'"
+                            type="button"
+                            role="tab"
+                            aria-controls="tabpanel{{ tab.id|title }}"
+                    >
+                        {{ tab.label }}
+                    </button>
+                {% endfor %}
+            </div>
+        </div>
+        {# <<< END OF WIDE SCREEN FIX #}
+
+    </div>
+
+    <div class="tabs-content mx-auto p-4 sm:p-6 lg:p-8 pt-0">
+        {% for tab in data.tabs %}
+            <div
+                    x-cloak
+                    x-show="selectedTab === '{{ tab.id }}'"
+                    id="tabpanel{{ tab.id|title }}"
+                    role="tabpanel"
+                    aria-label="{{ tab.id }}"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform translate-y-4"
+                    x-transition:enter-end="opacity-100 transform translate-y-0"
+                    class="tab-content"
+            >
+
+                <h3 class="tab-title {{ titleClasses }} {{ textColor }} mb-6">
+                    {{ tab.title ?? tab.label }}
+                </h3>
+
+                <div class="tab-description font-light text-lg {{ textColor }} mb-8 leading-relaxed">
+                    {% if tab.content %}
+                        {{ tab.content | raw }}
+                    {% endif %}
+                </div>
+
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+</div>

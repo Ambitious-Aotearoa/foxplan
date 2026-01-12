@@ -1,0 +1,44 @@
+{# templates/_boilerplate/layouts/layout-base.twig #}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'foxplan-yellow': '#FBC938',
+                        'foxplan-neutral-beige': '#F9EFD8',
+                        'foxplan-white': '#FEFCF7',
+                        'foxplan-charcoal-brown': '#270E15',
+                    },
+                    fontFamily: {
+                        'serif': ['Sterling', 'Georgia', 'serif'],
+                        'aktiv-grotesk': ['Aktiv Grotesk', 'ui-sans-serif', 'system-ui'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        [x-cloak] { display: none !important; }
+        /* CRITICAL: Remove all browser default margins and prevent horizontal gaps */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100%;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="antialiased font-aktiv-grotesk text-black bg-white">
+{{ include("_components/nav/nav.twig", { navigationTheme: navigationTheme ?? null }, withContext = true) }}
+<main class="w-full">
+    {% block blockAppBody %}{% endblock %}
+</main>
+
+</body>
+</html>

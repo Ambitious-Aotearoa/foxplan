@@ -1,0 +1,167 @@
+{#
+File: templates/_components/footer/footer-1.twig
+#}
+
+{% set footerData = {
+    heading: 'Ready to reach your<br>financial goals?',
+    intro: 'Book a chat with one of our financial advisers to get started.',
+    buttonText: 'Learn more',
+
+
+    links: {
+        mortgages: {
+            title: 'MORTGAGES',
+            items: ['Mortgages', 'First Home Buyers', 'Moving House', 'Property Investment', 'Refinancing']
+        },
+        insurance: {
+            title: 'INSURANCE',
+            items: ['Insurance', 'General Insurance', 'Personal Insurance', 'Business Insurance']
+        },
+        savings: {
+            title: 'SAVINGS & INVESTMENT',
+            items: ['Savings & Investments', 'Financial Planning', 'KiwiSaver', 'Retirement Planning', 'Savings', 'Investment Management']
+        },
+        accounting: {
+            title: 'ACCOUNTING',
+            items: ['Accounting']
+        },
+        resources: {
+            title: 'RESOURCES',
+            items: ['Insights', 'Podcast', 'Savings Calculator', 'Investment Calculator']
+        },
+        about: {
+            title: 'ABOUT US',
+            items: ['About FoxPlan', 'Meet The Team', 'Join The Team', 'Equity Partners', 'Suppliers']
+        },
+        location: {
+            title: 'LOCATION',
+            address: ['Level 8', '138 The Terrace', 'Wellington 6011']
+        },
+        post: {
+            title: 'POST',
+            address: ['Level 8', '138 The Terrace']
+        }
+    },
+    legalLinks: ['Privacy Policy', 'Complaints', 'Disclaimer', 'Disclosure']
+} %}
+
+{% set headingClasses = 'font-serif text-5xl md:text-6xl font-normal text-black leading-none mb-4' %}
+{% set introClasses = 'font-aktiv text-base text-black leading-relaxed mb-8' %}
+{% set listTitleClasses = 'font-aktiv text-sm font-semibold text-[#8C8C8C] uppercase tracking-widest mb-4' %}
+{% set linkItemClasses = 'font-aktiv text-base text-black leading-relaxed mb-2 hover:text-gray-600 transition-colors' %}
+{% set addressClasses = 'font-aktiv text-base text-black leading-relaxed mb-2' %}
+
+
+<footer class="w-full bg-white pt-20 pb-16 px-5">
+    <div class="max-w-full mx-auto">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 py-10">
+
+            <div class="col-span-1">
+                <h2 class="{{ headingClasses }}">
+                    {{ footerData.heading | raw }}
+                </h2>
+                <p class="{{ introClasses }}">
+                    {{ footerData.intro }}
+                </p>
+
+                {{ include('_components/ui/button/button.twig', {
+                    props: {
+                        text: footerData.buttonText,
+                        style: 'secondary',
+                        url: '#'
+                    }
+                }) }}
+            </div>
+
+            <div class="col-span-1 flex justify-end items-start pt-10 md:pt-0">
+                <div class="w-full h-auto">
+                    <img src="/src/assets/public/FoxPlan_Current_Logo.png" alt="FoxPlan Logo Illustration" class="max-w-full h-auto">
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-6 gap-y-12 gap-x-8 py-10 border-t border-grey-400">
+
+            <div>
+                <h3 class="{{ listTitleClasses }}">{{ footerData.links.mortgages.title }}</h3>
+                {% for item in footerData.links.mortgages.items %}
+                    <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                {% endfor %}
+            </div>
+
+            <div>
+                <h3 class="{{ listTitleClasses }}">{{ footerData.links.insurance.title }}</h3>
+                {% for item in footerData.links.insurance.items %}
+                    <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                {% endfor %}
+            </div>
+
+            <div>
+                <h3 class="{{ listTitleClasses }}">{{ footerData.links.savings.title }}</h3>
+                {% for item in footerData.links.savings.items %}
+                    <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                {% endfor %}
+            </div>
+
+            <div class="col-start-1 sm:col-start-4">
+                <h3 class="{{ listTitleClasses }}">{{ footerData.links.accounting.title }}</h3>
+                {% for item in footerData.links.accounting.items %}
+                    <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                {% endfor %}
+            </div>
+
+            <div>
+                <h3 class="{{ listTitleClasses }}">{{ footerData.links.resources.title }}</h3>
+                {% for item in footerData.links.resources.items %}
+                    <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                {% endfor %}
+            </div>
+
+            <div>
+                <h3 class="{{ listTitleClasses }}">{{ footerData.links.about.title }}</h3>
+                {% for item in footerData.links.about.items %}
+                    <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-8 pt-10 border-t border-grey-400">
+
+            <div>
+                <h3 class="{{ listTitleClasses }}">{{ footerData.links.location.title }}</h3>
+                <p class="{{ addressClasses }}">{{ footerData.links.location.address[0] }}</p>
+                <p class="{{ addressClasses }}">{{ footerData.links.location.address[1] }}</p>
+            </div>
+
+            <div>
+                <h3 class="{{ listTitleClasses }}">POST</h3>
+                <p class="{{ addressClasses }}">{{ footerData.links.location.address[0] }}</p>
+                <p class="{{ addressClasses }}">{{ footerData.links.location.address[1] }}</p>
+            </div>
+
+            <div class="hidden sm:block"></div>
+
+        </div>
+
+        <div class="flex justify-between items-center pt-2">
+
+            <p class="font-aktiv text-base text-black leading-relaxed mb-2">
+                {{ footerData.links.location.address[2] }}
+            </p>
+
+            <div class="flex items-center space-x-6">
+                {% for item in footerData.legalLinks %}
+                    <a href="#" class="font-aktiv text-sm text-black hover:text-gray-600 transition-colors">{{ item }}</a>
+                {% endfor %}
+
+                <div class="flex space-x-4 ml-4">
+                    <div class="w-[24px] h-[24px] bg-gray-300"></div>
+                    <div class="w-[24px] h-[24px] bg-gray-300"></div>
+                    <div class="w-[24px] h-[24px] bg-gray-300"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

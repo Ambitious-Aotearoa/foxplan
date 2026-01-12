@@ -1,0 +1,53 @@
+{# _sections/services-option.twig #}
+
+{% set sectionData = {
+    heading: 'See the full financial picture',
+    description: 'If you’re concerned about balancing your insurance needs with your overall financial picture, our advisers provide a 360-degree review to make your mortgage, KiwiSaver, and insurance work together toward your long-term success.',
+    placeholderText: 'Placeholder Image or Video Area',
+    buttonText: 'Learn More',
+    buttonUrl: '#'
+} %}
+
+{% set headingClasses = 'font-serif text-5xl sm:text-6xl lg:text-[5rem] font-light leading-none text-gray-900 mb-8' %}
+{% set descriptionClasses = 'text-base text-gray-700 leading-relaxed max-w-sm mb-8' %}
+{# Removed: buttonClasses variable is no longer needed as styling is handled by the component #}
+
+<section class="w-full bg-gray-100 pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="mx-auto px-4">
+
+        {# Two-column grid layout #}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 items-start">
+
+            {# Left Column: Heading, Description, and Button (Takes 4 columns) #}
+            <div class="md:col-span-4 mb-12 md:mb-0 pt-4">
+
+                <h2 class="{{ headingClasses }}">
+                    {{ sectionData.heading }}
+                </h2>
+
+                <p class="{{ descriptionClasses }}">
+                    {{ sectionData.description }}
+                </p>
+
+                {# NEW: Button Component Inclusion #}
+                {% include '_components/ui/button/button.twig' with {
+                    props: {
+                        text: sectionData.buttonText,
+                        url: sectionData.buttonUrl,
+                        style: 'primary'
+                    }
+                } only %}
+
+            </div>
+
+            {# Right Column: Large Placeholder Box (Takes 8 columns) #}
+            <div class="md:col-span-8 h-[450px] lg:h-[550px] bg-gray-200">
+                <div class="flex items-center justify-center w-full h-full text-gray-500 text-sm">
+                    {{ sectionData.placeholderText }}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

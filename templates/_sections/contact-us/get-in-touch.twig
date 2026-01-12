@@ -1,0 +1,86 @@
+{# _sections/get-in-touch.twig #}
+
+{% set sectionData = {
+    heading: 'Interested? Get in touch'
+} %}
+
+{% set containerClasses = 'ml-auto px-4 md:w-3/4' %}
+{% set headingContainerClasses = 'pt-12 border-t border-gray-300 mb-12' %}
+{% set headingClasses = 'font-serif text-5xl md:text-6xl font-normal text-gray-900 text-left' %}
+{% set inputLabelClasses = 'text-sm font-light text-gray-700 block mb-1 uppercase tracking-widest' %}
+{# MODIFIED: Changed pb-1 to pb-3 for more space between text and bottom border #}
+{% set inputFieldClasses = 'w-full pb-3 pt-2 bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-black transition-colors duration-200' %}
+{% set submitButtonClasses = 'bg-black text-white px-6 py-3 text-sm font-medium uppercase tracking-widest hover:bg-gray-800 transition-colors' %}
+
+
+<section class="w-full bg-white pt-16 pb-24 md:pt-24 md:pb-32">
+    {# The outer wrapper remains full width #}
+    <div class="mx-auto">
+
+        {# Inner container controls the 3/4 width and right alignment #}
+        <div class="{{ containerClasses }}">
+
+            {# Heading with Top Border and Padding #}
+            <div class="{{ headingContainerClasses }}">
+                <h2 class="{{ headingClasses }}">
+                    {{ sectionData.heading }}
+                </h2>
+            </div>
+
+            {# Contact Form #}
+            <form action="#" method="POST" class="space-y-10">
+
+                {# Two-Column Fields (First Name / Last Name) #}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
+
+                    {# First Name #}
+                    <div>
+                        <label for="first-name" class="{{ inputLabelClasses }}">First Name</label>
+                        <input type="text" name="first-name" id="first-name" autocomplete="given-name" placeholder="John" class="{{ inputFieldClasses }}" required>
+                    </div>
+
+                    {# Last Name #}
+                    <div>
+                        <label for="last-name" class="{{ inputLabelClasses }}">Last Name</label>
+                        <input type="text" name="last-name" id="last-name" autocomplete="family-name" placeholder="Doe" class="{{ inputFieldClasses }}" required>
+                    </div>
+                </div>
+
+                {# Two-Column Fields (Phone / Email) #}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
+
+                    {# Phone #}
+                    <div>
+                        <label for="phone" class="{{ inputLabelClasses }}">Phone</label>
+                        <input type="tel" name="phone" id="phone" autocomplete="tel" placeholder="1234 567 890" class="{{ inputFieldClasses }}">
+                    </div>
+
+                    {# Email #}
+                    <div>
+                        <label for="email" class="{{ inputLabelClasses }}">Email</label>
+                        <input type="email" name="email" id="email" autocomplete="email" placeholder="johndoe@email.com" class="{{ inputFieldClasses }}" required>
+                    </div>
+                </div>
+
+                {# Single-Column Field (Message) #}
+                <div class="mb-12">
+                    <label for="message" class="{{ inputLabelClasses }}">Message</label>
+                    <input type="text" name="message" id="message" placeholder="Enter you message" class="{{ inputFieldClasses }}">
+                </div>
+
+                {# Submit Button - Using Component #}
+                <div class="pt-4">
+                    {% include '_components/ui/button/button.twig' with {
+                        props: {
+                            text: 'Submit',
+                            style: 'secondary',
+                            url: '#',
+                            attributes: { type: 'submit' }
+                        }
+                    } only %}
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,24 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 06624620-5204-452f-a746-b5d70f1641a4 # Contact Us Page
+handle: contactUsPage
+maxAuthors: 1
+name: 'Contact Us Page'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  904beb73-9861-43f3-8de7-90464f6457de: # foxplan
+    enabledByDefault: true
+    hasUrls: true
+    template: contact-us-page/_entry.twig
+    uriFormat: 'contact-us-page/{slug}'
+structure:
+  maxLevels: null
+  uid: 768c25b8-f76f-4c06-8c91-0c9178ca5afd
+type: structure

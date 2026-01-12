@@ -1,0 +1,48 @@
+{# _sections/content-sections/passing-knowledge.twig #}
+
+{% set knowledgeData = {
+    heading: 'Passing on our knowledge',
+    body1: 'At Foxplan, we believe everyone deserves access to good financial advice.',
+    body2: 'That\'s why we\'re committed to improving financial literacy across Aotearoa — through education in the workplace and fee-based financial planning that empowers people to take control of their futures.'
+} %}
+
+{# Tailwind Class Definitions for styling #}
+{% set sectionClasses = 'bg-white' %}
+{% set headingClasses = 'font-serif text-[4rem] font-light leading-none text-gray-900 mb-6 max-w-lg' %}
+{% set bodyClasses = 'text-base text-gray-700 leading-relaxed max-w-lg mt-[24px]' %}
+
+
+<section class="w-full {{ sectionClasses }} pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="mx-auto px-4">
+
+        {# Two-column Grid Layout #}
+        {# Using h-[500px] on the grid to define height and items-start for initial alignment #}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 h-[500px] items-start">
+
+            {# Left Column: Heading and Text - Pushed to the Bottom #}
+            {# Using flex-col and justify-end to align content to the bottom #}
+            <div class="md:col-span-6 lg:col-span-5 flex flex-col justify-end h-full order-2 md:order-1">
+                <div>
+                    <h2 class="{{ headingClasses }}">
+                        {{ knowledgeData.heading }}
+                    </h2>
+
+                    <p class="{{ bodyClasses }} ">
+                        {{ knowledgeData.body1 }}
+                    </p>
+
+                    <p class="{{ bodyClasses }} mb-0">
+                        {{ knowledgeData.body2 }}
+                    </p>
+                </div>
+            </div>
+
+            {# Right Column: Large Placeholder - Flush Right #}
+            {# Negative margin (md:-mr-4 or lg:-mr-6) counteracts the parent container's padding (px-4) #}
+            <div class="md:col-span-6 lg:col-span-7 bg-gray-200 order-1 md:order-2 h-full ">
+                {# Placeholder content here #}
+            </div>
+
+        </div>
+    </div>
+</section>

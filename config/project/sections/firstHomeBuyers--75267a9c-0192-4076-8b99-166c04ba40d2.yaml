@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 20a2a580-d219-4d89-85de-c3cef6cd5616 # First Home Buyers
+handle: firstHomeBuyers
+maxAuthors: 1
+name: 'First Home Buyers'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  904beb73-9861-43f3-8de7-90464f6457de: # foxplan
+    enabledByDefault: true
+    hasUrls: true
+    template: first-home-buyers/_entry.twig
+    uriFormat: first-home-buyers
+type: single

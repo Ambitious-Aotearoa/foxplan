@@ -1,0 +1,110 @@
+{# templates/_sections/meet-the-team-A.twig #}
+
+{# -----------------------------------------------------------------------------------------
+   MACRO: Basic Team Member Card - Renders the Warwick/Kim structure from your image
+   ----------------------------------------------------------------------------------------- #}
+{% macro teamMemberCard(person) %}
+    <div class="team-card py-4">
+        {# Placeholder for Image #}
+        <div class="aspect-[4/3] bg-gray-100 mb-4 flex items-center justify-center text-sm text-gray-500 font-montreal">
+            Image Placeholder
+        </div>
+
+        <h3 class="font-montreal text-lg font-semibold text-ehaus-grey mb-1">
+            {{ person.fullName }}
+        </h3>
+        <p class="font-montreal text-sm uppercase text-ehaus-grey opacity-75 mb-4">
+            {{ person.title }}
+        </p>
+
+        {# Short Bio Text #}
+        <div class="text-sm text-ehaus-grey leading-relaxed">
+            {{ person.bio | raw }}
+        </div>
+    </div>
+{% endmacro %}
+{% import _self as macros %}
+
+{# -----------------------------------------------------------------------------------------
+   HARDCODED DATA: Define the people for each tab
+   ----------------------------------------------------------------------------------------- #}
+
+{% set person1 = {
+    fullName: 'Warwick Walker, CFPcm',
+    title: 'BUSINESS OWNER & FINANCIAL ADVISER',
+    bio: 'I aim to help families in Aotearoa excel by providing tailored financial advice that supports their journey toward a secure and prosperous future. As a parent to a young family, I understand the challenges that other young families face when managing their finances. I want to form long-lasting partnerships with my clients as they move through the different life stages.'
+} %}
+
+{% set person2 = {
+    fullName: 'Kim Ripia',
+    title: 'COMPLIANCE & TEAM MANAGER',
+    bio: 'I aim to help families in Aotearoa excel by providing tailored financial advice that supports their journey toward a secure and prosperous future. As a parent to a young family, I understand the challenges that other young families face when managing their finances. I want to form long-lasting partnerships with my clients as they move through the different life stages.'
+} %}
+
+{% set person3 = {
+    fullName: 'Jane Doe',
+    title: 'WEALTH SPECIALIST',
+    bio: 'Jane specialises in wealth management strategies, helping clients grow and protect their assets through complex market conditions. She focuses on long-term relationships built on trust and strategic planning across all financial domains.'
+} %}
+
+{% set peopleByRole = {
+    'accounting': [person1, person2, person1, person2],
+    'financial-advisers': [person2, person3, person1],
+    'management-support': [person3]
+} %}
+
+
+{# -----------------------------------------------------------------------------------------
+   STRUCTURE TABS DATA: Build the array for the tabs.twig component
+   ----------------------------------------------------------------------------------------- #}
+
+{% set tabsData = {
+    backgroundColor: 'bg-white',
+    textColor: 'text-ehaus-grey',
+    titleClasses: 'font-serif text-3xl font-medium',
+    defaultTab: 'accounting',
+    tabs: []
+} %}
+
+{% set tabDefinitions = [
+    { id: 'accounting', label: 'Accounting & Wealth Management' },
+    { id: 'financial-advisers', label: 'Financial Advisers' },
+    { id: 'management-support', label: 'Management & Support' }
+] %}
+
+{% for tab in tabDefinitions %}
+    {% set people = peopleByRole[tab.id] ?? [] %}
+
+    {% set tabContent %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for person in people %}
+                {{ macros.teamMemberCard(person) }}
+            {% endfor %}
+        </div>
+        {% if people is empty %}
+            <p>No team members currently listed for "{{ tab.label }}".</p>
+        {% endif %}
+    {% endset %}
+
+    {% set tabsData = tabsData|merge({ tabs: tabsData.tabs|merge([{
+        id: tab.id,
+        label: tab.label,
+        title: tab.label,
+        content: tabContent
+    }]) }) %}
+{% endfor %}
+
+
+{# -----------------------------------------------------------------------------------------
+   RENDER: Render the tabs component
+   ----------------------------------------------------------------------------------------- #}
+
+<div class="py-16">
+    {% if tabsData.tabs is not empty %}
+        {{ include('_components/ui/tabs/tabs.twig', {
+            data: tabsData
+        }) }}
+    {% else %}
+        <p class="text-center text-ehaus-grey">Error: Could not load team sections.</p>
+    {% endif %}
+</div>

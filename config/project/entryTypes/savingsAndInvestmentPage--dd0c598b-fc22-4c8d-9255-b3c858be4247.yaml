@@ -1,0 +1,206 @@
+color: null
+description: null
+fieldLayouts:
+  70bd36a0-f9c8-4d55-b4f2-c250b13e8474:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-12-17T03:38:49+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: e57ad7da-c977-4463-a6d0-8b277d7cca94
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:42:16+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ba06c181-87ee-4bbd-ac65-6924640190e7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:42:16+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6fa6d9e2-b079-4a84-9bc6-a98421339873
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: c0649c60-f3b9-4754-b77e-871f4947ad20
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T03:42:16+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: acbdb752-fe37-49a8-bbdf-8800de5c78c7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:42:16+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ce5ebd85-c25e-4959-9c03-6b82b22ed55e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:42:16+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: eb7b1487-1995-4b02-95a6-e87af71c4fb3
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Gain Control,Confidence'
+        uid: eb0624fe-6358-4a73-b0aa-04ed41d5331a
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T03:42:16+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 1241b357-ec03-4e69-918d-d30cafe4535d # Explore Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c63d9cb1-fb4a-4891-bc76-93d69902f160
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:42:16+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 728e2922-294a-4307-a690-e701c702623f # Explore Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 827fc855-023a-457f-8935-ab8d35f2e172
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:42:16+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 37d3392e-7bcb-4112-bd42-3eade142bea9
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Explore Savings and Investments'
+        uid: cd9ac50a-8c15-4f44-9256-79b59b57f627
+        userCondition: null
+      -
+        elementCondition: null
+        name: 'Who we work with'
+        uid: 916756d2-643f-4ebf-a2ef-56069e090110
+        userCondition: null
+handle: savingsAndInvestmentPage
+hasTitleField: true
+icon: null
+name: 'Savings and Investment Page'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

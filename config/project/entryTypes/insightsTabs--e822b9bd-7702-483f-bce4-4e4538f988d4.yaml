@@ -1,0 +1,108 @@
+color: null
+description: null
+fieldLayouts:
+  1a01639c-ac02-4f11-80c2-4b305fe7584b:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-16T21:31:54+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: d2442bfd-d769-4080-9505-d553f86821d8 # Tabs Subheading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6b0af9c5-8f01-49da-b7aa-ce886b0bccb7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-16T21:31:54+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f83b90ed-4415-49b6-85c7-e4f1a4a11e72 # Insights Tab Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3306e0b4-aae0-4b71-ada5-4f3fec81c25e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-16T23:14:36+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e4ad5282-5b53-4193-bf9a-40d21e1aab4d # Date
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9e7449aa-9774-40d9-83c1-ecab9b4ce4e2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-16T23:04:27+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 5ca1faf9-4255-419a-9685-fa7e60d769b6 # Insights Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b836affe-5bb4-4533-9ac6-a21d09e5c480
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-16T23:02:29+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 84c3b514-34ea-4305-93bf-9c2761b9b7ae
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 214ab86c-1406-454e-bdd4-1d3ed5c7889f
+        userCondition: null
+handle: insightsTabs
+hasTitleField: false
+icon: null
+name: 'Insights Tabs'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

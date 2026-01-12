@@ -1,0 +1,57 @@
+{# templates/_sections/content-sections/where-should-i-begin.twig #}
+
+{% set sectionData = {
+    heading: 'Where should I begin?',
+    body: 'Financial planning is the first step toward achieving your goals — whether it’s buying your first home, growing your wealth, or planning for retirement. At Fox Plan, we guide you through every stage of your financial journey, helping you create a personalised roadmap that puts you in control.',
+    buttonText: 'Get started',
+    buttonLink: '#'
+} %}
+
+{# Tailwind Class Definitions for consistency and easy adjustment #}
+{% set headingClasses = 'font-serif text-[4rem] md:text-[5rem] font-light leading-none text-gray-900 mb-6 max-w-xl' %}
+{% set bodyClasses = 'text-base text-gray-700 leading-relaxed max-w-xl' %}
+{% set imagePlaceholderClasses = 'max-w-[600px] ml-auto aspect-square bg-gray-200' %} {# Changed to aspect-square #}
+
+<section class="w-full bg-white pt-20 pb-20">
+    <div class="mx-auto px-4">
+
+        {# Use items-end to align the content to the bottom of the grid cells #}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-end">
+
+            {# Left Content Column (Title, Text, Button) #}
+            {# Use h-full to make this div fill the column height, allowing items-end to work #}
+            <div class="h-full flex flex-col justify-end">
+                <div class="pt-8 md:pt-16">
+                    <h2 class="{{ headingClasses }}">
+                        {{ sectionData.heading }}
+                    </h2>
+
+                    <p class="{{ bodyClasses }} pt-[24px] pb-[24px]">
+                        {{ sectionData.body }}
+                    </p>
+
+                    {# BUTTON COMPONENT INCLUDED HERE #}
+                    <div class="mt-6">
+                        {{ include('_components/ui/button/button.twig', {
+                            props: {
+                                text: sectionData.buttonText,
+                                style: 'primary',
+                                url: sectionData.buttonLink,
+                                classes: 'py-3 px-6'
+                            }
+                        }) }}
+                    </div>
+                </div>
+            </div>
+
+            {# Right Image Placeholder Column #}
+            <div>
+                {# This uses the aspect-square class to maintain a 1:1 ratio #}
+                <div class="{{ imagePlaceholderClasses }}">
+                    {# You would typically insert an image or video here #}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

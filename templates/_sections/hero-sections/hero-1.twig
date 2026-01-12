@@ -1,0 +1,53 @@
+{# templates/_sections/hero-sections/hero-1.twig #}
+{% set defaults = {
+    title: 'Mortgages',
+    bodyText: "Whether you're buying your first home, refinancing, or investing in property. FoxPlan makes it easy to get all your ducks in a row.",
+    buttonText: 'Book a call',
+    buttonLink: '#',
+    imageSrc: 'images/Mortgage_1.jpg',
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    textColor: 'text-black',
+    titleFont: 'font-serif',
+    titleSize: 'text-7xl md:text-[8.5rem]',
+    bodyFont: 'font-aktiv-grotesk',
+    bodySize: 'text-lg md:text-xl'
+    } %}
+
+    {% set heroData = defaults | merge(data | default({})) %}
+
+    <section class="{{ heroData.backgroundColor }} w-full overflow-hidden">
+    <div class="pt-16">
+        {# Title Area #}
+        <div class="w-full pl-8 md:pl-10 mb-[32px]">
+            <h1 class="{{ heroData.titleFont }} {{ heroData.titleSize }} font-normal {{ heroData.textColor }} leading-[0.85] tracking-tight">
+                {{ heroData.title }}
+            </h1>
+        </div>
+
+        <div class="flex flex-wrap w-full items-start">
+            {# Left Content Column #}
+            <div class="w-full md:w-[30%] pl-8 md:pl-10 pr-12 pb-20">
+                <div class="max-w-md">
+                    <p class="{{ heroData.bodyFont }} {{ heroData.bodySize }} {{ heroData.textColor }} leading-relaxed mb-10">
+                        {{ heroData.bodyText }}
+                    </p>
+                    <a href="{{ heroData.buttonLink }}" class="inline-block bg-foxplan-charcoal-brown text-white px-10 py-4 text-xs font-bold tracking-widest uppercase hover:opacity-90 transition-all">
+                        {{ heroData.buttonText }}
+                    </a>
+                </div>
+            </div>
+
+            {# Right Image Column #}
+            <div class="hidden md:block md:w-[70%]">
+                <div class="w-full h-[600px]">
+                    {% if heroData.imageSrc is not empty %}
+                        <img src="{{ craft.vite.asset(heroData.imageSrc, false) }}"
+                            alt="{{ heroData.title }}"
+                            class="w-full h-full object-cover block"
+                        >
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

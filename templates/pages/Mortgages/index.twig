@@ -1,0 +1,134 @@
+{# 1. Define the theme BEFORE the extends tag #}
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    textColor: 'text-black',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% block blockAppBody %}
+
+    {# 1. Hero Section #}
+    {{ include('_sections/hero-sections/hero-1.twig', {
+        data: {
+            title: 'Mortgages',
+            imageSrc: 'images/Mortgage_1.jpg',
+            bodyText: "Whether you're buying your first home, refinancing, or investing in property. FoxPlan makes it easy to get all your ducks in a row. Feel more confident about the home-buying journey by talking to an Adviser.",
+            buttonText: 'Book a call',
+            buttonLink: '#',
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            textColor: 'text-black',
+            titleFont: 'font-serif',
+            titleSize: 'text-[8.5rem]',
+            bodyFont: 'font-aktiv-grotesk',
+            bodySize: 'text-lg'
+        }
+    }) }}
+
+    {# 2. Benefits Accordion #}
+    {{ include('_sections/content-sections/benefits.twig', {
+        backgroundColor: 'bg-foxplan-neutral-beige',
+        textColor: 'text-black',
+        servicesData: {
+            heading: 'Get onto the<br>property ladder faster',
+            intro: 'Your FoxPlan mortgage adviser can take care of the tricky questions, applications, and lender communications, making your journey smoother, faster, and a lot more certain.',
+            items: [
+                { expandableHeadingTitle: 'Access to more providers', ExpandableBodyText: 'We work with a wide range of lenders to ensure you get the best deal tailored to your situation.' },
+                { expandableHeadingTitle: 'Better product knowledge', ExpandableBodyText: 'Our advisers have deep expertise across the entire mortgage market.' },
+                { expandableHeadingTitle: 'Advice on loan structuring', ExpandableBodyText: 'Structuring your loan correctly from the start can save you thousands in the long run.' },
+                { expandableHeadingTitle: 'Reduce your time & stress', ExpandableBodyText: 'We handle all the paperwork and lender communications for you.' },
+                { expandableHeadingTitle: 'Get on the property ladder faster', ExpandableBodyText: 'Our streamlined process means you can secure pre-approval and financing efficiently.' }
+            ]
+        }
+    }) }}
+
+
+    {# 3. Services Grid #}
+    {{ include('_sections/services/our-services.twig', {
+        props: {
+            title: 'Explore<br>mortgages',
+            backgroundColor: 'bg-foxplan-white',
+            items: [
+                {
+                    title: 'First home buyers',
+                    text: 'Helping you step onto the property ladder with clarity and confidence. We guide you through the grant applications and lender requirements.',
+                    link: '#',
+                    linkText: 'Learn about first homes'
+                },
+                {
+                    title: 'Moving house',
+                    text: 'Support for transporting your existing mortgage, negotiating a new mortgage, or managing the bridge between sale and purchase.',
+                    link: '#'
+                },
+                {
+                    title: 'Property investing',
+                    text: 'Advice around everything from using a down payment versus home equity to structuring loans for maximum tax efficiency.',
+                    link: '#'
+                },
+                {
+                    title: 'Refinancing',
+                    text: 'Optimize your mortgage to save interest, repay your loan faster, or unlock equity for renovations and other goals.',
+                    link: '#'
+                }
+            ]
+        }
+    }) }}
+
+    {# 4. Partner Section #}
+    {{ include('_sections/content-sections/who-we-work-with.twig', {
+        props: {
+            title: 'WHO WE WORK WITH',
+            logos: [
+                { src: 'images/logo/AIA_Logo.svg', alt: 'AIA', name: 'AIA Insurance' },
+                { src: 'images/logo/ANZ_Logo.svg', alt: 'Southern Cross', name: 'Southern Cross' },
+                { src: 'images/logo/BNZ_Logo.svg', alt: 'ami', name: 'AMI Insurance' },
+                { src: 'images/logo/Kiwibank_Logo.svg', alt: 'FMG', name: 'FMG' },
+                { src: 'images/logo/SBS-Bank_LowQuality_Logo.svg', alt: 'vero', name: 'Vero' },
+                { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'TOWER', name: 'Tower Insurance' },
+                { src: 'images/logo/Westpac_logo.svg', alt: 'nib', name: 'NIB Health' },
+                { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'iag', name: 'IAG Group' }
+            ]
+        }
+    }) }}
+
+    {# 5. Team Section #}
+    {{ include('_sections/meet-the-team/meet-our-team.twig', {
+        props: {
+            sectionTitle: 'Meet our mortgage advisers',
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            advisers: [
+                {
+                    name: 'Terri Watson',
+                    role: 'FINANCIAL ADVISER',
+                    bio: 'I help you create clarity with your goals and confidence with your cashflow, giving you the tools to make informed decisions that align with your values.'
+                },
+                {
+                    name: 'Prashant Modi',
+                    role: 'FINANCIAL ADVISER',
+                    bio: 'Back in India, I was a pharmacist. Financial advice follows the same process: diagnose your vision, then plan your journey to reach it.'
+                },
+                {
+                    name: 'Stephan Jagers',
+                    role: 'BUSINESS OWNER | FINANCIAL ADVISER',
+                    bio: 'I’m motivated to help clients achieve their dreams, guiding them through life’s turbulence to reach their desired outcomes.'
+                }
+            ]
+        }
+    }) }}
+
+    {# footer #}
+
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+{% endblock %}

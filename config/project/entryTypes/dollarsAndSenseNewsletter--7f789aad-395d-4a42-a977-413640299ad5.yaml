@@ -1,0 +1,125 @@
+color: null
+description: null
+fieldLayouts:
+  0adb3e42-de6f-4208-91e1-df93aa62cfcc:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T02:47:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 9315bb88-5d25-4861-81a8-0919dd5ba2b9 # Newsletter Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 864fed95-8366-4a03-988a-9c96f2158437
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T02:47:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 6ceee63c-bd5c-42c7-b57b-470bd2226b4b # Newsletter Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e859c48f-be22-4603-9a69-4b4a7dcfdd60
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T02:47:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 096b02a8-7b14-4611-b1ca-1e82e3dd704a # Newsletter Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 85121c5b-1b0a-4248-a536-837b74fe67b8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T02:47:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e4ad5282-5b53-4193-bf9a-40d21e1aab4d # Date
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b8837542-6e9c-48b7-b46b-7cb1dcb7c140
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T02:47:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: ad7daef3-ba4d-470a-8ee9-3bee8c28bcea # Newsletter Title
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 821c6795-afaa-4804-b4b8-f85957c68c02
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T02:47:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3d6f735f-ea0e-48d6-9d65-ad91f62aec12
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 0f7c0f66-0adb-4d42-af63-5d29e582b0ed
+        userCondition: null
+handle: dollarsAndSenseNewsletter
+hasTitleField: false
+icon: null
+name: 'Dollars and sense Newsletter'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

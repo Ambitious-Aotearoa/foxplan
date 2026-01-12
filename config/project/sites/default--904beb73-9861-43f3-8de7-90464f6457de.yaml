@@ -1,0 +1,8 @@
+baseUrl: $PRIMARY_SITE_URL
+handle: default
+hasUrls: true
+language: en
+name: foxplan
+primary: true
+siteGroup: 56f32641-e789-4c85-9d66-1a59f42e95d2 # foxplan
+sortOrder: 1

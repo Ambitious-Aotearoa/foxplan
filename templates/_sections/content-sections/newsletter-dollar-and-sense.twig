@@ -1,0 +1,70 @@
+{# _sections/content-sections/newsletter-dollar-and-sense.twig #}
+
+{% set newsletterData = {
+    heading: 'The Dollars and Sense Newsletter',
+    description: 'Don’t have time to listen? Get the low-down on the latest episode of Dollars and Sense with our regular episode newsletter.',
+    articles: [
+        {
+            date: 'JUNE 13, 2024',
+            title: 'Why choose private health insurance?',
+            url: '#'
+        },
+        {
+            date: 'MAY 20, 2024',
+            title: '8 great investment mistakes to avoid',
+            url: '#'
+        },
+        {
+            date: 'MAY 16, 2024',
+            title: 'The ultimate guide to retirement planning',
+            url: '#'
+        }
+    ]
+} %}
+
+{# Tailwind Class Definitions for consistency #}
+{% set mainHeadingClasses = 'font-sans text-[3.5rem] md:text-[5rem] font-normal leading-none text-gray-900 mb-4 max-w-3xl' %}
+{% set bodyClasses = 'text-base text-black leading-relaxed max-w-xl mb-4' %}
+{% set dividerClasses = 'w-full border-t border-gray-300 mb-12' %} {# New class for the HR/Divider #}
+{% set placeholderClasses = 'w-full bg-gray-200 aspect-[5/3] mb-4' %}
+{% set articleDateClasses = 'text-sm text-black uppercase tracking-wider mb-2' %}
+{% set articleTitleClasses = 'text-lg font-medium leading-tight text-gray-900 mb-2' %}
+{% set readMoreClasses = 'text-sm text-gray-500 uppercase tracking-wider hover:text-gray-900 transition-colors duration-200' %}
+
+<section class="w-full bg-white pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="mx-auto px-4">
+
+        {# Heading and Description #}
+        <h2 class="{{ mainHeadingClasses }}">
+            {{ newsletterData.heading }}
+        </h2>
+        <p class="{{ bodyClasses }}">
+            {{ newsletterData.description }}
+        </p>
+
+        {# HORIZONTAL DIVIDER/BORDER ADDED HERE #}
+        <div class="{{ dividerClasses }}"></div>
+
+        {# Articles Grid #}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            {% for article in newsletterData.articles %}
+                <div>
+                    {# Placeholder Block (4:3 aspect ratio based on visual estimate) #}
+                    <div class="{{ placeholderClasses }}"></div>
+
+                    <p class="{{ articleDateClasses }}">{{ article.date }}</p>
+
+                    <a href="{{ article.url }}">
+                        <h3 class="{{ articleTitleClasses }}">{{ article.title }}</h3>
+                    </a>
+
+                    <a href="{{ article.url }}" class="{{ readMoreClasses }}">
+                        READ MORE
+                    </a>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>

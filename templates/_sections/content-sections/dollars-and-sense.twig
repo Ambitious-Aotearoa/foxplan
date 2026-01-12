@@ -1,0 +1,52 @@
+{# templates/_sections/content-sections/dollars-and-sense.twig #}
+
+{% set sectionData = {
+    heading: 'Subscribe to Dollars and Sense Podcast',
+    body: 'Level up your financial literacy with new episodes from the FoxPlan team each week on KiwiSaver, mortgages, financial planning, and strategies for growing and protecting your wealth.',
+    buttonText: 'Listen now',
+    buttonLink: '#',
+} %}
+
+{# Tailwind Class Definitions for consistency and easy adjustment #}
+{% set placeholderClasses = 'w-full bg-gray-200 min-h-[300px] md:min-h-[500px]' %}
+{% set headingClasses = 'font-serif text-[4rem] md:text-[4.5rem] font-light leading-none text-gray-900 mb-6' %}
+{% set bodyClasses = 'text-base text-gray-700 leading-relaxed max-w-2xl' %}
+
+<section class="w-full bg-white pt-20 pb-20">
+    <div class="mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+
+            {# Left Placeholder Column #}
+            <div class="">
+                {# This represents the large gray block #}
+                <div class="{{ placeholderClasses }}">
+                    {# You would typically insert an image, embed, or video here #}
+                </div>
+            </div>
+
+            {# Right Content Column (Title, Text, Button) #}
+            <div class="h-full flex flex-col justify-end">
+                <h2 class="{{ headingClasses }}">
+                    {{ sectionData.heading }}
+                </h2>
+
+                <p class="{{ bodyClasses }}">
+                    {{ sectionData.body }}
+                </p>
+
+                {# BUTTON COMPONENT INCLUDED HERE, using 'primary' style #}
+                <div class="mt-6">
+                    {{ include('_components/ui/button/button.twig', {
+                        props: {
+                            text: sectionData.buttonText,
+                            style: 'primary',
+                            url: sectionData.buttonLink,
+                            classes: 'mb-[24px]'
+                        }
+                    }) }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,57 @@
+{# templates/_sections/services/our-services.twig #}
+
+{% set incomingItems = props.items ?? [] %}
+{% set heading = props.title ?? 'Services' %}
+{% set sectionBg = props.backgroundColor ?? 'bg-white' %}
+{% set groupedItems = incomingItems|batch(2) %}
+
+<section class="w-full pt-16 pb-16 md:pt-24 md:pb-24 {{ sectionBg }}">
+    <div class="mx-auto px-4">
+
+        {# Main Layout: Title on the left, Grid on the right #}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12">
+
+            {# Left Column: Heading #}
+            <div class="md:col-span-4">
+                <h2 class="font-serif text-[4rem] md:text-[5rem] font-light leading-[0.85] text-black mb-12 md:mb-0">
+                    {{ heading | raw }}
+                </h2>
+            </div>
+
+            {# Right Column: Service Items #}
+            <div class="md:col-span-8">
+                {% for group in groupedItems %}
+                    {# Removed border-t from here #}
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+
+                        {% for item in group %}
+                            {# Removed border-l and adjusted padding for a cleaner look #}
+                            <div class="py-8 md:pr-10">
+                                {% if item %}
+                                    <h3 class="font-serif text-[2.2rem] font-medium leading-tight text-black mb-4">
+                                        {{ item.title }}
+                                    </h3>
+
+                                    <p class="font-aktiv-grotesk text-base text-black/80 leading-relaxed mb-8">
+                                        {{ item.text ?? item.description ?? '' }}
+                                    </p>
+
+                                    <div class="mb-4">
+                                        <a href="{{ item.link ?? '#' }}" class="inline-flex items-center gap-2 bg-foxplan-charcoal-brown text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
+                                            Learn more
+                                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</section>

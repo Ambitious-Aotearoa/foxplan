@@ -1,0 +1,64 @@
+{# _sections/think-of-us.twig #}
+
+{% set sectionData = {
+    mainHeading: 'Think of us as your insurance guides',
+    propositions: [
+        {
+            text: 'You\'ll work with the same Adviser each and every time'
+        },
+        {
+            text: 'Your life, goals and needs are our guiding principles'
+        },
+        {
+            text: 'We\'ll guide you through a needs analysis, & give you independent research but you\'re always in the driving seat'
+        },
+        {
+            text: 'We\'ll deal with insurance companies at claim time'
+        }
+    ]
+} %}
+
+{% set containerClasses = 'mx-auto px-4' %}
+{% set mainHeadingClasses = 'font-serif text-[50px] font-light leading-none text-gray-900 pr-12' %}
+{% set propositionTextClasses = 'text-base font-light text-gray-700 leading-relaxed max-w-sm' %}
+
+
+<section class="w-full bg-gray-50 pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="{{ containerClasses }}">
+
+        {# Main Grid Container: 4 columns total (1 for the heading, 3 for the content) #}
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-x-12 items-start">
+
+            {# Left Column: Main Heading (Takes 1 column) #}
+            <div class="md:col-span-1 mb-12 md:mb-0 pt-4">
+                <h2 class="{{ mainHeadingClasses }}">
+                    {{ sectionData.mainHeading }}
+                </h2>
+            </div>
+
+            {# Right Columns: Propositions Grid (Takes 3 columns) #}
+            <div class="md:col-span-3">
+                {# Nested Grid: 2 columns for the proposition blocks, spanning the 3 available columns #}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-12 gap-x-8 lg:gap-x-12">
+
+                    {% for proposition in sectionData.propositions %}
+                        {# Removed flex/space-x-4 to stack icon and text #}
+                        <div class="col-span-1">
+
+                            {# Placeholder Icon (Gray square from the screenshot) #}
+                            {# Added mb-3 for vertical spacing below the icon #}
+                            <div class="w-6 h-6 bg-gray-200 mb-3"></div>
+
+                            <p class="{{ propositionTextClasses }}">
+                                {{ proposition.text }}
+                            </p>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

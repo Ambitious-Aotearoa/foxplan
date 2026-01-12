@@ -1,0 +1,103 @@
+{# _sections/content-sections/episode-list.twig #}
+
+{% set episodeData = [
+    {
+        title: 'Second marriages, trusts and contracting out - Part 2 with Hannah Carter Dollars & Sense Podcast',
+        date: 'Dec 11, 2024',
+        length: '26 minutes',
+        linkUrl: '#'
+    },
+    {
+        title: 'Blended families & second marriages: The legal must-knows with Hannah Carter',
+        date: 'Dec 11, 2024',
+        length: '26 minutes',
+        linkUrl: '#'
+    },
+    {
+        title: 'Why revolving mortgages keep you stuck on the financial treadmill',
+        date: 'Dec 11, 2024',
+        length: '26 minutes',
+        linkUrl: '#'
+    },
+    {
+        title: 'Second marriages, trusts and contracting out - Part 2 with Hannah Carter Dollars & Sense Podcast',
+        date: 'Dec 11, 2024',
+        length: '26 minutes',
+        linkUrl: '#'
+    },
+    {
+        title: 'Blended families & second marriages: The legal must-knows with Hannah Carter',
+        date: 'Dec 11, 2024',
+        length: '26 minutes',
+        linkUrl: '#'
+    },
+    {
+        title: 'Why revolving mortgages keep you stuck on the financial treadmill',
+        date: 'Dec 11, 2024',
+        length: '26 minutes',
+        linkUrl: '#'
+    }
+] %}
+
+{# Tailwind Class Definitions for styling #}
+{% set sectionClasses = 'bg-white' %}
+{% set mainHeadingClasses = 'font-serif text-[32px] font-light leading-none text-black' %}
+{% set episodeTitleClasses = 'font-serif text-[32px] font-light leading-snug text-black mb-1' %}
+{% set metadataClasses = 'text-sm text-gray-600' %}
+{% set imagePlaceholderClasses = 'w-24 h-24 bg-gray-200 mr-8 flex-shrink-0' %} {# New class for the grey box #}
+
+<section class="w-full {{ sectionClasses }} pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="mx-auto px-4">
+
+        {# Header Row: Title and "See All" button #}
+        <div class="flex justify-between items-center mb-12 pb-6">
+            <h2 class="{{ mainHeadingClasses }}">All episodes</h2>
+
+            {# "See all" button using the component #}
+            {{ include('_components/ui/button/button.twig', {
+                props: {
+                    text: 'See all',
+                    style: 'primary',
+                    url: '#'
+                }
+            }) }}
+        </div>
+
+        {# Episode List #}
+        <div class="divide-y divide-gray-200">
+            {% for episode in episodeData %}
+
+                {# Episode Item #}
+                <div class="flex items-center justify-between py-6">
+
+                    {# Left Content: Placeholder, Title, and Metadata #}
+                    <div class="flex items-start pr-8">
+
+                        {# Grey Box Placeholder #}
+                        <div class="{{ imagePlaceholderClasses }}"></div>
+
+                        <div>
+                            <h3 class="{{ episodeTitleClasses }}">{{ episode.title }}</h3>
+                            <p class="{{ metadataClasses }}">
+                                {{ episode.date }} &bull; {{ episode.length }}
+                            </p>
+                        </div>
+                    </div>
+
+                    {# Right Content: Listen Button #}
+                    <div class="flex-shrink-0">
+                        {{ include('_components/ui/button/button.twig', {
+                            props: {
+                                text: 'Listen',
+                                style: 'primary',
+                                url: episode.linkUrl,
+                            }
+                        }) }}
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+</section>

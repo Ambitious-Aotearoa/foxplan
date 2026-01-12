@@ -1,0 +1,66 @@
+{# _sections/who-is-this-for.twig #}
+
+{% set sectionData = {
+    block1: {
+        heading: 'Build, grow and exit on your terms',
+        body: 'Our minority equity ownership model means that you can enjoy ongoing income from your hard work even after retirement. We can design a structured, transparent exit strategy for retirement or when you\'re ready to sell.'
+    },
+    block2: {
+        heading: 'Who is this for?',
+        body: 'This is an ideal opportunity for established accountants, financial planners and advisers with their own small business. Equity ownership allows you more time for advising your clients with more support for your business operations.'
+    }
+} %}
+
+{# Tailwind Class Definitions for styling #}
+{% set headingClasses = 'font-serif text-5xl md:text-6xl font-normal leading-none text-gray-900 mb-6' %}
+{% set bodyClasses = 'text-base text-gray-700 leading-relaxed max-w-sm' %}
+
+<section class="w-full pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="mx-auto">
+
+        {# Main Grid Container for Staggered Layout (12 columns total) #}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-12">
+
+            {# ========================================== #}
+            {# LEFT COLUMN STACK: Content 1 and Placeholder 2 #}
+            {# ========================================== #}
+
+            {# Content Column spans 5 columns, uses flex-col and h-full for vertical management #}
+            <div class="md:col-span-6 lg:col-span-5 flex flex-col justify-start h-full">
+
+                {# Content 1: "Build, grow and exit..." #}
+                <div class="mb-12 px-4">
+                    <h2 class="{{ headingClasses }}">{{ sectionData.block1.heading }}</h2>
+                    <p class="{{ bodyClasses }}">{{ sectionData.block1.body }}</p>
+                </div>
+
+                {# Placeholder 2: Bottom-Left Placeholder #}
+                <div class="mt-auto h-[450px] w-full md:w-3/4 bg-gray-100">
+                    {# Placeholder content here #}
+                </div>
+            </div>
+
+            {# ========================================== #}
+            {# RIGHT COLUMN STACK: Placeholder 1 (LONG) and Content 2 #}
+            {# ========================================== #}
+
+            {# Content Column spans 7 columns, uses flex-col and h-full for vertical management #}
+            <div class="md:col-span-6 lg:col-span-7 flex flex-col justify-start h-full">
+
+                {# Placeholder 1: Top-Right (LONG) Placeholder #}
+                {# MODIFIED: Reduced margin-bottom from mb-36 back to mb-24 to decrease the space above the text #}
+                <div class="h-[700px] mb-24 bg-gray-100">
+                    {# Placeholder content here #}
+                </div>
+
+                {# Content 2: "Who is this for?" #}
+                <div class="pl-4">
+                    {# Note: Using headingClasses but with specific text size override #}
+                    <h2 class="{{ headingClasses }} text-4xl mb-4">{{ sectionData.block2.heading }}</h2>
+                    <p class="{{ bodyClasses }}">{{ sectionData.block2.body }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

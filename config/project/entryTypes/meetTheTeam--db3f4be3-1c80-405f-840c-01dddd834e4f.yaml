@@ -1,0 +1,91 @@
+color: null
+description: null
+fieldLayouts:
+  9a769fbb-6e9b-4ab4-ac12-5c8423d3eccd:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T01:02:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 34e5e40b-6fd4-4a1c-93b0-ecc79226fa32 # Individual image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d08ddc84-1357-4c24-8e2f-361e132615d3
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T00:48:06+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 07b100f7-5847-4e4c-bc53-59526033b566 # Meet the Team Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c6e3740e-9534-4efd-a639-17cc3caaed66
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T01:02:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 5e3a98a6-2a0c-4e33-810c-ebd90c38e203 # Job Ttitle
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b9c43111-4ad7-4a2b-ab17-8a984f2f502d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T01:02:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 743a39c4-d1cd-47df-902d-bb69a19fe48f
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 65e85ad3-372c-4da7-8d5b-1b7b4c8c178d
+        userCondition: null
+handle: meetTheTeam
+hasTitleField: false
+icon: null
+name: 'Meet the Team'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

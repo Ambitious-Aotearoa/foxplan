@@ -1,0 +1,97 @@
+{# templates/_sections/content-sections/who-we-work-with.twig #}
+{% set defaults = {
+    title: 'WHO WE WORK WITH',
+    backgroundColor: 'bg-foxplan-white',
+    borderColor: 'border-foxplan-charcoal-brown',
+    logos: []
+} %}
+
+{% set data = defaults | merge(props | default({})) %}
+
+<section class="w-full {{ data.backgroundColor }}">
+    <div class="w-full">
+        {# Title Header #}
+        <div class="pt-10 pb-6 px-[20px]">
+            <p class="font-aktiv-grotesk text-[11px] font-bold tracking-[0.2em] uppercase text-black opacity-80">
+                {{ data.title }}
+            </p>
+        </div>
+
+        <div class="px-[20px] pb-10">
+            <div class="border {{ data.borderColor }}">
+                <div class="grid grid-cols-2 md:grid-cols-4" id="logo-grid">
+                    {# This renders all 8 logos immediately #}
+                    {% for logo in data.logos %}
+                        <div class="logo-card relative overflow-hidden aspect-[1.6/1] flex items-center justify-center p-8 border-r border-b {{ data.borderColor }}
+                            [&:nth-child(2n)]:border-r-0 md:[&:nth-child(2n)]:border-r md:[&:nth-child(4n)]:border-r-0
+                            [&:nth-last-child(-n+2)]:border-b-0 md:[&:nth-last-child(-n+4)]:border-b-0">
+
+                            <div class="logo-wrapper transition-all duration-700 ease-in-out opacity-100 transform translate-y-0 w-full h-full flex items-center justify-center">
+                                {% if logo.src is defined %}
+                                    <img src="{{ craft.vite.asset(logo.src, false) }}"
+                                         alt="{{ logo.alt ?? 'Logo' }}"
+                                         class="logo-img max-w-full max-h-[50px] md:max-h-[60px] object-contain grayscale brightness-0 opacity-90">
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Find all logo containers
+        const wrappers = document.querySelectorAll('.logo-wrapper');
+
+        // Only run if we have at least 2 logos to swap
+        if (wrappers.length < 2) return;
+
+        function swapLogos() {
+            // 1. Pick two random distinct indices from the grid
+            let idxA = Math.floor(Math.random() * wrappers.length);
+            let idxB = Math.floor(Math.random() * wrappers.length);
+
+            // Ensure we don't pick the same slot
+            while (idxA === idxB) {
+                idxB = Math.floor(Math.random() * wrappers.length);
+            }
+
+            const wrapperA = wrappers[idxA];
+            const wrapperB = wrappers[idxB];
+            const imgA = wrapperA.querySelector('.logo-img');
+            const imgB = wrapperB.querySelector('.logo-img');
+
+            if (!imgA || !imgB) return;
+
+            // 2. Animate out (Fade and slight move)
+            wrapperA.style.opacity = '0';
+            wrapperA.style.transform = 'translateY(-10px)';
+            wrapperB.style.opacity = '0';
+            wrapperB.style.transform = 'translateY(10px)';
+
+            // 3. Wait for the transition (700ms), then swap the data
+            setTimeout(() => {
+                const tempSrc = imgA.src;
+                const tempAlt = imgA.alt;
+
+                imgA.src = imgB.src;
+                imgA.alt = imgB.alt;
+
+                imgB.src = tempSrc;
+                imgB.alt = tempAlt;
+
+                // 4. Animate back in
+                wrapperA.style.opacity = '1';
+                wrapperA.style.transform = 'translateY(0)';
+                wrapperB.style.opacity = '1';
+                wrapperB.style.transform = 'translateY(0)';
+            }, 700);
+        }
+
+        // Shuffle a pair every 4 seconds
+        setInterval(swapLogos, 4000);
+    });
+</script>

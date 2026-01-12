@@ -1,0 +1,78 @@
+{#
+File: templates/_components/ui/accordion/accordion.twig
+Reusable Content Accordion Component - High Fidelity Update
+#}
+
+{% set defaults = {
+    items: [],
+    defaultOpen: -1,
+    titleFont: 'font-serif',
+    titleSize: 'text-2xl md:text-3xl',
+    titleCase: 'normal',
+    titleWeight: 'font-normal',
+    contentFont: 'font-aktiv-grotesk',
+    contentSize: 'text-base',
+    contentWeight: 'font-light',
+    contentOpacity: 'opacity-100',
+    textColor: 'text-black',
+    contentLeading: 'leading-relaxed',
+    classes: ''
+} %}
+
+{% set props = defaults | merge(props | default({})) %}
+
+<div class="space-y-4 {{ props.classes }}" x-data="{ openItem: {{ props.defaultOpen }} }">
+    {% if props.items and props.items|length > 0 %}
+        {% for item in props.items %}
+            {% set hasContent = item.ExpandableBodyText is not empty %}
+
+            {#
+            1. BACKGROUND: foxplan-white (#FEFCF7)
+            2. MARGIN RIGHT: 20px (mr-[20px])
+            #}
+            <div class="bg-foxplan-white overflow-hidden mr-[20px]">
+
+                {# Accordion Header #}
+                <button
+                        class="w-full flex items-center justify-between py-6 text-left group transition-colors duration-200"
+                        {% if hasContent %}
+                            @click="openItem = openItem === {{ loop.index0 }} ? -1 : {{ loop.index0 }}"
+                            aria-expanded="false"
+                            :aria-expanded="openItem === {{ loop.index0 }} ? 'true' : 'false'"
+                        {% else %}
+                            disabled
+                        {% endif %}
+                >
+                    <h3 class="{{ props.titleFont }} {{ props.titleSize }} {{ props.titleCase }} {{ props.titleWeight }} {{ props.textColor }} pr-4 pl-8">
+                        {{ item.expandableHeadingTitle|default('Item ' ~ loop.index) }}
+                    </h3>
+
+                    {# Toggle Icon Container #}
+                    {% if hasContent %}
+                        <div class="flex-shrink-0 pr-6">
+                            {# Square toggle background #}
+                            <div class="w-7 h-7 bg-[#E5E5E5] flex items-center justify-center transition-transform duration-200">
+                                <span class="text-white text-xl font-light leading-none mb-0.5"
+                                      x-text="openItem === {{ loop.index0 }} ? '−' : '+'">
+                                </span>
+                            </div>
+                        </div>
+                    {% endif %}
+                </button>
+
+                {# Accordion Content #}
+                {% if hasContent %}
+                    <div x-show="openItem === {{ loop.index0 }}" class="max-h-[1000px]" style="display: none;">
+                        <div class="pb-8 pl-8 pr-6">
+                            <div class="{{ props.contentFont }} {{ props.contentSize }} {{ props.contentWeight }} {{ props.textColor }} {{ props.contentLeading }} {{ props.contentOpacity }} max-w-2xl">
+                                {{ item.ExpandableBodyText|raw }}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="{{ props.contentFont }} {{ props.contentSize }} {{ props.textColor }}">No items available.</p>
+    {% endif %}
+</div>

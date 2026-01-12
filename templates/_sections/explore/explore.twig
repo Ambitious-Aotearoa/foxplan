@@ -1,0 +1,63 @@
+{#
+File: templates/_sections/content-sections/explore.twig
+Section: Explore Mortgages (30%/70% Layout)
+#}
+
+{% set exploreData = {
+    sectionTitle: 'Explore<br>mortgages',
+    cards: [
+        { title: 'First home buyers', body: 'Helping you step onto the property ladder with clarity and confidence, from budgeting and KiwiSaver strategies to pre-approval and lender guidance.', linkText: 'Learn more', linkUrl: '#' },
+        { title: 'Moving house', body: 'Support for transporting your existing mortgage, negotiating a new mortgage, or using bridging finance for your upcoming move.', linkText: 'Learn more', linkUrl: '#' },
+        { title: 'Property investing', body: 'Advice around everything from using a down payment versus home equity to interest only loans, and structuring your loan.', linkText: 'Learn more', linkUrl: '#' },
+        { title: 'Refinancing', body: 'Optimise your mortgage to save interest, repay your loan faster, and manage your cash flow effectively.', linkText: 'Learn more', linkUrl: '#' }
+    ]
+} %}
+
+{# Define common styling for this section #}
+{% set exploreHeadingClasses = 'font-serif text-5xl md:text-6xl text-black leading-none' %}
+{% set cardTitleClasses = 'font-serif text-[32px] font-normal text-black leading-snug mb-2' %}
+{% set cardBodyClasses = 'font-aktiv-grotesk text-base text-gray-700 leading-relaxed mb-6' %}
+{# REMOVED: {% set buttonClasses = 'font-aktiv-grotesk inline-block py-2 px-4 text-sm text-white bg-black hover:bg-gray-800 transition-colors' %} #}
+
+
+{# Outer wrapper to apply the background color #}
+<div class="w-full bg-[#F5F5F5]">
+    <div class="max-w-full mx-auto py-20 pr-5 border-b border-gray-200">
+
+        <div class="flex flex-wrap md:flex-nowrap">
+
+            {# Left Column: Section Title (30% Width, now using pl-5 for padding) #}
+            <div class="w-full md:w-[30%] mb-10 md:mb-0 pl-5">
+                <h2 class="{{ exploreHeadingClasses }}">
+                    {{ exploreData.sectionTitle | raw }}
+                </h2>
+            </div>
+
+            {# Right Column: Cards Area (70% Width) #}
+            <div class="w-full md:w-[70%]">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+                    {% for card in exploreData.cards %}
+                        <div class="max-w-md">
+                            <h3 class="{{ cardTitleClasses }}">
+                                {{ card.title }}
+                            </h3>
+                            <p class="{{ cardBodyClasses }}">
+                                {{ card.body }}
+                            </p>
+
+
+                            {{ include('_components/ui/button/button.twig', {
+                                props: {
+                                    text: card.linkText,
+                                    style: 'primary',
+                                    url: card.linkUrl | default('#')
+                                }
+                            }) }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

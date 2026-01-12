@@ -1,0 +1,173 @@
+{#
+File: templates/_components/footer/footer-2.twig
+Section: Footer - Updated to 50% Intro / 50% Links
+#}
+
+{% set footerData = {
+    heading: 'Ready to reach your<br>financial goals?',
+    intro: 'Book a chat with one of our financial advisers to get started.',
+    buttonText: 'Learn more',
+
+
+    links: {
+        mortgages: {
+            title: 'MORTGAGES',
+            items: ['Mortgages', 'First Home Buyers', 'Moving House', 'Property Investment', 'Refinancing']
+        },
+        insurance: {
+            title: 'INSURANCE',
+            items: ['Insurance', 'General Insurance', 'Personal Insurance', 'Business Insurance']
+        },
+        savings: {
+            title: 'SAVINGS & INVESTMENT',
+            items: ['Savings & Investments', 'Financial Planning', 'KiwiSaver', 'Retirement Planning', 'Savings', 'Investment Management']
+        },
+        accounting: {
+            title: 'ACCOUNTING',
+            items: ['Accounting']
+        },
+        resources: {
+            title: 'RESOURCES',
+            items: ['Insights', 'Podcast', 'Savings Calculator', 'Investment Calculator']
+        },
+        about: {
+            title: 'ABOUT US',
+            items: ['About FoxPlan', 'Meet The Team', 'Join The Team', 'Equity Partners', 'Suppliers']
+        },
+        phone: {
+            title: 'PHONE',
+            items: ['0800 NO STRESS', '(0800 667 873)', 'Office: (04) 918 4659 ']
+        },
+        location: {
+            title: 'LOCATION',
+            address: ['Level 8', '138 The Terrace', 'Wellington 6011']
+        },
+        post: {
+            title: 'POST',
+            address: ['PO Box 2795', 'Wellington 6140']
+        }
+    }
+} %}
+
+{# Define common styling #}
+{% set headingClasses = 'font-serif text-5xl md:text-6xl font-normal text-black leading-none mb-4' %}
+{% set introClasses = 'font-aktiv text-base text-black leading-relaxed mb-8' %}
+{% set listTitleClasses = 'font-aktiv text-sm font-semibold text-[#8C8C8C] uppercase tracking-widest mb-4' %}
+{% set linkItemClasses = 'font-aktiv text-base text-black leading-relaxed mb-2 hover:text-gray-600 transition-colors' %}
+{% set addressClasses = 'font-aktiv text-base text-black leading-relaxed mb-2' %}
+
+
+<footer class="w-full bg-white pt-20 pb-16 px-5">
+    <div class="max-w-full mx-auto">
+
+        {# Main Grid Structure: Changed from 4 columns to 2 columns (50% / 50%) #}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-12">
+
+            {# COLUMN 1 (50%): Ready to Reach Goals & Fox Illustration #}
+            <div class="col-span-1">
+                <h2 class="{{ headingClasses }}">
+                    {{ footerData.heading | raw }}
+                </h2>
+                <p class="{{ introClasses }}">
+                    {{ footerData.intro }}
+                </p>
+
+                {{ include('_components/ui/button/button.twig', {
+                    props: {
+                        text: footerData.buttonText,
+                        style: 'primary',
+                        url: '#'
+                    }
+                }) }}
+
+                {# Fox Illustration Placeholder #}
+                <div class="w-full mt-10 h-auto">
+                    <div class="w-[80%] h-40 bg-gray-200">
+                        <p class="text-xs text-center pt-16 text-gray-500">Image Placeholder (Fox Illustration)</p>
+                    </div>
+                </div>
+            </div>
+
+            {# COLUMN 2 (50%): All Link Sections #}
+            <div class="col-span-1">
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-12 gap-x-8">
+
+                    {# MORTGAGES LIST (Top Left) #}
+                    <div class="col-span-1">
+                        <h3 class="{{ listTitleClasses }}">{{ footerData.links.mortgages.title }}</h3>
+                        {% for item in footerData.links.mortgages.items %}
+                            <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                        {% endfor %}
+                    </div>
+
+                    {# INSURANCE LIST (Top Middle) #}
+                    <div class="col-span-1">
+                        <h3 class="{{ listTitleClasses }}">{{ footerData.links.insurance.title }}</h3>
+                        {% for item in footerData.links.insurance.items %}
+                            <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                        {% endfor %}
+                    </div>
+
+                    {# SAVINGS & INVESTMENT LIST (Top Right) #}
+                    <div class="col-span-1">
+                        <h3 class="{{ listTitleClasses }}">{{ footerData.links.savings.title }}</h3>
+                        {% for item in footerData.links.savings.items %}
+                            <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                        {% endfor %}
+                    </div>
+
+                    {# ACCOUNTING LIST (Bottom Left) #}
+                    <div class="col-span-1">
+                        <h3 class="{{ listTitleClasses }}">{{ footerData.links.accounting.title }}</h3>
+                        {% for item in footerData.links.accounting.items %}
+                            <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                        {% endfor %}
+                    </div>
+
+                    {# RESOURCES LIST (Bottom Middle) #}
+                    <div class="col-span-1">
+                        <h3 class="{{ listTitleClasses }}">{{ footerData.links.resources.title }}</h3>
+                        {% for item in footerData.links.resources.items %}
+                            <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                        {% endfor %}
+                    </div>
+
+                    {# ABOUT US LIST (Bottom Right) #}
+                    <div class="col-span-1">
+                        <h3 class="{{ listTitleClasses }}">{{ footerData.links.about.title }}</h3>
+                        {% for item in footerData.links.about.items %}
+                            <a href="#" class="{{ linkItemClasses }} block">{{ item }}</a>
+                        {% endfor %}
+                    </div>
+
+                    {# LOCATION, POST, POST (Combined into a single row below the 3x2 grid) #}
+                    <div class="col-span-full mt-8 grid grid-cols-3 gap-x-8">
+
+                        <div>
+                            <h3 class="{{ listTitleClasses }}">{{ footerData.links.phone.title }}</h3>
+                            {% for line in footerData.links.phone.items %}
+                                <p class="{{ addressClasses }}">{{ line }}</p>
+                            {% endfor %}
+                        </div>
+
+                        <div>
+                            <h3 class="{{ listTitleClasses }}">{{ footerData.links.location.title }}</h3>
+                            {% for line in footerData.links.location.address %}
+                                <p class="{{ addressClasses }}">{{ line }}</p>
+                            {% endfor %}
+                        </div>
+
+                        <div>
+                            <h3 class="{{ listTitleClasses }}">{{ footerData.links.post.title }}</h3>
+                            {% for line in footerData.links.post.address %}
+                                <p class="{{ addressClasses }}">{{ line }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer>

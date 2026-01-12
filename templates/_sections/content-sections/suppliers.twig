@@ -1,0 +1,71 @@
+{# _sections/investments/suppliers.twig #}
+
+{% set supplierData = [
+    {
+        name: 'Consilium/Synergy',
+        contact: '0800 222 876',
+        general: null
+    },
+    {
+        name: 'Select Wealth',
+        contact: '0800 736 034',
+        general: '0800 269 296'
+    },
+    {
+        name: 'Booster',
+        contact: '0800 737 101 • +64 4 495 8700',
+        general: null
+    },
+    {
+        name: 'ANZ Investments/ One Answer',
+        contact: '0800 336 338',
+        general: null
+    },
+    {
+        name: 'Fisher Funds',
+        contact: '0508 464 999',
+        general: null
+    }
+] %}
+
+{% set containerClasses = 'mx-auto px-4' %}
+{% set headingClasses = 'font-serif text-4xl sm:text-5xl lg:text-[4rem] font-light leading-none text-gray-900 mb-12 md:mb-16' %}
+{% set cardNameClasses = 'text-xl font-semibold text-gray-900 mt-4' %}
+{% set cardContactClasses = 'text-base font-light text-gray-700 block' %}
+
+<section class="w-full bg-white pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="{{ containerClasses }}">
+
+        <h2 class="{{ headingClasses }}">Investments & Kiwisaver</h2>
+
+        {# Grid for Supplier Cards: Set to grid-cols-4 for desktop (lg:grid-cols-4) with wider gaps (gap-x-12) #}
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-12 gap-y-16">
+
+            {% for supplier in supplierData %}
+                <div class="supplier-card">
+
+                    {# Placeholder Box: Height reverted to original: w-full h-40 md:h-52 #}
+                    <div class="w-full h-40 md:h-52 bg-gray-100 mb-3">
+                        {# Content would go here if images or logos were used #}
+                    </div>
+
+                    {# Supplier Name #}
+                    <h3 class="{{ cardNameClasses }}">{{ supplier.name }}</h3>
+
+                    {# Contact Info #}
+                    {% if supplier.name == 'Select Wealth' %}
+                        {# Handle the two distinct labels for Select Wealth #}
+                        <span class="{{ cardContactClasses }}">Investments: {{ supplier.contact }}</span>
+                        <span class="{{ cardContactClasses }}">General: {{ supplier.general }}</span>
+                    {% else %}
+                        {# Standard Contact Format #}
+                        <span class="{{ cardContactClasses }}">Contact: {{ supplier.contact }}</span>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>

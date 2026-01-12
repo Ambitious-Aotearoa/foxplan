@@ -1,0 +1,74 @@
+{#
+File: templates/_sections/testimonials/testimonial-one.twig
+Section: What our clients say (Title Full Width Above, Horizontal Scroll Testimonial Cards Below)
+#}
+
+{% set testimonialData = {
+    sectionTitle: 'What our clients say',
+    testimonials: [
+        {
+            body: "Excellent service. I've had several financial advisers and FoxPlan are the only ones to engage in planning with me. We've set proper goals and measurements. Rather than taking my money and tossing me a cookie cutter plan. Can't recommend FoxPlan enough.",
+            author: 'EXCELSIOR'
+        },
+        {
+            body: "Foxplan has been so helpful since I was first introduced firstly to Warwick & Heidi & now Stephan & Mark. Each one has explained things without the dogma so that I can understand what is happening. I've had a peace of mind knowing they are knowledgeable & working hard on my behalf.",
+            author: 'EXCELSIOR'
+        },
+        {
+            body: "Excellent service. I've had several financial advisers and FoxPlan are the only ones to engage in planning with me. We've set proper goals and measurements. Rather than taking my money and tossing me a cookie cutter plan. Can't recommend FoxPlan enough.",
+            author: 'EXCELSIOR'
+        },
+        {
+            body: "Foxplan has been so helpful since I was first introduced firstly to Warwick & Heidi & now Stephan & Mark. Each one has explained things without the dogma so that I can understand what is happening. I've had a peace of mind knowing they are knowledgeable & working hard on my behalf.",
+            author: 'EXCELSIOR'
+        }
+    ]
+} %}
+
+{# Define common styling #}
+{% set sectionTitleClasses = 'font-serif text-6xl md:text-7xl font-normal text-black leading-none' %}
+{% set cardBodyClasses = 'font-aktiv text-lg text-black leading-relaxed mb-6' %}
+{% set cardAuthorClasses = 'font-aktiv text-sm text-gray-700 tracking-widest uppercase' %}
+
+
+<div class="w-full bg-white">
+    <div class="max-w-full mx-auto py-20">
+
+        {# 1. Full-Width Title and Pagination #}
+        <div class="flex justify-between items-center mb-12 px-5">
+            {# Title (Left) #}
+            <h2 class="{{ sectionTitleClasses }}">
+                {{ testimonialData.sectionTitle | raw }}
+            </h2>
+
+            {# Dots (right) #}
+            <div class="flex space-x-3 mt-4 md:mt-0">
+                <div class="w-[50px] h-[50px] rounded-full bg-gray-200"></div>
+                <div class="w-[50px] h-[50px] rounded-full bg-gray-200"></div>
+            </div>
+        </div>
+
+        {# 2. Testimonial Cards (Full Width with Horizontal Scrolling) #}
+        <div class="w-full overflow-x-scroll scrollbar-hide pb-4">
+
+            <div class="flex space-x-[8px] px-5">
+
+                {% for testimonial in testimonialData.testimonials %}
+                    {# Card Width Control: Increased width to 700px based on screenshot proportions #}
+                    <div class="p-8 border border-gray-100 bg-gray-50/50 flex-shrink-0 w-full sm:w-[80%] md:w-[700px]">
+                        {# Small icon placeholder (top left of card) #}
+                        <div class="w-6 h-6 bg-gray-200 mb-6"></div>
+
+                        <p class="{{ cardBodyClasses }}">
+                            {{ testimonial.body }}
+                        </p>
+                        <p class="{{ cardAuthorClasses }}">
+                            {{ testimonial.author }}
+                        </p>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>

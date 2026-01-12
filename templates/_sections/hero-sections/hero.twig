@@ -1,0 +1,71 @@
+{#
+hero.twig
+Generates the hero section with a full-width heading, where the descriptive text
+sits as an overlay on top of the reserved grey image area.
+#}
+
+{% set heroData = {
+    heading: 'Financial advice that turns stressful into seamless',
+    body1: 'We know how complicated managing your finances can be. That\'s why we bring your mortgage, investment, insurance and retirement support together.',
+    body2: 'It\'s comprehensive financial advice that lets you stop worrying and start living.',
+    buttonText: 'Book a call',
+    buttonLink: '#book-a-call'
+} %}
+
+
+{% set headingClasses = ' text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 px-4' %}
+{% set bodyClasses = 'text-base text-gray-800 leading-relaxed mb-[24px] ' %}
+{% set overlayBoxClasses = 'max-w-md bg-white p-8 shadow-lg relative z-10' %}
+
+<section class="w-full bg-white pt-24 pb-24 md:pt-32 md:pb-32 lg:pt-40 lg:pb-40">
+    <div class="mx-auto">
+
+        {# --- 1. FULL-WIDTH HEADING --- #}
+        <h1 class="{{ headingClasses }}" style="font-family: 'SeasonSerifTRIALLight', serif; color: black;">
+            {{ heroData.heading }}
+        </h1>
+
+        {# --- 2. Content & Image Overlap Container --- #}
+        <div class="relative min-h-[500px] ">
+
+            {# A. Text Content Area (Left Side) - Now positioned relatively #}
+            <div class="text-area relative z-20">
+
+                {# The Text Box is given a white background and shadow to "sit" on top of the image area #}
+                <div class="{{ overlayBoxClasses }}">
+                    <p class="{{ bodyClasses }}">
+                        {{ heroData.body1 }}
+                    </p>
+                    <p class="{{ bodyClasses }}">
+                        {{ heroData.body2 }}
+                    </p>
+
+                    {# --- BUTTON COMPONENT INCLUDE (UPDATED) --- #}
+                    {% if heroData.buttonText %}
+                        {% include '_components/ui/button/button.twig' with {
+                            props: {
+                                text: heroData.buttonText,
+                                style: 'primary',
+                                url: heroData.buttonLink,
+                                classes: 'mb-[40px]'
+                            }
+                        } only %}
+                    {% endif %}
+                    {# ------------------------------------------ #}
+
+                </div>
+            </div>
+
+            {# B. Image Area (Behind Content) - Absolutely positioned for full width #}
+            <div class="image-area bg-gray-200 absolute inset-0 -z-0">
+                {#
+                Reserved image area. To add an image:
+                1. Change 'bg-gray-200' to 'bg-cover bg-center'
+                2. Add inline style for the image source: style="background-image: url('{{ image.url }}');"
+                #}
+            </div>
+
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,184 @@
+color: null
+description: null
+fieldLayouts:
+  5183423b-40fd-4842-a109-471e894952a5:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-12-17T01:09:45+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 184f7c16-3dce-43c2-b432-881bf9c486cb
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T01:16:13+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b285a129-3a54-40d3-aaf4-21af194f0c0e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T01:16:13+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8735edc8-473a-4917-92d7-97e642d43bde
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: da017aa0-efbf-4497-bdf4-c3bafd507f04
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T01:16:13+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fb4c4f03-a04f-4d4d-b655-b431c1f36a04
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T01:16:13+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 4c9973ff-0107-4739-a889-f352e62eca08 # Large Paragraph
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 237d2564-55d1-44ac-99c5-84861a7006f2
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Foxplan Academy'
+        uid: 184b0432-4e14-412c-a471-ecc89baab56f
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T02:59:06+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 40c16b4e-e453-429d-bbd4-103d0db9945e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T02:59:06+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 26f84897-a636-4e0b-a0f0-9b416c79614b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T02:59:06+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
+            handle: mainTitle2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 70f6d988-2bac-4367-a916-df0c35ae849e
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Current Oppurtunities'
+        uid: 85f95f38-1314-4247-bc12-3f3d2a8dc808
+        userCondition: null
+handle: joinTheTeam
+hasTitleField: true
+icon: null
+name: 'Join The Team '
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

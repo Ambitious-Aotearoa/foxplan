@@ -1,0 +1,54 @@
+{# _sections/newsletter/newsletter-signup-1.twig #}
+
+{% set ctaData = {
+    topLabel: 'SUBSCRIBE',
+    heading: 'For regular financial insights, subscribe to our newsletter.',
+    placeholder: 'Enter your email address',
+    submitText: 'SUBMIT',
+    formAction: '#'
+        } %}
+
+        {# Tailwind Class Definitions for consistency #}
+        {% set topLabelClasses = 'text-sm text-gray-500 uppercase tracking-wider mb-8 block' %}
+        {% set mainHeadingClasses = 'font-serif text-[3.5rem] md:text-[4.5rem] leading-none text-gray-900 mb-4' %}
+        {% set inputClasses = 'w-full text-base py-2 bg-transparent focus:outline-none placeholder-gray-500' %}
+        {% set submitTextClasses = 'text-sm text-gray-900 uppercase tracking-wider cursor-pointer' %}
+        {% set inputContainerClasses = 'flex items-center justify-between border-b border-gray-900' %}
+
+        <section class="w-full bg-gray-100 pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="mx-auto px-4">
+
+        {# Two-column Grid Layout #}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
+
+            {# Left Column: Heading #}
+            <div>
+                <span class="{{ topLabelClasses }}">{{ ctaData.topLabel }}</span>
+                <h2 class="{{ mainHeadingClasses }}">
+                    {{ ctaData.heading }}
+                </h2>
+                <form action="{{ ctaData.formAction }}" method="POST">
+
+                    {# Container for input and submit button with the shared bottom border #}
+                    <div class="{{ inputContainerClasses }}">
+
+                        {# Email Input Field #}
+                        <input
+                                type="email"
+                                name="email"
+                                placeholder="{{ ctaData.placeholder }}"
+                                class="{{ inputClasses }}"
+                                required
+                        >
+
+                        {# Submit Button/Label #}
+                        <button type="submit" class="{{ submitTextClasses }} ml-4 py-2 flex-shrink-0">
+                            {{ ctaData.submitText }}
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

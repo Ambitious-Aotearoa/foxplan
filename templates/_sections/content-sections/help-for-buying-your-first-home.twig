@@ -1,0 +1,68 @@
+{# _sections/help-me-buying-your-first-home.twig #}
+
+{% set sectionData = {
+    mainHeading: 'Help for buying your first home',
+    services: [
+        {
+            title: 'Budgeting & Savings',
+            description: 'We help first-time buyers understand what you can afford and create a plan to save for your deposit.'
+        },
+        {
+            title: 'Mortgage Pre-Approval',
+            description: 'We’ll secure your mortgage pre-approval so that you know how much you can borrow.'
+        },
+        {
+            title: 'Comparing Lenders',
+            description: 'We’ll help you choose the best mortgage option based on your financial situation and needs.'
+        },
+        {
+            title: 'Protection Planning',
+            description: 'Making sure you have the right cover for your home, life, and income, so your new investment is secure.'
+        }
+    ]
+} %}
+
+{% set containerClasses = 'mx-auto px-4 ' %}
+{% set mainHeadingClasses = 'font-serif text-6xl  font-light leading-none text-gray-900 pr-12' %}
+{% set serviceTitleClasses = 'font-serif text-3xl md:text-4xl font-light text-gray-900 mb-4 ' %}
+{% set serviceDescriptionClasses = 'text-base font-light text-gray-700 leading-relaxed max-w-md' %}
+
+
+<section class="w-full bg-white pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="{{ containerClasses }}">
+
+        {# Main Grid Container: 4 columns total (1 for the heading, 3 for the content) #}
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-x-12 items-start">
+
+            {# Left Column: Main Heading (Takes 1 column) #}
+            <div class="md:col-span-1 mb-12 md:mb-0 pt-4">
+                <h2 class="{{ mainHeadingClasses }}">
+                    {{ sectionData.mainHeading }}
+                </h2>
+            </div>
+
+            {# Right Columns: Services Grid (Takes 3 columns) #}
+            <div class="md:col-span-3">
+                {# Nested Grid: 2 columns for the service blocks #}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-12 gap-x-12">
+
+                    {% for service in sectionData.services %}
+                        <div class="col-span-1">
+                            {# Title with margin and max-width #}
+                            <h3 class="{{ serviceTitleClasses }}">
+                                {{ service.title }}
+                            </h3>
+                            {# Description with max-width #}
+                            <p class="{{ serviceDescriptionClasses }}">
+                                {{ service.description }}
+                            </p>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

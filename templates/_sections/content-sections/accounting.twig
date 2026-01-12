@@ -1,0 +1,78 @@
+{# _sections/accounting.twig #}
+
+{% set sectionData = {
+    mainHeading: 'Accounting to get you set up',
+    services: [
+        {
+            title: 'Property investment',
+            description: 'Insurance for protecting your assets – like your car, your home or your holiday batch from life’s little accidents.'
+        },
+        {
+            title: 'Business & company registration',
+            description: 'Protect yourself with our options for life insurance, income protection and health insurance that lower your risk.'
+        },
+        {
+            title: 'Xero Setup and Training',
+            description: 'Protect your business from costly mistakes and accidents with public liability, professional indemnity and other insurance.'
+        },
+        {
+            title: 'Tax returns & financial statements',
+            description: 'Whether it’s your annual tax returns or detailed financial statements - we’ll prepare these for you and submit them to the IRD.'
+        },
+        {
+            title: 'GST Returns and Payroll',
+            description: 'GST and Payroll are two of the biggest bureaucratic headaches that businesses face. We’ll manage your GST Returns and can help you set up suitable Payroll systems to take the pain away.'
+        },
+        {
+            title: 'Succession Planning',
+            description: 'We can help set up a plan for the future sale or transfer of your business, ensuring a smooth transition.'
+        }
+    ]
+} %}
+
+
+{% set mainHeadingClasses = 'font-serif text-6xl lg:text-[4.5rem] font-light leading-none text-gray-900' %}
+{% set serviceTitleClasses = 'font-serif text-3xl md:text-4xl font-light text-gray-900 mb-3' %}
+{% set serviceDescriptionClasses = 'text-base font-light text-gray-700 leading-relaxed max-w-sm' %}
+
+
+<section class="w-full bg-gray-50 pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="mx-auto px-4">
+
+        {# Main Grid Container: gap-x-24 maintained for good visual separation #}
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-x-24 items-start">
+
+            {# Left Column: Main Heading (Takes 1 column) #}
+            <div class="md:col-span-1 mb-12 md:mb-0 pt-4">
+                {# FIX: Wrap the heading in a div with max-width to explicitly contain the text, preventing overflow into the next column. #}
+                <div class="max-w-xs lg:max-w-full">
+                    <h2 class="{{ mainHeadingClasses }}">
+                        {{ sectionData.mainHeading }}
+                    </h2>
+                </div>
+            </div>
+
+            {# Right Columns: Services Grid (Takes 3 columns) #}
+            <div class="md:col-span-3">
+                {# Nested Grid: 3 columns for the service blocks #}
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-12 gap-x-8 lg:gap-x-12">
+
+                    {# Iterate through all services #}
+                    {% for service in sectionData.services %}
+                        <div class="col-span-1">
+                            <h3 class="{{ serviceTitleClasses }}">
+                                {{ service.title }}
+                            </h3>
+                            <p class="{{ serviceDescriptionClasses }}">
+                                {{ service.description }}
+                            </p>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

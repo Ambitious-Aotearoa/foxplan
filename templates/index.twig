@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>FOXPLAN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {# Load Tailwind CSS from CDN for styling (only needed if your layout doesn't provide it) #}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define custom font fallbacks from your section's CSS */
+        .font-serif {
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+        .font-sans {
+            font-family: ui-sans-serif, system-ui, sans-serif;
+        }
+        body { background-color: white; margin: 0; }
+        /* Required CSS for x-cloak to hide elements before Alpine initializes */
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body>
+
+{# Include the navigation component #}
+{% include "_components/nav/nav.twig" %}
+
+{#
+CONTENT SECTIONS HERE
+#}
+{% include "_sections/hero-sections/hero.twig" %}
+{% include "_sections/hero-sections/hero-1.twig" %}
+{% include "_sections/hero-sections/hero-2.twig" %}
+{% include "_sections/hero-sections/hero-3.twig" %}
+{% include "_sections/hero-sections/hero-4.twig" %}
+{% include "_sections/hero-sections/hero-5-alt.twig" %}
+{% include "_sections/content-sections/benefits.twig" %}
+{% include "_sections/explore/explore.twig" %}
+{% include "_sections/content-sections/who-we-work-with.twig" %}
+{% include "_sections/explore/explore-1.twig" %}
+{% include "_sections/content-sections/where-should-i-begin.twig" %}
+{% include "_sections/content-sections/dollars-and-sense.twig" %}
+{% include "_sections/content-sections/link-to-insights.twig" %}
+{% include "_sections/content-sections/newsletter-dollar-and-sense.twig" %}
+{% include "_sections/meet-the-team/meet-our-team.twig" %}
+{% include "_sections/meet-the-team/meet-the-team-A.twig" %}
+{% include "_sections/content-sections/article-template.twig" %}
+{% include "_sections/content-sections/about-podcast.twig" %}
+{% include "_sections/content-sections/foxplan-academy.twig" %}
+{% include "_sections/content-sections/episode-list.twig" %}
+{% include "_sections/content-sections/about-us.twig" %}
+{% include "_sections/content-sections/passing-on-our-knowledge.twig" %}
+{% include "_sections/content-sections/suppliers.twig" %}
+{% include "_sections/content-sections/how-we-work.twig" %}
+{% include "_sections/content-sections/help-for-buying-your-first-home.twig" %}
+{% include "_sections/content-sections/accounting.twig" %}
+{% include "_sections/content-sections/think-of-us.twig" %}
+{% include "_sections/content-sections/masonry-grid.twig" %}
+{% include "_sections/newsletter/newsletter-signup.twig" %}
+{% include "_sections/newsletter/newsletter-signup-1.twig" %}
+{% include "_sections/testimonial/testimonial-one.twig" %}
+{% include "_sections/testimonial/testimonial-two.twig" %}
+{% include "_sections/services/our-services.twig" %}
+{% include "_sections/services/our-services-1.twig" %}
+{% include "_sections/services/services-option.twig" %}
+{% include "_sections/contact-us/contact-us.twig" %}
+{% include "_sections/contact-us/get-in-touch.twig" %}
+{% include "_sections/equity-partners/equity-partners.twig" %}
+{% include "_sections/equity-partners/equity-partners-A.twig" %}
+{% include "_sections/equity-partners/equity-partners-grow.twig" %}
+
+
+
+{# Include the footer component #}
+{% include "_components/footer/footer-2.twig" %}
+{% include "_components/footer/footer-1.twig" %}
+{% include "_components/footer/footer.twig" %}
+{% include "_components/footer/footer-High-fidelity.twig" %}
+
+
+{# 1. INCLUDE THE POPUP COMPONENT - UPDATED PATH #}
+{% include "_sections/newsletter/newsletter-popup.twig" %}
+
+
+{# 2. LOAD ALPINE.JS SCRIPT (Must load after the components it controls) #}
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+</body>
+</html>

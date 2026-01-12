@@ -1,0 +1,25 @@
+{# _sections/hero-4.twig #}
+
+{% set sectionData = {
+    heading: 'Meet the Team',
+    body: 'Our strength lies in our people. We have decades of experience and a shared commitment to helping Kiwis make smart, confident financial decisions.'
+} %}
+
+{% set containerClasses = 'mx-auto' %}
+{% set headingClasses = 'font-serif text-[5rem] md:text-[6rem] lg:text-[7rem] font-light leading-none text-gray-900 mb-6' %}
+{% set bodyClasses = 'text-base text-gray-700 leading-relaxed max-w-2xl' %} {# MODIFIED: Removed mx-auto for left alignment #}
+
+{# MODIFIED: Removed text-center class #}
+<section class="w-full bg-white pt-16 md:pt-24 pb-16 md:pb-24">
+    <div class="{{ containerClasses }} px-4">
+
+        <h1 class="{{ headingClasses }}">
+            {{ sectionData.heading }}
+        </h1>
+
+        <p class="{{ bodyClasses }}">
+            {{ sectionData.body }}
+        </p>
+
+    </div>
+</section>

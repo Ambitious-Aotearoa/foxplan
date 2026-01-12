@@ -1,0 +1,36 @@
+{# _sections/content-sections/foxplan-academy.twig #}
+
+{% set academyData = {
+    topLabel: 'FOXPLAN ACADEMY',
+    body: 'Every new adviser who joins us goes through our Foxplan Academy training programme. You\'ll learn directly from our Directors and Senior Advisers — experienced business owners who bring years of real-world knowledge to every session.'
+} %}
+
+{# Tailwind Class Definitions for styling #}
+{% set sectionClasses = 'bg-white' %}
+{% set topLabelClasses = 'text-sm text-[#8C8C8C] uppercase tracking-wider mb-2 md:mb-0' %}
+{% set bodyTextClasses = 'font-serif text-[32px] leading-snug text-black' %}
+
+<section class="w-full {{ sectionClasses }} pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="mx-auto px-4">
+
+        {# Two-column Grid Layout #}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12">
+
+            {# Left Column: Label (Narrow) #}
+            <div class="md:col-span-4 lg:col-span-3">
+                <span class="{{ topLabelClasses }}">{{ academyData.topLabel }}</span>
+            </div>
+
+            {# Right Column: Content (Wide) #}
+            <div class="md:col-span-8 lg:col-span-9">
+
+                {# Main content text #}
+                <div class="{{ bodyTextClasses }}">
+                    {{ academyData.body }}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>

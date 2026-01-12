@@ -1,0 +1,180 @@
+{#
+File: templates/_components/footer/footer.twig
+#}
+
+
+{% set footerData = {
+    heading: 'READY TO REACH YOUR FINANCIAL GOALS?',
+    intro: 'Book a chat with<br>one of our financial advisers<br>to get started.',
+    buttonText: 'Learn more',
+    buttonLink: '#',
+
+    links: {
+        mortgages: {
+            title: 'MORTGAGES',
+            items: ['Mortgages', 'First Home Buyers', 'Moving House', 'Property Investment', 'Refinancing']
+        },
+        insurance: {
+            title: 'INSURANCE',
+            items: ['Insurance', 'General Insurance', 'Personal Insurance', 'Business Insurance']
+        },
+        savings: {
+            title: 'SAVINGS & INVESTMENT',
+            items: ['Savings & Investments', 'Financial Planning', 'KiwiSaver', 'Retirement Planning', 'Savings', 'Investment Management']
+        },
+        accounting: {
+            title: 'ACCOUNTING',
+            items: ['Accounting']
+        },
+        resources: {
+            title: 'RESOURCES',
+            items: ['Insights', 'Podcast', 'Savings Calculator', 'Investment Calculator']
+        },
+        about: {
+            title: 'ABOUT US',
+            items: ['About FoxPlan', 'Meet The Team', 'Join The Team', 'Equity Partners', 'Suppliers']
+        },
+        location: {
+            title: 'LOCATION',
+            address: ['Level 8', '138 The Terrace', 'Wellington 6011']
+        },
+        post: {
+            title: 'POST',
+            address: ['Level 8', '138 The Terrace']
+        },
+        legal: {
+            items: [
+                { title: 'Privacy Policy', url: '#' },
+                { title: 'Complaints', url: '#' },
+                { title: 'Disclaimer', url: '#' },
+                { title: 'Disclosure', url: '#' }
+            ]
+        }
+    }
+} %}
+
+{% set titleClasses = 'font-serif text-[1rem] font-medium tracking-wide text-gray-700' %}
+{% set introClasses = 'font-serif text-[2.8rem] font-light leading-snug text-gray-900' %}
+{% set linkTitleClasses = 'text-[16px] font-semibold text-[#8C8C8C] uppercase tracking-wider mb-[32px]' %}
+{% set linkItemClasses = 'text-[16px] text-black leading-snug mb-2 hover:text-gray-900 transition-colors block' %}
+{% set addressBlockClasses = 'text-[16px] text-black leading-snug' %}
+{% set legalLinkClasses = 'text-[16px] text-black hover:text-gray-900' %}
+
+<footer class="w-full relative bg-white overflow-hidden pt-12 pb-4">
+    <div class="mx-auto px-4">
+
+        <div class="mb-10 relative">
+            <h2 class="{{ titleClasses }} mb-2">
+                {{ footerData.heading }}
+            </h2>
+
+            <p class="{{ introClasses }} max-w-3xl">
+                {{ 'Book a chat with' | raw }}<br>
+                {{ 'one of our financial advisers' | raw }}<br>
+            </p>
+
+            <div class="flex justify-between items-end -mt-2">
+                <p class="{{ introClasses }} m-0">
+                    {{ 'to get started.' | raw }}
+                </p>
+
+                {{ include('_components/ui/button/button.twig', {
+                    props: {
+                        text: footerData.buttonText,
+                        style: 'primary',
+                        url: footerData.buttonLink,
+                        classes: 'flex-shrink-0'
+                    }
+                }) }}
+            </div>
+
+        </div>
+
+        <div class="mb-10  pt-4 border-t border-gray-200">
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 mb-10">
+
+                <div>
+                    <h4 class="{{ linkTitleClasses }}">LOCATION</h4>
+                    {% for line in footerData.links.location.address %}
+                        <p class="{{ addressBlockClasses }}">{{ line }}</p>
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <h4 class="{{ linkTitleClasses }}">MORTGAGES</h4>
+                    {% for item in footerData.links.mortgages.items %}
+                        <a href="#" class="{{ linkItemClasses }}">{{ item }}</a>
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <h4 class="{{ linkTitleClasses }}">INSURANCE</h4>
+                    {% for item in footerData.links.insurance.items %}
+                        <a href="#" class="{{ linkItemClasses }}">{{ item }}</a>
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <h4 class="{{ linkTitleClasses }}">SAVINGS & INVESTMENT</h4>
+                    {% for item in footerData.links.savings.items %}
+                        <a href="#" class="{{ linkItemClasses }}">{{ item }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 mb-10">
+
+                <div>
+                    <h4 class="{{ linkTitleClasses }}">POST</h4>
+                    {% for line in footerData.links.post.address %}
+                        <p class="{{ addressBlockClasses }}">{{ line }}</p>
+                    {% endfor %}
+
+                    <div class="flex space-x-2 pt-8">
+                        <span class="w-3 h-3 bg-gray-300"></span>
+                        <span class="w-3 h-3 bg-gray-300"></span>
+                        <span class="w-3 h-3 bg-gray-300"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="{{ linkTitleClasses }}">ACCOUNTING</h4>
+                    {% for item in footerData.links.accounting.items %}
+                        <a href="" class="{{ linkItemClasses }}">{{ item }}</a>
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <h4 class="{{ linkTitleClasses }}">RESOURCES</h4>
+                    {% for item in footerData.links.resources.items %}
+                        <a href="" class="{{ linkItemClasses }}">{{ item }}</a>
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <h4 class="{{ linkTitleClasses }}">ABOUT US</h4>
+                    {% for item in footerData.links.about.items %}
+                        <a href="" class="{{ linkItemClasses }}">{{ item }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="flex flex-wrap justify-between text-xs sm:text-sm pt-4 border-t border-gray-200">
+            {% for link in footerData.links.legal.items %}
+                <a href="{{ link.url }}" class="{{ legalLinkClasses }}">{{ link.title }}</a>
+            {% endfor %}
+            <a href="#" class="{{ legalLinkClasses }}"></a>
+        </div>
+
+
+        <div class="w-full h-auto mt-6">
+
+            <img src="/src/assets/public/FoxPlan_Current_Logo.png" alt="FoxPlan Logo Illustration" class="max-w-full h-auto">
+
+        </div>
+
+    </div>
+</footer>

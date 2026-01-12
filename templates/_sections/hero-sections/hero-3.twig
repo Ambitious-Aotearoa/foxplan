@@ -1,0 +1,71 @@
+{# _sections/hero-3.twig #}
+
+{% set sectionData = {
+    heading: 'Contact us',
+    body: 'No matter what your financial goals are we\'ll get you there. Start your journey by messaging us or requesting a callback below. If you already have an adviser, head to our team page to contact them directly.',
+    buttonText: 'Contact an adviser',
+    buttonLink: '#'
+} %}
+
+
+{% set headingClasses = 'font-serif text-[6rem] md:text-[8rem] lg:text-[10rem]  leading-none text-gray-900' %}
+{% set bodyClasses = 'text-base text-gray-700 leading-relaxed max-w-sm mb-8' %}
+{% set placeholderClasses = 'bg-gray-100' %}
+
+<section class="w-full bg-white pt-16 md:pt-24 pb-16 md:pb-24">
+    <div class="mx-auto relative">
+
+        {# Wrapper to define the total height of the gray block area #}
+        <div class="relative min-h-[50vh] md:min-h-[70vh] mb-12 md:mb-16">
+
+            {# 1. Gray Background Block (Absolute positioning to cover the top/right/center) #}
+            <div class="absolute top-0 right-0 w-full md:w-5/6 h-full {{ placeholderClasses }}">
+            </div>
+
+            {# 2. Overlapping Title Area (The heading is aligned to the bottom/left of the gray area) #}
+            <div class="absolute bottom-0 left-0 w-full h-full">
+
+                <div class="grid grid-cols-1 md:grid-cols-12 h-full">
+
+                    {# Spacer Column #}
+                    <div class="md:col-span-2"></div>
+
+                    {# Heading Column - Aligns to the bottom. #}
+                    <div class="md:col-span-8 flex items-end px-4 pb-6">
+                        <h1 class="{{ headingClasses }} z-10 text-left mb-0">
+                            {{ sectionData.heading }}
+                        </h1>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        {# 3. Text Content Area (Aligned to the same starting point as the heading, ensuring it sits to the left of the gray block) #}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 ">
+
+            {# Spacer Column - This is the key. It pushes the content column over, aligning it with the edge of the gray block. #}
+            <div class="md:col-span-2 pb-[24px]"></div>
+
+            {# Content Column (Body Text and Button) #}
+            <div class="md:col-span-8 px-4">
+                <div class="w-full">
+                    <p class="{{ bodyClasses }}">
+                        {{ sectionData.body }}
+                    </p>
+
+                    {% include '_components/ui/button/button.twig' with {
+                        props: {
+                            text: sectionData.buttonText,
+                            link: sectionData.buttonLink,
+                            style: 'secondary'
+                        }
+                    } only %}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

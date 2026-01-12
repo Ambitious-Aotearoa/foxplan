@@ -1,0 +1,22 @@
+color: null
+description: null
+fieldLayouts:
+  4b187f44-f932-4098-a5ab-afdf794767cc:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        name: 'Contact Us'
+        uid: 57ee0607-18af-4a4e-becf-d5eca93dcab6
+        userCondition: null
+handle: contactUsPage
+hasTitleField: false
+icon: null
+name: 'Contact Us Page'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

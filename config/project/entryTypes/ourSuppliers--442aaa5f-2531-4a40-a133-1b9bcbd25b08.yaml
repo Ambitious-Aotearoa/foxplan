@@ -1,0 +1,108 @@
+color: null
+description: null
+fieldLayouts:
+  76350750-c7ee-43e0-945a-a804dc1dd5b6:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T01:07:20+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ea69d8ca-fa44-4d99-8067-e59e5a89b133
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T01:07:20+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 544d4692-c910-412c-97e7-77d0fc357686 # Suppliers Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8664fb2c-446a-43c0-9912-61225c863bcf
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T01:07:20+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 7de1a5c0-1411-43d5-9ca2-6996afd27316 # Suppliers Title
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 44b89020-2a48-4ab1-94cc-80a45f0cf6dc
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T01:07:20+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 30e93460-18e1-473b-90f6-17bed59eb35e # Contact Info
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d782d45d-e8cb-4e6f-9a76-23e688a36e3c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T01:07:20+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fcf9c894-6cf3-4033-af0b-b5c5df178c8f
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 770eb7a8-b847-4c55-b345-55a48a56c504
+        userCondition: null
+handle: ourSuppliers
+hasTitleField: false
+icon: null
+name: 'Our Suppliers'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

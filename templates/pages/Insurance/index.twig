@@ -1,0 +1,43 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{# 1. Define the theme BEFORE the extends tag #}
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-black',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% block blockAppBody %}
+    {# 1. hero #}
+    {{ include('_sections/hero-sections/hero-arrow.twig', {
+        props: {
+            heading: 'Insurance',
+            imagePath: 'images/Insurance_1.jpg',
+            bodyText: 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.',
+            buttonText: 'Get in touch',
+            buttonUrl: '/contact',
+            buttonBgColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-yellow',
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown'
+        }
+    }) }}
+
+    {# 2. benefits #}
+    {{ include('_sections/content-sections/benefits.twig', {
+        backgroundColor: 'bg-foxplan-yellow',
+        textColor: 'text-black',
+        servicesData: {
+            heading: 'Our advisers can<br>reduce your risk',
+            intro: '1 in 6 New Zealanders will be unable to work for six months or more before the age of 65. Yet, just 39% of us have health insurance and only 20% have income insurance. An Insurance Adviser can help you:',
+            items: [
+                { expandableHeadingTitle: 'Access to more providers', ExpandableBodyText: 'We work with a wide range of lenders to ensure you get the best deal tailored to your situation.' },
+                { expandableHeadingTitle: 'Better product knowledge', ExpandableBodyText: 'Our advisers have deep expertise across the entire mortgage market.' },
+                { expandableHeadingTitle: 'Advice on loan structuring', ExpandableBodyText: 'Structuring your loan correctly from the start can save you thousands in the long run.' },
+                { expandableHeadingTitle: 'Reduce your time & stress', ExpandableBodyText: 'We handle all the paperwork and lender communications for you.' },
+                { expandableHeadingTitle: 'Get on the property ladder faster', ExpandableBodyText: 'Our streamlined process means you can secure pre-approval and financing efficiently.' }
+            ]
+        }
+    }) }}
+
+{% endblock %}

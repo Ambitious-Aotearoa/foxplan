@@ -1,0 +1,108 @@
+color: null
+description: null
+fieldLayouts:
+  ec5e3b13-930d-40b9-8ea5-bb9fb4388f00:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T02:42:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: b4eb13fb-cde6-4574-a9fa-a2411d464e89 # Episode Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: beaa77dd-5b77-4bcd-af71-e28643e7f14a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T02:42:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 432ebfbb-2f88-4625-a8c6-c0e8b83f3de9 # Episode Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ce918cc1-1828-4dc9-829b-16ca775007db
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T02:42:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e4ad5282-5b53-4193-bf9a-40d21e1aab4d # Date
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e6c7382a-3deb-4da0-b09d-f212f173df08
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T02:42:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 8b403de7-1685-45ca-9cbd-75b40b03493d # Time
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2282daea-8784-4337-a5ae-3773c28e959d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T02:42:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 087a09e3-8d3e-491a-9498-5d51bc55ab04
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 09b21017-3a5f-470c-8620-01d86be2a77c
+        userCondition: null
+handle: episodes
+hasTitleField: false
+icon: null
+name: Episodes
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

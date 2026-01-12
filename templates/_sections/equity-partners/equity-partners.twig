@@ -1,0 +1,62 @@
+{# _sections/equity-partners/equity-partners.twig #}
+
+{% set sectionData = {
+    heading: 'Why join FoxPlan?',
+    description: 'Our equity programme brings more surety and structure to the process of growing, selling, or creating a succession plan for your business. As part of FoxPlan you\'ll benefit from:',
+    placeholderText: 'Placeholder Image or Video',
+    benefits: [
+        'Equity ownership in a growing business',
+        'Compliance, marketing & operations support',
+        'Ongoing income even after you retire',
+        'A futureproofed business exit strategy'
+    ]
+} %}
+
+{% set containerClasses = 'mx-auto px-4 ' %}
+{% set headingClasses = 'font-serif text-[65px] sm:text-6xl lg:text-[5rem] font-light leading-none text-gray-900 mb-12 max-w-sm' %}
+{% set descriptionClasses = 'text-xl font-light text-gray-900 leading-relaxed mb-8' %}
+{% set benefitItemClasses = 'text-base font-light text-gray-700 leading-relaxed py-2 border-b border-gray-300' %}
+
+<section class="w-full bg-white pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="{{ containerClasses }}">
+
+        {# The gap-x-20 remains for space between the gray box and text #}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-20">
+
+            {# Left Column: Heading - Column span increased for better alignment with tall image #}
+            <div class="md:col-span-5 mb-12 md:mb-0">
+                <h2 class="{{ headingClasses }}">
+                    {{ sectionData.heading }}
+                </h2>
+            </div>
+
+            {# Center Column: Placeholder Image/Block - HEIGHT INCREASED (450px and 600px) and column span reduced #}
+            <div class="md:col-span-4 h-[450px] md:h-[600px] bg-gray-200 mb-12 md:mb-0">
+                <div class="flex items-center justify-center w-full h-full text-gray-500 text-sm">
+                    {{ sectionData.placeholderText }}
+                </div>
+            </div>
+
+            {# Right Column: Description and Benefits - Column span remains 3 #}
+            <div class="md:col-span-3 flex flex-col justify-end">
+
+                {# Description #}
+                <p class="{{ descriptionClasses }}">
+                    {{ sectionData.description }}
+                </p>
+
+                {# Benefits List #}
+                <ul class="space-y-0 pt-2">
+                    {% for benefit in sectionData.benefits %}
+                        <li class="{{ benefitItemClasses }}">
+                            {{ benefit }}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

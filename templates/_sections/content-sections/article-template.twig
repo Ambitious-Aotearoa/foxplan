@@ -1,0 +1,76 @@
+{# _sections/content-sections/article-template.twig #}
+
+{% set articleContent = [
+    {
+        heading: 'Euphoria',
+        body: 'It is the complete loss of an adult sense of danger. Your only concern is that somebody somewhere owns stocks that are going up more than yours.'
+    },
+    {
+        heading: 'Panic',
+        body: 'There is a consistent relationship between the height of the "mobs" euphoria at the top of a big bull market and the depth of their panic-induced capitulation at the bottom of the concomitant bear market. Panic is the pure essence of a loss of faith in the future.'
+    },
+    {
+        heading: 'Leverage',
+        body: 'This is when you borrow money, maybe against your home equity or on margin from a broker, to purchase an investment. In practice, most people borrow at the wrong times and on the wrong terms, in order to buy the wrong things at the wrong times for all the wrong reasons. The loan reduces the investment gain (if there is one) and increases the amount of the investment loss (if there is one).'
+    },
+    {
+        heading: 'Speculating When You Think You Are Investing',
+        body: 'All short-term trading is speculation, in that fundamental values do not change quickly. An investor is always interested in long-term improvements in earnings, cash flows and dividends. A trader is interested in quick changes in price and is therefore always a speculator. Futures, call options and all future contracts are speculation rather than investments because their ending value after expiration is zero.'
+    },
+    {
+        heading: 'Overdiversification',
+        body: 'Example: a person invests once a year and every year they put the new money into the top-performing equity fund on Forbes\'s Honour Roll. Twelve years later, this person owns a hodgepodge of 12 mutual funds, because—like Miss Universe—nobody wins twice. This will result in an expensive index fund with gaps, redundancies, and fee inefficiencies.'
+    },
+    {
+        heading: 'Under Diversification',
+        body: 'The fatal narrowing of a portfolio down to essentially one idea. Holding the preponderance of your equity "portfolio" in one stock is not investing. It is Russian roulette. Every day when the market opens, you point that gun at your head and pull the trigger in what economists call "creative destruction."'
+    }
+] %}
+
+{# Tailwind Class Definitions for styling #}
+{% set sectionClasses = 'bg-white' %}
+{% set headingClasses = 'font-serif text-[2.5rem] font-light leading-tight text-black mt-12 mb-4' %}
+{% set bodyClasses = 'text-base text-black leading-relaxed max-w-6xl' %}
+{% set sidebarSquareClasses = 'w-6 h-6 bg-gray-200 mb-2' %} {# Classes for the small grey squares #}
+
+<section class="w-full {{ sectionClasses }} pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="mx-auto px-4">
+
+        {# Main Content Grid: Content (wide) + Sidebar (narrow) #}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12">
+
+            {# NEW LEFT SPACER COLUMN (Pushes content right) #}
+            <div class="hidden md:block md:col-span-1 lg:col-span-2">
+                {# Empty spacer column #}
+            </div>
+
+            {# Left Column (Article Content - Reduced size to accommodate spacer) #}
+            <div class="md:col-span-8 lg:col-span-8">
+                {% for item in articleContent %}
+
+                    {# Do not apply margin-top to the very first heading #}
+                    <h3 class="{{ headingClasses }} {% if loop.first %} mt-0 {% endif %}">
+                        {{ item.heading }}
+                    </h3>
+
+                    <p class="{{ bodyClasses }}">
+                        {{ item.body }}
+                    </p>
+
+                {% endfor %}
+            </div>
+
+            {# Right Column (Sidebar/Placeholder Squares - Maintained size) #}
+            <div class="hidden md:block md:col-span-3 lg:col-span-2 pt-16">
+                {# Wrapper to align the squares vertically and to the extreme right #}
+                <div class="flex flex-col justify-end items-end">
+                    <div class="{{ sidebarSquareClasses }}"></div>
+                    <div class="{{ sidebarSquareClasses }}"></div>
+                    <div class="{{ sidebarSquareClasses }}"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

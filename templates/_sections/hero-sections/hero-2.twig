@@ -1,0 +1,57 @@
+{# _sections/hero-2.twig #}
+
+{% set sectionData = {
+    heading: 'Insights',
+    body: 'The latest updates on finance, investments, mortgages, KiwiSaver, and more — practical tips to help Kiwis make smarter financial decisions.',
+    imagePlaceholder: 'Fox Graphic'
+} %}
+
+{% set headingClasses = 'font-serif text-[4rem] md:text-[5rem] lg:text-[6rem] font-medium leading-none text-gray-900 mb-4 mt-[100px]' %}
+{% set bodyClasses = 'text-base text-gray-700 leading-relaxed max-w-lg' %}
+
+
+{# Define the top padding for the content inside the white block #}
+{% set innerPadding = 'pt-16 pb-16' %}
+
+{# MODIFIED: Set section background to gray. Use standard padding/margin to create space around the overall content. #}
+<section class="w-full bg-gray-100 py-16 md:py-24 mt-8">
+    <div class="mx-auto">
+
+        {# Main Grid Container for Staggered Layout (12 columns total) #}
+        {# Use relative positioning to control placement of the white block #}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 relative">
+
+            {# LEFT COLUMN: White Content Block (MODIFIED: Reduced to md:col-span-4) #}
+            <div class="md:col-span-4 bg-white px-4  relative z-10">
+
+                {# Inner padding ensures the content has space from the block's edges #}
+                <div class="{{ innerPadding }}">
+
+                    {# Image/Graphic Placeholder (Fox Graphic) #}
+                    {# The image itself should be the highest element #}
+                    <div class="w-full h-[10rem] bg-gray-200 mb-12 flex items-center justify-center">
+                        <span class="text-sm text-gray-500">{{ sectionData.imagePlaceholder }}</span>
+                    </div>
+
+                    {# Heading #}
+                    <h1 class="{{ headingClasses }}">
+                        {{ sectionData.heading }}
+                    </h1>
+
+                    {# Body Text #}
+                    <p class="{{ bodyClasses }}">
+                        {{ sectionData.body }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            {# RIGHT COLUMN: Gray Placeholder (Automatically adjusted to md:col-span-8) #}
+            <div class="md:col-span-8 bg-gray-100 min-h-[500px] h-full">
+                {# Empty #}
+            </div>
+        </div>
+
+    </div>
+</section>

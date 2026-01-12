@@ -1,0 +1,91 @@
+{# _components/ui/button/button.twig #}
+{#
+Button Component
+
+Usage:
+{# Example 1: Primary Style (Normal) with custom text #}
+{#  {{ include('_components/ui/button/button.twig', {
+      props: {
+          text: 'Apply Now',
+          style: 'primary',
+          url: '/apply'
+      }
+  }) }}#}
+
+  {# Example 2: Rounded Style (New style) with custom text #}
+{#  {{ include('_components/ui/button/button.twig', {
+      props: {
+          text: 'Listen now',
+          style: 'default-round',
+          url: '/podcast'
+      }
+  }) }}#}
+
+{# _components/ui/button/button.twig #}
+
+{# Set component defaults #}
+{% set defaults = {
+    text: 'Button',
+    style: 'primary',
+    size: 'medium',
+    url: null,
+    icon: null,
+    iconPosition: 'left',
+    fullWidth: false,
+    disabled: false,
+    backgroundColor: null,
+    textColor: null,
+    classes: '',
+    attributes: {}
+} %}
+
+{# Merge with passed props #}
+{% set props = defaults | merge(props | default({})) %}
+
+{# Dynamic Color Logic: Use passed props or fallback to style defaults #}
+{% set bgClass = props.backgroundColor ?: (
+    props.style == 'primary' ? 'bg-black' :
+    props.style == 'secondary' ? 'bg-black' :
+    props.style == 'default-round' ? 'bg-black' :
+    props.style == 'outline' ? 'bg-transparent' : 'bg-black'
+    ) %}
+
+{% set textClass = props.textColor ?: (
+    props.style == 'primary' ? 'text-white' :
+    props.style == 'secondary' ? 'text-white' :
+    props.style == 'default-round' ? 'text-white' :
+    props.style == 'outline' ? 'text-foxplan-charcoal-brown' : 'text-white'
+    ) %}
+
+{# Build CSS classes #}
+{% set buttonClasses = [
+    'group relative inline-flex items-center justify-center overflow-hidden',
+    'font-sterling text-sm uppercase cursor-pointer',
+    'py-2 px-4 text-sm font-bold',
+    'transition-all duration-200',
+    'w-full lg:w-auto',
+    bgClass,
+    textClass,
+    props.style == 'primary' ? 'hover:bg-gray-800',
+    props.style == 'secondary' ? 'hover:bg-gray-800 rounded-full',
+    props.style == 'default-round' ? 'hover:bg-gray-800 rounded-bl-2xl',
+    props.style == 'outline' ? 'border border-foxplan-charcoal-brown hover:bg-foxplan-charcoal-brown hover:text-foxplan-yellow rounded-md',
+    props.fullWidth ? '!w-full',
+    props.disabled ? 'opacity-50 cursor-not-allowed',
+    props.classes
+] | filter | join(' ') %}
+
+{# Determine tag type #}
+{% set tag = props.url and not props.disabled ? 'a' : 'button' %}
+
+{# Build attributes #}
+{% set attributes = {
+    class: buttonClasses,
+    href: props.url ?: null,
+    disabled: props.disabled ?: null,
+    type: tag == 'button' ? 'button' : null
+} | merge(props.attributes) | filter %}
+
+<{{ tag }}{% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %}>
+<span class="btn__text">{{ props.text }}</span>
+</{{ tag }}>

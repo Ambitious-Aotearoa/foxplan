@@ -1,0 +1,126 @@
+dateModified: 1768189947
+email:
+  fromEmail: accounts@ambitious.co.nz
+  fromName: foxplan
+  transportType: craft\mail\transportadapters\Sendmail
+meta:
+  __names__:
+    1a3c63b4-fa18-4c7d-957d-f84743d407d4: Insights # Insights
+    1bce15eb-e441-43c8-bff3-cb4b0197fef2: 'Hero Body Text' # Hero Body Text
+    1bf81b4c-12eb-4329-8dc6-5ce2b0f86018: 'Accordion Heading' # Accordion Heading
+    3bd7c3e2-a7e9-429c-8ef5-50244f5b52b6: Article # Article
+    3e972f90-c081-4846-a2fe-bc0ececc6aba: Episodes # Episodes
+    3f29f8f9-323f-4a3c-95a6-70ec3c79160e: 'Paragraph Subheading' # Paragraph Subheading
+    4a5c0332-8175-4c2d-b8c5-0e1602083956: 'Insights Heading ' # Insights Heading 
+    4c9973ff-0107-4739-a889-f352e62eca08: 'Large Paragraph' # Large Paragraph
+    4f6c8e0b-055b-4db8-a5da-6e57516a5d6e: 'Paragraph Left Aligned Image' # Paragraph Left Aligned Image
+    5ca1faf9-4255-419a-9685-fa7e60d769b6: 'Insights Body Text' # Insights Body Text
+    5cede0e4-ef0c-4e1f-b901-5b98851b4218: 'Accordion Body Text' # Accordion Body Text
+    5e3a98a6-2a0c-4e33-810c-ebd90c38e203: 'Job Ttitle' # Job Ttitle
+    6ceee63c-bd5c-42c7-b57b-470bd2226b4b: 'Newsletter Body Text' # Newsletter Body Text
+    6e4443d9-4aa2-4c0a-886c-5bb0ff3becdb: Simple # Simple
+    7a691543-7ee7-4665-991f-b95469f91162: About # About
+    07b100f7-5847-4e4c-bc53-59526033b566: 'Meet the Team Heading' # Meet the Team Heading
+    7d29f47f-49be-42e4-a76a-2c52f645550a: Heading # Heading
+    7de1a5c0-1411-43d5-9ca2-6996afd27316: 'Suppliers Title' # Suppliers Title
+    7eb0d432-b682-4d48-abae-7e859acd9ef6: 'Savings and Investment Page' # Savings and Investment Page
+    7f789aad-395d-4a42-a977-413640299ad5: 'Dollars and sense Newsletter' # Dollars and sense Newsletter
+    8b403de7-1685-45ca-9cbd-75b40b03493d: Time # Time
+    8b648b38-5f82-4331-869f-eb02f36604e6: 'Author name' # Author name
+    10c572c2-b78a-48bc-973f-bf40d7aff8eb: 'Subscribe Button' # Subscribe Button
+    20a2a580-d219-4d89-85de-c3cef6cd5616: 'First Home Buyers' # First Home Buyers
+    30e93460-18e1-473b-90f6-17bed59eb35e: 'Contact Info' # Contact Info
+    34e5e40b-6fd4-4a1c-93b0-ecc79226fa32: 'Individual image' # Individual image
+    37d0dcee-fda6-44fc-b96c-3eb521cdaa34: 'Join The Team ' # Join The Team 
+    40a75dcf-4e4f-46ec-98ec-9424fc33fa4b: 'Dollars and Sense Podcast' # Dollars and Sense Podcast
+    40d419f5-cb74-4388-a019-2ac901bf2ba4: 'Paragraph Right Aligned Body text' # Paragraph Right Aligned Body text
+    40dc7ecc-2b48-42e9-ba8d-6b387ee26597: 'Advisors Image' # Advisors Image
+    42aa85d0-fe98-4b4c-9b6a-14a32758b7d0: About # About
+    43ae8319-1d1a-467f-a54f-c45fae2a173d: Accounting # Accounting
+    51becce4-9606-46e8-bf00-a7858643841c: 'Read Next Subheading' # Read Next Subheading
+    56f32641-e789-4c85-9d66-1a59f42e95d2: foxplan # foxplan
+    57b202f1-c4d8-4b39-bc56-d1eeb2b1244b: 'Hero Subheading' # Hero Subheading
+    096b02a8-7b14-4611-b1ca-1e82e3dd704a: 'Newsletter Image' # Newsletter Image
+    197d008b-abaf-40fa-9c38-173ac170b291: 'Article Heading' # Article Heading
+    222ba10e-eabb-490d-b424-074aac4d84dd: 'Our Suppliers' # Our Suppliers
+    383dafac-19c3-4559-9459-54a9919aada4: 'Body Text' # Body Text
+    432ebfbb-2f88-4625-a8c6-c0e8b83f3de9: 'Episode Body Text' # Episode Body Text
+    442aaa5f-2531-4a40-a133-1b9bcbd25b08: 'Our Suppliers' # Our Suppliers
+    489aa9de-78dd-4788-80c7-9307d470bb57: 'Main Title' # Main Title
+    544d4692-c910-412c-97e7-77d0fc357686: 'Suppliers Image' # Suppliers Image
+    624fe030-2a18-4f50-92e6-5f5e4d1b8ca4: Articles # Articles
+    728e2922-294a-4307-a690-e701c702623f: 'Explore Body Text' # Explore Body Text
+    848be098-6f72-402d-97ad-5f23465fa79f: 'Business Page' # Business Page
+    904beb73-9861-43f3-8de7-90464f6457de: foxplan # foxplan
+    1241b357-ec03-4e69-918d-d30cafe4535d: 'Explore Heading' # Explore Heading
+    6389bccc-1b55-4096-821e-192e6a2bd80a: 'Business Page' # Business Page
+    9315bb88-5d25-4861-81a8-0919dd5ba2b9: 'Newsletter Heading' # Newsletter Heading
+    9695c5c9-997b-4776-9806-6bd6bc3478ea: Episodes # Episodes
+    26603cf5-8da3-461b-9a66-2eda1d1dda14: 'Dollars and Sense Podcast' # Dollars and Sense Podcast
+    37578f45-0b1d-4513-b3f7-30085b31057c: 'Fox icon' # Fox icon
+    70166e5f-e2f1-4bdc-995b-94ed1f905a47: 'Subscribe Bodytext' # Subscribe Bodytext
+    75267a9c-0192-4076-8b99-166c04ba40d2: 'First Home Buyers' # First Home Buyers
+    80330d32-4e37-428b-9b60-12ab62ac8918: 'Join The Team' # Join The Team
+    161783a0-0b86-4e70-a6be-2dd6d5b50cfb: 'Accounting Page' # Accounting Page
+    184304c2-0776-48be-b918-b0c1ec2dc0ee: Mortages # Mortages
+    1692277e-675a-4ebf-8998-6eb58cf9709f: Insurance # Insurance
+    06624620-5204-452f-a746-b5d70f1641a4: 'Contact Us Page' # Contact Us Page
+    09381442-8ef2-4c26-89d0-aee12518b1a1: Accordion # Accordion
+    22247084-dc83-4881-9b9f-a27a7480f157: Episodes # Episodes
+    a4fb7335-ce22-45b6-8033-f85576c662fd: 'Dollars and sense Newsletter' # Dollars and sense Newsletter
+    a8d101d5-922b-4075-bf81-682426a945a4: 'Paragraph Left Aligned Body Text2' # Paragraph Left Aligned Body Text2
+    a8da3467-e2fa-4b90-b5e8-7df257de2ebc: Image # Image
+    a30fb669-985c-4116-8bf1-8ca04a3af56c: Article # Article
+    a82e8874-a0f4-4805-b59d-8c47d4867d7c: Tags # Tags
+    ad7daef3-ba4d-470a-8ee9-3bee8c28bcea: 'Newsletter Title' # Newsletter Title
+    ad894a33-fa20-4afd-8f7e-832b4d37b7d8: 'Subscribe Ttitle' # Subscribe Ttitle
+    ae1eb8ab-68f8-419c-8bb8-c19ed7985884: 'Insights Image' # Insights Image
+    b3e0436c-c0e6-4ebd-8278-c69c2a07f9e6: Insights # Insights
+    b4eb13fb-cde6-4574-a9fa-a2411d464e89: 'Episode Image' # Episode Image
+    b898b7e2-c466-4f6e-89b2-5fc8070636bd: 'Contact Us Page' # Contact Us Page
+    bd9810cb-e0b5-44c9-a927-d6519786b086: 'Mortgages Page' # Mortgages Page
+    cc0e715a-9227-4f6e-9948-2b6b82ab16c3: Insights # Insights
+    cdf13e52-0c89-4938-8466-07df74ab4a51: 'Hero Date' # Hero Date
+    ced4066b-92f7-424d-b675-f392ce22c644: 'Insights Tabs Data' # Insights Tabs Data
+    cff38048-563c-4fdc-b87c-d5ddb0084953: 'Insurance Page' # Insurance Page
+    d760ba30-262b-46c3-8e86-b06b07b0226a: 'Paragraph Right Aligned Image2' # Paragraph Right Aligned Image2
+    d2442bfd-d769-4080-9505-d553f86821d8: 'Tabs Subheading' # Tabs Subheading
+    db3f4be3-1c80-405f-840c-01dddd834e4f: 'Meet the Team' # Meet the Team
+    dd0c598b-fc22-4c8d-9255-b3c858be4247: 'Savings and Investment Page' # Savings and Investment Page
+    e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a: 'Hero Image' # Hero Image
+    e4ad5282-5b53-4193-bf9a-40d21e1aab4d: Date # Date
+    e6b57a9c-ff58-47d6-be33-ec0322d1188b: 'Meet the team' # Meet the team
+    e7aad41d-ba44-478d-90e0-02389f7524fa: Button # Button
+    e28a6153-7560-4ccb-9581-5c4b5babadcc: 'Article ' # Article 
+    e822b9bd-7702-483f-bce4-4e4538f988d4: 'Insights Tabs' # Insights Tabs
+    e193394e-257b-4460-bb66-043fa40743cd: 'Main Heading' # Main Heading
+    f83b90ed-4415-49b6-85c7-e4f1a4a11e72: 'Insights Tab Image' # Insights Tab Image
+    f9501fa8-ddf7-45c9-848a-c7ece198f27a: 'Paragraph Heading' # Paragraph Heading
+    fe02d7ad-a8ee-44e2-81e9-27e07f31372d: 'Advisors Name' # Advisors Name
+    fe65fafc-55a8-474b-bd0f-a76a970e15a5: Accordion # Accordion
+plugins:
+  ckeditor:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.0.0
+  dospaces:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.0
+  vite:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+system:
+  edition: solo
+  live: true
+  name: foxplan
+  schemaVersion: 5.8.0.3
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  require2fa: false
+  requireEmailVerification: true

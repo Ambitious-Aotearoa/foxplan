@@ -1,0 +1,69 @@
+{# _sections/content-sections/about-us.twig #}
+
+{#{% set aboutData = {#}
+{#    block1: {#}
+{#        heading: 'A 360 approach to financial advice',#}
+{#        body: 'We believe lasting financial wellbeing is built on four key foundations of health, wealth, relationships, and habits. Wealth only really matters when it supports the life you want to live. That\'s why understanding what our clients want to achieve is so important.'#}
+{#    },#}
+{#    block2: {#}
+{#        heading: 'For us, finances are personal',#}
+{#        body: 'We believe lasting financial wellbeing is built on four key foundations of health, wealth, relationships, and habits. Wealth only really matters when it supports the life you want to live. That\'s why understanding what our clients want to achieve is so important.'#}
+{#    }#}
+{#} %}#}
+
+{# Tailwind Class Definitions for styling #}
+{#{% set sectionClasses = 'bg-white' %}#}
+{#{% set headingClasses = 'font-serif text-[4rem] font-light leading-none text-gray-900 mb-6' %}#}
+{#{% set bodyClasses = 'text-base text-gray-700 leading-relaxed max-w-sm' %}#}
+{#{% set placeholderClasses = 'bg-gray-200' %}#}
+
+{#<section class="w-full {{ sectionClasses }} pt-16 pb-16 md:pt-24 md:pb-24">#}
+{#    #}{# ADDED max-w-7xl mx-auto for centering #}
+{#    <div class="px-4 mx-auto">#}
+
+{#        #}{# Main Grid Container for Staggered Layout #}
+{#        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-12 min-h-[70vh]">#}
+
+{#            #}{# ========================================== #}
+{#            #}{# LEFT COLUMN STACK: Content 1 and Placeholder 2 #}
+{#            #}{# ========================================== #}
+
+{#            #}{# Adjusted span to md:col-span-5 for better visual centering #}
+{#            <div class="md:col-span-5 flex flex-col justify-start h-full">#}
+
+{#                #}{# Content 1: "A 360 approach..." #}
+{#                #}{# Maintained mb-24 margin to match screenshot spacing #}
+{#                <div class="mb-24">#}
+{#                    <h2 class="{{ headingClasses }}">{{ aboutData.block1.heading }}</h2>#}
+{#                    <p class="{{ bodyClasses }}">{{ aboutData.block1.body }}</p>#}
+{#                </div>#}
+
+{#                #}{# Placeholder 2: Bottom-Left Placeholder #}
+{#                <div class="mt-auto h-[350px] {{ placeholderClasses }} w-full">#}
+{#                    #}{# Placeholder content here #}
+{#                </div>#}
+{#            </div>#}
+
+{#            #}{# ========================================== #}
+{#            #}{# RIGHT COLUMN STACK: Placeholder 1 (LONG) and Content 2 #}
+{#            #}{# ========================================== #}
+
+{#            #}{# Adjusted span to md:col-span-7 #}
+{#            <div class="md:col-span-7 flex flex-col justify-end h-full">#}
+
+{#                #}{# Placeholder 1: Top-Right (LONG) Placeholder #}
+{#                #}{# INCREASED MARGIN: mb-24 changed to mb-32 #}
+{#                <div class="h-[650px] mb-32 {{ placeholderClasses }} w-full">#}
+{#                    #}{# Placeholder content here #}
+{#                </div>#}
+
+{#                #}{# Content 2: "For us, finances are personal" #}
+{#                <div>#}
+{#                    <h2 class="{{ headingClasses }}">{{ aboutData.block2.heading }}</h2>#}
+{#                    <p class="{{ bodyClasses }}">{{ aboutData.block2.body }}</p>#}
+{#                </div>#}
+{#            </div>#}
+
+{#        </div>#}
+{#    </div>#}
+{#</section>#}

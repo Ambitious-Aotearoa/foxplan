@@ -1,0 +1,58 @@
+{# 1. Define safe defaults #}
+{% set defaultTheme = {
+    backgroundColor: 'bg-white',
+    textColor: 'text-black',
+    actionBgColor: 'bg-black'
+} %}
+
+{# 2. Merge page-specific theme with defaults #}
+{% set theme = navigationTheme is defined ? defaultTheme|merge(navigationTheme) : defaultTheme %}
+
+<div class="w-full">
+    {# Main Bar #}
+    <div class="w-full {{ theme.backgroundColor }} transition-colors duration-300">
+        <div class="flex justify-between items-center h-16">
+
+            {# LEFT: Logo #}
+            <a href="/" class="flex items-center h-full py-4 ml-8">
+                <img src='{{ craft.vite.asset('images/FoxPlan_Logo.svg', false) }}' alt="FoxPlan Logo" class="h-10 w-auto">
+            </a>
+
+            {# CENTER: Links #}
+            <div class="flex space-x-8 text-[15px] font-medium {{ theme.textColor }} mx-auto font-aktiv">
+                {% set navItems = [
+                    { title: 'Accounting', url: '#' },
+                    { title: 'Insurance', url: '#' },
+                    { title: 'Savings and Investments', url: '#' },
+                    { title: 'Mortgages', url: '#' },
+                    { title: 'News', url: '#' },
+                    { title: 'About', url: '#' }
+                ] %}
+                {% for item in navItems %}
+                    <a href="{{ item.url }}" class="hover:opacity-60 transition duration-150">{{ item.title }}</a>
+                {% endfor %}
+            </div>
+
+            {# RIGHT: Buttons (Charcoal Brown Section) #}
+            <div class="flex items-center h-full">
+                {# Search Button #}
+                <button class="w-16 h-16 flex items-center justify-center {{ theme.actionBgColor }} border-r border-white/10 hover:brightness-125 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+
+                {# Get in Touch Button with Arrow #}
+                <a href="#" class="{{ theme.actionBgColor }} text-white h-16 flex items-center justify-center px-8 text-sm font-medium hover:brightness-125 transition-all font-questrial group">
+                    <span class="mr-2">Get in touch</span>
+                    {# Arrow icon matching your screenshot #}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

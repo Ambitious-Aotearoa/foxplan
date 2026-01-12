@@ -1,0 +1,6 @@
+siteUid: null
+sortOrder: 1
+template: pages/Mortgages/index
+uriParts:
+  - 'https://fox-plan.ddev.site/pages/Mortgages'
+uriPattern: 'https://fox-plan.ddev.site/pages/Mortgages'

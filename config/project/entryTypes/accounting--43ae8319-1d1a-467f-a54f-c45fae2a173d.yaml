@@ -1,0 +1,281 @@
+color: null
+description: null
+fieldLayouts:
+  7d40b725-9917-4b68-ab52-9a677d7bda0b:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-12-17T03:44:25+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: b9eb27c7-e826-43d5-9470-8610acc69bc0
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ec495c41-be88-425f-a0d4-aff963125c1f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c0f18605-0220-44cc-9ba1-aee77374199d
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: e7856aa9-d4e1-47c6-8799-09343b622495
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c4a11274-2024-4ba8-8e22-9c2db6ff8b10
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 4c9973ff-0107-4739-a889-f352e62eca08 # Large Paragraph
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 035a9349-db5d-48c0-a317-813789624107
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 37578f45-0b1d-4513-b3f7-30085b31057c # Fox icon
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 477681de-eb58-47cb-8a5b-06e1a0b04f10
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'A 360 Approach'
+        uid: 3fbf61b3-256f-4c80-b4d4-5df1025be4a0
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e193394e-257b-4460-bb66-043fa40743cd # Main Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4a02fa18-6174-4d40-8542-0ba50a8c381b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 720d8e1b-6a10-438d-b01d-e74b8706696b
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Accounting to get you set up'
+        uid: 67c42a61-2d65-4f1d-8b5c-ef32eeb6b3ed
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: cbd6e0a3-ab17-47e4-9f14-19dc482e6992
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3a9ffe93-450e-4e4e-87ad-7c894226f6cc
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Accounting to keep things humming'
+        uid: 56b1bd0b-b6e9-4d76-9b12-bd2200a6e95d
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 40dc7ecc-2b48-42e9-ba8d-6b387ee26597 # Advisors Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3639fb20-3f1f-41c0-a2e5-c708f999fb9e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fe02d7ad-a8ee-44e2-81e9-27e07f31372d # Advisors Name
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e331e413-b443-4d7b-9296-86c7b0df29c2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:53:50+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: bodyText2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 299bbcb1-1a3d-466b-b08e-c9ec9d0ace45
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Meet our Accountants'
+        uid: 10b47ccc-6251-4268-acb1-44fd27f10eb7
+        userCondition: null
+handle: accounting
+hasTitleField: true
+icon: null
+name: Accounting
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
