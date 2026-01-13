@@ -1,48 +1,57 @@
 {# templates/_sections/services/our-services.twig #}
 
-{% set incomingItems = props.items ?? [] %}
-{% set heading = props.title ?? 'Services' %}
-{% set sectionBg = props.backgroundColor ?? 'bg-white' %}
-{% set groupedItems = incomingItems|batch(2) %}
+{% set defaults = {
+    title: 'Services',
+    backgroundColor: 'bg-[#F4EFE1]',
+    items: [],
+    buttonBgColor: 'bg-[#270E15]',
+    buttonTextColor: 'text-white'
+} %}
 
-<section class="w-full pt-16 pb-16 md:pt-24 md:pb-24 {{ sectionBg }}">
-    <div class="mx-auto px-4">
+{% set data = defaults | merge(props | default({})) %}
+{% set groupedItems = data.items | batch(2) %}
 
-        {# Main Layout: Title on the left, Grid on the right #}
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12">
+<section class="w-full relative z-20 pt-16 pb-16 md:pt-24 md:pb-32 {{ data.backgroundColor }}">
+    <div class="mx-auto px-8 lg:px-12">
 
-            {# Left Column: Heading #}
-            <div class="md:col-span-4">
-                <h2 class="font-serif text-[4rem] md:text-[5rem] font-light leading-[0.85] text-black mb-12 md:mb-0">
-                    {{ heading | raw }}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-0 items-start">
+
+            {# Left Side: 30% Width (Sidebar area for the heading) #}
+            <div class="lg:col-span-4 mb-12 lg:mb-0">
+                <h2 class="font-serif text-5xl lg:text-[4.5rem] font-light leading-[0.8] text-[#270E15] tracking-tight max-w-xs">
+                    {{ data.title | raw }}
                 </h2>
             </div>
 
-            {# Right Column: Service Items #}
-            <div class="md:col-span-8">
+            {# Right Side: 70% Width (Content area) #}
+            <div class="lg:col-span-8">
                 {% for group in groupedItems %}
-                    {# Removed border-t from here #}
-                    <div class="grid grid-cols-1 md:grid-cols-2">
+                    {# Gap-x matches the gutter between the individual service columns #}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16 mb-16 last:mb-0">
 
                         {% for item in group %}
-                            {# Removed border-l and adjusted padding for a cleaner look #}
-                            <div class="py-8 md:pr-10">
+                            <div class="flex flex-col h-full">
                                 {% if item %}
-                                    <h3 class="font-serif text-[2.2rem] font-medium leading-tight text-black mb-4">
+                                    <h3 class="font-serif text-3xl md:text-[2.6rem] font-light leading-tight text-[#270E15] mb-4">
                                         {{ item.title }}
                                     </h3>
 
-                                    <p class="font-aktiv-grotesk text-base text-black/80 leading-relaxed mb-8">
+                                    <p class="font-aktiv text-[15px] text-[#270E15]/80 leading-relaxed mb-8 max-w-[340px]">
                                         {{ item.text ?? item.description ?? '' }}
                                     </p>
 
-                                    <div class="mb-4">
-                                        <a href="{{ item.link ?? '#' }}" class="inline-flex items-center gap-2 bg-foxplan-charcoal-brown text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
-                                            Learn more
-                                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </a>
+                                    <div class="mt-auto">
+                                        {# Button style matching your dark rectangular "LEARN MORE" style #}
+                                        {% include '_components/ui/button/button.twig' with {
+                                            props: {
+                                                text: 'Learn more',
+                                                url: item.link ?? '#',
+                                                style: 'primary',
+                                                backgroundColor: data.buttonBgColor,
+                                                textColor: data.buttonTextColor,
+                                                classes: 'px-6 py-3 text-[11px] tracking-widest uppercase inline-flex items-center gap-2'
+                                            }
+                                        } only %}
                                     </div>
                                 {% endif %}
                             </div>

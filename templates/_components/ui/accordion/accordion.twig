@@ -1,11 +1,12 @@
-{#
-File: templates/_components/ui/accordion/accordion.twig
-Reusable Content Accordion Component - High Fidelity Update
-#}
+{# templates/_components/ui/accordion/accordion.twig #}
 
 {% set defaults = {
     items: [],
     defaultOpen: -1,
+    backgroundColor: 'bg-foxplan-white',
+    textColor: 'text-black',
+    iconBgColor: 'bg-[#E5E5E5]',
+    iconTextColor: 'text-white',
     titleFont: 'font-serif',
     titleSize: 'text-2xl md:text-3xl',
     titleCase: 'normal',
@@ -14,7 +15,6 @@ Reusable Content Accordion Component - High Fidelity Update
     contentSize: 'text-base',
     contentWeight: 'font-light',
     contentOpacity: 'opacity-100',
-    textColor: 'text-black',
     contentLeading: 'leading-relaxed',
     classes: ''
 } %}
@@ -26,11 +26,11 @@ Reusable Content Accordion Component - High Fidelity Update
         {% for item in props.items %}
             {% set hasContent = item.ExpandableBodyText is not empty %}
 
-            {#
-            1. BACKGROUND: foxplan-white (#FEFCF7)
-            2. MARGIN RIGHT: 20px (mr-[20px])
-            #}
-            <div class="bg-foxplan-white overflow-hidden mr-[20px]">
+            {# The "Old Style" is restored as default. Scaling/Shadow only happens on hover. #}
+            <div
+                    class="{{ props.backgroundColor }} overflow-hidden mr-[20px] transition-all duration-300 ease-out transform hover:scale-[1.015] hover:shadow-xl hover:z-20 relative border-b border-gray-100 last:border-0"
+                    :class="openItem === {{ loop.index0 }} ? 'z-10' : 'z-0'"
+            >
 
                 {# Accordion Header #}
                 <button
@@ -43,16 +43,15 @@ Reusable Content Accordion Component - High Fidelity Update
                             disabled
                         {% endif %}
                 >
-                    <h3 class="{{ props.titleFont }} {{ props.titleSize }} {{ props.titleCase }} {{ props.titleWeight }} {{ props.textColor }} pr-4 pl-8">
+                    <h3 class="{{ props.titleFont }} {{ props.titleSize }} {{ props.titleCase }} {{ props.titleWeight }} {{ props.textColor }} pr-4 pl-8 transition-transform duration-300 group-hover:translate-x-1">
                         {{ item.expandableHeadingTitle|default('Item ' ~ loop.index) }}
                     </h3>
 
-                    {# Toggle Icon Container #}
                     {% if hasContent %}
                         <div class="flex-shrink-0 pr-6">
-                            {# Square toggle background #}
-                            <div class="w-7 h-7 bg-[#E5E5E5] flex items-center justify-center transition-transform duration-200">
-                                <span class="text-white text-xl font-light leading-none mb-0.5"
+                            {# Icon stays small like old style, but reacts to hover #}
+                            <div class="w-8 h-8 {{ props.iconBgColor }} flex items-center justify-center transition-all duration-300 group-hover:bg-foxplan-charcoal-brown group-hover:text-white">
+                                <span class="{{ props.iconTextColor }} text-xl font-light leading-none mb-0.5 group-hover:text-white"
                                       x-text="openItem === {{ loop.index0 }} ? '−' : '+'">
                                 </span>
                             </div>
@@ -62,7 +61,9 @@ Reusable Content Accordion Component - High Fidelity Update
 
                 {# Accordion Content #}
                 {% if hasContent %}
-                    <div x-show="openItem === {{ loop.index0 }}" class="max-h-[1000px]" style="display: none;">
+                    <div x-show="openItem === {{ loop.index0 }}"
+                         x-collapse
+                         style="display: none;">
                         <div class="pb-8 pl-8 pr-6">
                             <div class="{{ props.contentFont }} {{ props.contentSize }} {{ props.contentWeight }} {{ props.textColor }} {{ props.contentLeading }} {{ props.contentOpacity }} max-w-2xl">
                                 {{ item.ExpandableBodyText|raw }}

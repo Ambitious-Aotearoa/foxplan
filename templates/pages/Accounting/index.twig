@@ -1,0 +1,115 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{# 1. Define the theme BEFORE the extends tag #}
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-black',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% block blockAppBody %}
+    {# 1. hero #}
+    {{ include('_sections/hero-sections/hero-arrow.twig', {
+        props: {
+            heading: 'Accounting',
+            imagePath: 'images/Accounting_1.jpg',
+            bodyText: 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.',
+            buttonText: 'Get in touch',
+            buttonUrl: '/contact',
+            buttonBgColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-white',
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown'
+        }
+    }) }}
+
+    {# 2. about-the-pod #}
+    {{ include('_sections/content-sections/about-podcast.twig', {
+        backgroundColor: 'bg-foxplan-yellow',
+        textColor: 'text-foxplan-charcoal-brown',
+        podcastData: {
+            topLabel: 'A 360 APPROACH',
+            body1: 'We act as your business coach and help hold you accountable. As Xero specialists, we can assist you in making the important decisions based on real-time information and data.',
+            body2: 'While you’ll work with one of our accountants, we can connect you with our financial planning, investment and insurance experts to take a 360-degree approach towards your business.'
+        }
+    }) }}
+
+    {# 3. accounting #}
+    {% include '_sections/content-sections/accounting.twig' with {
+        backgroundColor: 'bg-foxplan-charcoal-brown',
+        textColor: 'text-foxplan-yellow',
+        sectionData: {
+            mainHeading: 'Accounting to get you set up',
+            services: [
+                { title: 'Property investment', description: 'Insurance for protecting your assets – like your car, your home or your holiday batch from life`s little accidents.' },
+                { title: 'Business & company registration', description: 'Protect yourself with our options for life insurance, income protection and health insurance that lower your risk.' },
+                { title: 'Xero Setup and Training', description: 'Protect yourself with our options for life insurance, income protection and health insurance that lower your risk.' },
+                { title: 'Tax returns & financial statements', description: 'Whether its your annual tax returns or detailed financial statements - we`ll prepare these for you and submit them to the IRD.' },
+                { title: 'GST Returns and Payroll', description: 'Protect yourself with our options for life insurance, income protection and health insurance that lower your risk.' }
+            ]
+        }
+    } only %}
+
+    {# 3. benefits #}
+    {{ include('_sections/content-sections/benefits-arc.twig', {
+        backgroundColor: 'bg-foxplan-neutral-beige',
+        textColor: 'text-foxplan-charcoal-brown',
+        servicesData: {
+            heading: 'Accounting to keep<br>things humming',
+            intro: '1 in 6 New Zealanders will be unable to work for six months or more before the age of 65. Yet, just 39% of us have health insurance and only 20% have income insurance. An Insurance Adviser can help you:',
+            items: [
+                { expandableHeadingTitle: 'Access to more providers', ExpandableBodyText: 'We work with a wide range of lenders to ensure you get the best deal tailored to your situation.' },
+                { expandableHeadingTitle: 'Better product knowledge', ExpandableBodyText: 'Our advisers have deep expertise across the entire mortgage market.' },
+                { expandableHeadingTitle: 'Advice on loan structuring', ExpandableBodyText: 'Structuring your loan correctly from the start can save you thousands in the long run.' },
+                { expandableHeadingTitle: 'Reduce your time & stress', ExpandableBodyText: 'We handle all the paperwork and lender communications for you.' },
+                { expandableHeadingTitle: 'Get on the property ladder faster', ExpandableBodyText: 'Our streamlined process means you can secure pre-approval and financing efficiently.' }
+            ]
+        }
+    }) }}
+
+
+    {# 4. Team Section #}
+    {{ include('_sections/meet-the-team/meet-our-team.twig', {
+        props: {
+            sectionTitle: 'Meet our Accountants',
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown',
+            advisers: [
+                {
+                    name: 'Indo-NZ Enterprises Limited',
+                    bio: 'During that time,we have found both Blake and Yii Yen to be consumate professionals, who are more than happy to walk the extra mile when dealing with queries from a small business owner regarding taxation and accounting.'
+                },
+                {
+                    name: 'Indo-NZ Enterprises Limited',
+                    bio: 'During that time,we have found both Blake and Yii Yen to be consumate professionals, who are more than happy to walk the extra mile when dealing with queries from a small business owner regarding taxation and accounting.'
+                },
+                {
+                    name: 'Indo-NZ Enterprises Limited',
+                    bio: 'During that time,we have found both Blake and Yii Yen to be consumate professionals, who are more than happy to walk the extra mile when dealing with queries from a small business owner regarding taxation and accounting.'
+                },
+                {
+                    name: 'Indo-NZ Enterprises Limited',
+                    bio: 'During that time,we have found both Blake and Yii Yen to be consumate professionals, who are more than happy to walk the extra mile when dealing with queries from a small business owner regarding taxation and accounting.'
+                }
+            ]
+        }
+    }) }}
+
+
+    {# footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            textColor: 'text-foxplan-charcoal-brown',
+            logoColor: 'text-foxplan-charcoal-brown',
+            buttonColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-white',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+
+
+{% endblock %}

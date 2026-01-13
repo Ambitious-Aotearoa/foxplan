@@ -1,56 +1,57 @@
 {# _sections/content-sections/about-podcast.twig #}
 
-{% set podcastData = {
-    topLabel: 'ABOUT THE POD',
-    body1: 'Tired of generic money advice that doesn\'t fit your life? Hosted by qualified NZ financial advisers Tim Ellis and Brodie Haggerty, this podcast cuts through the noise to deliver real-talk financial literacy for New Zealanders in their mid-30s to late-40s.',
-    body2: 'Whether you\'re growing your wealth, protecting assets amid rising costs, or planning for family milestones like buying a home or prepping for retirement, we\'ve got actionable strategies tailored to Kiwi realities—think IRD tax hacks, KiwiSaver tweaks, and recession-proof investing.',
-    foxIconUrl: '/assets/img/fox-icon.svg'
-        } %}
+{# --- Reusable Properties --- #}
+{% set bgColor = backgroundColor ?? 'bg-foxplan-yellow' %}
+{% set txtColor = textColor ?? 'text-foxplan-charcoal-brown' %}
 
-        {# Tailwind Class Definitions for styling #}
-        {% set topLabelClasses = 'text-sm text-black uppercase tracking-wider mb-2 md:mb-0' %}
-        {% set bodyTextClasses = 'text-2xl leading-relaxed text-black mb-6 max-w-6xl' %}
-        {% set foxIconClasses = 'w-16 h-auto' %}
+{% set podcastData = podcastData ?? {
+    topLabel: 'A 360 APPROACH',
+    body1: 'We act as your business coach and help hold you accountable. As Xero specialists, we can assist you in making the important decisions based on real-time information and data.',
+    body2: 'While you’ll work with one of our accountants, we can connect you with our financial planning, investment and insurance experts to take a 360-degree approach towards your business.',
+} %}
 
-        <section class="w-full pt-16 pb-16 md:pt-24 md:pb-24">
-    <div class="mx-auto px-4">
+{# Tailwind Class Definitions #}
+{% set topLabelClasses = 'text-sm font-medium uppercase tracking-wider mb-4 md:mb-0 ' ~ txtColor %}
+{% set bodyTextClasses = 'text-2xl leading-relaxed ' ~ txtColor %}
+{% set foxIconClasses = 'w-32 h-auto' %}
 
-        {# Main Grid: Label (Narrow) + Content (Wide) + Icon (Narrow) #}
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12">
+<section class="w-full py-16 md:py-24 {{ bgColor }}">
+    {# Full Width Container #}
+    <div class="px-8 md:px-12 w-full">
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8">
 
             {# Column 1: Label #}
             <div class="md:col-span-3 lg:col-span-2">
                 <span class="{{ topLabelClasses }}">{{ podcastData.topLabel }}</span>
             </div>
 
-            {# Column 2: Main Content (Narrowed internally) #}
-            <div class="md:col-span-8 lg:col-span-9">
+            {# Column 2: Content with Inline Logo #}
+            <div class="md:col-span-9 lg:col-span-10">
 
-                {# Enforce max-w-2xl inside the content column #}
-                <div class="max-w-6xl">
-                    {# First paragraph #}
-                    <p class="{{ bodyTextClasses }}">
-                        {{ podcastData.body1 }}
-                    </p>
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                    {# Text Block #}
+                    <div class="w-full">
+                        <p class="{{ bodyTextClasses }} mb-6">
+                            {{ podcastData.body1 }}
+                        </p>
 
-                    {# Second paragraph #}
-                    <p class="{{ bodyTextClasses }}">
-                        {{ podcastData.body2 }}
-                    </p>
+                        <p class="{{ bodyTextClasses }}">
+                            {{ podcastData.body2 }}
+                        </p>
+                    </div>
+
+                    {# Fox Logo: Inline with the bottom of the text #}
+                    <div class="flex-shrink-0 self-end">
+                        <img
+                                src="{{ craft.vite.asset('images/FoxPlan_Logo.svg', false) }}"
+                                alt="FoxPlan Full Logo"
+                                class="{{ foxIconClasses }}"
+                        >
+                    </div>
                 </div>
 
             </div>
-
-            {# Column 3: Fox Icon (Extreme Right) #}
-            <div class="flex flex-col justify-end items-end">
-                {# Fox Icon/Logo, positioned at the top of its column #}
-                <img
-                    src="{{ podcastData.foxIconUrl }}"
-                    alt="Fox Icon/Logo"
-                    class="{{ foxIconClasses }} mt-8"
-                >
-            </div>
-
         </div>
     </div>
 </section>

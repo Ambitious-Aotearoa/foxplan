@@ -14,122 +14,121 @@
 
 {% set data = defaults | merge(props | default({})) %}
 
-<footer class="w-full pt-20 pb-0 px-0 relative overflow-hidden {{ data.backgroundColor }} {{ data.borderTopWidth }} {{ data.borderTopColor }}">
-    <div class="max-w-full mx-auto px-8  relative z-10">
+{#
+GROWTH LOGIC:
+1. x-data tracks 'ratio' (0 to 1).
+2. x-intersect:enter/leave sets up the observer.
+3. The :style tag maps 'ratio' to scale(0.8 to 1.0).
+#}
+<footer
+        class="relative w-full h-[800px] overflow-hidden"
+        style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);"
+        x-data="{
+        ratio: 0,
+        updateRatio() {
+            const rect = this.$el.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const visibleHeight = Math.max(0, windowHeight - rect.top);
+            this.ratio = Math.min(1, visibleHeight / rect.height);
+        }
+    }"
+        @scroll.window="updateRatio()"
+        x-init="updateRatio()"
+>
+    <div class="fixed bottom-0 left-0 w-full h-[800px] {{ data.backgroundColor }} {{ data.borderTopWidth }} {{ data.borderTopColor }} flex flex-col justify-between">
 
-        {# 1. Main Grid #}
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10 items-start">
+        {# Content Wrapper that Scales #}
+        <div
+                class="max-w-full mx-auto px-8 pt-20 relative w-full transition-transform duration-75 ease-out"
+                :style="`transform: scale(${0.9 + (ratio * 0.1)}); opacity: ${0.5 + (ratio * 0.5)};`"
+        >
 
-            {# Left Side: Reusable Logo and CTA #}
-            <div class="lg:col-span-5">
-                {# Logo color is now driven by data.logoColor #}
-                <div class="mb-10 {{ data.logoColor }}">
-                    {{ svg(alias(data.logoPath))|attr({
-                        class: 'w-28 h-auto fill-current',
-                        alt: 'FoxPlan Logo'
-                    }) }}
-                </div>
-
-                <h2 class="font-serif text-4xl md:text-5xl leading-[0.9] mb-6 {{ data.textColor }} tracking-tight">
-                    Ready to reach your<br>financial goals?
-                </h2>
-                <p class="font-aktiv text-base mb-8 {{ data.textColor }} opacity-90 max-w-xs">
-                    Book a chat with one of our financial advisers to get started.
-                </p>
-
-                <a href="#" class="inline-flex items-center gap-3 {{ data.buttonColor }} {{ data.buttonTextColor }} px-4 py-1.5 font-aktiv text-[11px] font-bold uppercase tracking-widest transition-all hover:bg-white hover:text-black">
-    Learn more
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M7 17l10-10M7 7h10v10"/>
-    </svg>
-    </a>
-    </div>
-
-    {# Right Side: Links Grid #}
-    <div class="lg:col-span-7 pt-1">
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
-
-            {# Column 1: Services & Location/Social #}
-            <div class="flex flex-col h-full justify-between gap-12">
-                <div class="space-y-3">
-                    <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2">
-                        <span class="text-white opacity-40">|</span> MORTGAGES
-                    </h3>
-                    <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2">
-                        <span class="text-white opacity-40">|</span> ACCOUNTING
-                    </h3>
-                </div>
-                <div class="space-y-3">
-                    <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2">
-                        <span class="text-white opacity-40">|</span> LOCATION
-                    </h3>
-                    <div class="pl-4 font-aktiv text-[13px] leading-relaxed {{ data.textColor }} opacity-90">
-                        <p>Level 8</p>
-                        <p>138 The Terrace</p>
-                        <p>Wellington 6011</p>
+            {# 1. Main Grid - ALL CONTENT PRESERVED #}
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10 items-start">
+                {# Left Side: Logo and CTA #}
+                <div class="lg:col-span-5">
+                    <div class="mb-10 {{ data.logoColor }}">
+                        {{ svg(alias(data.logoPath))|attr({ class: 'w-28 h-auto fill-current', alt: 'FoxPlan Logo' }) }}
                     </div>
-                    {# Social Icons #}
-                    <div class="pl-4 flex gap-2 pt-4">
-                        <a href="#" class="w-7 h-7 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm hover:bg-white transition-colors">f</a>
-                        <a href="#" class="w-7 h-7 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm hover:bg-white transition-colors">ig</a>
-                        <a href="#" class="w-7 h-7 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm hover:bg-white transition-colors">in</a>
-                    </div>
+                    <h2 class="font-serif text-4xl md:text-5xl leading-[0.9] mb-6 {{ data.textColor }} tracking-tight">
+                        Ready to reach your<br>financial goals?
+                    </h2>
+                    <p class="font-aktiv text-base mb-8 {{ data.textColor }} opacity-90 max-w-xs">
+                        Book a chat with one of our financial advisers to get started.
+                    </p>
+                    {% include '_components/ui/button/button.twig' with {
+                        props: {
+                            text: 'Learn more',
+                            url: '#',
+                            style: 'primary',
+                            backgroundColor: data.buttonColor,
+                            textColor: data.buttonTextColor,
+                            classes: 'px-4 py-1.5 text-[11px] hover:bg-white hover:text-black'
+                        }
+                    } only %}
                 </div>
-            </div>
 
-            {# Column 2: Insurance & Phone #}
-            <div class="flex flex-col h-full justify-between gap-12">
-                <div class="space-y-3">
-                    <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2">
-                        <span class="text-white opacity-40">|</span> INSURANCE
-                    </h3>
-                    <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2">
-                        <span class="text-white opacity-40">|</span> BUSINESS
-                    </h3>
-                </div>
-                <div class="space-y-3">
-                    <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2">
-                        <span class="text-white opacity-40">|</span> PHONE
-                    </h3>
-                    <div class="pl-4 font-aktiv text-[13px] leading-relaxed {{ data.textColor }} opacity-90 pb-[44px]">
-                        <p>0800 NO STRESS</p>
-                        <p>(0800 667 873)</p>
-                        <p>Office (04) 918 4659</p>
-                    </div>
-                </div>
-            </div>
+                {# Right Side: Links Grid #}
+                <div class="lg:col-span-7 pt-1">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
+                        {# Column 1: Services & Location/Social #}
+                        <div class="flex flex-col h-full justify-between gap-12">
+                            <div class="space-y-3">
+                                <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2"><span class="text-white opacity-40">|</span> MORTGAGES</h3>
+                                <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2"><span class="text-white opacity-40">|</span> ACCOUNTING</h3>
+                            </div>
+                            <div class="space-y-3">
+                                <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2"><span class="text-white opacity-40">|</span> LOCATION</h3>
+                                <div class="pl-4 font-aktiv text-[13px] leading-relaxed {{ data.textColor }} opacity-90"><p>Level 8</p><p>138 The Terrace</p><p>Wellington 6011</p></div>
+                                <div class="pl-4 flex gap-2 pt-4">
+                                    <a href="#" class="w-7 h-7 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm hover:bg-white transition-colors">f</a>
+                                    <a href="#" class="w-7 h-7 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm hover:bg-white transition-colors">ig</a>
+                                    <a href="#" class="w-7 h-7 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm hover:bg-white transition-colors">in</a>
+                                </div>
+                            </div>
+                        </div>
 
-            {# Column 3: Savings & Legal #}
-            <div class="flex flex-col h-full justify-between gap-12">
-                <div class="space-y-3">
-                    <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2">
-                        <span class="text-white opacity-40">|</span> SAVINGS & INVESTMENT
-                    </h3>
-                    <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2">
-                        <span class="text-white opacity-40">|</span> ABOUT US
-                    </h3>
-                </div>
-                <div class="space-y-3">
-                    <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2">
-                        <span class="text-white opacity-40">|</span> LEGAL
-                    </h3>
-                    <div class="pl-4 font-aktiv text-[13px] leading-relaxed space-y-1 {{ data.textColor }} opacity-90 pb-[44px]">
-                        <a href="#" class="block hover:underline transition-all">Privacy Policy</a>
-                        <a href="#" class="block hover:underline transition-all">Complaints</a>
-                        <a href="#" class="block hover:underline transition-all">Disclaimer</a>
-                        <a href="#" class="block hover:underline transition-all">Disclosure</a>
+                        {# Column 2: Insurance & Phone #}
+                        <div class="flex flex-col h-full justify-between gap-12">
+                            <div class="space-y-3">
+                                <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2"><span class="text-white opacity-40">|</span> INSURANCE</h3>
+                                <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2"><span class="text-white opacity-40">|</span> BUSINESS</h3>
+                            </div>
+                            <div class="space-y-3">
+                                <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2"><span class="text-white opacity-40">|</span> PHONE</h3>
+                                <div class="pl-4 font-aktiv text-[13px] leading-relaxed {{ data.textColor }} opacity-90 pb-[44px]"><p>0800 NO STRESS</p><p>(0800 667 873)</p><p>Office (04) 918 4659</p></div>
+                            </div>
+                        </div>
+
+                        {# Column 3: Savings & Legal #}
+                        <div class="flex flex-col h-full justify-between gap-12">
+                            <div class="space-y-3">
+                                <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2"><span class="text-white opacity-40">|</span> SAVINGS & INVESTMENT</h3>
+                                <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2"><span class="text-white opacity-40">|</span> ABOUT US</h3>
+                            </div>
+                            <div class="space-y-3">
+                                <h3 class="font-aktiv text-[13px] font-bold tracking-[0.15em] {{ data.textColor }} flex items-center gap-2"><span class="text-white opacity-40">|</span> LEGAL</h3>
+                                <div class="pl-4 font-aktiv text-[13px] leading-relaxed space-y-1 {{ data.textColor }} opacity-90 pb-[44px]">
+                                    <a href="#" class="block hover:underline transition-all">Privacy Policy</a>
+                                    <a href="#" class="block hover:underline transition-all">Complaints</a>
+                                    <a href="#" class="block hover:underline transition-all">Disclaimer</a>
+                                    <a href="#" class="block hover:underline transition-all">Disclosure</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
 
-    {# 3. Giant Bottom Background Text #}
-    <div class="w-full pointer-events-none">
-        <h1 class="w-full text-[28vw] font-bold leading-[0.7] select-none tracking-[-0.06em] text-center {{ data.textColor }} translate-y-[22%]">
-            {{ data.foxplanText }}
-        </h1>
-    </div>
+        {# 3. Giant Bottom Background Text - SCALES MORE AGGRESSIVELY #}
+        <div class="w-full pointer-events-none pb-10">
+            <h1
+                    class="w-full text-[28vw] font-bold leading-[0.7] select-none tracking-[-0.06em] text-center {{ data.textColor }} transition-transform duration-75 ease-out"
+                    :style="`transform: scale(${0.7 + (ratio * 0.3)}) translateY(${22 - (ratio * 5)}%);`"
+            >
+                {{ data.foxplanText }}
+            </h1>
+        </div>
     </div>
 </footer>

@@ -17,6 +17,8 @@
             bodyText: "Whether you're buying your first home, refinancing, or investing in property. FoxPlan makes it easy to get all your ducks in a row. Feel more confident about the home-buying journey by talking to an Adviser.",
             buttonText: 'Book a call',
             buttonLink: '#',
+            buttonBgColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-white',
             backgroundColor: 'bg-foxplan-neutral-beige',
             textColor: 'text-black',
             titleFont: 'font-serif',
@@ -49,6 +51,8 @@
         props: {
             title: 'Explore<br>mortgages',
             backgroundColor: 'bg-foxplan-white',
+            buttonBgColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-white',
             items: [
                 {
                     title: 'First home buyers',
@@ -79,14 +83,17 @@
     {{ include('_sections/content-sections/who-we-work-with.twig', {
         props: {
             title: 'WHO WE WORK WITH',
+            backgroundColor: 'bg-foxplan-white',
+            textColor: 'text-foxplan-charcoal-brown',
+            borderColor: 'border-foxplan-charcoal-brown/20',
             logos: [
                 { src: 'images/logo/AIA_Logo.svg', alt: 'AIA', name: 'AIA Insurance' },
-                { src: 'images/logo/ANZ_Logo.svg', alt: 'Southern Cross', name: 'Southern Cross' },
-                { src: 'images/logo/BNZ_Logo.svg', alt: 'ami', name: 'AMI Insurance' },
-                { src: 'images/logo/Kiwibank_Logo.svg', alt: 'FMG', name: 'FMG' },
-                { src: 'images/logo/SBS-Bank_LowQuality_Logo.svg', alt: 'vero', name: 'Vero' },
-                { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'TOWER', name: 'Tower Insurance' },
-                { src: 'images/logo/Westpac_logo.svg', alt: 'nib', name: 'NIB Health' },
+                { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ', name: 'ANZ Bank' },
+                { src: 'images/logo/BNZ_Logo.svg', alt: 'BNZ', name: 'BNZ Bank' },
+                { src: 'images/logo/Kiwibank_Logo.svg', alt: 'Kiwibank', name: 'Kiwibank' },
+                { src: 'images/logo/SBS-Bank_LowQuality_Logo.svg', alt: 'SBS', name: 'SBS Bank' },
+                { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'Co-op', name: 'The Co-operative Bank' },
+                { src: 'images/logo/Westpac_logo.svg', alt: 'Westpac', name: 'Westpac' },
                 { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'iag', name: 'IAG Group' }
             ]
         }
@@ -125,6 +132,8 @@
             backgroundColor: 'bg-foxplan-charcoal-brown',
             textColor: 'text-foxplan-yellow',
             logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
             foxplanText: 'foxplan',
             borderTopColor: 'border-foxplan-yellow/20',
             borderTopWidth: 'border-t-2'

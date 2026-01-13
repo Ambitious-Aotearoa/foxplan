@@ -34,16 +34,23 @@ Section: Get onto the property ladder faster (Right-aligned 70% content)
         <div class="w-full">
             <div class="w-full">
                 {{ include('_components/ui/accordion/accordion.twig', {
-                    props: {
-                        items: servicesData.items,
-                        defaultOpen: -1,
-                        titleFont: 'font-serif',
-                        titleSize: 'text-2xl md:text-3xl',
-                        textColor: 'text-black',
-                        classes: 'px-0'
-                    }
+                props: {
+                items: servicesData.items,
+                defaultOpen: -1,
+                titleFont: 'font-serif',
+                titleSize: 'text-2xl md:text-3xl',
+                classes: 'px-0',
+                backgroundColor: 'bg-foxplan-white',
+                textColor: 'text-foxplan-charcoal-brown',
+                iconBgColor: 'bg-[#E5E5E5]',
+                iconTextColor: 'text-white'
+                }
                 }) }}
             </div>
         </div>
     </div>
 </div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

@@ -1,0 +1,104 @@
+{#
+File: templates/_sections/content-sections/benefits-arc.twig
+Section: Extreme Left Edge to Center of 'A' - Slow Scroll Reveal
+#}
+
+{# --- Handle Dynamic Colors --- #}
+{% set bgColor = backgroundColor ?? 'bg-[#F9F6EE]' %}
+{% set txtColor = textColor ?? 'text-[#2D2926]' %}
+
+{# --- Ensure servicesData exists --- #}
+{% set servicesData = servicesData ?? {
+    heading: 'Accounting to keep<br>things humming',
+    intro: 'Your FoxPlan mortgage adviser can take care of the tricky questions, applications, and lender communications.',
+    items: []
+} %}
+
+{% set headingClasses = 'font-serif text-6xl md:text-[5rem] font-light leading-[1.1] mb-8 ' ~ txtColor %}
+{% set introClasses = 'font-aktiv-grotesk text-lg leading-relaxed mb-12 max-w-2xl ' ~ txtColor %}
+
+<section
+        class="w-full {{ bgColor }} relative overflow-hidden"
+        x-data="{ revealed: false }"
+        x-intersect.threshold.20="revealed = true"
+>
+
+    {# 1. HEADER ROW #}
+    <div class="w-full flex items-baseline pt-24 relative">
+
+        {#
+        ARROW CONTAINER:
+        - 'top-[128px]' aligns it with the vertical center of the capital 'A'.
+        - 'left-0' ensures it starts at the extreme edge of the viewport.
+        #}
+        <div class="hidden lg:flex absolute left-0 top-[128px] w-[25%] items-center overflow-visible">
+            <div
+                    class="flex items-center w-full transition-all duration-[5000ms] ease-in-out"
+                    {# Negative inset on top/bottom prevents clipping during the slow draw #}
+                    :style="revealed ? 'clip-path: inset(-20% -20% -20% -20%);' : 'clip-path: inset(0 100% 0 0);'"
+            >
+                <div class="w-full flex items-center justify-end">
+
+                    {# The Arrow Head #}
+                    <div class="flex-shrink-0 pr-8">
+                        <img
+                                src="{{ craft.vite.asset('images/placeholder/Arrow_1.svg') }}"
+                                alt="Arrow"
+                                class="h-4 w-auto block"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# HEADING COLUMN #}
+        <div class="w-full lg:w-[75%] lg:ml-[25%] px-8 md:px-12 relative z-10">
+            <h2 class="{{ headingClasses }}">
+                {{ servicesData.heading | raw }}
+            </h2>
+        </div>
+    </div>
+
+    {# 2. ACCORDION ROW #}
+    <div class="w-full flex justify-end pb-72">
+        <div class="w-full lg:w-[75%] px-8 md:px-12 relative z-10">
+            {% if servicesData.intro %}
+                <p class="{{ introClasses }}">
+                    {{ servicesData.intro }}
+                </p>
+            {% endif %}
+
+            <div class="w-full">
+                {{ include('_components/ui/accordion/accordion.twig', {
+                    props: {
+                        items: servicesData.items,
+                        defaultOpen: -1,
+                        titleFont: 'font-serif',
+                        titleSize: 'text-2xl md:text-3xl',
+                        classes: 'px-0 mb-8',
+                        backgroundColor: 'bg-foxplan-white',
+                        textColor: 'text-foxplan-charcoal-brown',
+                        iconBgColor: 'bg-[#E5E5E5]',
+                        iconTextColor: 'text-white'
+                    }
+                }) }}
+            </div>
+        </div>
+    </div>
+
+    {# 3. ARC IMAGE #}
+    <div class="absolute bottom-0 left-0 w-full z-0 pointer-events-none">
+        <img
+                src="{{ craft.vite.asset('images/placeholder/Arc_2.svg') }}"
+                alt="Background Decor"
+                class="w-full h-auto block opacity-50"
+                style="filter: drop-shadow(0.8px 0.8px 0px #2D2926);"
+        >
+    </div>
+
+</section>
+
+{# Plugins #}
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
