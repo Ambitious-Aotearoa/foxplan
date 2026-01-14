@@ -1,69 +1,74 @@
-{# _sections/hero-5.twig #}
+{# templates/_sections/content-sections/how-we-work.twig #}
 
-{% set accordionItems = [
-    {
-        expandableHeadingTitle: 'Get your finances in shape',
-        ExpandableBodyText: 'While we’re happy to work with you at any stage of the first home buyer process. Before they lend you money, banks need reassurance that you can comfortably repay your mortgage. Working together early on means that we can help you align your finances with what banks are looking for from the get-go.'
-    },
-    {
-        expandableHeadingTitle: 'Pay your mortgage off faster',
-        ExpandableBodyText: 'We can review your current mortgage structure and advise on strategies, like increasing repayments or making lump sum payments, to help you reduce your term and save thousands in interest.'
-    },
-    {
-        expandableHeadingTitle: 'Get a 360 look at your finances',
-        ExpandableBodyText: 'It’s not just about mortgages; we offer holistic financial advice covering investments, KiwiSaver, insurance, and retirement planning to build a robust financial future.'
-    },
-    {
-        expandableHeadingTitle: 'Business owners & self-employed',
-        ExpandableBodyText: 'Navigating finance as a business owner or self-employed individual can be complex. We specialise in helping you secure financing tailored to your unique income and asset structures.'
-    }
-] %}
-
-{% set sectionData = {
+{% set defaults = {
     mainHeading: 'How we work with you',
-    mainBody: 'We’ll work with you the entire way through the first-home buyer’s journey. Yes, even before you’re ready to buy.'
+    mainBody: 'We’ll work with you the entire way through the first-home buyer’s journey. Yes, even before you’re ready to buy.',
+    backgroundColor: 'bg-[#F4EFE1]',
+    textColor: 'text-[#270E15]',
+    accordionItems: [
+        {
+            expandableHeadingTitle: 'Get your finances in shape',
+            ExpandableBodyText: 'While we’re happy to work with you at any stage of the first home buyer process. Before they lend you money, banks need reassurance that you can comfortably repay your mortgage. Working together early on means that we can help you align your finances with what banks are looking for from the get-go.'
+        },
+        {
+            expandableHeadingTitle: 'Pay your mortgage off faster',
+            ExpandableBodyText: 'We can review your current mortgage structure and advise on strategies, like increasing repayments or making lump sum payments, to help you reduce your term and save thousands in interest.'
+        },
+        {
+            expandableHeadingTitle: 'Get a 360 look at your finances',
+            ExpandableBodyText: 'It’s not just about mortgages; we offer holistic financial advice covering investments, KiwiSaver, insurance, and retirement planning to build a robust financial future.'
+        },
+        {
+            expandableHeadingTitle: 'Business owners & self-employed',
+            ExpandableBodyText: 'Navigating finance as a business owner or self-employed individual can be complex. We specialise in helping you secure financing tailored to your unique income and asset structures.'
+        }
+    ]
 } %}
 
-{% set containerClasses = 'mx-auto' %}
-{% set mainHeadingClasses = 'font-serif text-[4rem] md:text-[5rem] lg:text-[6rem] font-medium leading-none text-gray-900 mb-6' %}
-{% set mainBodyClasses = 'text-base text-gray-700 leading-relaxed max-w-lg' %}
+{% set data = defaults | merge(props | default({})) %}
 
-<section class="w-full bg-gray-50 pt-16 md:pt-24 pb-16 md:pb-24">
-    <div class="{{ containerClasses }}">
+<section class="w-full relative z-20 {{ data.backgroundColor }} pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden">
+    <div class="w-full">
 
-        {# Main Grid: 12 columns total #}
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 px-4">
+        {# Main Flex Container matching Hero-1 logic #}
+        <div class="flex flex-wrap w-full items-start">
 
-            {# LEFT COLUMN: Main Heading and Intro Text (Takes 4 columns) #}
-            <div class="md:col-span-4 mb-12 md:mb-0">
-                <h1 class="{{ mainHeadingClasses }}">
-                    {{ sectionData.mainHeading }}
-                </h1>
-                <p class="{{ mainBodyClasses }}">
-                    {{ sectionData.mainBody }}
-                </p>
+            {# Left Side: 30% Width #}
+            <div class="w-full md:w-[30%] pl-8 md:pl-10 pr-12 mb-12 md:mb-0">
+                <div class="max-w-md">
+                    <h2 class="font-serif text-5xl lg:text-[5.5rem] font-light leading-[0.8] {{ data.textColor }} tracking-tight mb-8">
+                        {{ data.mainHeading | raw }}
+                    </h2>
+                    <p class="font-aktiv text-base md:text-lg leading-relaxed {{ data.textColor }} opacity-80">
+                        {{ data.mainBody | raw }}
+                    </p>
+                </div>
             </div>
 
-            {# RIGHT COLUMN: Accordion Component (Takes 8 columns) #}
-            <div class="md:col-span-8">
-                {% include '_components/ui/accordion/accordion.twig' with {
-                    props: {
-                        items: accordionItems,
-                        defaultOpen: 0,
-                        titleFont: 'font-serif',
-                        titleSize: 'text-2xl md:text-3xl',
-                        titleWeight: 'font-light',
-                        contentFont: 'font-aktiv-grotesk',
-                        contentSize: 'text-base',
-                        contentWeight: 'font-light',
-                        textColor: 'text-gray-900',
-                        classes: 'w-full'
-                    }
-                } only %}
-
+            {# Right Side: 70% Width #}
+            <div class="w-full md:w-[70%]">
+                <div class="w-full">
+                    {% if data.accordionItems is not empty %}
+                        {% include '_components/ui/accordion/accordion.twig' with {
+                            props: {
+                                items: data.accordionItems,
+                                defaultOpen: 0,
+                                titleFont: 'font-serif',
+                                titleSize: 'text-2xl md:text-[2.6rem]',
+                                titleWeight: 'font-light',
+                                textColor: data.textColor,
+                                backgroundColor: 'bg-foxplan-white',
+                                classes: 'w-full'
+                            }
+                        } only %}
+                    {% endif %}
+                </div>
             </div>
+
         </div>
-
     </div>
-
 </section>
+
+{# Alpine.js requirements #}
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

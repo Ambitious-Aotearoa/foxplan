@@ -1,7 +1,4 @@
-{#
-File: templates/_sections/content-sections/benefits-arc.twig
-Section: Extreme Left Edge to Center of 'A' - Slow Scroll Reveal
-#}
+{# File: templates/_sections/content-sections/benefits-arc.twig #}
 
 {# --- Handle Dynamic Colors --- #}
 {% set bgColor = backgroundColor ?? 'bg-[#F9F6EE]' %}
@@ -14,7 +11,7 @@ Section: Extreme Left Edge to Center of 'A' - Slow Scroll Reveal
     items: []
 } %}
 
-{% set headingClasses = 'font-serif text-6xl md:text-[5rem] font-light leading-[1.1] mb-8 ' ~ txtColor %}
+{% set headingClasses = 'font-serif text-5xl lg:text-[5.5rem] font-light leading-[0.8] tracking-tight ' ~ txtColor %}
 {% set introClasses = 'font-aktiv-grotesk text-lg leading-relaxed mb-12 max-w-2xl ' ~ txtColor %}
 
 <section
@@ -23,45 +20,38 @@ Section: Extreme Left Edge to Center of 'A' - Slow Scroll Reveal
         x-intersect.threshold.20="revealed = true"
 >
 
-    {# 1. HEADER ROW #}
-    <div class="w-full flex items-baseline pt-24 relative">
+    {# 1. MAIN ROW: 25/75 Split for Arrow and Heading #}
+    <div class="w-full flex flex-wrap items-start pt-24 md:pt-32">
 
-        {#
-        ARROW CONTAINER:
-        - 'top-[128px]' aligns it with the vertical center of the capital 'A'.
-        - 'left-0' ensures it starts at the extreme edge of the viewport.
-        #}
-        <div class="hidden lg:flex absolute left-0 top-[128px] w-[25%] items-center overflow-visible">
+        {# LEFT COLUMN: 25% Width for the Arrow Head #}
+        <div class="hidden md:flex w-[25%] items-center justify-end pt-6 lg:pt-10">
             <div
-                    class="flex items-center w-full transition-all duration-[5000ms] ease-in-out"
-                    {# Negative inset on top/bottom prevents clipping during the slow draw #}
-                    :style="revealed ? 'clip-path: inset(-20% -20% -20% -20%);' : 'clip-path: inset(0 100% 0 0);'"
+                    class="transition-all duration-[2000ms] ease-out"
+                    :style="revealed ? 'opacity: 1; transform: translateX(0);' : 'opacity: 0; transform: translateX(-20px);'"
             >
-                <div class="w-full flex items-center justify-end">
-
-                    {# The Arrow Head #}
-                    <div class="flex-shrink-0 pr-8">
-                        <img
-                                src="{{ craft.vite.asset('images/placeholder/Arrow_1.svg') }}"
-                                alt="Arrow"
-                                class="h-4 w-auto block"
-                        >
-                    </div>
+                {# Arrow Head #}
+                <div class="flex-shrink-0 mr-4">
+                    <img
+                            src="{{ craft.vite.asset('images/placeholder/Arrow_1.svg') }}"
+                            alt="Arrow"
+                            class="h-4 w-auto block"
+                            style="filter: brightness(0) saturate(100%);"
+                    >
                 </div>
             </div>
         </div>
 
-        {# HEADING COLUMN #}
-        <div class="w-full lg:w-[75%] lg:ml-[25%] px-8 md:px-12 relative z-10">
+        {# RIGHT COLUMN: 75% Width for Heading #}
+        <div class="w-full md:w-[75%] px-8 md:px-0">
             <h2 class="{{ headingClasses }}">
                 {{ servicesData.heading | raw }}
             </h2>
         </div>
     </div>
 
-    {# 2. ACCORDION ROW #}
-    <div class="w-full flex justify-end pb-72">
-        <div class="w-full lg:w-[75%] px-8 md:px-12 relative z-10">
+    {# 2. ACCORDION ROW: Offset to the 75% column #}
+    <div class="w-full flex flex-wrap justify-end pb-72 mt-12">
+        <div class="w-full md:w-[75%] px-8 md:px-0 pr-8 md:pr-24 relative z-10">
             {% if servicesData.intro %}
                 <p class="{{ introClasses }}">
                     {{ servicesData.intro }}
@@ -72,12 +62,12 @@ Section: Extreme Left Edge to Center of 'A' - Slow Scroll Reveal
                 {{ include('_components/ui/accordion/accordion.twig', {
                     props: {
                         items: servicesData.items,
-                        defaultOpen: -1,
+                        defaultOpen: 0,
                         titleFont: 'font-serif',
                         titleSize: 'text-2xl md:text-3xl',
                         classes: 'px-0 mb-8',
                         backgroundColor: 'bg-foxplan-white',
-                        textColor: 'text-foxplan-charcoal-brown',
+                        textColor: txtColor,
                         iconBgColor: 'bg-[#E5E5E5]',
                         iconTextColor: 'text-white'
                     }
@@ -86,7 +76,7 @@ Section: Extreme Left Edge to Center of 'A' - Slow Scroll Reveal
         </div>
     </div>
 
-    {# 3. ARC IMAGE #}
+    {# 3. ARC IMAGE (Background Decor) #}
     <div class="absolute bottom-0 left-0 w-full z-0 pointer-events-none">
         <img
                 src="{{ craft.vite.asset('images/placeholder/Arc_2.svg') }}"

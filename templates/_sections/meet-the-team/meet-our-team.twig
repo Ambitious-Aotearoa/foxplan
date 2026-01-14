@@ -2,71 +2,78 @@
 
 {% set defaults = {
     sectionTitle: 'Meet our mortgage advisers',
-    backgroundColor: 'bg-white',
-    textColor: 'text-black',
+    backgroundColor: 'bg-[#F4EFE1]',
+    textColor: 'text-[#270E15]',
     advisers: []
 } %}
 
 {% set data = defaults | merge(props | default({})) %}
 
-{% set sectionTitleClasses = 'font-serif text-6xl md:text-7xl font-normal leading-none ' ~ data.textColor %}
-{% set adviserNameClasses = 'font-serif text-3xl font-normal mb-1 ' ~ data.textColor %}
-{% set adviserRoleClasses = 'font-aktiv text-sm font-light tracking-widest uppercase mb-4 ' ~ data.textColor %}
-{% set adviserBioClasses = 'font-aktiv text-base max-w-full ' ~ data.textColor %}
+{# Typography Classes #}
+{% set sectionTitleClasses = 'font-serif text-5xl lg:text-[4.5rem] font-light leading-[0.8] tracking-tight ' ~ data.textColor %}
+{% set adviserNameClasses = 'font-serif text-2xl md:text-[2.2rem] font-light leading-tight mb-1 ' ~ data.textColor %}
+{% set adviserRoleClasses = 'font-aktiv text-[10px] font-bold tracking-[0.2em] uppercase mb-4 opacity-70 ' ~ data.textColor %}
+{% set adviserBioClasses = 'font-aktiv text-[15px] leading-relaxed w-full opacity-90 ' ~ data.textColor %}
 
-<div class="w-full {{ data.backgroundColor }}">
-    <div class="max-w-full mx-auto py-20 pr-5">
+<section class="w-full relative z-20 {{ data.backgroundColor }} pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden">
+    <div class="w-full">
 
-        <div class="flex flex-wrap md:flex-nowrap">
+        <div class="flex flex-wrap w-full items-start">
 
-            {# Left Column: Section Title (30% Width) #}
-            <div class="w-full md:w-[30%] mb-10 md:mb-0 pl-5">
-                <h2 class="{{ sectionTitleClasses }}">
-                    {{ data.sectionTitle | raw }}
-                </h2>
+            {# Left Side: 25% Width #}
+            <div class="w-full md:w-[25%] pl-8 md:pl-10 mb-12 md:mb-0">
+                <div class="max-w-md">
+                    <h2 class="{{ sectionTitleClasses }}">
+                        {{ data.sectionTitle | raw }}
+                    </h2>
+                </div>
             </div>
 
-            {# Right Column: Adviser Profiles (70% Width) #}
-            <div class="w-full md:w-[70%]">
+            {# Right Side: 75% Width #}
+            <div class="w-full md:w-[75%]">
+                <div class="w-full px-8 md:px-0 pr-8 md:pr-20">
 
-                {% for adviser in data.advisers %}
-                    <div class="flex mb-16 last:mb-0 w-full">
+                    {% for adviser in data.advisers %}
+                        <div class="flex flex-col md:flex-row mb-16 last:mb-0 w-full group">
 
-                        {# IMAGE PLACEHOLDER: This box stays visible regardless of choice #}
-                        <div class="w-1/3 max-w-[170px] h-[170px] 10 border border-current/10 flex-shrink-0 mr-10 overflow-hidden">
-                            {% if adviser.image is defined and adviser.image is not empty %}
-                                <img src="{{ alias('@web') }}/images/team/{{ adviser.image }}"
-                                     class="w-full h-full object-cover"
-                                     alt="{{ adviser.name ?? 'Adviser' }}">
-                            {% endif %}
+                            {# IMAGE: Small refined size (120px) #}
+                            <div class="w-[100px] h-[100px] md:w-[120px] md:h-[120px] flex-shrink-0 mb-6 md:mb-0 md:mr-10 overflow-hidden bg-[#270E15]/5">
+                                {% if adviser.image is defined and adviser.image is not empty %}
+                                    <img src="{{ alias('@web') }}/images/team/{{ adviser.image }}"
+                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                         alt="{{ adviser.name ?? 'Adviser' }}">
+                                {% else %}
+                                    {# Small subtle placeholder border #}
+                                    <div class="w-full h-full border border-[#270E15]/10"></div>
+                                {% endif %}
+                            </div>
+
+                            {# Text Content #}
+                            <div class="flex-grow md:pt-1">
+                                {% if adviser.name is defined and adviser.name is not empty %}
+                                    <h3 class="{{ adviserNameClasses }}">
+                                        {{ adviser.name }}
+                                    </h3>
+                                {% endif %}
+
+                                {% if adviser.role is defined and adviser.role is not empty %}
+                                    <p class="{{ adviserRoleClasses }}">
+                                        {{ adviser.role }}
+                                    </p>
+                                {% endif %}
+
+                                {% if adviser.bio is defined and adviser.bio is not empty %}
+                                    <p class="{{ adviserBioClasses }}">
+                                        {{ adviser.bio }}
+                                    </p>
+                                {% endif %}
+                            </div>
                         </div>
+                    {% endfor %}
 
-                        {# Text Content #}
-                        <div class="flex-grow">
-                            {# Choice: Name #}
-                            {% if adviser.name is defined and adviser.name is not empty %}
-                                <h3 class="{{ adviserNameClasses }}">
-                                    {{ adviser.name }}
-                                </h3>
-                            {% endif %}
-
-                            {# Choice: Role #}
-                            {% if adviser.role is defined and adviser.role is not empty %}
-                                <p class="{{ adviserRoleClasses }}">
-                                    {{ adviser.role }}
-                                </p>
-                            {% endif %}
-
-                            {# Choice: Bio #}
-                            {% if adviser.bio is defined and adviser.bio is not empty %}
-                                <p class="{{ adviserBioClasses }}">
-                                    {{ adviser.bio }}
-                                </p>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endfor %}
+                </div>
             </div>
+
         </div>
     </div>
-</div>
+</section>

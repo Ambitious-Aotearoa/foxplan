@@ -1,11 +1,10 @@
-{# 1. Define the theme BEFORE the extends tag #}
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
 {% set navigationTheme = {
     backgroundColor: 'bg-foxplan-neutral-beige',
     textColor: 'text-black',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
-
-{% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {% block blockAppBody %}
 

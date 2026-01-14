@@ -1,0 +1,47 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-black',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+
+{% block blockAppBody %}
+
+    {# 1. Hero Section #}
+    {{ include('_sections/hero-sections/hero-design.twig', {
+        data: {
+            title: 'Contact us',
+            bodyText: 'No matter what your financial goals are we’ll get you there. Start your journey by messaging us or requesting a callback below.',
+            buttonText: 'Book a call',
+            buttonLink: '#',
+            buttonBgColor: 'bg-[#0D0508]',
+            buttonTextColor: 'text-white',
+            maskSrc: 'images/placeholder/fox-tail_mask1.svg',
+            backgroundColor: 'bg-[#F9C33D]',
+            textColor: 'text-[#270E15]',
+            titleFont: 'font-serif',
+            titleSize: 'text-6xl md:text-8xl lg:text-[9rem]',
+            bodyFont: 'font-aktiv-grotesk',
+            bodySize: 'text-lg md:text-xl',
+        }
+    }) }}
+
+    {# Example: Including the Contact Section with Custom Colors #}
+    {% include '_sections/contact-us/contact-us.twig' with {
+        props: {
+            backgroundColor: 'bg-[#F9C33D]',
+            textColor: 'text-[#270E15]',
+            content: {
+                call: {
+                    heading: 'New Custom Heading'
+                }
+            }
+        }
+    } only %}
+
+
+
+
+{% endblock %}

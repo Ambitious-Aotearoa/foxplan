@@ -1,0 +1,31 @@
+{# templates/_components/ui/card/card.twig #}
+{% set defaults = {
+    year: '1996',
+    title: 'Title',
+    text: 'Text...',
+    cardBg: 'bg-white',
+    accentColor: 'text-[#270E15]',
+    squareColor: 'bg-[#270E15]',
+    titleColor: 'text-[#270E15]',
+    textColor: 'text-[#270E15]',
+} %}
+{% set data = defaults | merge(props | default({})) %}
+
+<div class="w-full h-full {{ data.cardBg }} flex items-center shadow-lg rounded-sm will-change-transform">
+    <div class="grid grid-cols-[30%_70%] w-full items-start text-left pl-6 pr-5">
+        <div class="flex items-center gap-3 whitespace-nowrap pt-4 md:pt-6">
+            <div class="w-4 h-4 {{ data.squareColor }}"></div>
+            <span class="font-aktiv text-sm font-bold tracking-[0.2em] uppercase {{ data.accentColor }}">
+                {{ data.year }}
+            </span>
+        </div>
+        <div class="w-full">
+            <h3 class="font-serif text-5xl md:text-[5.5rem] mb-10 leading-[0.85] tracking-tight {{ data.titleColor }}">
+                {{ data.title }}
+            </h3>
+            <p class="font-aktiv text-lg md:text-[1.4rem] leading-relaxed {{ data.textColor }} opacity-90">
+                {{ data.text }}
+            </p>
+        </div>
+    </div>
+</div>

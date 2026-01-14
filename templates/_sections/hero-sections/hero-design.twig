@@ -1,0 +1,75 @@
+{# templates/_sections/content-sections/contact-cta.twig #}
+
+{% set defaults = {
+    title: 'Contact us',
+    bodyText: 'No matter what your financial goals are we’ll get you there. Start your journey by messaging us or requesting a callback below.',
+    buttonText: 'Book a call',
+    buttonLink: '#',
+    buttonBgColor: 'bg-[#0D0508]',
+    buttonTextColor: 'text-white',
+    imageSrc: 'images/Contact_1.jpg',
+    maskSrc: 'images/placeholder/fox-tail_mask1.svg',
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-[#270E15]',
+    titleFont: 'font-serif',
+    titleSize: 'text-6xl md:text-8xl lg:text-[4.5rem]',
+} %}
+
+{% set data = defaults | merge(props | default({})) %}
+
+<section class="{{ data.backgroundColor }} w-full overflow-hidden flex items-stretch relative h-[650px] md:h-[750px]">
+
+    {# --- THE FOX TAIL OVERLAY --- #}
+    {# Increasing translate-y will move the tail further down #}
+{#    <div class="absolute top-0 right-0 w-full h-[120%] z-10 pointer-events-none">#}
+{#        <img src="{{ craft.vite.asset(data.maskSrc) }}"#}
+{#             class="w-full h-full object-fill object-right translate-x-0 translate-y-[10%] scale-110 origin-top-right"#}
+{#             alt="">#}
+{#    </div>#}
+
+    <div class="w-full flex flex-wrap relative z-20">
+
+        {# Left Column: Content #}
+        <div class="w-full md:w-[45%] flex flex-col justify-center pl-8 md:pl-16 lg:pl-24 pr-10">
+            <div class="max-w-xl">
+                <h1 class="{{ data.titleFont }} {{ data.titleSize }} font-normal {{ data.textColor }} leading-[0.85] tracking-tight mb-8">
+                    {{ data.title | raw }}
+                </h1>
+
+                {% if data.bodyText is not empty %}
+                    <p class="font-aktiv-grotesk text-lg md:text-xl {{ data.textColor }} leading-snug mb-10 max-w-sm">
+                        {{ data.bodyText | raw }}
+                    </p>
+                {% endif %}
+
+                {% if data.buttonText is not empty %}
+                    <div>
+                        {% include '_components/ui/button/button.twig' with {
+                            props: {
+                                text: data.buttonText,
+                                url: data.buttonLink,
+                                backgroundColor: data.buttonBgColor,
+                                textColor: data.buttonTextColor,
+                                classes: 'px-8 py-4 text-xs tracking-widest uppercase inline-flex items-center gap-2'
+                            }
+                        } only %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {# Right Column: Background Image #}
+        <div class="w-full md:w-[55%] relative overflow-hidden">
+            {# The Hiker Photo (Background) #}
+{#            <img src="{{ craft.vite.asset(data.imageSrc) }}"#}
+{#                 class="absolute inset-0 w-full h-full object-cover"#}
+{#                 alt="">#}
+
+            {# The Fox Tail (Foreground) - Moving this down #}
+            <img src="{{ craft.vite.asset(data.maskSrc) }}"
+                 class="relative w-full h-full object-cover object-[center_75%]"
+                 alt="{{ data.title }}">
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,102 @@
+{# this is for property upgrade , property investment , refinancing & refixing #}
+
+
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    textColor: 'text-black',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% block blockAppBody %}
+
+    {% for block in entry.pageBuilder.all() %}
+        {% switch block.type %}
+
+        {% case "hero" %}
+            {{ include('_sections/hero-sections/hero-1.twig', {
+                data: {
+                    title: block.heroTitle,
+                    imageSrc: block.heroImage.one().url ?? '',
+                    bodyText: block.heroBody,
+                    buttonText: block.buttonText,
+                    buttonLink: block.buttonLink,
+                    buttonBgColor: 'bg-foxplan-charcoal-brown',
+                    buttonTextColor: 'text-white',
+                    backgroundColor: 'bg-foxplan-neutral-beige',
+                    textColor: 'text-black',
+                    titleFont: 'font-serif',
+                    titleSize: 'text-[8.5rem]',
+                    bodyFont: 'font-aktiv-grotesk',
+                    bodySize: 'text-lg'
+                }
+            }) }}
+
+        {% case "serviceGrid" %}
+            {% include '_sections/content-sections/help-for-buying-your-first-home.twig' with {
+                props: {
+                    mainHeading: block.heading,
+                    backgroundColor: 'bg-foxplan-neutral-beige',
+                    textColor: 'text-foxplan-charcoal-brown',
+                    services: block.servicesList
+                }
+            } only %}
+
+            {# how we work #}
+
+        {% case "accordion" %}
+            {% include '_sections/content-sections/how-we-work.twig' with {
+                props: {
+                    mainHeading: block.heading,
+                    mainBody: block.subheading,
+                    backgroundColor: 'bg-foxplan-neutral-beige',
+                    textColor: 'text-foxplan-charcoal-brown',
+                    accordionItems: block.accordionItems
+                }
+            } only %}
+
+            {# who we work with #}
+
+        {% case "partners" %}
+            {{ include('_sections/content-sections/who-we-work-with.twig', {
+                props: {
+                    title: block.heading ?? 'WHO WE WORK WITH',
+                    backgroundColor: 'bg-foxplan-neutral-beige',
+                    textColor: 'text-foxplan-charcoal-brown',
+                    borderColor: 'border-foxplan-charcoal-brown/20',
+                    logos: block.logos
+                }
+            }) }}
+
+        {% endswitch %}
+    {% endfor %}
+
+    {# testimonial #}
+
+    {% include '_sections/testimonial/testimonial-two.twig' with {
+        props: {
+            sectionTitle: 'Hear what our clients are saying',
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            textColor: 'text-foxplan-charcoal-brown',
+            arrowImage: 'images/placeholder/Arrow_1.svg',
+            quoteIconColor: 'bg-foxplan-yellow',
+            testimonials: craft.entries.section('testimonials').limit(2).all()
+        }
+    } only %}
+
+    {# footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+{% endblock %}
