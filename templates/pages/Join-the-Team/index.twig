@@ -1,0 +1,72 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-black',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% block blockAppBody %}
+    {# 1. hero #}
+    {{ include('_sections/hero-sections/hero-arrow.twig', {
+        props: {
+            heading: 'Careers',
+            imagePath: 'images/About_1.jpg',
+            bodyText: 'We’re proud to grow a team of people who share our passion for helping Kiwis make confident financial decisions. We’re committed to recruiting, supporting, and developing the best talent New Zealand has to offer.',
+            buttonBgColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-white',
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown'
+        }
+    }) }}
+
+    {# 2. Foxplan academy #}
+
+    {% include '_sections/content-sections/foxplan-academy.twig' with {
+        props: {
+            topLabel: 'Foxplan Academy',
+            body: 'Every new adviser who joins us goes through our Foxplan Academy training programme. You’ll learn directly from our Directors and Senior Advisers — experienced business owners who bring years of real-world knowledge to every session.',
+            backgroundColor: 'bg-foxplan-yellow',
+            labelColor: 'text-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-charcoal-brown'
+        }
+    } %}
+
+    {# 3. benefits #}
+    {{ include('_sections/content-sections/benefits.twig', {
+        backgroundColor: 'bg-foxplan-neutral-beige',
+        textColor: 'text-foxplan-charcoal-brown',
+        servicesData: {
+            heading: 'Our advisers can<br>reduce your risk',
+            intro: '1 in 6 New Zealanders will be unable to work for six months or more before the age of 65. Yet, just 39% of us have health insurance and only 20% have income insurance. An Insurance Adviser can help you:',
+            items: [
+                { expandableHeadingTitle: 'Access to more providers', ExpandableBodyText: 'We work with a wide range of lenders to ensure you get the best deal tailored to your situation.' },
+                { expandableHeadingTitle: 'Better product knowledge', ExpandableBodyText: 'Our advisers have deep expertise across the entire mortgage market.' },
+                { expandableHeadingTitle: 'Advice on loan structuring', ExpandableBodyText: 'Structuring your loan correctly from the start can save you thousands in the long run.' },
+                { expandableHeadingTitle: 'Reduce your time & stress', ExpandableBodyText: 'We handle all the paperwork and lender communications for you.' },
+                { expandableHeadingTitle: 'Get on the property ladder faster', ExpandableBodyText: 'Our streamlined process means you can secure pre-approval and financing efficiently.' }
+            ]
+        }
+    }) }}
+
+    {# 4. get in touch #}
+    {% include '_sections/contact-us/get-in-touch.twig' %}
+
+    {# 5. footer #}
+
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+
+
+{% endblock %}

@@ -1,71 +1,78 @@
-{# _sections/investments/suppliers.twig #}
+{# templates/_sections/content-sections/suppliers.twig #}
 
-{% set supplierData = [
-    {
-        name: 'Consilium/Synergy',
-        contact: '0800 222 876',
-        general: null
-    },
-    {
-        name: 'Select Wealth',
-        contact: '0800 736 034',
-        general: '0800 269 296'
-    },
-    {
-        name: 'Booster',
-        contact: '0800 737 101 • +64 4 495 8700',
-        general: null
-    },
-    {
-        name: 'ANZ Investments/ One Answer',
-        contact: '0800 336 338',
-        general: null
-    },
-    {
-        name: 'Fisher Funds',
-        contact: '0508 464 999',
-        general: null
-    }
-] %}
+<section class="w-full bg-[#F9EFD8]"
+         x-data="{ activeTab: '{{ data.tabs[0].id }}' }">
 
-{% set containerClasses = 'mx-auto px-4' %}
-{% set headingClasses = 'font-serif text-4xl sm:text-5xl lg:text-[4rem] font-light leading-none text-gray-900 mb-12 md:mb-16' %}
-{% set cardNameClasses = 'text-xl font-semibold text-gray-900 mt-4' %}
-{% set cardContactClasses = 'text-base font-light text-gray-700 block' %}
-
-<section class="w-full bg-white pt-16 pb-16 md:pt-24 md:pb-24">
-    <div class="{{ containerClasses }}">
-
-        <h2 class="{{ headingClasses }}">Investments & Kiwisaver</h2>
-
-        {# Grid for Supplier Cards: Set to grid-cols-4 for desktop (lg:grid-cols-4) with wider gaps (gap-x-12) #}
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-12 gap-y-16">
-
-            {% for supplier in supplierData %}
-                <div class="supplier-card">
-
-                    {# Placeholder Box: Height reverted to original: w-full h-40 md:h-52 #}
-                    <div class="w-full h-40 md:h-52 bg-gray-100 mb-3">
-                        {# Content would go here if images or logos were used #}
-                    </div>
-
-                    {# Supplier Name #}
-                    <h3 class="{{ cardNameClasses }}">{{ supplier.name }}</h3>
-
-                    {# Contact Info #}
-                    {% if supplier.name == 'Select Wealth' %}
-                        {# Handle the two distinct labels for Select Wealth #}
-                        <span class="{{ cardContactClasses }}">Investments: {{ supplier.contact }}</span>
-                        <span class="{{ cardContactClasses }}">General: {{ supplier.general }}</span>
-                    {% else %}
-                        {# Standard Contact Format #}
-                        <span class="{{ cardContactClasses }}">Contact: {{ supplier.contact }}</span>
-                    {% endif %}
-
-                </div>
+    {# 1. Toggle Navigation Bar #}
+    <div class="w-full bg-foxplan-charcoal-brown">
+        <div class="grid grid-cols-2 md:grid-cols-4 w-full">
+            {% for tab in data.tabs %}
+                <button
+                        @click="activeTab = '{{ tab.id }}'"
+                        :class="activeTab === '{{ tab.id }}' ? 'bg-[#F9EFD8] text-foxplan-charcoal-brown' : 'text-white/60 hover:text-white'"
+                        class="py-5 px-2 text-center text-xs font-medium uppercase tracking-wider font-aktiv-grotesk transition-colors duration-200"
+                >
+                    {{ tab.label }}
+                </button>
             {% endfor %}
-
         </div>
+    </div>
 
+    {# 2. Content Area #}
+    <div class="px-6 md:px-12 pt-12 pb-16">
+        {% for tab in data.tabs %}
+            <div
+                    x-show="activeTab === '{{ tab.id }}'"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-2"
+                    x-transition:enter-end="opacity-100 translate-y-0"
+                    style="display: none;" {# Prevents flash before Alpine loads #}
+            >
+                {# Heading #}
+                <h2 class="font-serif text-4xl md:text-5xl text-foxplan-charcoal-brown mb-10 leading-tight">
+                    {{ tab.title }}
+                </h2>
+
+                {# Supplier Grid #}
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {% for supplier in tab.suppliers %}
+                        <div class="supplier-card flex flex-col  p-5 ">
+
+                            {# Logo Placeholder #}
+                            <div class="w-full h-36 bg-[#EBE0C8] mb-5 flex items-center justify-center">
+                                {# Logo would go here #}
+                            </div>
+
+                            {# Supplier Name #}
+                            <h3 class="text-xl font-serif text-foxplan-charcoal-brown mb-2">
+                                {{ supplier.name }}
+                            </h3>
+
+                            {# Contact Details #}
+                            <div class="text-foxplan-charcoal-brown font-aktiv-grotesk text-sm space-y-1 mb-8">
+                                {% if supplier.general is defined and supplier.general is not empty %}
+                                    <span class="block">Investments: {{ supplier.contact }}</span>
+                                    <span class="block">General: {{ supplier.general }}</span>
+                                {% else %}
+                                    <span class="block">Contact: {{ supplier.contact }}</span>
+                                {% endif %}
+                            </div>
+
+                            {# Visit Site Button #}
+                            <div class="mt-auto">
+                                <a href="{{ supplier.url ?? '#' }}"
+                                   class="bg-foxplan-charcoal-brown text-white inline-flex items-center px-5 py-3 text-xs font-medium transition-all hover:brightness-125 font-aktiv group">
+                                    <span class="mr-2">Visit site</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1">
+                                        <path d="M5 12h14"></path>
+                                        <path d="m12 5 7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </section>

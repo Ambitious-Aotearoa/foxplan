@@ -1,112 +1,75 @@
 {# _sections/contact-us/contact-us.twig #}
 
-{% set defaults = {
-    backgroundColor: 'bg-white',
-    textColor: 'text-gray-900',
-    accentColor: 'text-gray-700',
-    borderColor: 'border-gray-400',
-    content: {
-        call: {
-            heading: 'Message us',
-            description: 'New to FoxPlan? Please tell us which service you\'re interest in and one of our Advisers will be in touch soon. Alternatively, you can request a call back below.',
-            phone1: '0800 NO STRESS (0800 667 873)',
-            phone2: 'Office: (04) 918 4659',
-            form: {
-                submitText: 'Submit',
-                formAction: '#',
-                fields: [
-                    { label: 'FIRST NAME', name: 'first_name', placeholder: 'John', type: 'text', colSpan: 6 },
-                    { label: 'LAST NAME', name: 'last_name', placeholder: 'Doe', type: 'text', colSpan: 6 },
-                    { label: 'I AM INTERESTED IN', name: 'interest', type: 'select', options: ['Insurance', 'Mortgages', 'KiwiSaver'], colSpan: 6 },
-                    { label: 'BEST TIME TO CALL', name: 'call_time', type: 'select', options: ['Morning', 'Afternoon', 'Evening'], colSpan: 6 },
-                    { label: 'PHONE', name: 'phone', placeholder: '1234 567 890', type: 'tel', colSpan: 6 },
-                    { label: 'EMAIL', name: 'email', placeholder: 'johndoe@email.com', type: 'email', colSpan: 6 },
-                    { label: 'MESSAGE', name: 'message', placeholder: 'Enter your message', type: 'textarea', colSpan: 12 }
-                ]
-            }
-        },
-        callback: {
-            heading: 'Request a Callback',
-            body1: 'Set up a call with one of our advisers at a time that suits you. If you\'re new to FoxPlan, please let us know which services you are interested in so we can match you with the right adviser.',
-            body2: 'If you know who you would like to speak to, you can select their name from the dropdown list.',
-            placeholderText: 'Calendly embed'
-        },
-        location: {
-            heading: 'Our Location',
-            body: 'Visiting our office? You\'ll find us at Level 8, 138 The Terrace Wellington.',
-            placeholderText: 'Map embed'
+{% set contactData = {
+    call: {
+        heading: 'Message us',
+        description: 'New to FoxPlan? Please tell us which service you\'re interest in and one of our Advisers will be in touch soon. Alternatively, you can request a call back below.',
+        phone1: '0800 NO STRESS (0800 667 873)',
+        phone2: 'Office: (04) 918 4659',
+        form: {
+            fields: [
+                { label: 'FIRST NAME', name: 'first_name', placeholder: 'John', type: 'text', colSpan: 6, value: 'John' },
+                { label: 'LAST NAME', name: 'last_name', placeholder: 'Doe', type: 'text', colSpan: 6, value: 'Doe' },
+                { label: 'I AM INTERESTED IN', name: 'interest', placeholder: 'Insurance', type: 'select', options: ['Insurance', 'Mortgages', 'KiwiSaver'], colSpan: 6 },
+                { label: 'BEST TIME TO CALL', name: 'call_time', placeholder: 'Morning', type: 'select', options: ['Morning', 'Afternoon', 'Evening'], colSpan: 6 },
+                { label: 'PHONE', name: 'phone', placeholder: '1234 567 890', type: 'tel', colSpan: 6, value: '1234 567 690' },
+                { label: 'EMAIL', name: 'email', placeholder: 'johndoe@email.com', type: 'email', colSpan: 6, value: 'johndoe@email.com' },
+                { label: 'MESSAGE', name: 'message', placeholder: 'Enter you message', type: 'textarea', colSpan: 12 }
+            ],
+            submitText: 'Submit',
+            formAction: '#'
         }
+    },
+    callback: {
+        heading: 'Request a Callback',
+        body1: 'Set up a call with one of our advisers at a time that suits you. If you\'re new to FoxPlan, please let us know which services you are interested in so we can match you with the right adviser.',
+        body2: 'If you know who you would like to speak to, you can select their name from the dropdown list.',
+        imageSrc: 'images/Contact_1.jpg'
+    },
+    location: {
+        heading: 'Our Location',
+        body: 'Visiting our office? You\'ll find us at Level 8, 138 The Terrace Wellington.',
+        imageSrc: 'images/Contact_1.jpg'
     }
 } %}
 
-{# --- BULLETPROOF DEEP MERGE --- #}
-{% set data = defaults | merge(props | default({})) %}
-
-{# Manually merge sub-objects to prevent Twig from deleting keys #}
-{% set callContent = defaults.content.call %}
-{% if props.content.call is defined %}
-    {% set callContent = defaults.content.call | merge(props.content.call) %}
-{% endif %}
-
-{% set callbackContent = defaults.content.callback %}
-{% if props.content.callback is defined %}
-    {% set callbackContent = defaults.content.callback | merge(props.content.callback) %}
-{% endif %}
-
-{% set locationContent = defaults.content.location %}
-{% if props.content.location is defined %}
-    {% set locationContent = defaults.content.location | merge(props.content.location) %}
-{% endif %}
-
-{# Re-assemble the content object #}
-{% set finalContent = {
-    call: callContent,
-    callback: callbackContent,
-    location: locationContent
-} %}
-{% set data = data | merge({ content: finalContent }) %}
-
-{# --- STYLING --- #}
-{% set descriptionClasses = 'text-base leading-relaxed mb-6 ' ~ data.accentColor %}
-{% set phoneClasses = 'text-base font-semibold block mb-1 ' ~ data.textColor %}
-{% set labelClasses = 'text-sm font-semibold uppercase tracking-wider mb-2 block ' ~ data.textColor %}
-{% set inputClasses = 'w-full py-2 border-b focus:outline-none bg-transparent placeholder-gray-500 ' ~ data.textColor ~ ' ' ~ data.borderColor ~ ' focus:border-current' %}
-{% set tabTitleClasses = 'font-serif text-4xl sm:text-5xl lg:text-[4rem] font-light leading-none mb-6 ' ~ data.textColor %}
+{% set descriptionClasses = 'text-base leading-relaxed mb-6 text-foxplan-charcoal-brown' %}
+{% set phoneClasses = 'text-base font-semibold block mb-1 text-foxplan-charcoal-brown' %}
+{% set labelClasses = 'text-sm font-semibold uppercase tracking-wider mb-2 block text-foxplan-charcoal-brown' %}
+{% set inputClasses = 'w-full py-2 border-b border-gray-400 focus:outline-none focus:border-gray-900 bg-transparent placeholder-gray-500 text-foxplan-charcoal-brown' %}
+{% set tabTitleClasses = 'font-serif text-4xl sm:text-5xl lg:text-[5.5rem] font-light leading-none mb-0 text-foxplan-charcoal-brown' %}
 
 {# --- MACROS --- #}
+
 {% macro render_call_tab_content(data, descriptionClasses, phoneClasses, labelClasses, inputClasses) %}
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12">
-        <div class="md:col-span-5 mb-12 md:mb-0">
-            <p class="{{ descriptionClasses }} max-w-md">{{ data.description }}</p>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 mt-4 px-0">
+        <div class="md:col-span-5">
+            <p class="{{ descriptionClasses }}">{{ data.description }}</p>
             <div class="pt-4">
-                <span class="{{ labelClasses }} opacity-60">PHONE</span>
+                <span class="{{ phoneClasses }}">PHONE</span>
                 <span class="{{ phoneClasses }} font-normal">{{ data.phone1 }}</span>
                 <span class="{{ phoneClasses }} font-normal">{{ data.phone2 }}</span>
             </div>
         </div>
         <div class="md:col-span-7">
             <form action="{{ data.form.formAction }}" method="POST">
-                <div class="grid grid-cols-12 gap-x-8 gap-y-12">
+                <div class="grid grid-cols-12 gap-x-8 gap-y-12 pb-12">
                     {% for field in data.form.fields %}
                         <div class="col-span-{{ field.colSpan }}">
-                            <label class="{{ labelClasses }}">{{ field.label }}</label>
+                            <label for="{{ field.name }}" class="{{ labelClasses }}">{{ field.label }}</label>
                             {% if field.type == 'select' %}
-                                <div class="relative">
-                                    <select class="{{ inputClasses }} appearance-none pr-8">
-                                        {% for option in field.options %}<option value="{{ option }}">{{ option }}</option>{% endfor %}
-                                    </select>
-                                </div>
+                                <select id="{{ field.name }}" name="{{ field.name }}" class="{{ inputClasses }} appearance-none">
+                                    {% for option in field.options %}<option value="{{ option }}">{{ option }}</option>{% endfor %}
+                                </select>
                             {% elseif field.type == 'textarea' %}
-                                <textarea rows="4" class="{{ inputClasses }} resize-none"></textarea>
+                                <textarea id="{{ field.name }}" name="{{ field.name }}" rows="4" class="{{ inputClasses }} resize-none"></textarea>
                             {% else %}
-                                <input type="{{ field.type }}" placeholder="{{ field.placeholder }}" class="{{ inputClasses }}">
+                                <input type="{{ field.type }}" id="{{ field.name }}" name="{{ field.name }}" class="{{ inputClasses }}" value="{{ field.value ?? '' }}">
                             {% endif %}
                         </div>
                     {% endfor %}
                     <div class="col-span-12 mt-4">
-                        <button type="submit" class="bg-black text-white py-4 px-10 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors">
-                            {{ data.form.submitText }}
-                        </button>
+                        {{ include('_components/ui/button/button.twig', { props: { text: data.form.submitText, style: 'secondary' } }) }}
                     </div>
                 </div>
             </form>
@@ -114,58 +77,59 @@
     </div>
 {% endmacro %}
 
+{% macro render_callback_tab_content(data, descriptionClasses) %}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-0 mt-4 items-stretch">
+        <div class="lg:col-span-5 px-0">
+            <p class="{{ descriptionClasses }}">{{ data.body1 }}</p>
+            <p class="{{ descriptionClasses }}">{{ data.body2 }}</p>
+        </div>
+        <div class="hidden lg:block lg:col-span-7 pl-12">
+            <div class="w-full h-[500px] overflow-hidden">
+                <img src="{{ craft.vite.asset(data.imageSrc) }}" alt="FoxPlan" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro render_location_tab_content(data, descriptionClasses) %}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-0 mt-4 items-stretch">
+        <div class="lg:col-span-5 px-0">
+            <p class="{{ descriptionClasses }}">{{ data.body }}</p>
+        </div>
+        <div class="hidden lg:block lg:col-span-7 pl-12">
+            <div class="w-full h-[500px] overflow-hidden">
+                <img src="{{ craft.vite.asset(data.imageSrc) }}" alt="Location" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
 {% import _self as macros %}
 
-{# --- TABS CONFIG --- #}
 {% set tabsComponentData = {
     defaultTab: 'call',
-    backgroundColor: data.backgroundColor,
-    textColor: data.textColor,
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    textColor: 'text-foxplan-charcoal-brown',
     titleClasses: tabTitleClasses,
     tabs: [
-        {
-            id: 'call',
-            label: 'Call FoxPlan',
-            title: data.content.call.heading,
-            content: macros.render_call_tab_content(data.content.call, descriptionClasses, phoneClasses, labelClasses, inputClasses),
-        },
-        {
-            id: 'callback',
-            label: 'Request a Callback',
-            title: data.content.callback.heading,
-            content: '
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div>
-                        <p class="'~descriptionClasses~'">'~data.content.callback.body1~'</p>
-                        <p class="'~descriptionClasses~'">'~data.content.callback.body2~'</p>
-                    </div>
-                    <div class="h-[450px] bg-gray-100 flex items-center justify-center text-gray-400">
-                        '~data.content.callback.placeholderText~'
-                    </div>
-                </div>'
-        },
-        {
-            id: 'location',
-            label: 'Our Location',
-            title: data.content.location.heading,
-            content: '
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div>
-                        <p class="'~descriptionClasses~'">'~data.content.location.body~'</p>
-                    </div>
-                    <div class="h-[450px] bg-gray-100 flex items-center justify-center text-gray-400">
-                        '~data.content.location.placeholderText~'
-                    </div>
-                </div>'
-        }
+        { id: 'call', label: 'Call FoxPlan', title: contactData.call.heading, content: macros.render_call_tab_content(contactData.call, descriptionClasses, phoneClasses, labelClasses, inputClasses) },
+        { id: 'callback', label: 'Book a chat', title: contactData.callback.heading, content: macros.render_callback_tab_content(contactData.callback, descriptionClasses) },
+        { id: 'location', label: 'Our Location', title: contactData.location.heading, content: macros.render_location_tab_content(contactData.location, descriptionClasses) }
     ]
 } %}
 
 {# --- RENDER --- #}
-<section class="w-full {{ data.backgroundColor }} py-16 md:py-24">
-    <div class="mx-auto px-4">
-        {% include '_components/ui/tabs/tabs.twig' with {
-            data: tabsComponentData
-        } %}
+
+<section
+        class="w-full bg-foxplan-neutral-beige pt-16 pb-0 overflow-x-hidden"
+        x-data="{ activeTab: '{{ tabsComponentData.defaultTab }}' }"
+>
+    <div class="w-full px-4 lg:px-12">
+        {% include '_components/ui/tabs/tabs.twig' with { data: tabsComponentData } %}
     </div>
 </section>
+
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<style>
+    [x-cloak] { display: none !important; }
+</style>

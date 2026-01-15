@@ -1,0 +1,108 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+
+    {# Example: Yellow Bar, Charcoal Search, and a custom Brown Button #}
+    {% set navigationTheme = {
+        backgroundColor: 'bg-foxplan-charcoal-brown',
+        textColor: 'text-foxplan-yellow',
+        searchBgColor: 'bg-foxplan-charcoal-brown',
+        ctaBgColor: 'bg-foxplan-yellow',
+        iconColor: 'text-foxplan-yellow',
+    } %}
+{% block blockAppBody %}
+
+    {# templates/_components/sections/suppliers-hero.twig #}
+
+    <section class="w-full bg-foxplan-charcoal-brown text-foxplan-yellow pt-24 pb-24">
+        <div class="w-full px-8 md:px-12 lg:px-16">
+            {# Container for content #}
+            <div class="max-w-7xl">
+
+                {# Heading - Serif font with large sizing #}
+                <h1 class="font-serif text-7xl md:text-8xl lg:text-9xl mb-8 tracking-tight leading-none text-left">
+                    Our suppliers
+                </h1>
+
+                {# Description Text - Left aligned #}
+                <p class="font-aktiv-grotesk text-xl md:text-2xl max-w-2xl leading-relaxed opacity-90 text-left">
+                    Some text about our suppliers needs to go here. Some text about our suppliers needs to go here. Some
+                    text about our suppliers needs to go here.
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    {# 2. suppliers #}
+
+    {% set supplierData = {
+        tabs: [
+            {
+                id: 'investments',
+                label: 'Investments & Kiwisaver',
+                title: 'Investments & Kiwisaver',
+                suppliers: [
+                { name: 'Consilium/Synergy', contact: '0800 222 876' },
+                { name: 'Select Wealth', contact: '0800 736 034', general: '0800 269 296' },
+                { name: 'Booster', contact: '0800 737 101 • +64 4 495 8700' },
+                { name: 'ANZ Investments/ One Answer', contact: '0800 336 338' },
+                { name: 'Fisher Funds', contact: '0508 464 999' }
+            ]
+            },
+            {
+                id: 'Insurance',
+                label: 'Insurance',
+                title: 'Insurance',
+                suppliers: [
+                { name: 'Consilium/Synergy', contact: '0800 222 876' },
+                { name: 'Select Wealth', contact: '0800 736 034', general: '0800 269 296' },
+                { name: 'Booster', contact: '0800 737 101 • +64 4 495 8700' },
+                { name: 'ANZ Investments/ One Answer', contact: '0800 336 338' },
+                { name: 'Fisher Funds', contact: '0508 464 999' }
+            ]
+            },
+            {
+                id: 'Mortgages',
+                label: 'Mortgages',
+                title: 'Mortgages',
+                suppliers: [
+                { name: 'Consilium/Synergy', contact: '0800 222 876' },
+                { name: 'Select Wealth', contact: '0800 736 034', general: '0800 269 296' },
+                { name: 'Booster', contact: '0800 737 101 • +64 4 495 8700' },
+                { name: 'ANZ Investments/ One Answer', contact: '0800 336 338' },
+                { name: 'Fisher Funds', contact: '0508 464 999' }
+            ]
+            },
+            {
+                id: 'Non bank lenders',
+                label: 'Non bank lenders',
+                title: 'Non bank lenders',
+                suppliers: [
+                { name: 'Consilium/Synergy', contact: '0800 222 876' },
+                { name: 'Select Wealth', contact: '0800 736 034', general: '0800 269 296' },
+                { name: 'Booster', contact: '0800 737 101 • +64 4 495 8700' },
+                { name: 'ANZ Investments/ One Answer', contact: '0800 336 338' },
+                { name: 'Fisher Funds', contact: '0508 464 999' }
+            ]
+            }
+        ]
+    } %}
+
+    {{ include('_sections/content-sections/suppliers.twig', { data: supplierData }) }}
+
+    {# 3. footer #}
+
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown',
+            logoColor: 'text-foxplan-charcoal-brown',
+            buttonColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-yellow',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-charcoal-brown/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+{% endblock %}

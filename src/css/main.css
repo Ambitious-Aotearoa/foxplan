@@ -5,7 +5,7 @@
  * This section ensures the custom font is used throughout the entire site.
  * ====================================================================
  */
-@import url("tailwindcss");
+@import "tailwindcss";
 
 body {
     font-family: season-serif, sans-serif; /* or 'season-serif', serif; */

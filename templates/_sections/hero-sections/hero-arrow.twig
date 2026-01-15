@@ -5,33 +5,27 @@
     heading: 'Insurance',
     imagePath: 'images/Insurance_1.jpg',
     bodyText: 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured...',
-    buttonText: 'Get in touch',
+    buttonText: '',
     buttonUrl: '#',
     buttonBgColor: 'bg-foxplan-charcoal-brown',
     buttonTextColor: 'text-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown'
-} %}
+    } %}
 
-{% set data = defaults | merge(props | default({})) %}
+    {% set data = defaults | merge(props | default({})) %}
 
-<section
-        class="w-full py-16 {{ data.backgroundColor }} overflow-hidden"
+    <section
+            class="w-full py-16 {{ data.backgroundColor }} overflow-hidden"
         x-data="{ revealed: false }"
         x-init="setTimeout(() => revealed = true, 150)"
 >
     {# 1. Header Row #}
     <div class="max-w-full mx-auto px-8 mb-10">
         <div class="flex items-center gap-4">
-
-            {# ARROW: Using Arrow Image with slow reveal #}
+            {# ARROW #}
             <div class="relative py-2 flex items-center">
-                {#
-                Slowed duration to 3000ms.
-                The width transition creates the 'draw' effect.
-                #}
                 <div class="transition-all duration-[3000ms] ease-in-out overflow-hidden"
                      :style="revealed ? 'width: 336px; opacity: 1;' : 'width: 0px; opacity: 0;'">
-
                     <img
                             src="{{ craft.vite.asset('images/placeholder/Arrow_1.svg') }}"
                             alt="Arrow"
@@ -40,7 +34,7 @@
                 </div>
             </div>
 
-            {# HEADING: Slowed fade/slide animation #}
+            {# HEADING #}
             <div class="transition-all duration-[2000ms] ease-in-out"
                  :style="revealed ? 'opacity: 1; transform: translateX(0);' : 'opacity: 0; transform: translateX(20px);'">
                 <h2 class="font-serif text-6xl md:text-8xl tracking-tight {{ data.textColor }} whitespace-nowrap">
@@ -52,7 +46,6 @@
 
     {# 2. Content Grid #}
     <div class="flex flex-wrap lg:flex-nowrap items-end">
-
         {# IMAGE COLUMN #}
         <div class="w-full lg:w-[70%] relative overflow-hidden">
             <div class="relative w-full aspect-[16/9] lg:aspect-auto lg:h-[600px]">
@@ -66,14 +59,15 @@
         <div class="w-full lg:w-[30%] px-8 lg:px-12 space-y-6 pt-10 lg:pt-0">
             <div class="transition-all duration-[2000ms] delay-500"
                  :style="revealed ? 'opacity: 1; transform: translateY(0);' : 'opacity: 0; transform: translateY(10px);'">
-                <p class="font-aktiv text-base leading-relaxed {{ data.textColor }}">
+                <p class="font-aktiv leading-relaxed text-xl {{ data.textColor }}">
                     {{ data.bodyText }}
                 </p>
             </div>
 
-            <div class="transition-all duration-[2000ms] delay-700"
-                 :style="revealed ? 'opacity: 1;' : 'opacity: 0;'">
-                {% if data.buttonText %}
+            {# --- OPTIONAL BUTTON CHECK --- #}
+            {% if data.buttonText is not empty %}
+                <div class="transition-all duration-[2000ms] delay-700"
+                     :style="revealed ? 'opacity: 1;' : 'opacity: 0;'">
                     {% include '_components/ui/button/button.twig' with {
                         props: {
                             text: data.buttonText,
@@ -83,8 +77,8 @@
                             textColor: data.buttonTextColor,
                         }
                     } only %}
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 </section>

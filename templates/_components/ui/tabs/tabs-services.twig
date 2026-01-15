@@ -1,0 +1,32 @@
+{# templates/pages/new-page.twig #}
+
+<div x-data="{ activeTab: 'service-1' }">
+
+    {# 1. Include the Tabs #}
+    {% include '_components/ui/tabs/tabs-services.twig' with {
+    props: {
+    tabs: [
+        { id: 'service-1', label: 'Financial Planning' },
+        { id: 'service-2', label: 'Mortgage Advice' },
+        { id: 'service-3', label: 'Insurance' }
+    ],
+    navBg: 'bg-foxplan-charcoal-brown',
+    activeBg: 'bg-white',
+    activeText: 'text-black'
+    }
+    } only %}
+
+    {# 2. Your New Content #}
+    <div class="p-12">
+        <div x-show="activeTab === 'service-1'" x-cloak>
+            <h2>Financial Planning Content</h2>
+            <p>This shows only when Service 1 is clicked.</p>
+        </div>
+
+        <div x-show="activeTab === 'service-2'" x-cloak>
+            <h2>Mortgage Advice Content</h2>
+            <p>This shows only when Service 2 is clicked.</p>
+        </div>
+    </div>
+
+</div>

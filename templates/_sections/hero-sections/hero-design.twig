@@ -2,73 +2,74 @@
 
 {% set defaults = {
     title: 'Contact us',
-    bodyText: 'No matter what your financial goals are we’ll get you there. Start your journey by messaging us or requesting a callback below.',
+    bodyText: 'No matter what your financial goals are we’ll get you there. Start your journey by messaging us or requesting a callback below. If you already have an adviser, head to our team page to contact them directly.',
     buttonText: 'Book a call',
     buttonLink: '#',
     buttonBgColor: 'bg-[#0D0508]',
     buttonTextColor: 'text-white',
     imageSrc: 'images/Contact_1.jpg',
     maskSrc: 'images/placeholder/fox-tail_mask1.svg',
-    backgroundColor: 'bg-foxplan-yellow',
+    backgroundColor: 'bg-[#F9C33D]',
     textColor: 'text-[#270E15]',
     titleFont: 'font-serif',
-    titleSize: 'text-6xl md:text-8xl lg:text-[4.5rem]',
+    titleSize: 'text-7xl md:text-8xl lg:text-[10rem]',
 } %}
 
 {% set data = defaults | merge(props | default({})) %}
 
-<section class="{{ data.backgroundColor }} w-full overflow-hidden flex items-stretch relative h-[650px] md:h-[750px]">
+<section class="{{ data.backgroundColor }} w-full overflow-hidden relative">
+    <div class="grid grid-cols-1 lg:grid-cols-2 items-stretch min-h-[600px] lg:min-h-[800px]">
 
-    {# --- THE FOX TAIL OVERLAY --- #}
-    {# Increasing translate-y will move the tail further down #}
-{#    <div class="absolute top-0 right-0 w-full h-[120%] z-10 pointer-events-none">#}
-{#        <img src="{{ craft.vite.asset(data.maskSrc) }}"#}
-{#             class="w-full h-full object-fill object-right translate-x-0 translate-y-[10%] scale-110 origin-top-right"#}
-{#             alt="">#}
-{#    </div>#}
+        {# 1. TEXT COLUMN #}
+        <div class="flex flex-col justify-center px-4 md:px-8 lg:pl-16 lg:pr-12 pt-20 pb-12 lg:py-32 relative z-20">
+            <h1 class="{{ data.titleFont }} {{ data.titleSize }} font-normal {{ data.textColor }} leading-[0.85] tracking-tighter mb-8">
+                {{ data.title | raw }}
+            </h1>
 
-    <div class="w-full flex flex-wrap relative z-20">
+            {% if data.bodyText is not empty %}
+                <p class="font-aktiv-grotesk text-xl md:text-2xl {{ data.textColor }} leading-[1.1] mb-10 max-w-sm">
+                    {{ data.bodyText | raw }}
+                </p>
+            {% endif %}
 
-        {# Left Column: Content #}
-        <div class="w-full md:w-[45%] flex flex-col justify-center pl-8 md:pl-16 lg:pl-24 pr-10">
-            <div class="max-w-xl">
-                <h1 class="{{ data.titleFont }} {{ data.titleSize }} font-normal {{ data.textColor }} leading-[0.85] tracking-tight mb-8">
-                    {{ data.title | raw }}
-                </h1>
-
-                {% if data.bodyText is not empty %}
-                    <p class="font-aktiv-grotesk text-lg md:text-xl {{ data.textColor }} leading-snug mb-10 max-w-sm">
-                        {{ data.bodyText | raw }}
-                    </p>
-                {% endif %}
-
-                {% if data.buttonText is not empty %}
-                    <div>
-                        {% include '_components/ui/button/button.twig' with {
-                            props: {
-                                text: data.buttonText,
-                                url: data.buttonLink,
-                                backgroundColor: data.buttonBgColor,
-                                textColor: data.buttonTextColor,
-                                classes: 'px-8 py-4 text-xs tracking-widest uppercase inline-flex items-center gap-2'
-                            }
-                        } only %}
-                    </div>
-                {% endif %}
-            </div>
+            {% if data.buttonText is not empty %}
+                <div class="flex">
+                    {% include '_components/ui/button/button.twig' with {
+                        props: {
+                            text: data.buttonText,
+                            url: data.buttonLink,
+                            backgroundColor: data.buttonBgColor,
+                            textColor: data.buttonTextColor,
+                            classes: 'px-6 py-3 text-xs tracking-widest uppercase font-bold rounded-sm'
+                        }
+                    } only %}
+                </div>
+            {% endif %}
         </div>
 
-        {# Right Column: Background Image #}
-        <div class="w-full md:w-[55%] relative overflow-hidden">
-            {# The Hiker Photo (Background) #}
-{#            <img src="{{ craft.vite.asset(data.imageSrc) }}"#}
-{#                 class="absolute inset-0 w-full h-full object-cover"#}
-{#                 alt="">#}
+        {# 2. IMAGE COLUMN - SHIFTED DOWNWARDS #}
+        <div class="relative lg:min-h-full">
+            <div
+                    class="absolute inset-0 w-full h-full"
+                    style="
+                            background-image: url('{{ craft.vite.asset(data.imageSrc) }}');
+                            background-size: cover;
+                            /* Shift image content down to match mask */
+                            background-position: center 110%;
 
-            {# The Fox Tail (Foreground) - Moving this down #}
-            <img src="{{ craft.vite.asset(data.maskSrc) }}"
-                 class="relative w-full h-full object-cover object-[center_75%]"
-                 alt="{{ data.title }}">
+                            mask-image: url('{{ craft.vite.asset(data.maskSrc) }}');
+                            -webkit-mask-image: url('{{ craft.vite.asset(data.maskSrc) }}');
+
+                            /* Keep tail shape preserved */
+                            mask-size: contain;
+                            -webkit-mask-size: contain;
+                            mask-repeat: no-repeat;
+
+                            /* THE FIX: Pin to right and shift down (e.g., 105% to hide the top curve) */
+                            mask-position: right 110%;
+                            -webkit-mask-position: right 110%;
+                            ">
+            </div>
         </div>
 
     </div>

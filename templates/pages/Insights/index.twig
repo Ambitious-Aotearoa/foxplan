@@ -1,0 +1,82 @@
+{# templates/pages/Insights/index.twig #}
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{# 1. Navigation Theme Setup - Must be outside the block #}
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-foxplan-charcoal-brown',
+    searchBgColor: 'bg-foxplan-charcoal-brown',
+    ctaBgColor: 'bg-foxplan-charcoal-brown',
+    iconColor: 'text-foxplan-yellow',
+} %}
+
+{% block blockAppBody %}
+
+    {# 2. Hero Section #}
+    <section class="w-full bg-foxplan-yellow text-foxplan-charcoal-brown pt-24 pb-24">
+        <div class="w-full px-8 md:px-12 lg:px-16">
+            <div class="max-w-7xl">
+                <h1 data-aos="fade-up" class="font-serif text-7xl md:text-8xl lg:text-9xl mb-8 tracking-tight leading-none text-left">
+                    Insights
+                </h1>
+                <p data-aos="fade-up" data-aos-delay="150" class="font-aktiv-grotesk text-xl md:text-2xl max-w-2xl leading-relaxed opacity-90 text-left">
+                    The latest updates on finance, investments, mortgages, KiwiSaver, and more — practical tips to help Kiwis make smarter financial decisions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+{#    #}{# 3. Tabs and Content Wrapper #}
+{#    <div x-data="{ activeTab: 'service-1' }" class="relative">#}
+
+{#        #}{# 4. The Tabs Component #}
+{#        {% include '_components/ui/tabs/tabs-services.twig' with {#}
+{#            props: {#}
+{#                tabs: [#}
+{#                    { id: 'service-1', label: 'Financial Planning' },#}
+{#                    { id: 'service-2', label: 'Mortgage Advice' },#}
+{#                    { id: 'service-3', label: 'Insurance' }#}
+{#                ],#}
+{#                navBg: 'bg-foxplan-charcoal-brown',#}
+{#                activeBg: 'bg-[#F9EFD8]',#}
+{#                activeText: 'text-foxplan-charcoal-brown'#}
+{#            }#}
+{#        } only %}#}
+
+{#        #}{# 5. Tab Content Sections #}
+{#        <div class="w-full bg-[#F9EFD8] min-h-[600px]">#}
+
+{#            <div x-show="activeTab === 'service-1'"#}
+{#                 x-cloak#}
+{#                 x-transition:enter="transition ease-out duration-500"#}
+{#                 x-transition:enter-start="opacity-0 translate-y-8"#}
+{#                 x-transition:enter-end="opacity-100 translate-y-0"#}
+{#                 class="px-8 md:px-12 py-16">#}
+{#                <h2 class="font-serif text-5xl mb-8">Financial Planning</h2>#}
+{#                <p class="text-lg opacity-80">Content for Financial Planning goes here.</p>#}
+{#            </div>#}
+
+{#            <div x-show="activeTab === 'service-2'"#}
+{#                 x-cloak#}
+{#                 x-transition:enter="transition ease-out duration-500"#}
+{#                 x-transition:enter-start="opacity-0 translate-y-8"#}
+{#                 x-transition:enter-end="opacity-100 translate-y-0"#}
+{#                 class="px-8 md:px-12 py-16">#}
+{#                <h2 class="font-serif text-5xl mb-8">Mortgage Advice</h2>#}
+{#                <p class="text-lg opacity-80">Content for Mortgage Advice goes here.</p>#}
+{#            </div>#}
+
+{#            <div x-show="activeTab === 'service-3'"#}
+{#                 x-cloak#}
+{#                 x-transition:enter="transition ease-out duration-500"#}
+{#                 x-transition:enter-start="opacity-0 translate-y-8"#}
+{#                 x-transition:enter-end="opacity-100 translate-y-0"#}
+{#                 class="px-8 md:px-12 py-16">#}
+{#                <h2 class="font-serif text-5xl mb-8">Insurance</h2>#}
+{#                <p class="text-lg opacity-80">Content for Insurance goes here.</p>#}
+{#            </div>#}
+
+{#        </div>#}
+{#    </div>#}
+
+{% endblock %} {# THIS TAG WAS LIKELY MISSING OR MALFORMED #}

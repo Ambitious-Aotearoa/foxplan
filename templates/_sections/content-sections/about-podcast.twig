@@ -1,56 +1,48 @@
-{# _sections/content-sections/about-podcast.twig #}
+{# templates/_sections/content-sections/about-podcast.twig #}
 
-{# --- Reusable Properties --- #}
-{% set bgColor = backgroundColor ?? 'bg-foxplan-yellow' %}
-{% set txtColor = textColor ?? 'text-foxplan-charcoal-brown' %}
-
-{% set podcastData = podcastData ?? {
+{# 1. Setup scoped defaults #}
+{% set defaults = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-foxplan-charcoal-brown',
     topLabel: 'A 360 APPROACH',
-    body1: 'We act as your business coach and help hold you accountable. As Xero specialists, we can assist you in making the important decisions based on real-time information and data.',
-    body2: 'While you’ll work with one of our accountants, we can connect you with our financial planning, investment and insurance experts to take a 360-degree approach towards your business.',
+    body1: 'Text here...',
+    body2: 'More text here...',
+    showLogo: true
 } %}
 
-{# Tailwind Class Definitions #}
-{% set topLabelClasses = 'text-sm font-medium uppercase tracking-wider mb-4 md:mb-0 ' ~ txtColor %}
-{% set bodyTextClasses = 'text-2xl leading-relaxed ' ~ txtColor %}
-{% set foxIconClasses = 'w-32 h-auto' %}
+{# 2. Merge with the SPECIFIC data passed to this include #}
+{% set sectionData = defaults | merge(data ?? {}) %}
 
-<section class="w-full py-16 md:py-24 {{ bgColor }}">
-    {# Full Width Container #}
+{# 3. Use sectionData prefix for EVERYTHING #}
+<section class="w-full py-16 md:py-24 {{ sectionData.backgroundColor }}">
     <div class="px-8 md:px-12 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-10">
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8">
-
-            {# Column 1: Label #}
-            <div class="md:col-span-3 lg:col-span-2">
-                <span class="{{ topLabelClasses }}">{{ podcastData.topLabel }}</span>
+            {# LEFT: Label (30%) #}
+            <div class="md:col-span-3">
+                <span class="text-sm font-medium uppercase tracking-wider {{ sectionData.textColor }}">
+                    {{ sectionData.topLabel }}
+                </span>
             </div>
 
-            {# Column 2: Content with Inline Logo #}
-            <div class="md:col-span-9 lg:col-span-10">
-
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
-                    {# Text Block #}
-                    <div class="w-full">
-                        <p class="{{ bodyTextClasses }} mb-6">
-                            {{ podcastData.body1 }}
+            {# RIGHT: Content (70%) #}
+            <div class="md:col-span-7 mt-4 md:mt-0">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-12">
+                    <div class="flex-1">
+                        <p class="text-2xl md:text-3xl leading-relaxed {{ sectionData.textColor }} mb-8">
+                            {{ sectionData.body1 }}
                         </p>
-
-                        <p class="{{ bodyTextClasses }}">
-                            {{ podcastData.body2 }}
+                        <p class="text-2xl md:text-3xl leading-relaxed {{ sectionData.textColor }}">
+                            {{ sectionData.body2 }}
                         </p>
                     </div>
 
-                    {# Fox Logo: Inline with the bottom of the text #}
-                    <div class="flex-shrink-0 self-end">
-                        <img
-                                src="{{ craft.vite.asset('images/FoxPlan_Logo.svg', false) }}"
-                                alt="FoxPlan Full Logo"
-                                class="{{ foxIconClasses }}"
-                        >
-                    </div>
+                    {% if sectionData.showLogo %}
+                        <div class="flex-shrink-0">
+                            <img src="{{ craft.vite.asset('images/FoxPlan_Logo.svg') }}" class="w-32 h-auto">
+                        </div>
+                    {% endif %}
                 </div>
-
             </div>
         </div>
     </div>

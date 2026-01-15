@@ -1,103 +1,82 @@
-{# _sections/content-sections/episode-list.twig #}
+{# templates/_sections/content-sections/episode-list.twig #}
 
-{% set episodeData = [
-    {
-        title: 'Second marriages, trusts and contracting out - Part 2 with Hannah Carter Dollars & Sense Podcast',
-        date: 'Dec 11, 2024',
-        length: '26 minutes',
-        linkUrl: '#'
-    },
-    {
-        title: 'Blended families & second marriages: The legal must-knows with Hannah Carter',
-        date: 'Dec 11, 2024',
-        length: '26 minutes',
-        linkUrl: '#'
-    },
-    {
-        title: 'Why revolving mortgages keep you stuck on the financial treadmill',
-        date: 'Dec 11, 2024',
-        length: '26 minutes',
-        linkUrl: '#'
-    },
-    {
-        title: 'Second marriages, trusts and contracting out - Part 2 with Hannah Carter Dollars & Sense Podcast',
-        date: 'Dec 11, 2024',
-        length: '26 minutes',
-        linkUrl: '#'
-    },
-    {
-        title: 'Blended families & second marriages: The legal must-knows with Hannah Carter',
-        date: 'Dec 11, 2024',
-        length: '26 minutes',
-        linkUrl: '#'
-    },
-    {
-        title: 'Why revolving mortgages keep you stuck on the financial treadmill',
-        date: 'Dec 11, 2024',
-        length: '26 minutes',
-        linkUrl: '#'
-    }
-] %}
+{% set defaults = {
+    sectionTitle: 'All episodes',
+    seeAllUrl: '#',
+    backgroundColor: 'bg-white',
+    textColor: 'text-black',
+    episodes: []
+} %}
 
-{# Tailwind Class Definitions for styling #}
-{% set sectionClasses = 'bg-white' %}
-{% set mainHeadingClasses = 'font-serif text-[32px] font-light leading-none text-black' %}
-{% set episodeTitleClasses = 'font-serif text-[32px] font-light leading-snug text-black mb-1' %}
-{% set metadataClasses = 'text-sm text-gray-600' %}
-{% set imagePlaceholderClasses = 'w-24 h-24 bg-gray-200 mr-8 flex-shrink-0' %} {# New class for the grey box #}
+{% set sectionData = defaults | merge(data ?? {}) %}
 
-<section class="w-full {{ sectionClasses }} pt-16 pb-16 md:pt-24 md:pb-24">
-    <div class="mx-auto px-4">
+{# OUTER WRAPPER: This creates the 20px beige border #}
+<div class="w-full bg-foxplan-neutral-beige p-[20px]">
 
-        {# Header Row: Title and "See All" button #}
-        <div class="flex justify-between items-center mb-12 pb-6">
-            <h2 class="{{ mainHeadingClasses }}">All episodes</h2>
+    {# INNER SECTION: Your actual content area #}
+    <section class="w-full {{ sectionData.backgroundColor }} overflow-hidden">
+        <div class="px-8 md:px-12 w-full pt-16 pb-16 md:pt-24 md:pb-24">
 
-            {# "See all" button using the component #}
-            {{ include('_components/ui/button/button.twig', {
-                props: {
-                    text: 'See all',
-                    style: 'primary',
-                    url: '#'
-                }
-            }) }}
-        </div>
+            {# Header Row #}
+            <div class="flex justify-between items-center mb-12 border-b border-foxplan-yellow pb-8">
+                <h2 class="font-serif text-4xl md:text-5xl font-normal {{ sectionData.textColor }}">
+                    {{ sectionData.sectionTitle }}
+                </h2>
 
-        {# Episode List #}
-        <div class="divide-y divide-gray-200">
-            {% for episode in episodeData %}
+                {% if sectionData.seeAllUrl %}
+                    {% include '_components/ui/button/button.twig' with {
+                        props: {
+                            text: 'See all',
+                            style: 'primary',
+                            url: sectionData.seeAllUrl,
+                            backgroundColor: 'bg-foxplan-yellow',
+                            textColor: 'text-foxplan-charcoal-brown',
+                        }
+                    } only %}
+                {% endif %}
+            </div>
 
-                {# Episode Item #}
-                <div class="flex items-center justify-between py-6">
+            {# Episode List #}
+            <div class="divide-y divide-foxplan-yellow">
+                {% for episode in sectionData.episodes %}
+                    <div class="flex flex-col md:flex-row md:items-center justify-between py-8 px-4 -mx-4 group transition-all duration-300 hover:bg-foxplan-charcoal-brown">
 
-                    {# Left Content: Placeholder, Title, and Metadata #}
-                    <div class="flex items-start pr-8">
+                        {# Left Content #}
+                        <div class="flex items-start md:items-center pr-8 mb-6 md:mb-0">
+                            <div class="w-40 h-24 mr-8 flex-shrink-0 overflow-hidden bg-gray-100">
+                                {% if episode.imageSrc is defined and episode.imageSrc is not empty %}
+                                    <img src="{{ craft.vite.asset(episode.imageSrc) }}"
+                                         alt="{{ episode.title }}"
+                                         class="w-full h-full object-cover block">
+                                {% endif %}
+                            </div>
 
-                        {# Grey Box Placeholder #}
-                        <div class="{{ imagePlaceholderClasses }}"></div>
+                            <div>
+                                <h3 class="font-serif text-2xl md:text-[32px] leading-tight {{ sectionData.textColor }} mb-2 group-hover:text-white transition-colors duration-300">
+                                    {{ episode.title }}
+                                </h3>
+                                <p class="text-sm text-gray-500 font-aktiv-grotesk uppercase tracking-wider group-hover:text-white/60 transition-colors">
+                                    {{ episode.date }} &bull; {{ episode.length }}
+                                </p>
+                            </div>
+                        </div>
 
-                        <div>
-                            <h3 class="{{ episodeTitleClasses }}">{{ episode.title }}</h3>
-                            <p class="{{ metadataClasses }}">
-                                {{ episode.date }} &bull; {{ episode.length }}
-                            </p>
+                        {# Right Content #}
+                        <div class="flex-shrink-0">
+                            {% include '_components/ui/button/button.twig' with {
+                                props: {
+                                    text: 'Listen',
+                                    style: 'primary',
+                                    url: episode.linkUrl ?? '#',
+                                    backgroundColor: 'bg-foxplan-yellow',
+                                    textColor: 'text-foxplan-charcoal-brown',
+                                    classes: 'px-8 py-3 group-hover:bg-white group-hover:text-foxplan-charcoal-brown transition-all duration-300'
+                                }
+                            } only %}
                         </div>
                     </div>
-
-                    {# Right Content: Listen Button #}
-                    <div class="flex-shrink-0">
-                        {{ include('_components/ui/button/button.twig', {
-                            props: {
-                                text: 'Listen',
-                                style: 'primary',
-                                url: episode.linkUrl,
-                            }
-                        }) }}
-                    </div>
-                </div>
-
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-
-    </div>
-</section>
+    </section>
+</div>
