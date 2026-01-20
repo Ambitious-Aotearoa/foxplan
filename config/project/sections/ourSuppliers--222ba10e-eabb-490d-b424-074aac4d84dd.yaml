@@ -15,10 +15,7 @@ propagationMethod: all
 siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
-    hasUrls: true
-    template: our-suppliers/_entry.twig
-    uriFormat: 'our-suppliers/{slug}'
-structure:
-  maxLevels: null
-  uid: af6c852b-d13d-455a-bdeb-78b1097f164e
-type: structure
+    hasUrls: false
+    template: null
+    uriFormat: null
+type: single

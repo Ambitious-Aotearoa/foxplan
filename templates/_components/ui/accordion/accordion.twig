@@ -1,151 +1,71 @@
 {# templates/_components/ui/accordion/accordion.twig #}
 
-
-
 {% set defaults = {
-
     items: [],
     defaultOpen: -1,
     backgroundColor: 'bg-foxplan-white',
-
     textColor: 'text-black',
-
     iconBgColor: 'bg-[#E5E5E5]',
-
     iconTextColor: 'text-white',
-
     titleFont: 'font-serif',
-
     titleSize: 'text-2xl md:text-3xl',
-
     titleCase: 'normal',
-
     titleWeight: 'font-normal',
-
     contentFont: 'font-aktiv-grotesk',
-
     contentSize: 'text-base',
-
     contentWeight: 'font-light',
-
     contentOpacity: 'opacity-100',
-
     contentLeading: 'leading-relaxed',
-
     classes: ''
-
 } %}
-
-
 
 {% set props = defaults | merge(props | default({})) %}
 
-
-<div class="space-y-4 {{ props.classes }}" x-data="{ openItem: {{ props.defaultOpen }} }">
-
+<div
+        class="space-y-4 {{ props.classes }}"
+        x-data="{ openItem: {{ props.defaultOpen }} }"
+>
     {% if props.items and props.items|length > 0 %}
-
         {% for item in props.items %}
-
             {% set hasContent = item.ExpandableBodyText is not empty %}
 
-
-
-            {# The "Old Style" is restored as default. Scaling/Shadow only happens on hover. #}
-
             <div
-
                     class="{{ props.backgroundColor }} overflow-hidden mr-[20px] transition-all duration-300 ease-out transform hover:scale-[1.015] hover:shadow-xl hover:z-20 relative border-b border-gray-100 last:border-0"
-
                     :class="openItem === {{ loop.index0 }} ? 'z-10' : 'z-0'"
-
             >
-
-
-                {# Accordion Header #}
-
                 <button
-
                         class="w-full flex items-center justify-between py-6 text-left group transition-colors duration-200"
-
                         {% if hasContent %}
-
                             @click="openItem = openItem === {{ loop.index0 }} ? -1 : {{ loop.index0 }}"
-
-                            aria-expanded="false"
-
-                            :aria-expanded="openItem === {{ loop.index0 }} ? 'true' : 'false'"
-
                         {% else %}
-
                             disabled
-
                         {% endif %}
-
                 >
-
                     <h3 class="{{ props.titleFont }} {{ props.titleSize }} {{ props.titleCase }} {{ props.titleWeight }} {{ props.textColor }} pr-4 pl-8 transition-transform duration-300 group-hover:translate-x-1">
-
                         {{ item.expandableHeadingTitle|default('Item ' ~ loop.index) }}
-
                     </h3>
 
-
                     {% if hasContent %}
-
                         <div class="flex-shrink-0 pr-6">
-
-                            {# Icon stays small like old style, but reacts to hover #}
-
                             <div class="w-8 h-8 {{ props.iconBgColor }} flex items-center justify-center transition-all duration-300 group-hover:bg-foxplan-charcoal-brown group-hover:text-white">
-
-<span class="{{ props.iconTextColor }} text-xl font-light leading-none mb-0.5 group-hover:text-white"
-
-      x-text="openItem === {{ loop.index0 }} ? '−' : '+'">
-
-</span>
-
+                                <span class="{{ props.iconTextColor }} text-xl font-light leading-none mb-0.5"
+                                      x-text="openItem === {{ loop.index0 }} ? '−' : '+'">
+                                </span>
                             </div>
-
                         </div>
-
                     {% endif %}
-
                 </button>
 
-
-                {# Accordion Content #}
-
                 {% if hasContent %}
-
-                    <div x-show="openItem === {{ loop.index0 }}"
-
-                         x-collapse
-
-                         style="display: none;">
-
+                    <div x-show="openItem === {{ loop.index0 }}" x-collapse style="display: none;">
                         <div class="pb-8 pl-8 pr-6">
-
                             <div class="{{ props.contentFont }} {{ props.contentSize }} {{ props.contentWeight }} {{ props.textColor }} {{ props.contentLeading }} {{ props.contentOpacity }} max-w-2xl">
-
                                 {{ item.ExpandableBodyText|raw }}
-
                             </div>
-
                         </div>
-
                     </div>
-
                 {% endif %}
-
             </div>
-
         {% endfor %}
-
-    {% else %}
-
-        <p class="{{ props.contentFont }} {{ props.contentSize }} {{ props.textColor }}">No items available.</p>
-
     {% endif %}
-
 </div>

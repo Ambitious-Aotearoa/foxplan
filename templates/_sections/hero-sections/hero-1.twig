@@ -1,14 +1,13 @@
-{# templates/_sections/hero-sections/hero-1.twig #}
+{# 1. Fetch data from the entry #}
+{% set heroImage = entry.heroImage.one() %}
 
-{% set defaults = {
-    title: 'Mortgages',
-    bodyText: "Whether you're buying your first home, refinancing, or investing in property. FoxPlan makes it easy to get all your ducks in a row.",
-    buttonText: null,
-    buttonLink: '#',
-    buttonBgColor: 'bg-foxplan-charcoal-brown',
-    buttonTextColor: 'text-white',
-    imageSrc: 'images/Mortgage_1.jpg',
-    backgroundColor: 'bg-foxplan-neutral-beige',
+{% set heroData = {
+    title: entry.title ?? 'Mortgages',
+    bodyText: entry.heroBodyText ?? "Whether you're buying your first home...",
+    button: entry.button ?? 'Book a call',
+    buttonLink: entry.buttonLink ?? '#',
+    imageSrc: heroImage ? heroImage.url : null,
+    backgroundColor: entry.backgroundColor.value ?? 'bg-foxplan-neutral-beige',
     textColor: 'text-black',
     titleFont: 'font-serif',
     titleSize: 'text-7xl md:text-[8.5rem]',
@@ -16,54 +15,42 @@
     bodySize: 'text-lg md:text-xl'
 } %}
 
-{% set heroData = defaults | merge(data | default({})) %}
-
 <section class="{{ heroData.backgroundColor }} w-full overflow-hidden">
-    {# Main Container #}
     <div class="pt-16">
-
-        {# TOP: Full Width Title #}
-        <div class="w-full pl-8 md:pl-10 mb-8">
-            <h1 data-aos="fade-up" class="{{ heroData.titleFont }} {{ heroData.titleSize }} font-normal {{ heroData.textColor }} leading-[0.85] tracking-tighter">
-                {{ heroData.title }}
+        {# Title Area - Supports manual line breaks from the CMS #}
+        <div class="w-full pl-8 md:pl-10 mb-[32px]">
+            <h1 class="{{ heroData.titleFont }} {{ heroData.titleSize }} font-normal {{ heroData.textColor }} leading-[0.85] tracking-tight">
+                {# Use nl2br and raw so the <br> tags render from your CMS carriage returns #}
+                {{ heroData.title | nl2br | raw }}
             </h1>
         </div>
 
-        {# BOTTOM: 30/70 Split Grid #}
-        <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start">
+        {# Flex Container: items-stretch keeps the text and image columns the same height #}
+        <div class="flex flex-col md:flex-row w-full items-stretch">
 
-            {# LEFT: Text & Button (30%) #}
-            <div class="col-span-1 md:col-span-3 pl-8 md:pl-10 pr-12 pb-20">
+            {# Left Content Column: 30% #}
+            <div class="w-full md:w-[30%] pl-8 md:pl-10 pr-12 pb-20 flex flex-col justify-start">
                 <div class="max-w-md">
-                    <p class="{{ heroData.bodyFont }} {{ heroData.bodySize }} {{ heroData.textColor }} leading-relaxed mb-10">
-                        {{ heroData.bodyText }}
-                    </p>
-
-                    {% if heroData.buttonText is not empty %}
-                        {% include '_components/ui/button/button.twig' with {
-                            props: {
-                                text: heroData.buttonText,
-                                style: 'primary',
-                                url: heroData.buttonLink,
-                                backgroundColor: heroData.buttonBgColor,
-                                textColor: heroData.buttonTextColor,
-                                classes: 'px-10 py-4 font-aktiv inline-block'
-                            }
-                        } only %}
-                    {% endif %}
+                    <div class="{{ heroData.bodyFont }} {{ heroData.bodySize }} {{ heroData.textColor }} leading-relaxed mb-10">
+                        {{ heroData.bodyText | raw }}
+                    </div>
+                    <a href="{{ heroData.buttonLink }}" class="inline-block bg-foxplan-charcoal-brown text-white px-10 py-4 text-xs font-bold tracking-widest uppercase hover:opacity-90 transition-all">
+                        {{ heroData.button }}
+                    </a>
                 </div>
             </div>
 
-            {# RIGHT: Image (70%) #}
-            <div class="hidden md:block md:col-span-7">
-                <div class="w-full h-[600px]">
-                    {% if heroData.imageSrc is not empty %}
-                        <img src="{{ craft.vite.asset(heroData.imageSrc, false) }}"
-                             alt="{{ heroData.title }}"
-                             class="w-full h-full object-cover block"
-                        >
-                    {% endif %}
-                </div>
+            {# Right Image Column: 70% #}
+            <div class="w-full md:w-[70%] min-h-[400px] md:min-h-[600px]">
+                {% if heroData.imageSrc %}
+                    <img src="{{ heroData.imageSrc }}"
+                         alt="{{ heroData.title | striptags }}"
+                         class="w-full h-full object-cover block">
+                {% else %}
+                    <img src="{{ craft.vite.asset('images/Mortgage_1.jpg') }}"
+                         alt="{{ heroData.title | striptags }}"
+                         class="w-full h-full object-cover block">
+                {% endif %}
             </div>
 
         </div>

@@ -1,0 +1,246 @@
+color: null
+description: null
+fieldLayouts:
+  0c2c9e26-3711-4efd-9871-60446ef9fd8a:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-01-19T22:56:37+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 7677fa2b-3138-4375-80dd-5a5f87721b28
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-19T23:00:41+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c066b34e-a19b-43fe-8050-8618cf7bd669
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-19T23:00:41+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 32dfb124-40ef-4e76-8a25-4ac3415ad18b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-19T23:00:41+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 44ad803c-d104-4d2a-8576-cc69286d44ab
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-19T23:00:41+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c417fd50-b69f-4f3e-b90b-bd7a1938aa77
+            userCondition: null
+            warning: null
+            width: 100
+        name: hero
+        uid: 0d6230ef-02ff-4264-9507-1cc889325649
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-19T23:00:41+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 06d71e35-920e-4fbd-b611-4c32fa816cf9
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-19T23:00:41+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2c9dcfc0-df5e-4f0f-b0a1-90e156826d2c
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Info Block'
+        uid: b416dad4-a7ef-4d3a-ba0c-d54972ca70f2
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-19T23:00:41+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c234ae81-523e-4f31-8f70-7737a7b1eebc
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-19T23:00:41+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2e636bf4-1dbf-404b-907a-89b0112d7e23
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-19T23:00:41+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d62d9299-1d49-4b85-8dba-a36a165be8a0
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Accordion Section'
+        uid: 7f892b53-689a-4aa3-ae65-e62eb9b25869
+        userCondition: null
+      -
+        elementCondition: null
+        name: 'Who we work with'
+        uid: 3f505c68-af18-478e-81c1-f2b3f05fef23
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-19T23:00:41+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading3
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 236a0ed6-f1ab-4a5b-be7b-e184048d5ba4
+            userCondition: null
+            warning: null
+            width: 100
+        name: Testimonials
+        uid: 2590be39-655e-41cc-bfa9-e80495547ed7
+        userCondition: null
+handle: pageBuilder
+hasTitleField: true
+icon: null
+name: 'Page Builder'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

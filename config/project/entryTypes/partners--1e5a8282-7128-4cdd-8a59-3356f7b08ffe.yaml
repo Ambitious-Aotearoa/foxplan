@@ -1,0 +1,40 @@
+color: null
+description: null
+fieldLayouts:
+  c7404882-c43e-47fe-abe7-6aee1802886f:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-19T23:50:41+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: aad93b84-e999-4d54-bc1e-8f65472830f4 # Partners
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4675de31-dc43-4d6c-b8b1-4b0a653f75e6
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: e1a8b182-08fe-4a17-a694-03a5e892848b
+        userCondition: null
+handle: partners
+hasTitleField: false
+icon: null
+name: Partners
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

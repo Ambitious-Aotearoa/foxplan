@@ -7,74 +7,74 @@
 } %}
 
 {% block blockAppBody %}
-    {# 1. hero #}
+    {# 1. Hero Section #}
+    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
+    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
+    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
+
     {{ include('_sections/hero-sections/hero-arrow.twig', {
         props: {
-            heading: 'Insurance',
+            heading: pageHeading,
+            bodyText: pageBody,
+            buttonText: pageButton,
             imagePath: 'images/Insurance_1.jpg',
-            bodyText: 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.',
-            buttonText: 'Get in touch',
+            backgroundColor: 'bg-foxplan-yellow',
             buttonUrl: '/contact',
             buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-white',
-            backgroundColor: 'bg-foxplan-yellow',
-            textColor: 'text-foxplan-charcoal-brown'
+            buttonTextColor: 'text-foxplan-white'
         }
     }) }}
 
-    {# 2. benefits #}
+    {# 2. Benefits #}
+    {% set benefitsHeading = entry.paragraphHeading ?? 'Get onto the property ladder faster' %}
+    {% set benefitsIntro = entry.bodyText ?? '' %}
+
+    {% set accordionItems = [] %}
+    {% if entry.accordion is defined %}
+        {% for block in entry.accordion.all() %}
+            {% set accordionItems = accordionItems | merge([{
+                'expandableHeadingTitle': block.accordionHeading,
+                'ExpandableBodyText': block.accordionBodyText
+            }]) %}
+        {% endfor %}
+    {% endif %}
+
     {{ include('_sections/content-sections/benefits.twig', {
         backgroundColor: 'bg-foxplan-yellow',
-        textColor: 'text-black',
+        textColor: 'text-foxplan-charcoal-brown',
         servicesData: {
-            heading: 'Our advisers can<br>reduce your risk',
-            intro: '1 in 6 New Zealanders will be unable to work for six months or more before the age of 65. Yet, just 39% of us have health insurance and only 20% have income insurance. An Insurance Adviser can help you:',
-            items: [
-                { expandableHeadingTitle: 'Access to more providers', ExpandableBodyText: 'We work with a wide range of lenders to ensure you get the best deal tailored to your situation.' },
-                { expandableHeadingTitle: 'Better product knowledge', ExpandableBodyText: 'Our advisers have deep expertise across the entire mortgage market.' },
-                { expandableHeadingTitle: 'Advice on loan structuring', ExpandableBodyText: 'Structuring your loan correctly from the start can save you thousands in the long run.' },
-                { expandableHeadingTitle: 'Reduce your time & stress', ExpandableBodyText: 'We handle all the paperwork and lender communications for you.' },
-                { expandableHeadingTitle: 'Get on the property ladder faster', ExpandableBodyText: 'Our streamlined process means you can secure pre-approval and financing efficiently.' }
-            ]
+            heading: benefitsHeading,
+            intro: benefitsIntro,
+            items: accordionItems
         }
     }) }}
 
-    {# 3. explore section #}
+    {# 3. Explore Services #}
+    {% set insuranceGridItems = [] %}
+
+    {% if entry.infoBlock is defined %}
+        {% for block in entry.infoBlock.all() %}
+            {% set insuranceGridItems = insuranceGridItems | merge([{
+                'title': block.paragraphHeading4 ?? 'Service Title',
+                'text': block.blockBodyText ?? '',
+                'link': block.blockLinkUrl ?? '#'
+            }]) %}
+        {% endfor %}
+    {% endif %}
 
     {{ include('_sections/services/our-services.twig', {
         props: {
-            title: 'Explore<br> savings & investments',
+            title: entry.paragraphHeading ?? 'Explore Insurance',
             backgroundColor: 'bg-foxplan-white',
             buttonBgColor: 'bg-foxplan-charcoal-brown',
             buttonTextColor: 'text-white',
-            items: [
-                {
-                    title: 'First home buyers',
-                    text: 'Helping you step onto the property ladder with clarity and confidence. We guide you through the grant applications and lender requirements.',
-                    link: '#',
-                    linkText: 'Learn about first homes'
-                },
-                {
-                    title: 'Moving house',
-                    text: 'Support for transporting your existing mortgage, negotiating a new mortgage, or managing the bridge between sale and purchase.',
-                    link: '#'
-                },
-                {
-                    title: 'Property investing',
-                    text: 'Advice around everything from using a down payment versus home equity to structuring loans for maximum tax efficiency.',
-                    link: '#'
-                },
-                {
-                    title: 'Refinancing',
-                    text: 'Optimize your mortgage to save interest, repay your loan faster, or unlock equity for renovations and other goals.',
-                    link: '#'
-                }
-            ]
+            items: insuranceGridItems
         }
     }) }}
 
 
-    {# 4. Partner Section #}
+
+    {#4. Who We Work With #}
     {{ include('_sections/content-sections/who-we-work-with.twig', {
         props: {
             title: 'WHO WE WORK WITH',
@@ -82,30 +82,18 @@
             textColor: 'text-foxplan-charcoal-brown',
             borderColor: 'border-foxplan-charcoal-brown/20',
             logos: [
-                { src: 'images/logo/AIA_Logo.svg', alt: 'AIA', name: 'AIA Insurance' },
-                { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ', name: 'ANZ Bank' },
-                { src: 'images/logo/BNZ_Logo.svg', alt: 'BNZ', name: 'BNZ Bank' },
-                { src: 'images/logo/Kiwibank_Logo.svg', alt: 'Kiwibank', name: 'Kiwibank' },
-                { src: 'images/logo/SBS-Bank_LowQuality_Logo.svg', alt: 'SBS', name: 'SBS Bank' },
-                { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'Co-op', name: 'The Co-operative Bank' },
-                { src: 'images/logo/Westpac_logo.svg', alt: 'Westpac', name: 'Westpac' },
-                { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'iag', name: 'IAG Group' }
+                { src: 'images/logo/AIA_Logo.svg', alt: 'AIA' },
+                { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ' }
             ]
         }
     }) }}
 
-    {# 5. footer #}
-
+    {# 5. Footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',
             textColor: 'text-foxplan-yellow',
-            logoColor: 'text-foxplan-yellow',
-            buttonColor: 'bg-foxplan-yellow',
-            buttonTextColor: 'text-foxplan-charcoal-brown',
-            foxplanText: 'foxplan',
-            borderTopColor: 'border-foxplan-yellow/20',
-            borderTopWidth: 'border-t-2'
+            foxplanText: 'foxplan'
         }
     }) }}
 

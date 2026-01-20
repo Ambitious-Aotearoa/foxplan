@@ -39,8 +39,9 @@
             </div>
 
             <div class="w-full">
-                {{ include('_components/ui/accordion/accordion.twig', {
+                {{ include('_components/ui/accordion/accordion-2.twig', {
                     props: {
+                        style: 'secondary',
                         items: servicesData.items,
                         defaultOpen: -1,
                         titleFont: 'font-serif',

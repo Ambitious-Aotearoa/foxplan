@@ -2,10 +2,10 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: 1692277e-675a-4ebf-8998-6eb58cf9709f # Insurance
-handle: insurancePage
+    uid: d71d9025-4b25-42b3-956c-faa7e975d728 # Page Builder2
+handle: personalMedicalInsurance
 maxAuthors: 1
-name: 'Insurance Page'
+name: "Personal\_& Medical  Insurance"
 previewTargets:
   -
     label: 'Primary entry page'
@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: insurance-page/_entry.twig
-    uriFormat: insurance-page
+    template: _boilerplate/_layouts/layout-service-2.twig
+    uriFormat: Personal-Medical-Insurance
 type: single

@@ -1,0 +1,246 @@
+color: null
+description: null
+fieldLayouts:
+  f1cfbcaf-8f69-4257-8478-7175856242cd:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-12-17T03:31:21+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 4f329d97-d314-41c5-8694-9245b1747f47
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:36:30+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8da058c6-5497-4d60-b363-86a7ab1bcfce
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:36:30+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: aecc1104-e4b1-4ac6-8763-e8600a501a76
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: f6cae508-f1eb-44e4-8064-162eded98482
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T03:36:30+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fafe2f5d-7e10-4296-b2d9-07f14d530a03
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:36:30+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 99cc9f7a-0640-4662-bb80-1b2347e7416d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:36:30+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ecf5b913-a3f2-4dec-bef4-59d0e8eb3120
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Get On the Property Ladder'
+        uid: 4f0227b9-d5e7-492a-82e3-f05173faaa89
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-19T21:47:25+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 12ddb483-6330-449f-ae88-f74cdea2b1e4
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Explore Mortgages'
+        uid: ed0c01e6-74c4-4ecf-9bcf-353eb3b319fc
+        userCondition: null
+      -
+        elementCondition: null
+        name: 'Who we work with'
+        uid: c64a43f5-c8f4-49bd-879e-aa46b52d8e6b
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T03:38:54+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 40dc7ecc-2b48-42e9-ba8d-6b387ee26597 # Advisors Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7dbed08c-3991-43df-ab84-1d19f8cb4302
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:38:54+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fe02d7ad-a8ee-44e2-81e9-27e07f31372d # Advisors Name
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d53f1fea-390d-49ab-902d-6ff5b516fd69
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:38:54+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6f0a76fe-cb4c-4d8c-8521-1df6591824df
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T03:38:54+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: bodyText2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c64f8a68-0081-44e5-bf53-bf2ef9c0fa6b
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Meet our Advisors'
+        uid: f402773a-bf49-444c-a27f-29fd310da057
+        userCondition: null
+handle: mortgages
+hasTitleField: true
+icon: null
+name: Mortgages
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

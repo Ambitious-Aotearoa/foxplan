@@ -1,4 +1,4 @@
-dateModified: 1768189947
+dateModified: 1768876428
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
@@ -8,15 +8,22 @@ meta:
     1a3c63b4-fa18-4c7d-957d-f84743d407d4: Insights # Insights
     1bce15eb-e441-43c8-bff3-cb4b0197fef2: 'Hero Body Text' # Hero Body Text
     1bf81b4c-12eb-4329-8dc6-5ce2b0f86018: 'Accordion Heading' # Accordion Heading
+    01d859f3-0f5b-434d-b064-a75dd6b9f60f: Testimonial # Testimonial
+    1e5a8282-7128-4cdd-8a59-3356f7b08ffe: Partners # Partners
+    3a0461fa-5c8b-42dd-83d4-002a72f09025: 'Who We Work With' # Who We Work With
     3bd7c3e2-a7e9-429c-8ef5-50244f5b52b6: Article # Article
+    3ca03225-96ae-4b44-87f2-2f3b0d32d166: 'Testimonial Author' # Testimonial Author
     3e972f90-c081-4846-a2fe-bc0ececc6aba: Episodes # Episodes
     3f29f8f9-323f-4a3c-95a6-70ec3c79160e: 'Paragraph Subheading' # Paragraph Subheading
     4a5c0332-8175-4c2d-b8c5-0e1602083956: 'Insights Heading ' # Insights Heading 
     4c9973ff-0107-4739-a889-f352e62eca08: 'Large Paragraph' # Large Paragraph
     4f6c8e0b-055b-4db8-a5da-6e57516a5d6e: 'Paragraph Left Aligned Image' # Paragraph Left Aligned Image
+    5a33ed06-c4f0-4d32-be5f-033502c710e5: blockLinkUrl # blockLinkUrl
     5ca1faf9-4255-419a-9685-fa7e60d769b6: 'Insights Body Text' # Insights Body Text
     5cede0e4-ef0c-4e1f-b901-5b98851b4218: 'Accordion Body Text' # Accordion Body Text
     5e3a98a6-2a0c-4e33-810c-ebd90c38e203: 'Job Ttitle' # Job Ttitle
+    5f9ab0c0-59fc-4921-ae4d-b5295b968b0a: Savings # Savings
+    6c3eaee7-a293-48db-a2af-00632f9ed5aa: "Business\_Insurance" # Business Insurance
     6ceee63c-bd5c-42c7-b57b-470bd2226b4b: 'Newsletter Body Text' # Newsletter Body Text
     6e4443d9-4aa2-4c0a-886c-5bb0ff3becdb: Simple # Simple
     7a691543-7ee7-4665-991f-b95469f91162: About # About
@@ -27,6 +34,7 @@ meta:
     7f789aad-395d-4a42-a977-413640299ad5: 'Dollars and sense Newsletter' # Dollars and sense Newsletter
     8b403de7-1685-45ca-9cbd-75b40b03493d: Time # Time
     8b648b38-5f82-4331-869f-eb02f36604e6: 'Author name' # Author name
+    9bdc992e-fe2b-4e1d-926a-01d9a7b5772d: 'Info Block' # Info Block
     10c572c2-b78a-48bc-973f-bf40d7aff8eb: 'Subscribe Button' # Subscribe Button
     20a2a580-d219-4d89-85de-c3cef6cd5616: 'First Home Buyers' # First Home Buyers
     30e93460-18e1-473b-90f6-17bed59eb35e: 'Contact Info' # Contact Info
@@ -38,8 +46,12 @@ meta:
     42aa85d0-fe98-4b4c-9b6a-14a32758b7d0: About # About
     43ae8319-1d1a-467f-a54f-c45fae2a173d: Accounting # Accounting
     51becce4-9606-46e8-bf00-a7858643841c: 'Read Next Subheading' # Read Next Subheading
+    56a4b868-c935-4c1c-b529-c1fac0bcee60: Testimonial # Testimonial
     56f32641-e789-4c85-9d66-1a59f42e95d2: foxplan # foxplan
     57b202f1-c4d8-4b39-bc56-d1eeb2b1244b: 'Hero Subheading' # Hero Subheading
+    64be8bff-539f-4a96-9c76-ecff739d9d87: 'Refinancing & Refixing' # Refinancing & Refixing
+    68fa3aba-96db-477b-ac3c-539df750eb60: 'Property investment' # Property investment
+    93cc1844-5f6e-4858-86da-315bd52cda7c: 'Property Upgrade' # Property Upgrade
     096b02a8-7b14-4611-b1ca-1e82e3dd704a: 'Newsletter Image' # Newsletter Image
     197d008b-abaf-40fa-9c38-173ac170b291: 'Article Heading' # Article Heading
     222ba10e-eabb-490d-b424-074aac4d84dd: 'Our Suppliers' # Our Suppliers
@@ -51,18 +63,22 @@ meta:
     624fe030-2a18-4f50-92e6-5f5e4d1b8ca4: Articles # Articles
     728e2922-294a-4307-a690-e701c702623f: 'Explore Body Text' # Explore Body Text
     848be098-6f72-402d-97ad-5f23465fa79f: 'Business Page' # Business Page
+    850eeb95-fac6-4d9c-a93f-eb8e4939ca9a: blockBodyText # blockBodyText
     904beb73-9861-43f3-8de7-90464f6457de: foxplan # foxplan
     1241b357-ec03-4e69-918d-d30cafe4535d: 'Explore Heading' # Explore Heading
+    6035c790-1a95-4839-b920-a2b321cf79f3: testimonialItems # testimonialItems
     6389bccc-1b55-4096-821e-192e6a2bd80a: 'Business Page' # Business Page
+    6389e4d4-c725-4073-ba17-8aac55dc636c: 'Page Builder' # Page Builder
     9315bb88-5d25-4861-81a8-0919dd5ba2b9: 'Newsletter Heading' # Newsletter Heading
     9695c5c9-997b-4776-9806-6bd6bc3478ea: Episodes # Episodes
+    024975a0-c902-455c-8531-31c3d872cb09: blockHeading # blockHeading
     26603cf5-8da3-461b-9a66-2eda1d1dda14: 'Dollars and Sense Podcast' # Dollars and Sense Podcast
     37578f45-0b1d-4513-b3f7-30085b31057c: 'Fox icon' # Fox icon
     70166e5f-e2f1-4bdc-995b-94ed1f905a47: 'Subscribe Bodytext' # Subscribe Bodytext
     75267a9c-0192-4076-8b99-166c04ba40d2: 'First Home Buyers' # First Home Buyers
     80330d32-4e37-428b-9b60-12ab62ac8918: 'Join The Team' # Join The Team
     161783a0-0b86-4e70-a6be-2dd6d5b50cfb: 'Accounting Page' # Accounting Page
-    184304c2-0776-48be-b918-b0c1ec2dc0ee: Mortages # Mortages
+    184304c2-0776-48be-b918-b0c1ec2dc0ee: Mortgages # Mortgages
     1692277e-675a-4ebf-8998-6eb58cf9709f: Insurance # Insurance
     06624620-5204-452f-a746-b5d70f1641a4: 'Contact Us Page' # Contact Us Page
     09381442-8ef2-4c26-89d0-aee12518b1a1: Accordion # Accordion
@@ -72,21 +88,30 @@ meta:
     a8da3467-e2fa-4b90-b5e8-7df257de2ebc: Image # Image
     a30fb669-985c-4116-8bf1-8ca04a3af56c: Article # Article
     a82e8874-a0f4-4805-b59d-8c47d4867d7c: Tags # Tags
+    aad93b84-e999-4d54-bc1e-8f65472830f4: Partners # Partners
+    ab6419ce-234c-4d78-a23e-94ce2f5a8df4: ' testimonialItems' #  testimonialItems
     ad7daef3-ba4d-470a-8ee9-3bee8c28bcea: 'Newsletter Title' # Newsletter Title
     ad894a33-fa20-4afd-8f7e-832b4d37b7d8: 'Subscribe Ttitle' # Subscribe Ttitle
     ae1eb8ab-68f8-419c-8bb8-c19ed7985884: 'Insights Image' # Insights Image
+    ae579cff-a9c5-4a21-a182-8dc2ad9da475: 'Partner Logos' # Partner Logos
     b3e0436c-c0e6-4ebd-8278-c69c2a07f9e6: Insights # Insights
     b4eb13fb-cde6-4574-a9fa-a2411d464e89: 'Episode Image' # Episode Image
+    b8c88331-c69e-4293-bf13-cee69a7f6fa3: Testimonials # Testimonials
     b898b7e2-c466-4f6e-89b2-5fc8070636bd: 'Contact Us Page' # Contact Us Page
-    bd9810cb-e0b5-44c9-a927-d6519786b086: 'Mortgages Page' # Mortgages Page
+    bd9810cb-e0b5-44c9-a927-d6519786b086: Mortgages # Mortgages
+    bed732d3-f5cc-42ac-bfc9-d5d1666a7a29: 'Page Builder2' # Page Builder2
+    c036502b-7de9-4641-9539-24188822e437: 'Info Block' # Info Block
     cc0e715a-9227-4f6e-9948-2b6b82ab16c3: Insights # Insights
+    cd7d6292-1897-4386-b933-19976426821e: "Personal\_& Medical  Insurance" # Personal & Medical  Insurance
     cdf13e52-0c89-4938-8466-07df74ab4a51: 'Hero Date' # Hero Date
     ced4066b-92f7-424d-b675-f392ce22c644: 'Insights Tabs Data' # Insights Tabs Data
-    cff38048-563c-4fdc-b87c-d5ddb0084953: 'Insurance Page' # Insurance Page
+    cff38048-563c-4fdc-b87c-d5ddb0084953: Insurance # Insurance
+    d71d9025-4b25-42b3-956c-faa7e975d728: 'Page Builder2' # Page Builder2
     d760ba30-262b-46c3-8e86-b06b07b0226a: 'Paragraph Right Aligned Image2' # Paragraph Right Aligned Image2
     d2442bfd-d769-4080-9505-d553f86821d8: 'Tabs Subheading' # Tabs Subheading
     db3f4be3-1c80-405f-840c-01dddd834e4f: 'Meet the Team' # Meet the Team
     dd0c598b-fc22-4c8d-9255-b3c858be4247: 'Savings and Investment Page' # Savings and Investment Page
+    df4f2326-3181-40b6-a383-e26ebe3080d8: 'Retirement Planning' # Retirement Planning
     e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a: 'Hero Image' # Hero Image
     e4ad5282-5b53-4193-bf9a-40d21e1aab4d: Date # Date
     e6b57a9c-ff58-47d6-be33-ec0322d1188b: 'Meet the team' # Meet the team
@@ -94,9 +119,15 @@ meta:
     e28a6153-7560-4ccb-9581-5c4b5babadcc: 'Article ' # Article 
     e822b9bd-7702-483f-bce4-4e4538f988d4: 'Insights Tabs' # Insights Tabs
     e193394e-257b-4460-bb66-043fa40743cd: 'Main Heading' # Main Heading
+    e899186a-754a-4339-ab18-a6add2dc936f: 'Who we work with' # Who we work with
+    f7a5e91d-6352-49c1-91d0-6a6491f0edaf: 'Page Builder' # Page Builder
     f83b90ed-4415-49b6-85c7-e4f1a4a11e72: 'Insights Tab Image' # Insights Tab Image
     f9501fa8-ddf7-45c9-848a-c7ece198f27a: 'Paragraph Heading' # Paragraph Heading
+    f42469eb-08c1-411f-a288-bc2841425be9: Testimonials # Testimonials
+    faa57aae-5553-4a99-b14f-596cda69cdc5: 'Financial Planning' # Financial Planning
+    fba1ff8e-0b24-45ff-8403-da24499dfef2: buttonLink # buttonLink
     fe02d7ad-a8ee-44e2-81e9-27e07f31372d: 'Advisors Name' # Advisors Name
+    fe20e1d7-e0c5-4e62-80f5-8fc24cea698d: 'Client Testimonial' # Client Testimonial
     fe65fafc-55a8-474b-bd0f-a76a970e15a5: Accordion # Accordion
 plugins:
   ckeditor:

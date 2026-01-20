@@ -1,62 +1,44 @@
-{# templates/_sections/content-sections/section.twig #}
+{# 1. Map Backend Data based on "Image and Text" Screenshot #}
+{% set sectionImage = entry.image.one() %}
 
-{% set defaults = {
-    eyebrow: '',
-    title: 'Get the First Home Buyers Guide',
-    bodyText: '',
-    buttonText: '',
-    buttonLink: '#',
-    buttonBgColor: 'bg-[#270E15]',
-    buttonTextColor: 'text-white',
-    imageSrc: 'images/guide-family.jpg',
-    backgroundColor: 'bg-[#F9C33D]',
-    textColor: 'text-[#270E15]',
-    titleFont: 'font-serif',
-    titleSize: 'text-5xl md:text-6xl lg:text-[4.5rem]',
-    bodyFont: 'font-aktiv-grotesk',
-    bodySize: 'text-base md:text-lg',
-    showBorder: false,
-    borderColor: 'border-[#270E15]'
-} %}
+{% set props = {
+    title: entry.paragraphHeading3 ?? 'Get the First Home Buyers Guide',
+    bodyText: entry.bodyText2 ?? '',
+    buttonText: entry.button2 ?? '',
+    buttonLink: entry.buttonlink2 ?? '#',
+    imageSrc: sectionImage ? sectionImage.url : null,
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-foxplan-charcoal-brown',
+    buttonBgColor: 'bg-foxplan-charcoal-brown',
+    buttonTextColor: 'text-foxplan-yellow',
+    borderColor: 'border-foxplan-charcoal-brown'
+    } %}
 
-{% set data = defaults | merge(props | default({})) %}
+    {% set data = props %}
 
-<section class="{{ data.backgroundColor }} w-full overflow-hidden {{ data.showBorder ? 'border-b ' ~ data.borderColor : '' }}">
+    {# Added 'border-t' and the border color class to the section tag below #}
+    <section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">
     <div class="pt-16 md:pt-24">
         <div class="flex flex-wrap w-full items-start">
 
             {# Left Column: 30% Width #}
             <div class="w-full md:w-[30%] pl-8 md:pl-10 pr-12 pb-16 md:pb-24">
                 <div class="max-w-md">
-
-                    {# 1. Eyebrow - Only renders if data exists #}
-                    {% if data.eyebrow is not empty %}
-                        <div class="mb-6">
-                            <span class="font-aktiv-grotesk text-xs md:text-sm uppercase tracking-widest {{ data.textColor }} opacity-80">
-                                {{ data.eyebrow }}
-                            </span>
-                        </div>
-                    {% endif %}
-
-                    {# 2. Title - Required for context #}
-                    <h2 class="{{ data.titleFont }} {{ data.titleSize }} font-normal {{ data.textColor }} leading-[0.85] tracking-tight {{ (data.bodyText or data.buttonText) ? 'mb-8 md:mb-12' : '' }}">
+                    <h2 class="font-serif text-5xl md:text-6xl lg:text-[4.5rem] font-normal {{ data.textColor }} leading-[0.85] tracking-tight {{ (data.bodyText or data.buttonText) ? 'mb-8 md:mb-12' : '' }}">
                         {{ data.title | raw }}
                     </h2>
 
-                    {# 3. Body Text - Only renders if data exists #}
                     {% if data.bodyText is not empty %}
-                        <p class="{{ data.bodyFont }} {{ data.bodySize }} {{ data.textColor }} leading-relaxed {{ data.buttonText ? 'mb-10' : '' }}">
+                        <div class="font-aktiv-grotesk text-base md:text-lg {{ data.textColor }} leading-relaxed {{ data.buttonText ? 'mb-10' : '' }}">
                             {{ data.bodyText | raw }}
-                        </p>
+                        </div>
                     {% endif %}
 
-                    {# 4. Button - Only renders if text exists #}
                     {% if data.buttonText is not empty %}
                         <div>
                             {% include '_components/ui/button/button.twig' with {
                                 props: {
                                     text: data.buttonText,
-                                    style: 'primary',
                                     url: data.buttonLink,
                                     backgroundColor: data.buttonBgColor,
                                     textColor: data.buttonTextColor,
@@ -71,15 +53,17 @@
             {# Right Side: 70% Width #}
             <div class="w-full md:w-[70%] pb-16 md:pb-24 pr-8 md:pr-12 lg:pr-16">
                 <div class="w-full relative">
-                    {% if data.imageSrc is not empty %}
-                        <img src="{{ craft.vite.asset(data.imageSrc, false) }}"
+                    {% if data.imageSrc %}
+                        <img src="{{ data.imageSrc }}"
                              alt="{{ data.title|striptags }}"
-                             class="w-full h-auto block object-cover"
-                        >
+                             class="w-full h-auto block object-cover">
+                    {% else %}
+                        <img src="{{ craft.vite.asset('images/Insights_4.jpg') }}"
+                             alt="{{ data.title|striptags }}"
+                             class="w-full h-auto block object-cover">
                     {% endif %}
                 </div>
             </div>
-
         </div>
     </div>
 </section>

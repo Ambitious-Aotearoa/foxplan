@@ -1,102 +1,35 @@
-{# this is for personal & medical insurance , business insurance , financial planning , Retirement planning , savings , business planning #}
-
+{# 1. Extend the base boilerplate #}
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
-{# Navigation theme can be made dynamic per entry if needed #}
 {% set navigationTheme = {
     backgroundColor: 'bg-foxplan-neutral-beige',
     textColor: 'text-black',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
-
+{# 2. Fill the body block defined in layout-base #}
 {% block blockAppBody %}
 
-    {# Loop through a Matrix field named 'pageBuilder' #}
-    {% for block in entry.pageBuilder.all() %}
-        {% switch block.type %}
+    {# 3. Include the Hero Section #}
+    {% include "_sections/hero-sections/hero-1.twig" with { data: entry } %}
 
-            {# --- 1. HERO SECTION --- #}
-        {% case "hero" %}
-            {{ include('_sections/hero-sections/hero-1.twig', {
-                data: {
-                    title: block.heroTitle,
-                    imageSrc: block.heroImage.one().url ?? '',
-                    bodyText: block.heroBody,
-                    buttonText: block.buttonText,
-                    buttonLink: block.buttonLink,
-                    buttonBgColor: 'bg-foxplan-charcoal-brown',
-                    buttonTextColor: 'text-white',
-                    backgroundColor: 'bg-foxplan-neutral-beige',
-                    textColor: 'text-black',
-                    titleFont: 'font-serif',
-                    titleSize: 'text-[8.5rem]',
-                    bodyFont: 'font-aktiv-grotesk',
-                    bodySize: 'text-lg'
-                }
-            }) }}
+    {# 4. Include the "Help Me Buying Your First Home" Section #}
+    {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with { entry: entry } %}
 
+    {# 5. How We Work Section (Matrix: accordion) #}
+    {% include "_sections/content-sections/how-we-work.twig" with { entry: entry } %}
 
-            {#- -- 2. SERVICE GRID (Help for...) --- #}
-        {% case "serviceGrid" %}
-            {% include '_sections/content-sections/help-for-buying-your-first-home.twig' with {
-                props: {
-                    mainHeading: block.heading,
-                    backgroundColor: 'bg-foxplan-neutral-beige',
-                    textColor: 'text-foxplan-charcoal-brown',
+    {# 6. Guide/CTA (Image and Text Section) #}
+    {% include "_sections/hero-sections/section.twig" with { entry: entry } %}
 
-                    services: block.servicesList
-                }
-            } only %}
+    {# 7. Testimonial #}
+    {% include "_sections/testimonials/testimonial-two.twig" %}
+    {# 8. Main Page Content #}
+    {# This 'innerContent' block allows individual pages to add their specific content below the hero #}
+    <div class="service-page-content">
+        {% block innerContent %}{% endblock %}
+    </div>
 
-            {# --- 3. HOW WE WORK (Accordion) --- #}
-        {% case "accordion" %}
-            {% include '_sections/content-sections/how-we-work.twig' with {
-                props: {
-                    mainHeading: block.heading,
-                    mainBody: block.subheading,
-                    backgroundColor: 'bg-foxplan-neutral-beige',
-                    textColor: 'text-foxplan-charcoal-brown',
-
-                    accordionItems: block.accordionItems
-                }
-            } only %}
-
-            {# --- 4. CALL TO ACTION SECTION (The Yellow Guide Section) --- #}
-        {% case "ctaSection" %}
-            {% include '_sections/hero-sections/section.twig' with {
-                props: {
-                    eyebrow: block.eyebrow ?? '',
-                    title: block.ctaTitle,
-                    bodyText: block.ctaBody ?? '',
-                    buttonText: block.buttonText ?? '',
-                    buttonLink: block.buttonLink ?? '#',
-                    buttonBgColor: 'bg-foxplan-charcoal-brown',
-                    buttonTextColor: 'text-white',
-                    imageSrc: block.ctaImage.one().url ?? '',
-                    backgroundColor: 'bg-foxplan-yellow',
-                    textColor: 'text-foxplan-charcoal-brown',
-                    titleFont: 'font-serif',
-                    titleSize: 'text-5xl md:text-6xl lg:text-[4.5rem]',
-                    bodyFont: 'font-aktiv-grotesk',
-                    bodySize: 'text-base md:text-lg'
-                }
-            } only %}
-
-        {% endswitch %}
-    {% endfor %}
-
-    {# --- GLOBAL SECTIONS (Footer & Testimonials) --- #}
-    {% include '_sections/testimonial/testimonial-two.twig' with {
-        props: {
-            sectionTitle: 'Hear what our clients are saying',
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-foxplan-charcoal-brown',
-            arrowImage: 'images/placeholder/Arrow_1.svg',
-            quoteIconColor: 'bg-foxplan-yellow',
-            testimonials: craft.entries.section('testimonials').limit(2).all()
-        }
-    } only %}
-
+    {# 9. footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',
@@ -109,5 +42,7 @@
             borderTopWidth: 'border-t-2'
         }
     }) }}
+    {# 5. Add other shared sections here (e.g. Newsletter or Footer) #}
+    {# {% include "_sections/global/footer" %} #}
 
 {% endblock %}

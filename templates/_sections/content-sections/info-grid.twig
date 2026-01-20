@@ -1,0 +1,44 @@
+{# templates/_sections/content-sections/info-grid.twig #}
+
+{% set bgColor = backgroundColor ?? 'bg-white' %}
+{% set txtColor = textColor ?? 'text-foxplan-charcoal-brown' %}
+{# Using the handle 'infoGrid' - make sure this matches your Matrix handle in Craft #}
+{% set blocks = (entry is defined and entry.infoGrid is defined) ? entry.infoGrid.all() : [] %}
+
+<section class="{{ bgColor }} py-24 px-8 md:px-12 lg:px-20">
+    <div class="max-w-full mx-auto">
+        {# Changed to md:grid-cols-3 to match your screenshot layout #}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+
+            {% for block in blocks %}
+                <div class="flex flex-col items-start space-y-6">
+                    {# Heading - matching your serif style #}
+                    <h3 class="font-serif text-5xl md:text-6xl leading-[1.1] {{ txtColor }}">
+                        {{ block.blockHeading|default('Title') }}
+                    </h3>
+
+                    {# Body Text - matching your Aktiv Grotesk style #}
+                    <div class="font-aktiv text-lg leading-relaxed {{ txtColor }} opacity-90 max-w-sm">
+                        {{ block.blockBodyText | raw }}
+                    </div>
+
+                    {# Button - using your existing button component logic #}
+                    {% if block.blockLinkUrl is not empty %}
+                        <div class="pt-2">
+                            {% include '_components/ui/button/button.twig' with {
+                                props: {
+                                    text: 'LEARN MORE',
+                                    url: block.blockLinkUrl,
+                                    style: 'primary',
+                                    backgroundColor: 'bg-foxplan-charcoal-brown',
+                                    textColor: 'text-white'
+                                }
+                            } only %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>

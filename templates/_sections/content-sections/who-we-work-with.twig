@@ -1,35 +1,54 @@
 {# templates/_sections/content-sections/who-we-work-with.twig #}
-{% set defaults = {
-    title: 'WHO WE WORK WITH',
-    backgroundColor: 'bg-foxplan-white',
-    textColor: 'text-black',
-    borderColor: 'border-foxplan-charcoal-brown',
-    logos: []
+
+{# 1. HARDCODED PROPS #}
+{% set props = {
+    title:           'WE WORK WITH ALL MAJOR BANKS',
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor:       'text-foxplan-charcoal-brown',
+    borderColor:     'border-foxplan-charcoal-brown/10'
 } %}
 
-{% set data = defaults | merge(props | default({})) %}
+{# 2. LOGIC FOR IMAGES: Use 'data' passed from the layout loop #}
+{% set backendLogos = data.partnerLogos is defined ? data.partnerLogos.all() : [] %}
 
-<section class="w-full {{ data.backgroundColor }}">
+{% if backendLogos is not empty %}
+    {% set displayLogos = backendLogos %}
+{% else %}
+    {# Fallback to pseudo-data if Craft is empty #}
+    {% set displayLogos = [
+        { src: 'images/logo/AIA_Logo.svg', alt: 'IAG' },
+        { src: 'images/logo/ANZ_Logo.svg', alt: 'AIA' },
+        { src: 'images/logo/BNZ_Logo.svg', alt: 'Southern Cross' },
+        { src: 'images/logo/Kiwibank_Logo.svg', alt: 'AMI' },
+        { src: 'images/logo/SBS-Bank_LowQuality_Logo.svg', alt: 'FMG' },
+        { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'Vero' },
+        { src: 'images/logo/Westpac_logo.svg', alt: 'Tower' },
+        { src: 'images/logo/ANZ_Logo.svg', alt: 'AIA' },
+    ] %}
+{% endif %}
+
+<section class="w-full {{ props.backgroundColor }}">
     <div class="w-full">
-        {# Title Header #}
         <div class="pt-10 pb-6 px-[20px]">
-            <p class="font-aktiv-grotesk text-[11px] font-bold tracking-[0.2em] uppercase {{ data.textColor }} opacity-80">
-                {{ data.title }}
+            <p class="font-aktiv-grotesk text-[11px] font-bold tracking-[0.2em] uppercase {{ props.textColor }} opacity-80">
+                {{ props.title }}
             </p>
         </div>
 
         <div class="px-[20px] pb-10">
-            <div class="border {{ data.borderColor }}">
+            <div class="border {{ props.borderColor }}">
                 <div class="grid grid-cols-2 md:grid-cols-4" id="logo-grid">
-                    {% for logo in data.logos %}
-                        <div class="logo-card relative overflow-hidden aspect-[1.6/1] flex items-center justify-center p-8 border-r border-b {{ data.borderColor }}
+                    {% for logo in displayLogos %}
+                        <div class="logo-card relative overflow-hidden aspect-[1.6/1] flex items-center justify-center p-8 border-r border-b {{ props.borderColor }}
                             [&:nth-child(2n)]:border-r-0 md:[&:nth-child(2n)]:border-r md:[&:nth-child(4n)]:border-r-0
                             [&:nth-last-child(-n+2)]:border-b-0 md:[&:nth-last-child(-n+4)]:border-b-0">
 
-                            <div class="logo-wrapper transition-all duration-700 ease-in-out opacity-100 transform translate-y-0 w-full h-full flex items-center justify-center">
-                                {% if logo.src is defined %}
-                                    <img src="{{ craft.vite.asset(logo.src, false) }}"
-                                         alt="{{ logo.alt ?? 'Logo' }}"
+                            <div class="logo-wrapper transition-all duration-700 ease-in-out w-full h-full flex items-center justify-center">
+                                {% set logoUrl = logo.url ?? (logo.src is defined ? craft.vite.asset(logo.src) : '') %}
+                                {% set logoAlt = logo.title ?? (logo.alt ?? 'Partner Logo') %}
+
+                                {% if logoUrl %}
+                                    <img src="{{ logoUrl }}" alt="{{ logoAlt }}"
                                          class="logo-img max-w-full max-h-[50px] md:max-h-[60px] object-contain grayscale brightness-0 opacity-90">
                                 {% endif %}
                             </div>
@@ -40,6 +59,8 @@
         </div>
     </div>
 </section>
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {

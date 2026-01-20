@@ -15,10 +15,7 @@ propagationMethod: all
 siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
-    hasUrls: true
-    template: contact-us-page/_entry.twig
-    uriFormat: 'contact-us-page/{slug}'
-structure:
-  maxLevels: null
-  uid: 768c25b8-f76f-4c06-8c91-0c9178ca5afd
-type: structure
+    hasUrls: false
+    template: null
+    uriFormat: null
+type: single

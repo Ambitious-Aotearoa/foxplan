@@ -1,0 +1,100 @@
+{# 1. Fetching the entries directly from your 'testimonials' structure section #}
+{# Your screenshot confirms the section handle is 'testimonials' #}
+{% set testimonials = craft.entries()
+    .section('testimonials')
+    .all() %}
+
+{# 2. Map the visual properties using 'data' passed from the PageBuilder block #}
+{% set props = {
+
+    sectionTitle:    data.paragraphHeading4 ?? 'Hear what our clients are saying',
+    backgroundColor: 'bg-[#F4EFE1]',
+    textColor:       'text-[#270E15]',
+    quoteIconColor:  'bg-[#F9C33D]',
+    btnBgColor:      'bg-foxplan-charcoal-brown',
+    btnTextColor:    'text-foxplan-yellow'
+} %}
+
+    {% if testimonials | length %}
+        <section
+                class="w-full relative {{ props.backgroundColor }} pt-24 pb-24 overflow-hidden border-t-[20px] border-r-[20px] border-foxplan-charcoal-brown"
+                x-data="{
+    active: 0,
+    total: {{ testimonials | length }},
+    next() { this.active = (this.active + 1) % this.total },
+    prev() { this.active = (this.active - 1 + this.total) % this.total }
+    }"
+        >
+            <div class="w-full">
+                {# --- OPTIONAL TITLE ROW --- #}
+                {% if props.sectionTitle is not empty %}
+                    <div class="flex flex-wrap w-full items-center mb-16 md:mb-24">
+                        <div class="hidden md:flex w-[30%] items-center justify-start pr-12">
+                            <img src="{{ craft.vite.asset('images/placeholder/Arrow_1.svg') }}"
+                                 alt="Arrow Decor"
+                                 class="w-full h-auto object-contain max-h-8">
+                        </div>
+
+                        <div class="w-full md:w-[70%] px-8 md:px-0">
+                            <h2 class="font-serif text-5xl md:text-[4.5rem] font-light leading-[0.85] tracking-tight {{ props.textColor }}">
+                                {{ props.sectionTitle | nl2br | raw }}
+                            </h2>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {# Content Row #}
+                <div class="flex flex-wrap w-full items-start">
+                    <div class="hidden md:block md:w-[30%]"></div>
+
+                    <div class="w-full {{ props.sectionTitle is not empty ? 'md:w-[70%]' : 'md:w-full' }} px-8 md:px-0 pr-8 md:pr-24 lg:pr-32">
+                        <div class="relative min-h-[350px]">
+                            {% for index, testimonialEntry in testimonials %}
+                                <div
+                                        x-show="active === {{ index }}"
+                                        :class="active === {{ index }} ? 'block' : 'hidden'"
+                                        x-transition:enter="transition ease-out duration-500"
+                                        x-transition:enter-start="opacity-0 transform translate-x-4"
+                                        x-transition:enter-end="opacity-100 transform translate-x-0"
+                                        class="w-full"
+                                >
+                                    {# Quote Icon #}
+                                    <div class="w-12 h-12 {{ props.quoteIconColor }} flex items-center justify-center mb-10">
+                                        <svg width="24" height="18" viewBox="0 0 24 18" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 18V10.2857L4.11429 0H9.25714L6.17143 10.2857H9.25714V18H0ZM14.7429 18V10.2857L18.8571 0H24L20.9143 10.2857H24V18H14.7429Z"
+                                                  fill="#270E15"/>
+                                        </svg>
+                                    </div>
+
+                                    {# Testimony: Use handle 'blockBodyText' #}
+                                    <div class="font-aktiv text-lg md:text-[1.6rem] leading-relaxed mb-6 opacity-90 {{ props.textColor }} w-full">
+                                        {{ testimonialEntry.blockBodyText | raw }}
+                                    </div>
+
+                                    {# Client Name: Use handle 'title' #}
+                                    <div class="font-aktiv text-sm font-bold tracking-[0.2em] uppercase {{ props.textColor }}">
+                                        — {{ testimonialEntry.title }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        {# Arrows #}
+                        {% if testimonials | length > 1 %}
+                            <div class="flex items-center gap-4 mt-8">
+                                <button @click="prev()"
+                                        class="w-12 h-12 rounded-full border border-foxplan-charcoal-brown {{ props.btnBgColor }} {{ props.btnTextColor }} flex items-center justify-center transition-all duration-300 hover:opacity-80">
+                                    <span class="text-xl">←</span>
+                                </button>
+                                <button @click="next()"
+                                        class="w-12 h-12 rounded-full border border-foxplan-charcoal-brown {{ props.btnBgColor }} {{ props.btnTextColor }} flex items-center justify-center transition-all duration-300 hover:opacity-80">
+                                    <span class="text-xl">→</span>
+                                </button>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}

@@ -9,133 +9,104 @@
 {% block blockAppBody %}
 
     {# 1. Hero Section #}
-    {{ include('_sections/hero-sections/hero-1.twig', {
-        data: {
-            title: 'Mortgages',
-            imageSrc: 'images/Mortgage_1.jpg',
-            bodyText: "Whether you're buying your first home, refinancing, or investing in property. FoxPlan makes it easy to get all your ducks in a row. Feel more confident about the home-buying journey by talking to an Adviser.",
-            buttonText: 'Book a call',
-            buttonLink: '#',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-white',
+    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
+    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
+    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
+
+    {{ include('_sections/hero-sections/hero-arrow.twig', {
+        props: {
+            heading: pageHeading,
+            bodyText: pageBody,
+            buttonText: pageButton,
+            imagePath: 'images/Mortgage_1.jpg',
             backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-black',
-            titleFont: 'font-serif',
-            titleSize: 'text-[8.5rem]',
-            bodyFont: 'font-aktiv-grotesk',
-            bodySize: 'text-lg'
+            buttonUrl: '/contact',
+            buttonBgColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-white'
         }
     }) }}
 
     {# 2. Benefits Accordion #}
+    {% set benefitsHeading = entry.paragraphHeading ?? 'Get onto the property ladder faster' %}
+    {% set benefitsIntro = entry.bodyText ?? '' %}
+
+    {% set accordionItems = [] %}
+    {% if entry.accordion is defined %}
+        {% for block in entry.accordion.all() %}
+            {% set accordionItems = accordionItems | merge([{
+                'expandableHeadingTitle': block.accordionHeading,
+                'ExpandableBodyText': block.accordionBodyText
+            }]) %}
+        {% endfor %}
+    {% endif %}
+
     {{ include('_sections/content-sections/benefits.twig', {
         backgroundColor: 'bg-foxplan-neutral-beige',
-        textColor: 'text-black',
+        textColor: 'text-foxplan-charcoal-brown',
         servicesData: {
-            heading: 'Get onto the<br>property ladder faster',
-            intro: 'Your FoxPlan mortgage adviser can take care of the tricky questions, applications, and lender communications, making your journey smoother, faster, and a lot more certain.',
-            items: [
-                { expandableHeadingTitle: 'Access to more providers', ExpandableBodyText: 'We work with a wide range of lenders to ensure you get the best deal tailored to your situation.' },
-                { expandableHeadingTitle: 'Better product knowledge', ExpandableBodyText: 'Our advisers have deep expertise across the entire mortgage market.' },
-                { expandableHeadingTitle: 'Advice on loan structuring', ExpandableBodyText: 'Structuring your loan correctly from the start can save you thousands in the long run.' },
-                { expandableHeadingTitle: 'Reduce your time & stress', ExpandableBodyText: 'We handle all the paperwork and lender communications for you.' },
-                { expandableHeadingTitle: 'Get on the property ladder faster', ExpandableBodyText: 'Our streamlined process means you can secure pre-approval and financing efficiently.' }
-            ]
+            heading: benefitsHeading,
+            intro: benefitsIntro,
+            items: accordionItems
         }
     }) }}
 
+    {# 3. Explore Services Section #}
+    {% set mortgageGridItems = [] %}
 
-    {# 3. Services Grid #}
+    {# 1. Identify the outer block within your main Matrix field #}
+    {% set exploreWrapper = (entry.infoBlock is defined)
+        ? entry.infoBlock.type('exploreMortgages').one()
+        : null %}
+
+    {% if exploreWrapper %}
+        {# 2. Loop through the NESTED Matrix field named 'infoBlock' #}
+        {% if exploreWrapper.infoBlock is defined %}
+            {# We use .all() without a .type() filter to ensure we catch the items regardless of their block type handle #}
+            {% for item in exploreWrapper.infoBlock.all() %}
+                {% set mortgageGridItems = mortgageGridItems | merge([{
+                    'title': item.blockHeading ?? 'No Title Found',
+                    'text': item.blockBodyText ?? 'No Text Found',
+                    'link': item.blockLinkUrl ?? '#'
+                }]) %}
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+
+    {# 3. Call the component with the prepared data #}
     {{ include('_sections/services/our-services.twig', {
         props: {
-            title: 'Explore<br>mortgages',
+            title: exploreWrapper.paragraphHeading2 ?? 'Explore Mortgages',
             backgroundColor: 'bg-foxplan-white',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-white',
-            items: [
-                {
-                    title: 'First home buyers',
-                    text: 'Helping you step onto the property ladder with clarity and confidence. We guide you through the grant applications and lender requirements.',
-                    link: '#',
-                    linkText: 'Learn about first homes'
-                },
-                {
-                    title: 'Moving house',
-                    text: 'Support for transporting your existing mortgage, negotiating a new mortgage, or managing the bridge between sale and purchase.',
-                    link: '#'
-                },
-                {
-                    title: 'Property investing',
-                    text: 'Advice around everything from using a down payment versus home equity to structuring loans for maximum tax efficiency.',
-                    link: '#'
-                },
-                {
-                    title: 'Refinancing',
-                    text: 'Optimize your mortgage to save interest, repay your loan faster, or unlock equity for renovations and other goals.',
-                    link: '#'
-                }
-            ]
+            items: mortgageGridItems
         }
     }) }}
 
-    {# 4. Partner Section #}
+    {#4. Who We Work With #}
     {{ include('_sections/content-sections/who-we-work-with.twig', {
         props: {
             title: 'WHO WE WORK WITH',
-            backgroundColor: 'bg-foxplan-white',
+            backgroundColor: 'bg-foxplan-neutral-beige',
             textColor: 'text-foxplan-charcoal-brown',
             borderColor: 'border-foxplan-charcoal-brown/20',
             logos: [
-                { src: 'images/logo/AIA_Logo.svg', alt: 'AIA', name: 'AIA Insurance' },
-                { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ', name: 'ANZ Bank' },
-                { src: 'images/logo/BNZ_Logo.svg', alt: 'BNZ', name: 'BNZ Bank' },
-                { src: 'images/logo/Kiwibank_Logo.svg', alt: 'Kiwibank', name: 'Kiwibank' },
-                { src: 'images/logo/SBS-Bank_LowQuality_Logo.svg', alt: 'SBS', name: 'SBS Bank' },
-                { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'Co-op', name: 'The Co-operative Bank' },
-                { src: 'images/logo/Westpac_logo.svg', alt: 'Westpac', name: 'Westpac' },
-                { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'iag', name: 'IAG Group' }
+                { src: 'images/logo/AIA_Logo.svg', alt: 'AIA' },
+                { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ' },
+                { src: 'images/logo/BNZ_Logo.svg', alt: 'BNZ' },
+                { src: 'images/logo/Kiwibank_Logo.svg', alt: 'Kiwibank' },
+                { src: 'images/logo/SBS-Bank_LowQuality_Logo.svg', alt: 'SBS' },
+                { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'Co-op' },
+                { src: 'images/logo/Westpac_logo.svg', alt: 'Westpac' },
+                { src: 'images/logo/Westpac_logo.svg', alt: 'Westpac' }
             ]
         }
     }) }}
 
-    {# 5. Team Section #}
-    {{ include('_sections/meet-the-team/meet-our-team.twig', {
-        props: {
-            sectionTitle: 'Meet our mortgage advisers',
-            backgroundColor: 'bg-foxplan-charcoal-brown',
-            textColor: 'text-foxplan-yellow',
-            advisers: [
-                {
-                    name: 'Terri Watson',
-                    role: 'FINANCIAL ADVISER',
-                    bio: 'I help you create clarity with your goals and confidence with your cashflow, giving you the tools to make informed decisions that align with your values.'
-                },
-                {
-                    name: 'Prashant Modi',
-                    role: 'FINANCIAL ADVISER',
-                    bio: 'Back in India, I was a pharmacist. Financial advice follows the same process: diagnose your vision, then plan your journey to reach it.'
-                },
-                {
-                    name: 'Stephan Jagers',
-                    role: 'BUSINESS OWNER | FINANCIAL ADVISER',
-                    bio: 'I’m motivated to help clients achieve their dreams, guiding them through life’s turbulence to reach their desired outcomes.'
-                }
-            ]
-        }
-    }) }}
-
-    {# footer #}
-
+    {#5. Footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',
             textColor: 'text-foxplan-yellow',
-            logoColor: 'text-foxplan-yellow',
-            buttonColor: 'bg-foxplan-yellow',
-            buttonTextColor: 'text-foxplan-charcoal-brown',
-            foxplanText: 'foxplan',
-            borderTopColor: 'border-foxplan-yellow/20',
-            borderTopWidth: 'border-t-2'
+            foxplanText: 'foxplan'
         }
     }) }}
 

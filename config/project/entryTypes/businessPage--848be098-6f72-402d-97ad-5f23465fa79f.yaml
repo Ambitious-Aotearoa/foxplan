@@ -71,6 +71,40 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-01-20T02:27:01+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8ca03538-edb7-4628-8612-0b48a9cd0da5
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-20T02:24:35+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: be3cd0d1-7caf-4e70-a264-6c21d71840ef
+            userCondition: null
+            warning: null
+            width: 100
         name: Content
         uid: fc4ff1cc-860b-4efa-a7a4-aad181294b2d
         userCondition: null
@@ -135,11 +169,11 @@ fieldLayouts:
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-12-17T03:44:44+00:00'
+            dateAdded: '2026-01-20T02:33:48+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 1241b357-ec03-4e69-918d-d30cafe4535d # Explore Heading
-            handle: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading3
             includeInCards: false
             instructions: null
             label: null
@@ -147,15 +181,15 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 24901798-4e9e-4b5e-b2f9-ed9488aac937
+            uid: 5bda1f66-e18c-45b5-8dd1-152f3d311202
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T03:44:44+00:00'
+            dateAdded: '2026-01-20T02:27:01+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 728e2922-294a-4307-a690-e701c702623f # Explore Body Text
+            fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
             handle: null
             includeInCards: false
             instructions: null
@@ -164,24 +198,7 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ec7131c8-2145-4207-87e9-064ae01d73f9
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T03:44:44+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 7590fdbf-9391-48a2-9884-2ade451f1ab3
+            uid: 0adb35fa-bbdf-4081-b264-46b11d92fe55
             userCondition: null
             warning: null
             width: 100
@@ -192,6 +209,29 @@ fieldLayouts:
         elementCondition: null
         name: 'Who we work with'
         uid: 51686398-a9b4-4fab-b91e-591f7a2e9384
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-20T02:18:08+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d2d75d6e-8350-4957-b19c-6e2635b74f6f
+            userCondition: null
+            warning: null
+            width: 100
+        name: Testimonial
+        uid: 89486b09-5f18-4db2-bf4a-001605b83a3b
         userCondition: null
 handle: businessPage
 hasTitleField: true

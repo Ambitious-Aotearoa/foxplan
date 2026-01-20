@@ -1,0 +1,24 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 1e5a8282-7128-4cdd-8a59-3356f7b08ffe # Partners
+handle: whoWeWorkWith
+maxAuthors: 1
+name: 'Who we work with'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  904beb73-9861-43f3-8de7-90464f6457de: # foxplan
+    enabledByDefault: true
+    hasUrls: true
+    template: null
+    uriFormat: 'who-we-work-with/{slug}'
+structure:
+  maxLevels: null
+  uid: 0e2974f4-afcd-4148-9a70-30cdfb74c603
+type: structure

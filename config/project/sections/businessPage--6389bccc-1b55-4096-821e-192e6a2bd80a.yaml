@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: business-page/_entry.twig
+    template: pages/Business/index.twig
     uriFormat: business-page
 type: single

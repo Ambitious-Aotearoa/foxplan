@@ -9,81 +9,31 @@
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
 
+{# 2. Fill the body block defined in layout-base #}
 {% block blockAppBody %}
 
-    {% for block in entry.pageBuilder.all() %}
-        {% switch block.type %}
+       {# 3. Include the Hero Section #}
+    {# 3. Include the Hero Section #}
+    {% include "_sections/hero-sections/hero-1.twig" with { data: entry } %}
 
-        {% case "hero" %}
-            {{ include('_sections/hero-sections/hero-1.twig', {
-                data: {
-                    title: block.heroTitle,
-                    imageSrc: block.heroImage.one().url ?? '',
-                    bodyText: block.heroBody,
-                    buttonText: block.buttonText,
-                    buttonLink: block.buttonLink,
-                    buttonBgColor: 'bg-foxplan-charcoal-brown',
-                    buttonTextColor: 'text-white',
-                    backgroundColor: 'bg-foxplan-neutral-beige',
-                    textColor: 'text-black',
-                    titleFont: 'font-serif',
-                    titleSize: 'text-[8.5rem]',
-                    bodyFont: 'font-aktiv-grotesk',
-                    bodySize: 'text-lg'
-                }
-            }) }}
+             {# 4. Include the "Help Me Buying Your First Home" Section #}
+    {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with { entry: entry } %}
 
-        {% case "serviceGrid" %}
-            {% include '_sections/content-sections/help-for-buying-your-first-home.twig' with {
-                props: {
-                    mainHeading: block.heading,
-                    backgroundColor: 'bg-foxplan-neutral-beige',
-                    textColor: 'text-foxplan-charcoal-brown',
-                    services: block.servicesList
-                }
-            } only %}
+    {# 5. How We Work Section (Matrix: accordion) #}
+    {% include "_sections/content-sections/how-we-work.twig" with { entry: entry } %}
 
-            {# how we work #}
-
-        {% case "accordion" %}
-            {% include '_sections/content-sections/how-we-work.twig' with {
-                props: {
-                    mainHeading: block.heading,
-                    mainBody: block.subheading,
-                    backgroundColor: 'bg-foxplan-neutral-beige',
-                    textColor: 'text-foxplan-charcoal-brown',
-                    accordionItems: block.accordionItems
-                }
-            } only %}
-
-            {# who we work with #}
-
-        {% case "partners" %}
-            {{ include('_sections/content-sections/who-we-work-with.twig', {
-                props: {
-                    title: block.heading ?? 'WHO WE WORK WITH',
-                    backgroundColor: 'bg-foxplan-neutral-beige',
-                    textColor: 'text-foxplan-charcoal-brown',
-                    borderColor: 'border-foxplan-charcoal-brown/20',
-                    logos: block.logos
-                }
-            }) }}
-
-        {% endswitch %}
-    {% endfor %}
-
-    {# testimonial #}
-
-    {% include '_sections/testimonial/testimonial-two.twig' with {
-        props: {
-            sectionTitle: 'Hear what our clients are saying',
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-foxplan-charcoal-brown',
-            arrowImage: 'images/placeholder/Arrow_1.svg',
-            quoteIconColor: 'bg-foxplan-yellow',
-            testimonials: craft.entries.section('testimonials').limit(2).all()
-        }
+{#    #}{# --- WHO WE WORK WITH (Logos) --- #}
+    {% include "_sections/content-sections/who-we-work-with.twig" with {
+        data: (entry.pageBuilder ?? null) ? entry.pageBuilder.all()|filter(b => b.type == "whoWeWorkWith")|first : null
     } only %}
+
+    {# 7. Testimonial #}
+    {% include "_sections/testimonials/testimonial-two.twig" %}
+    {# 8. Main Page Content #}
+    {# This 'innerContent' block allows individual pages to add their specific content below the hero #}
+    <div class="service-page-content">
+        {% block innerContent %}{% endblock %}
+    </div>
 
     {# footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {

@@ -2,10 +2,10 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: 184304c2-0776-48be-b918-b0c1ec2dc0ee # Mortages
-handle: mortgagesPage
+    uid: 6389e4d4-c725-4073-ba17-8aac55dc636c # Page Builder
+handle: refinancingRefixing
 maxAuthors: 1
-name: 'Mortgages Page'
+name: 'Refinancing & Refixing'
 previewTargets:
   -
     label: 'Primary entry page'
@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: pages/Mortgage/index
-    uriFormat: pages/mortgage
+    template: _boilerplate/_layouts/layout-service.twig
+    uriFormat: refinancing-refixing
 type: single

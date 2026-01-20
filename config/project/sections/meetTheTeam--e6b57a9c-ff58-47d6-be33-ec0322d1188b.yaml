@@ -15,10 +15,7 @@ propagationMethod: all
 siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
-    hasUrls: true
-    template: meet-the-team/_entry.twig
-    uriFormat: 'meet-the-team/{slug}'
-structure:
-  maxLevels: null
-  uid: 5f861501-79f1-4360-bc41-b01f9063b34f
-type: structure
+    hasUrls: false
+    template: null
+    uriFormat: null
+type: single

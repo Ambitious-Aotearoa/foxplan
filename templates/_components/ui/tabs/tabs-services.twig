@@ -1,32 +1,42 @@
-{# templates/pages/new-page.twig #}
+{# templates/_components/ui/tabs/tabs-services.twig #}
 
-<div x-data="{ activeTab: 'service-1' }">
+{% set defaults = {
+    tabs: [],
+    navBg: 'bg-foxplan-yellow',
+    activeBg: 'bg-foxplan-charcoal-brown',
+    activeText: 'text-foxplan-yellow',
+    inactiveText: 'text-foxplan-charcoal-brown/60',
+    hoverText: 'hover:text-foxplan-charcoal-brown',
+} %}
 
-    {# 1. Include the Tabs #}
-    {% include '_components/ui/tabs/tabs-services.twig' with {
-    props: {
-    tabs: [
-        { id: 'service-1', label: 'Financial Planning' },
-        { id: 'service-2', label: 'Mortgage Advice' },
-        { id: 'service-3', label: 'Insurance' }
-    ],
-    navBg: 'bg-foxplan-charcoal-brown',
-    activeBg: 'bg-white',
-    activeText: 'text-black'
-    }
-    } only %}
+{% set props = defaults | merge(props ?? {}) %}
 
-    {# 2. Your New Content #}
-    <div class="p-12">
-        <div x-show="activeTab === 'service-1'" x-cloak>
-            <h2>Financial Planning Content</h2>
-            <p>This shows only when Service 1 is clicked.</p>
-        </div>
+<nav class="w-full {{ props.navBg }} sticky top-0 z-20">
+    <div class="grid grid-cols-2 md:grid-cols-{{ props.tabs|length }} w-full">
+        {% for tab in props.tabs %}
+            <button
+                    type="button"
+                    @click="activeTab = '{{ tab.id }}'"
+                    {# Logic: Active tab gets solid background, Inactive gets the hover animation #}
+                    :class="activeTab === '{{ tab.id }}' ? '{{ props.activeBg }} {{ props.activeText }}' : '{{ props.inactiveText }} {{ props.hoverText }}'"
+                    class="relative py-6 px-4 text-center text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] font-aktiv-grotesk transition-all duration-500 outline-none group overflow-hidden"
+            >
+                <span class="relative z-10">{{ tab.label }}</span>
 
-        <div x-show="activeTab === 'service-2'" x-cloak>
-            <h2>Mortgage Advice Content</h2>
-            <p>This shows only when Service 2 is clicked.</p>
-        </div>
+                {# FULL WIDTH HOVER UNDERLINE #}
+                {# This draws a line from the center to the edges on hover #}
+                <div
+                        class="absolute bottom-0 left-0 w-full h-[2px] bg-current transition-transform duration-500 origin-center scale-x-0 group-hover:scale-x-100"
+                        :class="activeTab === '{{ tab.id }}' ? 'hidden' : ''"
+                ></div>
+
+                {# ACTIVE INDICATOR #}
+                {# A subtle visual cue that stays present when the tab is selected #}
+                <div
+                        x-show="activeTab === '{{ tab.id }}'"
+                        class="absolute bottom-0 left-0 w-full h-[2px]"
+                ></div>
+            </button>
+        {% endfor %}
     </div>
-
-</div>
+</nav>

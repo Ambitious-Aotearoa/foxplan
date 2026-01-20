@@ -152,10 +152,10 @@ fieldLayouts:
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-12-17T03:29:21+00:00'
+            dateAdded: '2026-01-15T21:59:03+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 1241b357-ec03-4e69-918d-d30cafe4535d # Explore Heading
+            fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
             handle: null
             includeInCards: false
             instructions: null
@@ -164,41 +164,7 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: d32e8664-a86f-4268-9fa7-80669c9165a4
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T03:36:19+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 728e2922-294a-4307-a690-e701c702623f # Explore Body Text
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 9df9761c-0b7b-4e8a-9117-fd18edb0d81f
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T03:29:21+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
-            handle: button2
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 136d6439-40a5-46d1-b702-5916f93dab80
+            uid: 4c16df80-632d-418b-afd5-dd6faa6c9521
             userCondition: null
             warning: null
             width: 100

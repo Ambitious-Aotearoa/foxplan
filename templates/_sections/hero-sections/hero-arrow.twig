@@ -2,39 +2,32 @@
 
 {% set defaults = {
     backgroundColor: 'bg-foxplan-yellow',
-    heading: 'Insurance',
-    imagePath: 'images/Insurance_1.jpg',
-    bodyText: 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured...',
+    heading: 'Default Heading',
+    bodyText: 'Default body text...',
     buttonText: '',
+    imagePath: 'images/placeholder.jpg',
     buttonUrl: '#',
     buttonBgColor: 'bg-foxplan-charcoal-brown',
     buttonTextColor: 'text-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown'
-    } %}
+} %}
 
-    {% set data = defaults | merge(props | default({})) %}
+{% set data = defaults | merge(props ?? {}) %}
 
-    <section
-            class="w-full py-16 {{ data.backgroundColor }} overflow-hidden"
-        x-data="{ revealed: false }"
-        x-init="setTimeout(() => revealed = true, 150)"
->
-    {# 1. Header Row #}
+<section class="w-full py-16 {{ data.backgroundColor }} overflow-hidden"
+         x-data="{ revealed: false }"
+         x-init="setTimeout(() => revealed = true, 150)">
+
+    {# Header Row #}
     <div class="max-w-full mx-auto px-8 mb-10">
         <div class="flex items-center gap-4">
-            {# ARROW #}
             <div class="relative py-2 flex items-center">
                 <div class="transition-all duration-[3000ms] ease-in-out overflow-hidden"
                      :style="revealed ? 'width: 336px; opacity: 1;' : 'width: 0px; opacity: 0;'">
-                    <img
-                            src="{{ craft.vite.asset('images/placeholder/Arrow_1.svg') }}"
-                            alt="Arrow"
-                            class="w-[336px] h-4 block object-contain object-left"
-                    >
+                    <img src="{{ craft.vite.asset('images/placeholder/Arrow_1.svg') }}" alt="Arrow" class="w-[336px] h-4 block object-contain object-left">
                 </div>
             </div>
 
-            {# HEADING #}
             <div class="transition-all duration-[2000ms] ease-in-out"
                  :style="revealed ? 'opacity: 1; transform: translateX(0);' : 'opacity: 0; transform: translateX(20px);'">
                 <h2 class="font-serif text-6xl md:text-8xl tracking-tight {{ data.textColor }} whitespace-nowrap">
@@ -44,27 +37,22 @@
         </div>
     </div>
 
-    {# 2. Content Grid #}
+    {# Content Grid #}
     <div class="flex flex-wrap lg:flex-nowrap items-end">
-        {# IMAGE COLUMN #}
         <div class="w-full lg:w-[70%] relative overflow-hidden">
             <div class="relative w-full aspect-[16/9] lg:aspect-auto lg:h-[600px]">
-                <img src="{{ craft.vite.asset(data.imagePath, false) }}"
-                     alt="{{ data.heading }}"
-                     class="w-full h-full object-cover">
+                <img src="{{ craft.vite.asset(data.imagePath, false) }}" alt="{{ data.heading }}" class="w-full h-full object-cover">
             </div>
         </div>
 
-        {# 3. Text Column #}
         <div class="w-full lg:w-[30%] px-8 lg:px-12 space-y-6 pt-10 lg:pt-0">
             <div class="transition-all duration-[2000ms] delay-500"
                  :style="revealed ? 'opacity: 1; transform: translateY(0);' : 'opacity: 0; transform: translateY(10px);'">
-                <p class="font-aktiv leading-relaxed text-xl {{ data.textColor }}">
-                    {{ data.bodyText }}
-                </p>
+                <div class="font-aktiv leading-relaxed text-xl {{ data.textColor }}">
+                    {{ data.bodyText | raw }}
+                </div>
             </div>
 
-            {# --- OPTIONAL BUTTON CHECK --- #}
             {% if data.buttonText is not empty %}
                 <div class="transition-all duration-[2000ms] delay-700"
                      :style="revealed ? 'opacity: 1;' : 'opacity: 0;'">
