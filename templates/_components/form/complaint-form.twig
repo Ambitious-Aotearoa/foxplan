@@ -1,0 +1,68 @@
+<form action="#" method="POST" class="space-y-12">
+    {# Section: Your Details #}
+    <div>
+        <h3 class="font-serif text-2xl text-foxplan-charcoal-brown mb-8">Your details</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+            <div class="flex flex-col border-b border-gray-300 pb-2">
+                <label class="text-xs uppercase tracking-wider text-foxplan-charcoal-brown mb-1">Full Name*</label>
+                <input type="text" name="full_name" placeholder="John Doe" required class="bg-transparent focus:outline-none text-lg">
+            </div>
+            <div class="flex flex-col border-b border-gray-300 pb-2">
+                <label class="text-xs uppercase tracking-wider text-foxplan-charcoal-brown mb-1">Email Address*</label>
+                <input type="email" name="email" placeholder="johndoe@email.com" required class="bg-transparent focus:outline-none text-lg">
+            </div>
+            <div class="flex flex-col border-b border-gray-300 pb-2">
+                <label class="text-xs uppercase tracking-wider text-foxplan-charcoal-brown mb-1">Phone Number*</label>
+                <input type="tel" name="phone" placeholder="1234 5678 901" required class="bg-transparent focus:outline-none text-lg">
+            </div>
+        </div>
+    </div>
+
+    {# Section: About Your Complaint #}
+    <div class="pt-8">
+        <h3 class="font-serif text-2xl text-foxplan-charcoal-brown mb-8">About your complaint</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mb-12">
+            <div class="flex flex-col border-b border-gray-300 pb-2">
+                <label class="text-xs uppercase tracking-wider text-foxplan-charcoal-brown mb-1">Who is your adviser? (if known)</label>
+                <input type="text" name="adviser_name" placeholder="Adviser name" class="bg-transparent focus:outline-none text-lg">
+            </div>
+            <div class="flex flex-col border-b border-gray-300 pb-2 relative">
+                <label class="text-xs uppercase tracking-wider text-foxplan-charcoal-brown mb-1">Service related to?*</label>
+                <select name="service_type" required class="bg-transparent focus:outline-none text-lg appearance-none cursor-pointer pr-8">
+                    <option value="" disabled selected>Select a service</option>
+                    <option value="investments">Investments</option>
+                    <option value="mortgages">Mortgages</option>
+                    <option value="insurance">Insurance</option>
+                    <option value="kiwisaver">KiwiSaver</option>
+                    <option value="planning">Financial planning</option>
+                    <option value="accounting">Accounting</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class="absolute right-0 bottom-3 pointer-events-none">
+                    <svg class="w-4 h-4 fill-current text-gray-500" viewBox="0 0 20 20"><path d="M7 7l3-3 3 3m0 6l-3 3-3-3"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-12">
+            <div class="flex flex-col border-b border-gray-300 pb-2">
+                <label class="text-xs uppercase tracking-wider text-foxplan-charcoal-brown mb-1">Please describe your complaint*</label>
+                <textarea name="description" placeholder="Enter your message" rows="2" required class="bg-transparent focus:outline-none text-lg resize-none"></textarea>
+            </div>
+            <div class="flex flex-col border-b border-gray-300 pb-2">
+                <label class="text-xs uppercase tracking-wider text-foxplan-charcoal-brown mb-1">What is your preferred outcome?*</label>
+                <textarea name="outcome" placeholder="Enter your message" rows="2" required class="bg-transparent focus:outline-none text-lg resize-none"></textarea>
+            </div>
+        </div>
+    </div>
+
+    {# Submit Button #}
+    <div class="pt-8">
+        <button type="submit" class="bg-foxplan-charcoal-brown text-white px-8 py-3 flex items-center group transition-colors hover:bg-opacity-90">
+            <span class="mr-4 text-sm font-bold uppercase tracking-widest">Submit</span>
+            <svg class="w-4 h-4 transform transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+        </button>
+    </div>
+</form>

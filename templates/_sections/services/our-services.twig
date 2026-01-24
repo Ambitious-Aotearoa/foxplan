@@ -13,11 +13,9 @@
 
 <section class="w-full relative z-20 pt-16 pb-16 md:pt-24 md:pb-32 {{ data.backgroundColor }} overflow-hidden">
     <div class="w-full">
-        {# Ensure the flex container aligns items to the start (top-left) #}
         <div class="flex flex-col md:flex-row w-full items-start justify-start">
 
             {# --- Left Side: 30% Width --- #}
-            {# 'items-start' and 'text-left' ensure the heading stays to the left #}
             <div class="w-full md:w-[30%] pl-8 md:pl-10 pr-4 mb-12 md:mb-0 flex flex-col items-start text-left">
                 <div class="max-w-md">
                     <h2 class="font-serif text-5xl lg:text-[5.5rem] font-light leading-[0.9] text-foxplan-charcoal-brown tracking-tight">
@@ -30,8 +28,8 @@
             <div class="w-full md:w-[70%]">
                 <div class="w-full pl-10 pr-8 md:pr-20">
                     {% for group in groupedItems %}
-                        {# The grid is naturally left-aligned; we ensure gap and alignment are precise #}
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 mb-16 last:mb-0 items-start">
+                        {# Using gap-x-16 to ensure a healthy aisle between full-width text blocks #}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16 mb-16 last:mb-0 items-start">
 
                             {% for item in group %}
                                 <div class="flex flex-col h-full items-start text-left">
@@ -39,7 +37,8 @@
                                         {{ item.title }}
                                     </h3>
 
-                                    <div class="font-aktiv text-[15px] text-foxplan-charcoal-brown/80 leading-relaxed mb-8 max-w-[320px]">
+                                    {# Removed max-w-[320px] and added w-full to allow text to expand #}
+                                    <div class="font-aktiv text-[15px] text-foxplan-charcoal-brown/80 leading-relaxed mb-8 w-full">
                                         {{ item.text | raw }}
                                     </div>
 

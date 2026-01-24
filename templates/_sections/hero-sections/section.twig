@@ -1,20 +1,21 @@
 {# 1. Map Backend Data based on "Image and Text" Screenshot #}
 {% set sectionImage = entry.image.one() %}
 
-{% set props = {
+{% set defaults = {
     title: entry.paragraphHeading3 ?? 'Get the First Home Buyers Guide',
     bodyText: entry.bodyText2 ?? '',
     buttonText: entry.button2 ?? '',
-    buttonLink: entry.buttonlink2 ?? '#',
+    buttonLink: (entry.buttonlink2 is defined and entry.buttonlink2) ? entry.buttonlink2.url : '#',
     imageSrc: sectionImage ? sectionImage.url : null,
     backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown',
     buttonBgColor: 'bg-foxplan-charcoal-brown',
     buttonTextColor: 'text-foxplan-yellow',
     borderColor: 'border-foxplan-charcoal-brown'
-    } %}
+} %}
 
-    {% set data = props %}
+{# 3. MERGE incoming props so they can override the defaults #}
+{% set data = defaults | merge(props ?? {}) %}
 
     {# Added 'border-t' and the border color class to the section tag below #}
     <section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">

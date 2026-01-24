@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: savings-and-investment-page/_entry.twig
-    uriFormat: savings-and-investment-page
+    template: pages/Saving-and-Investment/index.twig
+    uriFormat: saving-and-investment
 type: single

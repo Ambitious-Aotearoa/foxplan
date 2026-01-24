@@ -71,6 +71,40 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-01-21T20:35:36+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: button2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3be75503-42aa-4ea9-a091-1eb0033ff161
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-21T20:35:36+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fc48584d-f02b-4d84-a2a9-ff36cd5f5779
+            userCondition: null
+            warning: null
+            width: 100
         name: Content
         uid: c0649c60-f3b9-4754-b77e-871f4947ad20
         userCondition: null
@@ -135,11 +169,11 @@ fieldLayouts:
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-12-17T03:42:16+00:00'
+            dateAdded: '2026-01-21T20:35:36+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 1241b357-ec03-4e69-918d-d30cafe4535d # Explore Heading
-            handle: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading2
             includeInCards: false
             instructions: null
             label: null
@@ -147,15 +181,15 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: c63d9cb1-fb4a-4891-bc76-93d69902f160
+            uid: b7d60edd-b264-493f-8767-157ddb82d4eb
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T03:42:16+00:00'
+            dateAdded: '2026-01-21T20:35:36+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 728e2922-294a-4307-a690-e701c702623f # Explore Body Text
+            fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
             handle: null
             includeInCards: false
             instructions: null
@@ -164,24 +198,7 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 827fc855-023a-457f-8935-ab8d35f2e172
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T03:42:16+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 37d3392e-7bcb-4112-bd42-3eade142bea9
+            uid: 7db9c482-08fc-4f89-be96-c9439c169212
             userCondition: null
             warning: null
             width: 100

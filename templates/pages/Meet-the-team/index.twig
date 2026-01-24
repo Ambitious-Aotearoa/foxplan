@@ -1,0 +1,40 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-black',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% block blockAppBody %}
+
+    {# 1. Fetch all entries from the 'meetTheTeam' Structure section #}
+    {% set allTeamEntries = craft.entries.section('meetTheTeam').all() %}
+
+    {% if allTeamEntries|length > 0 %}
+        {# 2. Pass the list of entries to the section template #}
+        {{ include('_sections/meet-the-team/meet-the-team-A.twig', {
+            teamMembers: allTeamEntries
+        }) }}
+    {% else %}
+        <div class="py-20 text-center">
+            <p>No team members found in the structure. Please ensure entries are created and enabled.</p>
+        </div>
+    {% endif %}
+
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+
+
+{% endblock %}

@@ -1,0 +1,201 @@
+{# 1. Configuration #}
+{% set calcProps = {
+    mainTitle: 'Investment <br> Calculator',
+    cardTitle: 'Savings Details',
+    bodyText: 'We evolved into a full-service financial advisory, adding lending, investment, and retirement planning.',
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    cardBg: 'bg-white',
+    textColor: 'text-foxplan-charcoal-brown',
+    buttonBg: 'bg-foxplan-charcoal-brown',
+    buttonTextColor: 'text-white'
+} %}
+
+<section class="{{ calcProps.backgroundColor }} w-full overflow-hidden font-aktiv"
+         x-data="{
+            localMonthly: $store.calculator.monthly,
+            localInitial: $store.calculator.initial,
+            localYears: $store.calculator.years,
+            localAge: $store.calculator.age,
+            localFreq: $store.calculator.frequency,
+            localIdx: $store.calculator.portfolioIdx,
+
+            openDropdown: null,
+
+            updateProjections() {
+                $store.calculator.monthly = this.localMonthly;
+                $store.calculator.initial = this.localInitial;
+                $store.calculator.years = this.localYears;
+                $store.calculator.age = this.localAge;
+                $store.calculator.frequency = this.localFreq;
+                $store.calculator.portfolioIdx = this.localIdx;
+
+                document.getElementById('projections-section')?.scrollIntoView({ behavior: 'smooth' });
+            },
+
+            get periods() {
+                return this.localFreq === 'Weekly' ? 52 : (this.localFreq === 'Fortnightly' ? 26 : 12);
+            },
+
+            {# RESTORED: Calculation for total contributions over time #}
+            get totalContributions() {
+                return (parseFloat(this.localMonthly) || 0) * this.periods * (parseFloat(this.localYears) || 0);
+            },
+
+            get currentFinalBalance() {
+                const p = parseFloat(this.localInitial) || 0;
+                const pmt = parseFloat(this.localMonthly) || 0;
+                const r_annual = $store.calculator.rates[this.localIdx];
+                const r_period = r_annual / this.periods;
+                const n_periods = this.localYears * this.periods;
+                if (r_period === 0) return p + (pmt * n_periods);
+                const fv = p * Math.pow((1 + r_annual), this.localYears) + pmt * ((Math.pow((1 + r_period), n_periods) - 1) / r_period);
+                return Math.round(fv);
+            },
+
+            {# RESTORED: Calculation for earnings #}
+            get totalEarnings() {
+                const val = this.currentFinalBalance - (parseFloat(this.localInitial) || 0) - this.totalContributions;
+                return val > 0 ? val : 0;
+            }
+         }"
+         @click.away="openDropdown = null">
+
+    <div class="w-full py-8 pr-[10px]">
+        <div class="mb-12 pl-4 md:pl-8">
+            <h1 class="font-serif {{ calcProps.textColor }} tracking-tight leading-[0.8]" style="font-size: clamp(60px, 10vw, 150px);">
+                {{ calcProps.mainTitle | raw }}
+            </h1>
+        </div>
+
+        <div class="flex flex-wrap lg:flex-nowrap w-full items-stretch px-4 md:px-8">
+            {# Left Column: Narrative & Selectors #}
+            <div class="w-full lg:w-1/2 flex flex-col justify-between lg:pr-8 mb-10 lg:mb-0">
+                <div>
+                    <p class="mb-10 opacity-90 max-w-xl text-base leading-snug">{{ calcProps.bodyText }}</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                        <div class="border-b border-black/10 pb-2 relative">
+                            <label class="block text-[8px] font-bold uppercase opacity-50 mb-1">YOUR AGE</label>
+                            <div @click="openDropdown = 'age'" class="flex justify-between items-center cursor-pointer">
+                                <span class="text-xs font-medium" x-text="localAge + ' years old'"></span>
+                                <span class="text-[8px]">▼</span>
+                            </div>
+                            <div x-show="openDropdown === 'age'" x-cloak class="absolute z-50 mt-1 w-full bg-white shadow-xl border border-black/5 max-h-40 overflow-y-auto">
+                                <template x-for="val in [20,25,30,35,40,45,50,55,60]">
+                                    <div @click="localAge = val; openDropdown = null" class="px-4 py-2 text-xs hover:bg-gray-50 cursor-pointer" x-text="val"></div>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="border-b border-black/10 pb-2">
+                            <label class="block text-[8px] font-bold uppercase opacity-50 mb-1">MONTHLY SAVINGS ($)</label>
+                            <input type="number" x-model.number="localMonthly" class="w-full bg-transparent text-xs font-medium focus:outline-none border-none p-0">
+                        </div>
+                        <div class="border-b border-black/10 pb-2 relative">
+                            <label class="block text-[8px] font-bold uppercase opacity-50 mb-1">FREQUENCY</label>
+                            <div @click="openDropdown = 'freq'" class="flex justify-between items-center cursor-pointer">
+                                <span class="text-xs font-medium" x-text="localFreq"></span>
+                                <span class="text-[8px]">▼</span>
+                            </div>
+                            <div x-show="openDropdown === 'freq'" x-cloak class="absolute z-50 mt-1 w-full bg-white shadow-xl border border-black/5">
+                                <template x-for="f in ['Monthly', 'Fortnightly', 'Weekly']">
+                                    <div @click="localFreq = f; openDropdown = null" class="px-4 py-2 text-xs hover:bg-gray-50 cursor-pointer" x-text="f"></div>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="border-b border-black/10 pb-2">
+                            <label class="block text-[8px] font-bold uppercase opacity-50 mb-1">DURATION (YEARS)</label>
+                            <input type="number" x-model.number="localYears" class="w-full bg-transparent text-xs font-medium focus:outline-none border-none p-0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {# Right Column: Savings Details Card #}
+            <div class="w-full lg:w-1/2 {{ calcProps.cardBg }} px-6 lg:px-12 py-10 shadow-lg lg:ml-6 flex flex-col justify-between">
+                <div>
+                    <h2 class="font-serif text-3xl mb-8 {{ calcProps.textColor }}">{{ calcProps.cardTitle }}</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-[9px] font-bold uppercase opacity-40">Monthly Savings</span>
+                                <span class="text-2xl font-light opacity-60" x-text="'$' + localMonthly.toLocaleString()"></span>
+                            </div>
+                            <input type="range" min="0" max="5000" step="10" x-model.number="localMonthly" class="w-full accent-[#270E15]">
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-[9px] font-bold uppercase opacity-40">Initial Value</span>
+                                <span class="text-2xl font-light opacity-60" x-text="'$' + localInitial.toLocaleString()"></span>
+                            </div>
+                            <input type="range" min="0" max="1000000" step="1000" x-model.number="localInitial" class="w-full accent-[#270E15]">
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-[9px] font-bold uppercase opacity-40">Portfolio Mix</span>
+                                <span class="text-2xl font-light opacity-60" x-text="$store.calculator.mixLabels[localIdx]"></span>
+                            </div>
+                            <input type="range" min="0" max="3" step="1" x-model.number="localIdx" class="w-full accent-[#270E15]">
+                        </div>
+                    </div>
+
+                    {# RESTORED: All detail lines from your screenshot #}
+                    <div class="mt-10 pt-6 border-t border-black/5 space-y-3">
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="opacity-40 uppercase font-bold text-[9px]">Initial Investment</span>
+                            <span class="text-xl font-light opacity-80" x-text="'$' + (parseFloat(localInitial) || 0).toLocaleString()"></span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="opacity-40 uppercase font-bold text-[9px]">Contributions Total</span>
+                            <span class="text-xl font-light opacity-80" x-text="'$' + totalContributions.toLocaleString()"></span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="opacity-40 uppercase font-bold text-[9px]">Investment Earnings</span>
+                            <span class="text-xl font-light opacity-80" x-text="'$' + totalEarnings.toLocaleString()"></span>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-black/5 {{ calcProps.textColor }}">
+                            <span class="font-bold text-[9px] opacity-40 uppercase">Final Balance</span>
+                            <span class="font-serif text-4xl md:text-5xl" x-text="'$' + currentFinalBalance.toLocaleString()"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    {{ include('_components/ui/button/button.twig', {
+                        props: {
+                            text: 'See Projections',
+                            style: 'primary',
+                            backgroundColor: 'bg-foxplan-charcoal-brown',
+                            textColor: 'text-foxplan-neutral-beige',
+                            classes: 'px-10 py-5 tracking-[0.2em] !w-full md:!w-auto',
+                            attributes: {
+                                '@click': 'updateProjections()'
+                            }
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('calculator', {
+            // These are the 'committed' values that the chart uses
+            monthly: 300,
+            initial: 100000,
+            years: 20,
+            age: 30,
+            frequency: 'Monthly',
+            portfolioIdx: 1,
+            rates: [0.038, 0.0544, 0.0461, 0.0661],
+            mixLabels: ['30 / 70', '50 / 50', '70 / 30', '98 / 2'],
+
+            get periodsPerYear() {
+                if (this.frequency === 'Weekly') return 52;
+                if (this.frequency === 'Fortnightly') return 26;
+                return 12;
+            },
+            get rate() { return this.rates[this.portfolioIdx]; }
+        });
+    });
+</script>

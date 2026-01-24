@@ -1,14 +1,14 @@
 color: null
 description: null
 fieldLayouts:
-  9a769fbb-6e9b-4ab4-ac12-5c8423d3eccd:
+  ce285191-2c5c-4a7e-b2ba-66bde12f9bd9:
     cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2026-01-23T01:33:43+00:00'
+            dateAdded: '2026-01-22T23:14:34+00:00'
             editCondition: null
             elementCondition: null
             fieldUid: 6c8cad64-726d-4735-be40-5f733d49e15b # Member image
@@ -20,12 +20,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 2a4fab86-299c-403b-b549-c49bf34ab7a4
+            uid: 6c365b3a-556d-4f39-93c9-77cda0854275
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-23T01:33:43+00:00'
+            dateAdded: '2026-01-22T23:14:34+00:00'
             editCondition: null
             elementCondition: null
             fieldUid: 331970c8-e670-403b-8550-b3a3214d6a62 # Member Name
@@ -37,12 +37,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 02e34f86-1d8e-4fdc-9c32-c68397e53dab
+            uid: 45bcbe4c-5ce1-4a7b-a4d7-51ec73cd0731
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-23T01:32:39+00:00'
+            dateAdded: '2026-01-22T23:14:34+00:00'
             editCondition: null
             elementCondition: null
             fieldUid: 33a1b6df-526d-4d3c-84a1-dcc713555b4d # Job Title
@@ -54,12 +54,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 7c107dbf-e05f-43fe-8019-16f80648ffe9
+            uid: bbe5101b-9980-42c5-9375-d7cfabde9741
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-23T01:32:39+00:00'
+            dateAdded: '2026-01-22T23:14:34+00:00'
             editCondition: null
             elementCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
@@ -71,12 +71,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ee8d1ad8-d53a-4a53-b1d0-ba3e280a9cb8
+            uid: b2a3e5a9-e470-4001-b3f0-a16c739bab91
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-23T01:32:39+00:00'
+            dateAdded: '2026-01-22T23:14:34+00:00'
             editCondition: null
             elementCondition: null
             fieldUid: 73262043-6292-4645-96a8-99ed862cd739 # Phone Number
@@ -88,12 +88,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 80e2bd6d-6132-42b5-b86b-8d31931bf264
+            uid: fa4eab77-d862-41d9-a788-aba6070c16a6
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-23T01:32:39+00:00'
+            dateAdded: '2026-01-22T23:14:34+00:00'
             editCondition: null
             elementCondition: null
             fieldUid: f41f4500-6b84-466c-89f3-dae1d5c3bf36 # Category
@@ -105,21 +105,21 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: bbafe904-77e5-4bb7-a0d7-2b808190fe6a
+            uid: 3d3f1c51-ddc9-4cc3-890b-23fd9ae3cfb9
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: 65e85ad3-372c-4da7-8d5b-1b7b4c8c178d
+        uid: 35c9e6cd-f14b-42fb-b2c6-f55be232a981
         userCondition: null
-handle: meetTheTeam
+handle: teamMembersInfo
 hasTitleField: false
 icon: null
-name: 'Meet the Team'
+name: 'Team Members Info'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: '{memberName}'
+titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

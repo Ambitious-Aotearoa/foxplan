@@ -1,0 +1,80 @@
+<div x-show="showForm"
+     class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+     x-transition:enter="transition ease-out duration-300"
+     x-transition:enter-start="opacity-0"
+     x-transition:enter-end="opacity-100"
+     @click.self="showForm = false"
+     x-cloak>
+
+    <div class="bg-white w-full max-w-xl shadow-2xl relative overflow-hidden font-aktiv"
+         @click.away="showForm = false">
+
+        {# Header #}
+        <div class="px-8 py-6 border-b border-black/5 flex justify-between items-center">
+            <h2 class="text-2xl font-serif text-foxplan-charcoal-brown">Enter your details</h2>
+            <button @click="showForm = false" class="text-2xl opacity-40 hover:opacity-100 transition-opacity">&times;</button>
+        </div>
+
+        {# Form Body #}
+        <form action="#" method="POST" class="p-8 space-y-6">
+            <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider mb-2">
+                    <span class="text-red-500">*</span> Full name
+                </label>
+                <input type="text" name="full_name" placeholder="Full name" required
+                       class="w-full border border-black/10 px-4 py-3 text-sm focus:outline-none focus:border-foxplan-charcoal-brown transition-colors">
+            </div>
+
+            {# Adjusted Grid for more space #}
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <div class="md:col-span-2"> {# Increased to 2/5 of the width #}
+                    <label class="block text-[10px] font-bold uppercase tracking-wider mb-2">
+                        <span class="text-red-500">*</span> Phone
+                    </label>
+                    <select name="country_code" class="w-full border border-black/10 px-2 py-3 text-sm focus:outline-none bg-white h-[46px]">
+                        <option value="+64">New Zealand (+64)</option>
+                        <option value="+61">Australia (+61)</option>
+                    </select>
+                </div>
+                <div class="md:col-span-3"> {# Remaining 3/5 for the number #}
+                    <label class="invisible block text-[10px] uppercase mb-2">Phone Number</label>
+                    <input type="tel" name="phone" placeholder="Phone" required
+                           class="w-full border border-black/10 px-4 py-3 text-sm focus:outline-none focus:border-foxplan-charcoal-brown transition-colors h-[46px]">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider mb-2">
+                    <span class="text-red-500">*</span> Email address
+                </label>
+                <input type="email" name="email" placeholder="Email address" required
+                       class="w-full border border-black/10 px-4 py-3 text-sm focus:outline-none focus:border-foxplan-charcoal-brown transition-colors">
+            </div>
+
+            <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider mb-2">Message (Optional)</label>
+                <textarea name="message" placeholder="Message" rows="3"
+                          class="w-full border border-black/10 px-4 py-3 text-sm focus:outline-none focus:border-foxplan-charcoal-brown transition-colors resize-none"></textarea>
+            </div>
+
+            <div class="flex justify-end gap-4 pt-4">
+                {{ include('_components/ui/button/button.twig', {
+                    props: {
+                        text: 'Close',
+                        style: 'primary',
+                        backgroundColor: 'bg-gray-500',
+                        attributes: { '@click': 'showForm = false' }
+                    }
+                }) }}
+
+                {{ include('_components/ui/button/button.twig', {
+                    props: {
+                        text: 'Submit',
+                        style: 'primary',
+                        attributes: { 'type': 'submit' }
+                    }
+                }) }}
+            </div>
+        </form>
+    </div>
+</div>

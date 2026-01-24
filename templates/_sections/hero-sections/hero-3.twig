@@ -1,70 +1,56 @@
-{# _sections/hero-3.twig #}
-
+{# 1. Configuration - Fully Hardcoded #}
 {% set sectionData = {
-    heading: 'Contact us',
-    body: 'No matter what your financial goals are we\'ll get you there. Start your journey by messaging us or requesting a callback below. If you already have an adviser, head to our team page to contact them directly.',
+    heading: 'Complaints Policy',
+    body: '',
     buttonText: 'Contact an adviser',
-    buttonLink: '#'
+    buttonLink: '#',
+    headingColor: 'text-foxplan-charcoal-brown',
+    bodyTextColor: 'text-foxplan-charcoal-brown',
+    accentColor: 'bg-foxplan-yellow'
 } %}
 
-
-{% set headingClasses = 'font-serif text-[6rem] md:text-[8rem] lg:text-[10rem]  leading-none text-gray-900' %}
-{% set bodyClasses = 'text-base text-gray-700 leading-relaxed max-w-sm mb-8' %}
-{% set placeholderClasses = 'bg-gray-100' %}
-
-<section class="w-full bg-white pt-16 md:pt-24 pb-16 md:pb-24">
+{# Full Section Yellow Background - Adjusted padding for a clean finish #}
+<section class="w-full {{ sectionData.accentColor }} pt-0 pb-16 md:pb-20 font-aktiv overflow-hidden relative">
     <div class="mx-auto relative">
 
-        {# Wrapper to define the total height of the gray block area #}
-        <div class="relative min-h-[50vh] md:min-h-[70vh] mb-12 md:mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-10 w-full relative items-stretch">
 
-            {# 1. Gray Background Block (Absolute positioning to cover the top/right/center) #}
-            <div class="absolute top-0 right-0 w-full md:w-5/6 h-full {{ placeholderClasses }}">
-            </div>
+            {# 20% Spacer #}
+            <div class="hidden md:block md:col-span-2"></div>
 
-            {# 2. Overlapping Title Area (The heading is aligned to the bottom/left of the gray area) #}
-            <div class="absolute bottom-0 left-0 w-full h-full">
+            {# 80% Content Area #}
+            <div class="col-span-1 md:col-span-8 relative">
 
-                <div class="grid grid-cols-1 md:grid-cols-12 h-full">
+                {# Image Container - Height remains grand at 85vh #}
+                <div class="w-full h-[65vh] md:h-[85vh] relative">
+                    <img src="{{ craft.vite.asset('images/PropertyInvestment_1.jpg') }}"
+                         alt="{{ sectionData.heading }}"
+                         class="w-full h-full object-cover block">
 
-                    {# Spacer Column #}
-                    <div class="md:col-span-2"></div>
-
-                    {# Heading Column - Aligns to the bottom. #}
-                    <div class="md:col-span-8 flex items-end px-4 pb-6">
-                        <h1 class="{{ headingClasses }} z-10 text-left mb-0">
+                    {# HEADING #}
+                    <div class="absolute bottom-0 left-0 md:left-8 w-full z-20 -translate-y-[30%]">
+                        <h2 class="font-serif font-light {{ sectionData.headingColor }} leading-[0.8] tracking-tighter"
+                            style="font-size: clamp(60px, 10vw, 160px);">
                             {{ sectionData.heading }}
-                        </h1>
+                        </h2>
                     </div>
                 </div>
 
-            </div>
 
-        </div>
-
-        {# 3. Text Content Area (Aligned to the same starting point as the heading, ensuring it sits to the left of the gray block) #}
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 ">
-
-            {# Spacer Column - This is the key. It pushes the content column over, aligning it with the edge of the gray block. #}
-            <div class="md:col-span-2 pb-[24px]"></div>
-
-            {# Content Column (Body Text and Button) #}
-            <div class="md:col-span-8 px-4">
-                <div class="w-full">
-                    <p class="{{ bodyClasses }}">
-                        {{ sectionData.body }}
-                    </p>
-
-                    {% include '_components/ui/button/button.twig' with {
-                        props: {
-                            text: sectionData.buttonText,
-                            link: sectionData.buttonLink,
-                            style: 'secondary'
-                        }
-                    } only %}
+                {# The yellow background of the <section> will naturally fill this space #}
+                <div class="pt-16 md:pt-20 px-8 md:px-0">
+                    {% if sectionData.body %}
+                        <div class="max-w-xl">
+                            <div class="text-base md:text-lg {{ sectionData.bodyTextColor }} leading-relaxed mb-10 font-medium">
+                                {{ sectionData.body | raw }}
+                            </div>
+                        </div>
+                    {% else %}
+                        {# This empty div ensures the spacing is maintained even without text #}
+                        <div class="h-4"></div>
+                    {% endif %}
                 </div>
             </div>
-
         </div>
 
     </div>

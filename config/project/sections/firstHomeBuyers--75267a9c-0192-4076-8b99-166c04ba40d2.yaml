@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: first-home-buyers/_entry.twig
+    template: pages/First-home-buyers/index.twig
     uriFormat: first-home-buyers
 type: single

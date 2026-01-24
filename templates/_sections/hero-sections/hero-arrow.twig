@@ -2,14 +2,15 @@
 
 {% set defaults = {
     backgroundColor: 'bg-foxplan-yellow',
-    heading: 'Default Heading',
-    bodyText: 'Default body text...',
-    buttonText: '',
-    imagePath: 'images/placeholder.jpg',
-    buttonUrl: '#',
-    buttonBgColor: 'bg-foxplan-charcoal-brown',
-    buttonTextColor: 'text-foxplan-yellow',
-    textColor: 'text-foxplan-charcoal-brown'
+    heading: entry.title ?? 'First Home Buyers',
+    bodyText: entry.heroBodyText ?? '',
+buttonText: entry.button ?? 'LEARN MORE',
+buttonUrl: (entry.buttonLink is defined and entry.buttonLink) ? entry.buttonLink.url : '#',
+imagePath: 'images/placeholder/hero-sample.jpg',
+arrowPath: 'images/placeholder/Arrow_1.svg',
+buttonBgColor: 'bg-foxplan-charcoal-brown',
+buttonTextColor: 'text-foxplan-yellow',
+textColor: 'text-foxplan-charcoal-brown'
 } %}
 
 {% set data = defaults | merge(props ?? {}) %}
@@ -19,53 +20,56 @@
          x-init="setTimeout(() => revealed = true, 150)">
 
     {# Header Row #}
-    <div class="max-w-full mx-auto px-8 mb-10">
-        <div class="flex items-center gap-4">
-            <div class="relative py-2 flex items-center">
-                <div class="transition-all duration-[3000ms] ease-in-out overflow-hidden"
-                     :style="revealed ? 'width: 336px; opacity: 1;' : 'width: 0px; opacity: 0;'">
-                    <img src="{{ craft.vite.asset('images/placeholder/Arrow_1.svg') }}" alt="Arrow" class="w-[336px] h-4 block object-contain object-left">
-                </div>
-            </div>
+    <div class="max-w-full mx-auto px-8 mb-10 relative">
 
-            <div class="transition-all duration-[2000ms] ease-in-out"
-                 :style="revealed ? 'opacity: 1; transform: translateX(0);' : 'opacity: 0; transform: translateX(20px);'">
-                <h2 class="font-serif text-6xl md:text-8xl tracking-tight {{ data.textColor }} whitespace-nowrap">
-                    {{ data.heading }}
-                </h2>
-            </div>
-        </div>
+        {# --- ARROW LAYER (Absolute so text doesn't move) --- #}
+        <div class="absolute left-8 top-1/2 -translate-y-1/2 pointer-events-none hidden md:block">
+            {# steps(15) creates the bit-by-bit growth effect #}
+            <div class="transition-all duration-[2500ms] overflow-hidden"
+                 style="transition-timing-function: steps(15);"
+         :style="revealed ? 'width: 336px; opacity: 1;' : 'width: 0px; opacity: 0;'">
+    <img src="{{ craft.vite.asset(data.arrowPath) }}"
+         alt=""
+         class="w-[336px] h-4 block object-contain object-left">
+    </div>
+    </div>
+
+    {# --- TEXT LAYER (Padding reserves the space) --- #}
+    <div class="md:pl-[360px]">
+        <h2 class="font-serif text-6xl md:text-8xl tracking-tight {{ data.textColor }} whitespace-nowrap">
+            {{ data.heading | raw }}
+        </h2>
+    </div>
     </div>
 
     {# Content Grid #}
     <div class="flex flex-wrap lg:flex-nowrap items-end">
         <div class="w-full lg:w-[70%] relative overflow-hidden">
             <div class="relative w-full aspect-[16/9] lg:aspect-auto lg:h-[600px]">
-                <img src="{{ craft.vite.asset(data.imagePath, false) }}" alt="{{ data.heading }}" class="w-full h-full object-cover">
+                <img src="{{ craft.vite.asset(data.imagePath) }}"
+                     alt="{{ data.heading | striptags }}"
+                     class="w-full h-full object-cover">
             </div>
         </div>
 
         <div class="w-full lg:w-[30%] px-8 lg:px-12 space-y-6 pt-10 lg:pt-0">
-            <div class="transition-all duration-[2000ms] delay-500"
-                 :style="revealed ? 'opacity: 1; transform: translateY(0);' : 'opacity: 0; transform: translateY(10px);'">
-                <div class="font-aktiv leading-relaxed text-xl {{ data.textColor }}">
-                    {{ data.bodyText | raw }}
-                </div>
+            <div class="font-aktiv leading-relaxed text-xl {{ data.textColor }}">
+                {# FIXED: Changed from data.heroBodyText to data.bodyText #}
+                {{ data.bodyText | raw }}
             </div>
 
             {% if data.buttonText is not empty %}
-                <div class="transition-all duration-[2000ms] delay-700"
-                     :style="revealed ? 'opacity: 1;' : 'opacity: 0;'">
-                    {% include '_components/ui/button/button.twig' with {
-                        props: {
-                            text: data.buttonText,
-                            style: 'primary',
-                            url: data.buttonUrl,
-                            backgroundColor: data.buttonBgColor,
-                            textColor: data.buttonTextColor,
-                        }
-                    } only %}
-                </div>
+            <div class="mt-4">
+                {% include '_components/ui/button/button.twig' with {
+                    props: {
+                        text: data.buttonText,
+                        style: 'primary',
+                        url: data.buttonUrl,
+                        backgroundColor: data.buttonBgColor,
+                        textColor: data.buttonTextColor,
+                    }
+                } only %}
+            </div>
             {% endif %}
         </div>
     </div>

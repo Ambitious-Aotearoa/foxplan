@@ -1,0 +1,175 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-black',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+
+{% block blockAppBody %}
+
+    {# 1. Hero section #}
+    {% include '_sections/hero-sections/hero-3.twig' %}
+
+
+    {# 2. Text and form #}
+    {% set sectionData = {
+        accentColor: 'bg-foxplan-neutral-beige',
+        textColor: 'text-foxplan-charcoal-brown',
+        headingSize: 'text-[42px] md:text-[54px]'
+    } %}
+
+    <section class="w-full {{ sectionData.accentColor }} py-16 px-5 font-aktiv overflow-hidden">
+        <div class="w-full">
+            {# Tightened gap to bring columns closer together #}
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+
+                {# LEFT COLUMN: Full Procedural Information #}
+                <div class="{{ sectionData.textColor }} lg:pl-[80px]">
+                    <h2 class="font-serif {{ sectionData.headingSize }} mb-8 leading-[1.1]">
+                        What should you do if something goes wrong?
+                    </h2>
+
+                    <div class="space-y-6 text-lg leading-relaxed opacity-90">
+                        <p>
+                            If you have a problem, concern, or complaint about any part of our services, we are
+                            committed to putting things right. We have a formal internal complaint handling process and
+                            will try to reach a satisfactory resolution with you as soon as possible.
+                        </p>
+
+                        <p>
+                            You can make your complaint verbally, by email or letter. We will acknowledge your complaint
+                            within 2 working days of receipt and will aim to resolve your complaint within 10 working
+                            days. We may need to extend this further if the issue is complex or there we need to rely on
+                            factors that are outside our control, such as relying on third parties for information.
+                        </p>
+
+                        <div>
+                            <h4 class="font-bold uppercase tracking-widest text-sm mb-4">How to make a complaint</h4>
+                            <p class="mb-2">You can contact us by:</p>
+                            <ul class="space-y-2">
+                                <li>
+                                    <span class="font-bold">Form:</span>
+                                    <a href="#complaint-form" id="trigger-highlight"
+                                       class="underline decoration-1 hover:text-black transition-colors ml-1">
+                                        fill out the form below
+                                    </a>
+                                </li>
+                                <li>
+                                    <strong>Phone:</strong>
+                                    <a href="tel:049184659" class="hover:underline">04 918 4659</a>
+                                    – ask for our Compliance Officer, or leave a message with our team who will ensure
+                                    your concerns are escalated appropriately
+                                </li>
+                                <li><strong>Post:</strong> Compliance Officer, FoxPlan, PO Box 2795, Wellington 6140
+                                </li>
+                            </ul>
+                        </div>
+
+                        <p>
+                            Please include your name, contact details, who the complaint is about, a clear summary of
+                            the issue, and any relevant documents.
+                        </p>
+
+                        <p>
+                            If we cannot agree on a resolution within two months of acknowledging your complaint, you
+                            can escalate your concerns to our independent external dispute resolution scheme,
+                            <a href="https://fdrs.org.nz/" target="_blank" class="underline font-bold">Financial Dispute
+                                Resolution Service</a>.
+                        </p>
+
+                        <p class="text-base italic">
+                            Financial Dispute Resolution Service is an external financial dispute resolution scheme
+                            approved by the Minister of Consumer Affairs under the Financial Service Provider
+                            (Registration and Dispute Resolution) Act 2008. The scheme can be contacted at <a
+                                    href="https://fdrs.org.nz/" target="_blank" class="underline">www.fdrs.org.nz</a> or
+                            <a href="tel:0508337337" class="underline">0508 337 337</a>. They will investigate your
+                            complaint and work to facilitate an agreed resolution. If this is not possible the Scheme
+                            may make a formal decision which is binding on FoxPlan Ltd, but not unless you accept the
+                            decision. The process is free to you and the Scheme will assist you to lodge your complaint.
+                        </p>
+
+                        <div class="space-y-4">
+                            <p class="font-bold">Other external dispute resolution services are listed below:</p>
+                            <ul class="list-disc ml-6 space-y-3">
+                                <li>
+                                    <strong>Financial Markets Authority (FMA):</strong> <a
+                                            href="https://services.fma.govt.nz/online-services/new/make-a-complaint/step/1"
+                                            target="_blank" class="underline">FMA Complaints form</a>, PO Box 1179,
+                                    Wellington 6140, or <a href="tel:0800434566" class="underline">0800 434 566</a>.
+                                </li>
+                                <li>
+                                    <strong>Financial Advisers New Zealand (FANZ):</strong> FANZ Complaints, PO Box
+                                    5513, Wellington 6140, or <a href="tel:0800432101" class="underline">0800 432
+                                        101</a>.
+                                    <p class="mt-1 text-base">Not all of our advisers are FANZ Members so if you choose
+                                        to proceed with FANZ, we encourage reviewing their <a
+                                                href="https://financialadvice.nz/Common/Uploaded%20files/Governance/FinancialAdviceNewZealand-Disciplinary-and-Complaints-Rules-2022.pdf"
+                                                target="_blank" class="underline">Complaints and dispute resolution
+                                            criteria</a> as there are very specific terms to the kind of complaints FANZ
+                                        can oversee.</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pt-4 border-t border-foxplan-charcoal-brown/10">
+                            <h4 class="font-bold mb-2">Need more information?</h4>
+                            <p class="mb-3">If you have questions about this disclosure or want to know more about our
+                                services, just ask us.</p>
+                            <p class="mb-3">
+                                FoxPlan is registered on the Financial Services Provider Register under FSP39630. You
+                                can view our licence and all our advisers by searching that number at
+                                <a href="https://fsp-register.companiesoffice.govt.nz/" target="_blank"
+                                   class="underline font-bold">www.fspr.govt.nz</a>.
+                            </p>
+                            <p>
+                                The Financial Markets Authority (FMA) authorises and regulates financial advisers. You
+                                can contact the FMA for more information, financial tips, or to report a concern:
+                                <a href="https://www.fma.govt.nz/contact/" target="_blank" class="underline font-bold">Contact
+                                    the FMA</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {# RIGHT COLUMN: The Form #}
+                <div id="complaint-form" class="relative">
+                    <h2 id="form-heading"
+                        class="font-serif {{ sectionData.headingSize }} mb-8 leading-[1.1] {{ sectionData.textColor }} transition-all duration-700 p-2 rounded-sm inline-block">
+                        Make a Complaint
+                    </h2>
+                    {{ include('_components/form/complaint-form.twig') }}
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('trigger-highlight').addEventListener('click', function (e) {
+            const targetHeading = document.getElementById('form-heading');
+            setTimeout(() => {
+                targetHeading.style.backgroundColor = '#F9C349';
+                setTimeout(() => {
+                    targetHeading.style.backgroundColor = 'transparent';
+                }, 1200);
+            }, 100);
+        });
+    </script>
+
+    {# Footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+{% endblock %}

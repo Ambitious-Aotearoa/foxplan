@@ -88,6 +88,23 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-01-21T21:12:29+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 62bf31af-8e84-4c2b-8197-00623da725a6
+            userCondition: null
+            warning: null
+            width: 100
         name: Content
         uid: c1a28a88-038d-4790-bcb0-80e1d2a8c4bc
         userCondition: null
@@ -112,10 +129,10 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T04:01:57+00:00'
+            dateAdded: '2026-01-21T20:59:59+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: e193394e-257b-4460-bb66-043fa40743cd # Main Heading
+            fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
             handle: null
             includeInCards: false
             instructions: null
@@ -124,24 +141,7 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 4ec8ef45-b7a1-415f-84cb-bb57d6144b8c
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T04:01:57+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 89a224f1-681b-4e1b-b78a-9cf51f82f30e
+            uid: 0156a87f-22e6-4d7d-92f8-3ccfcb151191
             userCondition: null
             warning: null
             width: 100
@@ -207,29 +207,12 @@ fieldLayouts:
         userCondition: null
       -
         elementCondition: null
-        name: 'We work with al these majot brands'
+        name: 'who we work with'
         uid: f19fd29d-57b8-454e-9d18-76c5c70fdc2b
         userCondition: null
       -
         elementCondition: null
         elements:
-          -
-            dateAdded: '2025-12-17T04:01:57+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 0b5f40bc-8b2b-4c17-a504-f4395bc30d6e
-            userCondition: null
-            warning: null
-            width: 100
           -
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
@@ -268,23 +251,6 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
-            handle: button2
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 57222f6d-15d4-43c6-8964-508246559750
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T04:01:57+00:00'
-            editCondition: null
-            elementCondition: null
             fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
             handle: null
             includeInCards: false
@@ -295,6 +261,23 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: 6246713b-a63a-409d-90a2-192dc3fd3e66
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T04:01:57+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: button2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 57222f6d-15d4-43c6-8964-508246559750
             userCondition: null
             warning: null
             width: 100
@@ -318,40 +301,6 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: 24500d3f-b3c4-4c44-9e99-08dd3ac57eeb
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T04:01:57+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 4c9973ff-0107-4739-a889-f352e62eca08 # Large Paragraph
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: e21aab2c-21f6-434d-ac79-2d7cf3597c1b
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T04:01:57+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 8b648b38-5f82-4331-869f-eb02f36604e6 # Author name
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: a146cb28-960f-4341-b3de-44fa93c3ee19
             userCondition: null
             warning: null
             width: 100

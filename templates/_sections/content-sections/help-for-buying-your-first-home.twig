@@ -1,13 +1,15 @@
 {# 1. Define Data from Craft Backend #}
-{% set props = {
-    mainHeading: entry.paragraphHeading ?? null,
-    services: entry.infoBlock.all() ?? [],
+{# 1. Define Defaults #}
+{% set defaults = {
+    mainHeading: null,
+    services: [],
     backgroundColor: 'bg-foxplan-neutral-beige',
     textColor: 'text-foxplan-charcoal-brown',
     borderColor: 'border-[#270E15]'
-    } %}
+} %}
 
-    {% set data = props %}
+{# 2. Merge defaults with props passed from the include #}
+{% set data = defaults | merge(props ?? {}) %}
 
     {# Typography Classes #}
     {% set mainHeadingClasses = 'font-serif text-5xl lg:text-[4.5rem] font-light leading-[0.8] tracking-tight ' ~ data.textColor %}

@@ -18,4 +18,7 @@ siteSettings:
     hasUrls: false
     template: null
     uriFormat: null
-type: single
+structure:
+  maxLevels: null
+  uid: 77113e78-39f3-4592-abb9-75993ce7aaea
+type: structure

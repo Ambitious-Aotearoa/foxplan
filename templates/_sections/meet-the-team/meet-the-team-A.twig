@@ -1,110 +1,93 @@
-{# templates/_sections/meet-the-team-A.twig #}
-
 {# -----------------------------------------------------------------------------------------
-   MACRO: Basic Team Member Card - Renders the Warwick/Kim structure from your image
+   MACRO: Team Member Card
    ----------------------------------------------------------------------------------------- #}
-{% macro teamMemberCard(person) %}
-    <div class="team-card py-4">
-        {# Placeholder for Image #}
-        <div class="aspect-[4/3] bg-gray-100 mb-4 flex items-center justify-center text-sm text-gray-500 font-montreal">
-            Image Placeholder
+{% macro teamMemberCard(member) %}
+    <div class="team-card flex flex-col h-full">
+        {# Square portrait as seen in your designs #}
+        <div class="aspect-square bg-gray-100 mb-6 overflow-hidden">
+            <img src="{{ craft.vite.asset('images/About_1.jpg') }}"
+                 alt="{{ member.memberName }}"
+                 class="w-full h-full object-cover grayscale">
         </div>
 
-        <h3 class="font-montreal text-lg font-semibold text-ehaus-grey mb-1">
-            {{ person.fullName }}
+        {# Elegant Serif Name #}
+        <h3 class="font-serif text-2xl text-ehaus-grey leading-tight">
+            {{ member.memberName }}
         </h3>
-        <p class="font-montreal text-sm uppercase text-ehaus-grey opacity-75 mb-4">
-            {{ person.title }}
+
+        {# Uppercase Job Title #}
+        <p class="font-montreal text-xs uppercase tracking-wider text-ehaus-grey opacity-80 mb-4">
+            {{ member.jobTitle }}
         </p>
 
-        {# Short Bio Text #}
-        <div class="text-sm text-ehaus-grey leading-relaxed">
-            {{ person.bio | raw }}
-        </div>
+        {% if member.bodyText is not empty %}
+            <div class="font-montreal text-sm text-ehaus-grey leading-relaxed max-w-prose">
+                {{ member.bodyText | raw }}
+            </div>
+        {% endif %}
     </div>
 {% endmacro %}
 {% import _self as macros %}
 
 {# -----------------------------------------------------------------------------------------
-   HARDCODED DATA: Define the people for each tab
+   TABS DATA SETUP
    ----------------------------------------------------------------------------------------- #}
-
-{% set person1 = {
-    fullName: 'Warwick Walker, CFPcm',
-    title: 'BUSINESS OWNER & FINANCIAL ADVISER',
-    bio: 'I aim to help families in Aotearoa excel by providing tailored financial advice that supports their journey toward a secure and prosperous future. As a parent to a young family, I understand the challenges that other young families face when managing their finances. I want to form long-lasting partnerships with my clients as they move through the different life stages.'
-} %}
-
-{% set person2 = {
-    fullName: 'Kim Ripia',
-    title: 'COMPLIANCE & TEAM MANAGER',
-    bio: 'I aim to help families in Aotearoa excel by providing tailored financial advice that supports their journey toward a secure and prosperous future. As a parent to a young family, I understand the challenges that other young families face when managing their finances. I want to form long-lasting partnerships with my clients as they move through the different life stages.'
-} %}
-
-{% set person3 = {
-    fullName: 'Jane Doe',
-    title: 'WEALTH SPECIALIST',
-    bio: 'Jane specialises in wealth management strategies, helping clients grow and protect their assets through complex market conditions. She focuses on long-term relationships built on trust and strategic planning across all financial domains.'
-} %}
-
-{% set peopleByRole = {
-    'accounting': [person1, person2, person1, person2],
-    'financial-advisers': [person2, person3, person1],
-    'management-support': [person3]
-} %}
-
-
-{# -----------------------------------------------------------------------------------------
-   STRUCTURE TABS DATA: Build the array for the tabs.twig component
-   ----------------------------------------------------------------------------------------- #}
-
 {% set tabsData = {
-    backgroundColor: 'bg-white',
-    textColor: 'text-ehaus-grey',
-    titleClasses: 'font-serif text-3xl font-medium',
-    defaultTab: 'accounting',
+    backgroundColor: 'bg-transparent',
+    textColor: 'text-foxplan-charcoal-brown',
+    titleClasses: 'hidden',
+    defaultTab: 'accountingWealthManagement',
     tabs: []
-} %}
+    } %}
 
-{% set tabDefinitions = [
-    { id: 'accounting', label: 'Accounting & Wealth Management' },
-    { id: 'financial-advisers', label: 'Financial Advisers' },
-    { id: 'management-support', label: 'Management & Support' }
-] %}
+    {% set tabDefinitions = [
+    { id: 'accountingWealthManagement', label: 'Accounting & Wealth Management' },
+    { id: 'financialAdvisers', label: 'Financial Advisers' },
+    { id: 'managementSupport', label: 'Management & Support' }
+    ] %}
 
 {% for tab in tabDefinitions %}
-    {% set people = peopleByRole[tab.id] ?? [] %}
+    {% set people = teamMembers | filter(member => member.category == tab.id) %}
 
     {% set tabContent %}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for person in people %}
-                {{ macros.teamMemberCard(person) }}
-            {% endfor %}
+        {# The beige area begins immediately under the tab titles #}
+<div class="bg-foxplan-neutral-beige px-6 md:px-12 py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+        {% for member in people %}
+        {{ macros.teamMemberCard(member) }}
+        {% endfor %}
         </div>
-        {% if people is empty %}
-            <p>No team members currently listed for "{{ tab.label }}".</p>
-        {% endif %}
-    {% endset %}
+        </div>
+        {% endset %}
 
-    {% set tabsData = tabsData|merge({ tabs: tabsData.tabs|merge([{
-        id: tab.id,
-        label: tab.label,
-        title: tab.label,
-        content: tabContent
-    }]) }) %}
-{% endfor %}
+        {% set tabsData = tabsData|merge({ tabs: tabsData.tabs|merge([{
+            id: tab.id,
+            label: tab.label,
+            content: tabContent
+        }]) }) %}
+        {% endfor %}
 
+        {# -----------------------------------------------------------------------------------------
+        RENDER: Header (Yellow) and Tabs (Transparent/Neutral)
+        ----------------------------------------------------------------------------------------- #}
 
-{# -----------------------------------------------------------------------------------------
-   RENDER: Render the tabs component
-   ----------------------------------------------------------------------------------------- #}
+        {# Yellow background ends HERE, before the tabs begin #}
+        <div class="bg-foxplan-yellow text-foxplan-charcoal-brown pt-24 pb-12 px-6 md:px-12">
+            <div class="w-full">
+                <h1 class="font-serif text-8xl md:text-9xl mb-8 leading-none">
+                    Meet the Team
+                </h1>
+                <p class="font-montreal text-lg md:text-xl max-w-2xl leading-snug">
+                    Our strength lies in our people. We have decades of experience and a shared commitment to helping Kiwis make smart, confident financial decisions.
+                </p>
+            </div>
+        </div>
 
-<div class="py-16">
-    {% if tabsData.tabs is not empty %}
-        {{ include('_components/ui/tabs/tabs.twig', {
-            data: tabsData
-        }) }}
-    {% else %}
-        <p class="text-center text-ehaus-grey">Error: Could not load team sections.</p>
+        {# The tab navigation sits below the yellow block #}
+        <div class="w-full bg-foxplan-neutral-beige">
+            {% if tabsData.tabs is not empty %}
+{{ include('_components/ui/tabs/tabs.twig', {
+    data: tabsData
+}) }}
     {% endif %}
 </div>

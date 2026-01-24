@@ -33,7 +33,7 @@ Usage:
     iconPosition: 'left',
     fullWidth: false,
     disabled: false,
-    backgroundColor: null,
+    backgroundColor: 'bg-foxplan-charcoal-brown',
     textColor: null,
     classes: '',
     attributes: {}
@@ -44,10 +44,10 @@ Usage:
 
 {# Dynamic Color Logic: Use passed props or fallback to style defaults #}
 {% set bgClass = props.backgroundColor ?: (
-    props.style == 'primary' ? 'bg-black' :
-    props.style == 'secondary' ? 'bg-black' :
-    props.style == 'default-round' ? 'bg-black' :
-    props.style == 'outline' ? 'bg-transparent' : 'bg-black'
+    props.style == 'primary' ? 'bg-foxplan-charcoal-brown' :
+    props.style == 'secondary' ? 'bg-foxplan-charcoal-brown' :
+    props.style == 'default-round' ? 'bg-foxplan-charcoal-brown' :
+    props.style == 'outline' ? 'bg-transparent' : 'bg-foxplan-charcoal-brown'
     ) %}
 
 {% set textClass = props.textColor ?: (
@@ -66,7 +66,7 @@ Usage:
     'w-full lg:w-auto',
     bgClass,
     textClass,
-    props.style == 'primary' ? 'hover:bg-gray-800',
+    props.style == 'primary' ? 'hover:bg-foxplan-charcoal-brown',
     props.style == 'secondary' ? 'hover:bg-gray-800 rounded-full',
     props.style == 'default-round' ? 'hover:bg-gray-800 rounded-bl-2xl',
     props.style == 'outline' ? 'border border-foxplan-charcoal-brown hover:bg-foxplan-charcoal-brown hover:text-foxplan-yellow rounded-md',

@@ -2,7 +2,7 @@
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {% set navigationTheme = {
-    backgroundColor: 'bg-foxplan-neutral-beige',
+    backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-black',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
@@ -10,69 +10,58 @@
 
 {% block blockAppBody %}
 
-    {# 1. Hero Section #}
-    {{ include('_sections/hero-sections/hero-1.twig', {
-        data: {
-            title: 'First home buyers',
-            imageSrc: 'images/FirstHomeBuyers_1.jpg',
-            bodyText: "Buying your first home is one of life’s biggest milestones. It’s exciting, but it can also feel overwhelming. We will guide you through the process with clarity, care, and practical advice.",
-            buttonText: 'Book a call',
-            buttonLink: '#',
+    {# --- 1. Hero Section Setup --- #}
+    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'First Home Buyers' %}
+    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : '' %}
+
+    {# --- Safely handle the Button Text (String) --- #}
+    {% set pageButtonText = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
+
+    {# --- Safely handle the Button Link (Object or Null) --- #}
+    {# We check if it exists AND is not null before accessing .url #}
+    {% set pageButtonUrl = (entry.buttonLink is defined and entry.buttonLink) ? entry.buttonLink.url : '/contact' %}
+
+    {# --- 2. Hero Section Include --- #}
+    {{ include('_sections/hero-sections/hero-arrow.twig', {
+        props: {
+            heading: pageHeading,
+            bodyText: pageBody,
+            buttonText: pageButtonText,
+            buttonUrl: pageButtonUrl,
+            imagePath: 'images/Insurance_1.jpg',
+            backgroundColor: 'bg-foxplan-yellow',
             buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-white',
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-black',
-            titleFont: 'font-serif',
-            titleSize: 'text-[8.5rem]',
-            bodyFont: 'font-aktiv-grotesk',
-            bodySize: 'text-lg'
+            buttonTextColor: 'text-foxplan-white'
         }
     }) }}
 
-    {# 2. first time buyers #}
-    {% include '_sections/content-sections/help-for-buying-your-first-home.twig' with {
-        props: {
-            mainHeading: 'Help for buying your first home',
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-foxplan-charcoal-brown',
-            services: [
-                { title: 'Budgeting & Savings', description: 'We help first-time buyers understand what you can afford and create a plan to save for your deposit.' },
-                { title: 'Mortgage Pre-Approval', description: 'We’ll secure your mortgage pre-approval so that you know how much you can borrow.' },
-                { title: 'Comparing Lenders', description: 'We’ll help you choose the best mortgage option based on your financial situation and needs.' },
-                { title: 'Protection Planning', description: 'Making sure you have the right cover for your home, life, and income, so your new investment is secure.' }
-            ]
-        }
-    } only %}
+    {# 2. Benefits #}
+    {# templates/pages/First-home-buyers/index.twig #}
 
-    {# 3. how we work accordion #}
-    {% include '_sections/content-sections/how-we-work.twig' with {
+    {# --- Info Block / Services Section --- #}
+    {{ include('_sections/content-sections/help-for-buying-your-first-home.twig', {
         props: {
-            mainHeading: 'How we work with you',
-            backgroundColor: 'bg-foxplan-neutral-beige',
+            mainHeading: entry.paragraphHeading ?? 'Our Services',
+            services: entry.infoBlock.all() ?? [],
+            backgroundColor: 'bg-foxplan-yellow',
             textColor: 'text-foxplan-charcoal-brown',
-            mainBody: 'We’ll work with you the entire way through the first-home buyer’s journey. Yes, even before you’re ready to buy.',
-            accordionItems: [
-                {
-                    expandableHeadingTitle: 'Get your finances in shape',
-                    ExpandableBodyText: 'While we’re happy to work with you at any stage of the first home buyer process.Before they lend you money, banks need reassurance that you can comfortably repay your mortgage.'
-                },
-                {
-                    expandableHeadingTitle: 'Pay your mortgage off faster',
-                    ExpandableBodyText: 'While we’re happy to work with you at any stage of the first home buyer process.Before they lend you money, banks need reassurance that you can comfortably repay your mortgage..'
-                },
-                {
-                    expandableHeadingTitle: 'Get a 360 look at your finances',
-                    ExpandableBodyText: 'While we’re happy to work with you at any stage of the first home buyer process.Before they lend you money, banks need reassurance that you can comfortably repay your mortgage.'
-                },
-                {
-                    expandableHeadingTitle: 'Business owners & self-employed',
-                    ExpandableBodyText: 'While we’re happy to work with you at any stage of the first home buyer process.Before they lend you money, banks need reassurance that you can comfortably repay your mortgage.'
-                }
-            ]
-        }
-    } only %}
+            borderColor: 'border-[#270E15]'
+            }
+            }) }}
 
-    {# 4. Partner Section #}
+{#     3. how we work accordion #}
+{#   {# templates/pages/First-home-buyers/index.twig #}
+
+    {# --- Accordion Section --- #}
+    {{ include('_sections/content-sections/how-we-work.twig', {
+        props: {
+            mainHeading: entry.paragraphHeading2 ?? 'How we work with you',
+            mainBody: entry.bodyText2 ?? '',
+            accordionField: entry.accordion
+        }
+    }) }}
+
+{#     4. Partner Section #}
     {{ include('_sections/content-sections/who-we-work-with.twig', {
         props: {
             title: 'WHO WE WORK WITH',
@@ -80,60 +69,37 @@
             textColor: 'text-foxplan-charcoal-brown',
             borderColor: 'border-foxplan-charcoal-brown/20',
             logos: [
-                { src: 'images/logo/AIA_Logo.svg', alt: 'AIA', name: 'AIA Insurance' },
-                { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ', name: 'ANZ Bank' },
-                { src: 'images/logo/BNZ_Logo.svg', alt: 'BNZ', name: 'BNZ Bank' },
-                { src: 'images/logo/Kiwibank_Logo.svg', alt: 'Kiwibank', name: 'Kiwibank' },
-                { src: 'images/logo/SBS-Bank_LowQuality_Logo.svg', alt: 'SBS', name: 'SBS Bank' },
-                { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'Co-op', name: 'The Co-operative Bank' },
-                { src: 'images/logo/Westpac_logo.svg', alt: 'Westpac', name: 'Westpac' },
-                { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'iag', name: 'IAG Group' }
+                { src: 'images/logo/AIA_Logo.svg', alt: 'AIA' },
+                { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ' }
             ]
         }
     }) }}
 
-    {# 5. section #}
-    {% include '_sections/hero-sections/section.twig' with {
-        props: {
-            eyebrow: 'NOT SURE WHERE TO START?',
-            title: 'Get the First Home Buyers Guide',
-            bodyText: 'Knowing what step to take now or next is sometimes the hardest part. Our First Home Buyers Guide breaks the buying process down into easy to follow steps.',
-            buttonText: 'Get the guide',
-            buttonLink: '#',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-white',
-            imageSrc: 'images/FirstHomeBuyers_2.jpg',
-            backgroundColor: 'bg-foxplan-yellow',
-            textColor: 'text-foxplan-charcoal-brown',
-            titleFont: 'font-serif',
-            titleSize: 'text-5xl md:text-6xl lg:text-[4.5rem]',
-            bodyFont: 'font-aktiv-grotesk',
-            bodySize: 'text-base md:text-lg',
-            showBorder: false,
-            borderColor: 'border-foxplan-charcoal-brown'
-        }
-    } only %}
+{#     5. section #}
+    {#  Image and Text Section #}
+    {% set sectionImage = entry.image.one() %}
 
-    {# 6. testimonial #}
-    {% include '_sections/testimonials/testimonial-two.twig' with {
+    {{ include('_sections/hero-sections/section.twig', {
         props: {
-            sectionTitle: 'Hear what our clients are saying',
+            title: entry.paragraphHeading3 ?? 'Get the First Home Buyers Guide',
+            bodyText: entry.bodyText2 ?? '',
+            buttonText: entry.button2 ?? '',
+            buttonLink: (entry.buttonlink2 is defined and entry.buttonlink2) ? entry.buttonlink2.url : '#',
+            imageSrc: sectionImage ? sectionImage.url : null,
             backgroundColor: 'bg-foxplan-neutral-beige',
             textColor: 'text-foxplan-charcoal-brown',
-            arrowImage: 'images/placeholder/Arrow_1.svg',
-            quoteIconColor: 'bg-foxplan-yellow',
-            testimonials: [
-                {
-                    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-                    author: 'LOREM IPSUM'
-                },
-                {
-                    body: 'Second ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-                    author: 'Second IPSUM'
-                },
-            ]
+            buttonBgColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-neutral-beige',
+            borderColor: 'border-foxplan-charcoal-brown'
         }
-    } only %}
+    }) }}
+
+{#     6. testimonial#}
+    {{ include('_sections/testimonials/testimonial-two.twig', {
+        data: {
+            paragraphHeading4: entry.paragraphHeading4 ?? 'Hear what our clients are saying'
+        }
+    }) }}
 
 
     {# 7. footer #}

@@ -1,25 +1,28 @@
-{# 1. Map Backend Data based on Screenshots #}
-{% set props = {
-    mainHeading: entry.paragraphHeading2 ?? 'How we work with you',
-    mainBody: entry.bodyText ?? 'We’ll work with you the entire way...',
-    accordionItems: entry.accordion.all() ?? [],
+{# templates/_sections/accordions/how-we-work.twig #}
 
+{% set defaults = {
+    mainHeading: 'How we work with you',
+    mainBody: '',
+    accordionField: null,
     backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown'
-    } %}
+} %}
 
-    {% set data = props %}
+{% set data = defaults | merge(props ?? {}) %}
 
-    <section class="w-full relative z-20 {{ data.backgroundColor }} pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden">
+<section class="w-full relative z-20 {{ data.backgroundColor }} pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden">
     <div class="w-full">
         <div class="flex flex-wrap w-full items-start">
 
-            {# Left Side: 30% Width #}
+            {# Left Side: 30% Width - FIXED Position #}
             <div class="w-full md:w-[30%] pl-8 md:pl-10 pr-12 mb-12 md:mb-0">
                 <div class="max-w-md">
+                    {# This heading is static; it will not shift #}
                     <h2 class="font-serif text-5xl lg:text-[5.5rem] font-light leading-[0.8] {{ data.textColor }} tracking-tight mb-8">
                         {{ data.mainHeading | raw }}
                     </h2>
+
+                    {# Body Text from field 'bodyText2' #}
                     <div class="font-aktiv text-base md:text-lg leading-relaxed {{ data.textColor }} opacity-80">
                         {{ data.mainBody | raw }}
                     </div>
@@ -29,10 +32,12 @@
             {# Right Side: 70% Width #}
             <div class="w-full md:w-[70%]">
                 <div class="w-full">
-                    {% if data.accordionItems|length > 0 %}
-                        {# We transform the Matrix data to match what your accordion component expects #}
+                    {# Logic for Matrix field 'accordion' #}
+                    {% if data.accordionField and data.accordionField.exists() %}
+
+                        {# Mapping internal Matrix handles: accordionHeading & accordionBodyText #}
                         {% set formattedItems = [] %}
-                        {% for item in data.accordionItems %}
+                        {% for item in data.accordionField.all() %}
                             {% set formattedItems = formattedItems | merge([{
                                 expandableHeadingTitle: item.accordionHeading,
                                 ExpandableBodyText: item.accordionBodyText
