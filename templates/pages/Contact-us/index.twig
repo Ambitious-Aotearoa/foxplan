@@ -12,17 +12,13 @@
     {# 1. Hero Section #}
     {# Use this in your page template (e.g., index.twig) #}
     {% include '_sections/hero-sections/hero-design.twig' with {
+        entry: entry,
         props: {
-            title: 'Contact us',
-            bodyText: 'No matter what your financial goals are we’ll get you there. Start your journey by messaging us or requesting a callback below.',
-            buttonText: 'Book a call',
-            buttonLink: '/contact',
-            imageSrc: 'images/Contact_1.jpg',
-            maskSrc: 'images/placeholder/fox-tail_mask1.svg',
+
             backgroundColor: 'bg-foxplan-yellow',
             textColor: 'text-foxplan-charcoal-brown'
-        }
-    } only %}
+            }
+            } only %}
 
     {# Example: Including the Contact Section with Custom Colors #}
     {% include '_sections/contact-us/contact-us.twig' %}

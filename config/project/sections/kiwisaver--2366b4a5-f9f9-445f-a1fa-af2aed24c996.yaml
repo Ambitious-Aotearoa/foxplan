@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 7f5a1f9e-4127-43e0-b85e-6f3b9c4221ad # KiwiSaver
+handle: kiwisaver
+maxAuthors: 1
+name: KiwiSaver
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  904beb73-9861-43f3-8de7-90464f6457de: # foxplan
+    enabledByDefault: true
+    hasUrls: true
+    template: pages/KiwiSaver/index.twig
+    uriFormat: kiwisaver
+type: single

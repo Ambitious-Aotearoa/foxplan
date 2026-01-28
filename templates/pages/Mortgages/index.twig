@@ -1,8 +1,8 @@
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {% set navigationTheme = {
-    backgroundColor: 'bg-foxplan-neutral-beige',
-    textColor: 'text-black',
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-foxplan-charcoal-brown',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
 
@@ -19,65 +19,47 @@
             bodyText: pageBody,
             buttonText: pageButton,
             imagePath: 'images/Mortgage_1.jpg',
-            backgroundColor: 'bg-foxplan-neutral-beige',
+            backgroundColor: 'bg-foxplan-yellow',
             buttonUrl: '/contact',
             buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-white'
+            buttonTextColor: 'text-foxplan-neutral-beige'
         }
     }) }}
 
     {# 2. Benefits Accordion #}
-    {% set benefitsHeading = entry.paragraphHeading ?? 'Get onto the property ladder faster' %}
-    {% set benefitsIntro = entry.bodyText ?? '' %}
 
-    {% set accordionItems = [] %}
-    {% if entry.accordion is defined %}
-        {% for block in entry.accordion.all() %}
-            {% set accordionItems = accordionItems | merge([{
-                'expandableHeadingTitle': block.accordionHeading,
-                'ExpandableBodyText': block.accordionBodyText
+    {% include "_sections/content-sections/how-we-work.twig" with {
+        entry: entry,
+        props: {
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown',
+            mainHeading: entry.paragraphHeading ?? 'How we work with you',
+            mainBody: entry.bodyText ?? '',
+        }
+    } %}
+
+
+    {# 3. Explore Services Section #}
+    {% set serviceItems = [] %}
+
+    {% if entry.infoBlock is defined %}
+        {% for block in entry.infoBlock.all() %}
+            {% set serviceItems = serviceItems | merge([{
+                'title': block.blockHeading ?? 'Service Title',
+                'text': block.blockBodyText ?? '',
+                'link': block.blockLinkUrl ?? '#'
             }]) %}
         {% endfor %}
     {% endif %}
 
-    {{ include('_sections/content-sections/benefits.twig', {
-        backgroundColor: 'bg-foxplan-neutral-beige',
-        textColor: 'text-foxplan-charcoal-brown',
-        servicesData: {
-            heading: benefitsHeading,
-            intro: benefitsIntro,
-            items: accordionItems
-        }
-    }) }}
 
-    {# 3. Explore Services Section #}
-    {% set mortgageGridItems = [] %}
-
-    {# 1. Identify the outer block within your main Matrix field #}
-    {% set exploreWrapper = (entry.infoBlock is defined)
-        ? entry.infoBlock.type('exploreMortgages').one()
-        : null %}
-
-    {% if exploreWrapper %}
-        {# 2. Loop through the NESTED Matrix field named 'infoBlock' #}
-        {% if exploreWrapper.infoBlock is defined %}
-            {# We use .all() without a .type() filter to ensure we catch the items regardless of their block type handle #}
-            {% for item in exploreWrapper.infoBlock.all() %}
-                {% set mortgageGridItems = mortgageGridItems | merge([{
-                    'title': item.blockHeading ?? 'No Title Found',
-                    'text': item.blockBodyText ?? 'No Text Found',
-                    'link': item.blockLinkUrl ?? '#'
-                }]) %}
-            {% endfor %}
-        {% endif %}
-    {% endif %}
-
-    {# 3. Call the component with the prepared data #}
     {{ include('_sections/services/our-services.twig', {
         props: {
-            title: exploreWrapper.paragraphHeading2 ?? 'Explore Mortgages',
-            backgroundColor: 'bg-foxplan-white',
-            items: mortgageGridItems
+            title: entry.paragraphHeading3 ?? 'Our Services',
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            buttonBgColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-white',
+            items: serviceItems
         }
     }) }}
 

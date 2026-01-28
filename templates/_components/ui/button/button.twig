@@ -1,27 +1,4 @@
 {# _components/ui/button/button.twig #}
-{#
-Button Component
-
-Usage:
-{# Example 1: Primary Style (Normal) with custom text #}
-{#  {{ include('_components/ui/button/button.twig', {
-      props: {
-          text: 'Apply Now',
-          style: 'primary',
-          url: '/apply'
-      }
-  }) }}#}
-
-  {# Example 2: Rounded Style (New style) with custom text #}
-{#  {{ include('_components/ui/button/button.twig', {
-      props: {
-          text: 'Listen now',
-          style: 'default-round',
-          url: '/podcast'
-      }
-  }) }}#}
-
-{# _components/ui/button/button.twig #}
 
 {# Set component defaults #}
 {% set defaults = {
@@ -33,7 +10,7 @@ Usage:
     iconPosition: 'left',
     fullWidth: false,
     disabled: false,
-    backgroundColor: 'bg-foxplan-charcoal-brown',
+    backgroundColor: null,
     textColor: null,
     classes: '',
     attributes: {}
@@ -42,50 +19,60 @@ Usage:
 {# Merge with passed props #}
 {% set props = defaults | merge(props | default({})) %}
 
-{# Dynamic Color Logic: Use passed props or fallback to style defaults #}
+{# Dynamic Color Logic #}
 {% set bgClass = props.backgroundColor ?: (
     props.style == 'primary' ? 'bg-foxplan-charcoal-brown' :
     props.style == 'secondary' ? 'bg-foxplan-charcoal-brown' :
-    props.style == 'default-round' ? 'bg-foxplan-charcoal-brown' :
+    props.style == 'default-round' ? 'bg-foxplan-yellow' :
     props.style == 'outline' ? 'bg-transparent' : 'bg-foxplan-charcoal-brown'
     ) %}
 
 {% set textClass = props.textColor ?: (
     props.style == 'primary' ? 'text-white' :
     props.style == 'secondary' ? 'text-white' :
-    props.style == 'default-round' ? 'text-white' :
+    props.style == 'default-round' ? 'text-foxplan-charcoal-brown' :
     props.style == 'outline' ? 'text-foxplan-charcoal-brown' : 'text-white'
     ) %}
 
-{# Build CSS classes #}
+    {# Build CSS classes #}
 {% set buttonClasses = [
     'group relative inline-flex items-center justify-center overflow-hidden',
     'font-sterling text-sm uppercase cursor-pointer',
-    'py-2 px-4 text-sm font-bold',
-    'transition-all duration-200',
+    'py-2 px-6 text-[10px] font-bold tracking-widest',
+    'transition-all duration-300',
     'w-full lg:w-auto',
     bgClass,
     textClass,
-    props.style == 'primary' ? 'hover:bg-foxplan-charcoal-brown',
-    props.style == 'secondary' ? 'hover:bg-gray-800 rounded-full',
-    props.style == 'default-round' ? 'hover:bg-gray-800 rounded-bl-2xl',
-    props.style == 'outline' ? 'border border-foxplan-charcoal-brown hover:bg-foxplan-charcoal-brown hover:text-foxplan-yellow rounded-md',
+
+    'hover:opacity-80 active:opacity-100',
+    props.style == 'secondary' ? 'rounded-full',
+    props.style == 'default-round' ? 'rounded-none',
+    props.style == 'outline' ? 'border border-foxplan-charcoal-brown',
     props.fullWidth ? '!w-full',
     props.disabled ? 'opacity-50 cursor-not-allowed',
     props.classes
 ] | filter | join(' ') %}
 
-{# Determine tag type #}
-{% set tag = props.url and not props.disabled ? 'a' : 'button' %}
+        {# Determine tag type #}
+        {% set tag = props.url and not props.disabled ? 'a' : 'button' %}
 
-{# Build attributes #}
-{% set attributes = {
-    class: buttonClasses,
-    href: props.url ?: null,
-    disabled: props.disabled ?: null,
-    type: tag == 'button' ? 'button' : null
-} | merge(props.attributes) | filter %}
+        {# Build attributes #}
+        {% set attributes = {
+            class: buttonClasses,
+            href: props.url ?: null,
+            disabled: props.disabled ?: null,
+            type: tag == 'button' ? 'button' : null
+        } | merge(props.attributes) | filter %}
 
 <{{ tag }}{% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %}>
-<span class="btn__text">{{ props.text }}</span>
+<span class="btn__text flex items-center">
+    {{ props.text }}
+
+    {% if props.style == 'default-round' %}
+        <svg class="ml-2 w-3 h-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+    {% endif %}
+        </span>
 </{{ tag }}>

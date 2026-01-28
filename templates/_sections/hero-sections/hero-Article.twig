@@ -1,0 +1,52 @@
+{# _sections/hero-sections/hero-Article.twig #}
+
+{# Fetching the specific data from your Craft Field Layout #}
+{% set category = entry.articleCategories.one() %}
+{% set heroImage = entry.heroImage.one() %}
+
+<section class="w-full bg-foxplan-neutral-beige pt-24 pb-0 overflow-hidden">
+    <div class="px-[20px]">
+
+        {# Grand Heading: Bold and authoritative #}
+        <h1 class="font-serif text-foxplan-charcoal-brown text-[4.5rem] md:text-[6rem] lg:text-[7.5rem] leading-[0.9] tracking-tighter mb-12 max-w-[90%] lg:max-w-[80%]">
+            {{ entry.title }}
+        </h1>
+
+        {#
+        The In-Line Grid:
+        Meta info and image now reside in the same horizontal row
+
+        #}
+        <div class="grid grid-cols-1 md:grid-cols-10 gap-x-0 items-start">
+
+            {# 1. Meta Information: Occupies the first 3 columns #}
+            <div class="md:col-span-3 lg:col-span-2">
+                <div class="font-montreal text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown flex flex-wrap gap-y-2 pt-1">
+                    <span class="mr-6 block md:inline-block">{{ entry.postDate | date('M d, Y') | upper }}</span>
+                    {% if category %}
+                        <span class="flex items-center">
+                            {{ category.title | upper }}
+                            <span class="ml-2 mt-[-2px]">•</span>
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+
+            {# 2. The Hero Image: Occupies the remaining columns #}
+            <div class="md:col-span-7 lg:col-span-8">
+                <div class="aspect-[16/7] w-full overflow-hidden bg-foxplan-charcoal-brown/5">
+                    {% if heroImage %}
+                        <img src="{{ heroImage.url }}"
+                             alt="{{ entry.title }}"
+                             class="w-full h-full object-cover">
+                    {% else %}
+                        <div class="w-full h-full flex items-center justify-center border border-foxplan-charcoal-brown/10">
+                            <span class="text-[10px] uppercase tracking-widest opacity-30 italic">No Hero Image</span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

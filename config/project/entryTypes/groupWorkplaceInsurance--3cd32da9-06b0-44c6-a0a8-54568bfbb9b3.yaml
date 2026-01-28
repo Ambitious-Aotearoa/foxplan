@@ -1,0 +1,218 @@
+color: null
+description: null
+fieldLayouts:
+  eee51cab-9d97-4660-992e-c73a4664fb48:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-01-25T23:54:12+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: bd31e36e-f17d-4733-9743-1d64750f5d0b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T23:57:22+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4e726bb9-0ade-4744-9587-7bfb0aba5da7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T23:57:22+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 83c241f4-895a-499d-9934-7b99c4186577
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T23:57:22+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9d2583f7-4041-40af-a837-3b12f1b777a6
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T23:57:22+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: cd451b3a-498a-4c33-95d7-69d9ceda26bf
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 0fa66e61-e23b-4706-97c6-3a6f4e6cbb24
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-25T23:57:22+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 024b221a-cc47-4e72-9822-2be4aa16a293
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T23:57:22+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5f9febe0-1815-4796-aa18-8ba9c1c504c0
+            userCondition: null
+            warning: null
+            width: 100
+        name: "Group insurance options\_for \nyour team"
+        uid: 8b31cbf7-0631-49ac-9a1b-e7035077f5ba
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-25T23:57:22+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 60d34e29-c3ed-43c4-9d57-72007692a9d3
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T23:57:22+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 28c411d5-f761-4719-949b-13375e801890
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T23:57:22+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4ee4cc88-6780-40a5-845b-be31b8836678
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'About group insurance'
+        uid: d5763560-aa4f-431c-bc60-58be2f589c03
+        userCondition: null
+handle: groupWorkplaceInsurance
+hasTitleField: true
+icon: null
+name: Group-workplace-insurance
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

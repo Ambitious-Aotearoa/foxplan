@@ -8,10 +8,10 @@ fieldLayouts:
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-12-17T01:07:20+00:00'
+            dateAdded: '2026-01-25T21:01:52+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            fieldUid: b974ddd6-5e6a-460f-8100-45bdf6fe5c1d # Provider Name
             handle: null
             includeInCards: false
             instructions: null
@@ -20,7 +20,24 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ea69d8ca-fa44-4d99-8067-e59e5a89b133
+            uid: 22b211bc-3e60-4057-adf6-1bda3e1589de
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T21:01:52+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 30e93460-18e1-473b-90f6-17bed59eb35e # Contact Info
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6d599bff-0b71-44f0-8dd2-db9d957b09e5
             userCondition: null
             warning: null
             width: 100
@@ -45,40 +62,6 @@ fieldLayouts:
             dateAdded: '2025-12-17T01:07:20+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 7de1a5c0-1411-43d5-9ca2-6996afd27316 # Suppliers Title
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 44b89020-2a48-4ab1-94cc-80a45f0cf6dc
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T01:07:20+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 30e93460-18e1-473b-90f6-17bed59eb35e # Contact Info
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: d782d45d-e8cb-4e6f-9a76-23e688a36e3c
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T01:07:20+00:00'
-            editCondition: null
-            elementCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
             includeInCards: false
@@ -92,8 +75,42 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
-        name: Content
-        uid: 770eb7a8-b847-4c55-b345-55a48a56c504
+          -
+            dateAdded: '2026-01-25T21:01:52+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ccded4b2-e534-4bba-9688-f53daa4e83ef
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T21:01:52+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 50a671c8-233b-479c-af1a-8dfcc5f25e8f # Supplier category
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 459515b8-fbda-45a1-a2ef-8d3f7042fee1
+            userCondition: null
+            warning: null
+            width: 100
+        name: Suppliers
+        uid: 5c994281-91e6-4edc-9148-29e8bb6da1e3
         userCondition: null
 handle: ourSuppliers
 hasTitleField: false
@@ -103,6 +120,6 @@ showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: null
+titleFormat: '{providerName}'
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

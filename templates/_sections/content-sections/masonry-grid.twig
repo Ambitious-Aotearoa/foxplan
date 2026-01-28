@@ -1,149 +1,81 @@
-{# _sections/blog/masonry-grid.twig #}
-
-{% macro articleCard(article, aspectRatio='aspect-square') %}
-    <div class="article-card mb-8">
-        {# Added aspectRatio variable for custom heights: aspect-video (wide) or aspect-square (compact) #}
-        {# NOTE: Tailwind custom aspect classes (e.g., aspect-[2/1]) require configuration in tailwind.config.js #}
-        <div class="{{ aspectRatio }} bg-gray-100 mb-4 flex items-center justify-center">
-            <span class="text-sm text-gray-500 font-montreal">Article Image</span>
+{# 1. Define the Card Macro #}
+{% macro articleCard(article, aspectRatio) %}
+    {# We transform the outer div into a link or wrap it to ensure the whole area is active #}
+    <a href="{{ article.url }}" class="article-card mb-16 group block w-full no-underline">
+        <div class="{{ aspectRatio }} bg-foxplan-charcoal-brown/5 mb-6 overflow-hidden">
+            {% set img = article.heroImage.one() %}
+            {% if img %}
+                <img src="{{ img.url }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{{ article.title }}">
+            {% else %}
+                <div class="w-full h-full flex items-center justify-center border border-foxplan-charcoal-brown/10">
+                    <span class="text-[10px] uppercase tracking-widest opacity-30 italic">No Image</span>
+                </div>
+            {% endif %}
         </div>
 
-        <p class="font-montreal text-xs uppercase text-ehaus-grey opacity-75 mb-1">
-            {{ article.date }}
+        <p class="font-montreal text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown/60 mb-3">
+            {{ article.postDate | date('F d, Y') }}
         </p>
-        <h3 class="font-montreal text-lg font-semibold text-ehaus-grey mb-2">
+
+        <h3 class="font-serif text-2xl md:text-3xl text-foxplan-charcoal-brown mb-4 leading-tight group-hover:opacity-70 transition-opacity">
             {{ article.title }}
         </h3>
-        <a href="{{ article.url }}" class="text-xs font-bold uppercase tracking-wider text-ehaus-grey hover:text-gray-700">
+
+        <span class="inline-block text-[10px] font-bold uppercase tracking-widest text-foxplan-charcoal-brown border-b border-foxplan-charcoal-brown pb-1 group-hover:opacity-50 transition-opacity">
             Read More
-        </a>
-    </div>
+        </span>
+    </a>
 {% endmacro %}
+
 {% import _self as macros %}
 
-{% set article1 = {
-    title: 'Why choose private health insurance?',
-    date: 'JUNE 13, 2024',
-    url: '#'
-} %}
+{# 2. Segmented 60/40 Header #}
+<div class="grid grid-cols-1 md:grid-cols-10 gap-x-12 lg:gap-x-16 w-full mb-16 items-end px-[20px]">
+    <div class="md:col-span-6 border-b border-foxplan-charcoal-brown/20 pb-2 flex items-center">
+        <span class="mr-3 opacity-60">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+            </svg>
+        </span>
+        <input type="search"
+               placeholder="Search in {{ categoryLabel ?? 'article' }}"
+               class="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 p-0 text-lg text-foxplan-charcoal-brown/60 placeholder-foxplan-charcoal-brown/40 font-light">
+    </div>
 
-{% set article2 = {
-    title: '5 great investment mistakes to avoid',
-    date: 'MAY 20, 2024',
-    url: '#'
-} %}
+    <div class="md:col-span-4 border-b border-foxplan-charcoal-brown/20 pb-2 flex items-center justify-between mt-4 md:mt-0">
+        <select class="bg-transparent border-none outline-none focus:outline-none focus:ring-0 p-0 text-lg text-foxplan-charcoal-brown/60 font-light appearance-none cursor-pointer w-full">
+            <option>Sort by date</option>
+            <option>Latest First</option>
+            <option>Oldest First</option>
+        </select>
+        <span class="opacity-60 pointer-events-none">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+            </svg>
+        </span>
+    </div>
+</div>
 
-{% set article3 = {
-    title: 'The ultimate guide to retirement planning',
-    date: 'MAY 16, 2024',
-    url: '#'
-} %}
+{# 3. The 60/40 Mirrored Grid #}
+<div class="grid grid-cols-1 md:grid-cols-10 gap-x-12 lg:gap-x-16 w-full items-start px-[20px]">
+    {% for article in articles %}
+        {% set isLeftColumn = loop.index0 % 2 == 0 %}
+        {% set isEvenRow = (loop.index0 // 2) % 2 == 0 %}
 
-{% set articlesByCategory = {
-    'financial-planning': [article1, article3, article1, article2],
-    'savings-investments': [article2, article3],
-    'news': [article1, article2, article3],
-    'mortgages': [article1, article3],
-    'retirement': [article3, article2],
-    'kiwisaver': [article1, article2],
-    'insurance': [article1]
-} %}
-
-
-{% set tabsData = {
-    backgroundColor: 'bg-white',
-    textColor: 'text-gray-900',
-    titleClasses: 'font-serif text-3xl font-medium sr-only',
-    defaultTab: 'financial-planning',
-    tabs: []
-} %}
-
-{% set tabDefinitions = [
-    { id: 'financial-planning', label: 'Financial Planning' },
-    { id: 'savings-investments', label: 'Savings & Investments' },
-    { id: 'news', label: 'News' },
-    { id: 'mortgages', label: 'Mortgages' },
-    { id: 'retirement', label: 'Retirement' },
-    { id: 'kiwisaver', label: 'KiwiSaver' },
-    { id: 'insurance', label: 'Insurance' }
-] %}
-
-{% for tab in tabDefinitions %}
-    {% set articles = articlesByCategory[tab.id] ?? [] %}
-
-    {% set tabContent %}
-
-        {# Search and Sort Controls #}
-        <div class="flex flex-col sm:flex-row justify-between items-center mb-12 lg:mb-16">
-
-            {# Search Input (Wider - 2/3) #}
-            <div class="w-full sm:w-2/3 relative sm:mr-4 mb-4 sm:mb-0">
-                {# Search Icon SVG #}
-                <svg class="absolute left-0 top-3 w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-                <input type="search" placeholder="Search article" class="w-full py-2 border-b border-gray-400 bg-transparent text-gray-900 focus:outline-none focus:border-gray-900 placeholder-gray-500 text-sm px-0 pl-6">
+        {% if isEvenRow %}
+            <div class="{{ isLeftColumn ? 'md:col-span-6' : 'md:col-span-4' }}">
+                {% set ratio = isLeftColumn ? 'aspect-[21/10]' : 'aspect-[21/9]' %}
+                {{ macros.articleCard(article, ratio) }}
             </div>
-
-            {# Sort Select (Narrower - 1/3) #}
-            <div class="w-full sm:w-1/3 relative">
-                <select class="w-full py-2 border-b border-gray-400 bg-transparent text-gray-900 focus:outline-none focus:border-gray-900 placeholder-gray-500 text-sm appearance-none pr-8 px-0">
-                    <option class="text-gray-500">Sort by date</option>
-                    <option>Sort by title</option>
-                </select>
-                {# Custom dropdown arrow to match styling #}
-                <svg class="absolute right-0 top-3 w-4 h-4 text-gray-700 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+        {% else %}
+            <div class="{{ isLeftColumn ? 'md:col-span-4' : 'md:col-span-6' }}">
+                {% set ratio = isLeftColumn ? 'aspect-[21/9]' : 'aspect-[21/10]' %}
+                {{ macros.articleCard(article, ratio) }}
             </div>
-        </div>
-
-        {# Articles Grid - Two Columns on desktop, alternating aspect ratios for the staggered look #}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {% for article in articles %}
-                {% set index = loop.index %}
-
-                {# Custom Staggering Logic: Alternates Wide|Compact on Row 1, then Compact|Wide on Row 2 #}
-                {% if (index - 1) % 4 < 2 %}
-                    {# Indexes 1, 2 (Row 1, 3, 5...) #}
-                    {% if index is odd %}
-                        {% set ratio = 'aspect-[2/1]' %} {# Wide/Lower Height #}
-                    {% else %}
-                        {% set ratio = 'aspect-[4/3]' %} {# Compact/Slightly Taller #}
-                    {% endif %}
-                {% else %}
-                    {# Indexes 3, 4 (Row 2, 4, 6...) #}
-                    {% if index is odd %}
-                        {% set ratio = 'aspect-[4/3]' %} {# Compact/Slightly Taller #}
-                    {% else %}
-                        {% set ratio = 'aspect-[2/1]' %} {# Wide/Lower Height #}
-                    {% endif %}
-                {% endif %}
-
-                <div>
-                    {{ macros.articleCard(article, ratio) }}
-                </div>
-            {% endfor %}
-        </div>
-        {% if articles is empty %}
-            <p>No articles currently listed for "{{ tab.label }}".</p>
         {% endif %}
-
-    {% endset %}
-
-    {% set tabsData = tabsData|merge({ tabs: tabsData.tabs|merge([{
-        id: tab.id,
-        label: tab.label,
-        title: tab.label,
-        content: tabContent
-    }]) }) %}
-{% endfor %}
-
-
-<div class="py-16">
-    {% if tabsData.tabs is not empty %}
-        {{ include('_components/ui/tabs/tabs.twig', {
-            data: tabsData
-        }) }}
     {% else %}
-        <p class="text-center text-ehaus-grey">Error: Could not load article sections.</p>
-    {% endif %}
+        <div class="col-span-10 py-32 text-center">
+            <p class="font-serif text-2xl text-foxplan-charcoal-brown/40 italic">No entries found in {{ categoryLabel ?? 'this section' }}.</p>
+        </div>
+    {% endfor %}
 </div>

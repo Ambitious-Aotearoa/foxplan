@@ -1,64 +1,58 @@
-{# _sections/explore-1.twig #}
+{# templates/_sections/explore-1.twig #}
 
 {% set defaults = {
     mainHeading: 'Explore insurance',
     backgroundColor: 'bg-[#F4EFE1]',
     headingColor: 'text-[#270E15]',
     textColor: 'text-[#270E15]',
-    buttonBgColor: 'bg-[#270E15]',
+    buttonBgColor: 'bg-black',
     buttonTextColor: 'text-white',
     services: []
 } %}
 
 {% set data = defaults | merge(props | default({})) %}
 
-<section class="w-full relative z-20 {{ data.backgroundColor }} pt-16 pb-16 md:pt-24 md:pb-32 mb-[800px]">
-    <div class="mx-auto px-8">
+<section class="w-full relative z-20 {{ data.backgroundColor }} pt-16 pb-16 md:pt-24 md:pb-32">
+    <div class="mx-auto px-8 md:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-12 items-start">
 
-        {# 12-Column Grid #}
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-4 items-start"> {# Reduced gap-x to bring content closer #}
-
-            {# Left Side: Heading (30% / 4 Columns) #}
-            <div class="lg:col-span-4 mb-12 lg:mb-0 pt-2">
-                <h2 class="font-serif text-5xl lg:text-[5.2rem] font-light leading-[0.8] {{ data.headingColor }} tracking-tight">
+            {# Left Side: Large Heading #}
+            <div class="lg:col-span-4 mb-16 lg:mb-0">
+                <h2 class="font-serif text-6xl lg:text-[6.8rem] font-light leading-[0.8] {{ data.headingColor }} tracking-tighter">
                     {{ data.mainHeading | raw }}
                 </h2>
             </div>
 
-            {# Right Side: Services (70% / 8 Columns) #}
+            {# Right Side: 3-Column Grid #}
             <div class="lg:col-span-8">
-                {#
-                Removed unnecessary left padding or margins.
-                The services now start immediately at the edge of the 4th column.
-                #}
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-y-20 gap-x-8">
-
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-y-16 gap-x-10">
                     {% for service in data.services %}
                         <div class="flex flex-col h-full">
-                            <h3 class="font-serif text-2xl md:text-[1.8rem] font-light {{ data.headingColor }} mb-4 leading-tight">
+                            <h3 class="font-serif text-3xl md:text-[2.2rem] font-light {{ data.headingColor }} mb-6 leading-tight">
                                 {{ service.title }}
                             </h3>
-                            <p class="text-[14px] font-light {{ data.textColor }} leading-relaxed opacity-80 mb-8">
-                                {{ service.description }}
-                            </p>
+
+                            <div class="font-aktiv text-[15px] {{ data.textColor }} leading-relaxed opacity-90 mb-10">
+                                {{ service.description | raw }}
+                            </div>
 
                             <div class="mt-auto">
                                 {% include '_components/ui/button/button.twig' with {
                                     props: {
-                                        text: 'LEARN MORE',
+                                        text: 'Learn more',
                                         url: service.linkUrl | default('#'),
                                         backgroundColor: data.buttonBgColor,
                                         textColor: data.buttonTextColor,
                                         style: 'primary',
-                                        classes: 'text-[10px] tracking-[0.15em] px-5 py-3 uppercase inline-block'
+                                        classes: 'text-[11px] tracking-[0.1em] px-8 py-3 rounded-none uppercase'
                                     }
                                 } only %}
                             </div>
                         </div>
                     {% endfor %}
-
                 </div>
             </div>
+
         </div>
     </div>
 </section>

@@ -1,0 +1,74 @@
+color: null
+description: null
+fieldLayouts:
+  9e4b7a6c-5588-4d24-a9a8-31e0f9cd3f8b:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-27T02:01:17+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 41c2fab6-c090-4ba5-bd9b-34b43172425a # Milestone Year 
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6590f6ca-1d44-417b-899d-e0469cde742b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-27T02:01:17+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 09a98099-02ba-4caf-9a69-5c2e6b631b09 # Milestone Title
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: cda43d6a-e188-4806-b11c-5686e5af3840
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-27T02:01:17+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 47d7c8bb-a751-46b1-9d2e-5ad509c8c477 # Milestone Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1f39f92b-e820-415e-926d-fba1746caae5
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: e80b5e96-310d-4b59-b091-cc8d9eadd834
+        userCondition: null
+handle: timeline
+hasTitleField: false
+icon: null
+name: Timeline
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: '{milestoneYear}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

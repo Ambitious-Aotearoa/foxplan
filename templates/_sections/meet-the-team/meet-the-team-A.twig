@@ -3,7 +3,7 @@
    ----------------------------------------------------------------------------------------- #}
 {% macro teamMemberCard(member) %}
     <div class="team-card flex flex-col h-full">
-        {# Square portrait as seen in your designs #}
+        {# Square portrait with grayscale effect #}
         <div class="aspect-square bg-gray-100 mb-6 overflow-hidden">
             <img src="{{ craft.vite.asset('images/About_1.jpg') }}"
                  alt="{{ member.memberName }}"
@@ -19,6 +19,17 @@
         <p class="font-montreal text-xs uppercase tracking-wider text-ehaus-grey opacity-80 mb-4">
             {{ member.jobTitle }}
         </p>
+
+        {# RESTORED & UNBOLDED: Phone Number #}
+        {% if member.phoneNumber is not empty %}
+            <div class="mb-4">
+                {# font-normal replaces font-bold for a more subtle look #}
+                <a href="tel:{{ member.phoneNumber|replace('/[^0-9+]/', '') }}"
+                   class="text-sm font-normal text-ehaus-grey hover:underline">
+                    <span class="opacity-60">P:</span> {{ member.phoneNumber }}
+                </a>
+            </div>
+        {% endif %}
 
         {% if member.bodyText is not empty %}
             <div class="font-montreal text-sm text-ehaus-grey leading-relaxed max-w-prose">
@@ -38,56 +49,56 @@
     titleClasses: 'hidden',
     defaultTab: 'accountingWealthManagement',
     tabs: []
-    } %}
+} %}
 
-    {% set tabDefinitions = [
+{% set tabDefinitions = [
     { id: 'accountingWealthManagement', label: 'Accounting & Wealth Management' },
     { id: 'financialAdvisers', label: 'Financial Advisers' },
-    { id: 'managementSupport', label: 'Management & Support' }
-    ] %}
+    { id: 'headOfficeStaff', label: 'Head Office Staff' }
+] %}
 
 {% for tab in tabDefinitions %}
     {% set people = teamMembers | filter(member => member.category == tab.id) %}
 
     {% set tabContent %}
-        {# The beige area begins immediately under the tab titles #}
-<div class="bg-foxplan-neutral-beige px-6 md:px-12 py-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
-        {% for member in people %}
-        {{ macros.teamMemberCard(member) }}
-        {% endfor %}
-        </div>
-        </div>
-        {% endset %}
-
-        {% set tabsData = tabsData|merge({ tabs: tabsData.tabs|merge([{
-            id: tab.id,
-            label: tab.label,
-            content: tabContent
-        }]) }) %}
-        {% endfor %}
-
-        {# -----------------------------------------------------------------------------------------
-        RENDER: Header (Yellow) and Tabs (Transparent/Neutral)
-        ----------------------------------------------------------------------------------------- #}
-
-        {# Yellow background ends HERE, before the tabs begin #}
-        <div class="bg-foxplan-yellow text-foxplan-charcoal-brown pt-24 pb-12 px-6 md:px-12">
-            <div class="w-full">
-                <h1 class="font-serif text-8xl md:text-9xl mb-8 leading-none">
-                    Meet the Team
-                </h1>
-                <p class="font-montreal text-lg md:text-xl max-w-2xl leading-snug">
-                    Our strength lies in our people. We have decades of experience and a shared commitment to helping Kiwis make smart, confident financial decisions.
-                </p>
+        {# Beige content area with reduced top padding #}
+        <div class="bg-foxplan-neutral-beige px-6 md:px-12 pt-8 pb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+                {% for member in people %}
+                    {{ macros.teamMemberCard(member) }}
+                {% endfor %}
             </div>
         </div>
+    {% endset %}
 
-        {# The tab navigation sits below the yellow block #}
-        <div class="w-full bg-foxplan-neutral-beige">
-            {% if tabsData.tabs is not empty %}
-{{ include('_components/ui/tabs/tabs.twig', {
-    data: tabsData
-}) }}
+    {% set tabsData = tabsData|merge({ tabs: tabsData.tabs|merge([{
+        id: tab.id,
+        label: tab.label,
+        content: tabContent
+    }]) }) %}
+{% endfor %}
+
+{# -----------------------------------------------------------------------------------------
+   RENDER: Header (Yellow) and Navigation (Beige)
+   ----------------------------------------------------------------------------------------- #}
+
+{# Yellow background ONLY for the header text #}
+<div class="bg-foxplan-yellow text-foxplan-charcoal-brown pt-24 pb-12 px-6 md:px-12">
+    <div class="w-full">
+        <h1 class="font-serif text-8xl md:text-9xl mb-8 leading-none">
+            Meet the Team
+        </h1>
+        <p class="font-montreal text-lg md:text-xl max-w-2xl leading-snug">
+            Our strength lies in our people. We have decades of experience and a shared commitment to helping Kiwis make smart, confident financial decisions.
+        </p>
+    </div>
+</div>
+
+{# The tab navigation area transitions to beige IMMEDIATELY here #}
+<div class="w-full bg-foxplan-neutral-beige">
+    {% if tabsData.tabs is not empty %}
+        {{ include('_components/ui/tabs/tabs.twig', {
+            data: tabsData
+        }) }}
     {% endif %}
 </div>

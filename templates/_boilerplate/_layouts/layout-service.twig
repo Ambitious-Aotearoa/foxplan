@@ -17,7 +17,12 @@
     {% include "_sections/hero-sections/hero-1.twig" with { data: entry } %}
 
              {# 4. Include the "Help Me Buying Your First Home" Section #}
-    {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with { entry: entry } %}
+    {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with {
+        props: {
+            paragraphHeading: entry.paragraphHeading,
+            infoBlock: entry.infoBlock.all()
+        }
+    } %}
 
     {# 5. How We Work Section (Matrix: accordion) #}
     {% include "_sections/content-sections/how-we-work.twig" with { entry: entry } %}

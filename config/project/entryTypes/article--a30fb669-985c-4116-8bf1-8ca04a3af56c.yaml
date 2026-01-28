@@ -55,10 +55,10 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-16T22:56:20+00:00'
+            dateAdded: '2026-01-27T03:36:07+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 57b202f1-c4d8-4b39-bc56-d1eeb2b1244b # Hero Subheading
+            fieldUid: a82e8874-a0f4-4805-b59d-8c47d4867d7c # Tags
             handle: null
             includeInCards: false
             instructions: null
@@ -67,15 +67,15 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 3c941f3b-c657-4e81-a4ce-ee4234c7aff9
+            uid: 9fa5742a-c968-4a73-8a14-3ae653bad6a0
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-16T22:56:20+00:00'
+            dateAdded: '2026-01-27T03:36:07+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: cdf13e52-0c89-4938-8466-07df74ab4a51 # Hero Date
+            fieldUid: d4886813-ca9f-4b8a-a82c-097ea4232f7e # Insight Body
             handle: null
             includeInCards: false
             instructions: null
@@ -84,86 +84,29 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: b9e81995-d85c-4e81-aece-0b519da8f926
+            uid: 2be69219-4270-4bda-b404-b19dd2cc494d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-27T04:14:14+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: efeb5ea9-1bf7-4e7d-a7fa-d14d0e4d081b # Article Categories
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0319c7ba-e2e4-491f-8478-c2b85350cd90
             userCondition: null
             warning: null
             width: 100
         name: Content
         uid: d38cd4ef-e6bb-466d-915e-f7a42936b93b
-        userCondition: null
-      -
-        elementCondition: null
-        elements:
-          -
-            dateAdded: '2025-12-16T22:56:20+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 7d29f47f-49be-42e4-a76a-2c52f645550a # Heading
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 10e3fdfa-34ba-4e82-a8eb-2a250ea61814
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-16T23:14:55+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: e4ad5282-5b53-4193-bf9a-40d21e1aab4d # Date
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: ae297cc1-5c63-4adf-91db-28ba797c7b1a
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-16T23:00:47+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 51becce4-9606-46e8-bf00-a7858643841c # Read Next Subheading
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 41d565f9-8139-4f35-935f-89f140f9e1cf
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-16T23:00:47+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: c46f00f9-daeb-4c9f-9bc7-076c3deaf385
-            userCondition: null
-            warning: null
-            width: 100
-        name: 'Read Next'
-        uid: daacf056-48f6-4437-9dfe-b45db5e6c9d3
         userCondition: null
 handle: article
 hasTitleField: true

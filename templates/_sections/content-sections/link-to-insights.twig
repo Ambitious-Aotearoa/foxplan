@@ -1,64 +1,49 @@
 {# _sections/content-sections/link-to-insights.twig #}
 
-{% set insightData = {
-    heading: 'Latest insights',
-    articles: [
-        {
-            date: 'JUNE 13, 2024',
-            title: 'Why choose private health insurance?',
-            url: '#'
-        },
-        {
-            date: 'MAY 20, 2024',
-            title: '8 great investment mistakes to avoid',
-            url: '#'
-        },
-        {
-            date: 'MAY 16, 2024',
-            title: 'The ultimate guide to retirement planning',
-            url: '#'
-        }
-    ]
-} %}
+{#
+Fetching the current category and related articles from Craft
 
-{# Tailwind Class Definitions for consistency #}
-{% set mainHeadingClasses = 'font-serif text-[4rem] font-light leading-none text-gray-900 mb-12' %}
-{% set articleDateClasses = 'text-sm font-semibold text-black uppercase tracking-wider mb-2' %}
-{% set articleTitleClasses = 'font-serif text-[2rem] max-w-lg font-medium leading-tight text-black mb-4 hover:text-gray-700 transition-colors duration-200' %}
-{% set readMoreClasses = 'text-sm text-[#8C8C8C] uppercase tracking-wider hover:text-gray-900 transition-colors duration-200' %}
+#}
+{% set currentCategory = entry.articleCategories.one() %}
+{% set relatedArticles = craft.entries()
+    .section('article')
+    .relatedTo(currentCategory)
+    .id('not ' ~ entry.id)
+    .limit(3)
+    .all() %}
 
-<section class="w-full bg-white pt-16 pb-16 md:pt-24 md:pb-24">
-    <div class="mx-auto px-4">
+{% if relatedArticles|length > 0 %}
+    <section class="w-full bg-[#231111] pt-16 pb-20">
+        <div class="px-[20px]">
 
+            {# Smaller, more modest Heading #}
+            <h2 class="font-serif text-[#D4AF37] text-[3rem] md:text-[3.5rem] font-light mb-12">
+                Read Next
+            </h2>
 
-        {# Main Heading #}
-        <h2 class="{{ mainHeadingClasses }}">{{ insightData.heading }}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-10 lg:gap-x-16">
+                {% for article in relatedArticles %}
+                    <div class="pt-6 pb-8 border-t border-[#D4AF37]/30 flex flex-col items-start">
 
-        {# Articles Grid Container #}
-        <div class="
-            grid grid-cols-1 md:grid-cols-3
-            md:gap-x-8 lg:gap-x-12
-        ">
+                        {# Date and Metadata #}
+                        <p class="font-montreal text-[10px] uppercase tracking-[0.2em] text-[#D4AF37]/60 mb-3">
+                            {{ article.postDate | date('F d, Y') | upper }}
+                        </p>
 
-            {% for article in insightData.articles %}
-                {# Apply border-t to every article item #}
-                <div class="pt-6 pb-8 md:p-0 md:pt-8 md:pb-8
-                    border-t border-gray-300
-                ">
+                        {# Article Title: Compact and Serif #}
+                        <a href="{{ article.url }}" class="group">
+                            <h3 class="font-serif text-[1.6rem] lg:text-[1.8rem] leading-tight text-[#D4AF37] mb-6 group-hover:opacity-80 transition-opacity">
+                                {{ article.title }}
+                            </h3>
+                        </a>
 
-                    <p class="{{ articleDateClasses }}">{{ article.date }}</p>
-
-                    <a href="{{ article.url }}">
-                        <h3 class="{{ articleTitleClasses }}">{{ article.title }}</h3>
-                    </a>
-
-                    <a href="{{ article.url }}" class="{{ readMoreClasses }}">
-                        READ MORE
-                    </a>
-                </div>
-            {% endfor %}
-
+                        {# Read More Link #}
+                        <a href="{{ article.url }}" class="font-montreal text-[9px] uppercase tracking-[0.2em] text-[#D4AF37] hover:text-white transition-colors">
+                            READ MORE
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-
-    </div>
-</section>
+    </section>
+{% endif %}

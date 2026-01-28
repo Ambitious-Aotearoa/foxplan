@@ -10,19 +10,6 @@ settings:
   typeSettings:
     __assoc__:
       -
-        - entry
-        -
-          __assoc__:
-            -
-              - sources
-              - '*'
-            -
-              - showUnpermittedSections
-              - ''
-            -
-              - showUnpermittedEntries
-              - ''
-      -
         - url
         -
           __assoc__:
@@ -36,7 +23,6 @@ settings:
               - allowCustomSchemes
               - ''
   types:
-    - entry
     - url
 translationKeyFormat: null
 translationMethod: none

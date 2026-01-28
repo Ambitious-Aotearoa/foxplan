@@ -1,0 +1,95 @@
+{# templates/_sections/content-sections/investment-committee.twig #}
+
+{% set bgColor = backgroundColor ?? 'bg-foxplan-yellow' %}
+{% set txtColor = textColor ?? 'text-foxplan-charcoal-brown' %}
+
+<section class="w-full {{ bgColor }} py-24"
+         x-data="{
+            open: false,
+            activeMember: { name: '', title: '', image: '', bio: '' }
+         }">
+
+    <div class="w-full px-8 md:px-16">
+        <h2 class="font-serif text-[4.5rem] md:text-[8vw] leading-[0.85] tracking-tighter {{ txtColor }} mb-20">
+            Our Investment<br>Committee
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-20">
+            {% set members = craft.entries.section('committeeMembers').all() %}
+
+            {% for member in members %}
+                <div class="group cursor-pointer"
+                     @click="
+                        open = true;
+                        activeMember = {
+                            name: '{{ member.memberName | escape('js') }}',
+                            title: '{{ member.jobTitle | escape('js') }}',
+                            image: '{{ member.memberImage.one().url ?? '' }}',
+                            bio: `{{ member.bodyText | raw | escape('js') }}`
+                        }
+                     ">
+
+                    <div class="aspect-[4/3] w-full overflow-hidden mb-6 bg-black/5">
+                        {% set img = member.memberImage.one() %}
+                        {% if img %}
+                            <img src="{{ img.url }}" alt="{{ member.memberName }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        {% endif %}
+                    </div>
+
+                    <h3 class="font-serif text-3xl {{ txtColor }} leading-tight">
+                        {{ member.memberName }}
+                    </h3>
+                    <p class="font-aktiv text-[10px] font-bold tracking-[0.05em] uppercase {{ txtColor }} mt-2 opacity-80">
+                        {{ member.jobTitle }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {# --- THE FULL-WIDTH CONTENT PULLOUT --- #}
+    <template x-teleport="body">
+        <div x-show="open"
+             class="fixed inset-0 z-[100] flex justify-end"
+             x-cloak
+             @keydown.window.escape="open = false">
+
+            <div x-show="open"
+                 x-transition:enter="transition ease-out duration-500"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 @click="open = false"
+                 class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+            <div class="relative w-full md:w-[60vw] bg-white h-full shadow-2xl overflow-y-auto overflow-x-hidden"
+                 x-show="open"
+                 x-transition:enter="transition ease-out duration-500 transform"
+                 x-transition:enter-start="translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in duration-500 transform"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="translate-x-full">
+
+                <button @click="open = false" class="absolute top-8 right-8 p-4 group text-foxplan-charcoal-brown z-10">
+                    <span class="text-4xl font-light group-hover:rotate-90 transition-transform inline-block">&times;</span>
+                </button>
+
+                <div class="p-10 md:p-16 lg:p-24 w-full">
+                    {# Header with Image and Text spreading across the width #}
+                    <div class="flex flex-col md:flex-row items-start gap-12 mb-16 w-full">
+                        <img :src="activeMember.image" class="w-64 h-64 object-cover shadow-lg shrink-0">
+                        <div class="flex-1">
+                            <h2 class="font-serif text-6xl md:text-7xl lg:text-8xl text-foxplan-charcoal-brown leading-[0.8] tracking-tighter" x-text="activeMember.name"></h2>
+                            <p class="font-aktiv text-xs font-bold uppercase tracking-[0.2em] mt-8 text-foxplan-charcoal-brown/50" x-text="activeMember.title"></p>
+                        </div>
+                    </div>
+
+                    {# The Biography text now has no max-width constraint #}
+                    <div class="font-aktiv text-lg md:text-xl leading-relaxed text-foxplan-charcoal-brown space-y-8 w-full"
+                         x-html="activeMember.bio">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</section>

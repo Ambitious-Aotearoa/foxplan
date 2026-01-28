@@ -1,0 +1,79 @@
+columnSuffix: null
+handle: supplierCategory
+instructions: null
+name: 'Supplier category'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Investments & Kiwisaver'
+        -
+          - value
+          - investmentsKiwisaver
+        -
+          - icon
+          - ''
+        -
+          - color
+          - ''
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - Insurance
+        -
+          - value
+          - insurance
+        -
+          - icon
+          - ''
+        -
+          - color
+          - ''
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - Mortgages
+        -
+          - value
+          - mortgages
+        -
+          - icon
+          - ''
+        -
+          - color
+          - ''
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 'Non-bank Lenders'
+        -
+          - value
+          - nonBankLenders
+        -
+          - icon
+          - ''
+        -
+          - color
+          - ''
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

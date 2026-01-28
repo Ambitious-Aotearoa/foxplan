@@ -11,69 +11,52 @@
 
 {% block blockAppBody %}
 
-    {# Hero Section #}
-    <section class="w-full bg-foxplan-charcoal-brown text-foxplan-yellow pt-24 pb-24">
-        <div class="w-full px-8 md:px-12 lg:px-16">
-            <div class="max-w-7xl">
-                <h1 class="font-serif text-7xl md:text-8xl lg:text-9xl mb-8 tracking-tight leading-none text-left">
-                    Our suppliers
-                </h1>
-                <p class="font-aktiv-grotesk text-xl md:text-2xl max-w-2xl leading-relaxed opacity-90 text-left">
-                    We partner with leading financial institutions to ensure you get the best possible outcomes for your investments, insurance, and lending needs.
-                </p>
-            </div>
+    {# Hero Section (Original Styles) #}
+    <section class="w-full bg-foxplan-charcoal-brown text-foxplan-yellow pt-24 pb-24 px-8 md:px-12 lg:px-16">
+        <div class="max-w-7xl">
+            <h1 class="font-serif text-7xl md:text-8xl lg:text-9xl mb-8 tracking-tight leading-none text-left">
+                Our suppliers
+            </h1>
+            <p class="font-aktiv-grotesk text-xl md:text-2xl max-w-2xl leading-relaxed opacity-90 text-left">
+                We partner with leading financial institutions to ensure you get the best possible outcomes for your investments, insurance, and lending needs.
+            </p>
         </div>
     </section>
 
-    {# --- DATA DEFINITION (CRITICAL: This must be here to fix the error) --- #}
+    {# --- DYNAMIC DATA FETCHING --- #}
+    {% set tabDefinitions = [
+        { id: 'investmentsKiwisaver', label: 'Investments & Kiwisaver' },
+        { id: 'insurance', label: 'Insurance' },
+        { id: 'mortgages', label: 'Mortgages' },
+        { id: 'nonBankLenders', label: 'Non bank lenders' }
+    ] %}
+
+    {% set supplierTabs = [] %}
+
+    {% for tab in tabDefinitions %}
+        {# CRITICAL FIX: The section handle is 'ourSuppliers' #}
+        {# The field handle is 'supplierCategory' #}
+        {% set suppliersForTab = craft.entries()
+            .section('ourSuppliers')
+            .supplierCategory(tab.id)
+            .all() %}
+
+        {% set supplierTabs = supplierTabs|merge([{
+            id: tab.id,
+            label: tab.label,
+            title: tab.label,
+            suppliers: suppliersForTab
+        }]) %}
+    {% endfor %}
+
     {% set supplierData = {
-        tabs: [
-            {
-                id: 'investments',
-                label: 'Investments & Kiwisaver',
-                title: 'Investments & Kiwisaver',
-                suppliers: [
-                { name: 'Consilium/Synergy', contact: '0800 222 876' },
-                { name: 'Select Wealth', contact: '0800 736 034', general: '0800 269 296' },
-                { name: 'Booster', contact: '0800 737 101 • +64 4 495 8700' },
-                { name: 'ANZ Investments/ One Answer', contact: '0800 336 338' },
-                { name: 'Fisher Funds', contact: '0508 464 999' }
-            ]
-            },
-            {
-                id: 'insurance',
-                label: 'Insurance',
-                title: 'Insurance Providers',
-                suppliers: [
-                { name: 'AIA', contact: '0800 500 108' },
-                { name: 'Chubb Life', contact: '0800 270 714' }
-            ]
-            },
-            {
-                id: 'mortgages',
-                label: 'Mortgages',
-                title: 'Mortgage Advice',
-                suppliers: [
-                { name: 'ANZ', contact: '0800 269 296' },
-                { name: 'ASB', contact: '0800 803 804' }
-            ]
-            },
-            {
-                id: 'non-bank-lenders',
-                label: 'Non bank lenders',
-                title: 'Non bank lenders',
-                suppliers: [
-                { name: 'Resimac', contact: '0800 737 462' },
-                { name: 'Avanti Finance', contact: '0800 808 003' }
-            ]
-            }
-        ]
+        tabs: supplierTabs
     } %}
 
     {# 2. Interactive Section Wrapper #}
-    <div x-data="{ activeTab: 'investments' }" class="bg-foxplan-yellow">
+    <div x-data="{ activeTab: 'investmentsKiwisaver' }" class="bg-foxplan-yellow">
 
-        {# Call the Tabs Component #}
+        {# Tabs Component #}
         {% include '_components/ui/tabs/tabs-services.twig' with {
             props: {
                 tabs: supplierData.tabs,
@@ -85,7 +68,7 @@
             }
         } only %}
 
-        {# Call the Suppliers Section #}
+        {# Suppliers Section #}
         {% include '_sections/content-sections/suppliers.twig' with {
             data: supplierData
         } only %}
@@ -105,5 +88,7 @@
             borderTopWidth: 'border-t-2'
         }
     }) }}
+
+
 
 {% endblock %}

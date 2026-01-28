@@ -41,13 +41,13 @@
     {# --- Info Block / Services Section --- #}
     {{ include('_sections/content-sections/help-for-buying-your-first-home.twig', {
         props: {
-            mainHeading: entry.paragraphHeading ?? 'Our Services',
-            services: entry.infoBlock.all() ?? [],
+            paragraphHeading: entry.paragraphHeading,
+            infoBlock: entry.infoBlock.exists() ? entry.infoBlock.all() : [],
             backgroundColor: 'bg-foxplan-yellow',
             textColor: 'text-foxplan-charcoal-brown',
             borderColor: 'border-[#270E15]'
-            }
-            }) }}
+        }
+    }) }}
 
 {#     3. how we work accordion #}
 {#   {# templates/pages/First-home-buyers/index.twig #}

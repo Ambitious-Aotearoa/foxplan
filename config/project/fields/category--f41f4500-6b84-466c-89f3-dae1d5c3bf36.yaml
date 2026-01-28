@@ -44,7 +44,7 @@ settings:
       __assoc__:
         -
           - label
-          - 'HEAD OFFICE STAFF'
+          - 'Head Office Staff'
         -
           - value
           - headOfficeStaff

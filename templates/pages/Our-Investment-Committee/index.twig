@@ -1,0 +1,46 @@
+{# 1. Extend the base boilerplate #}
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-foxplan-charcoal-brown',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+{# 2. Fill the body block defined in layout-base #}
+{% block blockAppBody %}
+    {# Example within your main page or index.twig #}
+
+    {% include "_sections/content-sections/investment-committee.twig" with {
+        backgroundColor: 'bg-foxplan-yellow',
+        textColor: 'text-foxplan-charcoal-brown'
+    } only %}
+
+    {# Passing custom data or overrides #}
+
+  {# templates/pages/Our-Investment-Committee/index.twig #}
+
+{% include "_sections/content-sections/how-we-work.twig" with {
+    props: {
+        mainHeading: "How we work <br> with you",
+        backgroundColor: "bg-foxplan-neutral-beige",
+        textColor: "text-foxplan-charcoal-brown",
+
+        accordionField: entry.accordion
+        }
+        } only %}
+
+    {#  footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+{% endblock %}

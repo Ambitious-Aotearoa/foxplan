@@ -1,0 +1,51 @@
+defaultPlacement: end
+fieldLayouts:
+  55e1d0f4-0b92-4cc9-8a37-5ea0b968bf5a:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-01-27T20:53:56+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\TitleField
+            uid: 59e8ee42-fcc9-4b39-b5b5-424f83d0d1f4
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 5374de46-919d-46f3-9bba-c1adac173aae
+        userCondition: null
+handle: articleCategories
+name: 'Article Categories'
+siteSettings:
+  904beb73-9861-43f3-8de7-90464f6457de: # foxplan
+    hasUrls: true
+    template: pages/Insights/index.twig
+    uriFormat: 'article-categories/{slug}'
+structure:
+  maxLevels: null
+  uid: 6fe34f6b-efb4-48b2-9598-33340397a0ce

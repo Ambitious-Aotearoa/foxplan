@@ -1,0 +1,372 @@
+color: null
+description: null
+fieldLayouts:
+  d98b8f1a-bc69-4ab7-847e-61996875df66:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-01-25T22:12:26+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: bcc3ef10-498b-4a6f-ab66-bb1d1d9d6c01
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6fbf7c43-000e-4fb6-b174-cdd462cb85c2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0a6dc8c0-5148-497f-ba69-15e6990a07ba
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9427cd10-9dd6-4b3d-819a-7e3dffb0aa53
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 53c598e4-8dbf-4957-aef5-63132e5a819f
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 464b4548-ab47-4da1-881c-24c8b99a1fc0
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 75548517-23d5-4be6-b3c4-98dcb5520700
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9179d442-e43d-4499-876e-a7779f46d375
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'How we optimise  your  KiwiSaver'
+        uid: bcd1db06-54ed-469a-8dc4-fd9648f43589
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 32557dc6-c930-41e5-9aae-4879c024ed6c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:34:10+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 3270e53f-a3c4-4994-8f80-9f1a9d8c1fdb # Accordion-Arrow
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: cee6d7f8-9f82-4fa3-97f1-484169045f4b
+            userCondition: null
+            warning: null
+            width: 100
+        name: "Get\_personalised\_advice from \nyour\_KiwiSaver\_Adviser"
+        uid: 4d5327e5-e739-476e-9386-b9a94fa419eb
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading3
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 848a9cea-3e0c-405a-805c-b1d97b882a92
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f6214136-417d-44ab-9bb4-38628b8dc6ab
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: bdf2abb6-163b-4831-b0c0-048668a5ed8d
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'How we work with you'
+        uid: 29ca84bf-0513-4343-b620-f514a0519e0d
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading4
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e8654182-4a6c-4eba-857e-c16805d06eb6
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: bodyText2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a5bb6441-b3f0-4528-878c-ef951ff1ff00
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7d982134-8c37-4180-9d02-c31cf4138d60
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: button2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e9a3cba1-570c-40c8-8ac9-aafceee333f4
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
+            handle: buttonLink2
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 90b632aa-4323-4944-a7f8-c411e6e3887d
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'image and text section'
+        uid: 32aa0129-ce90-460c-bb70-c5e1c0a8addd
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-25T22:20:40+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading5
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 705ff6fa-932f-482e-a26b-945e32de8b97
+            userCondition: null
+            warning: null
+            width: 100
+        name: Testimonials
+        uid: 306b2a52-bdf2-4c0e-827c-e5a026daa403
+        userCondition: null
+handle: kiwisaver
+hasTitleField: true
+icon: null
+name: KiwiSaver
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

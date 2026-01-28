@@ -1,66 +1,142 @@
-{# _sections/who-is-this-for.twig #}
+{# templates/_sections/content-sections/who-is-this-for.twig #}
 
-{% set sectionData = {
-    block1: {
-        heading: 'Build, grow and exit on your terms',
-        body: 'Our minority equity ownership model means that you can enjoy ongoing income from your hard work even after retirement. We can design a structured, transparent exit strategy for retirement or when you\'re ready to sell.'
-    },
-    block2: {
-        heading: 'Who is this for?',
-        body: 'This is an ideal opportunity for established accountants, financial planners and advisers with their own small business. Equity ownership allows you more time for advising your clients with more support for your business operations.'
-    }
-} %}
+<section class="w-full relative overflow-hidden" id="scroll-container">
 
-{# Tailwind Class Definitions for styling #}
-{% set headingClasses = 'font-serif text-5xl md:text-6xl font-normal leading-none text-gray-900 mb-6' %}
-{% set bodyClasses = 'text-base text-gray-700 leading-relaxed max-w-sm' %}
+    {# --- THE REFINED DOTTED LINE & MOVING DOT --- #}
+    <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] z-50 pointer-events-none">
 
-<section class="w-full pt-16 pb-16 md:pt-24 md:pb-24">
-    <div class="mx-auto">
+        {# 1. The Background Path (Faint Dotted Line) #}
+        <div class="h-full w-full border-l-2 border-dashed border-foxplan-charcoal-brown/10"></div>
 
-        {# Main Grid Container for Staggered Layout (12 columns total) #}
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-12">
+        {# 2. The Progress Path (Darker Dotted Line) #}
+        {# Mask-image ensures the dots align perfectly with the background dots #}
+        <div id="progress-line"
+             class="absolute top-0 left-0 w-full border-l-2 border-dashed border-foxplan-charcoal-brown transition-all duration-75 ease-out"
+             style="height: 0%; clip-path: inset(0 0 0 0);"></div>
 
-            {# ========================================== #}
-            {# LEFT COLUMN STACK: Content 1 and Placeholder 2 #}
-            {# ========================================== #}
-
-            {# Content Column spans 5 columns, uses flex-col and h-full for vertical management #}
-            <div class="md:col-span-6 lg:col-span-5 flex flex-col justify-start h-full">
-
-                {# Content 1: "Build, grow and exit..." #}
-                <div class="mb-12 px-4">
-                    <h2 class="{{ headingClasses }}">{{ sectionData.block1.heading }}</h2>
-                    <p class="{{ bodyClasses }}">{{ sectionData.block1.body }}</p>
-                </div>
-
-                {# Placeholder 2: Bottom-Left Placeholder #}
-                <div class="mt-auto h-[450px] w-full md:w-3/4 bg-gray-100">
-                    {# Placeholder content here #}
-                </div>
-            </div>
-
-            {# ========================================== #}
-            {# RIGHT COLUMN STACK: Placeholder 1 (LONG) and Content 2 #}
-            {# ========================================== #}
-
-            {# Content Column spans 7 columns, uses flex-col and h-full for vertical management #}
-            <div class="md:col-span-6 lg:col-span-7 flex flex-col justify-start h-full">
-
-                {# Placeholder 1: Top-Right (LONG) Placeholder #}
-                {# MODIFIED: Reduced margin-bottom from mb-36 back to mb-24 to decrease the space above the text #}
-                <div class="h-[700px] mb-24 bg-gray-100">
-                    {# Placeholder content here #}
-                </div>
-
-                {# Content 2: "Who is this for?" #}
-                <div class="pl-4">
-                    {# Note: Using headingClasses but with specific text size override #}
-                    <h2 class="{{ headingClasses }} text-4xl mb-4">{{ sectionData.block2.heading }}</h2>
-                    <p class="{{ bodyClasses }}">{{ sectionData.block2.body }}</p>
-                </div>
-            </div>
-
+        {# 3. The Moving Dot (A small, elegant indicator) #}
+        <div id="scrolling-dot"
+             class="absolute left-1/2 -translate-x-1/2 top-0 w-3 h-3 bg-foxplan-charcoal-brown rounded-full shadow-sm opacity-0 transition-opacity duration-300"
+             style="transform: translate(-50%, -50%);">
         </div>
     </div>
+
+    {# --- SECTION 1: Yellow --- #}
+    <div class="bg-foxplan-yellow pt-24 pb-12 relative z-20">
+        <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start">
+            <div class="col-span-1 md:col-span-6 px-8 md:pl-12 lg:pl-16">
+                <div class="max-w-2xl">
+                    <h2 class="font-serif text-5xl lg:text-[5rem] leading-[0.9] tracking-tight mb-8 text-foxplan-charcoal-brown">
+                        {{ entry.paragraphHeading | raw }}
+                    </h2>
+                    <div class="font-aktiv text-base md:text-lg opacity-80 text-foxplan-charcoal-brown">
+                        {{ entry.bodyText | raw }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-1 md:col-start-7 md:col-span-4">
+                <div class="w-full relative -mb-48 md:-mb-72 lg:-mb-96 z-30">
+                    <img src="{{ craft.vite.asset('images/About_1.jpg') }}" class="w-full h-[650px] lg:h-[900px] object-cover shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# --- SECTION 2: White --- #}
+    <div class="bg-white pt-[150px] md:pt-[250px] relative z-10 pb-0">
+        <div class="grid grid-cols-1 md:grid-cols-10 w-full">
+            <div class="col-span-1 md:col-span-4 self-start leading-[0]">
+                <img src="{{ craft.vite.asset('images/About_2.jpg') }}" class="w-full h-[550px] lg:h-[750px] object-cover block">
+            </div>
+            <div class="col-span-1 md:col-start-7 md:col-span-4 px-8 md:pl-0 md:pr-12 lg:pr-24 self-start">
+                <div class="mt-[200px] pb-32">
+                    <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-8">
+                        {{ entry.paragraphHeading2 | raw }}
+                    </h2>
+                    <div class="font-aktiv text-base md:text-lg text-foxplan-charcoal-brown/80 mb-8">
+                        {{ entry.bodyText2 | raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# --- SECTION 3: Light Beige --- #}
+    <div class="bg-[#F8F3ED] relative pt-0">
+        <div class="grid grid-cols-1 md:grid-cols-10 w-full min-h-[700px] items-end">
+            <div class="col-span-1 md:col-span-6 px-8 md:pl-12 lg:pl-16 pb-20">
+                <div class="max-w-xl">
+                    <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-8">
+                        {{ entry.paragraphHeading3 | raw }}
+                    </h2>
+                    <div class="font-aktiv text-base md:text-lg text-foxplan-charcoal-brown/80">
+                        {{ entry.bodyText3 | raw }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-1 md:col-span-4 self-center flex items-center">
+                <div class="w-full h-full py-20 pr-8 lg:pr-16">
+                    <img src="{{ craft.vite.asset('images/About_3.jpg') }}" class="w-full h-auto max-h-[550px] object-cover block shadow-md">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# --- SECTION 4: White --- #}
+    <div class="bg-white relative pt-0">
+        <div class="grid grid-cols-1 md:grid-cols-10 w-full min-h-[700px] items-end">
+            <div class="col-span-1 md:col-span-4 self-center flex items-center">
+                <div class="w-full h-full py-20 pl-8 lg:pl-16">
+                    <img src="{{ craft.vite.asset('images/About_4.jpg') }}" class="w-full h-auto max-h-[550px] object-cover block shadow-md">
+                </div>
+            </div>
+            <div class="col-span-1 md:col-start-7 md:col-span-4 px-8 lg:px-0 pb-24">
+                <div class="max-w-md">
+                    <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-8">
+                        {{ entry.paragraphHeading4 | raw }}
+                    </h2>
+                    <div class="font-aktiv text-base md:text-lg text-foxplan-charcoal-brown/80">
+                        {{ entry.bodyText4 | raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('scroll-container');
+        const dot = document.getElementById('scrolling-dot');
+        const progressLine = document.getElementById('progress-line');
+
+        function updateTimeline() {
+            const containerRect = container.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+
+            // We calculate progress based on the center of the viewport
+            let scrollProgress = (viewHeight / 2 - containerRect.top) / containerRect.height;
+
+            // Logic to prevent the half-circle issue at start/end
+            // The dot only appears when it is safely within the section boundaries
+            if (scrollProgress > 0.02 && scrollProgress < 0.98) {
+                dot.style.opacity = "1";
+            } else {
+                dot.style.opacity = "0";
+            }
+
+            // Clamp progress between 0 and 1
+            scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+            const percentage = scrollProgress * 100;
+
+            // Move the Dot and grow the Darker Dotted Line
+            dot.style.top = percentage + '%';
+            progressLine.style.height = percentage + '%';
+        }
+
+        window.addEventListener('scroll', updateTimeline);
+        window.addEventListener('resize', updateTimeline);
+        updateTimeline();
+    });
+</script>

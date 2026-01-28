@@ -1,5 +1,6 @@
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
+{# 1. Navigation Theme Setup #}
 {% set navigationTheme = {
     backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-black',
@@ -8,20 +9,108 @@
 
 {% block blockAppBody %}
 
-    {# 1. Fetch all entries from the 'meetTheTeam' Structure section #}
-    {% set allTeamEntries = craft.entries.section('meetTheTeam').all() %}
-
-    {% if allTeamEntries|length > 0 %}
-        {# 2. Pass the list of entries to the section template #}
-        {{ include('_sections/meet-the-team/meet-the-team-A.twig', {
-            teamMembers: allTeamEntries
-        }) }}
-    {% else %}
-        <div class="py-20 text-center">
-            <p>No team members found in the structure. Please ensure entries are created and enabled.</p>
+    {# 2. Hero Section (Aligned with Suppliers Style) #}
+    <section class="w-full bg-foxplan-yellow text-foxplan-charcoal-brown pt-24 pb-24 px-8 md:px-12 lg:px-16">
+        <div class="max-w-7xl">
+            <h1 class="font-serif text-7xl md:text-8xl lg:text-9xl mb-8 tracking-tight leading-none text-left">
+                Meet the Team
+            </h1>
+            <p class="font-aktiv-grotesk text-xl md:text-2xl max-w-2xl leading-relaxed opacity-90 text-left">
+                Our strength lies in our people. We have decades of experience and a shared commitment to helping Kiwis
+                make smart, confident financial decisions.
+            </p>
         </div>
-    {% endif %}
+    </section>
 
+    {# --- DYNAMIC DATA FETCHING (Aligned with Suppliers Logic) --- #}
+    {% set tabDefinitions = [
+        { id: 'accountingWealthManagement', label: 'Accounting & Wealth Management' },
+        { id: 'financialAdvisers', label: 'Financial Advisers' },
+        { id: 'headOfficeStaff', label: 'Head Office Staff' }
+    ] %}
+
+    {% set teamTabs = [] %}
+
+    {% for tab in tabDefinitions %}
+        {# Fetching from 'meetTheTeam' section using your category handle #}
+        {% set membersForTab = craft.entries()
+            .section('meetTheTeam')
+            .category(tab.id)
+            .all() %}
+
+        {% set teamTabs = teamTabs|merge([{
+            id: tab.id,
+            label: tab.label,
+            members: membersForTab
+        }]) %}
+    {% endfor %}
+
+    {# 3. Interactive Section Wrapper (Using the exact same Alpine logic) #}
+    <div x-data="{ activeTab: 'accountingWealthManagement' }" class="bg-foxplan-neutral-beige">
+
+        {# Reuse the Tabs Component for perfect visual consistency #}
+        {% include '_components/ui/tabs/tabs-services.twig' with {
+            props: {
+                tabs: teamTabs,
+                navBg: 'bg-foxplan-yellow',
+                activeBg: 'bg-foxplan-neutral-beige',
+                activeText: 'text-foxplan-charcoal-brown',
+                inactiveText: 'text-foxplan-charcoal-brown/60',
+                hoverText: 'hover:text-foxplan-charcoal-brown',
+            }
+        } only %}
+
+        {# Team Content Grid #}
+        <div class="px-6 md:px-12 py-16">
+            {% for tab in teamTabs %}
+                <div x-show="activeTab === '{{ tab.id }}'"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform translate-y-4"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+                        {% for member in tab.members %}
+                            <div class="team-card flex flex-col h-full">
+                                {# Portrait (Summoned from Asset Field) #}
+                                <div class="aspect-square bg-gray-200 mb-6 overflow-hidden">
+                                    {# Ensure your member field handle matches 'memberImage' or similar #}
+                                    {% set portrait = member.memberImage.one() %}
+                                    <img src="{{ portrait ? portrait.url : craft.vite.asset('images/About_1.jpg') }}"
+                                         alt="{{ member.memberName }}"
+                                         class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                                </div>
+
+                                <h3 class="font-serif text-2xl text-foxplan-charcoal-brown leading-tight">
+                                    {{ member.memberName }}
+                                </h3>
+
+                                <p class="font-aktiv-grotesk text-xs uppercase tracking-wider text-foxplan-charcoal-brown opacity-80 mb-4">
+                                    {{ member.jobTitle }}
+                                </p>
+
+                                {% if member.phoneNumber %}
+                                    <div class="mb-4">
+                                        <a href="tel:{{ member.phoneNumber|replace('/[^0-9+]/', '') }}"
+                                           class="text-sm font-normal text-foxplan-charcoal-brown hover:underline">
+                                            <span class="opacity-60">P:</span> {{ member.phoneNumber }}
+                                        </a>
+                                    </div>
+                                {% endif %}
+
+                                {% if member.bodyText %}
+                                    <div class="font-aktiv-grotesk text-sm text-foxplan-charcoal-brown leading-relaxed max-w-prose">
+                                        {{ member.bodyText | raw }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {# 4. Footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',
@@ -34,7 +123,5 @@
             borderTopWidth: 'border-t-2'
         }
     }) }}
-
-
 
 {% endblock %}

@@ -6,52 +6,47 @@
     placeholder: 'Enter your email address',
     submitText: 'SUBMIT',
     formAction: '#'
-        } %}
+} %}
 
-        {# Tailwind Class Definitions for consistency #}
-        {% set topLabelClasses = 'text-sm text-gray-500 uppercase tracking-wider mb-2 block' %}
-        {% set mainHeadingClasses = 'font-serif text-[3.5rem] md:text-[4.5rem] font-light leading-none text-gray-900' %}
-        {% set inputClasses = 'w-full text-base py-2 bg-transparent focus:outline-none placeholder-gray-500' %}
-        {% set submitTextClasses = 'text-sm text-gray-900 uppercase tracking-wider cursor-pointer' %}
-        {% set inputContainerClasses = 'flex items-center justify-between border-b border-gray-900' %}
+{# Tailwind Class Definitions refined for the 60/40 aesthetic #}
+{% set topLabelClasses = 'text-[10px] font-bold text-foxplan-charcoal-brown/40 uppercase tracking-[0.2em] mb-4 block' %}
+{% set mainHeadingClasses = 'font-serif text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-light leading-[1.1] text-foxplan-charcoal-brown tracking-tight' %}
+{% set inputClasses = 'w-full text-lg py-3 bg-transparent focus:outline-none placeholder-foxplan-charcoal-brown/30 text-foxplan-charcoal-brown font-light' %}
+{% set submitTextClasses = 'text-[10px] font-bold text-foxplan-charcoal-brown uppercase tracking-widest cursor-pointer hover:opacity-60 transition-opacity' %}
+{% set inputContainerClasses = 'flex items-center justify-between border-b border-foxplan-charcoal-brown/20 focus-within:border-foxplan-charcoal-brown' %}
 
-        <section class="w-full pt-16 pb-16 md:pt-24 md:pb-24">
-    <div class="mx-auto px-4">
+{# Top border as requested and fixed 20px margins #}
+<section class="w-full border-t border-foxplan-charcoal-brown/60 pt-16 pb-24 px-[20px]">
+    <div class="w-full">
+        {#
+        60/40 Grid Layout:
+        Left (Heading) spans 6 columns, Right (Form) spans 4 columns
+        #}
+        <div class="grid grid-cols-1 md:grid-cols-10 gap-x-12 lg:gap-x-16 items-end">
 
-        {# Two-column Grid Layout #}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
-
-            {# Left Column: Heading #}
-            <div>
+            {# Left Column: Heading (60%) #}
+            <div class="md:col-span-6">
                 <span class="{{ topLabelClasses }}">{{ ctaData.topLabel }}</span>
                 <h2 class="{{ mainHeadingClasses }}">
                     {{ ctaData.heading }}
                 </h2>
             </div>
 
-            {# Right Column: Subscription Form #}
-            <div class="md:pb-4">
-                <form action="{{ ctaData.formAction }}" method="POST">
-
-                    {# Container for input and submit button with the shared bottom border #}
+            {# Right Column: Subscription Form (40%) #}
+            <div class="md:col-span-4 md:pb-2">
+                <form action="{{ ctaData.formAction }}" method="POST" class="w-full">
                     <div class="{{ inputContainerClasses }}">
-
-                        {# Email Input Field #}
                         <input
-                            type="email"
-                            name="email"
-                            placeholder="{{ ctaData.placeholder }}"
-                            {# Removed border-b from here, moved to inputContainerClasses #}
-                            class="{{ inputClasses }}"
-                            required
+                                type="email"
+                                name="email"
+                                placeholder="{{ ctaData.placeholder }}"
+                                class="{{ inputClasses }} border-none focus:ring-0 outline-none"
+                                required
                         >
-
-                        {# Submit Button/Label #}
                         <button type="submit" class="{{ submitTextClasses }} ml-4 py-2 flex-shrink-0">
                             {{ ctaData.submitText }}
                         </button>
                     </div>
-
                 </form>
             </div>
 

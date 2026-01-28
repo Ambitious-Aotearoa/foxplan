@@ -1,0 +1,20 @@
+headingLevels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+name: 'Insights CK Editor'
+toolbar:
+  - heading
+  - '|'
+  - bold
+  - italic
+  - underline
+  - link
+  - outdent
+  - indent
+  - bulletedList
+  - insertImage
+  - blockQuote
