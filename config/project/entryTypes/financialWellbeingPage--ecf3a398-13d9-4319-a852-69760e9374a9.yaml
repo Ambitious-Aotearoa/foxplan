@@ -1,0 +1,248 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  8a87e6de-2453-482b-a712-acf19a736818:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-01-30T01:42:23+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 88ea5d28-a7e4-4969-8cfe-962f64fe1c26
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-30T01:50:34+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5395d830-e472-4a07-a922-eec0976df47c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-30T01:50:34+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a30bd48d-d600-4ef2-96af-2862741ad1e7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-30T01:51:19+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7428bd1e-1656-4aa6-abd4-c8cc69aa0c7e
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: cab2aa48-24f0-44fa-8db5-3873b6942bc8
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-30T01:50:34+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8721411c-0db2-4dce-bca4-518ef145c652
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-30T01:50:34+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5d03c669-849b-4f4d-8f50-56ebc86843f4
+            userCondition: null
+            warning: null
+            width: 100
+        name: "Support for your employees' wellbeing"
+        uid: 61e6e9c7-8de4-42af-8da7-745e43d72e79
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-30T01:50:34+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1895e75c-2883-4488-a7d6-06df4b0f8e53
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-30T01:50:34+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 88c50642-cb4e-481a-bc30-160a7c99ac75
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-30T01:50:34+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ecebc23b-5a31-4631-b3ef-9cd45eae8e1d
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'How we work with you'
+        uid: d9ddfbb7-1a01-4d43-ac4c-38b0188a5121
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-30T01:50:34+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3ce2f036-c569-4918-bee7-6ff42c3a4d5e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-30T01:50:34+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: bodyText2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0e558eba-94d8-435a-af38-533528c1b987
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-30T01:50:34+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b4897710-c82f-44bc-ab0a-9d7e1abf9e48
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Why invest in benefit programmes?'
+        uid: fbbf008d-80f6-47f0-9aa4-5237b3a0bbe5
+        userCondition: null
+    thumbFieldKey: null
+handle: financialWellbeingPage
+hasTitleField: true
+icon: null
+name: 'financial wellbeing page'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

@@ -16,7 +16,6 @@ fieldLayouts:
             disabled: false
             elementCondition: null
             id: null
-            includeInCards: false
             inputType: null
             instructions: null
             label: null
@@ -25,7 +24,6 @@ fieldLayouts:
             name: null
             orientation: null
             placeholder: null
-            providesThumbs: false
             readonly: false
             required: true
             size: null
@@ -43,10 +41,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -60,10 +56,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -83,10 +77,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -100,10 +92,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 4c9973ff-0107-4739-a889-f352e62eca08 # Large Paragraph
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -117,10 +107,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 37578f45-0b1d-4513-b3f7-30085b31057c # Fox icon
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -140,10 +128,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: e193394e-257b-4460-bb66-043fa40743cd # Main Heading
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -157,10 +143,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -180,10 +164,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -197,10 +179,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -220,10 +200,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 40dc7ecc-2b48-42e9-ba8d-6b387ee26597 # Advisors Image
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -237,10 +215,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: fe02d7ad-a8ee-44e2-81e9-27e07f31372d # Advisors Name
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -254,10 +230,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: bodyText2
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField

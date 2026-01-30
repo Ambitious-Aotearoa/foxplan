@@ -13,10 +13,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 6c8cad64-726d-4735-be40-5f733d49e15b # Member image
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -30,10 +28,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 331970c8-e670-403b-8550-b3a3214d6a62 # Member Name
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -47,10 +43,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 33a1b6df-526d-4d3c-84a1-dcc713555b4d # Job Title
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -64,10 +58,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -81,10 +73,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 73262043-6292-4645-96a8-99ed862cd739 # Phone Number
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -98,10 +88,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: f41f4500-6b84-466c-89f3-dae1d5c3bf36 # Category
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField

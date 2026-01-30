@@ -1,7 +1,7 @@
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {% set navigationTheme = {
-    backgroundColor: 'bg-foxplan-neutral-beige',
+    backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-black',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
@@ -9,76 +9,44 @@
 {% block blockAppBody %}
 
     {# 1. Hero Section #}
-    {{ include('_sections/hero-sections/hero-1.twig', {
-        data: {
-            title: 'Dollars & Sense Podcast',
-            imageSrc: 'images/Podcast_1.jpg',
-            bodyText: "Check out the Dollars & Sense Podcast, filled with smart financial advice for Kiwis in their prime. Explore more than 50 episodes or listen to the latest one below.",
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-black',
-            titleFont: 'font-serif',
-            titleSize: 'text-[8.5rem]',
-            bodyFont: 'font-aktiv-grotesk',
-            bodySize: 'text-lg'
+    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
+    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
+    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
+
+    {{ include('_sections/hero-sections/hero-arrow.twig', {
+        props: {
+            heading: pageHeading,
+            bodyText: pageBody,
+            imagePath: 'images/Podcast_1.jpg',
+            backgroundColor: 'bg-foxplan-yellow',
         }
     }) }}
 
     {# 2. about-the-pod #}
     {{ include('_sections/content-sections/about-podcast.twig', {
         data: {
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-foxplan-charcoal-brown',
-            topLabel: 'About the pod',
-            body1: 'Tired of generic money advice that doesn`t fit your life? Hosted by qualified NZ financial advisers Tim Ellis and Brodie Haggerty, this podcast cuts through the noise to deliver real-talk financial literacy for New Zealanders in their mid-30s to late-40s.',
-            body2: 'Whether you`re growing your wealth, protecting assets amid rising costs, or planning for family milestones like buying a home or prepping for retirement, we`ve got actionable strategies tailored to Kiwi realities—think IRD tax hacks, KiwiSaver tweaks, and recession-proof investing.'
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            borderColor: 'border-foxplan-yellow',
+            textColor: 'text-foxplan-yellow',
+            topLabel: block.mainTitle ?? entry.mainTitle ?? 'ABOUT THE POD',
+            bodyText: block.largeParagraph ?? entry.largeParagraph ?? '',
+            showLogo: true
         }
     }) }}
 
-    {% set myEpisodes = [
-        {
-            title: 'Blended families & second marriages',
-            date: 'Dec 11, 2024',
-            length: '26 minutes',
-            imageSrc: 'images/podcast-thumb-1.jpg',
-            linkUrl: '#'
-        },
-        {
-            title: 'Blended families & second marriages: The legal must-knows with Hannah Carter',
-            date: 'Jan 05, 2025',
-            length: '15 minutes',
-            imageSrc: 'images/podcast-thumb-1.jpg',
-            linkUrl: '#'
-        },
-        {
-            title: 'Why revolving mortgages keep you stuck on the financial treadmill',
-            date: 'Dec 11, 2024',
-            length: '26 minutes',
-            imageSrc: 'images/podcast-thumb-1.jpg',
-            linkUrl: '#'
-        },
-        {
-            title: 'Blended families & second marriages',
-            date: 'Dec 11, 2024',
-            length: '26 minutes',
-            imageSrc: 'images/podcast-thumb-1.jpg',
-            linkUrl: '#'
-        },
-    ] %}
-
-    {#episode-list #}
     {{ include('_sections/content-sections/episode-list.twig', {
         data: {
-            sectionTitle: 'Latest Podcasts',
-            backgroundColor: 'bg-foxplan-charcoal-brown',
-            textColor: 'text-foxplan-yellow',
-            episodes: myEpisodes
+            sectionTitle: 'All episodes',
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            textColor: 'text-foxplan-charcoal-brown',
+            seeAllUrl: 'https://open.spotify.com/show/4OyvWBje9xXh1ROJ1x5E4K\n\nuse'
         }
     }) }}
 
     {# newsletter-dollar-and-sense #}
     {{ include('_sections/newsletter/newsletter-dollar-and-sense.twig', {
         data: {
-            backgroundColor: 'bg-foxplan-yellow',
+            backgroundColor: 'bg-foxplan-neutral-beige',
             headingColor: 'text-foxplan-charcoal-brown',
             bodyColor: 'text-foxplan-charcoal-brown',
             borderColor: 'border-foxplan-charcoal-brown/20',
@@ -89,11 +57,11 @@
     {# footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-foxplan-charcoal-brown',
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
             logoColor: 'text-foxplan-charcoal-brown',
-            buttonColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-white',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
             foxplanText: 'foxplan',
             borderTopColor: 'border-foxplan-yellow/20',
             borderTopWidth: 'border-t-2'

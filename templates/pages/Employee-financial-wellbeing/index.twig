@@ -1,0 +1,131 @@
+
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-black',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+
+{% block blockAppBody %}
+
+    {# --- 1. Hero Section Setup --- #}
+    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'First <br> Home <br> Buyers' %}
+    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : '' %}
+
+    {# --- Safely handle the Button Text (String) --- #}
+    {% set pageButtonText = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
+
+    {# --- Safely handle the Button Link (Object or Null) --- #}
+    {# We check if it exists AND is not null before accessing .url #}
+    {% set pageButtonUrl = (entry.buttonLink is defined and entry.buttonLink) ? entry.buttonLink.url : '/contact' %}
+
+    {# --- 2. Hero Section Include --- #}
+    {{ include('_sections/hero-sections/hero-arrow.twig', {
+        props: {
+            heading: pageHeading,
+            bodyText: pageBody,
+            buttonText: pageButtonText,
+            buttonUrl: pageButtonUrl,
+            imagePath: 'images/Insurance_1.jpg',
+            backgroundColor: 'bg-foxplan-yellow',
+            buttonBgColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-white'
+        }
+    }) }}
+
+    {# 2. Benefits #}
+    {# templates/pages/First-home-buyers/index.twig #}
+
+    {# --- Info Block / Services Section --- #}
+    {{ include('_sections/content-sections/help-for-buying-your-first-home.twig', {
+        props: {
+            paragraphHeading: entry.paragraphHeading,
+            infoBlock: entry.infoBlock.exists() ? entry.infoBlock.all() : [],
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown',
+            borderColor: 'border-[#270E15]'
+        }
+    }) }}
+
+    {#     3. how we work accordion #}
+    {% set benefitsHeading = entry.paragraphHeading2 ?? 'About group insurance' %}
+    {% set benefitsIntro = entry.bodyText ?? '' %}
+
+    {# 1. Loop through the 'accordion' matrix #}
+    {% set accordionItems = [] %}
+    {# Ensure 'accordion' is the handle of the Matrix field on this specific entry #}
+    {% if entry.accordion is defined %}
+        {% for block in entry.accordion.all() %}
+            {% set accordionItems = accordionItems | merge([{
+                'title': block.accordionHeading,
+                'text': block.accordionBodyText
+            }]) %}
+        {% endfor %}
+    {% endif %}
+
+    {#  Deliver the data to the benefits section using 'props' #}
+    {{ include('_sections/content-sections/benefits.twig', {
+        props: {
+            paragraphHeading: benefitsHeading,
+            bodyText: benefitsIntro,
+            items: accordionItems,
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow'
+        }
+    }) }}
+
+
+    {#     5. section #}
+    {#  Image and Text Section #}
+    {% set sectionImage = entry.image.one() %}
+
+    {{ include('_sections/hero-sections/section.twig', {
+        props: {
+            title: entry.paragraphHeading3 ?? 'Get the First Home Buyers Guide',
+            bodyText: entry.bodyText2 ?? '',
+            buttonText: entry.button2 ?? '',
+            buttonLink: (entry.buttonlink2 is defined and entry.buttonlink2) ? entry.buttonlink2.url : '#',
+            imageSrc: sectionImage ? sectionImage.url : null,
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            textColor: 'text-foxplan-charcoal-brown',
+            buttonBgColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-neutral-beige',
+            borderColor: 'border-foxplan-charcoal-brown'
+        }
+    }) }}
+
+    {#     4. Partner Section #}
+    {{ include('_sections/content-sections/who-we-work-with.twig', {
+        props: {
+            title: 'WHO WE WORK WITH',
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            textColor: 'text-foxplan-charcoal-brown',
+            borderColor: 'border-foxplan-charcoal-brown/20',
+            logos: [
+                { src: 'images/logo/AIA_Logo.svg', alt: 'AIA' },
+                { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ' }
+            ]
+        }
+    }) }}
+
+
+
+    {# 7. footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+
+
+{% endblock %}

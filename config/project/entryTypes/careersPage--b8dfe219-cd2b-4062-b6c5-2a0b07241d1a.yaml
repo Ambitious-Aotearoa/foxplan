@@ -1,7 +1,8 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
-  59502b30-9584-44a6-ad2c-9e43ee40db83:
+  01df7131-62fb-4dc7-bed8-c2ffa3ebccaa:
     cardThumbAlignment: end
     tabs:
       -
@@ -12,11 +13,10 @@ fieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
-            dateAdded: '2025-12-16T23:05:33+00:00'
+            dateAdded: '2026-01-29T01:46:12+00:00'
             disabled: false
             elementCondition: null
             id: null
-            includeInCards: false
             inputType: null
             instructions: null
             label: null
@@ -25,7 +25,6 @@ fieldLayouts:
             name: null
             orientation: null
             placeholder: null
-            providesThumbs: false
             readonly: false
             required: true
             size: null
@@ -33,108 +32,142 @@ fieldLayouts:
             tip: null
             title: null
             type: craft\fieldlayoutelements\entries\EntryTitleField
-            uid: 18d1a26d-5e20-4fe7-a7f9-374555b1c037
+            uid: 26b9329d-ceec-42d9-8325-88d50abb8660
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-16T23:13:18+00:00'
+            dateAdded: '2026-01-29T01:53:43+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 34e09c3a-a75d-43a8-a75e-659ae7194013
+            uid: 02ee8b54-f5bc-498d-96da-95b1718c7c78
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-16T23:13:18+00:00'
+            dateAdded: '2026-01-29T01:53:43+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: a70bf2c9-67b5-46f3-ae8b-c61a4c2fe71e
+            uid: 3b03f904-e25f-420d-93c3-03f449426beb
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: 3783255a-3b73-45f1-b549-b41dbef482f9
+        uid: 8f4b4d9b-7402-4d55-a4ad-2c9e13946013
         userCondition: null
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-12-17T01:17:46+00:00'
+            dateAdded: '2026-01-29T02:05:32+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
+            elementEditCondition: null
+            fieldUid: 6a8f4236-25e3-4199-b476-1f7eddcf04cf # prehead
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 49749e99-517d-4eee-886a-cf0533301da7
+            uid: 7ae78749-5a66-4f90-9f33-ee51d2fdb6fe
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T01:17:46+00:00'
+            dateAdded: '2026-01-29T02:05:32+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 4c9973ff-0107-4739-a889-f352e62eca08 # Large Paragraph
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 4919cf97-79e9-4c7c-a6ca-082fb07220d2
+            uid: 3ab19182-0900-42bf-9279-a838bb229c15
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Foxplan Academy'
+        uid: e9fe0edf-7f98-4281-b90a-064081ffc974
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-29T02:16:21+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0535f582-c6a4-492c-8a70-1b34948f8721
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-16T23:13:18+00:00'
+            dateAdded: '2026-01-29T02:16:21+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 37578f45-0b1d-4513-b3f7-30085b31057c # Fox icon
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 0b2b7592-1173-46fc-bb0c-46ca256b9540
+            uid: 228afc8d-184c-4f9b-8dcc-b667d81e28d6
             userCondition: null
             warning: null
             width: 100
-        name: 'About the Pod'
-        uid: cb3ee120-bdb1-441c-b6e4-a7836be03810
+          -
+            dateAdded: '2026-01-29T02:16:21+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c160e9df-1b1b-4b66-a3d1-7ea0a1c6be39
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Current Oppurtunities'
+        uid: 7719d641-354e-4e3a-ae5c-4fe0c8854136
         userCondition: null
-handle: dollarsAndSensePodcastIndex
+    thumbFieldKey: null
+handle: careersPage
 hasTitleField: true
 icon: null
-name: 'Dollars and Sense Podcast'
+name: 'Careers Page'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
@@ -142,3 +175,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

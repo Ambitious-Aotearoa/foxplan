@@ -16,7 +16,6 @@ fieldLayouts:
             disabled: false
             elementCondition: null
             id: null
-            includeInCards: false
             inputType: null
             instructions: null
             label: null
@@ -25,7 +24,6 @@ fieldLayouts:
             name: null
             orientation: null
             placeholder: null
-            providesThumbs: false
             readonly: false
             required: true
             size: null
@@ -43,10 +41,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -60,10 +56,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -77,10 +71,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -94,10 +86,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -117,10 +107,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -134,10 +122,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -157,10 +143,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading2
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -174,10 +158,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -191,10 +173,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField

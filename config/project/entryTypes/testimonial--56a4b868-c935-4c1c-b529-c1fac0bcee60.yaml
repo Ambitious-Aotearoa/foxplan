@@ -13,10 +13,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 01d859f3-0f5b-434d-b064-a75dd6b9f60f # Testimonial
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -30,10 +28,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 3ca03225-96ae-4b44-87f2-2f3b0d32d166 # Testimonial Author
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField

@@ -7,18 +7,19 @@
     textColor: 'text-foxplan-charcoal-brown'
 } | merge(props ?? {}) %}
 
+{# Extract base color for line/dot logic #}
+{% set textBaseColor = data.textColor | replace('text-', '') %}
+
 <section class="w-full {{ data.backgroundColor }} py-24 overflow-hidden relative"
          x-data="{
             yPos: 0,
             isDragging: false,
-            {# This function sets the circle to the center of the first item on load #}
             initCircle() {
                 this.$nextTick(() => {
                     let firstItem = this.$refs.accordionContainer.firstElementChild;
                     if (firstItem) {
                         let containerRect = this.$refs.lineContainer.getBoundingClientRect();
                         let itemRect = firstItem.getBoundingClientRect();
-                        {# Calculate the center point of the first box relative to the line container #}
                         this.yPos = (itemRect.top + (itemRect.height / 2)) - containerRect.top;
                     }
                 });
@@ -39,7 +40,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start relative">
 
-        {# --- LEFT SIDE (30%) --- #}
+        {# --- LEFT SIDE --- #}
         <div class="col-span-1 md:col-span-3 px-8 md:pl-12 lg:pl-16 z-20">
             <h2 class="font-serif text-5xl md:text-6xl lg:text-[5rem] leading-[0.85] tracking-tighter mb-6 {{ data.textColor }}">
                 {{ data.paragraphHeading | raw }}
@@ -51,23 +52,24 @@
             {% endif %}
         </div>
 
-        {# --- INTERACTIVE LINE (At the 30% border) --- #}
+        {# --- INTERACTIVE LINE --- #}
         <div class="hidden md:flex absolute left-[30%] top-0 bottom-0 w-8 justify-center touch-none z-30"
              x-ref="lineContainer">
-            <div class="h-full w-px border-l border-dashed border-[#270E15] opacity-20"></div>
-            <div class="absolute top-0 w-px border-l-2 border-dashed border-[#270E15] opacity-100"
+            <div class="h-full w-px border-l border-dashed border-{{ textBaseColor }} opacity-20"></div>
+
+            <div class="absolute top-0 w-px border-l-2 border-dashed border-{{ textBaseColor }} opacity-100"
                  :style="`height: ${yPos}px`"
                  style="transition: height 0.05s linear;"></div>
-            <div class="absolute w-6 h-6 bg-[#270E15] rounded-full cursor-grab active:cursor-grabbing shadow-md"
+
+            <div class="absolute w-6 h-6 bg-{{ textBaseColor }} rounded-full cursor-grab active:cursor-grabbing shadow-md"
                  :style="`transform: translateY(${yPos}px)`"
                  @mousedown="isDragging = true"
                  @touchstart.prevent="isDragging = true">
             </div>
         </div>
 
-        {# --- RIGHT SIDE (70%) --- #}
+        {# --- RIGHT SIDE --- #}
         <div class="col-span-1 md:col-span-7 px-8 md:pl-20 lg:pr-32">
-            {# We add x-ref='accordionContainer' here to help Alpine find the items #}
             <div class="flex flex-col space-y-4" x-ref="accordionContainer">
                 {% for item in data.items %}
                     <div class="group w-full p-10 transition-all duration-300 rounded-xl"
@@ -82,15 +84,17 @@
                          :class="isActive() ? 'bg-white shadow-xl translate-x-2' : 'bg-transparent'">
 
                         {% if item.title %}
-                            <h4 class="font-aktiv text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4 text-[#1a0a0e] transition-opacity"
-                                :class="isActive() ? 'opacity-100' : 'opacity-40'">
+                            {# Logic: If active, force charcoal-brown. Otherwise, use reusable data.textColor #}
+                            <h4 class="font-aktiv text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4 transition-all duration-300"
+                                :class="isActive() ? 'text-foxplan-charcoal-brown opacity-100' : '{{ data.textColor }} opacity-40'">
                                 {{ item.title }}
                             </h4>
                         {% endif %}
 
                         {% if item.text %}
-                            <div class="font-aktiv text-lg md:text-2xl lg:text-[1.8rem] leading-snug {{ data.textColor }} transition-opacity"
-                                 :class="isActive() ? 'opacity-100' : 'opacity-60'">
+                            {# Logic: If active, force charcoal-brown. Otherwise, use reusable data.textColor #}
+                            <div class="font-aktiv text-lg md:text-2xl lg:text-[1.8rem] leading-snug transition-all duration-300"
+                                 :class="isActive() ? 'text-foxplan-charcoal-brown opacity-100' : '{{ data.textColor }} opacity-60'">
                                 {{ item.text | raw }}
                             </div>
                         {% endif %}

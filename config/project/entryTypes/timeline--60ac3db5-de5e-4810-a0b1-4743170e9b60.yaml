@@ -13,10 +13,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 41c2fab6-c090-4ba5-bd9b-34b43172425a # Milestone Year 
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -30,10 +28,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 09a98099-02ba-4caf-9a69-5c2e6b631b09 # Milestone Title
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -47,10 +43,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 47d7c8bb-a751-46b1-9d2e-5ad509c8c477 # Milestone Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField

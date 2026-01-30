@@ -9,21 +9,18 @@ additional_fqdns: []
 database:
     type: mysql
     version: "8.0"
+host_webserver_port: "8080"
+host_https_port: "8443"
+webimage_extra_packages: [php-intl]
 use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
 corepack_enable: false
 web_extra_exposed_ports:
-  - name: fox-plan
-    container_port: 5173
-    http_port: 5172
-    https_port: 5173
-# Expose the Vite port to the host machine
-host_webserver_port: "8080"
-host_https_port: "8443"
-
-
-
+    - name: fox-plan
+      container_port: 5173
+      http_port: 5172
+      https_port: 5173
 
 # Key features of DDEV's config.yaml:
 

@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -16,7 +17,6 @@ fieldLayouts:
             disabled: false
             elementCondition: null
             id: null
-            includeInCards: false
             inputType: null
             instructions: null
             label: null
@@ -25,7 +25,6 @@ fieldLayouts:
             name: null
             orientation: null
             placeholder: null
-            providesThumbs: false
             readonly: false
             required: true
             size: null
@@ -41,12 +40,11 @@ fieldLayouts:
             dateAdded: '2026-01-28T00:26:36+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -58,50 +56,15 @@ fieldLayouts:
             dateAdded: '2026-01-28T00:26:36+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: ad3bba39-aec4-463f-8755-9d98eb80f836
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-01-28T00:26:36+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: eb8f7b78-4b07-4b23-8128-0e5464bb09d3
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-01-28T00:26:36+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: dc732d40-5b7e-4369-bb83-fcc0da40e76d
             userCondition: null
             warning: null
             width: 100
@@ -112,42 +75,133 @@ fieldLayouts:
         elementCondition: null
         elements:
           -
-            dateAdded: '2026-01-28T00:59:12+00:00'
+            dateAdded: '2026-01-29T01:09:01+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 1757a17e-5538-4de5-9ff7-fa4d80af64a1 # Location Heading
-            handle: null
-            includeInCards: false
+            elementEditCondition: null
+            fieldUid: 85b764d9-d1dd-4aad-9cfb-e7432652aad7 # Contact Main Heading
+            handle: contactMainHeading2
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 46a433ed-0a7d-44b1-8e5b-afaed72caa6d
+            uid: 7766e2cd-295d-4fa4-b528-0c0214e987c1
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-28T00:59:12+00:00'
+            dateAdded: '2026-01-29T01:09:01+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: e3596a73-fe19-4305-93f4-0d508c177dbc # Location Body
-            handle: null
-            includeInCards: false
+            elementEditCondition: null
+            fieldUid: c7f147ed-33aa-4d4a-bf02-bbebd30804fe # Contact Bodytext
+            handle: contactBodytext2
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 1d8b58a8-a515-4531-8e47-a95e5abff850
+            uid: 48d0dca0-dd3e-47b3-919d-9a72a1fb259b
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Get in touch'
+        uid: 02186849-e7d2-49cb-becc-93d2a1610a73
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-29T01:09:01+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 85b764d9-d1dd-4aad-9cfb-e7432652aad7 # Contact Main Heading
+            handle: contactMainHeading3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 90f5818a-cf44-4a29-b409-04e8900db261
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-29T01:09:01+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: c7f147ed-33aa-4d4a-bf02-bbebd30804fe # Contact Bodytext
+            handle: contactBodytext3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 715a1133-030e-4c01-a687-506cb0500319
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-29T01:15:27+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 54110518-8867-4558-ad4b-ed19922348c4
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Book an adviser'
+        uid: 94e2bc7e-d4d7-472a-bc33-c98842d90f4d
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-29T01:09:01+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 85b764d9-d1dd-4aad-9cfb-e7432652aad7 # Contact Main Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5a02744e-2c2f-4ea0-b5a1-307bce9001e9
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-29T01:09:01+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: c7f147ed-33aa-4d4a-bf02-bbebd30804fe # Contact Bodytext
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 829c288d-d7f4-4805-a51f-444740aa2fda
             userCondition: null
             warning: null
             width: 100
         name: Location
         uid: 502c876a-a80f-40f3-91e5-e70d24d263cf
         userCondition: null
+    thumbFieldKey: null
 handle: contactUsPage
 hasTitleField: true
 icon: null
@@ -159,3 +213,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

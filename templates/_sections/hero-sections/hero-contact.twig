@@ -1,0 +1,81 @@
+{# templates/_sections/hero-sections/hero-2.twig #}
+
+{# 1. FETCH DATA FROM THE FIELD LAYOUT #}
+{% set contentSource = entry ?? block ?? null %}
+
+{% set entryTitle = contentSource.title ?? null %}
+{% set entryBody = contentSource.heroBodyText ?? null %}
+{% set entryButtonText = contentSource.button ?? null %}
+{% set entryButtonLink = contentSource.buttonLink ?? '#' %}
+
+{# 2. SETUP DEFAULTS AND MERGE PROPS #}
+{% set defaults = {
+    backgroundColor: 'bg-foxplan-charcoal-brown',
+    textColor: 'text-foxplan-charcoal-brown',
+    titleColor: 'text-foxplan-neutral-beige',
+    imageSrc: 'images/Contact-Image.jpg'
+} %}
+
+{% set data = defaults | merge(props | default({})) %}
+
+<section class="w-full {{ data.backgroundColor }} overflow-hidden relative">
+    <div class="grid grid-cols-1 md:grid-cols-10">
+
+        {# 10% EMPTY SPACE COLUMN #}
+        <div class="hidden md:block md:col-span-1"></div>
+
+        {# 90% CONTENT COLUMN #}
+        <div class="col-span-1 md:col-span-9 flex flex-col">
+
+            {# IMAGE BLOCK #}
+            <div class="relative w-full h-[500px] lg:h-[650px] overflow-hidden">
+                <img
+                        src="{{ craft.vite.asset(data.imageSrc) }}"
+                        alt="{{ entryTitle }}"
+                        class="w-full h-full object-cover"
+                >
+
+                {# TITLE OVERLAY: Pinned to bottom-left with pl-16 #}
+                {% if entryTitle %}
+                    <div class="absolute bottom-0 left-0 px-4 pb-4">
+                        <h1 class="font-serif text-[6rem] md:text-[8rem] lg:text-[11rem] {{ data.titleColor }} leading-[0.8] tracking-tighter">
+                            {{ entryTitle | raw }}
+                        </h1>
+                    </div>
+                {% endif %}
+            </div>
+
+            {#
+            BOTTOM CONTENT BLOCK
+            pt-8 creates exactly 32px of margin between the image and the text.
+            lg:pl-16 ensures the body text starts exactly where the Title/Image content starts.
+            #}
+            <div class="px-4 mb-20 ">
+                <div class="max-w-[450px]">
+
+                    {# BODY TEXT #}
+                    {% if entryBody %}
+                        <p class="font-aktiv-grotesk font-light text-lg md:text-xl {{ data.textColor }} leading-[1.2] mb-10">
+                            {{ entryBody | raw }}
+                        </p>
+                    {% endif %}
+
+                    {# BUTTON #}
+                    {% if entryButtonText %}
+                        <div class="flex">
+                            {% include '_components/ui/button/button.twig' with {
+                                props: {
+                                    text: entryButtonText,
+                                    url: entryButtonLink,
+                                    backgroundColor: 'bg-[#1D1013]',
+                                    textColor: 'text-white',
+                                    classes: 'px-8 py-3 text-[10px] tracking-[0.2em] uppercase font-montreal rounded-none'
+                                }
+                            } only %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

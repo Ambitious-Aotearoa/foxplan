@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 7104b304-163f-4e10-bee8-5a82a8edeb29 # Equity Partners
+handle: equityPartners
+maxAuthors: 1
+name: 'Equity Partners'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  904beb73-9861-43f3-8de7-90464f6457de: # foxplan
+    enabledByDefault: true
+    hasUrls: true
+    template: pages/Equity-Partners/index.twig
+    uriFormat: equity-partners
+type: single

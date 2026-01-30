@@ -1,102 +1,31 @@
 {# templates/_components/ui/accordion/accordion-2.twig #}
 
-{% set defaults = {
-    items: [],
-    defaultOpen: -1,
-    textColor: 'text-foxplan-charcoal-brown',
-    titleFont: 'font-serif',
-    titleSize: 'text-3xl md:text-[2.6rem]',
-    contentFont: 'font-aktiv-grotesk',
-    contentSize: 'text-[18px] md:text-[1.1rem]',
-    classes: ''
-} %}
+{% set accordionItems = entry.accordion.all() %}
 
-{% set props = defaults | merge(props | default({})) %}
+<div class="w-full select-none" x-data="{ openItem: -1 }">
 
-<div
-        class="relative {{ props.classes }} select-none"
-        x-data="{
-        openItem: {{ props.defaultOpen }},
-        hoverItem: 0,
-        dotPosition: 0,
-        isDragging: false,
-
-        handleDrag(e) {
-            if (!this.isDragging) return;
-            let items = Array.from($el.querySelectorAll('.accordion-item'));
-            let containerRect = $el.getBoundingClientRect();
-            let mouseY = e.clientY - containerRect.top;
-
-            let closest = items.reduce((prev, curr) => {
-                let currMid = curr.offsetTop + (curr.offsetHeight / 2);
-                let prevMid = prev.offsetTop + (prev.offsetHeight / 2);
-                return (Math.abs(mouseY - currMid) < Math.abs(mouseY - prevMid)) ? curr : prev;
-            });
-
-            this.hoverItem = items.indexOf(closest);
-            this.dotPosition = closest.offsetTop + (closest.offsetHeight / 2);
-        }
-    }"
-        x-init="$nextTick(() => {
-        let firstItem = $el.querySelector('.accordion-item');
-        if(firstItem) dotPosition = firstItem.offsetTop + (firstItem.offsetHeight / 2);
-    })"
-        @mousemove.window="handleDrag($event)"
-        @mouseup.window="isDragging = false"
->
-    {# --- INTERACTION ZONE (The Line) --- #}
-    <div
-            class="absolute left-0 md:left-2 top-0 bottom-0 w-16 hidden md:block z-30 cursor-pointer"
-            @mousedown="isDragging = true; handleDrag($event)"
-    >
-        {# Visual Dotted Line #}
-        <div class="absolute left-[7px] top-0 bottom-0 border-l-2 border-dotted border-foxplan-charcoal-brown opacity-20 pointer-events-none"></div>
-
-        {# Scrolling Circle #}
-        <div
-                class="absolute left-[-1px] transition-all duration-500 ease-in-out pointer-events-none"
-                :style="`top: ${dotPosition}px; transform: translateY(-50%);`"
-        >
-            <div
-                    class="w-4 h-4 bg-foxplan-charcoal-brown rounded-full shadow-md transition-transform duration-200"
-                    :class="isDragging ? 'scale-150' : 'scale-100'"
-            ></div>
-        </div>
-    </div>
-
-    {# --- ACCORDION WRAPPER --- #}
-    <div class="pl-8 md:pl-20 pr-8 md:pr-12 w-full">
-        {% if props.items and props.items|length > 0 %}
-            {% for item in props.items %}
-                <div
-                        class="accordion-item transition-all duration-300 ease-out relative w-full border-none mb-1"
-                        :class="{ 'bg-white': hoverItem === {{ loop.index0 }} }"
-                        @mouseenter="
-                        if (!isDragging) {
-                            hoverItem = {{ loop.index0 }};
-                            dotPosition = $el.offsetTop + ($el.offsetHeight / 2);
-                        }
-                    "
+    {# Accordion List - Clean version without dotted line or toggle icon #}
+    <div class="w-full">
+        {% for item in accordionItems %}
+            <div class="border-b border-gray-300">
+                <button
+                        @click="openItem = openItem === {{ loop.index0 }} ? -1 : {{ loop.index0 }}"
+                        class="w-full py-4 text-left group transition-all duration-300"
                 >
-                    {# Header Button - Padding kept for breathing room #}
-                    <button
-                            class="w-full py-8 text-left group pl-10"
-                            @click="openItem = openItem === {{ loop.index0 }} ? -1 : {{ loop.index0 }}"
-                    >
-                        <h3 class="{{ props.titleFont }} {{ props.titleSize }} {{ props.textColor }} font-light transition-transform duration-300 group-hover:translate-x-2">
-                            {{ item.expandableHeadingTitle|default('Item ' ~ loop.index) }}
-                        </h3>
-                    </button>
+                    {# accordionHeading handle #}
+                    <span class="font-montreal font-light text-ehaus-grey text-lg">
+                        {{ item.accordionHeading }}
+                    </span>
+                </button>
 
-                    <div x-show="openItem === {{ loop.index0 }}" x-collapse style="display: none;">
-                        <div class="pb-10 w-full pl-10">
-                            <div class="{{ props.contentFont }} {{ props.contentSize }} {{ props.textColor }}/80 leading-relaxed max-w-none">
-                                {{ item.ExpandableBodyText|raw }}
-                            </div>
-                        </div>
-                    </div>
+                {# accordionBodyText handle #}
+                <div x-show="openItem === {{ loop.index0 }}"
+                     x-collapse
+                     style="display: none;"
+                     class="pb-6 font-montreal font-light text-ehaus-grey/80 leading-relaxed text-base">
+                    {{ item.accordionBodyText|raw }}
                 </div>
-            {% endfor %}
-        {% endif %}
+            </div>
+        {% endfor %}
     </div>
 </div>

@@ -1,0 +1,63 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-black',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% block blockAppBody %}
+    {# 1. hero #}
+    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
+    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
+    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
+
+    {{ include('_sections/hero-sections/hero-arrow.twig', {
+        props: {
+            heading: pageHeading,
+            bodyText: pageBody,
+            imagePath: 'images/Podcast_1.jpg',
+            backgroundColor: 'bg-foxplan-yellow',
+        }
+    }) }}
+
+    {# 2. Foxplan academy #}
+    {% include '_sections/content-sections/foxplan-academy.twig' with {
+        props: {
+            topLabel: entry.prehead,
+            body: entry.largeParagraph
+        }
+    } only %}
+
+    {# 3. Current Oppurtunities #}
+    {% include "_sections/content-sections/how-we-work.twig" with {
+        entry: entry,
+        props: {
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            textColor: 'text-foxplan-charcoal-brown',
+            mainHeading: entry.paragraphHeading ?? 'How we work with you',
+            mainBody: entry.bodyText ?? '',
+        }
+    } %}
+
+    {# 4. get in touch #}
+    {% include '_components/form/get-in-touch.twig' %}
+
+    {# 5. footer #}
+
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+
+
+{% endblock %}

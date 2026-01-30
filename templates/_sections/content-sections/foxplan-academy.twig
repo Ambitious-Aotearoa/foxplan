@@ -1,20 +1,20 @@
 {# _sections/content-sections/foxplan-academy.twig #}
 
 {% set defaults = {
-    topLabel: 'FOXPLAN ACADEMY',
-    body: 'Every new adviser who joins us goes through our Foxplan Academy training programme. You\'ll learn directly from our Directors and Senior Advisers — experienced business owners who bring years of real-world knowledge to every session.',
-    backgroundColor: 'bg-white',
-    labelColor: 'text-[#8C8C8C]',
-    textColor: 'text-black',
+    topLabel: entry.prehead ?? 'FOXPLAN ACADEMY',
+    body: entry.largeParagraph ?? 'Every new adviser who joins us goes through our Foxplan Academy training programme...',
+    backgroundColor: 'bg-foxplan-yellow',
+    labelColor: 'text-foxplan-charcoal-brown',
+    textColor: 'text-foxplan-charcoal-brown',
     containerPadding: 'px-4 lg:px-12'
 } %}
 
+{# We still merge props so you can override them via the include if needed #}
 {% set data = defaults | merge(props | default({})) %}
 
 <section class="w-full {{ data.backgroundColor }} pt-16 pb-16 md:pt-24 md:pb-24">
     <div class="w-full {{ data.containerPadding }}">
 
-        {# md:grid-cols-10 allows for an easy 3 (30%) and 7 (70%) split #}
         <div class="grid grid-cols-1 md:grid-cols-10 gap-x-12">
 
             {# Left Column: Label (30%) #}
@@ -26,8 +26,8 @@
 
             {# Right Column: Content (70%) #}
             <div class="md:col-span-7">
-                {# Kept at original 32px as requested #}
                 <div class="font-serif text-[32px] leading-snug {{ data.textColor }}">
+                    {# Using |raw assuming largeParagraph might contain HTML from a rich text field #}
                     {{ data.body | raw }}
                 </div>
             </div>

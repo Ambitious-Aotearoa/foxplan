@@ -1,4 +1,3 @@
-
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {% set navigationTheme = {
@@ -49,19 +48,34 @@
         }
     }) }}
 
-{#     3. how we work accordion #}
-{#   {# templates/pages/First-home-buyers/index.twig #}
+    {#     3. how we work accordion #}
+    { {% set benefitsHeading = entry.paragraphHeading3 ?? 'About group insurance' %}
+    {% set benefitsIntro = entry.bodyText ?? '' %}
 
-    {# --- Accordion Section --- #}
-    {{ include('_sections/content-sections/how-we-work.twig', {
+    {# 1. Loop through the 'accordion' matrix #}
+    {% set accordionItems = [] %}
+    {# Ensure 'accordion' is the handle of the Matrix field on this specific entry #}
+    {% if entry.accordion is defined %}
+        {% for block in entry.accordion.all() %}
+            {% set accordionItems = accordionItems | merge([{
+                'title': block.accordionHeading,
+                'text': block.accordionBodyText
+            }]) %}
+        {% endfor %}
+    {% endif %}
+
+    {#  Deliver the data to the benefits section using 'props' #}
+    {{ include('_sections/content-sections/benefits.twig', {
         props: {
-            mainHeading: entry.paragraphHeading2 ?? 'How we work with you',
-            mainBody: entry.bodyText2 ?? '',
-            accordionField: entry.accordion
+            paragraphHeading: benefitsHeading,
+            bodyText: benefitsIntro,
+            items: accordionItems,
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow'
         }
     }) }}
 
-{#     4. Partner Section #}
+    {#     4. Partner Section #}
     {{ include('_sections/content-sections/who-we-work-with.twig', {
         props: {
             title: 'WHO WE WORK WITH',
@@ -75,7 +89,7 @@
         }
     }) }}
 
-{#     5. section #}
+    {#     5. section #}
     {#  Image and Text Section #}
     {% set sectionImage = entry.image.one() %}
 
@@ -94,7 +108,7 @@
         }
     }) }}
 
-{#     6. testimonial#}
+    {#     6. testimonial #}
     {{ include('_sections/testimonials/testimonial-two.twig', {
         data: {
             paragraphHeading4: entry.paragraphHeading4 ?? 'Hear what our clients are saying'

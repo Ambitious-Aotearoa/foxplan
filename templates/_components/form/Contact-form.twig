@@ -1,0 +1,76 @@
+{# templates/_components/form/Contact-form.twig #}
+
+{% set labelClasses = 'text-sm font-semibold uppercase tracking-wider mb-2 block text-foxplan-charcoal-brown font-aktiv-grotesk' %}
+{% set inputClasses = 'w-full py-2 border-b border-gray-400 focus:outline-none focus:border-gray-900 bg-transparent placeholder-gray-500 text-foxplan-charcoal-brown font-aktiv-grotesk' %}
+
+{# Fetch dynamic services from Insights tags #}
+{% set insightTags = craft.tags.group('insights').all() %}
+{% set serviceOptions = insightTags|map(t => t.title) %}
+
+<form action="{{ props.action ?? '#' }}" method="POST" class="contact-form">
+    {{ csrfInput() }}
+
+    <div class="grid grid-cols-12 gap-x-8 gap-y-12 pb-12">
+        {# First Name #}
+        <div class="col-span-12 md:col-span-6">
+            <label for="first_name" class="{{ labelClasses }}">First Name</label>
+            <input type="text" id="first_name" name="first_name" placeholder="John" class="{{ inputClasses }}" required>
+        </div>
+
+        {# Last Name #}
+        <div class="col-span-12 md:col-span-6">
+            <label for="last_name" class="{{ labelClasses }}">Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Doe" class="{{ inputClasses }}" required>
+        </div>
+
+        {# Interest Dropdown (Dynamic) #}
+        <div class="col-span-12 md:col-span-6">
+            <label for="interest" class="{{ labelClasses }}" >I am interested in</label>
+            <select id="interest" name="interest" class="{{ inputClasses }} appearance-none rounded-none">
+                <option value="" disabled selected>Select a service</option>
+                {% for service in serviceOptions %}
+                    <option value="{{ service }}">{{ service }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        {# Best Time to Call #}
+        <div class="col-span-12 md:col-span-6">
+            <label for="call_time" class="{{ labelClasses }}">Best time to call</label>
+            <select id="call_time" name="call_time" class="{{ inputClasses }} appearance-none rounded-none">
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Evening">Evening</option>
+            </select>
+        </div>
+
+        {# Phone #}
+        <div class="col-span-12 md:col-span-6">
+            <label for="phone" class="{{ labelClasses }}">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="1234 567 890" class="{{ inputClasses }}">
+        </div>
+
+        {# Email #}
+        <div class="col-span-12 md:col-span-6">
+            <label for="email" class="{{ labelClasses }}">Email</label>
+            <input type="email" id="email" name="email" placeholder="johndoe@email.com" class="{{ inputClasses }}" required>
+        </div>
+
+        {# Message #}
+        <div class="col-span-12">
+            <label for="message" class="{{ labelClasses }}">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Enter your message" class="{{ inputClasses }} resize-none"></textarea>
+        </div>
+
+        {# Submit Button #}
+        <div class="col-span-12 mt-4">
+            {{ include('_components/ui/button/button.twig', {
+                props: {
+                    text: props.submitText ?? 'Submit',
+                    style: 'secondary',
+                    type: 'submit'
+                }
+            }) }}
+        </div>
+    </div>
+</form>

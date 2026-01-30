@@ -13,10 +13,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -30,10 +28,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -47,10 +43,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField

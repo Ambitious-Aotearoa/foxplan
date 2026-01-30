@@ -1,0 +1,88 @@
+{# _sections/hero/hero-equity.twig #}
+
+{% set data = {
+    heading1: props.heading1 ?? 'Equity',
+    heading2: props.heading2 ?? 'Partners',
+    imagePath: props.imagePath ?? 'images/Equity_1.jpg',
+    body: props.body ?? "If you're an established business owner, our equity programme can help you build and grow your business while sharing the support and success of our firm.",
+    buttonText: props.buttonText ?? 'Get in Touch',
+    buttonUrl: props.buttonUrl ?? '#'
+} %}
+
+<section class="w-full bg-foxplan-neutral-beige pt-[20px]  overflow-hidden font-aktiv"
+         x-data="{ revealed: false }"
+         x-init="setTimeout(() => revealed = true, 150)">
+
+    {# 1. HERO CONTENT #}
+    <div class="relative w-full max-w-[1400px] mx-auto px-4 h-[500px] md:h-[650px] flex items-center justify-center">
+
+        {# CENTRAL LANDSCAPE IMAGE - LOCKED AT 20PX TOP / 15PX BOTTOM #}
+        <div class="relative w-[70%] h-[80%] mt-10 z-10">
+            <img src="{{ craft.vite.asset(data.imagePath) }}"
+                 alt="Equity Partners"
+                 class="w-full h-full object-cover">
+        </div>
+
+        {# EQUITY HEADING #}
+        <div class="absolute top-[20%] left-[-4%] md:left-[-7%] lg:left-[-10%] z-20">
+            <h1 class="font-serif text-[100px] md:text-[180px] leading-none text-foxplan-charcoal-brown tracking-tighter">
+                {{ data.heading1 }}
+            </h1>
+        </div>
+
+        {# PARTNERS HEADING #}
+        <div class="absolute bottom-[8%] right-[-5%] md:right-[-8%] lg:right-[-12%] z-20">
+            <h1 class="font-serif text-[100px] md:text-[180px] leading-none text-foxplan-charcoal-brown tracking-tighter">
+                {{ data.heading2 }}
+            </h1>
+        </div>
+    </div>
+
+    {# 2. THE GROWING ARROW #}
+    {# 2. THE GROWING ARROW (Head travels with the growth) #}
+    <div class="relative w-full  mb-10 px-[10px]">
+        {#
+        The 'Mask' container grows from 0 to 100%.
+        Because the Arrow Head is set to 'right-0' INSIDE this growing container,
+        it will appear to lead the line across the screen.
+        #}
+        <div class="overflow-hidden transition-all duration-[4500ms] h-[20px] relative"
+             style="transition-timing-function: steps(60);"
+             :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0%; opacity: 0;'">
+
+            <div class="w-[calc(100vw-20px)] h-full flex items-center relative">
+                {# Dotted Line #}
+                <div class="w-full h-0 border-t border-dashed border-foxplan-charcoal-brown opacity-100"></div>
+
+                {# ARROW HEAD (Now travels with the reveal edge) #}
+                <div class="absolute right-0 flex items-center">
+                    <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L9 7L1 13" stroke="currentColor" class="text-foxplan-charcoal-brown" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# 3. BODY TEXT & BUTTON #}
+    <div class="w-full flex flex-col items-center justify-center px-4 space-y-8">
+        <div class="max-w-2xl text-center">
+            <p class="text-sm md:text-base text-foxplan-charcoal-brown leading-relaxed opacity-90">
+                {{ data.body | raw }}
+            </p>
+        </div>
+
+        {# BUTTON COMPONENT #}
+        <div class="flex">
+            {% include '_components/ui/button/button.twig' with {
+                props: {
+                    text: data.buttonText,
+                    url: data.buttonUrl,
+                    backgroundColor: 'bg-[#1D1013]',
+                    textColor: 'text-white',
+                    classes: 'px-8 py-3 mb-12 text-[10px] tracking-[0.2em] uppercase font-montreal rounded-none'
+                }
+            } only %}
+        </div>
+    </div>
+</section>

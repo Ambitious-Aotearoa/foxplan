@@ -1,0 +1,151 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    textColor: 'text-foxplan-charcoal-brown',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% block blockAppBody %}
+
+    {# 1. Hero Section #}
+    <section class="bg-foxplan-neutral-beige w-full pt-24 pb-12 font-aktiv border-b border-black/5">
+        <div class="w-full px-[20px]">
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-[120px] text-foxplan-charcoal-brown tracking-tight leading-[0.85] mb-8">
+                KiwiSaver Calculator
+            </h1>
+            <p class="max-w-2xl text-lg md:text-xl opacity-70 leading-snug">
+                Understand your financial trajectory and see how small changes today can impact your lifestyle in retirement.
+            </p>
+        </div>
+    </section>
+
+    {# PARENT WRAPPER: This shares the data between Calculator and Graph #}
+    <div x-data="{
+    localAge: 40,
+    localEmployment: 'employed',
+    localSalary: 45000,
+    localBalance: 10000,
+    localVoluntary: 0,
+    localSchemeIdx: 3,
+    localContribution: 3,
+    localEmployerContribution: 3,
+    useLifeCycle: false,
+    openDropdown: null,
+
+    schemes: [
+        { name: 'Defensive', rate: 0.025 },
+        { name: 'Conservative', rate: 0.035 },
+        { name: 'Balanced', rate: 0.045 },
+        { name: 'Growth', rate: 0.055 },
+        { name: 'Aggressive', rate: 0.065 }
+    ],
+
+    get totalSavings() {
+        const yearsToRetire = 65 - this.localAge;
+        if (yearsToRetire <= 0) return this.localBalance;
+        const r = this.useLifeCycle ? 0.045 : this.schemes[this.localSchemeIdx].rate;
+        const annualSalaryContrib = this.localSalary * ((this.localContribution + this.localEmployerContribution) / 100);
+        const monthlyTotal = (annualSalaryContrib / 12) + parseFloat(this.localVoluntary);
+        const months = yearsToRetire * 12;
+        const monthlyRate = r / 12;
+        const fvBalance = this.localBalance * Math.pow(1 + monthlyRate, months);
+        const fvContributions = monthlyTotal * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+        return Math.round(fvBalance + fvContributions);
+    },
+
+    get weeklyAmount() {
+        const weeks = 25 * 52;
+        const r_weekly = 0.03 / 52;
+        return Math.round(this.totalSavings * (r_weekly / (1 - Math.pow(1 + r_weekly, -weeks))));
+    },
+
+    updateProjections() {
+        document.getElementById('projections-section')?.scrollIntoView({ behavior: 'smooth' });
+    }
+}">
+
+        {# 2. The Calculator Section (Injecting shared state) #}
+        <section class="bg-foxplan-neutral-beige w-full">
+            {% include '_sections/calculator/kiwisaver-calculator.twig' %}
+        </section>
+
+        {# 3. Projections Section (FULL WIDTH & DEPENDENT) #}
+        <section id="projections-section" class="bg-foxplan-neutral-beige w-full py-24 border-t border-black/5 overflow-hidden">
+            <div class="w-full px-[20px] md:px-[40px] lg:px-[80px]">
+
+                {# Header #}
+                <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 border-b border-black/5 pb-8">
+                    <h2 class="font-serif text-6xl md:text-8xl text-foxplan-charcoal-brown tracking-tight leading-none">Projections</h2>
+                    <div class="flex items-center gap-3 mt-6 md:mt-0">
+                        <div class="w-3 h-3 rounded-full bg-foxplan-yellow"></div>
+                        <span class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">KiwiSaver Asset Value</span>
+                    </div>
+                </div>
+
+                {# Graph Container #}
+                <div class="relative h-[500px] w-full mt-10 flex"
+                     x-data="{
+                    get maxVal() { return Math.max(totalSavings, 100000) * 1.2; }
+                 }">
+
+                    {# Y-AXIS (Asset Value) #}
+                    <div class="flex flex-col justify-between text-[11px] font-bold opacity-30 pr-8 text-right w-28 h-[400px] border-r border-black/10 relative">
+                        <span x-text="'$' + Math.round(maxVal).toLocaleString()"></span>
+                        <span x-text="'$' + Math.round(maxVal * 0.66).toLocaleString()"></span>
+                        <span x-text="'$' + Math.round(maxVal * 0.33).toLocaleString()"></span>
+                        <span>$0</span>
+                        <div class="absolute -left-16 top-1/2 -rotate-90 origin-center text-[9px] tracking-[0.4em] uppercase whitespace-nowrap">Asset Value</div>
+                    </div>
+
+                    {# CHART CONTENT #}
+                    <div class="flex-1 h-[400px] relative">
+                        <svg class="w-full h-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            {# The Triangle: Points calculate based on shared localAge and totalSavings #}
+                            <polygon
+                                    :points="`0,100 ${((65 - localAge) / (90 - localAge) * 100)},${(100 - (totalSavings / maxVal * 100))} 100,100`"
+                                    fill="rgba(242, 212, 92, 0.3)"
+                                    stroke="#F2D45C"
+                                    stroke-width="0.5"
+                                    class="transition-all duration-500"
+                            />
+                        </svg>
+
+                        {# X-AXIS (Ages) #}
+                        <div class="absolute -bottom-10 w-full flex justify-between">
+                            <span class="text-[12px] font-bold opacity-40" x-text="localAge"></span>
+                            <span class="text-[12px] font-bold opacity-40">65</span>
+                            <span class="text-[12px] font-bold opacity-40">90</span>
+                        </div>
+                        <div class="absolute -bottom-20 left-1/2 -translate-x-1/2 text-[10px] font-bold tracking-[0.4em] uppercase opacity-40">Age (Years)</div>
+                    </div>
+                </div>
+
+                {# Action Button #}
+{#                <div class="mt-40 flex justify-center">#}
+{#                    {{ include('_components/ui/button/button.twig', {#}
+{#                        props: {#}
+{#                            text: 'I WANT TO KNOW MORE',#}
+{#                            style: 'primary',#}
+{#                            backgroundColor: 'bg-foxplan-charcoal-brown',#}
+{#                            textColor: 'text-foxplan-neutral-beige',#}
+{#                            classes: 'px-16 py-6 !w-auto tracking-widest'#}
+{#                        }#}
+{#                    }) }}#}
+{#                </div>#}
+            </div>
+        </section>
+    </div>
+
+    {# 4. Footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown'
+        }
+    }) }}
+
+{% endblock %}

@@ -13,10 +13,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: d2442bfd-d769-4080-9505-d553f86821d8 # Tabs Subheading
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -30,10 +28,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: f83b90ed-4415-49b6-85c7-e4f1a4a11e72 # Insights Tab Image
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -47,10 +43,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: e4ad5282-5b53-4193-bf9a-40d21e1aab4d # Date
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -64,10 +58,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: 5ca1faf9-4255-419a-9685-fa7e60d769b6 # Insights Body Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -81,10 +73,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField

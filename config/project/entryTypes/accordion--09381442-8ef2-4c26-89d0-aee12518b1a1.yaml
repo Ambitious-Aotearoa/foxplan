@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -11,12 +12,11 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:24:02+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 1bf81b4c-12eb-4329-8dc6-5ce2b0f86018 # Accordion Heading
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -28,12 +28,11 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:24:02+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 5cede0e4-ef0c-4e1f-b901-5b98851b4218 # Accordion Body Text
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -44,6 +43,7 @@ fieldLayouts:
         name: Content
         uid: 9ab3087a-ca04-4f0b-8251-7a97ad50aa8e
         userCondition: null
+    thumbFieldKey: null
 handle: accordion
 hasTitleField: false
 icon: null
@@ -55,3 +55,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

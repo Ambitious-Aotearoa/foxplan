@@ -7,74 +7,108 @@
 {% set milestones = craft.entries.section('timeline').all() %}
 
 <div x-data="{
+    activeIndex: 0,
+    totalSteps: {{ milestones|length }},
+    arrowWidth: 0,
+
     init() {
         gsap.registerPlugin(ScrollTrigger);
         const cards = gsap.utils.toArray('.milestone-card-wrapper');
-        const totalSteps = cards.length;
 
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: this.$refs.mainSection,
                 start: 'top top',
-                end: () => '+=' + (totalSteps * 150) + '%', {# Increased end distance for a slower, smoother scroll #}
+                end: '+=800%',
                 pin: true,
-                scrub: 1, {# Increased scrub for a 'smoother' following effect #}
-                pinSpacing: true,
-                anticipatePin: 1
+                scrub: 1,
+                onUpdate: (self) => {
+                    this.activeIndex = Math.round(self.progress * (this.totalSteps - 1));
+                    this.arrowWidth = this.calculateArrow(self.progress);
+                }
             }
         });
 
+        {# --- SOLID TRANSITION LOGIC --- #}
+        {# Start cards fully opaque but positioned below the viewport #}
+        gsap.set(cards.slice(1), {
+            yPercent: 100,
+            opacity: 1, {# No transparency #}
+            clipPath: 'inset(0% 0% 0% 0%)'
+        });
 
         cards.forEach((card, i) => {
             if (i > 0) {
-                gsap.set(card, {
-                    y: 60 + (i * 10),
-                    zIndex: 100 - i,
-                    scale: 0.98,
-                    opacity: 1
-                });
+                tl.to(card, {
+                    yPercent: 0,
+                    ease: 'none', {# Linear movement feels more solid for timeline scrub #}
+                }, i - 1);
             }
         });
+    },
 
-
-        cards.forEach((card, i) => {
-            if (i < totalSteps - 1) {
-                {# The exit of the current card and entrance of the next are bundled together #}
-                tl.to(cards[i], {
-                    y: -150,
-                    opacity: 0,
-                    scale: 1.02,
-                    ease: 'power2.inOut'
-                }, i * 0.8)
-                .to(cards[i + 1], {
-                    y: 0,
-                    scale: 1,
-                    zIndex: 101,
-                    ease: 'power2.inOut'
-                }, i * 0.8);
-            }
-        });
+    calculateArrow(progress) {
+        const columnWidth = 100 / this.totalSteps;
+        const centerOfFirst = columnWidth / 2;
+        const centerOfLast = 100 - (columnWidth / 2);
+        const availableRange = centerOfLast - centerOfFirst;
+        return centerOfFirst + (progress * availableRange);
     }
 }"
      x-ref="mainSection"
-     class="w-full h-screen flex flex-col justify-center relative m-0 p-0 border-0 bg-white overflow-hidden">
+     class="w-full bg-foxplan-neutral-beige h-screen flex flex-col justify-center px-5 overflow-hidden">
 
-    {# --- CONTAINER (Narrower Margins) --- #}
-    <div class="relative w-full max-w-[94%] mx-auto h-[500px]">
+    {# --- HEADING --- #}
+    <div class="w-full flex flex-col items-center justify-center text-center mb-12">
+        <h2 class="font-serif text-5xl md:text-[6.5rem] lg:text-[7.5rem] font-light leading-[0.85] tracking-tighter text-foxplan-charcoal-brown max-w-6xl mx-auto">
+            30 Years of<br>Financial Expertise
+        </h2>
+    </div>
+
+    {# --- TIMELINE TRACK --- #}
+    <section class="w-full mb-12 select-none z-[100]">
+        <div class="relative w-full mb-10 pt-10">
+            <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-foxplan-charcoal-brown opacity-20"></div>
+
+            <div class="absolute top-1/2 -translate-y-1/2 left-0 flex items-center pointer-events-none"
+                 :style="`width: ${arrowWidth}%; min-width: 24px;` ">
+                <div class="flex-grow border-t-2 border-foxplan-charcoal-brown border-dashed h-0"></div>
+                <div class="relative flex-shrink-0 w-20 h-6 overflow-hidden flex items-center justify-end -mr-6">
+                    <img src="{{ craft.vite.asset('images/placeholder/Arrow_1.svg') }}"
+                         alt="Arrow"
+                         class="h-4 w-auto max-w-none px-1"
+                         style="filter: brightness(0) saturate(100%) invert(8%) sepia(16%) hue-rotate(305deg) brightness(95%) contrast(96%);">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between w-full font-serif text-3xl text-foxplan-charcoal-brown">
+            {% for card in milestones %}
+                <div class="flex-1 flex justify-center items-center">
+                    <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 font-bold' : 'opacity-40'"
+                          class="transition-all duration-300">
+                        {{ card.milestoneYear }}
+                    </span>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {# --- CARD AREA: SOLID OVERLAP --- #}
+    <div class="relative w-full h-[450px] overflow-hidden">
         {% for card in milestones %}
             {% set isYellow = loop.index is even %}
-
-            <div class="milestone-card-wrapper absolute inset-0 w-full h-full">
+            <div class="milestone-card-wrapper absolute inset-0 z-[{{ loop.index * 10 }}]">
                 {% include '_components/ui/card/card.twig' with {
                     props: {
                         year: card.milestoneYear,
                         title: card.milestoneTitle,
                         text: card.milestoneText,
                         cardBg: isYellow ? 'bg-[#F1C44F]' : 'bg-white',
-                        textColor: 'text-[#270E15]',
-                        accentColor: 'text-[#270E15]',
-                        squareColor: 'bg-[#270E15]',
-                        titleColor: 'text-[#270E15]'
+                        textColor: isYellow ? 'text-black' : 'text-[#270E15]',
+                        accentColor: isYellow ? 'text-black' : 'text-[#270E15]',
+                        squareColor: isYellow ? 'bg-black' : 'bg-[#270E15]',
+                        titleColor: isYellow ? 'text-black' : 'text-[#270E15]'
                     }
                 } only %}
             </div>

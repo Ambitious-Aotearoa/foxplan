@@ -1,87 +1,87 @@
 {# _sections/contact-us/contact-us.twig #}
 
+{# 1. FETCH DYNAMIC DATA FROM CRAFT #}
+{% set insightTags = craft.tags.group('insights').all() %}
+{% set serviceOptions = insightTags|map(t => t.title) %}
+
+{# Fetch Advisers #}
+{% set adviserEntries = craft.entries.section('advisers').all() %}
+{% set adviserNames = adviserEntries|map(a => a.title) %}
+
+{# Fallbacks #}
+{% if serviceOptions is empty %}{% set serviceOptions = ['Insurance', 'Mortgages', 'KiwiSaver'] %}{% endif %}
+
+{# 2. MAP DATA #}
 {% set contactData = {
     call: {
-        heading: 'Message us',
-        description: 'New to FoxPlan? Please tell us which service you\'re interest in and one of our Advisers will be in touch soon. Alternatively, you can request a call back below.',
-        phone1: '0800 NO STRESS (0800 667 873)',
-        phone2: 'Office: (04) 918 4659',
-        form: {
-            fields: [
-                { label: 'FIRST NAME', name: 'first_name', placeholder: 'John', type: 'text', colSpan: 6, value: 'John' },
-                { label: 'LAST NAME', name: 'last_name', placeholder: 'Doe', type: 'text', colSpan: 6, value: 'Doe' },
-                { label: 'I AM INTERESTED IN', name: 'interest', placeholder: 'Insurance', type: 'select', options: ['Insurance', 'Mortgages', 'KiwiSaver'], colSpan: 6 },
-                { label: 'BEST TIME TO CALL', name: 'call_time', placeholder: 'Morning', type: 'select', options: ['Morning', 'Afternoon', 'Evening'], colSpan: 6 },
-                { label: 'PHONE', name: 'phone', placeholder: '1234 567 890', type: 'tel', colSpan: 6, value: '1234 567 690' },
-                { label: 'EMAIL', name: 'email', placeholder: 'johndoe@email.com', type: 'email', colSpan: 6, value: 'johndoe@email.com' },
-                { label: 'MESSAGE', name: 'message', placeholder: 'Enter you message', type: 'textarea', colSpan: 12 }
-            ],
-            submitText: 'Submit',
-            formAction: '#'
-        }
+        heading: entry.contactMainHeading2 ?? 'Get in touch',
+        description: entry.contactBodytext2 ?? ''
     },
     callback: {
-        heading: 'Request a Callback',
-        body1: 'Set up a call with one of our advisers at a time that suits you. If you\'re new to FoxPlan, please let us know which services you are interested in so we can match you with the right adviser.',
+        heading: entry.contactMainHeading3 ?? 'Book an adviser',
+        body1: entry.contactBodytext3 ?? '',
         body2: 'If you know who you would like to speak to, you can select their name from the dropdown list.',
-        imageSrc: 'images/Contact_1.jpg'
+        imageSrc: 'images/Contact_1.jpg',
+        advisers: adviserNames,
+        services: serviceOptions
     },
     location: {
-        heading: 'Our Location',
-        body: 'Visiting our office? You\'ll find us at Level 8, 138 The Terrace Wellington.',
+        heading: entry.contactMainHeading ?? 'Our Location',
+        body: entry.contactBodytext ?? '',
         imageSrc: 'images/Contact_1.jpg'
     }
 } %}
 
-{% set descriptionClasses = 'text-base leading-relaxed mb-6 text-foxplan-charcoal-brown' %}
-{% set phoneClasses = 'text-base font-semibold block mb-1 text-foxplan-charcoal-brown' %}
-{% set labelClasses = 'text-sm font-semibold uppercase tracking-wider mb-2 block text-foxplan-charcoal-brown' %}
-{% set inputClasses = 'w-full py-2 border-b border-gray-400 focus:outline-none focus:border-gray-900 bg-transparent placeholder-gray-500 text-foxplan-charcoal-brown' %}
+{# Styling Classes #}
+{% set descriptionClasses = 'text-base leading-relaxed mb-6 text-foxplan-charcoal-brown font-aktiv-grotesk font-light' %}
+{% set labelClasses = 'text-sm font-semibold uppercase tracking-wider mb-2 block text-foxplan-charcoal-brown font-aktiv-grotesk' %}
+{% set inputClasses = 'w-full py-2 border-b border-gray-400 focus:outline-none focus:border-gray-900 bg-transparent text-foxplan-charcoal-brown font-aktiv-grotesk' %}
 {% set tabTitleClasses = 'font-serif text-4xl sm:text-5xl lg:text-[5.5rem] font-light leading-none mb-0 text-foxplan-charcoal-brown' %}
 
 {# --- MACROS --- #}
 
-{% macro render_call_tab_content(data, descriptionClasses, phoneClasses, labelClasses, inputClasses) %}
+{% macro render_call_tab_content(data, descriptionClasses) %}
     <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 mt-4 px-0">
         <div class="md:col-span-5">
-            <p class="{{ descriptionClasses }}">{{ data.description }}</p>
-            <div class="pt-4">
-                <span class="{{ phoneClasses }}">PHONE</span>
-                <span class="{{ phoneClasses }} font-normal">{{ data.phone1 }}</span>
-                <span class="{{ phoneClasses }} font-normal">{{ data.phone2 }}</span>
-            </div>
+            <div class="{{ descriptionClasses }}">{{ data.description|raw }}</div>
         </div>
         <div class="md:col-span-7">
-            <form action="{{ data.form.formAction }}" method="POST">
-                <div class="grid grid-cols-12 gap-x-8 gap-y-12 pb-12">
-                    {% for field in data.form.fields %}
-                        <div class="col-span-{{ field.colSpan }}">
-                            <label for="{{ field.name }}" class="{{ labelClasses }}">{{ field.label }}</label>
-                            {% if field.type == 'select' %}
-                                <select id="{{ field.name }}" name="{{ field.name }}" class="{{ inputClasses }} appearance-none">
-                                    {% for option in field.options %}<option value="{{ option }}">{{ option }}</option>{% endfor %}
-                                </select>
-                            {% elseif field.type == 'textarea' %}
-                                <textarea id="{{ field.name }}" name="{{ field.name }}" rows="4" class="{{ inputClasses }} resize-none"></textarea>
-                            {% else %}
-                                <input type="{{ field.type }}" id="{{ field.name }}" name="{{ field.name }}" class="{{ inputClasses }}" value="{{ field.value ?? '' }}">
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                    <div class="col-span-12 mt-4">
-                        {{ include('_components/ui/button/button.twig', { props: { text: data.form.submitText, style: 'secondary' } }) }}
-                    </div>
-                </div>
-            </form>
+            {{ include('_components/form/Contact-form.twig', {
+                props: { submitText: 'Submit' }
+            }) }}
         </div>
     </div>
 {% endmacro %}
 
-{% macro render_callback_tab_content(data, descriptionClasses) %}
+{% macro render_callback_tab_content(data, descriptionClasses, labelClasses, inputClasses) %}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-0 mt-4 items-stretch">
         <div class="lg:col-span-5 px-0">
-            <p class="{{ descriptionClasses }}">{{ data.body1 }}</p>
-            <p class="{{ descriptionClasses }}">{{ data.body2 }}</p>
+            <div class="{{ descriptionClasses }}">{{ data.body1|raw }}</div>
+
+            <div class="grid grid-cols-2 gap-x-8 mt-10 mb-10">
+                <div>
+                    <label class="{{ labelClasses }}">SELECT ADVISER</label>
+                    <select class="{{ inputClasses }} appearance-none rounded-none bg-transparent">
+                        <option value="">Choose an Adviser</option>
+                        {% for name in data.advisers %}<option value="{{ name }}">{{ name }}</option>{% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label class="{{ labelClasses }}">SELECT SERVICE</label>
+                    <select class="{{ inputClasses }} appearance-none rounded-none bg-transparent">
+                        <option value="">Choose a Service</option>
+                        {% for service in data.services %}<option value="{{ service }}">{{ service }}</option>{% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="{{ descriptionClasses }} mb-10">{{ data.body2|raw }}</div>
+
+            <div class="flex">
+                {{ include('_components/ui/button/button.twig', {
+                    props: { text: 'Book Now', url: '#', style: 'secondary' }
+                }) }}
+            </div>
         </div>
         <div class="hidden lg:block lg:col-span-7 pl-12">
             <div class="w-full h-[500px] overflow-hidden">
@@ -94,7 +94,7 @@
 {% macro render_location_tab_content(data, descriptionClasses) %}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-0 mt-4 items-stretch">
         <div class="lg:col-span-5 px-0">
-            <p class="{{ descriptionClasses }}">{{ data.body }}</p>
+            <div class="{{ descriptionClasses }}">{{ data.body|raw }}</div>
         </div>
         <div class="hidden lg:block lg:col-span-7 pl-12">
             <div class="w-full h-[500px] overflow-hidden">
@@ -112,24 +112,14 @@
     textColor: 'text-foxplan-charcoal-brown',
     titleClasses: tabTitleClasses,
     tabs: [
-        { id: 'call', label: 'Call FoxPlan', title: contactData.call.heading, content: macros.render_call_tab_content(contactData.call, descriptionClasses, phoneClasses, labelClasses, inputClasses) },
-        { id: 'callback', label: 'Book a chat', title: contactData.callback.heading, content: macros.render_callback_tab_content(contactData.callback, descriptionClasses) },
+        { id: 'call', label: 'Get in touch', title: contactData.call.heading, content: macros.render_call_tab_content(contactData.call, descriptionClasses) },
+        { id: 'callback', label: 'Book an adviser', title: contactData.callback.heading, content: macros.render_callback_tab_content(contactData.callback, descriptionClasses, labelClasses, inputClasses) },
         { id: 'location', label: 'Our Location', title: contactData.location.heading, content: macros.render_location_tab_content(contactData.location, descriptionClasses) }
     ]
 } %}
 
-{# --- RENDER --- #}
-
-<section
-        class="w-full bg-foxplan-neutral-beige pt-16 pb-0 overflow-x-hidden"
-        x-data="{ activeTab: '{{ tabsComponentData.defaultTab }}' }"
->
+<section class="w-full bg-foxplan-neutral-beige pt-16 pb-20 overflow-x-hidden" x-data="{ activeTab: '{{ tabsComponentData.defaultTab }}' }">
     <div class="w-full px-4 lg:px-12">
         {% include '_components/ui/tabs/tabs.twig' with { data: tabsComponentData } %}
     </div>
 </section>
-
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<style>
-    [x-cloak] { display: none !important; }
-</style>

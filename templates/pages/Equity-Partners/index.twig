@@ -1,0 +1,67 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    textColor: 'text-foxplan-charcoal-brown',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% block blockAppBody %}
+
+    {{ include('_sections/hero-sections/hero-equity-partners.twig', {
+        props: {
+            heading1: 'Equity',
+            heading2: 'Partners',
+            body: "If you're an established business owner, our equity programme can help you build and grow your business while sharing the support and success of our firm.",
+        }
+    }) }}
+
+    {% set pageEntry = entry ?? craft.entries.section('equityPartners').one() %}
+
+    {{ include('_sections/equity-partners/equity-partners.twig', {
+        entry: pageEntry
+    }) }}
+
+    {# 4. How We Work Section (Matrix: accordion) #}
+    {% set benefitsHeading = entry.paragraphHeading4 ?? 'About group insurance' %}
+    {% set benefitsIntro = entry.bodyText ?? '' %}
+
+    {# 1. Loop through the 'accordion' matrix #}
+    {% set accordionItems = [] %}
+    {# Ensure 'accordion' is the handle of the Matrix field on this specific entry #}
+    {% if entry.accordion is defined %}
+        {% for block in entry.accordion.all() %}
+            {% set accordionItems = accordionItems | merge([{
+                'title': block.accordionHeading,
+                'text': block.accordionBodyText
+            }]) %}
+        {% endfor %}
+    {% endif %}
+
+    {#  Deliver the data to the benefits section using 'props' #}
+    {{ include('_sections/content-sections/benefits.twig', {
+        props: {
+            paragraphHeading: benefitsHeading,
+            bodyText: benefitsIntro,
+            items: accordionItems,
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown'
+        }
+    }) }}
+
+
+    {#  footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+{% endblock %}

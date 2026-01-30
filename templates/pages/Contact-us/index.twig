@@ -10,15 +10,14 @@
 {% block blockAppBody %}
 
     {# 1. Hero Section #}
-    {# Use this in your page template (e.g., index.twig) #}
-    {% include '_sections/hero-sections/hero-design.twig' with {
+    {# Passing 'entry' explicitly so the template can see the fields #}
+    {% include '_sections/hero-sections/hero-contact.twig' with {
         entry: entry,
         props: {
-
             backgroundColor: 'bg-foxplan-yellow',
-            textColor: 'text-foxplan-charcoal-brown'
-            }
-            } only %}
+            textColor: 'text-foxplan-charcoal'
+        }
+    } only %}
 
     {# Example: Including the Contact Section with Custom Colors #}
     {% include '_sections/contact-us/contact-us.twig' %}

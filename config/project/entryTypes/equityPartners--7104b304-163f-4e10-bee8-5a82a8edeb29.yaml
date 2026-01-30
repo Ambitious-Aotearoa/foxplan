@@ -1,0 +1,210 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  bdc8b2b5-ed3f-407e-a68a-ffdea8231445:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-29T22:34:42+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 095052c4-6033-4c77-9a4c-8eb4d3477757
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 07b6f195-d522-4a23-826c-c5a9c2863131
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-29T22:34:42+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 32b8b948-c6a6-4a9a-a427-29555494a345
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-29T22:34:42+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 639e7e70-0f84-4bcf-8f99-2d3a27cec3ea # medium paragraph
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0afe5afa-db4a-48d3-9a26-6d44e5a45376
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-29T23:57:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 3df564bb-a8ff-48d9-88c0-1e1fec7a3cff # Accordion new
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c48fc89e-68de-47ca-90fd-ef8fb55979bc
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Bring more surety to your business '
+        uid: 1d4a7024-520a-4ddb-b815-b88d8878d958
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-29T22:34:42+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 27b03720-f7ab-48d3-b611-bbf52a4c6682
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-29T22:34:42+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: bodyText2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 95b025ed-3dff-41f8-b05b-ca9f59b705a2
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Build, grow and exit on your terms'
+        uid: 2bbef78b-31bc-435e-95f5-fff9d0b6d7a2
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-29T22:34:42+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e35be4cd-df41-4266-997b-7fd918a110ea
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-29T22:34:42+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: bodyText3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a9f4d660-4178-4875-ad3b-80c83da1e523
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Who is this for?'
+        uid: 4d37aaf2-d0bc-4071-95fc-241d67c300ba
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-01-29T22:34:42+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading4
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: cb83da45-edbe-4d78-8204-cbca9feeb2fd
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-01-29T23:57:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0a6c9a68-66da-4e6a-9947-3125df989e44
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'How we work with you'
+        uid: f9a5a3fa-c055-461a-a7cc-dd260f036ad7
+        userCondition: null
+    thumbFieldKey: null
+handle: equityPartners
+hasTitleField: false
+icon: null
+name: 'Equity Partners'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

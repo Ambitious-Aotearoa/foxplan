@@ -6,9 +6,18 @@ headingLevels:
   - 5
   - 6
 name: Simple
+options:
+  alignment:
+    options:
+      - left
+      - right
 toolbar:
   - heading
   - '|'
   - bold
   - italic
+  - underline
   - link
+  - bulletedList
+  - numberedList
+  - alignment

@@ -19,52 +19,53 @@
 
     {# Added 'border-t' and the border color class to the section tag below #}
     <section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">
-    <div class="pt-16 md:pt-24">
-        <div class="flex flex-wrap w-full items-start">
+        <div class="pt-16 md:pt-24">
+            {# Added justify-end to push the second column to the far right #}
+            <div class="flex flex-wrap w-full items-start md:justify-end">
 
-            {# Left Column: 30% Width #}
-            <div class="w-full md:w-[30%] pl-8 md:pl-10 pr-12 pb-16 md:pb-24">
-                <div class="max-w-md">
-                    <h2 class="font-serif text-5xl md:text-6xl lg:text-[4.5rem] font-normal {{ data.textColor }} leading-[0.85] tracking-tight {{ (data.bodyText or data.buttonText) ? 'mb-8 md:mb-12' : '' }}">
-                        {{ data.title | raw }}
-                    </h2>
+                {# Left Column: 30% Width - Pushed to the left by default #}
+                <div class="w-full md:w-[30%] pl-8 md:pl-10 pr-12 pb-16 md:pb-24 mr-auto">
+                    <div class="max-w-md">
+                        <h2 class="font-serif text-5xl md:text-6xl lg:text-[4.5rem] font-normal {{ data.textColor }} leading-[0.85] tracking-tight {{ (data.bodyText or data.buttonText) ? 'mb-8 md:mb-12' : '' }}">
+                            {{ data.title | raw }}
+                        </h2>
 
-                    {% if data.bodyText is not empty %}
-                        <div class="font-aktiv-grotesk text-base md:text-lg {{ data.textColor }} leading-relaxed {{ data.buttonText ? 'mb-10' : '' }}">
-                            {{ data.bodyText | raw }}
-                        </div>
-                    {% endif %}
+                        {% if data.bodyText is not empty %}
+                            <div class="font-aktiv-grotesk text-base md:text-lg {{ data.textColor }} leading-relaxed {{ data.buttonText ? 'mb-10' : '' }}">
+                                {{ data.bodyText | raw }}
+                            </div>
+                        {% endif %}
 
-                    {% if data.buttonText is not empty %}
-                        <div>
-                            {% include '_components/ui/button/button.twig' with {
-                                props: {
-                                    text: data.buttonText,
-                                    url: data.buttonLink,
-                                    backgroundColor: data.buttonBgColor,
-                                    textColor: data.buttonTextColor,
-                                    classes: 'px-8 py-4 text-xs tracking-widest uppercase inline-flex items-center gap-2'
-                                }
-                            } only %}
-                        </div>
-                    {% endif %}
+                        {% if data.buttonText is not empty %}
+                            <div>
+                                {% include '_components/ui/button/button.twig' with {
+                                    props: {
+                                        text: data.buttonText,
+                                        url: data.buttonLink,
+                                        backgroundColor: data.buttonBgColor,
+                                        textColor: data.buttonTextColor,
+                                        classes: 'px-8 py-4 text-xs tracking-widest uppercase inline-flex items-center gap-2'
+                                    }
+                                } only %}
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
 
-            {# Right Side: 70% Width #}
-            <div class="w-full md:w-[70%] pb-16 md:pb-24 pr-8 md:pr-12 lg:pr-16">
-                <div class="w-full relative">
-                    {% if data.imageSrc %}
-                        <img src="{{ data.imageSrc }}"
-                             alt="{{ data.title|striptags }}"
-                             class="w-full h-auto block object-cover">
-                    {% else %}
-                        <img src="{{ craft.vite.asset('images/Insights_4.jpg') }}"
-                             alt="{{ data.title|striptags }}"
-                             class="w-full h-auto block object-cover">
-                    {% endif %}
+                {# Right Side: 60% Width - Pushed to the far right edge #}
+                <div class="w-full md:w-[60%] pb-16 md:pb-24 pr-[20px]">
+                    <div class="w-full relative">
+                        {% if data.imageSrc %}
+                            <img src="{{ data.imageSrc }}"
+                                 alt="{{ data.title|striptags }}"
+                                 class="w-full h-auto block object-cover">
+                        {% else %}
+                            <img src="{{ craft.vite.asset('images/Insights_4.jpg') }}"
+                                 alt="{{ data.title|striptags }}"
+                                 class="w-full h-auto block object-cover">
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>

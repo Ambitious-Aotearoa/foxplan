@@ -4,13 +4,13 @@
     backgroundColor: 'bg-foxplan-yellow',
     heading: entry.title ?? 'First Home Buyers',
     bodyText: entry.heroBodyText ?? '',
-buttonText: entry.button ?? 'LEARN MORE',
-buttonUrl: (entry.buttonLink is defined and entry.buttonLink) ? entry.buttonLink.url : '#',
-imagePath: 'images/placeholder/hero-sample.jpg',
-arrowPath: 'images/placeholder/Arrow_1.svg',
-buttonBgColor: 'bg-foxplan-charcoal-brown',
-buttonTextColor: 'text-foxplan-yellow',
-textColor: 'text-foxplan-charcoal-brown'
+    buttonText: (entry.button is defined and entry.button|length) ? entry.button : null,
+    buttonUrl: (entry.buttonLink is defined and entry.buttonLink|length) ? entry.buttonLink.url : '#',
+    imagePath: 'images/placeholder/hero-sample.jpg',
+    arrowPath: 'images/placeholder/Arrow_1.svg',
+    buttonBgColor: 'bg-foxplan-charcoal-brown',
+    buttonTextColor: 'text-foxplan-yellow',
+    textColor: 'text-foxplan-charcoal-brown'
 } %}
 
 {% set data = defaults | merge(props ?? {}) %}
@@ -20,26 +20,26 @@ textColor: 'text-foxplan-charcoal-brown'
          x-init="setTimeout(() => revealed = true, 150)">
 
     {# Header Row #}
-    <div class="max-w-full mx-auto px-8 mb-10 relative">
+    <div class="max-w-full mx-auto mb-10 relative">
 
-        {# --- ARROW LAYER (Absolute so text doesn't move) --- #}
-        <div class="absolute left-8 top-1/2 -translate-y-1/2 pointer-events-none hidden md:block">
-            {# steps(15) creates the bit-by-bit growth effect #}
+        {# --- ARROW LAYER (Now starting from left-0) --- #}
+        <div class="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none hidden md:block">
+            {# The width here controls how far the "mask" opens to show the arrow #}
             <div class="transition-all duration-[2500ms] overflow-hidden"
-                 style="transition-timing-function: steps(15);"
-         :style="revealed ? 'width: 336px; opacity: 1;' : 'width: 0px; opacity: 0;'">
-    <img src="{{ craft.vite.asset(data.arrowPath) }}"
-         alt=""
-         class="w-[336px] h-4 block object-contain object-left">
-    </div>
-    </div>
+                 style="transition-timing-function: steps(20);"
+                 :style="revealed ? 'width: 400px; opacity: 1;' : 'width: 0px; opacity: 0;'">
+                <img src="{{ craft.vite.asset(data.arrowPath) }}"
+                     alt=""
+                     class="w-[400px] h-4 block object-contain object-left">
+            </div>
+        </div>
 
-    {# --- TEXT LAYER (Padding reserves the space) --- #}
-    <div class="md:pl-[360px]">
-        <h2 class="font-serif text-6xl md:text-8xl tracking-tight {{ data.textColor }} whitespace-nowrap">
-            {{ data.heading | raw }}
-        </h2>
-    </div>
+        {# --- TEXT LAYER (Padding adjusted to sit after the arrow) --- #}
+        <div class="px-8 md:pl-[420px]">
+            <h2 class="font-serif text-6xl md:text-8xl tracking-tight {{ data.textColor }} whitespace-nowrap">
+                {{ data.heading | raw }}
+            </h2>
+        </div>
     </div>
 
     {# Content Grid #}
@@ -53,23 +53,24 @@ textColor: 'text-foxplan-charcoal-brown'
         </div>
 
         <div class="w-full lg:w-[30%] px-8 lg:px-12 space-y-6 pt-10 lg:pt-0">
-            <div class="font-aktiv leading-relaxed text-xl {{ data.textColor }}">
-                {# FIXED: Changed from data.heroBodyText to data.bodyText #}
-                {{ data.bodyText | raw }}
-            </div>
+            {% if data.bodyText %}
+                <div class="font-aktiv leading-relaxed text-xl {{ data.textColor }}">
+                    {{ data.bodyText | raw }}
+                </div>
+            {% endif %}
 
-            {% if data.buttonText is not empty %}
-            <div class="mt-4">
-                {% include '_components/ui/button/button.twig' with {
-                    props: {
-                        text: data.buttonText,
-                        style: 'primary',
-                        url: data.buttonUrl,
-                        backgroundColor: data.buttonBgColor,
-                        textColor: data.buttonTextColor,
-                    }
-                } only %}
-            </div>
+            {% if data.buttonText %}
+                <div class="mt-4">
+                    {% include '_components/ui/button/button.twig' with {
+                        props: {
+                            text: data.buttonText,
+                            style: 'primary',
+                            url: data.buttonUrl,
+                            backgroundColor: data.buttonBgColor,
+                            textColor: data.buttonTextColor,
+                        }
+                    } only %}
+                </div>
             {% endif %}
         </div>
     </div>

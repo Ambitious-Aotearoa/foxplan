@@ -1,0 +1,124 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  59502b30-9584-44a6-ad2c-9e43ee40db83:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-12-16T23:05:33+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 18d1a26d-5e20-4fe7-a7f9-374555b1c037
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-16T23:13:18+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 34e09c3a-a75d-43a8-a75e-659ae7194013
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-16T23:13:18+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a70bf2c9-67b5-46f3-ae8b-c61a4c2fe71e
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 3783255a-3b73-45f1-b549-b41dbef482f9
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-12-17T01:17:46+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 49749e99-517d-4eee-886a-cf0533301da7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-12-17T01:17:46+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4c9973ff-0107-4739-a889-f352e62eca08 # Large Paragraph
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4919cf97-79e9-4c7c-a6ca-082fb07220d2
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'About the Pod'
+        uid: cb3ee120-bdb1-441c-b6e4-a7836be03810
+        userCondition: null
+    thumbFieldKey: null
+handle: podcastPage
+hasTitleField: true
+icon: null
+name: 'Podcast Page'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

@@ -13,10 +13,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -30,10 +28,8 @@ fieldLayouts:
             elementCondition: null
             fieldUid: ae579cff-a9c5-4a21-a182-8dc2ad9da475 # Partner Logos
             handle: null
-            includeInCards: false
             instructions: null
             label: null
-            providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField

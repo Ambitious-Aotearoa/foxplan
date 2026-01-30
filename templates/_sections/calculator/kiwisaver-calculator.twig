@@ -1,0 +1,213 @@
+{# 1. Configuration #}
+{% set calcProps = {
+    cardTitle: 'Your Outcome',
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    cardBg: 'bg-white',
+    textColor: 'text-foxplan-charcoal-brown',
+    buttonBg: 'bg-foxplan-charcoal-brown',
+    buttonTextColor: 'text-white'
+} %}
+
+<section class="{{ calcProps.backgroundColor }} w-full overflow-hidden font-aktiv"
+         x-data="{
+            localAge: 40,
+            localEmployment: 'employed',
+            localSalary: 45000,
+            localBalance: 10000,
+            localVoluntary: 0,
+            localSchemeIdx: 3,
+            localContribution: 3,
+            localEmployerContribution: 3,
+            useLifeCycle: false,
+
+            schemes: [
+                { name: 'Defensive', rate: 0.025 },
+                { name: 'Conservative', rate: 0.035 },
+                { name: 'Balanced', rate: 0.045 },
+                { name: 'Growth', rate: 0.055 },
+                { name: 'Aggressive', rate: 0.065 }
+            ],
+            openDropdown: null,
+
+            {# FINANCIAL CALCULATIONS #}
+            get totalSavings() {
+                const yearsToRetire = 65 - this.localAge;
+                if (yearsToRetire <= 0) return this.localBalance;
+
+                {# Estimated annual return based on fund choice #}
+                const r = this.useLifeCycle ? 0.045 : this.schemes[this.localSchemeIdx].rate;
+
+                {# Monthly contributions (Employee + Employer + Voluntary) #}
+                const annualSalaryContrib = this.localSalary * ((this.localContribution + this.localEmployerContribution) / 100);
+                const monthlyTotal = (annualSalaryContrib / 12) + parseFloat(this.localVoluntary);
+
+                const months = yearsToRetire * 12;
+                const monthlyRate = r / 12;
+
+                {# Future Value of current balance #}
+                const fvBalance = this.localBalance * Math.pow(1 + monthlyRate, months);
+
+                {# Future Value of monthly contributions #}
+                const fvContributions = monthlyTotal * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+
+                const total = Math.round(fvBalance + fvContributions);
+
+                {# Signal the graph to update #}
+                $dispatch('calculator-updated', {
+                    age: this.localAge,
+                    balance: this.localBalance,
+                    totalSavings: total
+                });
+
+                return total;
+            },
+
+            get weeklyAmount() {
+                {# Drawdown logic: Exhausting the funds from age 65 to 90 (25 years) #}
+                const retirementYears = 25;
+                const weeks = retirementYears * 52;
+                {# Assuming a safer 3% return during retirement #}
+                const r_weekly = 0.03 / 52;
+
+                const payment = this.totalSavings * (r_weekly / (1 - Math.pow(1 + r_weekly, -weeks)));
+                return Math.round(payment);
+            },
+
+            updateProjections() {
+                document.getElementById('projections-section')?.scrollIntoView({ behavior: 'smooth' });
+            }
+         }"
+         @click.away="openDropdown = null">
+
+    <div class="w-full py-16 pr-[10px]">
+        <div class="flex flex-wrap lg:flex-nowrap w-full items-stretch px-4 md:px-8">
+
+            {# Left Column: Input Grid #}
+            <div class="w-full lg:w-1/2 flex flex-col justify-start lg:pr-8 mb-10 lg:mb-0">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+
+                    {# Employment Status #}
+                    <div class="border-b border-black/10 pb-2 relative">
+                        <label class="block text-[8px] font-bold uppercase opacity-50 mb-1">EMPLOYMENT STATUS</label>
+                        <div @click="openDropdown = 'employment'" class="flex justify-between items-center cursor-pointer">
+                            <span class="text-xs font-medium capitalize" x-text="localEmployment"></span>
+                            <span class="text-[8px]">▼</span>
+                        </div>
+                        <div x-show="openDropdown === 'employment'" x-cloak class="absolute z-50 mt-1 w-full bg-white shadow-xl border border-black/5">
+                            <template x-for="status in ['employed', 'self-employed', 'not working']">
+                                <div @click="localEmployment = status; openDropdown = null" class="px-4 py-2 text-xs hover:bg-gray-50 cursor-pointer capitalize" x-text="status"></div>
+                            </template>
+                        </div>
+                    </div>
+
+                    {# Your Contribution #}
+                    <div class="border-b border-black/10 pb-2 relative">
+                        <label class="block text-[8px] font-bold uppercase opacity-50 mb-1">YOUR CONTRIBUTION</label>
+                        <div @click="openDropdown = 'contrib'" class="flex justify-between items-center cursor-pointer">
+                            <span class="text-xs font-medium" x-text="localContribution + '%'"></span>
+                            <span class="text-[8px]">▼</span>
+                        </div>
+                        <div x-show="openDropdown === 'contrib'" x-cloak class="absolute z-50 mt-1 w-full bg-white shadow-xl border border-black/5">
+                            <template x-for="c in [3, 4, 6, 8, 10]">
+                                <div @click="localContribution = c; openDropdown = null" class="px-4 py-2 text-xs hover:bg-gray-50 cursor-pointer" x-text="c + '%'"></div>
+                            </template>
+                        </div>
+                    </div>
+
+                    {# Employer Contribution #}
+                    <div class="border-b border-black/10 pb-2 relative">
+                        <label class="block text-[8px] font-bold uppercase opacity-50 mb-1">EMPLOYER CONTRIBUTION</label>
+                        <div @click="openDropdown = 'employer'" class="flex justify-between items-center cursor-pointer">
+                            <span class="text-xs font-medium" x-text="localEmployerContribution + '%'"></span>
+                            <span class="text-[8px]">▼</span>
+                        </div>
+                        <div x-show="openDropdown === 'employer'" x-cloak class="absolute z-50 mt-1 w-full bg-white shadow-xl border border-black/5">
+                            <template x-for="ec in [3, 4]">
+                                <div @click="localEmployerContribution = ec; openDropdown = null" class="px-4 py-2 text-xs hover:bg-gray-50 cursor-pointer" x-text="ec + '%'"></div>
+                            </template>
+                        </div>
+                    </div>
+
+                    {# Use Life Cycle Toggle #}
+                    <div class="border-b border-black/10 pb-2 flex justify-between items-center">
+                        <div>
+                            <label class="block text-[8px] font-bold uppercase opacity-50 mb-1">USE LIFE CYCLE</label>
+                            <span class="text-xs font-medium" x-text="useLifeCycle ? 'Enabled' : 'Disabled'"></span>
+                        </div>
+                        <button @click="useLifeCycle = !useLifeCycle"
+                                class="relative inline-flex h-5 w-10 items-center rounded-full transition-colors focus:outline-none"
+                                :class="useLifeCycle ? 'bg-foxplan-charcoal-brown' : 'bg-gray-200'">
+                            <span class="inline-block h-3 w-3 transform rounded-full bg-white transition-transform"
+                                  :class="useLifeCycle ? 'translate-x-6' : 'translate-x-1'"></span>
+                        </button>
+                    </div>
+
+                    {# Current Age #}
+                    <div class="border-b border-black/10 pb-2">
+                        <label class="block text-[8px] font-bold uppercase opacity-50 mb-1">CURRENT AGE</label>
+                        <input type="number" x-model.number="localAge" class="w-full bg-transparent text-xs font-medium focus:outline-none border-none p-0">
+                    </div>
+
+                    {# Annual Salary #}
+                    <div class="border-b border-black/10 pb-2">
+                        <label class="block text-[8px] font-bold uppercase opacity-50 mb-1">ANNUAL SALARY ($)</label>
+                        <input type="number" x-model.number="localSalary" class="w-full bg-transparent text-xs font-medium focus:outline-none border-none p-0">
+                    </div>
+                </div>
+            </div>
+
+            {# Right Column: Calculated Results #}
+            <div class="w-full lg:w-1/2 {{ calcProps.cardBg }} px-6 lg:px-12 py-10 shadow-lg lg:ml-6 flex flex-col justify-between">
+                <div>
+                    <h2 class="font-serif text-3xl mb-8 {{ calcProps.textColor }}">{{ calcProps.cardTitle }}</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-[9px] font-bold uppercase opacity-40">Monthly Voluntary</span>
+                                <span class="text-2xl font-light opacity-60" x-text="'$' + localVoluntary.toLocaleString()"></span>
+                            </div>
+                            <input type="range" min="0" max="5000" step="10" x-model.number="localVoluntary" class="w-full accent-foxplan-charcoal-brown">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-end mb-2">
+                                <span class="text-[9px] font-bold uppercase opacity-40">KiwiSaver Scheme</span>
+                                <span class="text-2xl font-light opacity-60" x-text="useLifeCycle ? 'Life Cycle' : schemes[localSchemeIdx].name"></span>
+                            </div>
+                            <input type="range" min="0" max="4" step="1" x-model.number="localSchemeIdx" :disabled="useLifeCycle" class="w-full accent-foxplan-charcoal-brown disabled:opacity-30">
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-6 border-t border-black/5 space-y-4">
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="opacity-40 uppercase font-bold text-[9px] tracking-widest">Total Savings at Age 65</span>
+                            <span class="text-xl font-light opacity-80" x-text="'$' + totalSavings.toLocaleString()"></span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="opacity-40 uppercase font-bold text-[9px] tracking-widest">Amount Per Week</span>
+                            <span class="text-xl font-light opacity-80" x-text="'$' + weeklyAmount.toLocaleString()"></span>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-6 border-t border-black/5 {{ calcProps.textColor }}">
+                            <span class="font-bold text-[9px] opacity-40 uppercase tracking-[0.2em]">Final Balance</span>
+                            <span class="font-serif text-4xl md:text-5xl" x-text="'$' + totalSavings.toLocaleString()"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12">
+                    {{ include('_components/ui/button/button.twig', {
+                        props: {
+                            text: 'SEE PROJECTIONS',
+                            style: 'primary',
+                            backgroundColor: 'bg-foxplan-charcoal-brown',
+                            textColor: 'text-foxplan-neutral-beige',
+                            classes: 'px-10 py-5 tracking-[0.2em] !w-full md:!w-auto',
+                            attributes: { '@click': 'updateProjections()' }
+                        }
+                    }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
