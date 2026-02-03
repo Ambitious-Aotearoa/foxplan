@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -39,6 +40,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:36:30+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
             instructions: null
@@ -54,6 +56,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:36:30+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
             instructions: null
@@ -75,6 +78,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:36:30+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
             instructions: null
@@ -90,6 +94,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:36:30+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
             instructions: null
@@ -105,6 +110,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:36:30+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
             handle: null
             instructions: null
@@ -116,7 +122,7 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
-        name: 'Get On the Property Ladder'
+        name: 'How your Adviser can help  '
         uid: 4f0227b9-d5e7-492a-82e3-f05173faaa89
         userCondition: null
       -
@@ -126,6 +132,7 @@ fieldLayouts:
             dateAdded: '2026-01-19T21:47:25+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
             handle: null
             instructions: null
@@ -140,77 +147,7 @@ fieldLayouts:
         name: 'Explore Mortgages'
         uid: ed0c01e6-74c4-4ecf-9bcf-353eb3b319fc
         userCondition: null
-      -
-        elementCondition: null
-        name: 'Who we work with'
-        uid: c64a43f5-c8f4-49bd-879e-aa46b52d8e6b
-        userCondition: null
-      -
-        elementCondition: null
-        elements:
-          -
-            dateAdded: '2025-12-17T03:38:54+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 40dc7ecc-2b48-42e9-ba8d-6b387ee26597 # Advisors Image
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 7dbed08c-3991-43df-ab84-1d19f8cb4302
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T03:38:54+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: fe02d7ad-a8ee-44e2-81e9-27e07f31372d # Advisors Name
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: d53f1fea-390d-49ab-902d-6ff5b516fd69
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T03:38:54+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 6f0a76fe-cb4c-4d8c-8521-1df6591824df
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T03:38:54+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
-            handle: bodyText2
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: c64f8a68-0081-44e5-bf53-bf2ef9c0fa6b
-            userCondition: null
-            warning: null
-            width: 100
-        name: 'Meet our Advisors'
-        uid: f402773a-bf49-444c-a27f-29fd310da057
-        userCondition: null
+    thumbFieldKey: null
 handle: mortgages
 hasTitleField: true
 icon: null
@@ -222,3 +159,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

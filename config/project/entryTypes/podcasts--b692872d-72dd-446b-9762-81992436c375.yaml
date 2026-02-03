@@ -1,0 +1,74 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  ba8dffd8-edac-433f-8f3f-753bdfc4ca77:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-02-03T03:00:15+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e193394e-257b-4460-bb66-043fa40743cd # Main Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 82b2bd98-5a5b-414d-bbb7-27d4594e1409
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-03T03:18:46+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 3a18a3a4-7da8-482b-b475-06dfad80f264 # Spotify URL
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d4581af9-fda4-42d5-945e-c5340f0f6bf3
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-03T03:56:29+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1a9ce3fa-1c8d-4886-80cd-77cc624c2a1a # Episode Duration
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 79146439-8aad-457f-9c93-93545b1e16a9
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: a62d565e-5eff-4ec3-b6aa-e618cada1268
+        userCondition: null
+    thumbFieldKey: null
+handle: podcasts
+hasTitleField: false
+icon: null
+name: podcasts
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: '{mainHeading}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

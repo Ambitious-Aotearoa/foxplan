@@ -9,7 +9,7 @@
     buttonUrl: props.buttonUrl ?? '#'
 } %}
 
-<section class="w-full bg-foxplan-neutral-beige pt-[20px]  overflow-hidden font-aktiv"
+<section class="w-full bg-foxplan-neutral-beige  overflow-hidden font-aktiv"
          x-data="{ revealed: false }"
          x-init="setTimeout(() => revealed = true, 150)">
 
@@ -65,8 +65,8 @@
     </div>
 
     {# 3. BODY TEXT & BUTTON #}
-    <div class="w-full flex flex-col items-center justify-center px-4 space-y-8">
-        <div class="max-w-2xl text-center">
+    <div class="w-full flex flex-col items-center justify-center px-4 ">
+        <div class="max-w-2xl text-center mb-4">
             <p class="text-sm md:text-base text-foxplan-charcoal-brown leading-relaxed opacity-90">
                 {{ data.body | raw }}
             </p>
@@ -78,7 +78,7 @@
                 props: {
                     text: data.buttonText,
                     url: data.buttonUrl,
-                    backgroundColor: 'bg-[#1D1013]',
+                    backgroundColor: 'bg-foxplan-charcoal-brown',
                     textColor: 'text-white',
                     classes: 'px-8 py-3 mb-12 text-[10px] tracking-[0.2em] uppercase font-montreal rounded-none'
                 }

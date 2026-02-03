@@ -4,6 +4,7 @@
   "require": {
     "craftcms/ckeditor": "4.11.0",
     "craftcms/cms": "^5.0.0",
+    "craftcms/feed-me": "^6.11.0",
     "nystudio107/craft-vite": "5.0.1",
     "spicyweb/craft-embedded-assets": "^5.0",
     "vaersaagod/dospaces": "3.2.1",

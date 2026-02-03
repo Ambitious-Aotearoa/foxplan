@@ -1,49 +1,50 @@
-{# _sections/content-sections/link-to-insights.twig #}
-
-{#
-Fetching the current category and related articles from Craft
-
-#}
-{% set currentCategory = entry.articleCategories.one() %}
+{# 1. Safe Data Fetching: Pulling the latest 3 articles from the 'article' section #}
 {% set relatedArticles = craft.entries()
     .section('article')
-    .relatedTo(currentCategory)
-    .id('not ' ~ entry.id)
     .limit(3)
     .all() %}
 
 {% if relatedArticles|length > 0 %}
-    <section class="w-full bg-[#231111] pt-16 pb-20">
-        <div class="px-[20px]">
+    <section class="w-full bg-foxplan-charcoal-brown pt-24 pb-0 relative overflow-hidden">
+        <div class="px-8 md:px-12 lg:px-16 relative z-10">
 
-            {# Smaller, more modest Heading #}
-            <h2 class="font-serif text-[#D4AF37] text-[3rem] md:text-[3.5rem] font-light mb-12">
-                Read Next
+            {# Section Heading #}
+            <h2 class="font-serif text-white text-5xl md:text-6xl lg:text-7xl mb-16 tracking-tight">
+                Latest insights
             </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-10 lg:gap-x-16">
+            {# Article Grid #}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 lg:gap-x-20">
                 {% for article in relatedArticles %}
-                    <div class="pt-6 pb-8 border-t border-[#D4AF37]/30 flex flex-col items-start">
+                    <div class="pt-8 pb-12 border-t border-white/10 flex flex-col items-start group">
 
-                        {# Date and Metadata #}
-                        <p class="font-montreal text-[10px] uppercase tracking-[0.2em] text-[#D4AF37]/60 mb-3">
+                        {# Post Date #}
+                        <p class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
                             {{ article.postDate | date('F d, Y') | upper }}
                         </p>
 
-                        {# Article Title: Compact and Serif #}
-                        <a href="{{ article.url }}" class="group">
-                            <h3 class="font-serif text-[1.6rem] lg:text-[1.8rem] leading-tight text-[#D4AF37] mb-6 group-hover:opacity-80 transition-opacity">
+                        {# Article Title #}
+                        <a href="{{ article.url }}" class="block mb-8">
+                            <h3 class="font-serif text-3xl lg:text-[2.2rem] leading-[1.15] text-white group-hover:opacity-70 transition-opacity">
                                 {{ article.title }}
                             </h3>
                         </a>
 
                         {# Read More Link #}
-                        <a href="{{ article.url }}" class="font-montreal text-[9px] uppercase tracking-[0.2em] text-[#D4AF37] hover:text-white transition-colors">
+                        <a href="{{ article.url }}" class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-white border-b border-white/30 hover:border-white transition-all pb-1">
                             READ MORE
                         </a>
                     </div>
                 {% endfor %}
             </div>
+        </div>
+
+        {# --- THE OVERLAPPING ARCS --- #}
+        <div class="relative w-full h-[200px] md:h-[300px] lg:h-[400px] mt-4 pointer-events-none">
+            <img src="{{ craft.vite.asset('images/placeholder/Arc.svg') }}"
+                 class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom opacity-40"
+                 style="filter: brightness(0) invert(1);"
+                 alt="Decorative Arcs">
         </div>
     </section>
 {% endif %}

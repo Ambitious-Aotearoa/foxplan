@@ -1,0 +1,70 @@
+{#
+Hero Arc Section
+- Centered Header Content
+- Static Single Arc Image (Arc.svg)
+- Full Width Matrix Columns
+#}
+
+{% set defaults = {
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    heading: entry.paragraphHeading ?? '',
+    subheading: entry.bodyText ?? '',
+    textColor: 'text-foxplan-charcoal-brown',
+} %}
+
+{# Handling the Matrix data #}
+{% set columns = [] %}
+{% if entry.heroMatrix is defined %}
+    {% for block in entry.heroMatrix.all() %}
+        {% set columns = columns | merge([{
+            title: block.mainHeading ?? '',
+            text: block.bodyText ?? ''
+        }]) %}
+    {% endfor %}
+{% endif %}
+
+{% set data = defaults | merge(props ?? {}) %}
+
+<section class="w-full py-20 {{ data.backgroundColor }} overflow-hidden">
+
+    {# 1. TOP SECTION: Centered #}
+    <div class="container mx-auto px-6 lg:px-12 mb-16 lg:mb-24">
+        <div class="max-w-3xl mx-auto text-center">
+            {% if data.heading %}
+                <h2 class="font-serif text-5xl lg:text-7xl leading-tight {{ data.textColor }} mb-6">
+                    {{ data.heading | raw }}
+                </h2>
+            {% endif %}
+
+            {% if data.subheading %}
+                <div class="font-aktiv text-lg lg:text-xl leading-relaxed {{ data.textColor }} mx-auto max-w-xl">
+                    {{ data.subheading | raw }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {# 2. MIDDLE SECTION: Static Arc with 10px side margins #}
+    <div class="w-full mb-12 px-[10px]">
+        <img src="{{ craft.vite.asset('images/placeholder/Arc.svg') }}"
+             alt="Decorative Arcs"
+             class="w-full h-auto block">
+    </div>
+
+    {# 3. BOTTOM SECTION: Full Width Matrix Columns #}
+    <div class="w-full px-6 lg:px-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
+            {% for col in columns %}
+                <div class="flex flex-col">
+                    <h3 class="font-serif text-3xl lg:text-4xl {{ data.textColor }} mb-6">
+                        {{ col.title | raw }}
+                    </h3>
+                    <div class="font-aktiv text-base lg:text-lg leading-relaxed {{ data.textColor }}">
+                        {{ col.text | raw }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,65 @@
+{# templates/_sections/hero-sections/hero-home.twig #}
+{% set defaults = {
+    backgroundColor: 'bg-foxplan-yellow',
+    headingLine1: entry.headingLine1 ?? '',
+    headingLine2: entry.headingLine2 ?? '',
+    bodyText: entry.heroBodyText ?? '',
+    buttonText: (entry.button is defined and entry.button|length) ? entry.button.getText() : null,
+    imagePath: 'images/hero.jpg',
+    arrowPath: 'images/Arrow_1.svg',
+    textColor: 'text-foxplan-charcoal-brown',
+    buttonBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% set data = defaults | merge(props ?? {}) %}
+
+<section class="relative w-full min-h-[850px] {{ data.backgroundColor }} overflow-hidden"
+         x-data="{ revealed: false }"
+         x-init="$nextTick(() => { setTimeout(() => revealed = true, 300) })">
+
+    {# IMAGE LAYER #}
+    <div class="absolute right-[20px] bottom-[80px] w-[60%] top-[30%] z-10">
+        <img src="{{ craft.vite.asset(data.imagePath) }}" alt="Hero" class="w-full h-full object-cover shadow-sm">
+    </div>
+
+    {# THE ARROW #}
+    <div class="absolute left-0 top-[60%] -translate-y-1/2 pointer-events-none hidden lg:block z-[100]">
+        <div class="transition-all duration-[2500ms] overflow-hidden"
+             style="transition-timing-function: steps(60);"
+             :style="revealed ? 'width: 45vw; opacity: 1;' : 'width: 0vw; opacity: 0;'">
+            <img src="{{ craft.vite.asset(data.arrowPath) }}" alt="" class="w-[45vw] h-12 block object-contain object-left">
+        </div>
+    </div>
+
+    {# CONTENT LAYER - z-[110] stays below the Nav z-[500] #}
+    <div class="relative z-[110] flex flex-col justify-between p-8 lg:p-16 pt-12">
+        <div class="w-full">
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-[9rem] leading-[0.8] tracking-tight {{ data.textColor }}">
+                <span class="block relative">{{ data.headingLine1 }}</span>
+                <span class="block lg:pl-[45%] relative">{{ data.headingLine2 }}</span>
+            </h1>
+        </div>
+
+        <div class="relative mt-[200px] lg:mt-[300px] mb-[80px] left-0 w-full lg:w-[40%] flex flex-col items-start">
+            {% if data.bodyText %}
+                <div class="font-aktiv leading-snug text-lg lg:text-2xl {{ data.textColor }} mb-8 max-w-md">
+                    {{ data.bodyText | raw }}
+                </div>
+            {% endif %}
+
+            {% if data.buttonText %}
+                <div class="inline-block">
+                    {% include '_components/ui/button/button.twig' with {
+                        props: {
+                            text: data.buttonText,
+                            style: 'primary',
+                            url: entry.button.url ?? '#',
+                            backgroundColor: data.buttonBgColor,
+                            textColor: 'text-white',
+                        }
+                    } only %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

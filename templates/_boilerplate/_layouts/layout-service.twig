@@ -24,8 +24,29 @@
         }
     } %}
 
-    {# 5. How We Work Section (Matrix: accordion) #}
-    {% include "_sections/content-sections/how-we-work.twig" with { entry: entry } %}
+    {# 5. Benefits Section #}
+    {% set benefitsHeading = entry.paragraphHeading ?? 'About group insurance' %}
+    {% set benefitsIntro = entry.bodyText ?? '' %}
+
+    {% set accordionItems = [] %}
+    {% if entry.accordion is defined %}
+        {% for block in entry.accordion.all() %}
+            {% set accordionItems = accordionItems | merge([{
+                'title': block.accordionHeading,
+                'text': block.accordionBodyText
+            }]) %}
+        {% endfor %}
+    {% endif %}
+
+    {{ include('_sections/content-sections/benefits.twig', {
+        props: {
+            paragraphHeading: benefitsHeading,
+            bodyText: benefitsIntro,
+            items: accordionItems,
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown'
+        }
+    }) }}
 
 {#    #}{# --- WHO WE WORK WITH (Logos) --- #}
     {% include "_sections/content-sections/who-we-work-with.twig" with {

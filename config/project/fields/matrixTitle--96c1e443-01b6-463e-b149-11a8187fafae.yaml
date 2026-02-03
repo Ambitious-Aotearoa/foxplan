@@ -1,13 +1,13 @@
 columnSuffix: null
-handle: episodeBodyText
+handle: matrixTitle
 instructions: null
-name: 'Episode Body Text'
+name: 'Matrix Title'
 searchable: false
 settings:
   availableTransforms: ''
   availableVolumes: ''
   characterLimit: null
-  ckeConfig: 6e4443d9-4aa2-4c0a-886c-5bb0ff3becdb # Simple
+  ckeConfig: null
   createButtonLabel: null
   defaultTransform: null
   expandEntryButtons: false

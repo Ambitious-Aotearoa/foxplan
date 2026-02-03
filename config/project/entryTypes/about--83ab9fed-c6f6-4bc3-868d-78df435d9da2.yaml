@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -39,6 +40,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T22:49:28+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
             handle: null
             instructions: null
@@ -54,6 +56,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T22:49:28+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
             instructions: null
@@ -69,6 +72,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T22:49:28+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
             instructions: null
@@ -84,6 +88,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T22:49:28+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
             handle: null
             instructions: null
@@ -95,7 +100,7 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
-        name: Content
+        name: 'About Foxplan'
         uid: b662aabd-6027-4c19-ae5e-8ec585a5bdc1
         userCondition: null
       -
@@ -105,6 +110,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:01:08+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
             instructions: null
@@ -120,6 +126,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:01:08+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
             instructions: null
@@ -135,6 +142,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:01:08+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
             handle: null
             instructions: null
@@ -146,7 +154,7 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
-        name: 'Section 1'
+        name: 'We bring everything under one roof'
         uid: 0674950a-60ed-4964-81b3-082fcef8e7fc
         userCondition: null
       -
@@ -156,6 +164,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:01:08+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading2
             instructions: null
@@ -171,6 +180,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:01:08+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: bodyText2
             instructions: null
@@ -186,6 +196,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:01:08+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
             handle: image2
             instructions: null
@@ -201,6 +212,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:09:07+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: button2
             instructions: null
@@ -216,6 +228,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:09:07+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
             handle: buttonLink2
             instructions: null
@@ -227,7 +240,7 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
-        name: 'Section 2'
+        name: 'Your plan is built around real life'
         uid: 7d27dbfa-7693-41ac-b738-e4a5172dcc70
         userCondition: null
       -
@@ -237,6 +250,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:01:08+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading3
             instructions: null
@@ -252,6 +266,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:01:08+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: bodyText3
             instructions: null
@@ -267,6 +282,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:01:08+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
             handle: image3
             instructions: null
@@ -278,7 +294,7 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
-        name: 'Section 3'
+        name: 'Our team members grow with you'
         uid: c0f1f1c2-fdd3-4df8-97c5-e36684948dd1
         userCondition: null
       -
@@ -288,6 +304,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:09:07+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading4
             instructions: null
@@ -303,6 +320,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:09:07+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: bodyText4
             instructions: null
@@ -318,6 +336,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T23:09:07+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
             handle: image4
             instructions: null
@@ -329,9 +348,10 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
-        name: 'Section 4'
+        name: 'We believe financial advice is for everyone '
         uid: a7bb9ff8-2b98-4e6f-9429-577a762cf444
         userCondition: null
+    thumbFieldKey: null
 handle: about
 hasTitleField: true
 icon: null
@@ -343,3 +363,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

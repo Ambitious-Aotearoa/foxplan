@@ -1,0 +1,140 @@
+{# _sections/content-sections/career-grow.twig #}
+
+<section class="w-full relative overflow-hidden bg-[#F8F3ED]" id="career-scroll-container">
+
+    {# --- HEADER SECTION --- #}
+    <div class="w-full pt-24 pb-16 text-center px-8 relative z-20">
+        <h2 class="font-serif text-5xl lg:text-[4rem] leading-[1.1] text-foxplan-charcoal-brown mb-6 max-w-4xl mx-auto">
+            {{ entry.paragraphHeading2 | raw }}
+        </h2>
+        <div class="font-aktiv text-base md:text-lg text-foxplan-charcoal-brown/70 max-w-2xl mx-auto italic">
+            {{ entry.bodyText2 | raw }}
+        </div>
+    </div>
+
+    {# --- DATA CONSTRUCTION --- #}
+    {% set careerSections = [
+        {
+            prehead: entry.paragraphHeading3,
+            title: entry.mainTitle,
+            matrix: entry.shortTermMatrix.all()
+        },
+        {
+            prehead: entry.paragraphHeading4,
+            title: entry.mainTitle2,
+            matrix: entry.mediumTermMatrix.all()
+        },
+        {
+            prehead: entry.paragraphHeading5,
+            title: entry.mainTitle3,
+            matrix: entry.longTermMatrix.all()
+        }
+    ] %}
+
+    <div id="career-content-wrapper" class="relative">
+
+        {# --- THE RAIL --- #}
+        <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] z-50 pointer-events-none" id="timeline-rail">
+            <div class="h-full w-full border-l-2 border-dashed border-foxplan-charcoal-brown/10"></div>
+            <div id="career-progress-line"
+                 class="absolute top-0 left-0 w-full border-l-2 border-dashed border-foxplan-charcoal-brown transition-all duration-75 ease-out"
+                 style="height: 0%;"></div>
+            <div id="career-scrolling-dot"
+                 class="absolute left-1/2 -translate-x-1/2 top-0 w-3 h-3 bg-foxplan-charcoal-brown rounded-full shadow-sm opacity-0 transition-opacity duration-300"
+                 style="transform: translate(-50%, -50%);">
+            </div>
+        </div>
+
+        {% for section in careerSections %}
+            {% set imageOnLeft = loop.index is odd %}
+
+            <div class="relative w-full py-20 md:py-32 career-block">
+                <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start gap-y-12">
+
+                    {# Image Side #}
+                    <div class="col-span-1 md:col-span-4 {{ imageOnLeft ? 'md:col-start-1' : 'md:col-start-7 md:order-2' }}">
+                        <div class="w-full relative shadow-xl">
+                            <img src="{{ craft.vite.asset('images/career_' ~ loop.index ~ '.jpg') }}"
+                                 class="w-full h-[500px] lg:h-[700px] object-cover block"
+                                 alt="Career Phase {{ loop.index }}">
+                        </div>
+                    </div>
+
+                    {# Text Side #}
+                    <div class="col-span-1 md:col-span-4 pt-2 {{ imageOnLeft ? 'md:col-start-7 px-8 md:px-0 md:pr-12 lg:pr-24' : 'md:col-start-1 px-8 md:pl-12 lg:pl-16 md:order-1' }}">
+                        <div class="max-w-xl">
+                            <span class="text-xs font-bold uppercase tracking-widest text-foxplan-charcoal-brown/50 mb-4 block">
+                                {{ section.prehead }}
+                            </span>
+
+                            <h3 class="font-serif text-4xl lg:text-[3.5rem] leading-[1] text-foxplan-charcoal-brown mb-10">
+                                {{ section.title }}
+                            </h3>
+
+                            <div class="space-y-8">
+                                {% for benefit in section.matrix %}
+                                    <div class="benefit-item transition-all duration-700 ease-out text-foxplan-charcoal-brown/20 translate-x-0">
+                                        <h4 class="font-serif text-xl mb-1 text-inherit">{{ benefit.matrixTitle }}</h4>
+                                        <div class="font-aktiv text-sm md:text-base leading-relaxed text-inherit">
+                                            {{ benefit.bodyText | raw }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contentWrapper = document.getElementById('career-content-wrapper');
+        const dot = document.getElementById('career-scrolling-dot');
+        const progressLine = document.getElementById('career-progress-line');
+
+        function updateTimeline() {
+            if (!contentWrapper || !dot || !progressLine) return;
+            const rect = contentWrapper.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+            let scrollProgress = (viewHeight / 2 - rect.top) / rect.height;
+
+            dot.style.opacity = (scrollProgress > 0 && scrollProgress < 1) ? "1" : "0";
+            scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+            const percentage = scrollProgress * 100;
+
+            dot.style.top = percentage + '%';
+            progressLine.style.height = percentage + '%';
+        }
+
+        // --- Permanent Reveal Observer ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -25% 0px', // Triggers when item is 25% up from the bottom
+            threshold: 0.1
+        };
+
+        const highlightObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Activate color
+                    entry.target.classList.remove('text-foxplan-charcoal-brown/20');
+                    entry.target.classList.add('text-foxplan-charcoal-brown');
+
+                    // Stop watching this element so it stays highlighted forever
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.benefit-item').forEach(item => {
+            highlightObserver.observe(item);
+        });
+
+        window.addEventListener('scroll', updateTimeline);
+        window.addEventListener('resize', updateTimeline);
+        updateTimeline();
+    });
+</script>

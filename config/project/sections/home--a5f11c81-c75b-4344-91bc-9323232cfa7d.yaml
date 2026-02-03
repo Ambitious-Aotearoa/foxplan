@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 6e33f140-29a4-43ee-ac85-18ee6e66c2ef # Home
+handle: home
+maxAuthors: 1
+name: Home
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  904beb73-9861-43f3-8de7-90464f6457de: # foxplan
+    enabledByDefault: true
+    hasUrls: true
+    template: pages/Home/index.twig
+    uriFormat: __home__
+type: single

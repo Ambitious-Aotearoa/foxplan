@@ -1,4 +1,4 @@
-dateModified: 1769738059
+dateModified: 1770090989
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
@@ -6,12 +6,13 @@ email:
 meta:
   __names__:
     0e0d57f7-2d3a-4838-a8e6-ca93bcf682fd: Group-workplace-insurance # Group-workplace-insurance
+    1a9ce3fa-1c8d-4886-80cd-77cc624c2a1a: 'Episode Duration' # Episode Duration
     1bce15eb-e441-43c8-bff3-cb4b0197fef2: 'Hero Body Text' # Hero Body Text
     1bf81b4c-12eb-4329-8dc6-5ce2b0f86018: 'Accordion Heading' # Accordion Heading
     01d859f3-0f5b-434d-b064-a75dd6b9f60f: Testimonial # Testimonial
     1e5a8282-7128-4cdd-8a59-3356f7b08ffe: Partners # Partners
     1ea1b840-4b19-4a98-8b5d-41c57d8af35b: Article # Article
-    3a0461fa-5c8b-42dd-83d4-002a72f09025: 'Who We Work With' # Who We Work With
+    3a18a3a4-7da8-482b-b475-06dfad80f264: 'Spotify URL' # Spotify URL
     3ca03225-96ae-4b44-87f2-2f3b0d32d166: 'Testimonial Author' # Testimonial Author
     3cd32da9-06b0-44c6-a0a8-54568bfbb9b3: Group-workplace-insurance # Group-workplace-insurance
     3df564bb-a8ff-48d9-88c0-1e1fec7a3cff: 'Accordion new' # Accordion new
@@ -19,7 +20,7 @@ meta:
     04a2bc2e-175b-46fd-bb75-a4b8f4b663f0: Our-Investment-Committee # Our-Investment-Committee
     4a5c0332-8175-4c2d-b8c5-0e1602083956: 'Insights Heading ' # Insights Heading 
     4c9973ff-0107-4739-a889-f352e62eca08: 'Large Paragraph' # Large Paragraph
-    4f6c8e0b-055b-4db8-a5da-6e57516a5d6e: 'Paragraph Left Aligned Image' # Paragraph Left Aligned Image
+    4ed0dee4-59be-4290-bdff-e30f5d363215: 'Podcast Episodes' # Podcast Episodes
     5a2fa5d4-7817-40c9-b68f-a7e82da4bb56: 'Accordion heading1' # Accordion heading1
     5a33ed06-c4f0-4d32-be5f-033502c710e5: blockLinkUrl # blockLinkUrl
     5b7ffe03-2220-4d5c-8b2a-3d7e12c525be: 'Equity Partners' # Equity Partners
@@ -32,48 +33,48 @@ meta:
     6c8cad64-726d-4735-be40-5f733d49e15b: 'Member image' # Member image
     6ceee63c-bd5c-42c7-b57b-470bd2226b4b: 'Newsletter Body Text' # Newsletter Body Text
     6de15a75-8385-485f-b2de-3be7ba3f99d3: 'Public Schema' # Public Schema
+    6e33f140-29a4-43ee-ac85-18ee6e66c2ef: Home # Home
     6e4443d9-4aa2-4c0a-886c-5bb0ff3becdb: Simple # Simple
-    7d5cb01f-26d4-4ce0-8afc-3b94529b89b9: 'Insights Page' # Insights Page
     7d29f47f-49be-42e4-a76a-2c52f645550a: Heading # Heading
     7de1a5c0-1411-43d5-9ca2-6996afd27316: 'Suppliers Title' # Suppliers Title
+    07e0d992-aea7-43b3-95fc-46e6961f48e1: 'Career Benefit matrix' # Career Benefit matrix
     7eb0d432-b682-4d48-abae-7e859acd9ef6: 'Savings and Investment Page' # Savings and Investment Page
     7f5a1f9e-4127-43e0-b85e-6f3b9c4221ad: KiwiSaver # KiwiSaver
-    7f789aad-395d-4a42-a977-413640299ad5: 'Dollars and sense Newsletter' # Dollars and sense Newsletter
     07f12065-9711-4840-ba40-a071d413da0a: 'Team Members' # Team Members
+    8d254d3a-f143-4838-a28f-04ad79e8f7ef: Sub-links # Sub-links
+    8fc9a1ea-062c-4285-953d-598793e2da38: 'Service Card' # Service Card
     09a98099-02ba-4caf-9a69-5c2e6b631b09: 'Milestone Title' # Milestone Title
     9bdc992e-fe2b-4e1d-926a-01d9a7b5772d: 'Info Block' # Info Block
-    10c572c2-b78a-48bc-973f-bf40d7aff8eb: 'Subscribe Button' # Subscribe Button
+    9d5444d6-0da9-4778-9426-4aaad4fd1490: 'Career Benefit matrix' # Career Benefit matrix
     20a2a580-d219-4d89-85de-c3cef6cd5616: 'First Home Buyers' # First Home Buyers
     21b7b768-00fc-45e6-93ad-a17640300f0b: 'Employee financial wellbeing' # Employee financial wellbeing
     30e93460-18e1-473b-90f6-17bed59eb35e: 'Contact Info' # Contact Info
     33a1b6df-526d-4d3c-84a1-dcc713555b4d: 'Job Title' # Job Title
-    37d0dcee-fda6-44fc-b96c-3eb521cdaa34: 'Join The Team ' # Join The Team 
     40a75dcf-4e4f-46ec-98ec-9424fc33fa4b: 'Podcast Page' # Podcast Page
-    40d419f5-cb74-4388-a019-2ac901bf2ba4: 'Paragraph Right Aligned Body text' # Paragraph Right Aligned Body text
     40dc7ecc-2b48-42e9-ba8d-6b387ee26597: 'Advisors Image' # Advisors Image
     41c2fab6-c090-4ba5-bd9b-34b43172425a: 'Milestone Year ' # Milestone Year 
     43ae8319-1d1a-467f-a54f-c45fae2a173d: Accounting # Accounting
     47d7c8bb-a751-46b1-9d2e-5ad509c8c477: 'Milestone Text' # Milestone Text
+    48d413cb-263e-48f8-976a-5aecadda1537: 'Short term matrix' # Short term matrix
     50a671c8-233b-479c-af1a-8dfcc5f25e8f: 'Supplier category' # Supplier category
-    51becce4-9606-46e8-bf00-a7858643841c: 'Read Next Subheading' # Read Next Subheading
-    56a4b868-c935-4c1c-b529-c1fac0bcee60: Testimonial # Testimonial
     56f32641-e789-4c85-9d66-1a59f42e95d2: foxplan # foxplan
     57b202f1-c4d8-4b39-bc56-d1eeb2b1244b: 'Hero Subheading' # Hero Subheading
     60ac3db5-de5e-4810-a0b1-4743170e9b60: Timeline # Timeline
     64be8bff-539f-4a96-9c76-ecff739d9d87: 'Refinancing & Refixing' # Refinancing & Refixing
     68fa3aba-96db-477b-ac3c-539df750eb60: 'Property investment' # Property investment
+    71a09bda-7456-438b-ae19-e1689203cc57: Sub-links # Sub-links
     83ab9fed-c6f6-4bc3-868d-78df435d9da2: About # About
     85b764d9-d1dd-4aad-9cfb-e7432652aad7: 'Contact Main Heading' # Contact Main Heading
+    88b4df68-e829-47e4-82a6-2e91359feb20: 'Hero Matrix' # Hero Matrix
     93cc1844-5f6e-4858-86da-315bd52cda7c: 'Property Upgrade' # Property Upgrade
     096b02a8-7b14-4611-b1ca-1e82e3dd704a: 'Newsletter Image' # Newsletter Image
+    96c1e443-01b6-463e-b149-11a8187fafae: 'Matrix Title' # Matrix Title
     197d008b-abaf-40fa-9c38-173ac170b291: 'Article Heading' # Article Heading
     222ba10e-eabb-490d-b424-074aac4d84dd: 'Our Suppliers' # Our Suppliers
     383dafac-19c3-4559-9459-54a9919aada4: 'Body Text' # Body Text
-    432ebfbb-2f88-4625-a8c6-c0e8b83f3de9: 'Episode Body Text' # Episode Body Text
     442aaa5f-2531-4a40-a133-1b9bcbd25b08: 'Our Suppliers' # Our Suppliers
     489aa9de-78dd-4788-80c7-9307d470bb57: 'Main Title' # Main Title
     544d4692-c910-412c-97e7-77d0fc357686: 'Suppliers Image' # Suppliers Image
-    624fe030-2a18-4f50-92e6-5f5e4d1b8ca4: 'Article Matrix' # Article Matrix
     639e7e70-0f84-4bcf-8f99-2d3a27cec3ea: 'medium paragraph' # medium paragraph
     848be098-6f72-402d-97ad-5f23465fa79f: 'Business Page' # Business Page
     850eeb95-fac6-4d9c-a93f-eb8e4939ca9a: blockBodyText # blockBodyText
@@ -81,7 +82,6 @@ meta:
     1757a17e-5538-4de5-9ff7-fa4d80af64a1: 'Location Heading' # Location Heading
     2366b4a5-f9f9-445f-a1fa-af2aed24c996: KiwiSaver # KiwiSaver
     3270e53f-a3c4-4994-8f80-9f1a9d8c1fdb: Accordion-Arrow # Accordion-Arrow
-    6268e312-f1f6-46e3-8400-f38bc116642c: 'Team Members Info' # Team Members Info
     6389bccc-1b55-4096-821e-192e6a2bd80a: 'Business Page' # Business Page
     6389e4d4-c725-4073-ba17-8aac55dc636c: 'Page Builder' # Page Builder
     7104b304-163f-4e10-bee8-5a82a8edeb29: 'Equity Partners' # Equity Partners
@@ -90,9 +90,9 @@ meta:
     024975a0-c902-455c-8531-31c3d872cb09: blockHeading # blockHeading
     26603cf5-8da3-461b-9a66-2eda1d1dda14: Podcast # Podcast
     37578f45-0b1d-4513-b3f7-30085b31057c: 'Fox icon' # Fox icon
-    70166e5f-e2f1-4bdc-995b-94ed1f905a47: 'Subscribe Bodytext' # Subscribe Bodytext
+    60614e67-d787-46ca-8229-8a163deb7064: 'Heading Line1' # Heading Line1
     75267a9c-0192-4076-8b99-166c04ba40d2: 'First Home Buyers' # First Home Buyers
-    80330d32-4e37-428b-9b60-12ab62ac8918: 'Join The Team' # Join The Team
+    98874d4e-7f67-4c96-8e6a-1ae5b6fc4961: Services # Services
     161783a0-0b86-4e70-a6be-2dd6d5b50cfb: 'Accounting Page' # Accounting Page
     184304c2-0776-48be-b918-b0c1ec2dc0ee: Mortgages # Mortgages
     331970c8-e670-403b-8550-b3a3214d6a62: 'Member Name' # Member Name
@@ -102,21 +102,20 @@ meta:
     22247084-dc83-4881-9b9f-a27a7480f157: Episodes # Episodes
     70405493-c0ad-40ff-9624-3ad1dc9817e6: Careers # Careers
     73262043-6292-4645-96a8-99ed862cd739: 'Phone Number' # Phone Number
-    a8d101d5-922b-4075-bf81-682426a945a4: 'Paragraph Left Aligned Body Text2' # Paragraph Left Aligned Body Text2
+    a5f11c81-c75b-4344-91bc-9323232cfa7d: Home # Home
     a8da3467-e2fa-4b90-b5e8-7df257de2ebc: Image # Image
     a30fb669-985c-4116-8bf1-8ca04a3af56c: Article # Article
     a82e8874-a0f4-4805-b59d-8c47d4867d7c: Tags # Tags
     aad93b84-e999-4d54-bc1e-8f65472830f4: Partners # Partners
     ad7daef3-ba4d-470a-8ee9-3bee8c28bcea: 'Newsletter Title' # Newsletter Title
-    ad894a33-fa20-4afd-8f7e-832b4d37b7d8: 'Subscribe Ttitle' # Subscribe Ttitle
     ae1eb8ab-68f8-419c-8bb8-c19ed7985884: 'Insights Image' # Insights Image
-    ae579cff-a9c5-4a21-a182-8dc2ad9da475: 'Partner Logos' # Partner Logos
+    b3d02c0f-4eb6-471b-a4fd-e7ade89de423: 'Hero Matrix' # Hero Matrix
     b3e0436c-c0e6-4ebd-8278-c69c2a07f9e6: Insights # Insights
-    b4eb13fb-cde6-4574-a9fa-a2411d464e89: 'Episode Image' # Episode Image
     b8dfe219-cd2b-4062-b6c5-2a0b07241d1a: 'Careers Page' # Careers Page
     b21bad80-2c2d-4197-aeab-31f8b56a3bee: 'Spotify Playlist' # Spotify Playlist
     b898b7e2-c466-4f6e-89b2-5fc8070636bd: 'Contact Us Page' # Contact Us Page
     b974ddd6-5e6a-460f-8100-45bdf6fe5c1d: 'Provider Name' # Provider Name
+    b692872d-72dd-446b-9762-81992436c375: podcasts # podcasts
     bd9810cb-e0b5-44c9-a927-d6519786b086: Mortgages # Mortgages
     bed732d3-f5cc-42ac-bfc9-d5d1666a7a29: 'Page Builder2' # Page Builder2
     c036502b-7de9-4641-9539-24188822e437: 'Info Block' # Info Block
@@ -125,11 +124,9 @@ meta:
     c7f147ed-33aa-4d4a-bf02-bbebd30804fe: 'Contact Bodytext' # Contact Bodytext
     cc0e715a-9227-4f6e-9948-2b6b82ab16c3: Insights # Insights
     cd7d6292-1897-4386-b933-19976426821e: "Personal\_& Medical  Insurance" # Personal & Medical  Insurance
-    cdf13e52-0c89-4938-8466-07df74ab4a51: 'Hero Date' # Hero Date
     ced4066b-92f7-424d-b675-f392ce22c644: 'Insights Tabs Data' # Insights Tabs Data
     cff38048-563c-4fdc-b87c-d5ddb0084953: Insurance # Insurance
     d71d9025-4b25-42b3-956c-faa7e975d728: 'Page Builder2' # Page Builder2
-    d760ba30-262b-46c3-8e86-b06b07b0226a: 'Paragraph Right Aligned Image2' # Paragraph Right Aligned Image2
     d2442bfd-d769-4080-9505-d553f86821d8: 'Tabs Subheading' # Tabs Subheading
     d4886813-ca9f-4b8a-a82c-097ea4232f7e: 'Insight Body' # Insight Body
     db3f4be3-1c80-405f-840c-01dddd834e4f: 'Meet the Team' # Meet the Team
@@ -145,11 +142,14 @@ meta:
     e3596a73-fe19-4305-93f4-0d508c177dbc: 'Location Body' # Location Body
     e193394e-257b-4460-bb66-043fa40743cd: 'Main Heading' # Main Heading
     e899186a-754a-4339-ab18-a6add2dc936f: 'Who we work with' # Who we work with
+    ec05ea4a-53c2-41fa-a6c1-1b42827ace64: "Medium\_Term matrix" # Medium Term matrix
     ecf3a398-13d9-4319-a852-69760e9374a9: 'financial wellbeing page' # financial wellbeing page
     efeb5ea9-1bf7-4e7d-a7fa-d14d0e4d081b: 'Article Categories' # Article Categories
+    f1c902fb-3573-4fe5-872f-68ef7fe938e5: 'Heading Line2' # Heading Line2
     f7a5e91d-6352-49c1-91d0-6a6491f0edaf: 'Page Builder' # Page Builder
     f41f4500-6b84-466c-89f3-dae1d5c3bf36: Category # Category
     f83b90ed-4415-49b6-85c7-e4f1a4a11e72: 'Insights Tab Image' # Insights Tab Image
+    f86d97d1-d318-4c48-96df-cbcb0d340f78: 'Long Term matrix' # Long Term matrix
     f91bea53-9eb6-4274-8e47-d4d3dab7e2b8: 'Article Categories' # Article Categories
     f3711ac4-2adc-4f36-805a-ed7a2762a199: Accordion-arrow # Accordion-arrow
     f9501fa8-ddf7-45c9-848a-c7ece198f27a: 'Paragraph Heading' # Paragraph Heading
@@ -173,6 +173,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
+  feed-me:
+    edition: standard
+    enabled: true
+    schemaVersion: 5.14.0
   vite:
     edition: standard
     enabled: true

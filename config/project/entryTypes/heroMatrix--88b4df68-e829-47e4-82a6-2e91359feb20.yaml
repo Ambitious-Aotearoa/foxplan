@@ -1,44 +1,34 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
-  6987098a-b3e1-497b-a75f-378a97012176:
+  2f35213d-286e-4b71-9b44-d8b669706746:
     cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
         elements:
           -
-            autocapitalize: true
-            autocomplete: false
-            autocorrect: true
-            class: null
-            dateAdded: '2026-01-27T03:13:08+00:00'
-            disabled: false
+            dateAdded: '2026-02-01T21:36:16+00:00'
+            editCondition: null
             elementCondition: null
-            id: null
-            inputType: null
+            elementEditCondition: null
+            fieldUid: e193394e-257b-4460-bb66-043fa40743cd # Main Heading
+            handle: null
             instructions: null
             label: null
-            max: null
-            min: null
-            name: null
-            orientation: null
-            placeholder: null
-            readonly: false
-            required: true
-            size: null
-            step: null
+            required: false
             tip: null
-            title: null
-            type: craft\fieldlayoutelements\entries\EntryTitleField
-            uid: 6cc6a073-51b5-4115-be7f-2bb551f08a37
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0adb35e5-4a9b-4d2b-ab02-dad836906500
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-27T03:15:05+00:00'
+            dateAdded: '2026-02-01T21:36:16+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
             instructions: null
@@ -46,17 +36,18 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 0c727525-1991-459c-949f-442f6bc73d80
+            uid: 47625a56-5a67-489f-9925-893712cfd9ad
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: c2d257ae-2c33-45ad-b67c-7d1dc2656ebf
+        uid: a2a3869a-ba54-4e80-96a0-83e38252689f
         userCondition: null
-handle: insightsPage
-hasTitleField: true
+    thumbFieldKey: null
+handle: heroMatrix
+hasTitleField: false
 icon: null
-name: 'Insights Page'
+name: 'Hero Matrix'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
@@ -64,3 +55,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

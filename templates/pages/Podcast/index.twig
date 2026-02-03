@@ -9,14 +9,11 @@
 {% block blockAppBody %}
 
     {# 1. Hero Section #}
-    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
-    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
-    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
-
+    {# This now pulls from your 'Podcast' Single entry where you typed the Insurance text #}
     {{ include('_sections/hero-sections/hero-arrow.twig', {
         props: {
-            heading: pageHeading,
-            bodyText: pageBody,
+            heading: entry.title,
+            bodyText: entry.heroBodyText,
             imagePath: 'images/Podcast_1.jpg',
             backgroundColor: 'bg-foxplan-yellow',
         }
@@ -28,20 +25,23 @@
             backgroundColor: 'bg-foxplan-charcoal-brown',
             borderColor: 'border-foxplan-yellow',
             textColor: 'text-foxplan-yellow',
-            topLabel: block.mainTitle ?? entry.mainTitle ?? 'ABOUT THE POD',
-            bodyText: block.largeParagraph ?? entry.largeParagraph ?? '',
+            topLabel: entry.mainTitle ?? 'ABOUT THE POD',
+            bodyText: entry.largeParagraph ?? '',
             showLogo: true
         }
     }) }}
 
+    {# 3. All Episodes List #}
+    {# This include triggers the list that fetches the 62 entries from your new channel #}
     {{ include('_sections/content-sections/episode-list.twig', {
         data: {
             sectionTitle: 'All episodes',
             backgroundColor: 'bg-foxplan-neutral-beige',
             textColor: 'text-foxplan-charcoal-brown',
-            seeAllUrl: 'https://open.spotify.com/show/4OyvWBje9xXh1ROJ1x5E4K\n\nuse'
+            seeAllUrl: 'https://www.buzzsprout.com/2249822'
         }
     }) }}
+
 
     {# newsletter-dollar-and-sense #}
     {{ include('_sections/newsletter/newsletter-dollar-and-sense.twig', {

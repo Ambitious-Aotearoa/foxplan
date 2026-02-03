@@ -1,76 +1,69 @@
 {# templates/_sections/content-sections/episode-list.twig #}
 
-{# 1. THE LINK: Using the specific RSS feed for The Dollars & Sense Podcast #}
-{% set rssUrl = 'https://anchor.fm/s/f8c7f214/podcast/rss' %}
+{# 1. FETCH DATA: We specifically target the 'podcasts' type to stop duplicates from appearing #}
+{% set episodes = craft.entries.section('podcastEpisodes').type('podcasts').limit(6).all() %}
 
-{# 2. FETCH DATA: Get the raw XML text using the native source() function #}
-{% set rawXml = source(rssUrl, ignore_missing = true) %}
-
-<div class="w-full bg-[#F4F1E6] p-[20px]">
-    <section class="w-full bg-[#F4F1E6] overflow-hidden">
+<div class="w-full {{ data.backgroundColor ?? 'bg-[#F4F1E6]' }} p-[20px]">
+    <section class="w-full overflow-hidden">
         <div class="px-8 md:px-12 w-full pt-16 pb-16 md:pt-24 md:pb-24">
 
-            {# Header Row #}
-            <div class="flex justify-between items-center mb-12 border-b border-[#E8BD5B] pb-8">
-                <h2 class="font-serif text-4xl md:text-7xl font-normal text-[#2D1B17]">
-                    All episodes
-                </h2>
-                <a href="https://open.spotify.com/show/5D00E9fXNl32R5wI0Eis6n" target="_blank" class="bg-black text-white px-6 py-2 uppercase text-[10px] font-bold tracking-widest flex items-center gap-2 hover:bg-opacity-80 transition-all">
-                    See all <span class="text-xs">↗</span>
-                </a>
-            </div>
-
-            {# Episode List #}
             <div class="divide-y divide-[#E8BD5B]">
-                {% if rawXml %}
-                    {# Split by <item> tags to get individual episodes. We skip the first slice (the channel info). #}
-                    {% set items = rawXml|split('<item>') %}
+                {% for episode in episodes %}
+                    <div class="flex flex-col md:flex-row md:items-center justify-between py-10 px-4 -mx-4 group transition-all duration-300 hover:bg-[#2D1B17]">
+                        <div class="flex items-start md:items-center pr-8 mb-6 md:mb-0">
 
-                    {% for item in items | slice(1, 6) %}
-                        {# Manual extraction using Twig's split and last/first filters #}
-                        {% set title = item|split('<title><![CDATA[')|last|split(']]></title>')|first %}
-                        {% set link = item|split('<link>')|last|split('</link>')|first %}
-                        {% set pubDate = item|split('<pubDate>')|last|split('</pubDate>')|first %}
-
-                        {# Extract image and duration from itunes tags #}
-                        {% set image = item|split('itunes:image href="')|last|split('"')|first %}
-                        {% set duration = item|split('<itunes:duration>')|last|split('</itunes:duration>')|first %}
-
-                        <div class="flex flex-col md:flex-row md:items-center justify-between py-10 px-4 -mx-4 group transition-all duration-300 hover:bg-[#2D1B17]">
-
-                            {# Left Content: Image and Titles #}
-                            <div class="flex items-start md:items-center pr-8 mb-6 md:mb-0">
-                                <div class="w-40 h-24 mr-8 flex-shrink-0 overflow-hidden bg-gray-200">
-                                    <img src="{{ image }}"
-                                         alt="{{ title }}"
-                                         class="w-full h-full object-cover block grayscale group-hover:grayscale-0 transition-all duration-500">
-                                </div>
-
-                                <div>
-                                    <h3 class="font-serif text-2xl md:text-[32px] leading-tight text-[#2D1B17] mb-2 group-hover:text-[#E8BD5B] transition-colors duration-300">
-                                        {{ title }}
-                                    </h3>
-                                    <p class="text-sm text-gray-500 font-sans uppercase tracking-wider group-hover:text-white/60 transition-colors">
-                                        {{ pubDate | date('M d, Y') }} • {{ duration|default('26:00') }}
-                                    </p>
-                                </div>
+                            {# Thumbnail #}
+                            <div class="w-40 h-24 mr-8 flex-shrink-0 overflow-hidden bg-[#D1CDBB]">
+                                <img src="/assets/images/Podcast_1.jpg"
+                                     alt="{{ episode.title }}"
+                                     class="w-full h-full object-cover block grayscale group-hover:grayscale-0 transition-all duration-500">
                             </div>
 
-                            {# Right Content: Listen Button #}
-                            <div class="flex-shrink-0">
-                                <a href="{{ link }}"
-                                   target="_blank"
-                                   class="inline-block px-10 py-3 bg-black text-white font-bold uppercase text-[10px] tracking-[0.2em] flex items-center gap-2 group-hover:bg-[#E8BD5B] group-hover:text-black transition-all">
-                                    Listen <span class="text-xs">↗</span>
-                                </a>
+                            {# Episode Info #}
+                            <div>
+                                <h3 class="font-serif text-2xl md:text-[32px] leading-tight {{ data.textColor ?? 'text-[#2D1B17]' }} mb-2 group-hover:text-[#E8BD5B] transition-colors">
+                                    {{ episode.mainHeading ?? episode.title }}
+                                </h3>
+
+                                <div class="flex items-center gap-4">
+                                    <p class="text-sm text-gray-500 font-sans uppercase tracking-wider group-hover:text-white/60">
+                                        {{ episode.postDate | date('M d, Y') }}
+                                    </p>
+
+                                    {# DURATION FIX: Handles raw seconds (2682) or timestamps (00:45:00) #}
+                                    {% if episode.episodeDuration %}
+                                        <span class="text-gray-400">•</span>
+                                        <p class="text-sm text-gray-500 font-sans uppercase tracking-wider group-hover:text-white/60">
+                                            {% if ':' in episode.episodeDuration %}
+                                                {# It is HH:MM:SS format #}
+                                                {% set parts = episode.episodeDuration | split(':') %}
+                                                {% if parts | length == 3 %}
+                                                    {{ (parts[0] * 60) + parts[1] }} MINUTES
+                                                {% else %}
+                                                    {{ parts[0] }} MINUTES
+                                                {% endif %}
+                                            {% else %}
+                                                {# It is raw seconds (e.g. 2682), so we divide by 60 #}
+                                                {{ (episode.episodeDuration / 60) | round(0, 'floor') }} MINUTES
+                                            {% endif %}
+                                        </p>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="py-20 text-center opacity-30">
-                        <p>Feed is loading...</p>
+
+                        {# Listen Button #}
+                        <div class="flex-shrink-0">
+                            {% set listenUrl = (episode.spotifyUrl | trim) ?: episode.url %}
+                            <a href="{{ listenUrl }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-block px-10 py-3 bg-black text-white font-bold uppercase text-[10px] tracking-[0.2em] group-hover:bg-[#E8BD5B] group-hover:text-black transition-all">
+                                Listen ↗
+                            </a>
+                        </div>
                     </div>
-                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </section>

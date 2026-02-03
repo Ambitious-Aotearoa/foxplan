@@ -1,11 +1,12 @@
-{# 1. Fetching the entries directly from your 'testimonials' structure section #}
+{# 1. Fetching the entries directly #}
 {% set testimonials = craft.entries().section('testimonials').all() %}
 
-{# 2. Merge defaults with passed data #}
+{# 2. Merge defaults #}
 {% set defaults = {
     sectionTitle: data.paragraphHeading4 ?? 'Hear what our clients are saying',
     backgroundColor: 'bg-foxplan-neutral-beige',
     textColor: 'text-foxplan-charcoal-brown',
+    borderColor: 'border-foxplan-yellow',
     quoteIconColor: 'bg-foxplan-yellow',
     btnBgColor: 'bg-foxplan-charcoal-brown',
     btnTextColor: 'text-foxplan-yellow',
@@ -16,7 +17,8 @@
 
 {% if testimonials | length %}
     <section
-            class="w-full relative {{ props.backgroundColor }} pt-24 pb-24 overflow-hidden border-t-[20px] border-r-[20px] border-foxplan-charcoal-brown"
+            {# 20px Border on Top, Right, and Bottom. Left is open. #}
+            class="relative {{ props.backgroundColor }} overflow-hidden border-t-[20px] border-r-[20px] border-b-[20px] {{ props.borderColor }}"
             x-data="{
             active: 0,
             revealed: false,
@@ -26,7 +28,6 @@
             checkScroll() {
                 if (this.revealed) return;
                 let rect = this.$el.getBoundingClientRect();
-                {# Triggers when the section is visible in the viewport #}
                 if (rect.top < window.innerHeight && rect.bottom >= 0) {
                     this.revealed = true;
                 }
@@ -35,19 +36,15 @@
             x-init="setTimeout(() => checkScroll(), 200)"
             @scroll.window.passive="checkScroll()"
     >
-        <div class="w-full">
+        <div class="w-full pt-24 pb-24">
 
             {# --- HEADER ROW --- #}
             {% if props.sectionTitle is not empty %}
                 <div class="flex flex-wrap w-full items-center mb-16 md:mb-24 relative">
 
-                    {# --- THE ARROW (Left 30%) --- #}
-                    <div class="hidden md:flex w-[30%] items-center justify-start pr-12">
+                    {# --- THE ARROW: Starts from edge, has padding on the right --- #}
+                    <div class="hidden md:flex w-[30%] items-center justify-start pr-8 lg:pr-12">
                         <div class="w-full h-8 flex items-center">
-                            {#
-                            Using inline style for width and opacity to ensure
-                            the initial state is strictly enforced.
-                            #}
                             <div class="transition-all duration-[2500ms] overflow-hidden"
                                  style="transition-timing-function: steps(15); width: 0px; opacity: 0;"
                                  :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0px; opacity: 0;'">
@@ -83,7 +80,7 @@
                             >
                                 <div class="w-12 h-12 {{ props.quoteIconColor }} flex items-center justify-center mb-10">
                                     <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0 18V10.2857L4.11429 0H9.25714L6.17143 10.2857H9.25714V18H0ZM14.7429 18V10.2857L18.8571 0H24L20.9143 10.2857H24V18H14.7429Z" fill="#270E15"/>
+                                        <path d="M0 18V10.2857L4.11429 0H9.25714L6.17143 10.2857H9.25714V18H0ZM14.7429 18V10.2857L18.8571 0H24L20.9143 10.2857H24V18H14.7429Z" fill="currentColor" class="{{ props.textColor }}"/>
                                     </svg>
                                 </div>
 
@@ -99,7 +96,7 @@
                     </div>
 
                     {% if testimonials | length > 1 %}
-                        <div class="flex items-center gap-4 mt-8">
+                        <div class="flex items-center gap-4 mt-8 pb-4">
                             <button @click="prev()" class="w-12 h-12 rounded-full border border-foxplan-charcoal-brown {{ props.btnBgColor }} {{ props.btnTextColor }} flex items-center justify-center transition-all duration-300 hover:opacity-80">
                                 <span class="text-xl">←</span>
                             </button>

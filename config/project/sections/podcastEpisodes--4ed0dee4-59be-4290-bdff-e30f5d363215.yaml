@@ -2,10 +2,10 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: 37d0dcee-fda6-44fc-b96c-3eb521cdaa34 # Join The Team 
-handle: joinTheTeam
+    uid: b692872d-72dd-446b-9762-81992436c375 # podcasts
+handle: podcastEpisodes
 maxAuthors: 1
-name: 'Join The Team'
+name: 'Podcast Episodes'
 previewTargets:
   -
     label: 'Primary entry page'
@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: join-the-team/_entry.twig
-    uriFormat: join-the-team
-type: single
+    template: podcast-episodes/_entry.twig
+    uriFormat: 'podcast-episodes/{slug}'
+type: channel

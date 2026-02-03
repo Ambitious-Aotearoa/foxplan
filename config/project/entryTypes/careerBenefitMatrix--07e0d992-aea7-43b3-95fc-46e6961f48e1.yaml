@@ -1,49 +1,53 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
-  d8900ecd-9620-4481-b5d8-f016aa28bda1:
+  53d1c460-a894-45d3-b5f7-e6d06e5cef90:
     cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-12-17T02:03:55+00:00'
+            dateAdded: '2026-02-02T23:16:42+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 197d008b-abaf-40fa-9c38-173ac170b291 # Article Heading
+            elementEditCondition: null
+            fieldUid: 96c1e443-01b6-463e-b149-11a8187fafae # Matrix Title
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: b114133d-6749-4b24-8240-bd58385cffdd
+            uid: de5dab0c-6db5-4f0a-af85-e59997923cba
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T02:03:55+00:00'
+            dateAdded: '2026-02-02T23:16:42+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 3f29f8f9-323f-4a3c-95a6-70ec3c79160e # Paragraph Subheading
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: dd2484c3-84cb-4a20-85fa-73f7af0eb908
+            uid: 6f76d141-ff1e-4649-9dce-06c7a60137be
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: ff4bdc52-703b-409b-a18f-34c69b4301be
+        uid: 8eed0698-f3f5-45bf-8d7f-acb43d1df647
         userCondition: null
-handle: articleMatrix
+    thumbFieldKey: null
+handle: careerBenefitMatrix
 hasTitleField: false
 icon: null
-name: 'Article Matrix'
+name: 'Career Benefit matrix'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
@@ -51,3 +55,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

@@ -1,7 +1,7 @@
 columnSuffix: null
-handle: subscribeTtitle
+handle: spotifyUrl
 instructions: null
-name: 'Subscribe Ttitle'
+name: 'Spotify URL'
 searchable: false
 settings:
   byteLimit: null
