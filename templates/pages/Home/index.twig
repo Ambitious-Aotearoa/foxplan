@@ -11,16 +11,17 @@
 
 
 
-        {% include '_sections/hero-sections/hero-home.twig' with {
-            props: {
-                headingLine1: 'Finally, finances',
-                headingLine2: 'figured out.',
-                bodyText: entry.heroBodyText,
-                buttonText: entry.button,
-                imagePath: 'images/hero.jpg',
-                arrowPath: 'images/placeholder/Arrow_1.svg',
-            }
-        } only %}
+    {# templates/index.twig (or your page template) #}
+    {% include '_sections/hero-sections/hero-home.twig' with {
+        entry: entry,
+        props: {
+            headingLine1: 'Finally, finances',
+            headingLine2: 'figured out.',
+            bodyText: entry.heroBodyText ?? '',
+            buttonText: entry.button ?? null,
+            arrowPath: 'images/placeholder/Arrow_1.svg',
+        }
+    } only %}
 
         {% include '_sections/content-sections/hero-arc.twig' %}
 

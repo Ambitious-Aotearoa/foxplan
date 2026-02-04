@@ -1,8 +1,37 @@
-dateModified: 1770090989
+dateModified: 1770179146
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
   transportType: craft\mail\transportadapters\Sendmail
+fs:
+  foxplanAssets:
+    hasUrls: true
+    name: 'Foxplan Assets'
+    settings:
+      bucket: $SPACES_BUCKET
+      contentDisposition: ''
+      endpoint: $SPACES_ENDPOINT
+      expires: ''
+      keyId: $SPACES_KEY
+      region: $SPACES_REGION
+      secret: $SPACES_SECRET
+      subfolder: foxplan/assets
+    type: vaersaagod\dospaces\Fs
+    url: 'https://ehaus-assets.syd1.digitaloceanspaces.com'
+  foxplanTransforms:
+    hasUrls: true
+    name: 'Foxplan Transforms'
+    settings:
+      bucket: $SPACES_BUCKET
+      contentDisposition: ''
+      endpoint: $SPACES_ENDPOINT
+      expires: ''
+      keyId: $SPACES_KEY
+      region: $SPACES_REGION
+      secret: $SPACES_SECRET
+      subfolder: foxplan/transforms
+    type: vaersaagod\dospaces\Fs
+    url: 'https://ehaus-assets.syd1.digitaloceanspaces.com'
 meta:
   __names__:
     0e0d57f7-2d3a-4838-a8e6-ca93bcf682fd: Group-workplace-insurance # Group-workplace-insurance
@@ -42,6 +71,7 @@ meta:
     7f5a1f9e-4127-43e0-b85e-6f3b9c4221ad: KiwiSaver # KiwiSaver
     07f12065-9711-4840-ba40-a071d413da0a: 'Team Members' # Team Members
     8d254d3a-f143-4838-a28f-04ad79e8f7ef: Sub-links # Sub-links
+    8dbc1a56-31ae-4724-b53a-427c9e27d268: 'Staff Images' # Staff Images
     8fc9a1ea-062c-4285-953d-598793e2da38: 'Service Card' # Service Card
     09a98099-02ba-4caf-9a69-5c2e6b631b09: 'Milestone Title' # Milestone Title
     9bdc992e-fe2b-4e1d-926a-01d9a7b5772d: 'Info Block' # Info Block
@@ -126,7 +156,9 @@ meta:
     cd7d6292-1897-4386-b933-19976426821e: "Personal\_& Medical  Insurance" # Personal & Medical  Insurance
     ced4066b-92f7-424d-b675-f392ce22c644: 'Insights Tabs Data' # Insights Tabs Data
     cff38048-563c-4fdc-b87c-d5ddb0084953: Insurance # Insurance
+    d9eed74d-4b09-4ac9-8402-86fabd752e4f: 'Hero Images' # Hero Images
     d71d9025-4b25-42b3-956c-faa7e975d728: 'Page Builder2' # Page Builder2
+    d391e190-d04a-4084-8e2b-dd70cb741339: 'Suppliers Logo' # Suppliers Logo
     d2442bfd-d769-4080-9505-d553f86821d8: 'Tabs Subheading' # Tabs Subheading
     d4886813-ca9f-4b8a-a82c-097ea4232f7e: 'Insight Body' # Insight Body
     db3f4be3-1c80-405f-840c-01dddd834e4f: 'Meet the Team' # Meet the Team
@@ -154,6 +186,7 @@ meta:
     f3711ac4-2adc-4f36-805a-ed7a2762a199: Accordion-arrow # Accordion-arrow
     f9501fa8-ddf7-45c9-848a-c7ece198f27a: 'Paragraph Heading' # Paragraph Heading
     f42469eb-08c1-411f-a288-bc2841425be9: Testimonials # Testimonials
+    f88356ec-2dc9-4085-8264-222f67a2732c: 'Article Images' # Article Images
     faa57aae-5553-4a99-b14f-596cda69cdc5: 'Financial Planning' # Financial Planning
     fab13952-63c1-4575-b843-860d9cb8514d: 'Insights CK Editor' # Insights CK Editor
     fba1ff8e-0b24-45ff-8403-da24499dfef2: buttonLink # buttonLink

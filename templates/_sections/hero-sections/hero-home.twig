@@ -1,11 +1,37 @@
-{# templates/_sections/hero-sections/hero-home.twig #}
+{# 1. Check if entry exists and has a heroImage #}
+{% set heroImageAsset = (entry is defined and entry.heroImage is defined) ? entry.heroImage.one() : null %}
+
+{# 2. Determine the Image URL #}
+{% if heroImageAsset %}
+    {% set finalImageUrl = heroImageAsset.getUrl() %}
+{% elseif props.imagePath is defined and props.imagePath is not empty %}
+    {% set finalImageUrl = craft.vite.asset(props.imagePath) %}
+{% else %}
+    {% set finalImageUrl = craft.vite.asset('images/hero.jpg') %}
+{% endif %}
+
+{# 3. Fix the Button Text Logic #}
+{# This checks if 'button' is an object (Link Field) or just a string #}
+{% set rawButton = props.buttonText ?? entry.button ?? null %}
+{% set processedButtonText = null %}
+
+{% if rawButton %}
+    {% if rawButton is iterable or rawButton.getText is defined %}
+        {# It's a Link Field object #}
+        {% set processedButtonText = rawButton.getText() %}
+    {% else %}
+        {# It's just a regular string #}
+        {% set processedButtonText = rawButton %}
+    {% endif %}
+{% endif %}
+
 {% set defaults = {
     backgroundColor: 'bg-foxplan-yellow',
     headingLine1: entry.headingLine1 ?? '',
     headingLine2: entry.headingLine2 ?? '',
     bodyText: entry.heroBodyText ?? '',
-    buttonText: (entry.button is defined and entry.button|length) ? entry.button.getText() : null,
-    imagePath: 'images/hero.jpg',
+    buttonText: processedButtonText,
+    imagePath: finalImageUrl,
     arrowPath: 'images/Arrow_1.svg',
     textColor: 'text-foxplan-charcoal-brown',
     buttonBgColor: 'bg-foxplan-charcoal-brown'
@@ -19,7 +45,9 @@
 
     {# IMAGE LAYER #}
     <div class="absolute right-[20px] bottom-[80px] w-[60%] top-[30%] z-10">
-        <img src="{{ craft.vite.asset(data.imagePath) }}" alt="Hero" class="w-full h-full object-cover shadow-sm">
+        <img src="{{ data.imagePath }}"
+             alt="{{ heroImageAsset.title ?? 'Hero Image' }}"
+             class="w-full h-full object-cover shadow-sm">
     </div>
 
     {# THE ARROW #}
@@ -31,7 +59,7 @@
         </div>
     </div>
 
-    {# CONTENT LAYER - z-[110] stays below the Nav z-[500] #}
+    {# CONTENT LAYER #}
     <div class="relative z-[110] flex flex-col justify-between p-8 lg:p-16 pt-12">
         <div class="w-full">
             <h1 class="font-serif text-6xl md:text-8xl lg:text-[9rem] leading-[0.8] tracking-tight {{ data.textColor }}">

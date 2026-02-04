@@ -1,49 +1,85 @@
-{# templates/_sections/content-sections/episode-list.twig #}
+{# 1. SETUP THE QUERY #}
+{% set episodeQuery = craft.entries
+    .section('podcastEpisodes')
+    .type('podcasts')
+    .limit(6)
+%}
 
-{# 1. FETCH DATA: We specifically target the 'podcasts' type to stop duplicates from appearing #}
-{% set episodes = craft.entries.section('podcastEpisodes').type('podcasts').limit(6).all() %}
+{# 2. EXECUTE PAGINATION #}
+{% paginate episodeQuery as pageInfo, episodes %}
 
-<div class="w-full {{ data.backgroundColor ?? 'bg-[#F4F1E6]' }} p-[20px]">
+<div id="podcast-container"
+     class="w-full {{ data.backgroundColor ?? 'bg-foxplan-neutral-beige' }} p-[20px]"
+     x-data="{
+        loading: false,
+        currentPage: {{ pageInfo.currentPage }},
+        totalPages: {{ pageInfo.totalPages }},
+
+        async loadPage(url) {
+            if (this.loading) return;
+            this.loading = true;
+
+            try {
+                const response = await fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                {# Update the grid and the pagination controls #}
+                document.querySelector('#episode-grid').innerHTML = doc.querySelector('#episode-grid').innerHTML;
+                document.querySelector('#episode-pagination').innerHTML = doc.querySelector('#episode-pagination').innerHTML;
+
+                window.history.pushState({}, '', url);
+                document.querySelector('#podcast-container').scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                console.error('Pagination error:', error);
+            } finally {
+                this.loading = false;
+            }
+        }
+     }">
+
     <section class="w-full overflow-hidden">
         <div class="px-8 md:px-12 w-full pt-16 pb-16 md:pt-24 md:pb-24">
 
-            <div class="divide-y divide-[#E8BD5B]">
+            {# HEADER SECTION: Hardcoded Title and See All Button #}
+            <div class="flex justify-between items-baseline mb-12 border-b border-foxplan-yellow pb-6">
+                <h2 class="font-serif text-4xl md:text-6xl text-foxplan-charcoal-brown">All episodes</h2>
+                <a href="https://open.spotify.com/show/4OyvWBje9xXh1ROJ1x5E4K"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="inline-block px-6 py-2 bg-foxplan-charcoal-brown text-foxplan-neutral-beige font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-foxplan-yellow hover:text-foxplan-charcoal-brown transition-all">
+                    See all ↴
+                </a>
+            </div>
+
+            {# THE GRID CONTAINER #}
+            <div id="episode-grid" class="divide-y divide-foxplan-yellow">
                 {% for episode in episodes %}
                     <div class="flex flex-col md:flex-row md:items-center justify-between py-10 px-4 -mx-4 group transition-all duration-300 hover:bg-[#2D1B17]">
                         <div class="flex items-start md:items-center pr-8 mb-6 md:mb-0">
 
                             {# Thumbnail #}
-                            <div class="w-40 h-24 mr-8 flex-shrink-0 overflow-hidden bg-[#D1CDBB]">
-                                <img src="/assets/images/Podcast_1.jpg"
-                                     alt="{{ episode.title }}"
-                                     class="w-full h-full object-cover block grayscale group-hover:grayscale-0 transition-all duration-500">
+                            <div class="w-40 h-24 mr-8 flex-shrink-0 overflow-hidden bg-foxplan-neutral-beige">
+                                <img src="/assets/images/Podcast_1.jpg" alt="{{ episode.title }}" class="w-full h-full object-cover block grayscale group-hover:grayscale-0 transition-all duration-500">
                             </div>
 
-                            {# Episode Info #}
+                            {# Info #}
                             <div>
-                                <h3 class="font-serif text-2xl md:text-[32px] leading-tight {{ data.textColor ?? 'text-[#2D1B17]' }} mb-2 group-hover:text-[#E8BD5B] transition-colors">
+                                <h3 class="font-serif text-2xl md:text-[32px] leading-tight {{ data.textColor ?? 'text-foxplan-charcoal-brown' }} mb-2 group-hover:text-foxplan-yellow">
                                     {{ episode.mainHeading ?? episode.title }}
                                 </h3>
-
                                 <div class="flex items-center gap-4">
-                                    <p class="text-sm text-gray-500 font-sans uppercase tracking-wider group-hover:text-white/60">
+                                    <p class="text-sm text-foxplan-charcoal-brown font-sans uppercase tracking-wider group-hover:text-foxplan-neutral-beige/60">
                                         {{ episode.postDate | date('M d, Y') }}
                                     </p>
-
-                                    {# DURATION FIX: Handles raw seconds (2682) or timestamps (00:45:00) #}
                                     {% if episode.episodeDuration %}
-                                        <span class="text-gray-400">•</span>
-                                        <p class="text-sm text-gray-500 font-sans uppercase tracking-wider group-hover:text-white/60">
+                                        <span class="text-foxplan-neutral-beige">•</span>
+                                        <p class="text-sm text-foxplan-charcoal-brown font-sans uppercase tracking-wider group-hover:text-foxplan-neutral-beige/60">
                                             {% if ':' in episode.episodeDuration %}
-                                                {# It is HH:MM:SS format #}
                                                 {% set parts = episode.episodeDuration | split(':') %}
-                                                {% if parts | length == 3 %}
-                                                    {{ (parts[0] * 60) + parts[1] }} MINUTES
-                                                {% else %}
-                                                    {{ parts[0] }} MINUTES
-                                                {% endif %}
+                                                {{ (parts | length == 3) ? (parts[0] * 60) + parts[1] : parts[0] }} MINUTES
                                             {% else %}
-                                                {# It is raw seconds (e.g. 2682), so we divide by 60 #}
                                                 {{ (episode.episodeDuration / 60) | round(0, 'floor') }} MINUTES
                                             {% endif %}
                                         </p>
@@ -52,19 +88,62 @@
                             </div>
                         </div>
 
-                        {# Listen Button #}
                         <div class="flex-shrink-0">
                             {% set listenUrl = (episode.spotifyUrl | trim) ?: episode.url %}
-                            <a href="{{ listenUrl }}"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="inline-block px-10 py-3 bg-black text-white font-bold uppercase text-[10px] tracking-[0.2em] group-hover:bg-[#E8BD5B] group-hover:text-black transition-all">
-                                Listen ↗
+                            <a href="{{ listenUrl }}" target="_blank" rel="noopener noreferrer" class="inline-block px-10 py-3 bg-foxplan-charcoal-brown text-foxplan-neutral-beige font-bold uppercase text-[10px] tracking-[0.2em] group-hover:bg-[#E8BD5B] group-hover:text-black transition-all">
+                                Listen ↴
                             </a>
                         </div>
                     </div>
                 {% endfor %}
             </div>
+
+            {# THE PAGINATION CONTROLS #}
+            <div id="episode-pagination" class="mt-16 flex justify-center items-center gap-10">
+
+                {% if pageInfo.prevUrl %}
+                    <a @click.prevent="loadPage('{{ pageInfo.prevUrl }}')"
+                       href="{{ pageInfo.prevUrl }}"
+                       class="text-foxplan-charcoal-brown hover:text-foxplan-yellow transition-colors text-lg font-light">
+                        ← Prev
+                    </a>
+                {% else %}
+                    <span class="text-foxplan-charcoal-brown/20 cursor-not-allowed text-lg font-light">← Prev</span>
+                {% endif %}
+
+                <div class="flex items-center gap-8">
+                    {% for page, url in pageInfo.getPrevUrls(2) %}
+                        <a @click.prevent="loadPage('{{ url }}')"
+                           href="{{ url }}"
+                           class="text-foxplan-charcoal-brown/20 hover:text-foxplan-charcoal-brown text-xl font-light transition-colors">
+                            {{ page }}
+                        </a>
+                    {% endfor %}
+
+                    <span class="text-foxplan-charcoal-brown text-xl font-normal px-1">
+                        {{ pageInfo.currentPage }}
+                    </span>
+
+                    {% for page, url in pageInfo.getNextUrls(2) %}
+                        <a @click.prevent="loadPage('{{ url }}')"
+                           href="{{ url }}"
+                           class="text-foxplan-charcoal-brown/20 hover:text-foxplan-charcoal-brown text-xl font-light transition-colors">
+                            {{ page }}
+                        </a>
+                    {% endfor %}
+                </div>
+
+                {% if pageInfo.nextUrl %}
+                    <a @click.prevent="loadPage('{{ pageInfo.nextUrl }}')"
+                       href="{{ pageInfo.nextUrl }}"
+                       class="text-foxplan-charcoal-brown hover:text-foxplan-yellow transition-colors text-lg font-light">
+                        Next →
+                    </a>
+                {% else %}
+                    <span class="text-foxplan-charcoal-brown/20 cursor-not-allowed text-lg font-light">Next →</span>
+                {% endif %}
+            </div>
+
         </div>
     </section>
 </div>

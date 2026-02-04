@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -11,6 +12,7 @@ fieldLayouts:
             dateAdded: '2026-01-23T01:33:43+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 6c8cad64-726d-4735-be40-5f733d49e15b # Member image
             handle: null
             instructions: null
@@ -26,6 +28,7 @@ fieldLayouts:
             dateAdded: '2026-01-23T01:33:43+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 331970c8-e670-403b-8550-b3a3214d6a62 # Member Name
             handle: null
             instructions: null
@@ -41,6 +44,7 @@ fieldLayouts:
             dateAdded: '2026-01-23T01:32:39+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 33a1b6df-526d-4d3c-84a1-dcc713555b4d # Job Title
             handle: null
             instructions: null
@@ -56,6 +60,7 @@ fieldLayouts:
             dateAdded: '2026-01-23T01:32:39+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
             instructions: null
@@ -71,6 +76,7 @@ fieldLayouts:
             dateAdded: '2026-01-23T01:32:39+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 73262043-6292-4645-96a8-99ed862cd739 # Phone Number
             handle: null
             instructions: null
@@ -86,6 +92,7 @@ fieldLayouts:
             dateAdded: '2026-01-23T01:32:39+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f41f4500-6b84-466c-89f3-dae1d5c3bf36 # Category
             handle: null
             instructions: null
@@ -100,6 +107,7 @@ fieldLayouts:
         name: Content
         uid: 65e85ad3-372c-4da7-8d5b-1b7b4c8c178d
         userCondition: null
+    thumbFieldKey: null
 handle: meetTheTeam
 hasTitleField: false
 icon: null
@@ -111,3 +119,4 @@ slugTranslationMethod: site
 titleFormat: '{memberName}'
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'
