@@ -17,5 +17,5 @@ siteSettings:
     enabledByDefault: true
     hasUrls: true
     template: pages/Business/index.twig
-    uriFormat: business-page
+    uriFormat: business
 type: single

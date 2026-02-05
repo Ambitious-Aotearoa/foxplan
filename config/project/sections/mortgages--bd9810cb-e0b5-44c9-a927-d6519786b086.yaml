@@ -17,5 +17,5 @@ siteSettings:
     enabledByDefault: true
     hasUrls: true
     template: pages/Mortgages/index.twig
-    uriFormat: pages/Mortgages
+    uriFormat: Mortgages
 type: single
