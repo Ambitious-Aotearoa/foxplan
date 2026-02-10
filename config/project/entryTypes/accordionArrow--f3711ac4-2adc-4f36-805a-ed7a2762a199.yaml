@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -11,6 +12,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T02:50:41+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 5a2fa5d4-7817-40c9-b68f-a7e82da4bb56 # Accordion heading1
             handle: null
             instructions: null
@@ -26,6 +28,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T02:50:41+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
             instructions: null
@@ -40,6 +43,7 @@ fieldLayouts:
         name: Content
         uid: ba17dc6e-aeda-452e-b05f-659fc5ed9a7f
         userCondition: null
+    thumbFieldKey: null
 handle: accordionArrow
 hasTitleField: false
 icon: null
@@ -51,3 +55,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

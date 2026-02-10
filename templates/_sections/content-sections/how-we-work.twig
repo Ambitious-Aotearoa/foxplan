@@ -1,17 +1,16 @@
 {# templates/_sections/content-sections/how-we-work.twig #}
 
 {% set defaults = {
-    mainHeading: entry.paragraphHeading ?? 'How we work with you',
-    mainBody: entry.bodyText ?? '',
-    accordionField: entry.accordion ?? null,
+    mainHeading: entry.paragraphHeading2 ?? 'How we work with you',
+    mainBody: entry.bodyText4 ?? '',
+    accordionField: entry.accordionNew ?? null,
     backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown'
-} %}
+    } %}
 
-{% set data = defaults | merge(props ?? {}) %}
+    {% set data = defaults | merge(props ?? {}) %}
 
-<section class="w-full relative z-20 {{ data.backgroundColor }} pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden">
-    {# Strict 10-column grid for the 30/70 split #}
+    <section class="w-full relative z-20 {{ data.backgroundColor }} pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden">
     <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start">
 
         {# --- Left Side (30% Gutter) --- #}
@@ -26,38 +25,47 @@
                     {{ data.mainHeading | raw }}
                 </h2>
 
-                {% if data.mainBody %}
-                    <div class="font-aktiv text-base md:text-lg leading-relaxed {{ data.textColor }} opacity-80 max-w-2xl">
-                        {{ data.mainBody | raw }}
-                    </div>
-                {% endif %}
+                {# Ensure body text always has a fallback if null #}
+                <div class="font-aktiv text-base md:text-lg leading-relaxed {{ data.textColor }} opacity-80 max-w-2xl">
+                    {{ (data.mainBody is not empty ? data.mainBody : '') | raw }}
+                </div>
             </div>
 
-            {# --- The Accordion with smaller text --- #}
+            {# --- The Accordion --- #}
             <div class="w-full">
-                {% if data.accordionField and data.accordionField.exists() %}
-
                 {% set formattedItems = [] %}
-                {% for item in data.accordionField.all() %}
-                    {% set formattedItems = formattedItems | merge([{
-                        expandableHeadingTitle: item.accordionHeading,
-                        ExpandableBodyText: item.accordionBodyText
-                    }]) %}
-                {% endfor %}
+
+                {# 1. Check if CMS has data #}
+                {% if data.accordionField and data.accordionField.exists() %}
+                    {% for item in data.accordionField.all() %}
+                        {% set formattedItems = formattedItems | merge([{
+                            expandableHeadingTitle: item.accordionHeading ?? 'General Information',
+                            ExpandableBodyText: item.accordionBodyText ?? ''
+                        }]) %}
+                    {% endfor %}
+                {% endif %}
+
+                {# 2. If NO data exists in CMS, use Placeholder Items #}
+                {% if formattedItems is empty %}
+                    {% set formattedItems = [
+                        { expandableHeadingTitle: 'Step 1: Discovery', ExpandableBodyText: 'We start by understanding your unique financial situation.' },
+                        { expandableHeadingTitle: 'Step 2: Strategy', ExpandableBodyText: 'We develop a tailored plan to meet your specific goals.' },
+                        { expandableHeadingTitle: 'Step 3: Implementation', ExpandableBodyText: 'We put your plan into action with constant support.' }
+                    ] %}
+                {% endif %}
 
                 {% include '_components/ui/accordion/accordion.twig' with {
-                props: {
-                items: formattedItems,
-                defaultOpen: 0,
-                titleFont: 'font-serif',
-                titleSize: 'text-xl md:text-[1.8rem]',
-                titleWeight: 'font-light',
-                textColor: data.textColor,
-                backgroundColor: 'bg-foxplan-white',
-                classes: 'w-full'
-                }
+                    props: {
+                        items: formattedItems,
+                        defaultOpen: 0,
+                        titleFont: 'font-serif',
+                        titleSize: 'text-xl md:text-[1.8rem]',
+                        titleWeight: 'font-light',
+                        textColor: data.textColor,
+                        backgroundColor: 'bg-foxplan-white',
+                        classes: 'w-full'
+                    }
                 } only %}
-                {% endif %}
             </div>
         </div>
     </div>

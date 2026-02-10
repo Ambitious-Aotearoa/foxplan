@@ -1,116 +1,92 @@
 {# templates/_sections/content-sections/who-we-work-with.twig #}
 
-{# 1. REUSABLE LOGIC: Merge incoming props with defaults #}
+{# 1. REUSABLE LOGIC #}
 {% set data = {
-    title:           'WE WORK WITH ALL MAJOR BANKS',
-    backgroundColor: 'bg-foxplan-yellow',
+    title:           'WHO WE WORK WITH',
+    backgroundColor: 'bg-foxplan-neutral-beige',
     textColor:       'text-foxplan-charcoal-brown',
-    borderColor:     'border-foxplan-charcoal-brown/10',
-    partnerLogos:    null
+    borderColor:     'border-foxplan-charcoal-brown/20',
+    assetVolume:     'suppliersLogo'
 } | merge(props ?? {}) %}
 
-{# 2. LOGIC FOR IMAGES #}
-{% set backendLogos = data.partnerLogos is defined and data.partnerLogos ? data.partnerLogos.all() : [] %}
+{# 2. FETCH LOGOS #}
+{% set displayLogos = craft.assets()
+    .volume(data.assetVolume)
+    .kind('image')
+    .limit(8)
+    .all() %}
 
-{% if backendLogos is not empty %}
-    {% set displayLogos = backendLogos %}
-{% else %}
-    {# Fallback to pseudo-data if Craft is empty #}
-    {% set displayLogos = [
-        { src: 'images/logo/AIA_Logo.svg', alt: 'AIA' },
-        { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ' },
-        { src: 'images/logo/BNZ_Logo.svg', alt: 'BNZ' },
-        { src: 'images/logo/Kiwibank_Logo.svg', alt: 'Kiwibank' },
-        { src: 'images/logo/SBS-Bank_LowQuality_Logo.svg', alt: 'SBS' },
-        { src: 'images/logo/The_Co-operative_Bank_Logo.svg', alt: 'Co-op' },
-        { src: 'images/logo/Westpac_logo.svg', alt: 'Westpac' },
-        { src: 'images/logo/SBS-Bank_LowQuality_Logo.svg', alt: 'SBS' },
-    ] %}
-{% endif %}
+{% if displayLogos|length > 0 %}
+    <section class="w-full {{ data.backgroundColor }}">
+        <div class="w-full">
+            <div class="pt-10 pb-6 px-8">
+                <p class="font-aktiv-grotesk text-[11px] font-bold tracking-[0.2em] uppercase {{ data.textColor }} opacity-80">
+                    {{ data.title }}
+                </p>
+            </div>
 
-<section class="w-full {{ data.backgroundColor }}">
-    <div class="w-full">
-        <div class="pt-10 pb-6 px-8">
-            <p class="font-aktiv-grotesk text-[11px] font-bold tracking-[0.2em] uppercase {{ data.textColor }} opacity-80">
-                {{ data.title }}
-            </p>
-        </div>
-
-        <div class="px-8 pb-16">
-            <div class="border {{ data.borderColor }}">
-                <div class="grid grid-cols-2 md:grid-cols-4" id="logo-grid">
-                    {% for logo in displayLogos %}
-                        <div class="logo-card relative overflow-hidden aspect-[1.6/1] flex items-center justify-center p-8 border-r border-b {{ data.borderColor }}
+            <div class="px-8 pb-16">
+                <div class="border {{ data.borderColor }}">
+                    <div class="grid grid-cols-2 md:grid-cols-4" id="logo-grid">
+                        {% for logo in displayLogos %}
+                            <div class="logo-card relative overflow-hidden aspect-[1.6/1] flex items-center justify-center p-4 md:p-8 border-r border-b {{ data.borderColor }}
                             [&:nth-child(2n)]:border-r-0 md:[&:nth-child(2n)]:border-r md:[&:nth-child(4n)]:border-r-0
                             [&:nth-last-child(-n+2)]:border-b-0 md:[&:nth-last-child(-n+4)]:border-b-0">
 
-                            <div class="logo-wrapper transition-all duration-700 ease-in-out w-full h-full flex items-center justify-center">
-                                {% set logoUrl = logo.url ?? (logo.src is defined ? craft.vite.asset(logo.src) : '') %}
-                                {% set logoAlt = logo.title ?? (logo.alt ?? 'Partner Logo') %}
-
-                                {% if logoUrl %}
-                                    <img src="{{ logoUrl }}" alt="{{ logoAlt }}"
-                                         class="logo-img max-w-full max-h-[40px] md:max-h-[50px] object-contain grayscale brightness-0 opacity-90">
-                                {% endif %}
+                                {# The "Frame": This container is the exact same size for every logo #}
+                                <div class="logo-wrapper transition-all duration-700 ease-in-out flex items-center justify-center w-[120px] h-[40px] md:w-[160px] md:h-[60px]">
+                                    <img src="{{ logo.url }}"
+                                         alt="{{ logo.title }}"
+                                            {# We use max-h and max-w to ensure they are clear but NEVER too big #}
+                                         class="logo-img max-w-full max-h-full w-auto h-auto object-contain">
+                                </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Ensure we are selecting the correct wrappers
-        const wrappers = document.querySelectorAll('.logo-wrapper');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrappers = document.querySelectorAll('.logo-wrapper');
+            if (wrappers.length < 2) return;
 
-        // If there are fewer than two logos, a swap is impossible!
-        if (wrappers.length < 2) return;
+            function swapLogos() {
+                let idxA = Math.floor(Math.random() * wrappers.length);
+                let idxB = Math.floor(Math.random() * wrappers.length);
+                while (idxA === idxB) {
+                    idxB = Math.floor(Math.random() * wrappers.length);
+                }
 
-        function swapLogos() {
-            // 1. Pick two distinct indices
-            let idxA = Math.floor(Math.random() * wrappers.length);
-            let idxB = Math.floor(Math.random() * wrappers.length);
-            while (idxA === idxB) {
-                idxB = Math.floor(Math.random() * wrappers.length);
+                const wrapperA = wrappers[idxA];
+                const wrapperB = wrappers[idxB];
+                const imgA = wrapperA.querySelector('img');
+                const imgB = wrapperB.querySelector('img');
+
+                if (!imgA || !imgB) return;
+
+                wrapperA.style.opacity = '0';
+                wrapperA.style.transform = 'scale(0.95)';
+                wrapperB.style.opacity = '0';
+                wrapperB.style.transform = 'scale(0.95)';
+
+                setTimeout(() => {
+                    const tempSrc = imgA.src;
+                    const tempAlt = imgA.alt;
+                    imgA.src = imgB.src;
+                    imgA.alt = imgB.alt;
+                    imgB.src = tempSrc;
+                    imgB.alt = tempAlt;
+
+                    wrapperA.style.opacity = '1';
+                    wrapperA.style.transform = 'scale(1)';
+                    wrapperB.style.opacity = '1';
+                    wrapperB.style.transform = 'scale(1)';
+                }, 700);
             }
-
-            const wrapperA = wrappers[idxA];
-            const wrapperB = wrappers[idxB];
-            const imgA = wrapperA.querySelector('img');
-            const imgB = wrapperB.querySelector('img');
-
-            // 2. Verification of existence
-            if (!imgA || !imgB) return;
-
-            // 3. Begin the elegant disappearance
-            wrapperA.style.opacity = '0';
-            wrapperA.style.transform = 'scale(0.95)';
-            wrapperB.style.opacity = '0';
-            wrapperB.style.transform = 'scale(0.95)';
-
-            // 4. The switch occurs while hidden
-            setTimeout(() => {
-                const tempSrc = imgA.src;
-                const tempAlt = imgA.alt;
-
-                imgA.src = imgB.src;
-                imgA.alt = imgB.alt;
-
-                imgB.src = tempSrc;
-                imgB.alt = tempAlt;
-
-                // 5. Reappear with grace
-                wrapperA.style.opacity = '1';
-                wrapperA.style.transform = 'scale(1)';
-                wrapperB.style.opacity = '1';
-                wrapperB.style.transform = 'scale(1)';
-            }, 700); // This duration should match your CSS transition
-        }
-
-        // Set the interval for the next assembly
-        setInterval(swapLogos, 4000);
-    });
-</script>
+            setInterval(swapLogos, 4000);
+        });
+    </script>
+{% endif %}

@@ -13,6 +13,14 @@
 
 {% set sectionData = defaults | merge(data ?? {}) %}
 
+{# 2. FETCH LATEST 3 ARTICLES #}
+{% set latestArticles = craft.entries()
+    .section('article')
+    .limit(3)
+    .with(['heroImage'])
+    .all()
+%}
+
 <section class="w-full {{ sectionData.backgroundColor }} pt-16 pb-16 md:pt-24 md:pb-24">
     <div class="px-8 md:px-12 w-full">
 
@@ -29,56 +37,45 @@
         {# Horizontal Divider #}
         <div class="w-full border-t {{ sectionData.borderColor }} mb-16"></div>
 
-        {# Static Articles Grid #}
+        {# Dynamic Articles Grid #}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
 
-            {# --- ARTICLE 1 --- #}
-            <div class="group">
-                <div class="w-full aspect-[5/3] mb-6 overflow-hidden bg-gray-100">
-                    <img src="{{ craft.vite.asset('images/blog-1.jpg') }}" alt="Article 1" class="w-full h-full object-cover">
-                </div>
-                <p class="text-xs font-medium uppercase tracking-widest mb-3 {{ sectionData.accentColor }}">JUNE 13, 2024</p>
-                <a href="#" class="block mb-4">
-                    <h3 class="text-xl md:text-2xl font-serif leading-tight {{ sectionData.headingColor }} group-hover:opacity-70 transition-opacity">
-                        Why choose private health insurance?
-                    </h3>
-                </a>
-                <a href="#" class="inline-block text-xs font-bold uppercase tracking-widest border-b-2 border-transparent hover:border-current transition-all {{ sectionData.accentColor }}">
-                    READ MORE
-                </a>
-            </div>
+            {% for article in latestArticles %}
+                {% set thumb = article.heroImage.one() %}
 
-            {# --- ARTICLE 2 --- #}
-            <div class="group">
-                <div class="w-full aspect-[5/3] mb-6 overflow-hidden bg-gray-100">
-                    <img src="{{ craft.vite.asset('images/blog-2.jpg') }}" alt="Article 2" class="w-full h-full object-cover">
-                </div>
-                <p class="text-xs font-medium uppercase tracking-widest mb-3 {{ sectionData.accentColor }}">MAY 20, 2024</p>
-                <a href="#" class="block mb-4">
-                    <h3 class="text-xl md:text-2xl font-serif leading-tight {{ sectionData.headingColor }} group-hover:opacity-70 transition-opacity">
-                        8 great investment mistakes to avoid
-                    </h3>
-                </a>
-                <a href="#" class="inline-block text-xs font-bold uppercase tracking-widest border-b-2 border-transparent hover:border-current transition-all {{ sectionData.accentColor }}">
-                    READ MORE
-                </a>
-            </div>
+                <div class="group">
+                    {# Image Container #}
+                    <div class="w-full aspect-[5/3] mb-6 overflow-hidden bg-gray-100">
+                        {% if thumb %}
+                            <img src="{{ thumb.url }}"
+                                 alt="{{ article.title }}"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        {% else %}
+                            {# Fallback if no image exists #}
+                            <div class="w-full h-full bg-foxplan-charcoal-brown/10 flex items-center justify-center font-serif opacity-20 italic">
+                                foxplan
+                            </div>
+                        {% endif %}
+                    </div>
 
-            {# --- ARTICLE 3 --- #}
-            <div class="group">
-                <div class="w-full aspect-[5/3] mb-6 overflow-hidden bg-gray-100">
-                    <img src="{{ craft.vite.asset('images/blog-3.jpg') }}" alt="Article 3" class="w-full h-full object-cover">
+                    {# Date #}
+                    <p class="text-xs font-medium uppercase tracking-widest mb-3 {{ sectionData.accentColor }}">
+                        {{ article.postDate | date('M d, Y') }}
+                    </p>
+
+                    {# Title Link #}
+                    <a href="{{ article.url }}" class="block mb-4">
+                        <h3 class="text-xl md:text-2xl font-serif leading-tight {{ sectionData.headingColor }} group-hover:opacity-70 transition-opacity">
+                            {{ article.title }}
+                        </h3>
+                    </a>
+
+                    {# CTA #}
+                    <a href="{{ article.url }}" class="inline-block text-xs font-bold uppercase tracking-widest border-b-2 border-transparent hover:border-current transition-all {{ sectionData.accentColor }}">
+                        READ MORE 
+                    </a>
                 </div>
-                <p class="text-xs font-medium uppercase tracking-widest mb-3 {{ sectionData.accentColor }}">MAY 16, 2024</p>
-                <a href="#" class="block mb-4">
-                    <h3 class="text-xl md:text-2xl font-serif leading-tight {{ sectionData.headingColor }} group-hover:opacity-70 transition-opacity">
-                        The ultimate guide to retirement planning
-                    </h3>
-                </a>
-                <a href="#" class="inline-block text-xs font-bold uppercase tracking-widest border-b-2 border-transparent hover:border-current transition-all {{ sectionData.accentColor }}">
-                    READ MORE
-                </a>
-            </div>
+            {% endfor %}
 
         </div>
     </div>

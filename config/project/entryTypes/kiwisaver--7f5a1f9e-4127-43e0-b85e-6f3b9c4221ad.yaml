@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -39,6 +40,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T22:20:40+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
             handle: null
             instructions: null
@@ -54,6 +56,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T22:20:40+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
             instructions: null
@@ -69,6 +72,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T22:20:40+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
             instructions: null
@@ -77,21 +81,6 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: 9427cd10-9dd6-4b3d-819a-7e3dffb0aa53
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-01-25T22:20:40+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 53c598e4-8dbf-4957-aef5-63132e5a819f
             userCondition: null
             warning: null
             width: 100
@@ -105,6 +94,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T22:20:40+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
             instructions: null
@@ -120,6 +110,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T22:20:40+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
             handle: null
             instructions: null
@@ -141,6 +132,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T22:20:40+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading2
             instructions: null
@@ -153,17 +145,18 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-25T22:34:10+00:00'
+            dateAdded: '2026-02-09T00:40:21+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 3270e53f-a3c4-4994-8f80-9f1a9d8c1fdb # Accordion-Arrow
+            elementEditCondition: null
+            fieldUid: 3df564bb-a8ff-48d9-88c0-1e1fec7a3cff # Accordion new
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: cee6d7f8-9f82-4fa3-97f1-484169045f4b
+            uid: 05fc94a9-df50-49b4-a021-f497bec95bff
             userCondition: null
             warning: null
             width: 100
@@ -177,6 +170,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T22:20:40+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading3
             instructions: null
@@ -192,6 +186,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T22:20:40+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
             instructions: null
@@ -207,6 +202,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T22:20:40+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
             handle: null
             instructions: null
@@ -225,9 +221,10 @@ fieldLayouts:
         elementCondition: null
         elements:
           -
-            dateAdded: '2026-01-25T22:20:40+00:00'
+            dateAdded: '2026-02-10T01:05:21+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading4
             instructions: null
@@ -235,14 +232,15 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: e8654182-4a6c-4eba-857e-c16805d06eb6
+            uid: defad554-b6b3-4ee7-a531-cf4234e87293
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-25T22:20:40+00:00'
+            dateAdded: '2026-02-10T01:05:21+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: bodyText2
             instructions: null
@@ -250,29 +248,15 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: a5bb6441-b3f0-4528-878c-ef951ff1ff00
+            uid: be2468c3-fed7-4c64-b980-fb5deb3f5bac
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-25T22:20:40+00:00'
+            dateAdded: '2026-02-10T01:05:21+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 7d982134-8c37-4180-9d02-c31cf4138d60
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-01-25T22:20:40+00:00'
-            editCondition: null
-            elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: button2
             instructions: null
@@ -280,27 +264,28 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: e9a3cba1-570c-40c8-8ac9-aafceee333f4
+            uid: a09c7551-38a5-48dc-9abe-cdbd8c541e33
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-25T22:20:40+00:00'
+            dateAdded: '2026-02-10T01:05:21+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
-            handle: buttonLink2
+            elementEditCondition: null
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
+            handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 90b632aa-4323-4944-a7f8-c411e6e3887d
+            uid: 61ab5441-7fe1-41c5-a7ad-0c43df695f30
             userCondition: null
             warning: null
             width: 100
-        name: 'image and text section'
-        uid: 32aa0129-ce90-460c-bb70-c5e1c0a8addd
+        name: 'Try our KiwiSaver calculator'
+        uid: d9678a6f-618c-47e9-a435-bc3f24218b7d
         userCondition: null
       -
         elementCondition: null
@@ -309,6 +294,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T22:20:40+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading5
             instructions: null
@@ -323,6 +309,7 @@ fieldLayouts:
         name: Testimonials
         uid: 306b2a52-bdf2-4c0e-827c-e5a026daa403
         userCondition: null
+    thumbFieldKey: null
 handle: kiwisaver
 hasTitleField: true
 icon: null
@@ -334,3 +321,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

@@ -95,114 +95,6 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: c4a11274-2024-4ba8-8e22-9c2db6ff8b10
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-02-04T03:03:34+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
-            handle: heroImage2
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 895b4a41-4227-4b71-9e58-565ea9c392af
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T03:53:50+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 4c9973ff-0107-4739-a889-f352e62eca08 # Large Paragraph
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 035a9349-db5d-48c0-a317-813789624107
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T03:53:50+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 37578f45-0b1d-4513-b3f7-30085b31057c # Fox icon
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 477681de-eb58-47cb-8a5b-06e1a0b04f10
-            userCondition: null
-            warning: null
-            width: 100
-        name: 'A 360 Approach'
-        uid: 3fbf61b3-256f-4c80-b4d4-5df1025be4a0
-        userCondition: null
-      -
-        elementCondition: null
-        elements:
-          -
-            dateAdded: '2025-12-17T03:53:50+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: e193394e-257b-4460-bb66-043fa40743cd # Main Heading
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 4a02fa18-6174-4d40-8542-0ba50a8c381b
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T03:53:50+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 720d8e1b-6a10-438d-b01d-e74b8706696b
-            userCondition: null
-            warning: null
-            width: 100
-        name: 'Accounting to get you set up'
-        uid: 67c42a61-2d65-4f1d-8b5c-ef32eeb6b3ed
-        userCondition: null
-      -
-        elementCondition: null
-        elements:
-          -
-            dateAdded: '2025-12-17T03:53:50+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
             instructions: null
@@ -215,18 +107,88 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T03:53:50+00:00'
+            dateAdded: '2026-02-08T20:38:21+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            fieldUid: b3d02c0f-4eb6-471b-a4fd-e7ade89de423 # Hero Matrix
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 3a9ffe93-450e-4e4e-87ad-7c894226f6cc
+            uid: 347b71e8-c18b-44ac-9ca1-4996697a2d66
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Accounting for better business'
+        uid: 67c42a61-2d65-4f1d-8b5c-ef32eeb6b3ed
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-02-08T21:15:23+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8806e64d-523d-45ce-9a1f-af381d69f8ea
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T20:38:21+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b3d80242-c271-4622-992f-092daa2eb937
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T21:15:23+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 18413b7d-861a-4785-ad1c-17abd295838e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T20:51:06+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: c8cb479b-6ce3-44d4-8485-2de5b6cff170 # Accounting Matrix
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7d321afc-4033-42fe-9c7e-dbe2f5ba1226
             userCondition: null
             warning: null
             width: 100
@@ -237,39 +199,23 @@ fieldLayouts:
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-12-17T03:53:50+00:00'
+            dateAdded: '2026-02-08T21:15:23+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 40dc7ecc-2b48-42e9-ba8d-6b387ee26597 # Advisors Image
-            handle: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading3
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 3639fb20-3f1f-41c0-a2e5-c708f999fb9e
+            uid: 473c4361-ce0b-4af3-8c12-f422981b0587
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T03:53:50+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: fe02d7ad-a8ee-44e2-81e9-27e07f31372d # Advisors Name
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: e331e413-b443-4d7b-9296-86c7b0df29c2
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T03:53:50+00:00'
+            dateAdded: '2026-02-08T21:15:23+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -280,12 +226,66 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 299bbcb1-1a3d-466b-b08e-c9ec9d0ace45
+            uid: 87a5b381-9e3b-43fe-a9dd-a55d53196b07
             userCondition: null
             warning: null
             width: 100
-        name: 'Meet our Accountants'
-        uid: 10b47ccc-6251-4268-acb1-44fd27f10eb7
+          -
+            dateAdded: '2026-02-08T21:15:23+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8b527412-a4d6-42ae-bb49-7c55af321db7 # Accounting table
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4cd9de2f-4c0e-42b0-be71-9e2ff7f6c2da
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Our 8 critical pathways for success'
+        uid: d3dd6c71-7039-4e5b-94a2-fccc1c16864e
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-02-08T21:52:43+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading4
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 89bdcc47-51cf-4eaa-8389-0405f52fd0aa
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T21:52:43+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: bb459c2e-3c79-46b3-95de-6f9b4cebae59
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'How we work with you'
+        uid: 8fd46959-b147-4307-8a57-6aa4541dc1f8
         userCondition: null
     thumbFieldKey: null
 handle: accounting

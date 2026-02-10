@@ -16,9 +16,11 @@
     } only %}
 
     {# 2. THE MAIN BODY: Displays 'insightBody' aligned under the Image #}
+    {# templates/pages/Insights/_entry.twig (or your entry route file) #}
+
     {% include '_sections/content-sections/article-template.twig' with {
         entry: entry
-    } only %}
+    } %}
 
     {# 3. RELATED INSIGHTS: Fetches articles from the same Category #}
     {% include '_sections/content-sections/link-to-insights.twig' with {

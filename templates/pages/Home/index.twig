@@ -10,8 +10,7 @@
 {% block blockAppBody %}
 
 
-
-    {# templates/index.twig (or your page template) #}
+    {# Hero section #}
     {% include '_sections/hero-sections/hero-home.twig' with {
         entry: entry,
         props: {
@@ -19,51 +18,58 @@
             headingLine2: 'figured out.',
             bodyText: entry.heroBodyText ?? '',
             buttonText: entry.button ?? null,
-            arrowPath: 'images/placeholder/Arrow_1.svg',
+            arrowPath: '@webroot/dist/images/placeholder/Arrow_1.svg'
         }
     } only %}
 
-        {% include '_sections/content-sections/hero-arc.twig' %}
+    {# hero arc section #}
+    {% include '_sections/content-sections/hero-arc.twig' %}
 
-        {% include '_sections/services/hero-services.twig' with {
-            entry: entry,
-            props: {
-                heading: entry.paragraphHeading2 ?? 'Our Services',
-                introText: entry.bodyText2 ?? '',
-            }
-        } %}
+    {# hero services #}
+    {% include '_sections/services/hero-services.twig' with {
+        entry: entry,
+        props: {
+            heading: entry.paragraphHeading2 ?? 'Our Services',
+            introText: entry.bodyText2 ?? '',
+        }
+    } %}
 
-        {% set testimonialEntries = craft.entries().section('testimonials').all() %}
+    {# testimonials #}
+    {% set testimonialEntries = craft.entries().section('testimonials').all() %}
 
-        {{ include('_sections/testimonials/testimonial-two.twig', {
-            data: {
-                paragraphHeading4: entry.paragraphHeading3 ?? 'Hear what our clients are saying',
-                backgroundColor: 'bg-foxplan-neutral-beige',
-                borderColor: 'border-foxplan-yellow',
-                textColor: 'text-foxplan-charcoal-brown',
-                quoteIconColor: 'bg-foxplan-yellow',
-                btnBgColor: 'bg-foxplan-charcoal-brown',
-                btnTextColor: 'text-foxplan-yellow'
-            },
-            testimonials: testimonialEntries
-        }) }}
+    {{ include('_sections/testimonials/testimonial-two.twig', {
+        data: {
+            paragraphHeading4: entry.paragraphHeading3 ?? 'Hear what our clients are saying',
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            borderColor: 'border-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown',
+            quoteIconColor: 'bg-foxplan-yellow',
+            btnBgColor: 'bg-foxplan-charcoal-brown',
+            btnTextColor: 'text-foxplan-yellow',
+            arrowPath: '@webroot/dist/images/placeholder/Arrow_1.svg'
+        },
+        testimonials: testimonialEntries
+    }) }}
 
-        {{ include('_sections/content-sections/hero-grow.twig') }}
+    {# hero grow section #}
+    {{ include('_sections/content-sections/hero-grow.twig') }}
 
-        {% include "_sections/content-sections/link-to-insights.twig" %}
+    {# newsletter #}
+    {% include "_sections/content-sections/link-to-insights.twig" %}
 
-        {{ include('_components/footer/footer-High-fidelity.twig', {
-            props: {
-                backgroundColor: 'bg-foxplan-neutral-beige',
-                textColor: 'text-foxplan-charcoal-brown',
-                logoColor: 'text-foxplan-charcoal-brown',
-                buttonColor: 'bg-foxplan-charcoal-brown',
-                buttonTextColor: 'text-foxplan-neutral-beige',
-                foxplanText: 'foxplan',
-                borderTopColor: 'border-foxplan-charcoal-brown/20',
-                borderTopWidth: 'border-t-2'
-            }
-        }) }}
+    {# footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            textColor: 'text-foxplan-charcoal-brown',
+            logoColor: 'text-foxplan-charcoal-brown',
+            buttonColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-neutral-beige',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-charcoal-brown/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
 
 
 {% endblock %}

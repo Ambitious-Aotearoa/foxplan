@@ -6,8 +6,39 @@
 <section class="w-full {{ bgColor }} py-24"
          x-data="{
             open: false,
-            activeMember: { name: '', title: '', image: '', bio: '' }
-         }">
+            activeMember: { name: '', title: '', image: '', bio: '' },
+            scrollY: 0,
+
+            lockScroll() {
+                this.scrollY = window.scrollY;
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${this.scrollY}px`;
+                document.body.style.width = '100%';
+                document.body.style.overflowY = 'hidden';
+
+                let navbar = document.querySelector('header') || document.querySelector('nav') || document.querySelector('.site-header');
+                if (navbar) {
+                    navbar.style.zIndex = '1';
+                    navbar.style.pointerEvents = 'none';
+                }
+            },
+
+            unlockScroll() {
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                document.body.style.overflowY = '';
+
+                let navbar = document.querySelector('header') || document.querySelector('nav') || document.querySelector('.site-header');
+                if (navbar) {
+                    navbar.style.zIndex = '';
+                    navbar.style.pointerEvents = '';
+                }
+
+                window.scrollTo(0, this.scrollY);
+            }
+         }"
+         x-init="$watch('open', value => value ? lockScroll() : unlockScroll())">
 
     <div class="w-full px-8 md:px-16">
         <h2 class="font-serif text-[4.5rem] md:text-[8vw] leading-[0.85] tracking-tighter {{ txtColor }} mb-20">
@@ -50,10 +81,11 @@
     {# --- THE FULL-WIDTH CONTENT PULLOUT --- #}
     <template x-teleport="body">
         <div x-show="open"
-             class="fixed inset-0 z-[100] flex justify-end"
+             class="fixed inset-0 z-[9999] flex justify-end"
              x-cloak
              @keydown.window.escape="open = false">
 
+            {# Darkened Overlay #}
             <div x-show="open"
                  x-transition:enter="transition ease-out duration-500"
                  x-transition:enter-start="opacity-0"
@@ -61,7 +93,9 @@
                  @click="open = false"
                  class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
+            {# Drawer Content #}
             <div class="relative w-full md:w-[60vw] bg-white h-full shadow-2xl overflow-y-auto overflow-x-hidden"
+                 style="overscroll-behavior: contain;"
                  x-show="open"
                  x-transition:enter="transition ease-out duration-500 transform"
                  x-transition:enter-start="translate-x-full"
@@ -70,12 +104,15 @@
                  x-transition:leave-start="translate-x-0"
                  x-transition:leave-end="translate-x-full">
 
+                {# Close Button #}
                 <button @click="open = false" class="absolute top-8 right-8 p-4 group text-foxplan-charcoal-brown z-10">
                     <span class="text-4xl font-light group-hover:rotate-90 transition-transform inline-block">&times;</span>
                 </button>
 
-                <div class="p-10 md:p-16 lg:p-24 w-full">
-                    {# Header with Image and Text spreading across the width #}
+                {# UPDATED: Added pt-24 (mobile) and md:pt-40 (desktop) to clear the navbar area #}
+                <div class="p-10 md:p-16 lg:p-24 pt-24 md:pt-40 w-full">
+
+                    {# Header with Image and Text #}
                     <div class="flex flex-col md:flex-row items-start gap-12 mb-16 w-full">
                         <img :src="activeMember.image" class="w-64 h-64 object-cover shadow-lg shrink-0">
                         <div class="flex-1">
@@ -84,7 +121,7 @@
                         </div>
                     </div>
 
-                    {# The Biography text now has no max-width constraint #}
+                    {# Biography Text #}
                     <div class="font-aktiv text-lg md:text-xl leading-relaxed text-foxplan-charcoal-brown space-y-8 w-full"
                          x-html="activeMember.bio">
                     </div>

@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -39,6 +40,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:29:21+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
             instructions: null
@@ -54,6 +56,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:29:21+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
             handle: null
             instructions: null
@@ -69,6 +72,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:29:21+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
             instructions: null
@@ -90,6 +94,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:29:21+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
             instructions: null
@@ -105,6 +110,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:29:21+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
             instructions: null
@@ -117,17 +123,18 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T03:29:21+00:00'
+            dateAdded: '2026-02-09T01:08:34+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            elementEditCondition: null
+            fieldUid: 3df564bb-a8ff-48d9-88c0-1e1fec7a3cff # Accordion new
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 44d105b7-3400-47b1-816f-96736da3e62f
+            uid: e3b470be-7d9f-4961-9e4c-1525046031d9
             userCondition: null
             warning: null
             width: 100
@@ -141,6 +148,7 @@ fieldLayouts:
             dateAdded: '2026-01-26T03:34:22+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading2
             instructions: null
@@ -156,6 +164,7 @@ fieldLayouts:
             dateAdded: '2026-01-15T21:59:03+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
             handle: null
             instructions: null
@@ -175,6 +184,7 @@ fieldLayouts:
         name: 'Who we work with'
         uid: 30b0f519-a439-44c5-9a4a-463e3367e8f9
         userCondition: null
+    thumbFieldKey: null
 handle: insurance
 hasTitleField: true
 icon: null
@@ -186,3 +196,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

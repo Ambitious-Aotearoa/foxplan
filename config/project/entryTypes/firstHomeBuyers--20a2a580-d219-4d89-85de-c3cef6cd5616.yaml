@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -39,6 +40,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
             instructions: null
@@ -54,6 +56,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
             handle: null
             instructions: null
@@ -69,6 +72,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
             instructions: null
@@ -77,21 +81,6 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: d9a3c2ee-a005-472a-9c44-6a6ab45bf078
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-01-21T21:12:29+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 62bf31af-8e84-4c2b-8197-00623da725a6
             userCondition: null
             warning: null
             width: 100
@@ -105,6 +94,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
             instructions: null
@@ -120,6 +110,7 @@ fieldLayouts:
             dateAdded: '2026-01-21T20:59:59+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
             handle: null
             instructions: null
@@ -141,6 +132,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading2
             instructions: null
@@ -156,6 +148,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: bodyText2
             instructions: null
@@ -171,6 +164,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
             handle: null
             instructions: null
@@ -187,16 +181,12 @@ fieldLayouts:
         userCondition: null
       -
         elementCondition: null
-        name: 'who we work with'
-        uid: f19fd29d-57b8-454e-9d18-76c5c70fdc2b
-        userCondition: null
-      -
-        elementCondition: null
         elements:
           -
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading3
             instructions: null
@@ -212,6 +202,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: bodyText3
             instructions: null
@@ -227,6 +218,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
             handle: null
             instructions: null
@@ -242,6 +234,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: button2
             instructions: null
@@ -263,6 +256,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T04:01:57+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading4
             instructions: null
@@ -277,6 +271,7 @@ fieldLayouts:
         name: Testimonials
         uid: c14a0b49-5966-4164-a6a7-bfc7f82b3305
         userCondition: null
+    thumbFieldKey: null
 handle: firstHomeBuyers
 hasTitleField: true
 icon: null
@@ -288,3 +283,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

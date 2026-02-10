@@ -10,34 +10,25 @@
 {% block blockAppBody %}
 
     {# --- 1. Hero Section Setup --- #}
-    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'First Home Buyers' %}
-    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : '' %}
+    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
+    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
+    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
+    {% set pageHeroImage = entry.heroImage.one() ?? null %}
 
-    {# --- Safely handle the Button Text (String) --- #}
-    {% set pageButtonText = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
-
-    {# --- Safely handle the Button Link (Object or Null) --- #}
-    {# We check if it exists AND is not null before accessing .url #}
-    {% set pageButtonUrl = (entry.buttonLink is defined and entry.buttonLink) ? entry.buttonLink.url : '/contact' %}
-
-    {# --- 2. Hero Section Include --- #}
     {{ include('_sections/hero-sections/hero-arrow.twig', {
         props: {
             heading: pageHeading,
             bodyText: pageBody,
-            buttonText: pageButtonText,
-            buttonUrl: pageButtonUrl,
-            imagePath: 'images/Insurance_1.jpg',
+            buttonText: pageButton,
+            imageAsset: pageHeroImage,
+            imagePath: 'images/Insurance_hero.jpg',
             backgroundColor: 'bg-foxplan-yellow',
+            buttonUrl: '/contact',
             buttonBgColor: 'bg-foxplan-charcoal-brown',
             buttonTextColor: 'text-foxplan-white'
         }
     }) }}
 
-    {# 2. Benefits #}
-    {# templates/pages/First-home-buyers/index.twig #}
-
-    {# --- Info Block / Services Section --- #}
     {{ include('_sections/content-sections/help-for-buying-your-first-home.twig', {
         props: {
             paragraphHeading: entry.paragraphHeading,
@@ -48,13 +39,14 @@
         }
     }) }}
 
-    {#     3. how we work accordion #}
-    { {% set benefitsHeading = entry.paragraphHeading3 ?? 'About group insurance' %}
-    {% set benefitsIntro = entry.bodyText ?? '' %}
 
-    {# 1. Loop through the 'accordion' matrix #}
+{#    benefits section #}
+    {% set benefitsHeading = entry.paragraphHeading2 ?? 'About group insurance' %}
+    {% set benefitsIntro = entry.bodyText2 ?? '' %}
+
+
     {% set accordionItems = [] %}
-    {# Ensure 'accordion' is the handle of the Matrix field on this specific entry #}
+
     {% if entry.accordion is defined %}
         {% for block in entry.accordion.all() %}
             {% set accordionItems = accordionItems | merge([{
@@ -64,7 +56,7 @@
         {% endfor %}
     {% endif %}
 
-    {#  Deliver the data to the benefits section using 'props' #}
+
     {{ include('_sections/content-sections/benefits.twig', {
         props: {
             paragraphHeading: benefitsHeading,
@@ -75,7 +67,7 @@
         }
     }) }}
 
-    {#     4. Partner Section #}
+{#who we work with section#}
     {{ include('_sections/content-sections/who-we-work-with.twig', {
         props: {
             title: 'WHO WE WORK WITH',
@@ -89,16 +81,14 @@
         }
     }) }}
 
-    {#     5. section #}
-    {#  Image and Text Section #}
+
     {% set sectionImage = entry.image.one() %}
 
     {{ include('_sections/hero-sections/section.twig', {
         props: {
             title: entry.paragraphHeading3 ?? 'Get the First Home Buyers Guide',
-            bodyText: entry.bodyText2 ?? '',
+            bodyText: entry.bodyText3 ?? '',
             buttonText: entry.button2 ?? '',
-            buttonLink: (entry.buttonlink2 is defined and entry.buttonlink2) ? entry.buttonlink2.url : '#',
             imageSrc: sectionImage ? sectionImage.url : null,
             backgroundColor: 'bg-foxplan-neutral-beige',
             textColor: 'text-foxplan-charcoal-brown',
@@ -108,7 +98,6 @@
         }
     }) }}
 
-    {#     6. testimonial #}
     {{ include('_sections/testimonials/testimonial-two.twig', {
         data: {
             paragraphHeading4: entry.paragraphHeading4 ?? 'Hear what our clients are saying'
@@ -116,7 +105,6 @@
     }) }}
 
 
-    {# 7. footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',

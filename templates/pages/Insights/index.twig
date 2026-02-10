@@ -10,13 +10,15 @@
 } %}
 
 {% block blockAppBody %}
-    {# 1. FETCH CATEGORIES #}
+    {# 1. FETCH CATEGORIES (From the group you mapped in Feed Me) #}
     {% set dynamicCategories = craft.categories.group('articleCategories').all() %}
+
+    {# Determine the default active tab - usually the first category imported #}
     {% set firstCategorySlug = dynamicCategories|length ? dynamicCategories[0].slug : '' %}
 
     {# 2. HERO SECTION #}
     <section class="w-full bg-foxplan-yellow text-foxplan-charcoal-brown pt-32 pb-24 px-8 md:px-16">
-        <h1 class="font-serif text-8xl md:text-9xl mb-8 tracking-tighter">Insights</h1>
+        <h1 class="font-serif text-8xl md:text-9xl mb-8 tracking-tighter text-foxplan-charcoal-brown">Insights</h1>
         <p class="font-aktiv-grotesk text-xl max-w-2xl opacity-80">
             The latest updates on finance and practical tips to help Kiwis make smarter financial decisions.
         </p>
@@ -48,9 +50,16 @@
             <div class="px-4 md:px-8 lg:px-12 mb-20">
                 {% for category in dynamicCategories %}
                     <div x-show="activeTab === '{{ category.slug }}'" x-cloak x-transition>
-                        {# Fetch articles specifically for this category #}
-                        {% set articles = craft.entries.section('article').relatedTo(category).all() %}
 
+                        {# Fetch articles specifically for this category and section #}
+                        {% set articles = craft.entries()
+                            .section('article')
+                            .relatedTo(category)
+                            .with(['heroImage'])
+                            .all()
+                        %}
+
+                        {# Pass the imported articles to the grid #}
                         {% include '_sections/content-sections/masonry-grid.twig' with {
                             articles: articles,
                             categoryLabel: category.title
@@ -59,18 +68,16 @@
                 {% endfor %}
             </div>
 
-            {# 5. NEWSLETTER SECTION with top border #}
-            <div class=" px-4">
+            {# 5. NEWSLETTER SECTIONS #}
+            <div class="px-4">
                 {% include '_sections/newsletter/newsletter-signup.twig' %}
             </div>
 
-            {# 6. NEWSLETTER SECTION #}
-            {# Sits at the very base with its top border #}
             {% include '_sections/newsletter/Subscribe-newsletter.twig' %}
         </div>
     </div>
 
-    {# 4. footer #}
+    {# 6. FOOTER #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-neutral-beige',

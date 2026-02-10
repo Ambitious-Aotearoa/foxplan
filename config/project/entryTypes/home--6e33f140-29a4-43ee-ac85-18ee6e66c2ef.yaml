@@ -288,6 +288,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-02-08T22:23:22+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c99b49ab-de71-4f47-99b4-166cfc93b301
+            userCondition: null
+            warning: null
+            width: 100
         name: 'Where should I begin'
         uid: 4820e4e0-d6f9-4a18-8514-cadef4393db8
         userCondition: null
@@ -355,6 +371,22 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: db18234d-ba86-4d4c-9337-97a30e508c2f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T22:23:22+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
+            handle: image2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a1a183fa-cf74-4a80-9537-43b8d761c5d0
             userCondition: null
             warning: null
             width: 100

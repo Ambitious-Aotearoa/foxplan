@@ -51,10 +51,11 @@
             <div class="relative w-full py-20 md:py-32 career-block">
                 <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start gap-y-12">
 
-                    {# Image Side #}
+                    {# Image Side: Updated to use direct disk path for reliability #}
                     <div class="col-span-1 md:col-span-4 {{ imageOnLeft ? 'md:col-start-1' : 'md:col-start-7 md:order-2' }}">
                         <div class="w-full relative shadow-xl">
-                            <img src="{{ craft.vite.asset('images/career_' ~ loop.index ~ '.jpg') }}"
+                            {# Constructing path: /dist/images/career_1.jpg etc. #}
+                            <img src="{{ alias('@web/dist/images/career_' ~ loop.index ~ '.jpg') }}"
                                  class="w-full h-[500px] lg:h-[700px] object-cover block"
                                  alt="Career Phase {{ loop.index }}">
                         </div>

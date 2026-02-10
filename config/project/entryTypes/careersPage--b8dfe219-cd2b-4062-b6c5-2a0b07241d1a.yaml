@@ -145,18 +145,18 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-29T02:16:21+00:00'
+            dateAdded: '2026-02-09T02:42:10+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            fieldUid: 3df564bb-a8ff-48d9-88c0-1e1fec7a3cff # Accordion new
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: c160e9df-1b1b-4b66-a3d1-7ea0a1c6be39
+            uid: d8816e65-a029-4971-9951-7cd17f4ccc24
             userCondition: null
             warning: null
             width: 100
@@ -252,6 +252,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-02-10T01:42:56+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 30be4b0d-0cb1-485b-818a-09f565dabaa0
+            userCondition: null
+            warning: null
+            width: 100
         name: 'The Short Term: Foundation & Integration '
         uid: 8eb60236-a9ce-409a-9b7e-8f2a13981cbd
         userCondition: null
@@ -306,6 +322,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-02-10T01:42:56+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
+            handle: image2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c1b5c9f1-b9bf-4e76-a320-e6cdc740e486
+            userCondition: null
+            warning: null
+            width: 100
         name: 'The Medium Term: Growth & Practice Mastery'
         uid: 77acdd23-b550-42d1-a477-af1f2f04636e
         userCondition: null
@@ -357,6 +389,22 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: d2bb5cf5-5bf6-41d9-97ce-b27e5801ec77
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-10T01:42:56+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
+            handle: image3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d6216a06-f57a-43ae-a124-c3f67180b24a
             userCondition: null
             warning: null
             width: 100

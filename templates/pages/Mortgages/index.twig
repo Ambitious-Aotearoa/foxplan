@@ -12,17 +12,19 @@
     {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
     {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
     {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
+    {% set pageHeroImage = entry.heroImage.one() ?? null %}
 
     {{ include('_sections/hero-sections/hero-arrow.twig', {
         props: {
             heading: pageHeading,
             bodyText: pageBody,
             buttonText: pageButton,
-            imagePath: 'images/Mortgage_1.jpg',
+            imageAsset: pageHeroImage,
+            imagePath: 'images/Insurance_hero.jpg',
             backgroundColor: 'bg-foxplan-yellow',
             buttonUrl: '/contact',
             buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-neutral-beige'
+            buttonTextColor: 'text-foxplan-white'
         }
     }) }}
 
@@ -55,7 +57,7 @@
 
     {{ include('_sections/services/our-services.twig', {
         props: {
-            title: entry.paragraphHeading3 ?? 'Our Services',
+            title: entry.paragraphHeading2 ?? 'Our Services',
             backgroundColor: 'bg-foxplan-neutral-beige',
             buttonBgColor: 'bg-foxplan-charcoal-brown',
             buttonTextColor: 'text-white',

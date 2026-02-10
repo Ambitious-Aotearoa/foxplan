@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -11,6 +12,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T21:01:52+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: b974ddd6-5e6a-460f-8100-45bdf6fe5c1d # Provider Name
             handle: null
             instructions: null
@@ -26,6 +28,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T21:01:52+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 30e93460-18e1-473b-90f6-17bed59eb35e # Contact Info
             handle: null
             instructions: null
@@ -41,6 +44,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T01:07:20+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 544d4692-c910-412c-97e7-77d0fc357686 # Suppliers Image
             handle: null
             instructions: null
@@ -56,6 +60,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T01:07:20+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
             instructions: null
@@ -71,6 +76,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T21:01:52+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
             handle: null
             instructions: null
@@ -86,6 +92,7 @@ fieldLayouts:
             dateAdded: '2026-01-25T21:01:52+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 50a671c8-233b-479c-af1a-8dfcc5f25e8f # Supplier category
             handle: null
             instructions: null
@@ -100,6 +107,7 @@ fieldLayouts:
         name: Suppliers
         uid: 5c994281-91e6-4edc-9148-29e8bb6da1e3
         userCondition: null
+    thumbFieldKey: null
 handle: ourSuppliers
 hasTitleField: false
 icon: null
@@ -111,3 +119,4 @@ slugTranslationMethod: site
 titleFormat: '{providerName}'
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

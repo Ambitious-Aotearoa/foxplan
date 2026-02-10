@@ -79,18 +79,18 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-29T23:57:00+00:00'
+            dateAdded: '2026-02-10T01:49:13+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 3df564bb-a8ff-48d9-88c0-1e1fec7a3cff # Accordion new
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: c48fc89e-68de-47ca-90fd-ef8fb55979bc
+            uid: f09b9399-1013-4702-a878-a7a735844c67
             userCondition: null
             warning: null
             width: 100
@@ -132,6 +132,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-02-10T01:49:13+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
+            handle: image2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 426a3c05-a229-46f1-8082-dcecdb59b2f0
+            userCondition: null
+            warning: null
+            width: 100
         name: 'Build, grow and exit on your terms'
         uid: 2bbef78b-31bc-435e-95f5-fff9d0b6d7a2
         userCondition: null
@@ -167,6 +183,22 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: a9f4d660-4178-4875-ad3b-80c83da1e523
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-10T01:49:13+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
+            handle: image3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6125d7dc-4b3f-4be5-abe8-e0fb4ffd47b5
             userCondition: null
             warning: null
             width: 100

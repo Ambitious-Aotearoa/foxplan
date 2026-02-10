@@ -1,7 +1,3 @@
-{# -----------------------------------------------------------------------------------------
-   _sections/content-sections/suppliers.twig
-   ----------------------------------------------------------------------------------------- #}
-
 <div class="bg-foxplan-neutral-beige px-6 md:px-12 py-16">
     <div x-show="activeTab">
         {% for tab in data.tabs %}
@@ -10,42 +6,36 @@
                  x-transition:enter-start="opacity-0 transform translate-y-4"
                  x-transition:enter-end="opacity-100 transform translate-y-0">
 
-                {# Category Title #}
                 <h2 class="font-serif text-5xl md:text-6xl text-foxplan-charcoal-brown mb-12">
                     {{ tab.title }}
                 </h2>
 
-                {# Suppliers Grid #}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
                     {% for supplier in tab.suppliers %}
                         <div class="supplier-card flex flex-col h-full">
 
-                            {# --- THE IMAGE TAG (Summoned from Craft Assets) --- #}
-                            <div class="aspect-[16/10] mb-6 overflow-hidden flex items-center">
+                            {# Increased height and max-width for a slightly larger logo presence #}
+                            <div class="h-32 w-full mb-6 flex items-center justify-start overflow-hidden">
                                 {% set image = supplier.suppliersImage.one() %}
                                 {% if image %}
                                     <img src="{{ image.url }}"
                                          alt="{{ supplier.providerName }}"
-                                         class="max-w-full max-h-full object-contain">
+                                         class="max-h-full max-w-[220px] object-contain object-left">
                                 {% else %}
-                                    {# A modest fallback for entries without an image #}
-                                    <div class="w-full h-full bg-gray-50 flex items-center justify-center border border-gray-100">
+                                    <div class="h-full w-40 bg-gray-50 flex items-center justify-center border border-gray-100">
                                         <span class="text-[10px] uppercase tracking-widest opacity-30">Logo Pending</span>
                                     </div>
                                 {% endif %}
                             </div>
 
-                            {# Provider Name #}
                             <h3 class="font-serif text-2xl text-foxplan-charcoal-brown leading-tight mb-2">
                                 {{ supplier.providerName }}
                             </h3>
 
-                            {# Contact Info #}
                             <div class="font-montreal text-sm text-foxplan-charcoal-brown opacity-80 mb-6 leading-snug">
                                 {{ supplier.contactInfo | raw }}
                             </div>
 
-                            {# Button & Link #}
                             <div class="mt-auto">
                                 <a href="{{ supplier.buttonLink }}"
                                    target="_blank"

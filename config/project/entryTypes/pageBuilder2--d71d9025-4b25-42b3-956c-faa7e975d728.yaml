@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -39,6 +40,7 @@ fieldLayouts:
             dateAdded: '2026-01-15T22:34:55+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
             handle: null
             instructions: null
@@ -54,6 +56,7 @@ fieldLayouts:
             dateAdded: '2026-01-15T22:34:55+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
             instructions: null
@@ -69,6 +72,7 @@ fieldLayouts:
             dateAdded: '2026-01-15T22:34:55+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
             instructions: null
@@ -77,21 +81,6 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: d278e4dd-44dd-44e5-88cd-a60421a01426
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-01-15T22:34:55+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 282cfa4c-531f-49d7-862c-d493d895351c
             userCondition: null
             warning: null
             width: 100
@@ -105,6 +94,7 @@ fieldLayouts:
             dateAdded: '2026-01-19T22:25:58+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
             instructions: null
@@ -120,6 +110,7 @@ fieldLayouts:
             dateAdded: '2026-01-15T22:34:55+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
             handle: null
             instructions: null
@@ -138,17 +129,18 @@ fieldLayouts:
         elementCondition: null
         elements:
           -
-            dateAdded: '2026-01-19T23:19:31+00:00'
+            dateAdded: '2026-02-09T00:00:08+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
-            handle: paragraphHeading2
+            handle: paragraphHeading3
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 80856add-51d5-4af1-8a8a-4c727fc3cceb
+            uid: 9582acd2-85fd-4274-b0f6-373bbc759b41
             userCondition: null
             warning: null
             width: 100
@@ -156,6 +148,7 @@ fieldLayouts:
             dateAdded: '2026-01-15T22:34:55+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
             instructions: null
@@ -168,9 +161,10 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-15T22:34:55+00:00'
+            dateAdded: '2026-02-09T00:40:42+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
             handle: null
             instructions: null
@@ -178,35 +172,37 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 423f046c-e3a3-405f-94f6-f79e72ce757e
+            uid: d8bbfcd7-08ca-42e5-869d-d1eb313e888e
             userCondition: null
             warning: null
             width: 100
-        name: 'Accordion Section'
-        uid: 803a2ba5-2588-4d98-b6e8-695427d9d11f
+        name: 'how we work with you'
+        uid: 24bf0b37-3158-4ae9-9b01-83ed34d6dadd
         userCondition: null
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2026-01-15T22:34:55+00:00'
+            dateAdded: '2026-02-09T00:45:51+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
-            handle: paragraphHeading3
+            handle: paragraphHeading2
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 13c42c3f-123c-4eb1-acfe-b7193aead55f
+            uid: 5a34b755-526e-47a8-800f-67eab152e3d6
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-15T22:34:55+00:00'
+            dateAdded: '2026-02-09T00:45:51+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: bodyText2
             instructions: null
@@ -214,29 +210,15 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 56c77830-38a8-4104-8cac-afb83c4a4c99
+            uid: bdc22ce6-fda0-4a6d-96dd-d881ff938568
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-15T22:34:55+00:00'
+            dateAdded: '2026-02-09T00:45:51+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: ee2b36bd-ec01-4975-b25d-8891e9fbebb5
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-01-15T22:53:19+00:00'
-            editCondition: null
-            elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: button2
             instructions: null
@@ -244,27 +226,28 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 2e4a59e1-a856-4211-ad2e-f324ec465701
+            uid: 77837a2a-3268-483c-aa3e-97f5f3829400
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-15T22:53:19+00:00'
+            dateAdded: '2026-02-09T00:45:51+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
-            handle: buttonlink2
+            elementEditCondition: null
+            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
+            handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 775ca670-b6ee-44ff-90dc-ef1157c94b6a
+            uid: 674187dd-6caf-423d-b3c8-d54f994e18ca
             userCondition: null
             warning: null
             width: 100
-        name: 'Image and text'
-        uid: 7d38c113-0252-45ee-bdf6-f0660ca69cc2
+        name: 'image and text'
+        uid: 60e4381b-2c5b-4f56-bdfa-768e44813df3
         userCondition: null
       -
         elementCondition: null
@@ -273,6 +256,7 @@ fieldLayouts:
             dateAdded: '2026-01-16T03:22:25+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading4
             instructions: null
@@ -287,6 +271,7 @@ fieldLayouts:
         name: Testimonials
         uid: 6ac57fca-7c2d-458f-b415-ce20c8257a4c
         userCondition: null
+    thumbFieldKey: null
 handle: pageBuilder2
 hasTitleField: true
 icon: null
@@ -298,3 +283,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

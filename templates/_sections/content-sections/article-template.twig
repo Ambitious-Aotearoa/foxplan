@@ -1,46 +1,50 @@
 {# _sections/content-sections/article-template.twig #}
 
-{% set sectionClasses = 'bg-white' %}
+{# 1. FETCH THE HERO IMAGE MAPPED IN FEED ME #}
+{% set heroImage = entry.heroImage.one() %}
+
+{# 2. CONTENT SECTION #}
+{% set sectionClasses = 'bg-foxplan-neutral-beige' %}
 {% set headingClasses = 'font-serif text-[2.5rem] font-light leading-tight text-black mt-12 mb-4' %}
 {% set bodyClasses = 'text-base text-black leading-relaxed max-w-6xl' %}
-{# We keep the cursor-pointer but the links will now stay on the current page #}
 {% set sidebarSquareClasses = 'w-6 h-6 bg-foxplan-charcoal-brown mb-2 flex items-center justify-center text-white text-[10px] hover:bg-opacity-80 transition-all cursor-pointer' %}
 
-<section class="w-full {{ sectionClasses }} pt-16 pb-32">
-    <div class="px-[20px]">
+<section class="w-full {{ sectionClasses }} pt-24 pb-32">
+    <div class="px-[20px] max-w-[1440px] mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-10 gap-x-0 relative">
 
-            {# 1. THE OFFSET: Perfectly matching your Hero's md:col-span-3 #}
+            {# OFFSET #}
             <div class="hidden md:block md:col-span-3 lg:col-span-2"></div>
 
-            {# 2. THE CONTENT: Starting exactly under the Hero image #}
+            {# MAIN BODY CONTENT #}
             <div class="md:col-span-6 lg:col-span-6">
+                {# Display Categories/Tags if they exist #}
+                {% if entry.articleCategories | length %}
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        {% for category in entry.articleCategories.all() %}
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown bg-foxplan-yellow px-3 py-1 font-bold">
+                                {{ category.title }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
                 <div class="prose prose-lg max-w-none
                             prose-headings:{{ headingClasses | replace(' ', ' prose-headings:') }}
                             prose-p:{{ bodyClasses | replace(' ', ' prose-p:') }}
                             prose-headings:first-of-type:mt-0">
 
-                    {# Rendering the 'insightBody' field from your Craft Field Layout #}
-                    {{ entry.insightBody }}
+
+                    {{ entry.insightBody | raw }}
                 </div>
             </div>
 
-            {# 3. THE SIDEBAR: Social boxes are present but currently inactive #}
+            {# SIDEBAR: Social Sharing #}
             <div class="hidden md:block md:col-start-10 md:col-span-1 pt-4">
                 <div class="sticky top-32 flex flex-col items-end">
-
-                    {# X (Twitter) - Link disabled for now #}
-                    <a href="javascript:void(0)"
-                       class="{{ sidebarSquareClasses }}">𝕏</a>
-
-                    {# LinkedIn - Link disabled for now #}
-                    <a href="javascript:void(0)"
-                       class="{{ sidebarSquareClasses }} font-bold text-[11px]">in</a>
-
-                    {# Facebook - Link disabled for now #}
-                    <a href="javascript:void(0)"
-                       class="{{ sidebarSquareClasses }} font-bold text-[12px]">f</a>
-
+                    <a href="https://twitter.com/intent/tweet?url={{ entry.url | url_encode }}" target="_blank" class="{{ sidebarSquareClasses }}">𝕏</a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ entry.url | url_encode }}" target="_blank" class="{{ sidebarSquareClasses }} font-bold text-[11px]">in</a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ entry.url | url_encode }}" target="_blank" class="{{ sidebarSquareClasses }} font-bold text-[12px]">f</a>
                 </div>
             </div>
 

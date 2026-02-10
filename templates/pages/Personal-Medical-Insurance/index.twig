@@ -1,0 +1,109 @@
+{# 1. Extend the base boilerplate #}
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    textColor: 'text-black',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{# 2. Fill the body block defined in layout-base #}
+{% block blockAppBody %}
+
+    {# 3. Include the Hero Section #}
+    {% include "_sections/hero-sections/hero-1.twig" with { data: entry } %}
+
+    {# 4. Include the "Help Me Buying Your First Home" Section #}
+    {% set helpSectionProps = {
+        paragraphHeading: entry.paragraphHeading ?? null,
+        infoBlock: []
+    } %}
+
+    {# 2. Map the Matrix blocks for the "Info Block" #}
+    {% if entry.infoBlock is defined %}
+        {% for block in entry.infoBlock.all() %}
+            {% set helpSectionProps = helpSectionProps | merge({
+                infoBlock: helpSectionProps.infoBlock | merge([{
+                    'blockHeading': block.blockHeading,
+                    'blockBodyText': block.blockBodyText,
+                    'blockLinkUrl': block.blockLinkUrl
+                }])
+            }) %}
+        {% endfor %}
+    {% endif %}
+
+    {# 3. Pass the mapped data as 'props' #}
+    {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with {
+        props: helpSectionProps
+    } %}
+
+    {# 4. Benefits Section #}
+    {% include "_sections/content-sections/how-we-work.twig" with {
+        entry: entry,
+        props: {
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown',
+            mainHeading: entry.paragraphHeading2 ?? 'How we work with you',
+        }
+    } %}
+
+    {# 5.  How We Work Section (Matrix: accordion)  #}
+    {% set benefitsHeading = entry.paragraphHeading3 ?? 'About group insurance' %}
+    {% set benefitsIntro = entry.bodyText ?? '' %}
+
+    {#  Loop through the 'accordion' matrix #}
+    {% set accordionItems = [] %}
+    {# Ensure 'accordion' is the handle of the Matrix field on this specific entry #}
+    {% if entry.accordion is defined %}
+        {% for block in entry.accordion.all() %}
+            {% set accordionItems = accordionItems | merge([{
+                'title': block.accordionHeading,
+                'text': block.accordionBodyText
+            }]) %}
+        {% endfor %}
+    {% endif %}
+
+    {#  Deliver the data to the benefits section using 'props' #}
+    {{ include('_sections/content-sections/benefits.twig', {
+        props: {
+            paragraphHeading: benefitsHeading,
+            bodyText: benefitsIntro,
+            items: accordionItems,
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown'
+        }
+    }) }}
+
+    {# 6. Guide/CTA (Image and Text Section) #}
+    {% include "_sections/hero-sections/section.twig" with {
+        entry: entry,
+        props: {
+            title: entry.paragraphHeading4 ?? 'Get the First Home Buyers Guide',
+            bodyText: entry.bodyText2 ?? '',
+            buttonText: entry.button2 ?? '',
+        }
+    } %}
+
+    {# 7. Testimonial #}
+    {% include "_sections/testimonials/testimonial-two.twig" %}
+
+    {# 8. Main Page Content #}
+    <div class="service-page-content">
+        {% block innerContent %}{% endblock %}
+    </div>
+
+    {# 9. footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+
+{% endblock %}

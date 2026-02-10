@@ -1,4 +1,4 @@
-dateModified: 1770249460
+dateModified: 1770688153
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
@@ -34,6 +34,7 @@ fs:
     url: 'https://ehaus-assets.syd1.digitaloceanspaces.com'
 meta:
   __names__:
+    0a09611b-cfe5-4e31-a72f-3227ca7f029b: Accounting # Accounting
     0e0d57f7-2d3a-4838-a8e6-ca93bcf682fd: Group-workplace-insurance # Group-workplace-insurance
     1a9ce3fa-1c8d-4886-80cd-77cc624c2a1a: 'Episode Duration' # Episode Duration
     1bce15eb-e441-43c8-bff3-cb4b0197fef2: 'Hero Body Text' # Hero Body Text
@@ -41,6 +42,7 @@ meta:
     01d859f3-0f5b-434d-b064-a75dd6b9f60f: Testimonial # Testimonial
     1e5a8282-7128-4cdd-8a59-3356f7b08ffe: Partners # Partners
     1ea1b840-4b19-4a98-8b5d-41c57d8af35b: Article # Article
+    1f3b761a-df20-421d-a75d-d0d3f165e693: 'Business planning' # Business planning
     3a18a3a4-7da8-482b-b475-06dfad80f264: 'Spotify URL' # Spotify URL
     3ca03225-96ae-4b44-87f2-2f3b0d32d166: 'Testimonial Author' # Testimonial Author
     3cd32da9-06b0-44c6-a0a8-54568bfbb9b3: Group-workplace-insurance # Group-workplace-insurance
@@ -70,6 +72,7 @@ meta:
     7eb0d432-b682-4d48-abae-7e859acd9ef6: 'Savings and Investment Page' # Savings and Investment Page
     7f5a1f9e-4127-43e0-b85e-6f3b9c4221ad: KiwiSaver # KiwiSaver
     07f12065-9711-4840-ba40-a071d413da0a: 'Team Members' # Team Members
+    8b527412-a4d6-42ae-bb49-7c55af321db7: 'Accounting table' # Accounting table
     8d254d3a-f143-4838-a28f-04ad79e8f7ef: Sub-links # Sub-links
     8dbc1a56-31ae-4724-b53a-427c9e27d268: 'Staff Images' # Staff Images
     8fc9a1ea-062c-4285-953d-598793e2da38: 'Service Card' # Service Card
@@ -96,6 +99,7 @@ meta:
     83ab9fed-c6f6-4bc3-868d-78df435d9da2: About # About
     85b764d9-d1dd-4aad-9cfb-e7432652aad7: 'Contact Main Heading' # Contact Main Heading
     88b4df68-e829-47e4-82a6-2e91359feb20: 'Hero Matrix' # Hero Matrix
+    91c97dc7-2308-4ea3-9a03-3661bc6237c9: 'Site Images' # Site Images
     93cc1844-5f6e-4858-86da-315bd52cda7c: 'Property Upgrade' # Property Upgrade
     096b02a8-7b14-4611-b1ca-1e82e3dd704a: 'Newsletter Image' # Newsletter Image
     96c1e443-01b6-463e-b149-11a8187fafae: 'Matrix Title' # Matrix Title
@@ -114,6 +118,7 @@ meta:
     3270e53f-a3c4-4994-8f80-9f1a9d8c1fdb: Accordion-Arrow # Accordion-Arrow
     6389bccc-1b55-4096-821e-192e6a2bd80a: 'Business Page' # Business Page
     6389e4d4-c725-4073-ba17-8aac55dc636c: 'Page Builder' # Page Builder
+    7069f7fb-6f5c-4fcc-8032-a42dc3ea3d4b: 'Investment planning' # Investment planning
     7104b304-163f-4e10-bee8-5a82a8edeb29: 'Equity Partners' # Equity Partners
     9315bb88-5d25-4861-81a8-0919dd5ba2b9: 'Newsletter Heading' # Newsletter Heading
     9968cc7c-feec-4d2d-a698-e5a687b167f9: Our-Investment-Committee # Our-Investment-Committee
@@ -123,7 +128,6 @@ meta:
     60614e67-d787-46ca-8229-8a163deb7064: 'Heading Line1' # Heading Line1
     75267a9c-0192-4076-8b99-166c04ba40d2: 'First Home Buyers' # First Home Buyers
     98874d4e-7f67-4c96-8e6a-1ae5b6fc4961: Services # Services
-    161783a0-0b86-4e70-a6be-2dd6d5b50cfb: 'Accounting Page' # Accounting Page
     184304c2-0776-48be-b918-b0c1ec2dc0ee: Mortgages # Mortgages
     331970c8-e670-403b-8550-b3a3214d6a62: 'Member Name' # Member Name
     1692277e-675a-4ebf-8998-6eb58cf9709f: Insurance # Insurance
@@ -137,6 +141,7 @@ meta:
     a30fb669-985c-4116-8bf1-8ca04a3af56c: Article # Article
     a82e8874-a0f4-4805-b59d-8c47d4867d7c: Tags # Tags
     aad93b84-e999-4d54-bc1e-8f65472830f4: Partners # Partners
+    ab6e0b50-c8e4-46a6-87e1-30dc93191009: "Personal\_& Medical  Insurance" # Personal & Medical  Insurance
     ad7daef3-ba4d-470a-8ee9-3bee8c28bcea: 'Newsletter Title' # Newsletter Title
     ae1eb8ab-68f8-419c-8bb8-c19ed7985884: 'Insights Image' # Insights Image
     b3d02c0f-4eb6-471b-a4fd-e7ade89de423: 'Hero Matrix' # Hero Matrix
@@ -152,6 +157,8 @@ meta:
     c3cd1287-806f-4243-9e7b-7cf7d162a004: Dropdown # Dropdown
     c5e884bd-9997-46e4-b2ba-693ca7ed3acc: Timeline # Timeline
     c7f147ed-33aa-4d4a-bf02-bbebd30804fe: 'Contact Bodytext' # Contact Bodytext
+    c8cb479b-6ce3-44d4-8485-2de5b6cff170: 'Accounting Matrix' # Accounting Matrix
+    c91c8b47-5983-4466-94b4-44c6cce8e323: 'Financial Planning' # Financial Planning
     cc0e715a-9227-4f6e-9948-2b6b82ab16c3: Insights # Insights
     cd7d6292-1897-4386-b933-19976426821e: "Personal\_& Medical  Insurance" # Personal & Medical  Insurance
     ced4066b-92f7-424d-b675-f392ce22c644: 'Insights Tabs Data' # Insights Tabs Data

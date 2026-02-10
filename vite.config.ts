@@ -6,7 +6,7 @@ import checker from "vite-plugin-checker";
 import copy from 'rollup-plugin-copy';
 
 export default defineConfig(({ command }) => ({
-    base: command === 'serve' ? '' : '/dist/',
+    base: command === 'serve' ? '/' : '/dist/',
     plugins: [
         tailwindcss(), // Tailwind v4 engine
         checker({

@@ -1,16 +1,15 @@
-{#
-Hero Arc Section
-- Centered Header Content
-- Static Single Arc Image (Arc.svg)
-- Full Width Matrix Columns
-#}
+{# templates/_sections/hero-sections/hero-arc.twig #}
 
+{# 1. REUSABLE LOGIC #}
 {% set defaults = {
     backgroundColor: 'bg-foxplan-neutral-beige',
     heading: entry.paragraphHeading ?? '',
     subheading: entry.bodyText ?? '',
     textColor: 'text-foxplan-charcoal-brown',
 } %}
+
+{# Define static path using @webroot for the decorative arc #}
+{% set arcPath = '@webroot/dist/images/placeholder/Arc.svg' %}
 
 {# Handling the Matrix data #}
 {% set columns = [] %}
@@ -44,11 +43,15 @@ Hero Arc Section
         </div>
     </div>
 
-    {# 2. MIDDLE SECTION: Static Arc with 10px side margins #}
+    {# 2. MIDDLE SECTION: Static Arc using svg() for reliability #}
     <div class="w-full mb-12 px-[10px]">
-        <img src="{{ craft.vite.asset('images/placeholder/Arc.svg') }}"
-             alt="Decorative Arcs"
-             class="w-full h-auto block">
+        {# Added fill-current to ensure the arc matches your brand text color #}
+        <div class="w-full h-auto fill-current {{ data.textColor }}">
+            {{ svg(alias(arcPath))|attr({
+                class: 'w-full h-auto block',
+                role: 'presentation'
+            }) }}
+        </div>
     </div>
 
     {# 3. BOTTOM SECTION: Full Width Matrix Columns #}

@@ -17,5 +17,5 @@ siteSettings:
     enabledByDefault: true
     hasUrls: true
     template: pages/Saving-and-Investment/index.twig
-    uriFormat: 'savings-&-investment'
+    uriFormat: savings-investment
 type: single

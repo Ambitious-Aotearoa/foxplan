@@ -2,10 +2,9 @@
 {% set sectionImage = entry.image.one() %}
 
 {% set defaults = {
-    title: entry.paragraphHeading3 ?? 'Get the First Home Buyers Guide',
+    title: entry.paragraphHeading2 ?? 'Get the First Home Buyers Guide',
     bodyText: entry.bodyText2 ?? '',
     buttonText: entry.button2 ?? '',
-    buttonLink: (entry.buttonlink2 is defined and entry.buttonlink2) ? entry.buttonlink2.url : '#',
     imageSrc: sectionImage ? sectionImage.url : null,
     backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown',
@@ -40,7 +39,6 @@
                             {% include '_components/ui/button/button.twig' with {
                                 props: {
                                     text: data.buttonText,
-                                    url: data.buttonLink,
                                     backgroundColor: data.buttonBgColor,
                                     textColor: data.buttonTextColor,
                                     classes: 'px-10 py-5 text-xs tracking-widest uppercase inline-flex items-center gap-2'

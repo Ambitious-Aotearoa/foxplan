@@ -9,49 +9,49 @@
 {# 2. Fill the body block defined in layout-base #}
 {% block blockAppBody %}
 
-    {# 1. Hero Section #}
-    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Mortgages' %}
-    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : "Whether you're buying your first home, or you're a seasoned investor, we can help you find the right mortgage." %}
-    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Book a call' %}
-    {% set pageButtonUrl = (entry.buttonLink is defined and entry.buttonLink|length) ? entry.buttonLink : '#' %}
+    {# 3. hero #}
+    {% include "_sections/hero-sections/hero-1.twig" with { data: entry } %}
 
-    {% include '_sections/hero-sections/hero-1.twig' with {
+    {# 4. Section #}
+    {% set helpSectionProps = {
+        paragraphHeading: entry.paragraphHeading ?? null,
+        infoBlock: []
+    } %}
+
+    {#  Map the Matrix blocks for the "Info Block" #}
+    {% if entry.infoBlock is defined %}
+        {% for block in entry.infoBlock.all() %}
+            {% set helpSectionProps = helpSectionProps | merge({
+                infoBlock: helpSectionProps.infoBlock | merge([{
+                    'blockHeading': block.blockHeading,
+                    'blockBodyText': block.blockBodyText,
+                    'blockLinkUrl': block.blockLinkUrl
+                }])
+            }) %}
+        {% endfor %}
+    {% endif %}
+
+    {# Pass the mapped data as 'props' #}
+    {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with {
+        props: helpSectionProps
+    } %}
+
+    {# 5. Benefits Section #}
+
+    {% include "_sections/content-sections/how-we-work.twig" with {
         entry: entry,
         props: {
-            title: pageHeading,
-            bodyText: pageBody,
-            button: pageButton,
-            buttonLink: pageButtonUrl,
-            backgroundColor:  'bg-foxplan-neutral-beige'
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown',
+            mainHeading: entry.paragraphHeading2 ?? 'How we work with you',
         }
     } %}
 
-    {# 2. Explore Services Section #}
-    {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with {
-        props: {
-            mainHeading: entry.paragraphHeading ?? 'Our Services',
-            services: entry.infoBlock.all() ?? [],
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-foxplan-charcoal-brown',
-            borderColor: 'border-foxplan-charcoal-brown/20'
-        }
-    } only %}
-
-    {# 3. Benefits Accordion  #}
-    {#    {# 7. Personalised Advice Section (Matrix: accordionArrow) #}
-    {% include "_components/ui/accordion/accordion-arrow.twig" with {
-        props: {
-            mainHeading: entry.paragraphHeading2,
-            accordionField: entry.accordionArrow,
-            backgroundColor: 'bg-foxplan-neutral-beige'
-        }
-    } only %}
-
-    {# 4. How We Work Section (Matrix: accordion) #}
+    {#    {4. How We Work Section (Matrix: accordion) } #}
     {% set benefitsHeading = entry.paragraphHeading3 ?? 'About group insurance' %}
     {% set benefitsIntro = entry.bodyText ?? '' %}
 
-    {# 1. Loop through the 'accordion' matrix #}
+    {#  Loop through the 'accordion' matrix #}
     {% set accordionItems = [] %}
     {# Ensure 'accordion' is the handle of the Matrix field on this specific entry #}
     {% if entry.accordion is defined %}
@@ -74,19 +74,17 @@
         }
     }) }}
 
-    {# 5. iamge and text #}
+    {# kiwisaver calculator #}
     {% include "_sections/hero-sections/section.twig" with {
         entry: entry,
         props: {
-            backgroundColor: 'bg-foxplan-yellow',
             title: entry.paragraphHeading4 ?? 'Get the First Home Buyers Guide',
             bodyText: entry.bodyText2 ?? '',
             buttonText: entry.button2 ?? '',
         }
     } %}
 
-
-    {# 6. Client Testimonials Carousel #}
+    {#   Testimonials  #}
     {% include "_sections/testimonials/testimonial-two.twig" with {
         data: {
             sectionTitle: entry.paragraphHeading5 ?? 'Hear what our clients are saying',
@@ -94,7 +92,6 @@
             textColor: 'text-foxplan-charcoal-brown'
         }
     } %}
-
 
 
     {#  footer #}

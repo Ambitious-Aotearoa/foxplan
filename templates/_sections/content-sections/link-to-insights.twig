@@ -4,33 +4,31 @@
     .limit(3)
     .all() %}
 
+{# Define static path using @webroot for reliability #}
+{% set arcPath = '@webroot/dist/images/placeholder/Arc.svg' %}
+
 {% if relatedArticles|length > 0 %}
     <section class="w-full bg-foxplan-charcoal-brown pt-24 pb-0 relative overflow-hidden">
         <div class="px-8 md:px-12 lg:px-16 relative z-10">
 
-            {# Section Heading #}
             <h2 class="font-serif text-white text-5xl md:text-6xl lg:text-7xl mb-16 tracking-tight">
                 Latest insights
             </h2>
 
-            {# Article Grid #}
             <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 lg:gap-x-20">
                 {% for article in relatedArticles %}
                     <div class="pt-8 pb-12 border-t border-white/10 flex flex-col items-start group">
 
-                        {# Post Date #}
                         <p class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
                             {{ article.postDate | date('F d, Y') | upper }}
                         </p>
 
-                        {# Article Title #}
                         <a href="{{ article.url }}" class="block mb-8">
                             <h3 class="font-serif text-3xl lg:text-[2.2rem] leading-[1.15] text-white group-hover:opacity-70 transition-opacity">
                                 {{ article.title }}
                             </h3>
                         </a>
 
-                        {# Read More Link #}
                         <a href="{{ article.url }}" class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-white border-b border-white/30 hover:border-white transition-all pb-1">
                             READ MORE
                         </a>
@@ -39,12 +37,15 @@
             </div>
         </div>
 
-        {# --- THE OVERLAPPING ARCS --- #}
+        {# --- THE OVERLAPPING ARCS: Beige Outlines --- #}
         <div class="relative w-full h-[200px] md:h-[300px] lg:h-[400px] mt-4 pointer-events-none">
-            <img src="{{ craft.vite.asset('images/placeholder/Arc.svg') }}"
-                 class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom opacity-40"
-                 style="filter: brightness(0) invert(1);"
-                 alt="Decorative Arcs">
+            <div class="absolute bottom-0 left-0 w-full h-full text-foxplan-neutral-beige opacity-40">
+                {{ svg(alias(arcPath))|attr({
+                    class: 'w-full h-full object-cover object-bottom fill-none stroke-current',
+                    style: 'stroke-width: 1px;',
+                    role: 'presentation'
+                }) }}
+            </div>
         </div>
     </section>
 {% endif %}

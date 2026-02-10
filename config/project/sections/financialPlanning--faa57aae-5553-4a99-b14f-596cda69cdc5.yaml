@@ -2,7 +2,7 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: d71d9025-4b25-42b3-956c-faa7e975d728 # Page Builder2
+    uid: c91c8b47-5983-4466-94b4-44c6cce8e323 # Financial Planning
 handle: financialPlanning
 maxAuthors: 1
 name: 'Financial Planning'
@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: _boilerplate/_layouts/layout-service-2.twig
+    template: pages/Financial-planning/index.twig
     uriFormat: financial-planning
 type: single

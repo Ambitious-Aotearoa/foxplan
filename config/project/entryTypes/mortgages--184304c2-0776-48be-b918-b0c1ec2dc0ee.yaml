@@ -123,18 +123,18 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T03:36:30+00:00'
+            dateAdded: '2026-02-09T02:01:34+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            fieldUid: 3df564bb-a8ff-48d9-88c0-1e1fec7a3cff # Accordion new
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ecf5b913-a3f2-4dec-bef4-59d0e8eb3120
+            uid: 655e54cf-3387-4df2-93b7-db184e7ba8d3
             userCondition: null
             warning: null
             width: 100
@@ -144,6 +144,22 @@ fieldLayouts:
       -
         elementCondition: null
         elements:
+          -
+            dateAdded: '2026-02-09T02:03:17+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: dd672c62-ed82-49f3-8def-147326fda8cf
+            userCondition: null
+            warning: null
+            width: 100
           -
             dateAdded: '2026-01-19T21:47:25+00:00'
             editCondition: null

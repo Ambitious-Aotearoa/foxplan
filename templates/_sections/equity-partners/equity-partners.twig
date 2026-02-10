@@ -1,5 +1,6 @@
 {# _sections/equity-partners/equity-partners.twig #}
 
+{# Content Fetching #}
 {% set heading = entry.paragraphHeading %}
 {% set description = entry.mediumParagraph %}
 {% set heading2 = entry.paragraphHeading2 %}
@@ -7,22 +8,24 @@
 {% set heading3 = entry.paragraphHeading3 %}
 {% set body3 = entry.bodyText3 %}
 
-{# Image Paths #}
-{% set imgMain = 'images/Equity_2.jpg' %}
-{% set imgSec2 = 'images/Equity_3.jpg' %}
-{% set imgSec3 = 'images/Equity_4.jpg' %}
+{# Dynamic Image Fetching from Craft Asset Fields #}
+{% set imgMain = entry.image.one() %}
+{% set imgSec2 = entry.image2.one() %}
+{% set imgSec3 = entry.image3.one() %}
+
+{# Fallback Hardcoded Paths for Local Development without Vite #}
+{% set fallbackMain = alias('@web/dist/images/About_1.jpg') %}
+{% set fallbackSec2 = alias('@web/dist/images/About_2.jpg') %}
+{% set fallbackSec3 = alias('@web/dist/images/About_3.jpg') %}
 
 <section class="relative w-full bg-foxplan-neutral-beige overflow-hidden" id="equity-partners-section">
 
     {# --- ANIMATED DOTTED LINE & MOVING DOT --- #}
     <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] z-50 pointer-events-none">
-        {# 1. Background Path #}
         <div class="h-full w-full border-l-2 border-dashed border-foxplan-charcoal-brown/10"></div>
-        {# 2. Progress Path #}
         <div id="progress-line"
              class="absolute top-0 left-0 w-full border-l-2 border-dashed border-foxplan-charcoal-brown transition-all duration-75 ease-out"
              style="height: 0%;"></div>
-        {# 3. Moving Dot #}
         <div id="scrolling-dot"
              class="absolute left-1/2 -translate-x-1/2 top-0 w-3 h-3 bg-foxplan-charcoal-brown rounded-full shadow-sm opacity-0 transition-opacity duration-300"
              style="transform: translate(-50%, -50%);">
@@ -35,7 +38,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 items-start mt-[200px]">
             <div class="w-full">
                 <div class="w-full max-w-[85%] aspect-[5/4] overflow-hidden">
-                    <img src="{{ craft.vite.asset(imgMain) }}" alt="Equity Partners" class="w-full h-full object-cover">
+                    {# Priority: Asset Field -> Static Fallback #}
+                    <img src="{{ imgMain ? imgMain.url : fallbackMain }}"
+                         alt="{{ imgMain ? imgMain.title : 'Equity Partners' }}"
+                         class="w-full h-full object-cover">
                 </div>
             </div>
 
@@ -73,7 +79,9 @@
 
                 <div class="w-full max-w-[85%] mt-[450px]">
                     <div class="w-full aspect-[4/3] overflow-hidden shadow-sm">
-                        <img src="{{ craft.vite.asset(imgSec3) }}" class="w-full h-full object-cover" alt="Meeting">
+                        <img src="{{ imgSec3 ? imgSec3.url : fallbackSec3 }}"
+                             class="w-full h-full object-cover"
+                             alt="{{ imgSec3 ? imgSec3.title : 'Equity Partners' }}">
                     </div>
                 </div>
             </div>
@@ -82,7 +90,9 @@
             <div class="flex flex-col items-end pt-0">
                 <div class="w-full max-w-[75%] lg:max-w-[70%] mb-48">
                     <div class="w-full aspect-[4/5] overflow-hidden shadow-sm">
-                        <img src="{{ craft.vite.asset(imgSec2) }}" class="w-full h-full object-cover" alt="Adviser">
+                        <img src="{{ imgSec2 ? imgSec2.url : fallbackSec2 }}"
+                             class="w-full h-full object-cover"
+                             alt="{{ imgSec2 ? imgSec2.title : 'Equity Partners' }}">
                     </div>
                 </div>
 
@@ -108,27 +118,22 @@
         const dot = document.getElementById('scrolling-dot');
         const progressLine = document.getElementById('progress-line');
 
-        if (!container || !dot || !progressLine) return;
-
         function updateTimeline() {
+            if (!container || !dot || !progressLine) return;
             const containerRect = container.getBoundingClientRect();
             const viewHeight = window.innerHeight;
 
-            // Calculate progress based on vertical center of the screen
             let scrollProgress = (viewHeight / 2 - containerRect.top) / containerRect.height;
 
-            // Visibility handling for start and end of section
-            if (scrollProgress > 0.01 && scrollProgress < 0.99) {
+            if (scrollProgress > 0.02 && scrollProgress < 0.98) {
                 dot.style.opacity = "1";
             } else {
                 dot.style.opacity = "0";
             }
 
-            // Clamp progress between 0 and 1
             scrollProgress = Math.max(0, Math.min(1, scrollProgress));
             const percentage = scrollProgress * 100;
 
-            // Update DOM
             dot.style.top = percentage + '%';
             progressLine.style.height = percentage + '%';
         }

@@ -7,94 +7,86 @@
     textColor: 'text-foxplan-charcoal-brown'
 } | merge(props ?? {}) %}
 
-{# Extract base color for line/dot logic #}
 {% set textBaseColor = data.textColor | replace('text-', '') %}
 
 <section class="w-full {{ data.backgroundColor }} py-24 overflow-hidden relative"
          x-data="{
             yPos: 0,
-            isDragging: false,
-            initCircle() {
-                this.$nextTick(() => {
-                    let firstItem = this.$refs.accordionContainer.firstElementChild;
-                    if (firstItem) {
-                        let containerRect = this.$refs.lineContainer.getBoundingClientRect();
-                        let itemRect = firstItem.getBoundingClientRect();
-                        this.yPos = (itemRect.top + (itemRect.height / 2)) - containerRect.top;
-                    }
-                });
-            },
-            handleMove(e) {
-                if (!this.isDragging) return;
-                let container = this.$refs.lineContainer.getBoundingClientRect();
-                let clientY = e.touches ? e.touches[0].clientY : e.clientY;
-                let relativeY = clientY - container.top;
-                this.yPos = Math.max(0, Math.min(relativeY, container.height));
+            handleScroll() {
+                let container = this.$refs.sectionWrapper;
+                let lineContainer = this.$refs.lineContainer;
+                let rect = container.getBoundingClientRect();
+                let lineRect = lineContainer.getBoundingClientRect();
+
+                let scrollProgress = (window.innerHeight / 2) - rect.top;
+                let percentage = Math.max(0, Math.min(scrollProgress / rect.height, 1));
+
+                this.yPos = percentage * lineRect.height;
             }
          }"
-         x-init="initCircle()"
-         @mousemove.window="handleMove"
-         @mouseup.window="isDragging = false"
-         @touchmove.window.passive="handleMove"
-         @touchend.window="isDragging = false">
+         x-init="handleScroll()"
+         @scroll.window="handleScroll()"
+         x-ref="sectionWrapper">
 
     <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start relative">
 
         {# --- LEFT SIDE --- #}
-        <div class="col-span-1 md:col-span-3 px-8 md:pl-12 lg:pl-16 z-20">
-            <h2 class="font-serif text-5xl md:text-6xl lg:text-[5rem] leading-[0.85] tracking-tighter mb-6 {{ data.textColor }}">
+        <div class="col-span-1 md:col-span-3 px-8 md:pl-12 lg:pl-16 mt-6">
+            <h2 class="font-serif text-5xl md:text-6xl lg:text-[5rem] leading-[0.85] tracking-tighter {{ data.textColor }}">
                 {{ data.paragraphHeading | raw }}
             </h2>
-            {% if data.bodyText %}
-                <div class="font-aktiv text-base opacity-80 max-w-xs {{ data.textColor }}">
+
+            {% if data.bodyText and data.bodyText|trim is not empty %}
+                <div class="font-aktiv text-base opacity-80 max-w-xs mt-6 {{ data.textColor }}">
                     {{ data.bodyText | raw }}
                 </div>
             {% endif %}
         </div>
 
-        {# --- INTERACTIVE LINE --- #}
-        <div class="hidden md:flex absolute left-[30%] top-0 bottom-0 w-8 justify-center touch-none z-30"
+        {# --- INTERACTIVE SCROLL LINE --- #}
+        <div class="hidden md:flex absolute left-[30%] top-0 bottom-0 w-8 justify-center z-30"
              x-ref="lineContainer">
             <div class="h-full w-px border-l border-dashed border-{{ textBaseColor }} opacity-20"></div>
 
-            <div class="absolute top-0 w-px border-l-2 border-dashed border-{{ textBaseColor }} opacity-100"
-                 :style="`height: ${yPos}px`"
-                 style="transition: height 0.05s linear;"></div>
+            <div class="absolute top-0 w-px border-l-2 border-solid border-{{ textBaseColor }} transition-all duration-75 ease-out"
+                 :style="'height: ' + yPos + 'px'"
+                 style="will-change: height;"></div>
 
-            <div class="absolute w-6 h-6 bg-{{ textBaseColor }} rounded-full cursor-grab active:cursor-grabbing shadow-md"
-                 :style="`transform: translateY(${yPos}px)`"
-                 @mousedown="isDragging = true"
-                 @touchstart.prevent="isDragging = true">
+            <div class="absolute w-4 h-4 bg-{{ textBaseColor }} rounded-full shadow-md -translate-x-[0.5px] transition-all duration-75 ease-out"
+                 :style="'transform: translateY(' + yPos + 'px)'"
+                 style="will-change: transform;">
             </div>
         </div>
 
-        {# --- RIGHT SIDE --- #}
-        <div class="col-span-1 md:col-span-7 px-8 md:pl-20 lg:pr-32">
-            <div class="flex flex-col space-y-4" x-ref="accordionContainer">
+        {# --- RIGHT SIDE (The Cards) --- #}
+        <div class="col-span-1 md:col-span-7 px-8 md:pl-20 pr-[20px]">
+            <div class="flex flex-col space-y-8" x-ref="accordionContainer">
                 {% for item in data.items %}
-                    <div class="group w-full p-10 transition-all duration-300 rounded-xl"
+                    <div class="group w-full transition-all duration-500 rounded-none"
                          x-data="{
-                            isActive() {
+                            isActive: false,
+                            checkActive() {
                                 let rect = $el.getBoundingClientRect();
                                 let lineRect = $refs.lineContainer.getBoundingClientRect();
-                                let circleY = lineRect.top + yPos;
-                                return circleY >= rect.top && circleY <= rect.bottom;
+                                let circleGlobalY = lineRect.top + yPos;
+
+                                this.isActive = (circleGlobalY >= rect.top && circleGlobalY <= rect.bottom);
                             }
                          }"
-                         :class="isActive() ? 'bg-white shadow-xl translate-x-2' : 'bg-transparent'">
+                         x-init="$watch('yPos', () => checkActive())"
+                            {# REMOVED: shadow-2xl from the line below #}
+                         :class="isActive ? 'bg-white p-12 translate-x-4' : 'bg-transparent p-12 translate-x-0'">
 
                         {% if item.title %}
-                            {# Logic: If active, force charcoal-brown. Otherwise, use reusable data.textColor #}
-                            <h4 class="font-aktiv text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4 transition-all duration-300"
-                                :class="isActive() ? 'text-foxplan-charcoal-brown opacity-100' : '{{ data.textColor }} opacity-40'">
+                            <h4 class="font-aktiv text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4 transition-all duration-500"
+                                :class="isActive ? 'text-foxplan-charcoal-brown opacity-100' : '{{ data.textColor }} opacity-40'">
                                 {{ item.title }}
                             </h4>
                         {% endif %}
 
                         {% if item.text %}
-                            {# Logic: If active, force charcoal-brown. Otherwise, use reusable data.textColor #}
-                            <div class="font-aktiv text-lg md:text-2xl lg:text-[1.8rem] leading-snug transition-all duration-300"
-                                 :class="isActive() ? 'text-foxplan-charcoal-brown opacity-100' : '{{ data.textColor }} opacity-60'">
+                            <div class="font-aktiv text-lg md:text-2xl lg:text-[1.8rem] leading-relaxed transition-all duration-500 w-full"
+                                 :class="isActive ? 'text-foxplan-charcoal-brown opacity-100' : '{{ data.textColor }} opacity-60'">
                                 {{ item.text | raw }}
                             </div>
                         {% endif %}

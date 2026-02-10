@@ -10,14 +10,13 @@
     quoteIconColor: 'bg-foxplan-yellow',
     btnBgColor: 'bg-foxplan-charcoal-brown',
     btnTextColor: 'text-foxplan-yellow',
-    arrowPath: 'images/placeholder/Arrow_1.svg'
+    arrowPath: '@webroot/dist/images/placeholder/Arrow_1.svg'
 } %}
 
 {% set props = defaults | merge(data ?? {}) %}
 
 {% if testimonials | length %}
     <section
-            {# 20px Border on Top, Right, and Bottom. Left is open. #}
             class="relative {{ props.backgroundColor }} overflow-hidden border-t-[20px] border-r-[20px] border-b-[20px] {{ props.borderColor }}"
             x-data="{
             active: 0,
@@ -42,20 +41,22 @@
             {% if props.sectionTitle is not empty %}
                 <div class="flex flex-wrap w-full items-center mb-16 md:mb-24 relative">
 
-                    {# --- THE ARROW: Starts from edge, has padding on the right --- #}
                     <div class="hidden md:flex w-[30%] items-center justify-start pr-8 lg:pr-12">
                         <div class="w-full h-8 flex items-center">
                             <div class="transition-all duration-[2500ms] overflow-hidden"
                                  style="transition-timing-function: steps(15); width: 0px; opacity: 0;"
                                  :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0px; opacity: 0;'">
-                                <img src="{{ craft.vite.asset(props.arrowPath) }}"
-                                     alt="Arrow Decor"
-                                     class="w-full h-auto object-contain max-h-8 object-left block">
+
+                                <div class="w-full h-auto fill-current {{ props.textColor }}">
+                                    {{ svg(alias(props.arrowPath))|attr({
+                                        class: 'w-full h-auto block object-contain max-h-8 object-left',
+                                        role: 'presentation'
+                                    }) }}
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    {# --- THE TEXT (Right 70%) --- #}
                     <div class="w-full md:w-[70%] px-8 md:px-0">
                         <h2 class="font-serif text-5xl md:text-[4.5rem] font-light leading-[0.85] tracking-tight {{ props.textColor }}">
                             {{ props.sectionTitle | nl2br | raw }}

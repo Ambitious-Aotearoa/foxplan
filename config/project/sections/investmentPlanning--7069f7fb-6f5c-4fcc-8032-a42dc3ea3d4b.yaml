@@ -2,10 +2,10 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: 43ae8319-1d1a-467f-a54f-c45fae2a173d # Accounting
-handle: accountingPage
+    uid: d71d9025-4b25-42b3-956c-faa7e975d728 # Page Builder2
+handle: investmentPlanning
 maxAuthors: 1
-name: 'Accounting Page'
+name: 'Investment planning'
 previewTargets:
   -
     label: 'Primary entry page'
@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: accounting-page/_entry.twig
-    uriFormat: accounting-page
+    template: _boilerplate/_layouts/layout-service-2.twig
+    uriFormat: investment-planning
 type: single

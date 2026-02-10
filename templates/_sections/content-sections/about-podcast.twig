@@ -9,18 +9,18 @@
     showLogo: true
 } %}
 
+{# Define static logo path using @webroot for reliability #}
+{% set logoPath = '@webroot/dist/images/FoxPlan_Logo.svg' %}
+
 {% set sectionData = defaults | merge(data ?? {}) %}
 
-{# Section with 20px outer yellow border #}
 <section class="w-full border-[20px] {{ sectionData.borderColor }} {{ sectionData.backgroundColor }} py-16 md:py-24">
     <div class="px-8 md:px-12 w-full">
 
-        {# items-start is the key to keeping the top edges of both columns perfectly level #}
         <div class="grid grid-cols-1 md:grid-cols-10 items-start">
 
             {# LEFT: Label (30%) #}
             <div class="md:col-span-3">
-                {# Leading-none removes extra space above the text #}
                 <span class="text-sm font-medium uppercase tracking-wider {{ sectionData.textColor }} leading-none">
                     {{ sectionData.topLabel }}
                 </span>
@@ -32,7 +32,6 @@
 
                     <div class="flex-1">
                         {% if sectionData.bodyText is not empty %}
-                            {# Restored to text-2xl/3xl as per your original request #}
                             <div class="text-3xl leading-relaxed {{ sectionData.textColor }} leading-none">
                                 {{ sectionData.bodyText | raw }}
                             </div>
@@ -41,9 +40,13 @@
 
                     {% if sectionData.showLogo %}
                         <div class="flex-shrink-0 self-end">
-                            <img src="{{ craft.vite.asset('images/FoxPlan_Logo.svg') }}"
-                                 alt="FoxPlan Logo"
-                                 class="w-32 h-auto">
+                            {# Updated to use svg() and @webroot to bypass Vite #}
+                            <div class="w-32 h-auto fill-current {{ sectionData.textColor }}">
+                                {{ svg(alias(logoPath))|attr({
+                                    class: 'w-full h-auto',
+                                    alt: 'FoxPlan Logo'
+                                }) }}
+                            </div>
                         </div>
                     {% endif %}
                 </div>

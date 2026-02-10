@@ -1,0 +1,270 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  a5f0b41a-f0b5-4ca4-85aa-93c3aed557d1:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-02-08T22:52:48+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 57b5c4d7-e1c5-45cb-8daf-f0d7bb234f12
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T22:57:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a67befab-be2a-4f3f-8b82-f4e328493e29
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T22:57:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4a486ca7-4653-4fce-a670-1f54567fef13
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T22:57:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2f7602ce-0b77-4149-a512-52080bcd527b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T22:57:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a1d2075e-9712-4d74-850f-9f522e7e405b
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: c054aab7-baff-43ce-9017-d4fb1648e655
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-02-08T22:57:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 084a3cb0-46b3-46b1-8c70-d787f2a85a2a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T22:57:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e4181cfa-82bc-4e00-884c-378937a6db91
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Help for your total financial plan'
+        uid: d9b017e7-7f0c-463b-9d77-aed4261bfaf7
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-02-08T22:57:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9cd96c48-7106-4c4a-9ba8-58fe12d08103
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-09T00:38:15+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 3df564bb-a8ff-48d9-88c0-1e1fec7a3cff # Accordion new
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fddcee56-f26b-4e84-82a8-730867161743
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Get personalised advice from your Financial Adviser'
+        uid: 4f3c59dc-1bc0-4224-9324-c5661e860bab
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-02-08T22:57:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1a8f3ba1-6334-4cdf-8f2b-123c0096fda6
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T22:57:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 23886227-e429-474e-8048-ed82b517ceaa
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-08T22:57:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b0963e1a-8733-4789-a2c6-64c5728fe5d4
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'How we work with you'
+        uid: 38a25d83-93ff-41b2-acfd-3928756b226b
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-02-08T22:57:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading4
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b34241c5-dd5a-42d5-a82f-304cd6e1e960
+            userCondition: null
+            warning: null
+            width: 100
+        name: Testimonials
+        uid: 63d9159f-12cd-4dd6-8103-0882668e620b
+        userCondition: null
+    thumbFieldKey: null
+handle: financialPlanning
+hasTitleField: true
+icon: null
+name: 'Financial Planning'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

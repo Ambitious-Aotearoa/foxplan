@@ -7,13 +7,11 @@
     ctaUrl: '#'
 } %}
 
-{#
-Padding increased to 'py-20' for a more substantial feel
-without reaching the previous 'too big' proportions
-#}
+{# Hardcoded path to the local image file #}
+{% set podcastImagePath = '/dist/images/Podcast_2.jpg' %}
+
 <section class="w-full bg-foxplan-charcoal-brown py-20 px-[20px]">
     <div class="w-full">
-        {# items-end ensures the bottom-left corner alignment remains true #}
         <div class="grid grid-cols-1 md:grid-cols-10 gap-x-8 lg:gap-x-12 items-end">
 
             {# Left Column: Content (40%) #}
@@ -27,7 +25,6 @@ without reaching the previous 'too big' proportions
                 </p>
 
                 <div class="flex">
-                    {# Your primary button component with a touch of extra bottom margin #}
                     {% include '_components/ui/button/button.twig' with {
                         props: {
                             text: knowledgeData.ctaText,
@@ -42,12 +39,8 @@ without reaching the previous 'too big' proportions
 
             {# Right Column: Image (60%) #}
             <div class="md:col-span-6 order-1 md:order-2 mb-10 md:mb-0">
-                {#
-                Aspect ratio '16/7' provides more height than '21/9'
-                but is still sleeker than '4/3'
-                #}
                 <div class="aspect-[16/7] w-full overflow-hidden">
-                    <img src="{{ craft.vite.asset('images/Podcast_2.jpg') }}"
+                    <img src="{{ podcastImagePath }}"
                          alt="Podcast Lifestyle"
                          class="w-full h-full object-cover">
                 </div>

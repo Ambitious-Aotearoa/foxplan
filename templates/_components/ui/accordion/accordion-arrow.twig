@@ -1,40 +1,51 @@
 {# templates/_sections/content-sections/accordion-arrow.twig #}
 
+{#
+1. Locate the 'accordionSection' block directly within the main Matrix field.
+Your Page Builder screenshot confirms the handle is 'accordionSection'.
+#}
+{% set accordionBlock = (entry.infoBlock is defined)
+    ? entry.infoBlock.type('accordionSection').one()
+    : null %}
+
 {% set defaults = {
-    mainHeading: entry.paragraphHeading2 ?? 'Get personalised advice',
-    accordionField: entry.accordionArrow ?? null,
+
+    mainHeading: (accordionBlock) ? accordionBlock.paragraphHeading2 : 'Get personalised advice',
+
+    accordionField: (accordionBlock) ? accordionBlock.accordionArrow : null,
+
     backgroundColor: 'bg-foxplan-neutral-beige',
     textColor: 'text-foxplan-charcoal-brown',
     arrowPath: 'images/placeholder/Arrow_1.svg'
-} %}
+    } %}
 
-{% set data = defaults | merge(props ?? {}) %}
+    {% set data = defaults | merge(props ?? {}) %}
 
-{% if data.mainHeading or (data.accordionField and data.accordionField.exists()) %}
+    {% if data.mainHeading or (data.accordionField and data.accordionField.exists()) %}
     <section class="w-full {{ data.backgroundColor }} pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden"
              x-data="{
-            revealed: false,
-            checkScroll() {
-                if (this.revealed) return;
-                let rect = this.$el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                    this.revealed = true;
+    revealed: false,
+    checkScroll() {
+    if (this.revealed) return;
+                    let rect = this.$el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                        this.revealed = true;
+                    }
                 }
-            }
-         }"
-             x-init="setTimeout(() => checkScroll(), 200)"
-             @scroll.window.passive="checkScroll()">
+             }"
+    x-init="setTimeout(() => checkScroll(), 200)"
+    @scroll.window.passive="checkScroll()">
 
-        <div class="w-full">
-            <div class="flex flex-wrap w-full items-start">
+    <div class="w-full px-4 md:px-8">
+    <div class="flex flex-wrap w-full items-start">
 
-                {# --- LEFT SIDE: Arrow Decor --- #}
-                <div class="hidden md:flex md:w-[30%] items-start justify-start pr-8 pt-6 md:pt-10">
-                    <div class="w-full h-8 flex items-center">
-                        <div class="transition-all duration-[2500ms] overflow-hidden"
-                             style="transition-timing-function: steps(15); width: 0px; opacity: 0;"
-                             :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0px; opacity: 0;'">
-                            <img src="{{ craft.vite.asset(data.arrowPath) }}"
+    {# --- LEFT SIDE: Arrow Decor --- #}
+    <div class="hidden md:flex md:w-[30%] items-start justify-start pr-8 pt-6 md:pt-10">
+    <div class="w-full h-8 flex items-center">
+    <div class="transition-all duration-[2500ms] overflow-hidden"
+         style="transition-timing-function: steps(15); width: 0px; opacity: 0;"
+         :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0px; opacity: 0;'">
+    <img src="{{ craft.vite.asset(data.arrowPath) }}"
                                  alt="Arrow Decor"
                                  class="w-full h-auto object-contain max-h-8 object-left block">
                         </div>
@@ -53,31 +64,31 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-20 gap-y-10 md:gap-y-16">
                         {% if data.accordionField and data.accordionField.exists() %}
                             {% for item in data.accordionField.all() %}
+                                {# Exact handles confirmed from your 'Content' tab screenshots #}
                                 {% if item.accordionHeading1 or item.bodyText %}
                                     <div class="flex gap-4 items-start">
-                                        {# Decorative Gold Accent #}
                                         <div class="w-1 bg-foxplan-yellow shrink-0 h-8 mt-1"></div>
 
                                         <div class="font-aktiv {{ data.textColor }}">
-                                            {# Accordion Heading: Bold removed as requested #}
                                             {% if item.accordionHeading1 %}
-                                                <h3 class="text-xl font-normal mb-2  tracking-widest text-[10px]">
+                                                <h3 class="font-normal mb-2 tracking-widest text-[10px] uppercase">
                                                     {{ item.accordionHeading1 }}
                                                 </h3>
                                             {% endif %}
 
-                                            {# Body Text: Ensuring natural weight #}
-                                            <div class="text-lg md:text-xl font-normal leading-snug opacity-90 [&_p]:mb-0">
-                                                {{ item.bodyText | raw }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
+                                            {% if item.bodyText %}
+                                                <div class="text-lg md:text-xl font-normal leading-snug opacity-90 [&_p]:mb-0">
+    {{ item.bodyText | raw }}
+    </div>
+{% endif %}
+    </div>
+    </div>
+{% endif %}
+{% endfor %}
+{% endif %}
+    </div>
+    </div>
+    </div>
+    </div>
     </section>
 {% endif %}

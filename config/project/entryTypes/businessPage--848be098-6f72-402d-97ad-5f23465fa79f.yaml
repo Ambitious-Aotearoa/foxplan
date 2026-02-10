@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -39,6 +40,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:44:44+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
             instructions: null
@@ -54,6 +56,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:44:44+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
             handle: null
             instructions: null
@@ -69,6 +72,7 @@ fieldLayouts:
             dateAdded: '2026-01-20T02:27:01+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
             instructions: null
@@ -84,6 +88,7 @@ fieldLayouts:
             dateAdded: '2026-01-20T02:24:35+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
             handle: null
             instructions: null
@@ -105,6 +110,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:44:44+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: null
             instructions: null
@@ -120,6 +126,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T03:44:44+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
             handle: null
             instructions: null
@@ -132,17 +139,18 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T03:44:44+00:00'
+            dateAdded: '2026-02-09T01:47:09+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
+            elementEditCondition: null
+            fieldUid: 3df564bb-a8ff-48d9-88c0-1e1fec7a3cff # Accordion new
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 068ece1a-2225-48af-88e8-aa15e391ef18
+            uid: 8602a133-f8e4-4e93-b6f2-6898152670c6
             userCondition: null
             warning: null
             width: 100
@@ -156,6 +164,7 @@ fieldLayouts:
             dateAdded: '2026-01-20T02:33:48+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading3
             instructions: null
@@ -171,6 +180,7 @@ fieldLayouts:
             dateAdded: '2026-01-20T02:27:01+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 9bdc992e-fe2b-4e1d-926a-01d9a7b5772d # Info Block
             handle: null
             instructions: null
@@ -197,6 +207,7 @@ fieldLayouts:
             dateAdded: '2026-01-20T02:18:08+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
             handle: paragraphHeading2
             instructions: null
@@ -211,6 +222,7 @@ fieldLayouts:
         name: Testimonial
         uid: 89486b09-5f18-4db2-bf4a-001605b83a3b
         userCondition: null
+    thumbFieldKey: null
 handle: businessPage
 hasTitleField: true
 icon: null
@@ -222,3 +234,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

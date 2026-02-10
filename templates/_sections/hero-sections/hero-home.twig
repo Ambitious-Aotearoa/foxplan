@@ -11,19 +11,19 @@
 {% endif %}
 
 {# 3. Fix the Button Text Logic #}
-{# This checks if 'button' is an object (Link Field) or just a string #}
 {% set rawButton = props.buttonText ?? entry.button ?? null %}
 {% set processedButtonText = null %}
 
 {% if rawButton %}
     {% if rawButton is iterable or rawButton.getText is defined %}
-        {# It's a Link Field object #}
         {% set processedButtonText = rawButton.getText() %}
     {% else %}
-        {# It's just a regular string #}
         {% set processedButtonText = rawButton %}
     {% endif %}
 {% endif %}
+
+{# 4. Path Logic for SVG Arrow #}
+{% set arrowPath = '@webroot/dist/images/placeholder/Arrow_1.svg' %}
 
 {% set defaults = {
     backgroundColor: 'bg-foxplan-yellow',
@@ -32,7 +32,6 @@
     bodyText: entry.heroBodyText ?? '',
     buttonText: processedButtonText,
     imagePath: finalImageUrl,
-    arrowPath: 'images/Arrow_1.svg',
     textColor: 'text-foxplan-charcoal-brown',
     buttonBgColor: 'bg-foxplan-charcoal-brown'
 } %}
@@ -50,12 +49,18 @@
              class="w-full h-full object-cover shadow-sm">
     </div>
 
-    {# THE ARROW #}
+    {# THE ARROW - Using svg() for reliability #}
     <div class="absolute left-0 top-[60%] -translate-y-1/2 pointer-events-none hidden lg:block z-[100]">
         <div class="transition-all duration-[2500ms] overflow-hidden"
              style="transition-timing-function: steps(60);"
              :style="revealed ? 'width: 45vw; opacity: 1;' : 'width: 0vw; opacity: 0;'">
-            <img src="{{ craft.vite.asset(data.arrowPath) }}" alt="" class="w-[45vw] h-12 block object-contain object-left">
+
+            <div class="w-[45vw] h-12 fill-current {{ data.textColor }}">
+                {{ svg(alias(arrowPath))|attr({
+                    class: 'w-full h-full object-contain object-left',
+                    role: 'presentation'
+                }) }}
+            </div>
         </div>
     </div>
 

@@ -6,28 +6,40 @@
     textColor: 'text-foxplan-charcoal-brown',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
-{# 2. Fill the body block defined in layout-base #}
 {% block blockAppBody %}
-    {# Example within your main page or index.twig #}
 
+    {# investment committee info #}
     {% include "_sections/content-sections/investment-committee.twig" with {
         backgroundColor: 'bg-foxplan-yellow',
         textColor: 'text-foxplan-charcoal-brown'
     } only %}
 
-    {# Passing custom data or overrides #}
+    {#   how we work section #}
+    {% set benefitsHeading = entry.paragraphHeading ?? 'About group insurance' %}
+    {% set benefitsIntro = entry.bodyText ?? '' %}
 
-  {# templates/pages/Our-Investment-Committee/index.twig #}
+    {#  Loop through the 'accordion' matrix #}
+    {% set accordionItems = [] %}
+    {# Ensure 'accordion' is the handle of the Matrix field on this specific entry #}
+    {% if entry.accordion is defined %}
+        {% for block in entry.accordion.all() %}
+            {% set accordionItems = accordionItems | merge([{
+                'title': block.accordionHeading,
+                'text': block.accordionBodyText
+            }]) %}
+        {% endfor %}
+    {% endif %}
 
-{% include "_sections/content-sections/how-we-work.twig" with {
-    props: {
-        mainHeading: "How we work <br> with you",
-        backgroundColor: "bg-foxplan-neutral-beige",
-        textColor: "text-foxplan-charcoal-brown",
-
-        accordionField: entry.accordion
+    {#  Deliver the data to the benefits section using 'props' #}
+    {{ include('_sections/content-sections/benefits.twig', {
+        props: {
+            paragraphHeading: benefitsHeading,
+            bodyText: benefitsIntro,
+            items: accordionItems,
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            textColor: 'text-foxplan-charcoal-brown'
         }
-        } only %}
+    }) }}
 
     {#  footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {

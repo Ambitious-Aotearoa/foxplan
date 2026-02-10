@@ -1,0 +1,58 @@
+{#
+Full-width section with 20px horizontal padding (px-5).
+The grid is set to items-start to keep titles aligned at the top.
+#}
+<section class="w-full bg-foxplan-neutral-beige py-16 md:py-24 px-5 border-b border-foxplan-charcoal-brown/10">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+
+        <div class="lg:col-span-4">
+            {# Prehead: mainTitle #}
+{#            {% if block.mainTitle is defined and block.mainTitle %}#}
+{#                <span class="block text-2xl md:text-3xl font-serif text-foxplan-charcoal-brown mb-2">#}
+{#                    {{ block.mainTitle }}#}
+{#                </span>#}
+{#            {% endif %}#}
+
+            {#
+            The Wrap Fix:
+            'max-w-[320px]' forces the break after "critical"
+            while 'whitespace-normal' ensures it doesn't try to stay on one line.
+            #}
+            <h2 class="text-5xl md:text-7xl font-serif text-foxplan-charcoal-brown leading-[1.1] mb-8 max-w-[320px] whitespace-normal">
+                {{ block.paragraphHeading2 ?? '' }}
+            </h2>
+
+            {# Intro Body Text constrained to max-w-md #}
+            {% if block.bodyText is defined and block.bodyText %}
+                <div class="text-base md:text-lg leading-relaxed text-foxplan-charcoal-brown/90 max-w-md">
+                    {{ block.bodyText }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="lg:col-span-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+
+                {# Loop through the 'accountingMatrix' fields #}
+                {% if block.accountingMatrix is defined %}
+                    {% for item in block.accountingMatrix.all() %}
+                        <div class="flex flex-col">
+                            {# Inner Heading: mainHeading #}
+                            <h3 class="text-2xl md:text-3xl font-serif text-foxplan-charcoal-brown mb-3">
+                                {{ item.mainHeading ?? '' }}
+                            </h3>
+
+                            {# Inner Text: bodyText #}
+                            <div class="text-base leading-snug text-foxplan-charcoal-brown/80">
+                                {{ item.bodyText ?? '' }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</section>

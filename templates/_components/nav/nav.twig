@@ -7,110 +7,118 @@
     searchBgColor: 'bg-foxplan-charcoal-brown',
     ctaBgColor: 'bg-foxplan-charcoal-brown',
     iconColor: 'text-white',
-    logoFilter: ''
+    logoFilter: 'fill-current'
 } %}
 
 {% set theme = (navigationTheme is defined and navigationTheme is iterable) ? defaultTheme|merge(navigationTheme) : defaultTheme %}
 
+{# Define static paths using @webroot to ensure they work without Vite running #}
+{% set logoPath = '@webroot/dist/images/FoxPlan_Logo.svg' %}
+{% set searchIconPath = '@webroot/dist/images/placeholder/Foxplan_Search_Icon.svg' %}
+
 {# --- 2. Mega Menu Content --- #}
 {% set megaMenuData = {
     'insurance': [
-        { title: ' Personal & Medical Insurance', url: '/Personal-Medical-Insurance', desc: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. ' },
-        { title: 'Business Insurance', url: '/business-insurance', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. ' },
-        { title: 'Group & Workplace Insurance', url: '/group-workplace-insurance', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. ' }
+        { title: 'Personal & Medical Insurance', url: '/Personal-Medical-Insurance', desc: 'Protect your finances and your family from illness or disability with our range of personal and medical insurance.' },
+        { title: 'Business Insurance', url: '/business-insurance', desc: 'Maintain the continuity of your business after loss with co-shareholder or key person insurance.' },
+        { title: 'Group & Workplace Insurance', url: '/group-workplace-insurance', desc: 'Get income protection, life, trauma or total and permanent disablement cover for business owners and their teams.' }
     ],
-
     'Savings & Investment': [
-        { title: 'Financial Planning', url: '/financial-planning', desc: 'Strategic wealth creation.' },
-        { title: 'KiwiSaver', url: '/kiwisaver', desc: 'Personalised roadmaps for success.' },
-        { title: 'Retirement Planning', url: '/retirement-planning', desc: 'Maximise your retirement savings.' },
-        { title: 'Savings', url: '/savings', desc: 'Enjoy your golden years.' },
-        { title: 'Investment', url: '/retirement', desc: 'Enjoy your golden years.' },
-
+        { title: 'Financial Planning', url: '/financial-planning', desc: 'Manage your money, grow your wealth and protect it as you head into retirement with our life stage planning services. ' },
+        { title: 'KiwiSaver', url: '/kiwisaver', desc: 'Get personalised advice from your KiwiSaver adviser around choosing a fund, managing your contributions and withdrawing your savings for a first home deposit. ' },
+        { title: 'Retirement Planning', url: '/retirement-planning', desc: 'Start planning for a more comfortable tomorrow with personalised retirement advice and legacy planning.' },
+        { title: 'Savings', url: '/savings', desc: 'Our advisers can help you build sustainable habits that make it easier to budget and squirrel more money away for a rainy day. ' },
+        { title: 'Investment', url: '/investment-planning', desc: 'Get personalised guidance for starting your investment journey, investing an inheritance and making your money last into retirement. ' }
     ],
-
     'Mortgages': [
-        { title: 'Property Investment', url: '/property-investment', desc: 'Strategic wealth creation.' },
-        { title: 'Property Upgrade', url: '/property-upgrade', desc: 'Personalised roadmaps for success.' },
-        { title: 'First Home Buyers', url: '/first-home-buyers', desc: 'Maximise your retirement savings.' },
-        { title: 'Refinancing & Refixing', url: '/refinancing-refixing', desc: 'Enjoy your golden years.' },
+        { title: 'Property Investment', url: '/property-investment', desc: 'Invest in your future with lending support for first time or experienced property investors.' },
+        { title: 'Property Upgrade', url: '/property-upgrade', desc: 'Whether you’re selling your home, renovating or building, we make transferring or taking out a new mortgage easy.  ' },
+        { title: 'First Home Buyers', url: '/first-home-buyers', desc: 'Get on the property ladder with personalised advice, support and guidance from budgeting, pre-approval and protection planning. ' },
+        { title: 'Refinancing & Refixing', url: '/refinancing-refixing', desc: 'Free up funds, consolidate your debts or save money on your mortgage with advice on refinancing or refixing.' }
     ],
-
     'Business': [
-        { title: 'Business Planning', url: '/business-page', desc: 'Strategic wealth creation.' },
-        { title: 'Employee Financial Wellbeing', url: '/employee-financial-wellbeing', desc: 'Personalised roadmaps for success.' }
+        { title: 'Business Planning', url: '/business-planning', desc: 'Gain strategic advice for setting up your business or making your existing systems and processes run more smoothly. ' },
+        { title: 'Employee Financial Wellbeing', url: '/employee-financial-wellbeing', desc: 'Our range of benefit packages, financial bootcamps and financial health checks make it easy to improve the financial wellbeing of your staff.' }
     ],
-
     'News': [
-        { title: 'Insights', url: '/pages/Insights', desc: 'Strategic wealth creation.' },
-        { title: 'Podcast', url: '/dollars-and-sense-podcast', desc: 'Personalised roadmaps for success.' }
+        { title: 'Insights', url: '/pages/Insights', desc: 'Get financial updates, insights and practical tips on financial planning, investments, mortgages, KiwiSaver and more.' },
+        { title: 'Podcast', url: '/dollars-and-sense-podcast', desc: 'The Dollars & Sense podcast is hosted by qualified financial advisers Tim Ellis and Brodie Haggerty. Listen to smart financial advice for Kiwis in their prime.' }
     ],
-
     'About': [
-        { title: 'About FoxPlan', url: '/about', desc: 'Strategic wealth creation.' },
-        { title: 'Careers', url: '/careers', desc: 'Personalised roadmaps for success.' },
-        { title: 'Equity Partners', url: '/equity-partners', desc: 'Maximise your retirement savings.' },
-        { title: 'Meet the Team', url: '/pages/Meet-the-team', desc: 'Enjoy your golden years.' },
-        { title: 'Suppliers', url: '/pages/Our-Suppliers', desc: 'Enjoy your golden years.' },
-        { title: 'Investment Committee', url: '/our-investment-committee', desc: 'Enjoy your golden years.' },
-    ],
+        { title: 'About FoxPlan', url: '/about', desc: 'John and Sally Killick founded FoxPlan in 1996 to help Kiwis make confident, informed choices about every part of their financial lives.' },
+        { title: 'Careers', url: '/careers', desc: 'We’re proud to grow a team of people who share our passion for helping Kiwis make confident financial decisions. Learn more about current opportunities for joining our ranks.  ' },
+        { title: ' Equity Partners', url: '/equity-partners', desc: 'Our equity programme helps financial advisers and accountants build and grow their businesses while sharing the support and success of FoxPlan. ' },
+        { title: 'Meet the Team', url: '/pages/Meet-the-team', desc: 'Meet the Financial Advisers, Accountants, Wealth Managers and Management staff that make up our team. ' },
+        { title: 'Suppliers', url: '/pages/Our-Suppliers', desc: 'We work with New Zealand’s most trusted financial institutions. View our list of bank and non-bank lenders and insurance suppliers here. ' },
+        { title: ' Investment Committee', url: '/our-investment-committee', desc: 'Learn more about how Consilium provides CEFEX-certified research and strategies to ensure your investments are effectively managed for long-term success. ' }
+    ]
 } %}
 
-
-{# Non-sticky: relative position. z-[500] ensures it sits above hero content #}
-<nav class="w-full relative z-[500]" x-data="{ openTab: null }" @mouseleave="openTab = null">
+<nav class="w-full relative z-[500]"
+     x-data="{
+        openTab: null,
+        searchOpen: false,
+        searchQuery: '',
+        allLinks: [
+            {% for handle, items in megaMenuData %}
+                {% for item in items %}
+                    { title: '{{ item.title|e('js') }}', url: '{{ item.url|e('js') }}', category: '{{ handle|capitalize|e('js') }}' },
+                {% endfor %}
+            {% endfor %}
+        ],
+        get filteredResults() {
+            if (this.searchQuery === '') return [];
+            return this.allLinks.filter(item =>
+                item.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                item.category.toLowerCase().includes(this.searchQuery.toLowerCase())
+            );
+        }
+     }"
+     @mouseleave="openTab = null">
 
     <div class="w-full {{ theme.backgroundColor }} relative z-[510]">
         <div class="flex items-center h-16">
-            <a href="/" class="flex items-center h-full pl-8 pr-[100px] flex-none">
-                <img src="{{ craft.vite.asset('images/FoxPlan_Logo.svg') }}" alt="Logo"
-                     class="h-11 w-auto {{ theme.logoFilter }}">
+            {# Logo - Using svg() function for reliability #}
+            <a href="/" class="flex items-center h-full pl-8 pr-[60px] flex-none {{ theme.textColor }}">
+                {{ svg(alias(logoPath))|attr({ class: 'h-11 w-auto ' ~ theme.logoFilter, alt: 'FoxPlan Logo' }) }}
             </a>
 
+            {# Desktop Tabs #}
             <div class="flex-grow flex items-center h-full">
-                <div class="hidden lg:flex items-center justify-between w-full max-w-[1000px] mx-auto text-[15px] font-medium {{ theme.textColor }} h-full">
-
+                <div class="hidden lg:flex items-center justify-between w-full max-w-[900px] mx-auto text-[15px] font-medium {{ theme.textColor }} h-full">
                     {% for handle in ['accounting', 'insurance', 'Savings & Investment', 'Business', 'Mortgages', 'News', 'About'] %}
                         {% set hasDropdown = megaMenuData[handle] is defined %}
-
-                        {# 1. Define which tabs should NOT be clickable #}
                         {% set isStatic = handle in ['News', 'About'] %}
-
-                        {# 2. Determine the URL #}
-                        {% set tabUrl = isStatic ? 'javascript:void(0)' : url(handle|lower|replace({' ': '-'})) %}
+                        {% set tabUrl = isStatic ? 'javascript:void(0)' : url(handle|lower|replace({' & ': '-', ' ': '-'})) %}
 
                         <a href="{{ tabUrl }}"
                            class="h-full flex items-center cursor-pointer hover:opacity-60 transition group {{ isStatic ? 'cursor-default' : '' }}"
                                 {% if hasDropdown %} @mouseenter="openTab = '{{ handle }}'" {% endif %}>
-
-                <span class="flex items-center gap-1">
-                    {{ handle|capitalize }}
-
-                    {% if hasDropdown %}
-                        <svg class="w-3 h-3 transition-transform duration-200"
-                             :class="openTab === '{{ handle }}' ? 'rotate-180' : ''"
-                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    {% endif %}
-                </span>
+                            <span class="flex items-center gap-1">
+                                {{ handle|capitalize }}
+                                {% if hasDropdown %}
+                                    <svg class="w-3 h-3 transition-transform duration-200"
+                                         :class="openTab === '{{ handle }}' ? 'rotate-180' : ''" fill="none"
+                                         stroke="currentColor" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round"
+                                              stroke-linejoin="round"/>
+                                    </svg>
+                                {% endif %}
+                            </span>
                         </a>
                     {% endfor %}
-
                 </div>
             </div>
 
+            {# Action Buttons #}
             <div class="flex flex-none items-center h-full">
-                {# Search Button #}
-                <button class="w-16 h-16 {{ theme.searchBgColor }} flex items-center justify-center">
-                    <img
-                            src="{{ craft.vite.asset('images/placeholder/Foxplan_Search_Icon.svg') }}"
-                            alt="Search"
-                            class="w-5 h-5 block object-contain {{ theme.logoFilter }}"
-                    >
+                <button @click="searchOpen = true"
+                        class="w-16 h-16 {{ theme.searchBgColor }} flex items-center justify-center cursor-pointer group">
+                    {# Updated to use svg() to fix searchIconUrl error #}
+                    <div class="w-5 h-5 transition-transform group-hover:scale-110 {{ theme.iconColor }}">
+                        {{ svg(alias(searchIconPath))|attr({ class: 'w-full h-full fill-current' }) }}
+                    </div>
                 </button>
-
-                {# Get in touch Button #}
                 {% include '_components/ui/button/button.twig' with {
                     props: {
                         text: 'Get in touch',
@@ -122,43 +130,92 @@
         </div>
     </div>
 
-    {# DROPDOWN: z-[600] is higher than Hero's z-[110] #}
+    {# --- MEGA MENU --- #}
     {% for handle, items in megaMenuData %}
-        <div x-show="openTab === '{{ handle }}'"
-             x-transition:enter="transition ease-out duration-200"
-             x-transition:enter-start="opacity-0 -translate-y-2"
-             x-transition:enter-end="opacity-100 translate-y-0"
-             class="absolute top-16 left-0 right-0 z-[600] px-5 pt-8"
-             style="display: none;"
-             @mouseenter="openTab = '{{ handle }}'"
+        <div x-show="openTab === '{{ handle }}'" x-transition style="display: none;"
+             class="absolute top-16 left-0 right-0 z-[600] px-5 pt-8" @mouseenter="openTab = '{{ handle }}'"
              @mouseleave="openTab = null">
-
             <div class="bg-white shadow-2xl flex w-full min-h-[450px] border border-foxplan-yellow/5">
                 <div class="w-2/3 grid grid-cols-3">
                     {% for subItem in items %}
                         <div class="p-10 border-r border-b border-foxplan-yellow/20 last:border-r-0">
                             <a href="{{ subItem.url }}"
                                class="block group/link mb-4 border-l-2 border-foxplan-yellow pl-3">
-                                <p class="text-[11px] font-bold tracking-[0.2em] text-foxplan-charcoal-brown uppercase group-hover/link:text-black transition-colors">
-                                    {{ subItem.title }}
-                                </p>
+                                <p class="text-[11px] font-bold tracking-[0.2em] text-foxplan-charcoal-brown uppercase group-hover/link:text-black transition-colors">{{ subItem.title }}</p>
                             </a>
                             <p class="text-sm text-black/60 leading-relaxed">{{ subItem.desc }}</p>
                         </div>
                     {% endfor %}
                 </div>
-
+                {# Removed megaMenuImgUrl and the <img> tag #}
                 <div class="w-1/3 relative group overflow-hidden bg-[#FAF7F2]">
-                    <img src="{{ craft.vite.asset('images/About_1.jpg') }}"
-                         class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-black/20"></div>
-                    <div class="absolute bottom-12 left-12 right-12 text-white">
-                        <span class="bg-[#007AFF] text-[10px] font-bold px-3 py-1 rounded-full mb-4 inline-block">ARTICLE</span>
+                    <div class="absolute inset-0 bg-black/5"></div>
+                    <div class="absolute bottom-12 left-12 right-12 text-foxplan-charcoal-brown">
+                        <span class="bg-[#007AFF] text-white text-[10px] font-bold px-3 py-1 rounded-full mb-4 inline-block">ARTICLE</span>
                         <h3 class="text-3xl font-medium mb-4">Why choose private health insurance?</h3>
-                        <a href="/blog" class="text-[11px] font-bold border-b border-white pb-1">READ MORE</a>
+                        <a href="/blog" class="text-[11px] font-bold border-b border-foxplan-charcoal-brown pb-1">READ MORE</a>
                     </div>
                 </div>
             </div>
         </div>
     {% endfor %}
+
+    {# --- FULL SCREEN SEARCH OVERLAY --- #}
+    <template x-teleport="body">
+        <div x-show="searchOpen"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             class="fixed inset-0 z-[1000] bg-foxplan-neutral-beige flex flex-col items-center pt-[15vh] px-6"
+             style="display: none;">
+
+            <button @click="searchOpen = false; searchQuery = ''"
+                    class="absolute top-10 right-10 text-foxplan-charcoal-brown hover:rotate-90 transition-transform duration-300 p-2 cursor-pointer">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <div class="w-full max-w-4xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-[60px] lg:text-[80px] font-serif text-foxplan-charcoal-brown leading-tight mb-4">Search anything</h2>
+                </div>
+
+                <div class="relative border-b border-foxplan-charcoal-brown/30 pb-4 flex items-center">
+                    <svg class="w-6 h-6 text-foxplan-charcoal-brown/40 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" stroke-width="2"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2"/>
+                    </svg>
+                    <input type="text" x-model="searchQuery" placeholder="Search by keyword, topic or title"
+                           class="bg-transparent border-none outline-none text-2xl w-full placeholder:text-foxplan-charcoal-brown/30 text-foxplan-charcoal-brown"
+                           x-ref="searchInput"
+                           x-effect="if(searchOpen) { setTimeout(() => $refs.searchInput.focus(), 100) }">
+                </div>
+
+                <div class="mt-8 max-h-[50vh] overflow-y-auto">
+                    <template x-for="result in filteredResults" :key="result.url">
+                        <a :href="result.url"
+                           class="group flex items-center justify-between py-6 border-b border-foxplan-charcoal-brown/10 hover:px-4 transition-all duration-300">
+                            <div>
+                                <span class="text-[10px] tracking-widest uppercase text-foxplan-charcoal-brown/40 block mb-1"
+                                      x-text="result.category"></span>
+                                <h3 class="text-2xl text-foxplan-charcoal-brown group-hover:text-black transition-colors"
+                                    x-text="result.title"></h3>
+                            </div>
+                            <svg class="w-6 h-6 text-foxplan-charcoal-brown opacity-0 group-hover:opacity-100 transition-all"
+                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </template>
+                    <div x-show="searchQuery !== '' && filteredResults.length === 0"
+                         class="py-12 text-center text-foxplan-charcoal-brown/40">
+                        No results found for "<span x-text="searchQuery"></span>"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
 </nav>
