@@ -13,13 +13,18 @@
 
 {# 2. MAP DATA (Finding Matrix Blocks and Assets) #}
 
-{% set bookBlock = (entry.infoBlock is defined) ? entry.infoBlock.type('bookAnAdviser').one() : null %}
-{% set locBlock = (entry.infoBlock is defined) ? entry.infoBlock.type('location').one() : null %}
+{# Safe check: Verify infoBlock exists before calling .type() to avoid RuntimeError #}
+{% set hasInfoBlock = entry.infoBlock is defined and entry.infoBlock is not null %}
 
+{# Block handles: bookAnAdviser and location #}
+{% set bookBlock = hasInfoBlock ? entry.infoBlock.type('bookAnAdviser').one() : null %}
+{% set locBlock = hasInfoBlock ? entry.infoBlock.type('location').one() : null %}
+
+{# Asset handles: image and image2 #}
 {% set bookImage = (bookBlock and bookBlock.image is defined) ? bookBlock.image.one() : null %}
 {% set locImage = (locBlock and locBlock.image2 is defined) ? locBlock.image2.one() : null %}
 
-{# Define Hardcoded Fallback Paths to bypass Vite #}
+{# Define Hardcoded Fallback Paths #}
 {% set fallbackContact = alias('@web/dist/images/Contact_1.jpg') %}
 
 {% set contactData = {
@@ -28,16 +33,16 @@
         description: entry.contactBodytext2 ?? ''
     },
     callback: {
-        heading: bookBlock.contactMainHeading3 ?? 'Book an adviser',
-        body1: bookBlock.contactBodytext3 ?? '',
+        heading: (bookBlock) ? bookBlock.contactMainHeading3 : 'Book an adviser',
+        body1: (bookBlock) ? bookBlock.contactBodytext3 : '',
         body2: 'If you know who you would like to speak to, you can select their name from the dropdown list.',
         imageSrc: bookImage ? bookImage.url : fallbackContact,
         advisers: adviserNames,
         services: serviceOptions
         },
         location: {
-        heading: locBlock.contactMainHeading ?? 'Our Location',
-        body: locBlock.contactBodytext ?? '',
+        heading: (locBlock) ? locBlock.contactMainHeading : 'Our Location',
+        body: (locBlock) ? locBlock.contactBodytext : '',
         imageSrc: locImage ? locImage.url : fallbackContact
         }
         } %}
@@ -83,6 +88,7 @@
                         {% for service in data.services %}<option value="{{ service }}">{{ service }}</option>{% endfor %}
                     </select>
                 </div>
+
             </div>
 
             <div class="{{ descriptionClasses }} mb-10">{{ data.body2|raw }}</div>
@@ -95,7 +101,6 @@
         </div>
         <div class="hidden lg:block lg:col-span-7 pl-12">
             <div class="w-full h-[500px] overflow-hidden">
-                {# Points directly to disk path or Craft URL #}
                 <img src="{{ data.imageSrc }}" alt="FoxPlan" class="w-full h-full object-cover">
             </div>
         </div>
@@ -109,7 +114,6 @@
         </div>
         <div class="hidden lg:block lg:col-span-7 pl-12">
             <div class="w-full h-[500px] overflow-hidden">
-                {# Points directly to disk path or Craft URL #}
                 <img src="{{ data.imageSrc }}" alt="Location" class="w-full h-full object-cover">
             </div>
         </div>
