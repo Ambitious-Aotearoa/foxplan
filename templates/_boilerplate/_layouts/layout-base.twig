@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://use.typekit.net/hty7zmt.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -16,8 +17,8 @@
                         'foxplan-charcoal-brown': '#270E15',
                     },
                     fontFamily: {
-                        'serif': ['Sterling', 'Georgia', 'serif'],
-                        'aktiv-grotesk': ['Aktiv Grotesk', 'ui-sans-serif', 'system-ui'],
+                        'serif': ['SeasonSerifTRIALLight',  'serif'],
+                        'aktiv-grotesk': ['aktiv-grotesk'],
                     }
                 }
             }
@@ -25,7 +26,6 @@
     </script>
     <style>
         [x-cloak] { display: none !important; }
-        /* CRITICAL: Remove all browser default margins and prevent horizontal gaps */
         html, body {
             margin: 0 !important;
             padding: 0 !important;
@@ -34,7 +34,7 @@
         }
     </style>
 </head>
-<body class="antialiased font-aktiv-grotesk text-black bg-white">
+<body class="antialiased font-aktiv-grotesk text-foxplan-charcoal-brown bg-foxplan-neutral-beige">
 {{ include("_components/nav/nav.twig", { navigationTheme: navigationTheme ?? null }, withContext = true) }}
 <main class="w-full">
     {% block blockAppBody %}{% endblock %}

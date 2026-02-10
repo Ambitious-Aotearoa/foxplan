@@ -28,19 +28,18 @@
             buttonTextColor: 'text-foxplan-white'
         }
     }) }}
-
+    {# help-for-buying section #}
     {{ include('_sections/content-sections/help-for-buying-your-first-home.twig', {
         props: {
             paragraphHeading: entry.paragraphHeading,
             infoBlock: entry.infoBlock.exists() ? entry.infoBlock.all() : [],
             backgroundColor: 'bg-foxplan-yellow',
             textColor: 'text-foxplan-charcoal-brown',
-            borderColor: 'border-[#270E15]'
         }
     }) }}
 
 
-{#    benefits section #}
+    {#    benefits section #}
     {% set benefitsHeading = entry.paragraphHeading2 ?? 'About group insurance' %}
     {% set benefitsIntro = entry.bodyText2 ?? '' %}
 
@@ -67,7 +66,7 @@
         }
     }) }}
 
-{#who we work with section#}
+    {# who we work with section #}
     {{ include('_sections/content-sections/who-we-work-with.twig', {
         props: {
             title: 'WHO WE WORK WITH',
@@ -81,7 +80,7 @@
         }
     }) }}
 
-
+    {# image and text section #}
     {% set sectionImage = entry.image.one() %}
 
     {{ include('_sections/hero-sections/section.twig', {
@@ -98,13 +97,14 @@
         }
     }) }}
 
+    {# Testimonials #}
     {{ include('_sections/testimonials/testimonial-two.twig', {
         data: {
             paragraphHeading4: entry.paragraphHeading4 ?? 'Hear what our clients are saying'
         }
     }) }}
 
-
+    {# Footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',
@@ -112,9 +112,7 @@
             logoColor: 'text-foxplan-yellow',
             buttonColor: 'bg-foxplan-yellow',
             buttonTextColor: 'text-foxplan-charcoal-brown',
-            foxplanText: 'foxplan',
-            borderTopColor: 'border-foxplan-yellow/20',
-            borderTopWidth: 'border-t-2'
+            separatorColor: 'text-foxplan-yellow'
         }
     }) }}
 

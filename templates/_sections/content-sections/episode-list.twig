@@ -1,7 +1,8 @@
-{# 1. SETUP THE QUERY #}
+
 {% set episodeQuery = craft.entries
     .section('podcastEpisodes')
     .type('podcasts')
+    .with(['podcastImages'])
     .limit(6)
 %}
 
@@ -12,23 +13,16 @@
      class="w-full {{ data.backgroundColor ?? 'bg-foxplan-neutral-beige' }} p-[20px]"
      x-data="{
         loading: false,
-        currentPage: {{ pageInfo.currentPage }},
-        totalPages: {{ pageInfo.totalPages }},
-
         async loadPage(url) {
             if (this.loading) return;
             this.loading = true;
-
             try {
                 const response = await fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
                 const html = await response.text();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
-
-                {# Update the grid and the pagination controls #}
                 document.querySelector('#episode-grid').innerHTML = doc.querySelector('#episode-grid').innerHTML;
                 document.querySelector('#episode-pagination').innerHTML = doc.querySelector('#episode-pagination').innerHTML;
-
                 window.history.pushState({}, '', url);
                 document.querySelector('#podcast-container').scrollIntoView({ behavior: 'smooth' });
             } catch (error) {
@@ -42,10 +36,11 @@
     <section class="w-full overflow-hidden">
         <div class="px-8 md:px-12 w-full pt-16 pb-16 md:pt-24 md:pb-24">
 
-            {# HEADER SECTION: Hardcoded Title and See All Button #}
+            {# HEADER SECTION #}
             <div class="flex justify-between items-baseline mb-12 border-b border-foxplan-yellow pb-6">
                 <h2 class="font-serif text-4xl md:text-6xl text-foxplan-charcoal-brown">All episodes</h2>
-                <a href="https://open.spotify.com/show/4OyvWBje9xXh1ROJ1x5E4K"
+                {# Updated "See all" to link to your Spotify/Podcast host if desired #}
+                <a href="{{ episodes[0].spotifyUrl ?? '#' }}"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="inline-block px-6 py-2 bg-foxplan-charcoal-brown text-foxplan-neutral-beige font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-foxplan-yellow hover:text-foxplan-charcoal-brown transition-all">
@@ -56,31 +51,49 @@
             {# THE GRID CONTAINER #}
             <div id="episode-grid" class="divide-y divide-foxplan-yellow">
                 {% for episode in episodes %}
+                    {% set podcastImage = episode.podcastImages.one() %}
+                    {% set listenUrl = (episode.spotifyUrl | trim) ?: episode.url %}
+
                     <div class="flex flex-col md:flex-row md:items-center justify-between py-10 px-4 -mx-4 group transition-all duration-300 hover:bg-[#2D1B17]">
                         <div class="flex items-start md:items-center pr-8 mb-6 md:mb-0">
 
-                            {# Thumbnail #}
-                            <div class="w-40 h-24 mr-8 flex-shrink-0 overflow-hidden bg-foxplan-neutral-beige">
-                                <img src="/assets/images/Podcast_1.jpg" alt="{{ episode.title }}" class="w-full h-full object-cover block grayscale group-hover:grayscale-0 transition-all duration-500">
+                            {# Thumbnail - Updated to Square aspect ratio for Podcast Art #}
+                            <div class="w-24 h-24 md:w-32 md:h-32 mr-8 flex-shrink-0 overflow-hidden bg-foxplan-charcoal-brown/10">
+                                <a href="{{ listenUrl }}" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                                    {% if podcastImage %}
+                                        <img src="{{ podcastImage.url }}"
+                                             alt="{{ episode.title }}"
+                                             class="w-full h-full object-cover block grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105">
+                                    {% else %}
+                                        <div class="w-full h-full flex items-center justify-center bg-foxplan-charcoal-brown/20 text-foxplan-charcoal-brown font-serif italic text-xs">
+                                            foxplan
+                                        </div>
+                                    {% endif %}
+                                </a>
                             </div>
 
                             {# Info #}
                             <div>
-                                <h3 class="font-serif text-2xl md:text-[32px] leading-tight {{ data.textColor ?? 'text-foxplan-charcoal-brown' }} mb-2 group-hover:text-foxplan-yellow">
-                                    {{ episode.mainHeading ?? episode.title }}
-                                </h3>
+                                <a href="{{ listenUrl }}" target="_blank" rel="noopener noreferrer">
+                                    <h3 class="font-serif text-2xl md:text-[32px] leading-tight {{ data.textColor ?? 'text-foxplan-charcoal-brown' }} mb-2 group-hover:text-foxplan-yellow transition-colors">
+                                        {{ episode.mainHeading ?? episode.title }}
+                                    </h3>
+                                </a>
+
                                 <div class="flex items-center gap-4">
                                     <p class="text-sm text-foxplan-charcoal-brown font-sans uppercase tracking-wider group-hover:text-foxplan-neutral-beige/60">
                                         {{ episode.postDate | date('M d, Y') }}
                                     </p>
+
                                     {% if episode.episodeDuration %}
                                         <span class="text-foxplan-neutral-beige">•</span>
                                         <p class="text-sm text-foxplan-charcoal-brown font-sans uppercase tracking-wider group-hover:text-foxplan-neutral-beige/60">
+                                            {# Refined Duration Logic #}
                                             {% if ':' in episode.episodeDuration %}
                                                 {% set parts = episode.episodeDuration | split(':') %}
-                                                {{ (parts | length == 3) ? (parts[0] * 60) + parts[1] : parts[0] }} MINUTES
+                                                {{ (parts | length == 3) ? (parts[0] * 60) + parts[1] : parts[0] }} MINS
                                             {% else %}
-                                                {{ (episode.episodeDuration / 60) | round(0, 'floor') }} MINUTES
+                                                {{ (episode.episodeDuration / 60) | round(0, 'floor') }} MINS
                                             {% endif %}
                                         </p>
                                     {% endif %}
@@ -89,7 +102,6 @@
                         </div>
 
                         <div class="flex-shrink-0">
-                            {% set listenUrl = (episode.spotifyUrl | trim) ?: episode.url %}
                             <a href="{{ listenUrl }}" target="_blank" rel="noopener noreferrer" class="inline-block px-10 py-3 bg-foxplan-charcoal-brown text-foxplan-neutral-beige font-bold uppercase text-[10px] tracking-[0.2em] group-hover:bg-[#E8BD5B] group-hover:text-black transition-all">
                                 Listen ↴
                             </a>

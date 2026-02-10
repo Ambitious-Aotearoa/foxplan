@@ -56,6 +56,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-02-10T22:10:21+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 072a5c6b-cdf2-4ed6-8bfd-4ac947d9cca7 # Podcast images
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b9ed7220-0ef3-4e68-87e5-555fee2cdc6a
+            userCondition: null
+            warning: null
+            width: 100
         name: Content
         uid: a62d565e-5eff-4ec3-b6aa-e618cada1268
         userCondition: null

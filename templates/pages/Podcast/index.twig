@@ -41,7 +41,6 @@
     }) }}
 
     {# 3. All Episodes List #}
-    {# This include triggers the list that fetches the 62 entries from your new channel #}
     {{ include('_sections/content-sections/episode-list.twig', {
         data: {
             sectionTitle: 'All episodes',
@@ -68,12 +67,10 @@
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',
             textColor: 'text-foxplan-yellow',
-            logoColor: 'text-foxplan-charcoal-brown',
+            logoColor: 'text-foxplan-yellow',
             buttonColor: 'bg-foxplan-yellow',
             buttonTextColor: 'text-foxplan-charcoal-brown',
-            foxplanText: 'foxplan',
-            borderTopColor: 'border-foxplan-yellow/20',
-            borderTopWidth: 'border-t-2'
+            separatorColor: 'text-foxplan-yellow'
         }
     }) }}
 
