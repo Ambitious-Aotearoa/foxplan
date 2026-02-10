@@ -1,7 +1,8 @@
-{#
-Outer Section: 20px beige border on the left.
-Before pseudo-element: 20px charcoal border on Top, Bottom, and Left.
-#}
+{# templates/_sections/service-slider.twig #}
+
+{# 1. Static Asset Setup for Staging Reliability #}
+{% set arrowPath = '@webroot/dist/images/placeholder/Arrow_1.svg' %}
+
 <section class="relative w-full bg-foxplan-charcoal-brown text-foxplan-neutral-beige
                  border-l-[20px] border-foxplan-neutral-beige overflow-hidden
                  before:content-[''] before:absolute before:inset-0
@@ -16,24 +17,28 @@ Before pseudo-element: 20px charcoal border on Top, Bottom, and Left.
             </h2>
 
             <div class="hidden md:flex gap-3">
-                <button id="scrollPrev" class="w-12 h-12 rounded-full border border-foxplan-neutral-beige flex items-center justify-center text-foxplan-neutral-beige hover:bg-foxplan-neutral-beige hover:text-foxplan-charcoal-brown transition-all">
+                <button id="scrollPrev" class="w-12 h-12 rounded-full border border-foxplan-neutral-beige flex items-center justify-center text-foxplan-neutral-beige hover:bg-foxplan-neutral-beige hover:text-foxplan-charcoal-brown transition-all" aria-label="Previous">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 </button>
-                <button id="scrollNext" class="w-12 h-12 rounded-full bg-foxplan-neutral-beige flex items-center justify-center text-foxplan-charcoal-brown hover:opacity-90 transition-all">
+                <button id="scrollNext" class="w-12 h-12 rounded-full bg-foxplan-neutral-beige flex items-center justify-center text-foxplan-charcoal-brown hover:opacity-90 transition-all" aria-label="Next">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
                 </button>
             </div>
         </div>
     </div>
 
-
     <div id="serviceContainer" class="relative z-10 flex flex-nowrap overflow-x-auto gap-6 pl-12 pr-6 md:pl-20 md:pr-12 lg:pl-32 lg:pr-20 mb-[20px] snap-x snap-mandatory no-scrollbar scroll-smooth">
 
         {% for card in block.heroMatrix.all() %}
             <div class="flex-shrink-0 min-w-[85vw] md:min-w-[calc(33.333%-1rem)] bg-foxplan-neutral-beige p-10 md:p-12 text-foxplan-charcoal-brown snap-start flex flex-col min-h-[480px]">
 
-                {# Placeholder Square #}
-                <div class="w-12 h-12 bg-foxplan-charcoal-brown/10 mb-16"></div>
+                {# 2. Brand Consistency: Use the SVG Arrow Head instead of a simple square #}
+                <div class="w-12 h-12 mb-16 fill-current text-foxplan-charcoal-brown/20">
+                    {{ svg(alias(arrowPath))|attr({
+                        class: 'w-full h-full object-contain object-left',
+                        role: 'presentation'
+                    }) }}
+                </div>
 
                 <h3 class="text-3xl md:text-4xl font-serif mb-6 leading-tight">
                     {{ card.mainHeading }}
@@ -49,29 +54,10 @@ Before pseudo-element: 20px charcoal border on Top, Bottom, and Left.
 </section>
 
 <style>
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    /* Ensure scrollbar hiding works across all staging browsers */
+    .no-scrollbar::-webkit-scrollbar { display: none !important; }
+    .no-scrollbar {
+        -ms-overflow-style: none !important;
+        scrollbar-width: none !important;
+    }
 </style>
-
-<script>
-    (function() {
-        const container = document.getElementById('serviceContainer');
-        const nextBtn = document.getElementById('scrollNext');
-        const prevBtn = document.getElementById('scrollPrev');
-
-        if (container && nextBtn && prevBtn) {
-            const getScrollAmount = () => {
-                const firstCard = container.querySelector('div');
-                return firstCard ? firstCard.offsetWidth + 24 : 500;
-            };
-
-            nextBtn.addEventListener('click', () => {
-                container.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-            });
-
-            prevBtn.addEventListener('click', () => {
-                container.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-            });
-        }
-    })();
-</script>

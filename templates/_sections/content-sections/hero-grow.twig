@@ -2,6 +2,10 @@
 {% set section1Image = entry.image.one() %}
 {% set section2Image = entry.image2.one() %}
 
+{# Static Fallbacks using direct disk paths for Staging stability #}
+{% set fallback1 = alias('@web/dist/images/About_1.jpg') %}
+{% set fallback2 = alias('@web/dist/images/About_2.jpg') %}
+
 <section class="w-full relative overflow-hidden" id="scroll-container">
 
     {# --- THE DOTTED LINE & MOVING DOT --- #}
@@ -42,8 +46,7 @@
             </div>
             <div class="col-span-1 md:col-start-7 md:col-span-4">
                 <div class="w-full relative -mb-48 md:-mb-72 lg:-mb-96 z-30">
-                    {# UPDATED: Pulling Section 1 Image #}
-                    <img src="{{ section1Image ? section1Image.getUrl() : craft.vite.asset('images/About_1.jpg') }}"
+                    <img src="{{ section1Image ? section1Image.url : fallback1 }}"
                          alt="{{ section1Image.title ?? 'About Foxplan' }}"
                          class="w-full h-[650px] lg:h-[900px] object-cover shadow-2xl">
                 </div>
@@ -55,15 +58,12 @@
     <div class="bg-white pt-[150px] md:pt-[250px] relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-10 w-full items-end">
 
-            {# Image kept to 4 columns (col-span-4) sitting at the bottom #}
             <div class="col-span-1 md:col-span-4 self-end leading-[0]">
-                {# UPDATED: Pulling Section 2 Image #}
-                <img src="{{ section2Image ? section2Image.getUrl() : craft.vite.asset('images/About_2.jpg') }}"
+                <img src="{{ section2Image ? section2Image.url : fallback2 }}"
                      alt="{{ section2Image.title ?? 'Foxplan Mission' }}"
                      class="w-full h-[700px] lg:h-[950px] object-cover block">
             </div>
 
-            {# Content shifted to start at column 7 #}
             <div class="col-span-1 md:col-start-7 md:col-span-4 px-8 md:pl-0 md:pr-12 lg:pr-24 pb-24 md:pb-40">
                 <div>
                     <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-8">
@@ -89,67 +89,33 @@
 </section>
 
 <script>
-
     document.addEventListener('DOMContentLoaded', function() {
-
         const container = document.getElementById('scroll-container');
-
         const dot = document.getElementById('scrolling-dot');
-
         const progressLine = document.getElementById('progress-line');
 
-
-
         function updateTimeline() {
-
             if (!container || !dot || !progressLine) return;
 
-
-
             const containerRect = container.getBoundingClientRect();
-
             const viewHeight = window.innerHeight;
-
-
-
-// Dot tracks precisely as it passes through the center of the viewport
-
             let scrollProgress = (viewHeight / 2 - containerRect.top) / containerRect.height;
 
-
-
             if (scrollProgress > 0.01 && scrollProgress < 0.99) {
-
                 dot.style.opacity = "1";
-
             } else {
-
                 dot.style.opacity = "0";
-
             }
 
-
-
             scrollProgress = Math.max(0, Math.min(1, scrollProgress));
-
             const percentage = scrollProgress * 100;
 
-
-
             dot.style.top = percentage + '%';
-
             progressLine.style.height = percentage + '%';
-
         }
 
-
-
         window.addEventListener('scroll', updateTimeline);
-
         window.addEventListener('resize', updateTimeline);
-
         updateTimeline();
-
     });
-
 </script>

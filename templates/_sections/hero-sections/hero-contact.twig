@@ -18,6 +18,9 @@
 
 {% set data = defaults | merge(props | default({})) %}
 
+{# 3. DEFINE STATIC DISK PATH FOR RELIABILITY #}
+{% set staticImagePath = alias('@web/dist/' ~ data.imageSrc) %}
+
 <section class="w-full {{ data.backgroundColor }} overflow-hidden relative">
     <div class="grid grid-cols-1 md:grid-cols-10">
 
@@ -29,13 +32,14 @@
 
             {# IMAGE BLOCK #}
             <div class="relative w-full h-[500px] lg:h-[650px] overflow-hidden">
+                {# UPDATED: Use the static path to ensure visibility without Vite #}
                 <img
-                        src="{{ craft.vite.asset(data.imageSrc) }}"
+                        src="{{ staticImagePath }}"
                         alt="{{ entryTitle }}"
                         class="w-full h-full object-cover"
                 >
 
-                {# TITLE OVERLAY: Pinned to bottom-left with pl-16 #}
+                {# TITLE OVERLAY #}
                 {% if entryTitle %}
                     <div class="absolute bottom-0 left-0 px-4 pb-4">
                         <h1 class="font-serif text-[6rem] md:text-[8rem] lg:text-[11rem] {{ data.titleColor }} leading-[0.8] tracking-tighter">
@@ -45,11 +49,7 @@
                 {% endif %}
             </div>
 
-            {#
-            BOTTOM CONTENT BLOCK
-            pt-8 creates exactly 32px of margin between the image and the text.
-            lg:pl-16 ensures the body text starts exactly where the Title/Image content starts.
-            #}
+            {# BOTTOM CONTENT BLOCK #}
             <div class="px-4 mb-20 ">
                 <div class="max-w-[450px]">
 
