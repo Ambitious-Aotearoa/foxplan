@@ -35,12 +35,17 @@
                     </div>
 
                     {% if entry.button2 is not empty %}
-                        <a href="{{ entry.buttonLink.url ?? entry.buttonLink }}" class="inline-flex items-center gap-3 bg-foxplan-charcoal-brown text-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-opacity-90 transition-all">
-                            {{ entry.button2 }}
-                            <svg width="14" height="10" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 1L17 6L12 11M1 6H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
+                        <div class="inline-block">
+                            {% include '_components/ui/button/button.twig' with {
+                                props: {
+                                    text: entry.button2,
+                                    url: '/financial-planning',
+                                    style: 'primary',
+                                    backgroundColor: 'bg-foxplan-charcoal-brown',
+                                    textColor: 'text-white'
+                                }
+                            } only %}
+                        </div>
                     {% endif %}
                 </div>
             </div>
@@ -55,7 +60,7 @@
     </div>
 
     {# --- SECTION 2: White/Beige --- #}
-    <div class="bg-white pt-[150px] md:pt-[250px] relative z-10">
+    <div class="bg-foxplan-white pt-[150px] md:pt-[250px] relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-10 w-full items-end">
 
             <div class="col-span-1 md:col-span-4 self-end leading-[0]">
@@ -74,12 +79,17 @@
                     </div>
 
                     {% if entry.button3 is not empty %}
-                        <a href="{{ entry.buttonLink2.url ?? entry.buttonLink2 }}" class="inline-flex items-center gap-3 bg-foxplan-charcoal-brown text-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-opacity-90 transition-all">
-                            {{ entry.button3 }}
-                            <svg width="14" height="10" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 1L17 6L12 11M1 6H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
+                        <div class="inline-block">
+                            {% include '_components/ui/button/button.twig' with {
+                                props: {
+                                    text: entry.button3,
+                                    url: '/dollars-and-sense-podcast',
+                                    style: 'primary',
+                                    backgroundColor: 'bg-foxplan-charcoal-brown',
+                                    textColor: 'text-white'
+                                }
+                            } only %}
+                        </div>
                     {% endif %}
                 </div>
             </div>

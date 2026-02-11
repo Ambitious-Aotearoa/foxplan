@@ -77,22 +77,6 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: ccded4b2-e534-4bba-9688-f53daa4e83ef
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-01-25T21:01:52+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
             fieldUid: 50a671c8-233b-479c-af1a-8dfcc5f25e8f # Supplier category
             handle: null
             instructions: null
@@ -101,6 +85,22 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: 459515b8-fbda-45a1-a2ef-8d3f7042fee1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-11T02:02:12+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a60554c1-42e9-4a93-b213-3950bf23db7d # Button URL
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 47ab1be5-cd9a-4d69-bda2-5d88b42ffaea
             userCondition: null
             warning: null
             width: 100

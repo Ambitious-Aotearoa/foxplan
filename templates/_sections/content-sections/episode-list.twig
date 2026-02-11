@@ -1,4 +1,9 @@
+{# templates/_sections/content-sections/episode-list.twig #}
 
+{# 1. STATIC ASSETS #}
+{% set staticPodcastThumb = alias('@web/dist/images/podcast-image.jpg') %}
+
+{# 2. FETCH DATA #}
 {% set episodeQuery = craft.entries
     .section('podcastEpisodes')
     .type('podcasts')
@@ -6,13 +11,31 @@
     .limit(6)
 %}
 
-{# 2. EXECUTE PAGINATION #}
 {% paginate episodeQuery as pageInfo, episodes %}
 
 <div id="podcast-container"
-     class="w-full {{ data.backgroundColor ?? 'bg-foxplan-neutral-beige' }} p-[20px]"
+     class="w-full bg-foxplan-neutral-beige p-[20px]"
      x-data="{
         loading: false,
+        showPlayer: false,
+        activeAudioUrl: '',
+        activeTitle: '',
+
+        openPlayer(url, title) {
+            if (!url) return;
+            this.activeTitle = title;
+            this.activeAudioUrl = url;
+            this.showPlayer = true;
+            document.body.style.overflow = 'hidden';
+        },
+
+        closePlayer() {
+            this.showPlayer = false;
+            this.activeAudioUrl = '';
+            this.activeTitle = '';
+            document.body.style.overflow = 'auto';
+        },
+
         async loadPage(url) {
             if (this.loading) return;
             this.loading = true;
@@ -33,129 +56,119 @@
         }
      }">
 
-    <section class="w-full overflow-hidden">
-        <div class="px-8 md:px-12 w-full pt-16 pb-16 md:pt-24 md:pb-24">
+    <section class="w-full">
+        <div class="px-8 md:px-12 w-full pt-16 pb-16">
 
-            {# HEADER SECTION #}
-            <div class="flex justify-between items-baseline mb-12 border-b border-foxplan-yellow pb-6">
+            {# HEADER #}
+            <div class="flex justify-between items-center mb-12 border-b border-foxplan-yellow pb-6">
                 <h2 class="font-serif text-4xl md:text-6xl text-foxplan-charcoal-brown">All episodes</h2>
-                {# Updated "See all" to link to your Spotify/Podcast host if desired #}
-                <a href="{{ episodes[0].spotifyUrl ?? '#' }}"
+
+                <a href="https://open.spotify.com/show/4OyvWBje9xXh1ROJ1x5E4K"
                    target="_blank"
                    rel="noopener noreferrer"
-                   class="inline-block px-6 py-2 bg-foxplan-charcoal-brown text-foxplan-neutral-beige font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-foxplan-yellow hover:text-foxplan-charcoal-brown transition-all">
-                    See all ↴
+                   class="inline-block px-10 py-3 bg-foxplan-charcoal-brown text-foxplan-neutral-beige font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-foxplan-yellow hover:text-foxplan-charcoal-brown transition-all">
+                    See all
                 </a>
             </div>
 
-            {# THE GRID CONTAINER #}
+            {# GRID #}
             <div id="episode-grid" class="divide-y divide-foxplan-yellow">
                 {% for episode in episodes %}
-                    {% set podcastImage = episode.podcastImages.one() %}
-                    {% set listenUrl = (episode.spotifyUrl | trim) ?: episode.url %}
+                    {% set audioUrl = episode.spotifyUrl | trim %}
+                    {% set epTitle = (episode.mainHeading ?? episode.title) | escape('js') %}
+                    {% set craftImage = episode.podcastImages.one() %}
 
-                    <div class="flex flex-col md:flex-row md:items-center justify-between py-10 px-4 -mx-4 group transition-all duration-300 hover:bg-[#2D1B17]">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between py-10 px-4 -mx-4 group transition-all duration-300 hover:bg-foxplan-charcoal-brown/80">
                         <div class="flex items-start md:items-center pr-8 mb-6 md:mb-0">
-
-                            {# Thumbnail - Updated to Square aspect ratio for Podcast Art #}
-                            <div class="w-24 h-24 md:w-32 md:h-32 mr-8 flex-shrink-0 overflow-hidden bg-foxplan-charcoal-brown/10">
-                                <a href="{{ listenUrl }}" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
-                                    {% if podcastImage %}
-                                        <img src="{{ podcastImage.url }}"
-                                             alt="{{ episode.title }}"
-                                             class="w-full h-full object-cover block grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105">
-                                    {% else %}
-                                        <div class="w-full h-full flex items-center justify-center bg-foxplan-charcoal-brown/20 text-foxplan-charcoal-brown font-serif italic text-xs">
-                                            foxplan
-                                        </div>
-                                    {% endif %}
-                                </a>
+                            <div class="w-24 h-24 md:w-32 md:h-32 mr-8 flex-shrink-0 overflow-hidden bg-foxplan-charcoal-brown/10 cursor-pointer"
+                                 @click="openPlayer('{{ audioUrl }}', '{{ epTitle }}')">
+                                <img src="{{ craftImage ? craftImage.url : staticPodcastThumb }}"
+                                     alt="{{ episode.title }}"
+                                     class="w-full h-full object-cover block transition-all duration-500 group-hover:scale-105">
                             </div>
 
-                            {# Info #}
-                            <div>
-                                <a href="{{ listenUrl }}" target="_blank" rel="noopener noreferrer">
-                                    <h3 class="font-serif text-2xl md:text-[32px] leading-tight {{ data.textColor ?? 'text-foxplan-charcoal-brown' }} mb-2 group-hover:text-foxplan-yellow transition-colors">
-                                        {{ episode.mainHeading ?? episode.title }}
-                                    </h3>
-                                </a>
-
-                                <div class="flex items-center gap-4">
-                                    <p class="text-sm text-foxplan-charcoal-brown font-sans uppercase tracking-wider group-hover:text-foxplan-neutral-beige/60">
-                                        {{ episode.postDate | date('M d, Y') }}
-                                    </p>
-
-                                    {% if episode.episodeDuration %}
-                                        <span class="text-foxplan-neutral-beige">•</span>
-                                        <p class="text-sm text-foxplan-charcoal-brown font-sans uppercase tracking-wider group-hover:text-foxplan-neutral-beige/60">
-                                            {# Refined Duration Logic #}
-                                            {% if ':' in episode.episodeDuration %}
-                                                {% set parts = episode.episodeDuration | split(':') %}
-                                                {{ (parts | length == 3) ? (parts[0] * 60) + parts[1] : parts[0] }} MINS
-                                            {% else %}
-                                                {{ (episode.episodeDuration / 60) | round(0, 'floor') }} MINS
-                                            {% endif %}
-                                        </p>
+                            <div class="flex-grow">
+                                <h3 @click="openPlayer('{{ audioUrl }}', '{{ epTitle }}')"
+                                    class="font-serif text-2xl md:text-[32px] leading-tight cursor-pointer text-foxplan-charcoal-brown mb-2 group-hover:text-foxplan-neutral-beige transition-colors">
+                                    {{ episode.mainHeading ?? episode.title }}
+                                </h3>
+                                <div class="flex items-center gap-2 text-sm text-foxplan-charcoal-brown group-hover:text-foxplan-neutral-beige font-sans uppercase tracking-wider">
+                                    <span>{{ episode.postDate | date('M d, Y') }}</span>
+                                    {% if episode.episodeDuration matches '/^\\d+$/' %}
+                                        <span>•</span>
+                                        {% set totalSeconds = episode.episodeDuration | number_format(0, '.', '') %}
+                                        {% set mins = (totalSeconds / 60) | round(0, 'floor') %}
+                                        {% set secs = totalSeconds % 60 %}
+                                        <span>{{ mins }} min {{ secs }} sec</span>
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
 
                         <div class="flex-shrink-0">
-                            <a href="{{ listenUrl }}" target="_blank" rel="noopener noreferrer" class="inline-block px-10 py-3 bg-foxplan-charcoal-brown text-foxplan-neutral-beige font-bold uppercase text-[10px] tracking-[0.2em] group-hover:bg-[#E8BD5B] group-hover:text-black transition-all">
-                                Listen ↴
-                            </a>
+                            <button @click="openPlayer('{{ audioUrl }}', '{{ epTitle }}')"
+                                    class="inline-block px-10 py-3 bg-foxplan-charcoal-brown text-foxplan-neutral-beige font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-foxplan-yellow hover:text-foxplan-charcoal-brown transition-all">
+                                Listen
+                            </button>
                         </div>
                     </div>
                 {% endfor %}
             </div>
 
-            {# THE PAGINATION CONTROLS #}
+            {# PAGINATION CONTROLS #}
             <div id="episode-pagination" class="mt-16 flex justify-center items-center gap-10">
-
                 {% if pageInfo.prevUrl %}
-                    <a @click.prevent="loadPage('{{ pageInfo.prevUrl }}')"
-                       href="{{ pageInfo.prevUrl }}"
-                       class="text-foxplan-charcoal-brown hover:text-foxplan-yellow transition-colors text-lg font-light">
-                        ← Prev
-                    </a>
+                    <a @click.prevent="loadPage('{{ pageInfo.prevUrl }}')" href="{{ pageInfo.prevUrl }}" class="text-foxplan-charcoal-brown hover:text-foxplan-yellow transition-colors text-lg font-light">← Prev</a>
                 {% else %}
                     <span class="text-foxplan-charcoal-brown/20 cursor-not-allowed text-lg font-light">← Prev</span>
                 {% endif %}
 
                 <div class="flex items-center gap-8">
-                    {% for page, url in pageInfo.getPrevUrls(2) %}
-                        <a @click.prevent="loadPage('{{ url }}')"
-                           href="{{ url }}"
-                           class="text-foxplan-charcoal-brown/20 hover:text-foxplan-charcoal-brown text-xl font-light transition-colors">
-                            {{ page }}
-                        </a>
-                    {% endfor %}
-
-                    <span class="text-foxplan-charcoal-brown text-xl font-normal px-1">
-                        {{ pageInfo.currentPage }}
-                    </span>
-
-                    {% for page, url in pageInfo.getNextUrls(2) %}
-                        <a @click.prevent="loadPage('{{ url }}')"
-                           href="{{ url }}"
-                           class="text-foxplan-charcoal-brown/20 hover:text-foxplan-charcoal-brown text-xl font-light transition-colors">
-                            {{ page }}
-                        </a>
-                    {% endfor %}
+                    {% for page, url in pageInfo.getPrevUrls(2) %}<a @click.prevent="loadPage('{{ url }}')" href="{{ url }}" class="text-foxplan-charcoal-brown/20 hover:text-foxplan-charcoal-brown text-xl font-light transition-colors">{{ page }}</a>{% endfor %}
+                    <span class="text-foxplan-charcoal-brown text-xl font-normal px-1">{{ pageInfo.currentPage }}</span>
+                    {% for page, url in pageInfo.getNextUrls(2) %}<a @click.prevent="loadPage('{{ url }}')" href="{{ url }}" class="text-foxplan-charcoal-brown/20 hover:text-foxplan-charcoal-brown text-xl font-light transition-colors">{{ page }}</a>{% endfor %}
                 </div>
 
                 {% if pageInfo.nextUrl %}
-                    <a @click.prevent="loadPage('{{ pageInfo.nextUrl }}')"
-                       href="{{ pageInfo.nextUrl }}"
-                       class="text-foxplan-charcoal-brown hover:text-foxplan-yellow transition-colors text-lg font-light">
-                        Next →
-                    </a>
+                    <a @click.prevent="loadPage('{{ pageInfo.nextUrl }}')" href="{{ pageInfo.nextUrl }}" class="text-foxplan-charcoal-brown hover:text-foxplan-yellow transition-colors text-lg font-light">Next →</a>
                 {% else %}
                     <span class="text-foxplan-charcoal-brown/20 cursor-not-allowed text-lg font-light">Next →</span>
                 {% endif %}
             </div>
-
         </div>
     </section>
+
+    {# --- AUDIO MODAL (THE POPUP) --- #}
+    <template x-if="showPlayer">
+        <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-foxplan-neutral-beige/80 backdrop-blur-sm"
+             @click.self="closePlayer()"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100">
+
+            <div class="relative w-full max-w-xl bg-foxplan-charcoal-brown p-8 rounded-2xl shadow-2xl border border-white/10">
+                <button @click="closePlayer()" class="absolute top-4 right-4 text-foxplan-neutral-beige hover:text-foxplan-yellow z-10 p-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+
+                <div class="mb-8 pr-12">
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-foxplan-yellow mb-2 block font-bold">Now Playing</span>
+                    <h3 class="font-serif text-2xl text-foxplan-neutral-beige leading-tight" x-text="activeTitle"></h3>
+                </div>
+
+                <div class="w-full flex justify-center items-center py-4">
+                    <audio controls autoplay class="w-full custom-audio-player">
+                        <source :src="activeAudioUrl" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </template>
 </div>
+
+<style>
+    .custom-audio-player {
+        height: 40px;
+        filter: sepia(20%) saturate(70%) grayscale(1) contrast(90%) invert(89%) sepia(5%) hue-rotate(334deg) brightness(105%);
+    }
+</style>

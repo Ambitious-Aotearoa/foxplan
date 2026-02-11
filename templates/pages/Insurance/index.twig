@@ -19,11 +19,10 @@
             bodyText: pageBody,
             buttonText: pageButton,
             imageAsset: pageHeroImage,
-            imagePath: 'images/Insurance_hero.jpg',
             backgroundColor: 'bg-foxplan-yellow',
-            buttonUrl: '/contact',
+            buttonUrl: '/contact-us',
             buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-white'
+            buttonTextColor: 'text-foxplan-neutral-beige'
         }
     }) }}
 
@@ -33,7 +32,7 @@
         props: {
             backgroundColor: 'bg-foxplan-yellow',
             textColor: 'text-foxplan-charcoal-brown',
-            mainHeading: entry.paragraphHeading2 ?? 'How we work with you',
+            mainHeading: entry.paragraphHeading ?? 'How we work with you',
             mainBody: entry.bodyText ?? '',
         }
     } %}
@@ -54,7 +53,7 @@
 
     {{ include('_sections/services/our-services-1.twig', {
         props: {
-            title: entry.paragraphHeading3 ?? 'Our Services',
+            title: entry.paragraphHeading2 ?? 'Our Services',
             backgroundColor: 'bg-foxplan-neutral-beige',
             buttonBgColor: 'bg-foxplan-charcoal-brown',
             buttonTextColor: 'text-white',

@@ -1,4 +1,4 @@
-dateModified: 1770761421
+dateModified: 1770775332
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
@@ -141,6 +141,7 @@ meta:
     a8da3467-e2fa-4b90-b5e8-7df257de2ebc: Image # Image
     a30fb669-985c-4116-8bf1-8ca04a3af56c: Article # Article
     a82e8874-a0f4-4805-b59d-8c47d4867d7c: Tags # Tags
+    a60554c1-42e9-4a93-b213-3950bf23db7d: 'Button URL' # Button URL
     aad93b84-e999-4d54-bc1e-8f65472830f4: Partners # Partners
     ab6e0b50-c8e4-46a6-87e1-30dc93191009: "Personal\_& Medical  Insurance" # Personal & Medical  Insurance
     ad7daef3-ba4d-470a-8ee9-3bee8c28bcea: 'Newsletter Title' # Newsletter Title

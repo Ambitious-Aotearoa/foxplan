@@ -1,7 +1,7 @@
 columnSuffix: null
-handle: buttonLink
+handle: buttonUrl
 instructions: null
-name: buttonLink
+name: 'Button URL'
 searchable: false
 settings:
   byteLimit: null

@@ -246,6 +246,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-02-11T01:00:03+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a60554c1-42e9-4a93-b213-3950bf23db7d # Button URL
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 25f5f847-556d-4033-b71d-6a5fe4034878
+            userCondition: null
+            warning: null
+            width: 100
         name: 'image and text'
         uid: 60e4381b-2c5b-4f56-bdfa-768e44813df3
         userCondition: null

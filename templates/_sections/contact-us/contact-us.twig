@@ -3,30 +3,26 @@
 {# 1. FETCH DYNAMIC DATA FROM CRAFT #}
 {% set insightTags = craft.tags.group('insights').all() %}
 {% set serviceOptions = insightTags|map(t => t.title) %}
-
-{# Fetch Advisers #}
 {% set adviserEntries = craft.entries.section('advisers').all() %}
 {% set adviserNames = adviserEntries|map(a => a.title) %}
 
-{# Fallbacks #}
 {% if serviceOptions is empty %}{% set serviceOptions = ['Insurance', 'Mortgages', 'KiwiSaver'] %}{% endif %}
 
-{# 2. MAP DATA (Finding Matrix Blocks and Assets) #}
+{# 2. CORRECT MATRIX FETCHING (Using 'tabs' handle) #}
+{# Based on your layout, the field is 'tabs' #}
+{% set allBlocks = entry.tabs.all() ?? [] %}
 
-{# Safe check: Verify infoBlock exists before calling .type() to avoid RuntimeError #}
-{% set hasInfoBlock = entry.infoBlock is defined and entry.infoBlock is not null %}
+{# Filter blocks by their handles #}
+{% set bookBlock = allBlocks|filter(b => b.type.handle == 'bookAnAdviser')|first %}
+{% set locBlock = allBlocks|filter(b => b.type.handle == 'location')|first %}
 
-{# Block handles: bookAnAdviser and location #}
-{% set bookBlock = hasInfoBlock ? entry.infoBlock.type('bookAnAdviser').one() : null %}
-{% set locBlock = hasInfoBlock ? entry.infoBlock.type('location').one() : null %}
-
-{# Asset handles: image and image2 #}
+{# Asset handles #}
 {% set bookImage = (bookBlock and bookBlock.image is defined) ? bookBlock.image.one() : null %}
-{% set locImage = (locBlock and locBlock.image2 is defined) ? locBlock.image2.one() : null %}
+{% set locImage = (locBlock and locBlock.image is defined) ? locBlock.image.one() : null %}
 
-{# Define Hardcoded Fallback Paths #}
 {% set fallbackContact = alias('@web/dist/images/Contact_1.jpg') %}
 
+{# 3. MAP DATA OBJECT #}
 {% set contactData = {
     call: {
         heading: entry.contactMainHeading2 ?? 'Get in touch',
@@ -39,16 +35,16 @@
         imageSrc: bookImage ? bookImage.url : fallbackContact,
         advisers: adviserNames,
         services: serviceOptions
-        },
-        location: {
+    },
+    location: {
         heading: (locBlock) ? locBlock.contactMainHeading : 'Our Location',
         body: (locBlock) ? locBlock.contactBodytext : '',
         imageSrc: locImage ? locImage.url : fallbackContact
-        }
-        } %}
+    }
+} %}
 
         {# Styling Classes #}
-        {% set descriptionClasses = 'text-base leading-relaxed mb-6 text-foxplan-charcoal-brown font-aktiv-grotesk font-light' %}
+        {% set descriptionClasses = 'text-base leading-relaxed mb-6 text-foxplan-charcoal-brown font-aktiv-grotesk font-light whitespace-pre-wrap' %}
         {% set labelClasses = 'text-sm font-semibold uppercase tracking-wider mb-2 block text-foxplan-charcoal-brown font-aktiv-grotesk' %}
         {% set inputClasses = 'w-full py-2 border-b border-gray-400 focus:outline-none focus:border-gray-900 bg-transparent text-foxplan-charcoal-brown font-aktiv-grotesk' %}
         {% set tabTitleClasses = 'font-serif text-4xl sm:text-5xl lg:text-[5.5rem] font-light leading-none mb-0 text-foxplan-charcoal-brown' %}
@@ -56,43 +52,41 @@
         {# --- MACROS --- #}
 
         {% macro render_call_tab_content(data, descriptionClasses) %}
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 mt-4 px-0">
-            <div class="md:col-span-5">
-                <div class="{{ descriptionClasses }}">{{ data.description|raw }}</div>
-        </div>
-        <div class="md:col-span-7">
-            {{ include('_components/form/Contact-form.twig', {
-                props: { submitText: 'Submit' }
-            }) }}
-        </div>
-    </div>
-{% endmacro %}
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 mt-4 px-0">
+                <div class="md:col-span-5">
+                    <div class="{{ descriptionClasses }}">{{ data.description|raw }}</div>
+                </div>
+                <div class="md:col-span-7">
+                    {{ include('_components/form/Contact-form.twig', {
+                        props: { submitText: 'Submit' }
+                    }) }}
+                </div>
+            </div>
+        {% endmacro %}
 
 {% macro render_callback_tab_content(data, descriptionClasses, labelClasses, inputClasses) %}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-0 mt-4 items-stretch">
         <div class="lg:col-span-5 px-0">
             <div class="{{ descriptionClasses }}">{{ data.body1|raw }}</div>
-
             <div class="grid grid-cols-2 gap-x-8 mt-10 mb-10">
                 <div>
                     <label class="{{ labelClasses }}">SELECT ADVISER</label>
                     <select class="{{ inputClasses }} appearance-none rounded-none bg-transparent">
                         <option value="">Choose an Adviser</option>
-                        {% for name in data.advisers %}<option value="{{ name }}">{{ name }}</option>{% endfor %}
+                        {% for name in data.advisers %}
+                            <option value="{{ name }}">{{ name }}</option>{% endfor %}
                     </select>
                 </div>
                 <div>
                     <label class="{{ labelClasses }}">SELECT SERVICE</label>
                     <select class="{{ inputClasses }} appearance-none rounded-none bg-transparent">
                         <option value="">Choose a Service</option>
-                        {% for service in data.services %}<option value="{{ service }}">{{ service }}</option>{% endfor %}
+                        {% for service in data.services %}
+                            <option value="{{ service }}">{{ service }}</option>{% endfor %}
                     </select>
                 </div>
-
             </div>
-
             <div class="{{ descriptionClasses }} mb-10">{{ data.body2|raw }}</div>
-
             <div class="flex">
                 {{ include('_components/ui/button/button.twig', {
                     props: { text: 'Book Now', url: '#', style: 'secondary' }
@@ -110,6 +104,7 @@
 {% macro render_location_tab_content(data, descriptionClasses) %}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-0 mt-4 items-stretch">
         <div class="lg:col-span-5 px-0">
+            {# Corrected to pull from locBlock.contactBodytext #}
             <div class="{{ descriptionClasses }}">{{ data.body|raw }}</div>
         </div>
         <div class="hidden lg:block lg:col-span-7 pl-12">
@@ -134,7 +129,9 @@
     ]
 } %}
 
-<section class="w-full bg-foxplan-neutral-beige pt-16 pb-20 overflow-x-hidden" x-data="{ activeTab: '{{ tabsComponentData.defaultTab }}' }">
+{# --- RENDER --- #}
+<section class="w-full bg-foxplan-neutral-beige pt-16 pb-20 overflow-x-hidden"
+         x-data="{ activeTab: '{{ tabsComponentData.defaultTab }}' }">
     <div class="w-full px-4 lg:px-12">
         {% include '_components/ui/tabs/tabs.twig' with { data: tabsComponentData } %}
     </div>

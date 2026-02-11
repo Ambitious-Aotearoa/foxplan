@@ -41,22 +41,6 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 34bbb274-25db-41aa-bedd-3a6ee00d921f
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-01-26T22:49:28+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
             fieldUid: 1bce15eb-e441-43c8-bff3-cb4b0197fef2 # Hero Body Text
             handle: null
             instructions: null
@@ -89,14 +73,30 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
+            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 154c3b47-3b32-4254-ba8e-189a8ec54962
+            uid: 34bbb274-25db-41aa-bedd-3a6ee00d921f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-10T22:43:02+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
+            handle: heroImage2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8335a979-ce41-41ec-8de4-7ff31e61cff3
             userCondition: null
             warning: null
             width: 100

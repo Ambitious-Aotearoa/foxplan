@@ -9,22 +9,7 @@
 {% block blockAppBody %}
 
     {# 1. Hero Section #}
-    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
-    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
-    {% set pageHeroImage = entry.heroImage.one() ?? null %}
-
-    {{ include('_sections/hero-sections/hero-arrow.twig', {
-        props: {
-            heading: pageHeading,
-            bodyText: pageBody,
-            imageAsset: pageHeroImage,
-            imagePath: 'images/Insurance_hero.jpg',
-            backgroundColor: 'bg-foxplan-yellow',
-            buttonUrl: '/contact',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-white'
-        }
-    }) }}
+    {{ include('_sections/hero-sections/hero-About.twig') }}
 
 
     {# 2. image text section with arrow #}

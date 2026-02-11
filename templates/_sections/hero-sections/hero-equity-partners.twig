@@ -6,12 +6,10 @@
     imagePath: props.imagePath ?? 'images/Equity_1.jpg',
     body: props.body ?? "If you're an established business owner, our equity programme can help you build and grow your business while sharing the support and success of our firm.",
     buttonText: props.buttonText ?? 'Get in Touch',
-    buttonUrl: props.buttonUrl ?? '#'
+    buttonUrl: '/contact-us'
 } %}
 
-{# Define static paths to bypass Vite #}
 {% set heroImagePath = alias('@web/dist/' ~ data.imagePath) %}
-{% set arrowPath = '@webroot/dist/images/placeholder/Arrow_1.svg' %}
 
 <section class="w-full bg-foxplan-neutral-beige overflow-hidden font-aktiv"
          x-data="{ revealed: false }"
@@ -19,22 +17,16 @@
 
     {# 1. HERO CONTENT #}
     <div class="relative w-full max-w-[1400px] mx-auto px-4 h-[500px] md:h-[650px] flex items-center justify-center">
-
-        {# CENTRAL LANDSCAPE IMAGE - Hardcoded path to bypass Vite #}
         <div class="relative w-[70%] h-[80%] mt-10 z-10">
-            <img src="{{ heroImagePath }}"
-                 alt="Equity Partners"
-                 class="w-full h-full object-cover">
+            <img src="{{ heroImagePath }}" alt="Equity Partners" class="w-full h-full object-cover">
         </div>
 
-        {# EQUITY HEADING #}
         <div class="absolute top-[20%] left-[-4%] md:left-[-7%] lg:left-[-10%] z-20">
             <h1 class="font-serif text-[100px] md:text-[180px] leading-none text-foxplan-charcoal-brown tracking-tighter">
                 {{ data.heading1 }}
             </h1>
         </div>
 
-        {# PARTNERS HEADING #}
         <div class="absolute bottom-[8%] right-[-5%] md:right-[-8%] lg:right-[-12%] z-20">
             <h1 class="font-serif text-[100px] md:text-[180px] leading-none text-foxplan-charcoal-brown tracking-tighter">
                 {{ data.heading2 }}
@@ -42,36 +34,38 @@
         </div>
     </div>
 
-    {# 2. THE GROWING ARROW #}
+    {# 2. THE GROWING ARROW: REALISTIC & SMALL VERSION #}
     <div class="relative w-full mb-10 px-[10px]">
-        <div class="overflow-hidden transition-all duration-[4500ms] h-[20px] relative"
+        {# Reduced container height for a tighter, more realistic feel #}
+        <div class="overflow-hidden transition-all duration-[4500ms] h-[16px] relative"
              style="transition-timing-function: steps(60);"
              :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0%; opacity: 0;'">
 
-            <div class="w-[calc(100vw-20px)] h-full flex items-center relative">
-                {# Dotted Line: Matching the fine dots of your other sections #}
-                <div class="w-full h-0 border-t border-dashed border-foxplan-charcoal-brown opacity-100"></div>
+            {# Grid ensures the line and head are separate entities that never overlap #}
+            <div class="w-[calc(100vw-20px)] h-full grid grid-cols-[1fr_auto_16px] items-center relative">
 
-                {# ARROW HEAD: Updated to use the consistent SVG asset and theming #}
-                <div class="absolute right-0 flex items-center text-foxplan-charcoal-brown fill-current">
-                    {{ svg(alias(arrowPath))|attr({
-                        class: 'h-4 w-auto object-contain object-right',
-                        role: 'presentation'
-                    }) }}
+                {# THE LINE: Ends exactly where the head begins #}
+                <div class="h-0 border-t-2 border-dashed border-foxplan-charcoal-brown"></div>
+
+                {# THE HEAD: Small, high-fidelity chevron #}
+                <div class="flex items-center justify-center flex-shrink-0">
+                    <div class="w-2 h-0 border-t-2 border-foxplan-charcoal-brown"></div>
+                    <div class="w-3 h-3 border-t-2 border-r-2 border-foxplan-charcoal-brown rotate-45 transform origin-center -ml-2"></div>
                 </div>
+
+                <div></div>
             </div>
         </div>
     </div>
 
     {# 3. BODY TEXT & BUTTON #}
-    <div class="w-full flex flex-col items-center justify-center px-4 ">
+    <div class="w-full flex flex-col items-center justify-center px-4">
         <div class="max-w-2xl text-center mb-4">
             <p class="text-sm md:text-base text-foxplan-charcoal-brown leading-relaxed opacity-90">
                 {{ data.body | raw }}
             </p>
         </div>
 
-        {# BUTTON COMPONENT #}
         <div class="flex">
             {% include '_components/ui/button/button.twig' with {
                 props: {

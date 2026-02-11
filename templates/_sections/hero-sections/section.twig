@@ -1,22 +1,25 @@
-{# 1. Map Backend Data #}
+{# 1. Map Backend Data using confirmed handles #}
 {% set sectionImage = entry.image.one() %}
+
+{# Since buttonUrl is 'Plain Text', we fetch it directly as a string #}
+{% set rawUrl = entry.buttonUrl ?? '' %}
 
 {% set defaults = {
     title: entry.paragraphHeading2 ?? 'Get the First Home Buyers Guide',
     bodyText: entry.bodyText2 ?? '',
     buttonText: entry.button2 ?? '',
     imageSrc: sectionImage ? sectionImage.url : null,
+    buttonUrl: rawUrl ? (rawUrl|first == '/' or 'http' in rawUrl ? rawUrl : '/' ~ rawUrl) : '#',
     backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown',
     buttonBgColor: 'bg-foxplan-charcoal-brown',
     buttonTextColor: 'text-foxplan-yellow',
     borderColor: 'border-foxplan-charcoal-brown'
-} %}
+    } %}
 
-{% set data = defaults | merge(props ?? {}) %}
+    {% set data = defaults | merge(props ?? {}) %}
 
-<section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">
-    {# Applied a fixed 20px padding to the left and right #}
+    <section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">
     <div class="px-[20px] pt-16 pb-16 md:pt-24 md:pb-24">
 
         <div class="flex flex-wrap md:flex-nowrap w-full items-center gap-0">
@@ -24,6 +27,7 @@
             {# Left Column: 30% Width #}
             <div class="w-full md:w-[30%] pr-8 lg:pr-12">
                 <div class="max-w-md">
+                    {# Style: Sub-section Heading #}
                     <h2 class="font-serif text-5xl md:text-6xl lg:text-[4.5rem] font-normal {{ data.textColor }} leading-[0.85] tracking-tight {{ (data.bodyText or data.buttonText) ? 'mb-8' : '' }}">
                         {{ data.title | raw }}
                     </h2>
@@ -41,6 +45,7 @@
                                     text: data.buttonText,
                                     backgroundColor: data.buttonBgColor,
                                     textColor: data.buttonTextColor,
+                                    url: data.buttonUrl,
                                     classes: 'px-10 py-5 text-xs tracking-widest uppercase inline-flex items-center gap-2'
                                 }
                             } only %}
@@ -52,7 +57,6 @@
             {# Right Side: 70% Width #}
             <div class="w-full md:w-[70%]">
                 <div class="w-full relative overflow-hidden">
-                    {# Height maintained at 650px as requested previously #}
                     {% set imgClasses = "w-full h-[400px] md:h-[550px] lg:h-[650px] object-cover block" %}
 
                     {% if data.imageSrc %}
@@ -60,6 +64,7 @@
                              alt="{{ data.title|striptags }}"
                              class="{{ imgClasses }}">
                     {% else %}
+                        {# Fallback image from assets #}
                         <img src="{{ craft.vite.asset('images/Insights_4.jpg') }}"
                              alt="{{ data.title|striptags }}"
                              class="{{ imgClasses }}">
