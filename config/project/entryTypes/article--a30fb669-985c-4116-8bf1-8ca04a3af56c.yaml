@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -36,17 +37,18 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-16T22:56:20+00:00'
+            dateAdded: '2026-02-13T00:59:25+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
+            elementEditCondition: null
+            fieldUid: 85d0c31a-4e01-4008-8444-58f23d57cc31 # Featured Image
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 2e84d9bf-180b-433a-8eda-2decd46369e9
+            uid: 96413238-9a2e-49cb-9331-a5e826929a1c
             userCondition: null
             warning: null
             width: 100
@@ -54,6 +56,7 @@ fieldLayouts:
             dateAdded: '2026-01-27T03:36:07+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: a82e8874-a0f4-4805-b59d-8c47d4867d7c # Tags
             handle: null
             instructions: null
@@ -69,6 +72,7 @@ fieldLayouts:
             dateAdded: '2026-01-27T03:36:07+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: d4886813-ca9f-4b8a-a82c-097ea4232f7e # Insight Body
             handle: null
             instructions: null
@@ -84,6 +88,7 @@ fieldLayouts:
             dateAdded: '2026-01-27T04:14:14+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: efeb5ea9-1bf7-4e7d-a7fa-d14d0e4d081b # Article Categories
             handle: null
             instructions: null
@@ -98,6 +103,7 @@ fieldLayouts:
         name: Content
         uid: d38cd4ef-e6bb-466d-915e-f7a42936b93b
         userCondition: null
+    thumbFieldKey: null
 handle: article
 hasTitleField: true
 icon: null
@@ -109,3 +115,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

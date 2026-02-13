@@ -1,0 +1,122 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    textColor: 'text-foxplan-charcoal-brown',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% block blockAppBody %}
+    {# 1. HERO / HEADING SECTION #}
+    <section class="w-full bg-foxplan-neutral-beige pt-32 pb-16">
+        <div class="px-[20px] max-w-[1440px] mx-auto text-center">
+            {#
+            REPLACED: text-5xl md:text-6xl lg:text-[7.5rem]
+            CLAMP: Min 3rem (48px), Max 7.5rem (120px)
+            #}
+            <h1 class="font-['Season_VF-TRIAL'] text-foxplan-charcoal-brown tracking-tighter leading-[0.9]"
+                style="font-size: clamp(3rem, 8vw + 1rem, 7.5rem);">
+                Disclaimer
+            </h1>
+        </div>
+    </section>
+
+    {# 2. MAIN CONTENT SECTION #}
+    <section class="w-full bg-foxplan-neutral-beige pb-32">
+        <div class="px-[20px] max-w-[1440px] mx-auto">
+            <div class="font-['aktiv-grotesk'] font-light text-foxplan-charcoal-brown max-w-5xl mx-auto space-y-16">
+
+                <p class="opacity-90 border-b border-foxplan-charcoal-brown/10 pb-8"
+                   style="font-size: clamp(1.25rem, 2vw + 1rem, 1.75rem);">
+                    Before you use the FoxPlan Ltd website there are some important things to be aware of and information that you might find useful. It’s important you read and understand these disclaimers.
+                </p>
+
+                <div class="space-y-16">
+
+                    <div>
+
+                        <h3 class="font-['Season_VF-TRIAL'] mb-6"
+                            style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">
+                            No personalised advice
+                        </h3>
+
+                        <p class="opacity-80"
+                           style="font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);">
+                            The information provided and services described in this website are of a general nature and are not intended to be personalised financial advice to a retail client. The information provided in this website is not intended to be a substitute for professional advice.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-['Season_VF-TRIAL'] mb-6"
+                            style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">
+                            No warranties
+                        </h3>
+                        <p class="opacity-80"
+                           style="font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);">
+                            While every effort is made to ensure the information on this website is up-to-date and correct, FoxPlan Ltd makes no representations or warranties of any kind, express or implied, about the accuracy, reliability, completeness, suitability or availability of the website.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-['Season_VF-TRIAL'] mb-6"
+                            style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">
+                            Liability
+                        </h3>
+                        <p class="opacity-80"
+                           style="font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);">
+                            To the full extent legally allowable the directors, contractors, associates and staff of, FoxPlan Ltd expressly disclaim all and any liability and responsibility to any person in respect of anything, and of the consequences of anything, done or omitted to be done.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-['Season_VF-TRIAL'] mb-6"
+                            style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">
+                            Security and privacy
+                        </h3>
+                        <p class="opacity-80"
+                           style="font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);">
+                            Although FoxPlan Ltd regularly updates its virus protection software, it does not warrant that the server that makes the information and contents of this website available is free of viruses or bugs.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-['Season_VF-TRIAL'] mb-6"
+                            style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">
+                            Linked websites
+                        </h3>
+                        <p class="opacity-80"
+                           style="font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);">
+                            Through this website you may be able to link to other websites which are not under the control of FoxPlan Ltd. FoxPlan Ltd has no knowledge of or control over the nature, content, and availability of those websites.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-['Season_VF-TRIAL'] mb-6"
+                            style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">
+                            NZ jurisdiction only
+                        </h3>
+                        <p class="opacity-80"
+                           style="font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);">
+                            The information published on this website is governed by, and has been prepared to comply with, the New Zealand law. The information is only intended for persons within the New Zealand jurisdiction.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+{% endblock %}

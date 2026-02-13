@@ -24,18 +24,20 @@
 
 {% set data = defaults | merge(props ?? {}) %}
 
-<section class="w-full py-20 {{ data.backgroundColor }} overflow-hidden">
+<section class="w-full py-10 lg:py-20 {{ data.backgroundColor }} overflow-hidden">
 
     {# 1. TOP SECTION: Centered #}
-    <div class="container mx-auto px-6 lg:px-12 mb-16 lg:mb-24">
+    <div class="container mx-auto px-6 lg:px-12 mb-8 lg:mb-24">
         <div class="max-w-3xl mx-auto text-center">
             {% if data.heading %}
+                {# ORIGINAL SIZE: Combined with font-serif for Season Serif Trial Light #}
                 <h2 class="font-serif text-5xl lg:text-7xl leading-tight {{ data.textColor }} mb-6">
                     {{ data.heading | raw }}
                 </h2>
             {% endif %}
 
             {% if data.subheading %}
+                {# ORIGINAL SIZE: Combined with font-aktiv for Aktiv Grotesk #}
                 <div class="font-aktiv text-lg lg:text-xl leading-relaxed {{ data.textColor }} mx-auto max-w-xl">
                     {{ data.subheading | raw }}
                 </div>
@@ -43,9 +45,8 @@
         </div>
     </div>
 
-    {# 2. MIDDLE SECTION: Static Arc using svg() for reliability #}
+    {# 2. MIDDLE SECTION: Static Arc #}
     <div class="w-full mb-12 px-[10px]">
-        {# Added fill-current to ensure the arc matches your brand text color #}
         <div class="w-full h-auto fill-current {{ data.textColor }}">
             {{ svg(alias(arcPath))|attr({
                 class: 'w-full h-auto block',
@@ -54,14 +55,16 @@
         </div>
     </div>
 
-    {# 3. BOTTOM SECTION: Full Width Matrix Columns #}
-    <div class="w-full px-6 lg:px-12">
+    {# 3. BOTTOM SECTION: Matrix Columns #}
+    <div class="w-full px-4 lg:px-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
             {% for col in columns %}
                 <div class="flex flex-col">
+                    {# ORIGINAL SIZE: font-serif triggers the custom brand font #}
                     <h3 class="font-serif text-3xl lg:text-4xl {{ data.textColor }} mb-6">
                         {{ col.title | raw }}
                     </h3>
+                    {# ORIGINAL SIZE: font-aktiv triggers the brand body font #}
                     <div class="font-aktiv text-base lg:text-lg leading-relaxed {{ data.textColor }}">
                         {{ col.text | raw }}
                     </div>

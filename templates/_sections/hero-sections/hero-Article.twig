@@ -12,14 +12,9 @@
             {{ entry.title }}
         </h1>
 
-        {#
-        The In-Line Grid:
-        Meta info and image now reside in the same horizontal row
-
-        #}
         <div class="grid grid-cols-1 md:grid-cols-10 gap-x-0 items-start">
 
-            {# 1. Meta Information: Occupies the first 3 columns #}
+            {# 1. Meta Information #}
             <div class="md:col-span-3 lg:col-span-2">
                 <div class="font-montreal text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown flex flex-wrap gap-y-2 pt-1">
                     <span class="mr-6 block md:inline-block">{{ entry.postDate | date('M d, Y') | upper }}</span>
@@ -32,16 +27,18 @@
                 </div>
             </div>
 
-            {# 2. The Hero Image: Occupies the remaining columns #}
+            {# 2. The Hero Image #}
             <div class="md:col-span-7 lg:col-span-8">
                 <div class="aspect-[16/7] w-full overflow-hidden bg-foxplan-charcoal-brown/5">
                     {% if heroImage %}
                         <img src="{{ heroImage.url }}"
-                             alt="{{ entry.title }}"
+                                {# Use the asset's alt text if defined, otherwise fallback to entry title #}
+                             alt="{{ heroImage.alt ?: entry.title }}"
                              class="w-full h-full object-cover">
                     {% else %}
+                        {# Fallback UI if import failed or image is missing #}
                         <div class="w-full h-full flex items-center justify-center border border-foxplan-charcoal-brown/10">
-                            <span class="text-[10px] uppercase tracking-widest opacity-30 italic">No Hero Image</span>
+                            <span class="text-[10px] uppercase tracking-widest opacity-30 italic">Image Pending Import</span>
                         </div>
                     {% endif %}
                 </div>

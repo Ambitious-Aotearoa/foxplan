@@ -1,0 +1,135 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    textColor: 'text-foxplan-charcoal-brown',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% block blockAppBody %}
+    {# 1. HERO SECTION #}
+    <section class="w-full bg-foxplan-neutral-beige pt-32 pb-16">
+        <div class="px-[20px] max-w-[1440px] mx-auto text-center">
+            {# CLAMP INDIVIDUAL: 3.75rem to 9rem #}
+            <h1 class="font-['Season_VF-TRIAL'] text-foxplan-charcoal-brown tracking-tighter leading-[0.9]"
+                style="font-size: clamp(3.75rem, 10vw + 1rem, 9rem);">
+                Privacy
+            </h1>
+        </div>
+    </section>
+
+    {# 2. MAIN CONTENT SECTION #}
+    <section class="w-full bg-foxplan-neutral-beige pb-32">
+        <div class="px-[20px] max-w-[1440px] mx-auto">
+            {# mx-auto centers the block; text-left ensures the content reads correctly #}
+            <div class="font-['aktiv-grotesk'] font-light text-foxplan-charcoal-brown max-w-5xl mx-auto space-y-16 text-left">
+
+                <div class="space-y-6 border-b border-foxplan-charcoal-brown/10 pb-8">
+                    {# CLAMP INDIVIDUAL: 1.25rem to 1.75rem #}
+                    <p class="opacity-90"
+                       style="font-size: clamp(1.25rem, 2vw + 1rem, 1.75rem);">
+                        FoxPlan Ltd is committed to protecting your privacy. This privacy statement outlines how we collect, store, use and share your personal information. For more information, read our full privacy policy.
+                    </p>
+                    {# CLAMP INDIVIDUAL: 1.125rem to 1.5rem #}
+                    <p class="opacity-80"
+                       style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);">
+                        By submitting your details on this website, you consent to the use of your personal information in accordance with this privacy statement.
+                    </p>
+                </div>
+
+                <div class="space-y-16">
+                    {# Section: Collection #}
+                    <div>
+                        {# CLAMP INDIVIDUAL: 1.5rem to 2rem #}
+                        <h3 class="font-['Season_VF-TRIAL']  mb-6"
+                            style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">
+                            What information do we collect?
+                        </h3>
+                        <div class="opacity-80 space-y-6"
+                             style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);">
+                            <p>We may collect personal information about you, either directly from you or from other parties and we may generate information about you when we carry out our business. The types of personal information we collect about you may include your:</p>
+                            <ul class="list-disc pl-5 space-y-4">
+                                <li><strong>Contact information:</strong> your name, phone number, email address, postal address, physical address.</li>
+                                <li><strong>Identity Verification:</strong> Documents that verify your identity and other personal details, such as your passport or drivers’ licence number.</li>
+                                <li><strong>Subscriptions/preferences:</strong> when you subscribe to receive our newsletter or updates.</li>
+                                <li><strong>Technical information:</strong> information about the device used to access the website or other social media sites.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {# Section: Usage #}
+                    <div>
+                        <h3 class="font-['Season_VF-TRIAL'] mb-6"
+                            style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">
+                            What do we do with it?
+                        </h3>
+                        <div class="opacity-80 space-y-6"
+                             style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);">
+                            <p>We collect and use your personal information to provide the information and services that you request from us, and to provide you with information about other services we consider appropriate.</p>
+                            <p>When necessary, we may use your information to:</p>
+                            <ul class="list-disc pl-5 space-y-4">
+                                <li>Comply with our legal and regulatory obligations.</li>
+                                <li>Defend or enforce our rights - For example, to collect money owed to us.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {# Section: Sharing #}
+                    <div>
+                        <h3 class="font-['Season_VF-TRIAL'] mb-6"
+                            style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">
+                            Who do we share it with?
+                        </h3>
+                        <div class="opacity-80 space-y-6"
+                             style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);">
+                            <p>Besides our staff, advisers and our related companies, we may share this information with third parties who enable us to provide you with our services. These include:</p>
+                            <ul class="list-disc pl-5 space-y-4">
+                                <li>Your other professional advisers</li>
+                                <li>Product providers</li>
+                                <li>Our service outsource providers such as IT consultants, custodians, etc.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {# Section: Storage #}
+                    <div>
+                        <h3 class="font-['Season_VF-TRIAL'] mb-6"
+                            style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">
+                            Where do we store it?
+                        </h3>
+                        <p class="opacity-80"
+                           style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);">
+                            We use third party cloud service providers to store and process the information we collect. We use Microsoft Office 365 (Azure) cloud servers and also IRESS XPlan cloud serves located in Australia.
+                        </p>
+                    </div>
+
+                    {# Section: Rights #}
+                    <div>
+                        <h3 class="font-['Season_VF-TRIAL'] mb-6"
+                            style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">
+                            What are my rights?
+                        </h3>
+                        <div class="opacity-80 space-y-6"
+                             style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);">
+                            <p>You have the right to ask for a copy of any personal information we hold about you, and to ask for it to be corrected if you think it is wrong. If you have any questions, please contact us on <strong>04 918 4659</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+            foxplanText: 'foxplan',
+            borderTopColor: 'border-foxplan-yellow/20',
+            borderTopWidth: 'border-t-2'
+        }
+    }) }}
+{% endblock %}

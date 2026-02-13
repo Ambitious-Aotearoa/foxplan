@@ -13,70 +13,103 @@
 
 {% set sectionData = defaults | merge(data ?? {}) %}
 
-{# 2. FETCH LATEST 3 ARTICLES #}
-{% set latestArticles = craft.entries()
+{# 2. FETCH ALL ARTICLES THAT HAVE TAGS #}
+{% set taggedArticles = craft.entries()
     .section('article')
-    .limit(3)
-    .with(['heroImage'])
+    .tags(':notempty:')
+    .with(['featuredImage', 'tags'])
     .all()
 %}
 
-<section class="w-full {{ sectionData.backgroundColor }} pt-16 pb-16 md:pt-24 md:pb-24">
-    <div class="px-8 md:px-12 w-full">
+{% if taggedArticles|length %}
+    <section
+            class="w-full {{ sectionData.backgroundColor }} pt-16 pb-16 md:pt-24 md:pb-24"
+            {# Alpine state handles visibility without page refresh #}
+            x-data="{ limit: 3, total: {{ taggedArticles|length }} }"
+    >
+        <div class="px-8 md:px-12 w-full">
 
-        {# Heading #}
-        <h2 class="font-serif text-5xl md:text-7xl lg:text-8xl font-normal {{ sectionData.headingColor }} leading-[0.85] tracking-tight mb-6 max-w-4xl">
-            {{ sectionData.heading }}
-        </h2>
+            <h2 class="font-serif text-5xl md:text-7xl lg:text-8xl font-normal {{ sectionData.headingColor }} leading-[0.85] tracking-tight mb-6 max-w-4xl">
+                {{ sectionData.heading }}
+            </h2>
 
-        {# Description #}
-        <p class="text-lg md:text-xl {{ sectionData.bodyColor }} leading-relaxed max-w-xl mb-12 opacity-90">
-            {{ sectionData.description }}
-        </p>
+            <p class="text-lg md:text-xl {{ sectionData.bodyColor }} leading-relaxed max-w-xl mb-12 opacity-90">
+                {{ sectionData.description }}
+            </p>
 
-        {# Horizontal Divider #}
-        <div class="w-full border-t {{ sectionData.borderColor }} mb-16"></div>
+            <div class="w-full border-t {{ sectionData.borderColor }} mb-16"></div>
 
-        {# Dynamic Articles Grid #}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
+            {# Dynamic Articles Grid #}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
 
-            {% for article in latestArticles %}
-                {% set thumb = article.heroImage.one() %}
+                {% for article in taggedArticles %}
+                    {% set thumb = article.featuredImage.one() %}
+                    {% set tags = article.tags.all() %}
 
-                <div class="group">
-                    {# Image Container #}
-                    <div class="w-full aspect-[5/3] mb-6 overflow-hidden bg-gray-100">
-                        {% if thumb %}
-                            <img src="{{ thumb.url }}"
-                                 alt="{{ article.title }}"
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        {% else %}
-                            {# Fallback if no image exists #}
-                            <div class="w-full h-full bg-foxplan-charcoal-brown/10 flex items-center justify-center font-serif opacity-20 italic">
-                                foxplan
-                            </div>
-                        {% endif %}
-                    </div>
+                    {# 3. ALPINE CONTROLLED VISIBILITY #}
+                    <a
+                            href="{{ article.url }}"
+                            class="group block no-underline"
+                            {# Conditional visibility based on Alpine limit #}
+                            x-show="{{ loop.index }} <= limit"
+                            x-cloak
+                            x-transition:enter="transition ease-out duration-500"
+                            x-transition:enter-start="opacity-0 translate-y-8"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                    >
+                        <div class="w-full aspect-[5/3] mb-6 overflow-hidden bg-gray-100">
+                            {% if thumb %}
+                                <img src="{{ thumb.url }}"
+                                     alt="{{ article.title }}"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            {% else %}
+                                <div class="w-full h-full bg-foxplan-charcoal-brown/10 flex items-center justify-center font-serif opacity-20 italic">
+                                    foxplan
+                                </div>
+                            {% endif %}
+                        </div>
 
-                    {# Date #}
-                    <p class="text-xs font-medium uppercase tracking-widest mb-3 {{ sectionData.accentColor }}">
-                        {{ article.postDate | date('M d, Y') }}
-                    </p>
+                        <div class="flex flex-wrap items-center gap-x-3 mb-3">
+                            {% if tags %}
+                                <div class="flex gap-2">
+                                    {% for tag in tags %}
+                                        <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 bg-foxplan-yellow text-foxplan-charcoal-brown">
+                                        {{ tag.title }}
+                                    </span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <p class="text-xs font-medium uppercase tracking-widest {{ sectionData.accentColor }}">
+                                {{ article.postDate | date('M d, Y') }}
+                            </p>
+                        </div>
 
-                    {# Title Link #}
-                    <a href="{{ article.url }}" class="block mb-4">
-                        <h3 class="text-xl md:text-2xl font-serif leading-tight {{ sectionData.headingColor }} group-hover:opacity-70 transition-opacity">
+                        <h3 class="text-xl md:text-2xl font-serif leading-tight {{ sectionData.headingColor }} group-hover:opacity-70 transition-opacity mb-4">
                             {{ article.title }}
                         </h3>
-                    </a>
 
-                    {# CTA #}
-                    <a href="{{ article.url }}" class="inline-block text-xs font-bold uppercase tracking-widest border-b-2 border-transparent hover:border-current transition-all {{ sectionData.accentColor }}">
-                        READ MORE 
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest border-b-2 border-transparent group-hover:border-current transition-all {{ sectionData.accentColor }}">
+                        READ MORE
+                    </span>
                     </a>
+                {% endfor %}
+            </div>
+
+            {# 4. PREVENT REFRESH LOAD MORE #}
+            <template x-if="limit < total">
+                <div class="w-full flex justify-center mt-20">
+                    {# @click.prevent ensures the page doesn't jump or reload #}
+                    <div @click.prevent="limit = total">
+                        {% include '_components/ui/button/button.twig' with {
+                            props: {
+                                text: 'LOAD MORE',
+                                url: '#',
+                                classes: 'px-12 py-5 bg-foxplan-charcoal-brown text-white font-bold uppercase tracking-widest text-xs rounded-none border-none'
+                            }
+                        } only %}
+                    </div>
                 </div>
-            {% endfor %}
-
+            </template>
         </div>
-    </div>
-</section>
+    </section>
+{% endif %}

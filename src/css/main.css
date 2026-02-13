@@ -1,41 +1,12 @@
-/*
- * ====================================================================
- * GLOBAL FONT APPLICATION
- *
- * This section ensures the custom font is used throughout the entire site.
- * ====================================================================
- */
 @import "tailwindcss";
 
-body {
-    font-family: season-serif, sans-serif; /* or 'season-serif', serif; */
-    font-weight: 300;
+/* ========================================
+   THEME COLORS (FoxPlan)
+   ======================================== */
+@theme {
+    --color-foxplan-yellow: #FBC938;
+    --color-foxplan-neutral-beige: #F9EFD8;
+    --color-foxplan-white: #FEFCF7;
+    --color-foxplan-charcoal-brown: #270E15;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: season-serif, sans-serif;
-    font-weight: 500;
-}
-
-
-/* Apply the font ONLY to content inside the .hero-section */
-.hero-section {
-    /* The font is inherited from 'body', but we keep this as a fallback/explicit definition */
-    font-family: SeasonSerifTRIALLight, serif; /* Use serif or sans-serif as a fallback */
-}
-
-/* You can also target specific elements within that section */
-.hero-section h2 {
-    font-size: 3em;
-    font-weight: normal; /* Since the font is already 'Light' or using the font defined in fonts.css */
-}
-
-/* All <h1> headings will use the custom font (redundant but harmless) */
-h1 {
-    font-family: SeasonSerifTRIALLight, sans-serif;
-}
-
-/* All paragraphs will use the custom font (redundant but harmless) */
-p {
-    font-family: SeasonSerifTRIALLight, sans-serif;
-}

@@ -1,53 +1,100 @@
-{# _sections/content-sections/article-template.twig #}
+{# articles/_entry.twig #}
 
-{# 1. FETCH THE HERO IMAGE MAPPED IN FEED ME #}
-{% set heroImage = entry.heroImage.one() %}
+{# 1. FETCH DATA #}
+{% set category = entry.articleCategories.one() %}
+{% set mainImage = entry.featuredImage.one() %}
+{% set allFeaturedImages = entry.featuredImage.all() %}
 
-{# 2. CONTENT SECTION #}
-{% set sectionClasses = 'bg-foxplan-neutral-beige' %}
-{% set headingClasses = 'font-serif text-[2.5rem] font-light leading-tight text-black mt-12 mb-4' %}
-{% set bodyClasses = 'text-base text-black leading-relaxed max-w-6xl' %}
 {% set sidebarSquareClasses = 'w-6 h-6 bg-foxplan-charcoal-brown mb-2 flex items-center justify-center text-white text-[10px] hover:bg-opacity-80 transition-all cursor-pointer' %}
 
-<section class="w-full {{ sectionClasses }} pt-24 pb-32">
-    <div class="px-[20px] max-w-[1440px] mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-10 gap-x-0 relative">
+<main class="min-h-screen bg-foxplan-neutral-beige">
 
-            {# OFFSET #}
-            <div class="hidden md:block md:col-span-3 lg:col-span-2"></div>
+    {# --- HERO SECTION (Title, Date, Image) --- #}
+    <section class="w-full pt-24 pb-0 overflow-hidden">
+        <div class="px-[20px] max-w-full mx-auto">
 
-            {# MAIN BODY CONTENT #}
-            <div class="md:col-span-6 lg:col-span-6">
-                {# Display Categories/Tags if they exist #}
-                {% if entry.articleCategories | length %}
-                    <div class="flex flex-wrap gap-3 mb-8">
-                        {% for category in entry.articleCategories.all() %}
-                            <span class="text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown bg-foxplan-yellow px-3 py-1 font-bold">
-                                {{ category.title }}
+            {# Article Title #}
+            <h1 class="font-serif text-foxplan-charcoal-brown text-[4.5rem] md:text-[6rem] lg:text-[7.5rem] leading-[0.9] tracking-tighter mb-12 max-w-[90%] lg:max-w-[80%]">
+                {{ entry.title }}
+            </h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-10 gap-x-0 items-start">
+                {# Meta Information (Date & Category) #}
+                <div class="md:col-span-3 lg:col-span-2">
+                    <div class="font-montreal text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown flex flex-wrap gap-y-2 pt-1">
+                        <span class="mr-6 block md:inline-block">{{ entry.postDate | date('j F Y') | upper }}</span>
+                        {% if category %}
+                            <span class="flex items-center">
+                                {{ category.title | upper }}
+                                <span class="ml-2 mt-[-2px]">•</span>
                             </span>
-                        {% endfor %}
+                        {% endif %}
                     </div>
-                {% endif %}
+                </div>
 
-                <div class="prose prose-lg max-w-none
-                            prose-headings:{{ headingClasses | replace(' ', ' prose-headings:') }}
-                            prose-p:{{ bodyClasses | replace(' ', ' prose-p:') }}
-                            prose-headings:first-of-type:mt-0">
-
-
-                    {{ entry.insightBody | raw }}
+                {# The Featured Image #}
+                <div class="md:col-span-7 lg:col-span-8">
+                    <div class="aspect-[16/9] w-full overflow-hidden bg-foxplan-charcoal-brown/5">
+                        {% if mainImage %}
+                            <img src="{{ mainImage.url }}"
+                                 alt="{{ mainImage.title ?: entry.title }}"
+                                 class="w-full h-full object-cover">
+                        {% else %}
+                            <div class="w-full h-full flex items-center justify-center border border-foxplan-charcoal-brown/10">
+                                <span class="text-[10px] uppercase tracking-widest opacity-30 italic">No Featured Image Found</span>
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-
-            {# SIDEBAR: Social Sharing #}
-            <div class="hidden md:block md:col-start-10 md:col-span-1 pt-4">
-                <div class="sticky top-32 flex flex-col items-end">
-                    <a href="https://twitter.com/intent/tweet?url={{ entry.url | url_encode }}" target="_blank" class="{{ sidebarSquareClasses }}">𝕏</a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ entry.url | url_encode }}" target="_blank" class="{{ sidebarSquareClasses }} font-bold text-[11px]">in</a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ entry.url | url_encode }}" target="_blank" class="{{ sidebarSquareClasses }} font-bold text-[12px]">f</a>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
+
+    {# --- CONTENT SECTION (Normal padding for body text) --- #}
+    <section class="w-full pt-24 pb-32">
+        <div class="px-8 md:px-16 lg:px-24 max-w-[1440px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-10 gap-x-0 relative">
+
+                {# Column Offset #}
+                <div class="hidden md:block md:col-span-3 lg:col-span-2"></div>
+
+                {# Main Body Content #}
+                <div class="md:col-span-6 lg:col-span-6">
+                    <div class="font-montreal font-light text-foxplan-charcoal-brown leading-[1.6] text-[1.125rem] rich-text-content">
+                        <style>
+                            .rich-text-content h2 { font-family: serif; font-size: 2.5rem; margin-top: 3rem; margin-bottom: 1.25rem; color: #000; line-height: 1.1; }
+                            .rich-text-content p { margin-bottom: 1.5rem; }
+                            .rich-text-content p:last-child { margin-bottom: 0; }
+                            .rich-text-content img { width: 100%; height: auto; margin: 2rem 0; }
+                        </style>
+
+                        {% if entry.insightBody %}
+                            {{ entry.insightBody | raw }}
+                        {% endif %}
+
+                        {# --- ADDITIONAL GALLERY SECTION --- #}
+                        {% if allFeaturedImages|length > 1 %}
+                            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {% for image in allFeaturedImages|slice(1) %}
+                                    <div class="aspect-square overflow-hidden bg-gray-100">
+                                        <img src="{{ image.url }}" alt="{{ image.title }}" class="w-full h-full object-cover">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {# Sticky Social Sidebar #}
+                <div class="hidden md:block md:col-start-10 md:col-span-1">
+                    <div class="sticky top-32 flex flex-col items-end">
+                        {% set currentUrl = entry.url | url_encode %}
+                        <a href="https://twitter.com/intent/tweet?url={{ currentUrl }}" target="_blank" class="{{ sidebarSquareClasses }}">𝕏</a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ currentUrl }}" target="_blank" class="{{ sidebarSquareClasses }} font-bold text-[11px]">in</a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ currentUrl }}" target="_blank" class="{{ sidebarSquareClasses }} font-bold text-[12px]">f</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

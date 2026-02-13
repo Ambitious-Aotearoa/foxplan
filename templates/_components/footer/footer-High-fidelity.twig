@@ -14,7 +14,7 @@
 {% set data = defaults | merge(props | default({})) %}
 
 <footer
-        class="relative w-full h-[800px] overflow-hidden"
+        class="relative w-full h-[1100px] lg:h-[800px] overflow-hidden"
         style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);"
         x-data="{
         ratio: 0,
@@ -28,33 +28,40 @@
         @scroll.window="updateRatio()"
         x-init="updateRatio()"
 >
-    <div class="fixed bottom-0 left-0 w-full h-[800px] {{ data.backgroundColor }} flex flex-col justify-between">
+    <div class="fixed bottom-0 left-0 w-full h-[1100px] lg:h-[800px] {{ data.backgroundColor }} flex flex-col justify-between">
 
-        {# Content Wrapper that Scales #}
+        {# Content Wrapper: Animates based on scroll ratio #}
         <div
-                class="max-w-full mx-auto px-8 pt-20 relative w-full transition-transform duration-75 ease-out"
+                class="max-w-full mx-auto px-4 lg:px-8 pt-20 relative w-full transition-transform duration-75 ease-out"
                 :style="`transform: scale(${0.9 + (ratio * 0.1)}); opacity: ${0.5 + (ratio * 0.5)};`"
         >
 
             {# 1. Main Grid #}
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10 items-start">
-                {# Left Side: Logo and CTA #}
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-4 lg:mb-10 items-start">
+
+                {# --- LEFT SIDE: LOGO & CTA --- #}
                 <div class="lg:col-span-5">
-                    <div class="mb-10 {{ data.logoColor }}">
-                        {{ svg(alias(data.logoPath))|attr({ class: 'w-28 h-auto fill-current', alt: 'FoxPlan Logo' }) }}
+
+                    {# FOX LOGO #}
+                    <div class="mb-10 {{ data.logoColor }} block">
+                        {{ svg(alias(data.logoPath))|attr({
+                            class: 'w-32 md:w-28 h-auto fill-current',
+                            alt: 'FoxPlan Logo',
+                            role: 'img'
+                        }) }}
                     </div>
 
-                    <h2 class="text-fluid-h2 text-3xl md:text-5xl leading-none mb-6 {{ data.textColor }} tracking-tight uppercase">
+                    <h2 class="font-['Season_VF-TRIAL'] text-4xl md:text-5xl leading-[0.9] mb-6 {{ data.textColor }} tracking-tight uppercase">
                         Ready to reach your<br>financial goals?
                     </h2>
 
-                    <p class="text-fluid-para-default mb-8 {{ data.textColor }} opacity-90 max-w-xs">
+                    <p class="text-fluid-para-default mb-8 {{ data.textColor }} opacity-90 max-w-xs leading-snug">
                         Book a chat with one of our financial advisers to get started.
                     </p>
 
                     {% include '_components/ui/button/button.twig' with {
                         props: {
-                            text: 'Learn more',
+                            text: 'Get started',
                             url: '/contact-us',
                             style: 'primary',
                             backgroundColor: data.buttonColor,
@@ -64,60 +71,46 @@
                     } only %}
                 </div>
 
-                {# Right Side: Links Grid #}
+                {# --- RIGHT SIDE: LINKS GRID --- #}
                 <div class="lg:col-span-7 pt-1">
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
+                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-6 lg:gap-y-12 gap-x-8">
 
-                        {# Column 1: Mortgages, Accounting, Location #}
+                        {# DIV A: Primary Services #}
                         <div class="flex flex-col gap-y-4">
-                            <a href="/mortgages"
-                               class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 hover:opacity-70 transition-opacity">
+                            <a href="/mortgages" class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> MORTGAGES
                             </a>
-                            <a href="/accounting"
-                               class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 hover:opacity-70 transition-opacity">
+                            <a href="/accounting" class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> ACCOUNTING
                             </a>
+                            <a href="/savings-investment" class="lg:hidden text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 uppercase">
+                                <span class="{{ data.separatorColor }} opacity-40">|</span> SAVINGS & INVESTMENT
+                            </a>
+
                             <div class="pt-4">
                                 <h3 class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 mb-3">
                                     <span class="{{ data.separatorColor }} opacity-40">|</span> LOCATION
                                 </h3>
                                 <div class="pl-4 text-fluid-para-sm leading-relaxed {{ data.textColor }} opacity-90">
-                                    <p>Level 8</p>
+                                    <p>Level 8 </p>
                                     <p>138 The Terrace</p>
                                     <p>Wellington 6011</p>
-                                </div>
-
-                                <div class="pl-4 flex gap-2 mt-6">
-                                    <a href="https://www.facebook.com/FoxPlanFinancialServices/"
-                                       target="_blank"
-                                       class="w-7 h-7 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm transition-opacity hover:opacity-80">
-                                        f
-                                    </a>
-                                    <a href="https://www.instagram.com/foxplan_financial/"
-                                       target="_blank"
-                                       class="w-7 h-7 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm transition-opacity hover:opacity-80">
-                                        ig
-                                    </a>
-                                    <a href="https://nz.linkedin.com/company/foxplanltd"
-                                       target="_blank"
-                                       class="w-7 h-7 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm transition-opacity hover:opacity-80">
-                                        in
-                                    </a>
                                 </div>
                             </div>
                         </div>
 
-                        {# Column 2: Insurance, Business, Phone #}
-                        <div class="flex flex-col gap-y-4">
-                            <a href="/insurance"
-                               class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 hover:opacity-70 transition-opacity">
+                        {# DIV B: Secondary Services #}
+                        <div class="flex flex-col gap-y-6 lg:gap-y-12">
+                            <a href="/insurance" class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> INSURANCE
                             </a>
-                            <a href="/business"
-                               class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 hover:opacity-70 transition-opacity">
+                            <a href="/business" class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> BUSINESS
                             </a>
+                            <a href="/about" class="lg:hidden text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 uppercase">
+                                <span class="{{ data.separatorColor }} opacity-40">|</span> ABOUT US
+                            </a>
+
                             <div class="pt-4">
                                 <h3 class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 mb-3">
                                     <span class="{{ data.separatorColor }} opacity-40">|</span> PHONE
@@ -125,30 +118,36 @@
                                 <div class="pl-4 text-fluid-para-sm leading-relaxed {{ data.textColor }} opacity-90">
                                     <p>0800 NO STRESS</p>
                                     <p>(0800 667 873)</p>
-                                    <p>Office (04) 918 4659</p>
                                 </div>
                             </div>
                         </div>
 
-                        {# Column 3: Savings, About Us, Legal #}
-                        <div class="flex flex-col gap-y-4">
-                            <a href="/savings-investment"
-                               class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 hover:opacity-70 transition-opacity">
+                        {# DIV C: Legal & Socials #}
+                        <div class="flex flex-col gap-y-4 col-span-2 lg:col-span-1">
+                            <a href="/savings-investment" class="hidden lg:flex text-fluid-prehead font-bold {{ data.textColor }} items-center gap-2 uppercase">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> SAVINGS & INVESTMENT
                             </a>
-                            <a href="/about"
-                               class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 hover:opacity-70 transition-opacity">
+                            <a href="/about" class="hidden lg:flex text-fluid-prehead font-bold {{ data.textColor }} items-center gap-2 uppercase">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> ABOUT US
                             </a>
-                            <div class="pt-4">
-                                <h3 class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 mb-3">
-                                    <span class="{{ data.separatorColor }} opacity-40">|</span> LEGAL
-                                </h3>
-                                <div class="pl-4 text-fluid-para-sm leading-relaxed space-y-1 {{ data.textColor }} opacity-90">
-                                    <a href="#" class="block hover:underline transition-all">Privacy Policy</a>
-                                    <a href="#" class="block hover:underline transition-all">Complaints</a>
-                                    <a href="#" class="block hover:underline transition-all">Disclaimer</a>
-                                    <a href="#" class="block hover:underline transition-all">Disclosure</a>
+
+                            <div class="pt-2 lg:pt-4 flex flex-row lg:flex-col items-start justify-between lg:justify-start">
+                                <div>
+                                    <h3 class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2 mb-3">
+                                        <span class="{{ data.separatorColor }} opacity-40">|</span> LEGAL
+                                    </h3>
+                                    <div class="pl-4 text-fluid-para-sm leading-relaxed space-y-1 {{ data.textColor }} opacity-90">
+                                        <a href="/pages/Privacy" class="block">Privacy Policy</a>
+                                        <a href="/pages/Complaints-Policy" class="block">Complaints</a>
+                                        <a href="/pages/Disclaimer" class="block">Disclaimer</a>
+                                        <a href="#" class="block">Disclosure</a>
+                                    </div>
+                                </div>
+
+                                <div class="lg:hidden flex flex-row gap-2 self-end mb-1">
+                                    <a href="#" class="w-8 h-8 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm">f</a>
+                                    <a href="#" class="w-8 h-8 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm">ig</a>
+                                    <a href="#" class="w-8 h-8 {{ data.buttonColor }} {{ data.buttonTextColor }} flex items-center justify-center text-[10px] rounded-sm">in</a>
                                 </div>
                             </div>
                         </div>
@@ -158,8 +157,8 @@
             </div>
         </div>
 
-        {# 3. Giant Bottom Background Text #}
-        <div class="w-full pointer-events-none pb-10">
+        {# 3. Giant Background Text #}
+        <div class="w-full pointer-events-none pb-0 lg:pb-10">
             <h1
                     class="w-full text-[28vw] font-bold leading-[0.7] select-none tracking-[-0.06em] text-center {{ data.textColor }} transition-transform duration-75 ease-out"
                     :style="`transform: scale(${0.7 + (ratio * 0.3)}) translateY(${22 - (ratio * 5)}%);`"

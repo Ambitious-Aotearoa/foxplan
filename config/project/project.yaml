@@ -1,4 +1,4 @@
-dateModified: 1770775332
+dateModified: 1770944365
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
@@ -43,6 +43,7 @@ meta:
     1e5a8282-7128-4cdd-8a59-3356f7b08ffe: Partners # Partners
     1ea1b840-4b19-4a98-8b5d-41c57d8af35b: Article # Article
     1f3b761a-df20-421d-a75d-d0d3f165e693: 'Business planning' # Business planning
+    2cba3be1-3443-4238-b63d-512bb6544a41: 'News Images' # News Images
     3a18a3a4-7da8-482b-b475-06dfad80f264: 'Spotify URL' # Spotify URL
     3ca03225-96ae-4b44-87f2-2f3b0d32d166: 'Testimonial Author' # Testimonial Author
     3cd32da9-06b0-44c6-a0a8-54568bfbb9b3: Group-workplace-insurance # Group-workplace-insurance
@@ -99,6 +100,7 @@ meta:
     072a5c6b-cdf2-4ed6-8bfd-4ac947d9cca7: 'Podcast images' # Podcast images
     83ab9fed-c6f6-4bc3-868d-78df435d9da2: About # About
     85b764d9-d1dd-4aad-9cfb-e7432652aad7: 'Contact Main Heading' # Contact Main Heading
+    85d0c31a-4e01-4008-8444-58f23d57cc31: 'Featured Image' # Featured Image
     88b4df68-e829-47e4-82a6-2e91359feb20: 'Hero Matrix' # Hero Matrix
     91c97dc7-2308-4ea3-9a03-3661bc6237c9: 'Site Images' # Site Images
     93cc1844-5f6e-4858-86da-315bd52cda7c: 'Property Upgrade' # Property Upgrade

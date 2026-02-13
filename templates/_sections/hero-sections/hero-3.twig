@@ -23,7 +23,8 @@
 
                 {# Image Container - Height remains grand at 85vh #}
                 <div class="w-full h-[65vh] md:h-[85vh] relative">
-                    <img src="{{ craft.vite.asset('images/PropertyInvestment_1.jpg') }}"
+                    {# UPDATED: Points directly to the web/dist/images folder #}
+                    <img src="{{ alias('@web/dist/images/PropertyInvestment_hero.jpg') }}"
                          alt="{{ sectionData.heading }}"
                          class="w-full h-full object-cover block">
 

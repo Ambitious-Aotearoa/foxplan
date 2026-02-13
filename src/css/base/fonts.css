@@ -3,6 +3,6 @@
     font-family: 'SeasonSerifTRIALLight';
     src: url('./assets/fonts/season-serif/SeasonSerifTRIALLight.woff2') format('woff2'),
     url('./assets/fonts/season-serif/SeasonSerifTRIALLight.woff') format('woff');
-    font-weight: normal;
+    font-weight: 500;
     font-style: normal;
 }

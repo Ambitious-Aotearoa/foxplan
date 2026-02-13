@@ -10,16 +10,13 @@
 
 {% block blockAppBody %}
 
-    {# 1. THE HERO SECTION: Contains Title, Date, Category, and Image #}
-    {% include '_sections/hero-sections/hero-Article.twig' with {
-        entry: entry
-    } only %}
+    {#  ARTICLES #}
 
-    {# 2. THE MAIN BODY: Displays 'insightBody' aligned under the Image #}
-    {# templates/pages/Insights/_entry.twig (or your entry route file) #}
-
-    {% include '_sections/content-sections/article-template.twig' with {
-        entry: entry
+    {# Example of how to include the template above #}
+    {% include "_sections/content-sections/article-template.twig" with {
+        entry: entry,
+        category: entry.articleCategories.one(),
+        mainImage: entry.featuredImage.one()
     } %}
 
     {# 3. RELATED INSIGHTS: Fetches articles from the same Category #}

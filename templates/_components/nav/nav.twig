@@ -1,22 +1,27 @@
 {# templates/_components/nav/nav.twig #}
 
-{# --- 1. Theme Logic --- #}
+{# --- 1. FETCH DATA --- #}
+{# Fetch any article at the top to ensure it is available within the loop scope #}
+{% set navArticle = craft.entries()
+    .section('article')
+    .with(['featuredImage'])
+    .one()
+%}
+
+{# --- 2. Theme Logic --- #}
 {% set defaultTheme = {
-    backgroundColor: 'bg-[#F9C33D]',
+    backgroundColor: 'bg-foxplan-neutral-beige',
     textColor: 'text-foxplan-charcoal-brown',
     searchBgColor: 'bg-foxplan-charcoal-brown',
     ctaBgColor: 'bg-foxplan-charcoal-brown',
-    iconColor: 'text-white',
+    iconColor: 'text-foxplan-neutral-beige',
     logoFilter: 'fill-current'
 } %}
 
 {% set theme = (navigationTheme is defined and navigationTheme is iterable) ? defaultTheme|merge(navigationTheme) : defaultTheme %}
 
-{# Define static paths using @webroot to ensure they work without Vite running #}
 {% set logoPath = '@webroot/dist/images/FoxPlan_Logo.svg' %}
-{% set searchIconPath = '@webroot/dist/images/placeholder/Foxplan_Search_Icon.svg' %}
 
-{# --- 2. Mega Menu Content --- #}
 {% set megaMenuData = {
     'insurance': [
         { title: 'Personal & Medical Insurance', url: '/Personal-Medical-Insurance', desc: 'Protect your finances and your family from illness or disability with our range of personal and medical insurance.' },
@@ -32,7 +37,7 @@
     ],
     'Mortgages': [
         { title: 'Property Investment', url: '/property-investment', desc: 'Invest in your future with lending support for first time or experienced property investors.' },
-        { title: 'Property Upgrade', url: '/property-upgrade', desc: 'Whether you’re selling your home, renovating or building, we make transferring or taking out a new mortgage easy.  ' },
+        { title: 'Property Upgrade', url: '/property-upgrade', desc: 'Whether you’re selling your home, renovating or building, we make transferring or taking out a new mortgage easy. ' },
         { title: 'First Home Buyers', url: '/first-home-buyers', desc: 'Get on the property ladder with personalised advice, support and guidance from budgeting, pre-approval and protection planning. ' },
         { title: 'Refinancing & Refixing', url: '/refinancing-refixing', desc: 'Free up funds, consolidate your debts or save money on your mortgage with advice on refinancing or refixing.' }
     ],
@@ -46,7 +51,7 @@
     ],
     'About': [
         { title: 'About FoxPlan', url: '/about', desc: 'John and Sally Killick founded FoxPlan in 1996 to help Kiwis make confident, informed choices about every part of their financial lives.' },
-        { title: 'Careers', url: '/careers', desc: 'We’re proud to grow a team of people who share our passion for helping Kiwis make confident financial decisions. Learn more about current opportunities for joining our ranks.  ' },
+        { title: 'Careers', url: '/careers', desc: 'We’re proud to grow a team of people who share our passion for helping Kiwis make confident financial decisions. Learn more about current opportunities for joining our ranks. ' },
         { title: ' Equity Partners', url: '/equity-partners', desc: 'Our equity programme helps financial advisers and accountants build and grow their businesses while sharing the support and success of FoxPlan. ' },
         { title: 'Meet the Team', url: '/pages/Meet-the-team', desc: 'Meet the Financial Advisers, Accountants, Wealth Managers and Management staff that make up our team. ' },
         { title: 'Suppliers', url: '/pages/Our-Suppliers', desc: 'We work with New Zealand’s most trusted financial institutions. View our list of bank and non-bank lenders and insurance suppliers here. ' },
@@ -54,9 +59,11 @@
     ]
 } %}
 
-<nav class="w-full relative z-[500]"
+
+<nav class="w-full relative z-[500] font-aktiv"
      x-data="{
         openTab: null,
+        mobileMenuOpen: false,
         searchOpen: false,
         searchQuery: '',
         allLinks: [
@@ -69,30 +76,30 @@
         get filteredResults() {
             if (this.searchQuery === '') return [];
             return this.allLinks.filter(item =>
-                item.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                item.category.toLowerCase().includes(this.searchQuery.toLowerCase())
+                item.title.toLowerCase().includes(this.searchQuery.toLowerCase())
             );
         }
      }"
      @mouseleave="openTab = null">
 
+    {# --- MAIN HEADER --- #}
     <div class="w-full {{ theme.backgroundColor }} relative z-[510]">
-        <div class="flex items-center h-16">
-            {# Logo - Using svg() function for reliability #}
-            <a href="/" class="flex items-center h-full pl-8 pr-[60px] flex-none {{ theme.textColor }}">
-                {{ svg(alias(logoPath))|attr({ class: 'h-11 w-auto ' ~ theme.logoFilter, alt: 'FoxPlan Logo' }) }}
+        <div class="flex items-center h-16 lg:h-20">
+            {# Logo #}
+            <a href="/" class="flex items-center h-full pl-6 lg:pl-8 pr-[30px] lg:pr-[60px] flex-none {{ theme.textColor }}">
+                {{ svg(alias(logoPath))|attr({ class: 'h-10 lg:h-11 w-auto ' ~ theme.logoFilter, alt: 'FoxPlan Logo' }) }}
             </a>
 
             {# Desktop Tabs #}
             <div class="flex-grow flex items-center h-full">
-                <div class="hidden lg:flex items-center justify-between w-full max-w-[900px] mx-auto text-[15px] font-medium {{ theme.textColor }} h-full">
+                <div class="hidden lg:flex items-center justify-between w-full max-w-[1000px] mx-auto text-[15px] font-medium {{ theme.textColor }} h-full">
                     {% for handle in ['accounting', 'insurance', 'Savings & Investment', 'Business', 'Mortgages', 'News', 'About'] %}
-                        {% set hasDropdown = megaMenuData[handle] is defined %}
+                        {% set hasDropdown = megaMenuData[handle] is defined and megaMenuData[handle]|length > 0 %}
                         {% set isStatic = handle in ['News', 'About'] %}
                         {% set tabUrl = isStatic ? 'javascript:void(0)' : url(handle|lower|replace({' & ': '-', ' ': '-'})) %}
 
                         <a href="{{ tabUrl }}"
-                           class="h-full flex items-center cursor-pointer hover:opacity-60 transition group {{ isStatic ? 'cursor-default' : '' }}"
+                           class="h-full px-4 flex items-center cursor-pointer hover:opacity-60 transition group {{ isStatic ? 'cursor-default' : '' }}"
                                 {% if hasDropdown %} @mouseenter="openTab = '{{ handle }}'" {% endif %}>
                             <span class="flex items-center gap-1">
                                 {{ handle|capitalize }}
@@ -100,8 +107,7 @@
                                     <svg class="w-3 h-3 transition-transform duration-200"
                                          :class="openTab === '{{ handle }}' ? 'rotate-180' : ''" fill="none"
                                          stroke="currentColor" viewBox="0 0 24 24">
-                                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round"
-                                              stroke-linejoin="round"/>
+                                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 {% endif %}
                             </span>
@@ -110,112 +116,183 @@
                 </div>
             </div>
 
-            {# Action Buttons #}
-            <div class="flex flex-none items-center h-full">
+            {# Actions - Right Side #}
+            <div class="flex flex-none items-center h-full pr-4 lg:pr-0">
                 <button @click="searchOpen = true"
-                        class="w-16 h-16 {{ theme.searchBgColor }} flex items-center justify-center cursor-pointer group">
-                    {# Updated to use svg() to fix searchIconUrl error #}
-                    <div class="w-5 h-5 transition-transform group-hover:scale-110 {{ theme.iconColor }}">
-                        {{ svg(alias(searchIconPath))|attr({ class: 'w-full h-full fill-current' }) }}
+                        class="w-14 lg:w-16 h-full flex items-center justify-center cursor-pointer group
+                               lg:{{ theme.searchBgColor }} lg:{{ theme.iconColor }}
+                               text-foxplan-charcoal-brown">
+                    <div class="w-7 lg:w-5 h-7 lg:h-5 transition-transform group-hover:scale-110">
+                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                            <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M17.5 17.5L13.875 13.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </button>
-                {% include '_components/ui/button/button.twig' with {
-                    props: {
-                        text: 'Get in touch',
-                        url: url('contact-us'),
-                        classes: 'h-16 px-10 ' ~ theme.ctaBgColor ~ ' text-white rounded-none flex items-center'
-                    }
-                } only %}
+
+                <button @click="mobileMenuOpen = true" class="lg:hidden p-4 text-foxplan-charcoal-brown cursor-pointer flex flex-col gap-1.5 items-end">
+                    <span class="w-8 h-0.5 bg-current"></span>
+                    <span class="w-5 h-0.5 bg-current"></span>
+                    <span class="w-8 h-0.5 bg-current"></span>
+                </button>
+
+                <div class="hidden lg:block h-full">
+                    {% include '_components/ui/button/button.twig' with {
+                        props: {
+                            text: 'GET IN TOUCH',
+                            url: url('contact-us'),
+                            classes: 'h-16 lg:h-20 px-10 ' ~ theme.ctaBgColor ~ ' text-white rounded-none flex items-center uppercase tracking-widest text-sm font-bold'
+                        }
+                    } only %}
+                </div>
             </div>
         </div>
     </div>
 
-    {# --- MEGA MENU --- #}
-    {% for handle, items in megaMenuData %}
-        <div x-show="openTab === '{{ handle }}'" x-transition style="display: none;"
-             class="absolute top-16 left-0 right-0 z-[600] px-5 pt-8" @mouseenter="openTab = '{{ handle }}'"
-             @mouseleave="openTab = null">
-            <div class="bg-white shadow-2xl flex w-full min-h-[450px] border border-foxplan-yellow/5">
-                <div class="w-2/3 grid grid-cols-3">
-                    {% for subItem in items %}
-                        <div class="p-10 border-r border-b border-foxplan-yellow/20 last:border-r-0">
-                            <a href="{{ subItem.url }}"
-                               class="block group/link mb-4 border-l-2 border-foxplan-yellow pl-3">
-                                <p class="text-[11px] font-bold tracking-[0.2em] text-foxplan-charcoal-brown uppercase group-hover/link:text-black transition-colors">{{ subItem.title }}</p>
-                            </a>
-                            <p class="text-sm text-black/60 leading-relaxed">{{ subItem.desc }}</p>
+    {# --- MOBILE/TABLET MENU OVERLAY --- #}
+    <div x-show="mobileMenuOpen"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate-x-full"
+         x-transition:enter-end="opacity-100 translate-x-0"
+         class="fixed inset-0 z-[1000] bg-foxplan-neutral-beige flex flex-col lg:hidden"
+         style="display: none;">
+
+        <div class="flex items-center justify-between h-16 px-6">
+            <a href="/" class="flex items-center h-full">
+                {{ svg(alias(logoPath))|attr({ class: 'h-10 w-auto fill-current text-foxplan-charcoal-brown' }) }}
+            </a>
+            <button @click="mobileMenuOpen = false" class="p-2 text-foxplan-charcoal-brown cursor-pointer">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <div class="flex-grow flex flex-col px-8 md:px-16 py-10 md:py-16 overflow-y-auto">
+            <div class="flex flex-col gap-1">
+                {% for handle in ['accounting', 'insurance', 'Savings & Investment', 'Business', 'Mortgages', 'News', 'About'] %}
+                    {% set hasDropdown = (megaMenuData[handle] is defined) and (megaMenuData[handle]|length > 0) %}
+                    {% set tabUrl = (handle in ['News', 'About']) ? 'javascript:void(0)' : url(handle|lower|replace({' & ': '-', ' ': '-'})) %}
+
+                    <div x-data="{ expanded: false }" class="border-b border-foxplan-charcoal-brown/10 py-6">
+                        <div class="flex items-center justify-between font-aktiv uppercase tracking-[0.15em] text-foxplan-charcoal-brown">
+                            <a href="{{ tabUrl }}" class="flex-grow" style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">{{ handle }}</a>
+                            {% if hasDropdown %}
+                                <button @click="expanded = !expanded" class="p-2">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300" :class="expanded ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </button>
+                            {% endif %}
                         </div>
-                    {% endfor %}
-                </div>
-                {# Removed megaMenuImgUrl and the <img> tag #}
-                <div class="w-1/3 relative group overflow-hidden bg-[#FAF7F2]">
-                    <div class="absolute inset-0 bg-black/5"></div>
-                    <div class="absolute bottom-12 left-12 right-12 text-foxplan-charcoal-brown">
-                        <span class="bg-[#007AFF] text-white text-[10px] font-bold px-3 py-1 rounded-full mb-4 inline-block">ARTICLE</span>
-                        <h3 class="text-3xl font-medium mb-4">Why choose private health insurance?</h3>
-                        <a href="/blog" class="text-[11px] font-bold border-b border-foxplan-charcoal-brown pb-1">READ MORE</a>
+
+                        {% if hasDropdown %}
+                            <div x-show="expanded" x-collapse class="mt-6 flex flex-col gap-5 pl-4 font-aktiv">
+                                {% for subItem in megaMenuData[handle] %}
+                                    <a href="{{ subItem.url }}" class="opacity-60 hover:opacity-100 transition-opacity" style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);">{{ subItem.title }}</a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
-                </div>
+                {% endfor %}
+                <a href="/contact-us" class="border-b border-foxplan-charcoal-brown/10 py-8 font-aktiv uppercase tracking-[0.15em] text-foxplan-charcoal-brown" style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">Contact</a>
             </div>
         </div>
-    {% endfor %}
+    </div>
 
-    {# --- FULL SCREEN SEARCH OVERLAY --- #}
+    {# --- FULL SCREEN SEARCH POPUP --- #}
     <template x-teleport="body">
         <div x-show="searchOpen"
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0"
              x-transition:enter-end="opacity-100"
-             x-transition:leave="transition ease-in duration-200"
-             class="fixed inset-0 z-[1000] bg-foxplan-neutral-beige flex flex-col items-center pt-[15vh] px-6"
+             class="fixed inset-0 z-[2000] bg-foxplan-neutral-beige flex flex-col items-center pt-[15vh] px-6"
              style="display: none;">
 
-            <button @click="searchOpen = false; searchQuery = ''"
-                    class="absolute top-10 right-10 text-foxplan-charcoal-brown hover:rotate-90 transition-transform duration-300 p-2 cursor-pointer">
+            <button @click="searchOpen = false; searchQuery = ''" class="absolute top-10 right-10 text-foxplan-charcoal-brown hover:rotate-90 transition-transform duration-300 p-2 cursor-pointer">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
 
-            <div class="w-full max-w-4xl">
-                <div class="text-center mb-12">
-                    <h2 class="text-[60px] lg:text-[80px] font-serif text-foxplan-charcoal-brown leading-tight mb-4">Search anything</h2>
-                </div>
+            <div class="w-full max-w-4xl text-center">
+                <h2 class="font-serif text-foxplan-charcoal-brown leading-tight mb-4" style="font-size: clamp(3.75rem, 10vw + 1rem, 9rem);">Search anything</h2>
 
-                <div class="relative border-b border-foxplan-charcoal-brown/30 pb-4 flex items-center">
-                    <svg class="w-6 h-6 text-foxplan-charcoal-brown/40 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <circle cx="11" cy="11" r="8" stroke-width="2"/>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2"/>
-                    </svg>
-                    <input type="text" x-model="searchQuery" placeholder="Search by keyword, topic or title"
-                           class="bg-transparent border-none outline-none text-2xl w-full placeholder:text-foxplan-charcoal-brown/30 text-foxplan-charcoal-brown"
-                           x-ref="searchInput"
-                           x-effect="if(searchOpen) { setTimeout(() => $refs.searchInput.focus(), 100) }">
-                </div>
-
-                <div class="mt-8 max-h-[50vh] overflow-y-auto">
-                    <template x-for="result in filteredResults" :key="result.url">
-                        <a :href="result.url"
-                           class="group flex items-center justify-between py-6 border-b border-foxplan-charcoal-brown/10 hover:px-4 transition-all duration-300">
-                            <div>
-                                <span class="text-[10px] tracking-widest uppercase text-foxplan-charcoal-brown/40 block mb-1"
-                                      x-text="result.category"></span>
-                                <h3 class="text-2xl text-foxplan-charcoal-brown group-hover:text-black transition-colors"
-                                    x-text="result.title"></h3>
-                            </div>
-                            <svg class="w-6 h-6 text-foxplan-charcoal-brown opacity-0 group-hover:opacity-100 transition-all"
-                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round"
-                                      stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                    </template>
-                    <div x-show="searchQuery !== '' && filteredResults.length === 0"
-                         class="py-12 text-center text-foxplan-charcoal-brown/40">
-                        No results found for "<span x-text="searchQuery"></span>"
+                <div class="relative border-b border-foxplan-charcoal-brown/30 pb-4 flex items-center mx-auto max-w-[90%]">
+                    <div class="w-6 h-6 text-foxplan-charcoal-brown/40 mr-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
                     </div>
+                    <input type="text" x-model="searchQuery" placeholder="Search here" class="bg-transparent border-none outline-none w-full placeholder:text-foxplan-charcoal-brown/30 text-foxplan-charcoal-brown" style="font-size: clamp(1.25rem, 2vw + 1rem, 1.75rem);" x-ref="searchInput" x-effect="if(searchOpen) { setTimeout(() => $refs.searchInput.focus(), 100) }">
+                </div>
+
+                <div class="mt-8 max-h-[40vh] overflow-y-auto text-left mx-auto max-w-[90%]">
+                    <template x-for="result in filteredResults" :key="result.url">
+                        <a :href="result.url" class="block py-4 border-b border-foxplan-charcoal-brown/10 text-foxplan-charcoal-brown hover:opacity-60 transition" style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);" x-text="result.title"></a>
+                    </template>
                 </div>
             </div>
         </div>
     </template>
+
+    {# --- DESKTOP MEGA MENU --- #}
+    {% for handle, items in megaMenuData %}
+        <div x-show="openTab === '{{ handle }}'"
+             x-transition
+             style="display: none;"
+             class="hidden lg:block absolute top-full left-0 right-0 z-[600] px-5"
+             @mouseenter="openTab = '{{ handle }}'"
+             @mouseleave="openTab = null">
+            <div class="bg-foxplan-white shadow-2xl flex w-full min-h-[450px] border border-foxplan-yellow/5">
+                <div class="w-2/3 grid grid-cols-3">
+                    {% for subItem in items %}
+                        <div class="p-8 border-r border-b border-foxplan-yellow/20 last:border-r-0">
+                            <a href="{{ subItem.url }}" class="block group/link mb-4 border-l-2 border-foxplan-yellow pl-3">
+                                <p class="text-[11px] font-bold tracking-[0.2em] text-foxplan-charcoal-brown uppercase group-hover/link:text-black transition-colors">{{ subItem.title }}</p>
+                            </a>
+                            <p class="text-sm text-foxplan-charcoal-brown/60 leading-relaxed">{{ subItem.desc }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {# DYNAMIC ARTICLE SECTION - Now fully clickable #}
+                <div class="w-1/3 relative group overflow-hidden bg-foxplan-neutral-beige">
+                    {% if navArticle %}
+                        {% set navImg = navArticle.featuredImage.one() %}
+
+                        {# Wrap the entire container in a link #}
+                        <a href="{{ navArticle.url }}" class="block w-full h-full relative no-underline">
+
+                            {# Background Image #}
+                            {% if navImg %}
+                                <img src="{{ navImg.url }}"
+                                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                     alt="{{ navArticle.title }}">
+                            {% endif %}
+
+                            {# Overlay Gradient for readability #}
+                            <div class="absolute inset-0 bg-gradient-to-t from-foxplan-charcoal-brown/90 via-foxplan-charcoal-brown/30 to-transparent transition-opacity duration-300 group-hover:opacity-90"></div>
+
+                            <div class="absolute bottom-12 left-8 right-8 text-white">
+                                {# Post Date Pill #}
+                                <span class="bg-foxplan-yellow text-foxplan-charcoal-brown text-[10px] font-bold px-3 py-1 rounded-full mb-4 inline-block uppercase tracking-widest">
+                    {{ navArticle.postDate | date('j F Y') | upper }}
+                </span>
+
+                                <h3 class="text-2xl font-medium mb-4 leading-tight group-hover:text-foxplan-yellow transition-colors duration-300">
+                                    {{ navArticle.title }}
+                                </h3>
+
+                                {# Visual indicator #}
+                                <span class="text-[11px] font-bold border-b border-white pb-1 group-hover:border-foxplan-yellow transition-colors duration-300 uppercase">
+                    Read More
+                </span>
+                            </div>
+                        </a>
+                    {% else %}
+                        <div class="absolute inset-0 flex items-center justify-center p-8 text-center">
+                            <p class="text-foxplan-charcoal-brown/40 italic">Check back soon for new insights.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 </nav>

@@ -8,28 +8,28 @@
 {% set arcPath = '@webroot/dist/images/placeholder/Arc.svg' %}
 
 {% if relatedArticles|length > 0 %}
-    <section class="w-full bg-foxplan-charcoal-brown pt-24 pb-0 relative overflow-hidden">
-        <div class="px-8 md:px-12 lg:px-16 relative z-10">
+    <section class="w-full bg-foxplan-charcoal-brown pt-12 lg:pt-24 pb-0 relative overflow-hidden">
+        <div class="px-4 md:px-12 lg:px-16 relative z-10">
 
-            <h2 class="font-serif text-white text-5xl md:text-6xl lg:text-7xl mb-16 tracking-tight">
+            <h2 class="font-serif text-foxplan-neutral-beige text-5xl md:text-6xl lg:text-7xl mb-8 lg:mb-16 tracking-tight">
                 Latest insights
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 lg:gap-x-20">
                 {% for article in relatedArticles %}
-                    <div class="pt-8 pb-12 border-t border-white/10 flex flex-col items-start group">
+                    <div class="pt-4 lg:pt-8 pb-6 lg:pb-12 border-t border-foxplan-neutral-beige/10 flex flex-col items-start group">
 
-                        <p class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
+                        <p class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-foxplan-neutral-beige/40 mb-4">
                             {{ article.postDate | date('F d, Y') | upper }}
                         </p>
 
                         <a href="{{ article.url }}" class="block mb-8">
-                            <h3 class="font-serif text-3xl lg:text-[2.2rem] leading-[1.15] text-white group-hover:opacity-70 transition-opacity">
+                            <h3 class="font-serif text-3xl lg:text-[2.2rem] leading-[1.15] text-foxplan-neutral-beige group-hover:opacity-70 transition-opacity">
                                 {{ article.title }}
                             </h3>
                         </a>
 
-                        <a href="{{ article.url }}" class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-white border-b border-white/30 hover:border-white transition-all pb-1">
+                        <a href="{{ article.url }}" class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-foxplan-neutral-beige border-b border-foxplan-neutral-beige/30 hover:border-foxplan-neutral-beige transition-all pb-1">
                             READ MORE
                         </a>
                     </div>
@@ -38,7 +38,8 @@
         </div>
 
         {# --- THE OVERLAPPING ARCS: Beige Outlines --- #}
-        <div class="relative w-full h-[200px] md:h-[300px] lg:h-[400px] mt-4 pointer-events-none">
+        {# UPDATED: Added hidden lg:block to hide on mobile but show on desktop #}
+        <div class="relative w-full h-[200px] md:h-[300px] lg:h-[400px] mt-4 pointer-events-none hidden lg:block">
             <div class="absolute bottom-0 left-0 w-full h-full text-foxplan-neutral-beige opacity-40">
                 {{ svg(alias(arcPath))|attr({
                     class: 'w-full h-full object-cover object-bottom fill-none stroke-current',
