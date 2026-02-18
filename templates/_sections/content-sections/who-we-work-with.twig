@@ -19,13 +19,13 @@
 {% if displayLogos|length > 0 %}
     <section class="w-full {{ data.backgroundColor }}">
         <div class="w-full">
-            <div class="pt-10 pb-6 px-8">
+            <div class="pt-10 pb-6 px-4 md:px-6 lg:px-8">
                 <p class="font-aktiv-grotesk text-[11px] font-bold tracking-[0.2em] uppercase {{ data.textColor }} opacity-80">
                     {{ data.title }}
                 </p>
             </div>
 
-            <div class="px-8 pb-16">
+            <div class="px-4 md:px-6 lg:px-8 pb-16">
                 <div class="border {{ data.borderColor }}">
                     <div class="grid grid-cols-2 md:grid-cols-4" id="logo-grid">
                         {% for logo in displayLogos %}

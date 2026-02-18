@@ -4,10 +4,12 @@ import ViteRestart from "vite-plugin-restart";
 import viteCompression from 'vite-plugin-compression';
 import checker from "vite-plugin-checker";
 import copy from 'rollup-plugin-copy';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ command }) => ({
     base: command === 'serve' ? '/' : '/dist/',
     plugins: [
+        react(),
         tailwindcss(), // Tailwind v4 engine
         checker({
             stylelint: { lintCommand: 'stylelint "src/**/*.css"' },
@@ -41,10 +43,9 @@ export default defineConfig(({ command }) => ({
         host: '0.0.0.0',
         port: 5173,
         strictPort: true,
-        // Use the DDEV URL without the trailing slash
         origin: 'https://fox-plan.ddev.site:5173',
         cors: true,
-        allowedHosts: ['.ddev.site'], // Explicitly allow DDEV domains
+        allowedHosts: ['.ddev.site'],
         hmr: {
             host: 'fox-plan.ddev.site',
             protocol: 'wss',

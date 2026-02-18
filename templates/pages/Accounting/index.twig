@@ -7,72 +7,63 @@
 } %}
 
 {% block blockAppBody %}
-    {# 1. hero #}
-    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
-    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
-    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
-    {% set pageHeroImage = entry.heroImage.one() ?? null %}
+    {# 1. Initialize shared state for the booking overlay #}
+    <div x-data="{ showBookCallOverlay: false }" class="relative">
 
-    {{ include('_sections/hero-sections/hero-arrow.twig', {
-        props: {
-            heading: pageHeading,
-            bodyText: pageBody,
-            buttonText: pageButton,
-            imageAsset: pageHeroImage,
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            buttonUrl: '/contact-us',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-white'
-        }
-    }) }}
+        {# 2. Hero Section - buttonUrl set to '#' triggers the popup #}
+        {{ include('_sections/hero-sections/hero-arrow.twig', {
+            props: {
+                buttonUrl: '#',
+                backgroundColor: 'bg-foxplan-neutral-beige',
+                buttonBgColor: 'bg-foxplan-charcoal-brown',
+                buttonTextColor: 'text-foxplan-neutral-beige'
+            }
+        }) }}
 
-{#    {2. accounting For Better Business }#}
-    {% include "_sections/content-sections/accounting-scrollable.twig" with { block: entry } %}
+        {# 3. Content Sections #}
+        {% include "_sections/content-sections/accounting-scrollable.twig" with { block: entry } %}
+        {% include "_sections/content-sections/accounting-pathways.twig" with { block: entry } %}
+        {% include "_sections/content-sections/accounting-pricing.twig" with { block: entry } %}
 
-    {# 3. accounting #}
-    {% include "_sections/content-sections/accounting-pathways.twig" with { block: entry } %}
+        {# 4. Benefits/Accordion #}
+        {% set benefitsHeading = entry.paragraphHeading4 ?? 'How we work' %}
+        {% set accordionItems = [] %}
+        {% if entry.accordion is defined %}
+            {% for block in entry.accordion.all() %}
+                {% set accordionItems = accordionItems | merge([{
+                    'title': block.accordionHeading,
+                    'text': block.accordionBodyText
+                }]) %}
+            {% endfor %}
+        {% endif %}
 
-    {# 4. pricing #}
-    {% include "_sections/content-sections/accounting-pricing.twig" with { block: entry } %}
+        {{ include('_sections/content-sections/benefits.twig', {
+            props: {
+                paragraphHeading: benefitsHeading,
+                items: accordionItems,
+                backgroundColor: 'bg-foxplan-yellow',
+                textColor: 'text-foxplan-charcoal-brown'
+            }
+        }) }}
 
-    {# 5. how we work accordion #}
-    {% set benefitsHeading = entry.paragraphHeading4 ?? 'About group insurance' %}
+        {# 5. Footer #}
+        {{ include('_components/footer/footer-High-fidelity.twig', {
+            props: {
+                backgroundColor: 'bg-foxplan-charcoal-brown',
+                textColor: 'text-foxplan-yellow',
+                logoColor: 'text-foxplan-yellow',
+                buttonColor: 'bg-foxplan-yellow',
+                buttonTextColor: 'text-foxplan-charcoal-brown',
+                separatorColor: 'text-foxplan-yellow'
+            }
+        }) }}
 
-    {# 1. Loop through the 'accordion' matrix #}
-    {% set accordionItems = [] %}
-    {# Ensure 'accordion' is the handle of the Matrix field on this specific entry #}
-    {% if entry.accordion is defined %}
-        {% for block in entry.accordion.all() %}
-            {% set accordionItems = accordionItems | merge([{
-                'title': block.accordionHeading,
-                'text': block.accordionBodyText
-            }]) %}
-        {% endfor %}
-    {% endif %}
+        {# 6. THE BOOKING OVERLAY #}
+        {{ include('_sections/overlays/book-a-call.twig') }}
 
-    {#  Deliver the data to the benefits section using 'props' #}
-    {{ include('_sections/content-sections/benefits.twig', {
-        props: {
-            paragraphHeading: benefitsHeading,
-            items: accordionItems,
-            backgroundColor: 'bg-foxplan-yellow',
-            textColor: 'text-foxplan-charcoal-brown'
-        }
-    }) }}
+    </div>
 
-    {# footer #}
-    {{ include('_components/footer/footer-High-fidelity.twig', {
-        props: {
-            backgroundColor: 'bg-foxplan-charcoal-brown',
-            textColor: 'text-foxplan-yellow',
-            logoColor: 'text-foxplan-yellow',
-            buttonColor: 'bg-foxplan-yellow',
-            buttonTextColor: 'text-foxplan-charcoal-brown',
-            separatorColor: 'text-foxplan-yellow'
-
-        }
-    }) }}
-
-
-
+    {% css %}
+        [x-cloak] { display: none !important; }
+    {% endcss %}
 {% endblock %}

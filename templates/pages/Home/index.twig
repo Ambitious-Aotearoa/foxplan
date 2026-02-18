@@ -9,6 +9,7 @@
 
 {% block blockAppBody %}
 
+    <div x-data="{ showBookCallOverlay: false }" class="relative">
 
     {# Hero section #}
     {% include '_sections/hero-sections/hero-home.twig' with {
@@ -51,7 +52,7 @@
         testimonials: testimonialEntries
     }) }}
 
-    {# hero grow section #}
+    {#    hero grow section #}
     {{ include('_sections/content-sections/hero-grow.twig') }}
 
     {# newsletter #}
@@ -71,5 +72,12 @@
         }
     }) }}
 
+        {# 6. THE BOOKING OVERLAY #}
+        {{ include('_sections/overlays/book-a-call.twig') }}
 
+    </div>
+
+    {% css %}
+        [x-cloak] { display: none !important; }
+    {% endcss %}
 {% endblock %}

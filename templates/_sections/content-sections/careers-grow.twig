@@ -1,18 +1,20 @@
 {# _sections/content-sections/career-grow.twig #}
 
-<section class="w-full relative overflow-hidden bg-[#F8F3ED]" id="career-scroll-container">
+<section class="w-full relative overflow-hidden bg-foxplan-neutral-beige" id="career-scroll-container">
 
     {# --- HEADER SECTION --- #}
-    <div class="w-full pt-24 pb-16 text-center px-8 relative z-20">
-        <h2 class="font-serif text-5xl lg:text-[4rem] leading-[1.1] text-foxplan-charcoal-brown mb-6 max-w-4xl mx-auto">
+    <div class="w-full py-8 md:py-16 lg:py-24 text-center px-8 relative z-20">
+        <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown mb-6 max-w-4xl mx-auto break-normal"
+            style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
             {{ entry.paragraphHeading2 | raw }}
         </h2>
-        <div class="font-aktiv text-base md:text-lg text-foxplan-charcoal-brown/70 max-w-2xl mx-auto italic">
+
+        <div class="font-aktiv text-foxplan-charcoal-brown/70 max-w-2xl mx-auto italic font-medium"
+             style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.25rem);">
             {{ entry.bodyText2 | raw }}
         </div>
     </div>
 
-    {# --- DATA CONSTRUCTION --- #}
     {% set careerSections = [
         {
             prehead: entry.paragraphHeading3,
@@ -48,13 +50,12 @@
         {% for section in careerSections %}
             {% set imageOnLeft = loop.index is odd %}
 
-            <div class="relative w-full py-20 md:py-32 career-block">
+            <div class="relative w-full pb-10 md:py-20 lg:py-32 career-block">
                 <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start gap-y-12">
 
-                    {# Image Side: Updated to use direct disk path for reliability #}
-                    <div class="col-span-1 md:col-span-4 {{ imageOnLeft ? 'md:col-start-1' : 'md:col-start-7 md:order-2' }}">
+                    {# Image Side #}
+                    <div class="col-span-1 md:col-span-4 {{ imageOnLeft ? 'md:col-start-1' : 'md:col-start-7 md:order-2' }} px-4 md:px-0 lg:px-0">
                         <div class="w-full relative shadow-xl">
-                            {# Constructing path: /dist/images/career_1.jpg etc. #}
                             <img src="{{ alias('@web/dist/images/career_' ~ loop.index ~ '.jpg') }}"
                                  class="w-full h-[500px] lg:h-[700px] object-cover block"
                                  alt="Career Phase {{ loop.index }}">
@@ -64,19 +65,27 @@
                     {# Text Side #}
                     <div class="col-span-1 md:col-span-4 pt-2 {{ imageOnLeft ? 'md:col-start-7 px-8 md:px-0 md:pr-12 lg:pr-24' : 'md:col-start-1 px-8 md:pl-12 lg:pl-16 md:order-1' }}">
                         <div class="max-w-xl">
+
                             <span class="text-xs font-bold uppercase tracking-widest text-foxplan-charcoal-brown/50 mb-4 block">
                                 {{ section.prehead }}
                             </span>
 
-                            <h3 class="font-serif text-4xl lg:text-[3.5rem] leading-[1] text-foxplan-charcoal-brown mb-10">
+                            <h3 class="font-serif tracking-tight text-foxplan-charcoal-brown mb-10 break-normal"
+                                style="font-size: clamp(2rem, 4vw + 1rem, 3.5rem); line-height: 0.85; word-break: keep-all;">
                                 {{ section.title }}
                             </h3>
 
                             <div class="space-y-8">
                                 {% for benefit in section.matrix %}
                                     <div class="benefit-item transition-all duration-700 ease-out text-foxplan-charcoal-brown/20 translate-x-0">
-                                        <h4 class="font-serif text-xl mb-1 text-inherit">{{ benefit.matrixTitle }}</h4>
-                                        <div class="font-aktiv text-sm md:text-base leading-relaxed text-inherit">
+
+                                        <h4 class="font-serif mb-1 text-inherit"
+                                            style="font-size: clamp(1.25rem, 1vw + 1rem, 1.5rem); line-height: 1.1;">
+                                            {{ benefit.matrixTitle }}
+                                        </h4>
+
+                                        <div class="font-aktiv leading-relaxed text-inherit font-medium"
+                                             style="font-size: clamp(0.9rem, 0.4vw + 0.8rem, 1rem);">
                                             {{ benefit.bodyText | raw }}
                                         </div>
                                     </div>
@@ -110,21 +119,19 @@
             progressLine.style.height = percentage + '%';
         }
 
-        // --- Permanent Reveal Observer ---
+
         const observerOptions = {
             root: null,
-            rootMargin: '0px 0px -25% 0px', // Triggers when item is 25% up from the bottom
+            rootMargin: '0px 0px -25% 0px',
             threshold: 0.1
         };
 
         const highlightObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Activate color
+                    // Activate color that is brown
                     entry.target.classList.remove('text-foxplan-charcoal-brown/20');
                     entry.target.classList.add('text-foxplan-charcoal-brown');
-
-                    // Stop watching this element so it stays highlighted forever
                     observer.unobserve(entry.target);
                 }
             });

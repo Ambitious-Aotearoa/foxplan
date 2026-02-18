@@ -1,54 +1,54 @@
-<div class="bg-foxplan-neutral-beige px-6 md:px-12 py-16">
-    <div x-show="activeTab">
+<section class="w-full bg-foxplan-neutral-beige py-16">
+    {# Increased to 40px side margins #}
+    <div class="px-[40px] w-full mx-auto" x-show="activeTab">
+
         {% for tab in data.tabs %}
             <div x-show="activeTab === '{{ tab.id }}'"
                  x-transition:enter="transition ease-out duration-300"
                  x-transition:enter-start="opacity-0 transform translate-y-4"
                  x-transition:enter-end="opacity-100 transform translate-y-0">
 
-                <h2 class="font-serif text-5xl md:text-6xl text-foxplan-charcoal-brown mb-12">
+                {# Large Tab Heading #}
+                <h2 class="font-serif text-5xl md:text-7xl text-foxplan-charcoal-brown mb-16 tracking-tight">
                     {{ tab.title }}
                 </h2>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+                {# Services Grid #}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-20">
                     {% for supplier in tab.suppliers %}
-                        <div class="supplier-card flex flex-col h-full">
+                        {# Entire card is the link using 'buttonUrl' #}
+                        <a href="{{ supplier.buttonUrl }}"
+                           target="_blank"
+                           class="group supplier-card flex flex-col h-full transition-all duration-300 hover:-translate-y-2">
 
-                            {# Increased height and max-width for a slightly larger logo presence #}
-                            <div class="h-32 w-full mb-6 flex items-center justify-start overflow-hidden">
+                            {# Maintained Large Logo Container #}
+                            <div class="h-24 w-full mb-8 flex items-center justify-start overflow-hidden">
                                 {% set image = supplier.suppliersImage.one() %}
                                 {% if image %}
                                     <img src="{{ image.url }}"
                                          alt="{{ supplier.providerName }}"
-                                         class="max-h-full max-w-[220px] object-contain object-left">
+                                         class="max-h-full max-w-[240px] object-contain object-left transition-transform duration-500 group-hover:scale-105">
                                 {% else %}
-                                    <div class="h-full w-40 bg-gray-50 flex items-center justify-center border border-gray-100">
+                                    <div class="h-full w-48 bg-gray-100/50 flex items-center justify-center border border-gray-200">
                                         <span class="text-[10px] uppercase tracking-widest opacity-30">Logo Pending</span>
                                     </div>
                                 {% endif %}
                             </div>
 
-                            <h3 class="font-serif text-2xl text-foxplan-charcoal-brown leading-tight mb-2">
+                            {# Provider Name #}
+                            <h3 class="font-serif text-3xl text-foxplan-charcoal-brown leading-tight mb-3">
                                 {{ supplier.providerName }}
                             </h3>
 
-                            <div class="font-montreal text-sm text-foxplan-charcoal-brown opacity-80 mb-6 leading-snug">
+                            {# Contact Info #}
+                            <div class="font-montreal text-lg text-foxplan-charcoal-brown opacity-90 leading-snug">
                                 {{ supplier.contactInfo | raw }}
                             </div>
 
-                            <div class="mt-auto">
-                                <a href="{{ supplier.buttonLink }}"
-                                   target="_blank"
-                                   class="inline-flex items-center bg-foxplan-charcoal-brown text-white px-5 py-2.5 text-sm font-montreal hover:opacity-90 transition-opacity">
-                                    {{ supplier.button ?: 'Visit site' }}
-                                    <span class="ml-2 text-xs">↗</span>
-                                </a>
-                            </div>
-
-                        </div>
+                        </a>
                     {% endfor %}
                 </div>
             </div>
         {% endfor %}
     </div>
-</div>
+</section>

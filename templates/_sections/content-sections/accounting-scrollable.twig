@@ -1,63 +1,89 @@
+{# templates#}
+
 {# templates/_sections/service-slider.twig #}
 
-{# 1. Static Asset Setup for Staging Reliability #}
-{% set arrowPath = '@webroot/dist/images/placeholder/Arrow_1.svg' %}
-
-<section class="relative w-full bg-foxplan-charcoal-brown text-foxplan-neutral-beige
-                 border-l-[20px] border-foxplan-neutral-beige overflow-hidden
+<section class="relative w-full h-auto lg:h-screen bg-foxplan-charcoal-brown text-foxplan-neutral-beige
+                border-l-[10px] lg:border-l-[20px] border-foxplan-neutral-beige overflow-hidden
                  before:content-[''] before:absolute before:inset-0
                  before:border-l-[20px] before:border-t-[20px] before:border-b-[20px]
-                 before:border-foxplan-charcoal-brown before:z-20 before:pointer-events-none">
+                 before:border-foxplan-charcoal-brown before:z-20 before:pointer-events-none px-4 md:px-6 lg:px-8">
 
     {# Header Area #}
-    <div class="pt-16 md:pt-24 pl-6 pr-6 lg:pr-20 relative z-10">
-        <div class="flex justify-between items-center mb-16">
-            <h2 class="text-5xl md:text-7xl font-serif leading-tight">
+    <div class="pt-10 md:pt-24  relative z-10 md:px-6 ">
+        <div class="flex flex-col xl:flex-row xl:justify-between xl:items-end mb-10 md:mb-16 gap-6">
+
+            <h2 class="font-serif leading-[1.1] md:leading-[1.0] xl:leading-[0.85] tracking-tight w-full break-normal"
+                style="font-size: clamp(2.25rem, 6vw + 1rem, 6.5rem); word-break: keep-all;">
                 {{ block.paragraphHeading }}
             </h2>
 
-            <div class="hidden md:flex gap-3">
-                <button id="scrollPrev" class="w-12 h-12 rounded-full border border-foxplan-neutral-beige flex items-center justify-center text-foxplan-neutral-beige hover:bg-foxplan-neutral-beige hover:text-foxplan-charcoal-brown transition-all" aria-label="Previous">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            {# Navigation Arrows #}
+            <div class="hidden md:flex justify-start md:pl-12 xl:pl-0 gap-3 flex-shrink-0 xl:mb-4">
+                <button id="scrollPrev" class="w-12 h-12 rounded-full bg-foxplan-neutral-beige flex items-center justify-center text-foxplan-charcoal-brown hover:opacity-90 transition-all">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
                 </button>
-                <button id="scrollNext" class="w-12 h-12 rounded-full bg-foxplan-neutral-beige flex items-center justify-center text-foxplan-charcoal-brown hover:opacity-90 transition-all" aria-label="Next">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                <button id="scrollNext" class="w-12 h-12 rounded-full bg-foxplan-neutral-beige flex items-center justify-center text-foxplan-charcoal-brown hover:opacity-90 transition-all">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14m-7-7 7 7-7 7"/>
+                    </svg>
                 </button>
             </div>
         </div>
     </div>
 
-    <div id="serviceContainer" class="relative z-10 flex flex-nowrap overflow-x-auto gap-6 pl-12 pr-6 md:pl-20 md:pr-12 lg:pl-32 lg:pr-20 mb-[20px] snap-x snap-mandatory no-scrollbar scroll-smooth">
+    {# Cards Container #}
+    <div id="serviceContainer"
+         class="relative z-10 flex flex-nowrap overflow-x-auto gap-6 px-4 md:px-6 lg:px-8 mb-10 snap-x snap-mandatory no-scrollbar scroll-smooth">
 
         {% for card in block.heroMatrix.all() %}
-            <div class="flex-shrink-0 min-w-[85vw] md:min-w-[calc(33.333%-1rem)] bg-foxplan-neutral-beige p-10 md:p-12 text-foxplan-charcoal-brown snap-start flex flex-col min-h-[480px]">
+            <div class="flex-shrink-0 min-w-[85vw] md:min-w-[45vw] lg:min-w-[calc((100%/3)-2rem)] bg-foxplan-neutral-beige p-6 md:p-8 lg:p-12 text-foxplan-charcoal-brown snap-start flex flex-col h-auto min-h-[450px] lg:h-[550px]">
 
-                {# 2. Brand Consistency: Use the SVG Arrow Head instead of a simple square #}
-                <div class="w-12 h-12 mb-16 fill-current text-foxplan-charcoal-brown/20">
-                    {{ svg(alias(arrowPath))|attr({
-                        class: 'w-full h-full object-contain object-left',
-                        role: 'presentation'
+                <div class="mb-6 md:mb-10 flex-shrink-0">
+                    {{ include('_components/ui/icons/performance-icon.twig', {
+                        props: { name: card.icons.value ?? '1', color: '#270E15', size: 'w-10 h-10 md:w-16 md:h-16', classes: 'opacity-100' }
                     }) }}
                 </div>
 
-                <h3 class="text-3xl md:text-4xl font-serif mb-6 leading-tight">
+                {# Card Heading Wrap Fix #}
+                <h3 class="font-serif mb-4 md:mb-6 leading-tight flex-shrink-0 break-normal"
+                    style="font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem); word-break: keep-all;">
                     {{ card.mainHeading }}
                 </h3>
 
-                <div class="text-lg leading-relaxed font-light opacity-90 block">
+                {# Body Text Wrap Fix #}
+                <div class="font-aktiv-grotesk leading-relaxed font-medium block w-full break-normal whitespace-normal flex-grow"
+                     style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.25rem); word-break: keep-all;">
                     {{ card.bodyText }}
                 </div>
             </div>
         {% endfor %}
-
     </div>
 </section>
 
 <style>
-    /* Ensure scrollbar hiding works across all staging browsers */
     .no-scrollbar::-webkit-scrollbar { display: none !important; }
-    .no-scrollbar {
-        -ms-overflow-style: none !important;
-        scrollbar-width: none !important;
-    }
+    .no-scrollbar { -ms-overflow-style: none !important; scrollbar-width: none !important; }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('serviceContainer');
+        const nextBtn = document.getElementById('scrollNext');
+        const prevBtn = document.getElementById('scrollPrev');
+
+        if (container && nextBtn && prevBtn) {
+            const getScrollAmount = () => {
+                const firstCard = container.querySelector('div');
+                return firstCard ? firstCard.offsetWidth + 24 : 300;
+            };
+            nextBtn.addEventListener('click', () => {
+                container.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+            });
+            prevBtn.addEventListener('click', () => {
+                container.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+            });
+        }
+    });
+</script>

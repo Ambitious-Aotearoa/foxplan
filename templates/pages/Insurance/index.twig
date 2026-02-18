@@ -8,6 +8,8 @@
 
 {% block blockAppBody %}
     {# 1. Hero Section #}
+    <div x-data="{ showBookCallOverlay: false }" class="relative">
+
     {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
     {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
     {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
@@ -20,7 +22,7 @@
             buttonText: pageButton,
             imageAsset: pageHeroImage,
             backgroundColor: 'bg-foxplan-yellow',
-            buttonUrl: '/contact-us',
+            buttonUrl: '#',
             buttonBgColor: 'bg-foxplan-charcoal-brown',
             buttonTextColor: 'text-foxplan-neutral-beige'
         }
@@ -83,5 +85,13 @@
             separatorColor: 'text-foxplan-yellow'
         }
     }) }}
+        {# 6. THE BOOKING OVERLAY #}
+        {{ include('_sections/overlays/book-a-call.twig') }}
+
+    </div>
+
+    {% css %}
+        [x-cloak] { display: none !important; }
+    {% endcss %}
 
 {% endblock %}

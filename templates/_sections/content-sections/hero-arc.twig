@@ -8,10 +8,6 @@
     textColor: 'text-foxplan-charcoal-brown',
 } %}
 
-{# Define static path using @webroot for the decorative arc #}
-{% set arcPath = '@webroot/dist/images/placeholder/Arc.svg' %}
-
-{# Handling the Matrix data #}
 {% set columns = [] %}
 {% if entry.heroMatrix is defined %}
     {% for block in entry.heroMatrix.all() %}
@@ -24,53 +20,76 @@
 
 {% set data = defaults | merge(props ?? {}) %}
 
-<section class="w-full py-10 lg:py-20 {{ data.backgroundColor }} overflow-hidden">
+{# templates/_sections/hero-sections/hero-arc.twig #}
 
-    {# 1. TOP SECTION: Centered #}
-    <div class="container mx-auto px-6 lg:px-12 mb-8 lg:mb-24">
+{# templates/_sections/hero-sections/hero-arc.twig #}
+
+<section class="w-full py-10 lg:py-20 {{ data.backgroundColor }} overflow-hidden"
+         x-data="{ arcRevealed: false }"
+         x-init="() => {
+            setTimeout(() => { if(!arcRevealed) arcRevealed = true }, 1000)
+         }"
+         x-intersect.once.margin.0px.0px.-20%.0px="arcRevealed = true">
+
+    {# 1. TOP SECTION #}
+    <div class="container mx-auto px-6 lg:px-12 mb-8 lg:mb-16">
         <div class="max-w-3xl mx-auto text-center">
             {% if data.heading %}
-                {# ORIGINAL SIZE: Combined with font-serif for Season Serif Trial Light #}
-                <h2 class="font-serif text-5xl lg:text-7xl leading-tight {{ data.textColor }} mb-6">
+                {# CLAMP IN CODE: Scales from 48px to 72px #}
+                <h2 class="font-serif leading-tight {{ data.textColor }} mb-6"
+                    style="font-size: clamp(3rem, 5vw + 1rem, 4.5rem);">
                     {{ data.heading | raw }}
                 </h2>
             {% endif %}
 
             {% if data.subheading %}
-                {# ORIGINAL SIZE: Combined with font-aktiv for Aktiv Grotesk #}
-                <div class="font-aktiv text-lg lg:text-xl leading-relaxed {{ data.textColor }} mx-auto max-w-xl">
+                {# CLAMP IN CODE: Scales from 18px to 20px #}
+                <div class="font-aktiv leading-relaxed {{ data.textColor }} mx-auto max-w-xl"
+                     style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.25rem);">
                     {{ data.subheading | raw }}
                 </div>
             {% endif %}
         </div>
     </div>
 
-    {# 2. MIDDLE SECTION: Static Arc #}
-    <div class="w-full mb-12 px-[10px]">
-        <div class="w-full h-auto fill-current {{ data.textColor }}">
-            {{ svg(alias(arcPath))|attr({
-                class: 'w-full h-auto block',
-                role: 'presentation'
-            }) }}
+    {# 2. MIDDLE SECTION: ARCS #}
+    <div class="relative px-[20px] py-[56px] min-h-[450px] hidden lg:block">
+        <div class="transition-all duration-[6000ms] overflow-hidden {{ data.textColor }}"
+             style="transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); width: 0%; opacity: 0;"
+             :style="arcRevealed ? 'width: 100%; opacity: 1;' : 'width: 0%; opacity: 0;'">
+
+            <svg class="w-full h-auto block fill-none stroke-current overflow-visible min-w-[2100px]"
+                 viewBox="0 0 2100 410"
+                 xmlns="http://www.w3.org/2000/svg">
+                <g stroke-width="2.5">
+                    <path d="M0,400 A350,350 0 0,1 700,400 A350,350 0 0,1 1400,400 A350,350 0 0,1 2100,400"
+                          style="stroke: currentColor;" />
+                    <path class="opacity-40"
+                          stroke-dasharray="12, 8"
+                          d="M-350,400 A350,350 0 0,1 350,400 A350,350 0 0,1 1050,400 A350,350 0 0,1 1750,400 A350,400 0 0,1 2450,400"
+                          style="stroke: currentColor;" />
+                </g>
+            </svg>
         </div>
     </div>
 
-    {# 3. BOTTOM SECTION: Matrix Columns #}
+    {# 3. BOTTOM SECTION: TEXT UNDER ARCS #}
     <div class="w-full px-4 lg:px-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
             {% for col in columns %}
                 <div class="flex flex-col">
-                    {# ORIGINAL SIZE: font-serif triggers the custom brand font #}
-                    <h3 class="font-serif text-3xl lg:text-4xl {{ data.textColor }} mb-6">
+                    {# CLAMP IN CODE: Scales from 28px to 36px #}
+                    <h3 class="font-serif {{ data.textColor }} mb-6"
+                        style="font-size: clamp(1.75rem, 1.5vw + 1rem, 2.25rem);">
                         {{ col.title | raw }}
                     </h3>
-                    {# ORIGINAL SIZE: font-aktiv triggers the brand body font #}
-                    <div class="font-aktiv text-base lg:text-lg leading-relaxed {{ data.textColor }}">
+                    {# CLAMP IN CODE: Body text scales smoothly #}
+                    <div class="font-aktiv leading-relaxed {{ data.textColor }}"
+                         style="font-size: clamp(1rem, 1vw + 0.5rem, 1.125rem);">
                         {{ col.text | raw }}
                     </div>
                 </div>
             {% endfor %}
         </div>
     </div>
-
 </section>

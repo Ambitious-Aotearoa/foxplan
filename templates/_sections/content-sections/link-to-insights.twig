@@ -1,16 +1,18 @@
-{# 1. Safe Data Fetching: Pulling the latest 3 articles from the 'article' section #}
+{# 1. Safe Data Fetching: Pulling the latest 3 articles #}
 {% set relatedArticles = craft.entries()
     .section('article')
     .limit(3)
     .all() %}
 
-{# Define static path using @webroot for reliability #}
-{% set arcPath = '@webroot/dist/images/placeholder/Arc.svg' %}
-
 {% if relatedArticles|length > 0 %}
-    <section class="w-full bg-foxplan-charcoal-brown pt-12 lg:pt-24 pb-0 relative overflow-hidden">
-        <div class="px-4 md:px-12 lg:px-16 relative z-10">
+    <section class="w-full bg-foxplan-charcoal-brown pt-12 lg:pt-24 pb-0 relative overflow-hidden"
+             x-data="{ arcRevealed: false }"
+             x-init="() => {
+                setTimeout(() => { if(!arcRevealed) arcRevealed = true }, 6500)
+             }"
+             x-intersect.once.margin.0px.0px.-20%.0px="arcRevealed = true">
 
+        <div class="px-4 md:px-12 lg:px-16 relative z-10">
             <h2 class="font-serif text-foxplan-neutral-beige text-5xl md:text-6xl lg:text-7xl mb-8 lg:mb-16 tracking-tight">
                 Latest insights
             </h2>
@@ -18,7 +20,6 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 lg:gap-x-20">
                 {% for article in relatedArticles %}
                     <div class="pt-4 lg:pt-8 pb-6 lg:pb-12 border-t border-foxplan-neutral-beige/10 flex flex-col items-start group">
-
                         <p class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-foxplan-neutral-beige/40 mb-4">
                             {{ article.postDate | date('F d, Y') | upper }}
                         </p>
@@ -37,15 +38,29 @@
             </div>
         </div>
 
-        {# --- THE OVERLAPPING ARCS: Beige Outlines --- #}
-        {# UPDATED: Added hidden lg:block to hide on mobile but show on desktop #}
-        <div class="relative w-full h-[200px] md:h-[300px] lg:h-[400px] mt-4 pointer-events-none hidden lg:block">
-            <div class="absolute bottom-0 left-0 w-full h-full text-foxplan-neutral-beige opacity-40">
-                {{ svg(alias(arcPath))|attr({
-                    class: 'w-full h-full object-cover object-bottom fill-none stroke-current',
-                    style: 'stroke-width: 1px;',
-                    role: 'presentation'
-                }) }}
+        {# --- THE ANIMATED ARCS: 20px Side Padding Applied --- #}
+        <div class="relative w-full h-[200px] md:h-[300px] lg:h-[400px] mt-4 pointer-events-none hidden lg:block overflow-visible px-[20px]">
+
+            <div class="relative w-full h-full transition-all duration-[6000ms] overflow-hidden text-foxplan-neutral-beige"
+                 style="transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); width: 0%; opacity: 0;"
+                 :style="arcRevealed ? 'width: 100%; opacity: 1;' : 'width: 0%; opacity: 0;'">
+
+                <svg class="w-full h-auto block fill-none stroke-current overflow-visible"
+                     viewBox="0 0 2100 410"
+                     xmlns="http://www.w3.org/2000/svg"
+                     style="min-width: 2100px;">
+                    <g stroke-width="1.2">
+                        {# 3 Solid Circular Arcs #}
+                        <path d="M0,400 A350,350 0 0,1 700,400 A350,350 0 0,1 1400,400 A350,350 0 0,1 2100,400"
+                              style="stroke: currentColor;" />
+
+                        {# Dashed Circular Arcs #}
+                        <path class="opacity-40"
+                              stroke-dasharray="12, 8"
+                              d="M-350,400 A350,350 0 0,1 350,400 A350,350 0 0,1 1050,400 A350,350 0 0,1 1750,400 A350,400 0 0,1 2450,400"
+                              style="stroke: currentColor;" />
+                    </g>
+                </svg>
             </div>
         </div>
     </section>

@@ -6,46 +6,35 @@
 {% set fallback1 = alias('@web/dist/images/About_1.jpg') %}
 {% set fallback2 = alias('@web/dist/images/About_2.jpg') %}
 
-{# 1. FETCH ASSETS FROM CRAFT #}
-{% set section1Image = entry.image.one() %}
-{% set section2Image = entry.image2.one() %}
-
-{# Fallbacks #}
-{% set fallback1 = alias('@web/dist/images/About_1.jpg') %}
-{% set fallback2 = alias('@web/dist/images/About_2.jpg') %}
-
 <section class="w-full relative overflow-hidden" id="scroll-container">
 
     {# --- THE DOTTED LINE & MOVING DOT --- #}
-    {# STRICTOR FIX: hidden until the screen is wider than 1400px #}
     <div class="hidden min-[1401px]:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] z-50 pointer-events-none">
         <div class="h-full w-full border-l-2 border-dashed border-foxplan-charcoal-brown/10"></div>
-
-        <div id="progress-line"
-             class="absolute top-0 left-0 w-full border-l-2 border-dashed border-foxplan-charcoal-brown transition-all duration-75 ease-out"
-             style="height: 0%;"></div>
-
-        <div id="scrolling-dot"
-             class="absolute left-1/2 -translate-x-1/2 top-0 w-3 h-3 bg-foxplan-charcoal-brown rounded-full shadow-sm opacity-0 transition-opacity duration-300"
-             style="transform: translate(-50%, -50%);">
-        </div>
+        <div id="progress-line" class="absolute top-0 left-0 w-full border-l-2 border-dashed border-foxplan-charcoal-brown transition-all duration-75 ease-out" style="height: 0%;"></div>
+        <div id="scrolling-dot" class="absolute left-1/2 -translate-x-1/2 top-0 w-3 h-3 bg-foxplan-charcoal-brown rounded-full shadow-sm opacity-0 transition-opacity duration-300" style="transform: translate(-50%, -50%);"></div>
     </div>
 
     {# --- SECTION 1: Yellow --- #}
     <div class="bg-foxplan-yellow pt-8 lg:pt-24 pb-12 relative z-20">
-        {# Using min-[1401px] ensures the 1-column mobile stack stays for iPad and screens under 1400px #}
         <div class="grid grid-cols-1 min-[1401px]:grid-cols-10 w-full items-start">
             <div class="col-span-1 min-[1401px]:col-span-6 px-4 lg:px-8 md:pl-12 lg:pl-4 lg:mb-4 ">
                 <div class="max-w-2xl">
-                    <h2 class="font-serif text-5xl lg:text-[5rem] leading-[0.9] tracking-tight mb-8 text-foxplan-charcoal-brown">
+                    {# FONT: Season Serif#}
+                    <h2 class="font-serif leading-[0.9] tracking-tight mb-8 text-foxplan-charcoal-brown "
+                        style="font-size: clamp(3rem, 6vw + 1rem, 5rem);">
                         {{ entry.paragraphHeading4 | raw }}
                     </h2>
-                    <div class="font-aktiv text-base md:text-lg opacity-80 text-foxplan-charcoal-brown mb-6 lg:mb-10">
+
+                    {# FONT: Aktiv Grotesk #}
+                    <div class="font-aktiv-grotesk text-foxplan-charcoal-brown mb-6 lg:mb-10 font-medium"
+                         style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.125rem);">
                         {{ entry.bodyText3 | raw }}
                     </div>
 
                     {% if entry.button2 is not empty %}
                         <div class="inline-block">
+                            {# Using standard UI button component #}
                             {% include '_components/ui/button/button.twig' with {
                                 props: {
                                     text: entry.button2,
@@ -74,7 +63,6 @@
     <div class="bg-foxplan-white pt-[150px] md:pt-[250px] lg:pt-[300px] relative z-10">
         <div class="grid grid-cols-1 min-[1401px]:grid-cols-10 w-full items-end">
 
-            {# Image Column: Set to order-2 so it follows text on the stacked layout until 1400px #}
             <div class="col-span-1 min-[1401px]:col-span-4 self-end leading-[0] px-4 md:px-8 mt-4 lg:mt-12 md:mt-0 order-2 mb-12 lg:mb-0 min-[1401px]:order-none">
                 <img src="{{ section2Image ? section2Image.url : fallback2 }}"
                      alt="{{ section2Image.title ?? 'Foxplan Mission' }}"
@@ -83,10 +71,15 @@
 
             <div class="col-span-1 min-[1401px]:col-start-7 min-[1401px]:col-span-4 px-4 lg:px-8 md:pl-0 md:pr-12 lg:pr-24 pb-24 md:pb-40 order-1 min-[1401px]:order-none">
                 <div>
-                    <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-8">
+                    {# FONT: Season Serif  #}
+                    <h2 class="font-serif leading-[0.9] text-foxplan-charcoal-brown mb-8 "
+                        style="font-size: clamp(3rem, 5vw + 1rem, 4.5rem);">
                         {{ entry.paragraphHeading5 | raw }}
                     </h2>
-                    <div class="font-aktiv text-base md:text-lg text-foxplan-charcoal-brown/80 mb-10">
+
+                    {# FONT: Aktiv Grotesk  #}
+                    <div class="font-aktiv-grotesk text-foxplan-charcoal-brown mb-10 font-medium"
+                         style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.125rem);">
                         {{ entry.bodyText4 | raw }}
                     </div>
 
@@ -109,41 +102,34 @@
     </div>
 </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('scroll-container');
-            const dot = document.getElementById('scrolling-dot');
-            const progressLine = document.getElementById('progress-line');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('scroll-container');
+        const dot = document.getElementById('scrolling-dot');
+        const progressLine = document.getElementById('progress-line');
 
-            function updateTimeline() {
-                if (!container || !dot || !progressLine) return;
+        function updateTimeline() {
+            if (!container || !dot || !progressLine) return;
+            const containerRect = container.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+            let scrollProgress = (viewHeight / 2 - containerRect.top) / containerRect.height;
 
-                const containerRect = container.getBoundingClientRect();
-                const viewHeight = window.innerHeight;
-
-                // Calculate progress based on the center of the screen
-                let scrollProgress = (viewHeight / 2 - containerRect.top) / containerRect.height;
-
-                // FIX: Only show the dot and progress if the container is currently in the active viewport
-                // and hide it immediately if we scroll past the bottom (containerRect.bottom < viewHeight/2)
-                if (scrollProgress > 0 && scrollProgress < 1 && containerRect.bottom > (viewHeight / 2)) {
-                    dot.style.opacity = "1";
-                    progressLine.style.opacity = "1";
-                } else {
-                    dot.style.opacity = "0";
-                    progressLine.style.opacity = "0";
-                }
-
-                // Constrain percentage for the visual height
-                scrollProgress = Math.max(0, Math.min(1, scrollProgress));
-                const percentage = scrollProgress * 100;
-
-                dot.style.top = percentage + '%';
-                progressLine.style.height = percentage + '%';
+            if (scrollProgress > 0 && scrollProgress < 1 && containerRect.bottom > (viewHeight / 2)) {
+                dot.style.opacity = "1";
+                progressLine.style.opacity = "1";
+            } else {
+                dot.style.opacity = "0";
+                progressLine.style.opacity = "0";
             }
 
-            window.addEventListener('scroll', updateTimeline);
-            window.addEventListener('resize', updateTimeline);
-            updateTimeline();
-        });
-    </script>
+            scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+            const percentage = scrollProgress * 100;
+            dot.style.top = percentage + '%';
+            progressLine.style.height = percentage + '%';
+        }
+
+        window.addEventListener('scroll', updateTimeline);
+        window.addEventListener('resize', updateTimeline);
+        updateTimeline();
+    });
+</script>

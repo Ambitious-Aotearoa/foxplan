@@ -1,3 +1,5 @@
+{# templates/_sections/testimonials.twig #}
+
 {# 1. Fetching the entries directly #}
 {% set testimonials = craft.entries().section('testimonials').all() %}
 
@@ -35,7 +37,7 @@
             x-init="setTimeout(() => checkScroll(), 200)"
             @scroll.window.passive="checkScroll()"
     >
-        <div class="w-full pt-20 lg:pt-24 pb-12 lg:pb-24">
+        <div class="w-full pt-10 lg:pt-24 pb-10 lg:pb-24">
 
             {# --- HEADER ROW --- #}
             {% if props.sectionTitle is not empty %}
@@ -57,8 +59,9 @@
                         </div>
                     </div>
 
-                    <div class="w-full md:w-[70%] px-4 lg:px-8 md:px-0">
-                        <h2 class="font-serif text-5xl md:text-[4.5rem] font-light leading-[0.85] tracking-tight {{ props.textColor }}">
+                    <div class="w-full md:w-[70%] px-4 lg:px-8 md:px-0 pr-12 lg:pr-32">
+                        <h2 class="font-serif tracking-tight {{ props.textColor }} break-normal"
+                            style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
                             {{ props.sectionTitle | nl2br | raw }}
                         </h2>
                     </div>
@@ -70,7 +73,7 @@
                 <div class="hidden md:block md:w-[30%]"></div>
 
                 <div class="w-full {{ props.sectionTitle is not empty ? 'md:w-[70%]' : 'md:w-full' }} px-4 lg:px-8 md:px-0 pr-8 md:pr-24 lg:pr-32">
-                    <div class="relative min-h-[200px] lg:min-h-[350px]">
+                    <div class="relative min-h-[250px] lg:min-h-[350px]">
                         {% for index, testimonialEntry in testimonials %}
                             <div
                                     x-show="active === {{ index }}"
@@ -85,11 +88,16 @@
                                     </svg>
                                 </div>
 
-                                <div class="font-aktiv text-lg md:text-[1.6rem] leading-relaxed mb-6 opacity-90 {{ props.textColor }} w-full">
+                                {#
+                                QUOTE CLAMP
+                                #}
+                                <div class="font-aktiv-grotesk leading-relaxed mb-10 {{ props.textColor }} w-full font-medium break-normal"
+                                     style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.5rem); word-break: keep-all;">
                                     {{ testimonialEntry.blockBodyText | raw }}
                                 </div>
 
-                                <div class="font-aktiv text-sm font-bold tracking-[0.2em] uppercase {{ props.textColor }}">
+                                {# AUTHOR TEXT #}
+                                <div class="font-aktiv-grotesk text-sm font-bold tracking-[0.2em] uppercase {{ props.textColor }} font-medium opacity-80">
                                     — {{ testimonialEntry.title }}
                                 </div>
                             </div>

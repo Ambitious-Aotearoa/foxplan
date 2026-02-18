@@ -2,12 +2,12 @@
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 199">
   <defs>
     <style>
-      .cls-1, .cls-2 {
-        fill: none;
+        .cls-1, .cls-2 {
+        fill: currentColor;
         stroke: #270e15;
         stroke-miterlimit: 10;
         stroke-width: .5px;
-      }
+        }
 
       .cls-2 {
         stroke-dasharray: 8 5;

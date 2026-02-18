@@ -9,28 +9,28 @@
 
 {% set data = defaults | merge(props | default({})) %}
 
-{# Shared UI Classes #}
-{% set inputLabelClasses = 'text-sm font-semibold text-foxplan-charcoal-brown block mb-1 uppercase tracking-widest' %}
-{% set inputFieldClasses = 'w-full pb-3 pt-2 bg-transparent border-0 border-b border-foxplan-charcoal-brown focus:ring-0 focus:border-black transition-colors duration-200 placeholder-gray-400' %}
+{#
+FIXES:
+- text-xs: Restored label size for consistency.
+- focus:outline-none & focus:ring-0: Removes the blue boundary/box seen in your screenshot.
+- focus:border-foxplan-charcoal-brown: Optional - keeps the bottom border dark when typing.
+#}
+{% set inputLabelClasses = 'text-xs font-bold text-foxplan-charcoal-brown block mb-1 uppercase tracking-widest' %}
+{% set inputFieldClasses = 'w-full pb-3 pt-2 bg-transparent border-0 border-b border-foxplan-charcoal-brown focus:outline-none focus:ring-0 focus:border-foxplan-charcoal-brown placeholder-foxplan-charcoal-brown/40 font-medium' %}
 
-<section class="w-full {{ data.backgroundColor }} pt-16 pb-24 md:pt-24 md:pb-32">
-    {#
-    The Grid:
-    - md:grid-cols-10 creates a 10-unit system.
-    - The first 3 units (col-span-3) act as the empty left spacer.
-    - The remaining 7 units (col-span-7) hold the content.
-    #}
+<section class="w-full {{ data.backgroundColor }} py-8 md:py-16 lg:py-24">
     <div class="grid grid-cols-1 md:grid-cols-10 w-full">
 
         {# Left Spacer (30%) #}
         <div class="hidden md:block md:col-span-3"></div>
 
         {# Content Area (70%) #}
-        <div class="col-span-1 md:col-span-7 px-8 lg:pr-12">
+        <div class="col-span-1 md:col-span-7 px-4 md:px-8 lg:pr-12">
 
             {# Heading with Top Border #}
-            <div class="pt-12 border-t {{ data.borderColor }} mb-16">
-                <h2 class="font-serif text-5xl md:text-7xl font-normal {{ data.textColor }} leading-none tracking-tight">
+            <div class="pt-12 border-t {{ data.borderColor }} mb-10 lg:mb-16">
+                <h2 class="font-serif tracking-tight {{ data.textColor }} break-normal"
+                    style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
                     {{ data.heading }}
                 </h2>
             </div>
@@ -42,11 +42,15 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
                     <div>
                         <label for="first-name" class="{{ inputLabelClasses }}">First Name</label>
-                        <input type="text" name="first-name" id="first-name" placeholder="John" class="{{ inputFieldClasses }}" required>
+                        <input type="text" name="first-name" id="first-name" placeholder="John"
+                               class="{{ inputFieldClasses }}"
+                               style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.25rem);" required>
                     </div>
                     <div>
                         <label for="last-name" class="{{ inputLabelClasses }}">Last Name</label>
-                        <input type="text" name="last-name" id="last-name" placeholder="Doe" class="{{ inputFieldClasses }}" required>
+                        <input type="text" name="last-name" id="last-name" placeholder="Doe"
+                               class="{{ inputFieldClasses }}"
+                               style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.25rem);" required>
                     </div>
                 </div>
 
@@ -54,18 +58,24 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
                     <div>
                         <label for="phone" class="{{ inputLabelClasses }}">Phone</label>
-                        <input type="tel" name="phone" id="phone" placeholder="1234 567 890" class="{{ inputFieldClasses }}">
+                        <input type="tel" name="phone" id="phone" placeholder="1234 567 890"
+                               class="{{ inputFieldClasses }}"
+                               style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.25rem);">
                     </div>
                     <div>
                         <label for="email" class="{{ inputLabelClasses }}">Email</label>
-                        <input type="email" name="email" id="email" placeholder="johndoe@email.com" class="{{ inputFieldClasses }}" required>
+                        <input type="email" name="email" id="email" placeholder="johndoe@email.com"
+                               class="{{ inputFieldClasses }}"
+                               style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.25rem);" required>
                     </div>
                 </div>
 
                 {# Row 3: Message #}
                 <div class="w-full">
                     <label for="message" class="{{ inputLabelClasses }}">Message</label>
-                    <input type="text" name="message" id="message" placeholder="Enter your message" class="{{ inputFieldClasses }}">
+                    <input type="text" name="message" id="message" placeholder="Enter your message"
+                           class="{{ inputFieldClasses }}"
+                           style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.25rem);">
                 </div>
 
                 {# Submit Button #}

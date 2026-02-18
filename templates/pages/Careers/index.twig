@@ -8,6 +8,8 @@
 
 {% block blockAppBody %}
     {# 1. hero #}
+    <div x-data="{ showBookCallOverlay: false }" class="relative">
+
     {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
     {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
     {% set pageHeroImage = entry.heroImage.one() ?? null %}
@@ -63,6 +65,13 @@
         }
     }) }}
 
+    {# 6. THE BOOKING OVERLAY #}
+    {{ include('_sections/overlays/book-a-call.twig') }}
 
+    </div>
+
+    {% css %}
+        [x-cloak] { display: none !important; }
+    {% endcss %}
 
 {% endblock %}

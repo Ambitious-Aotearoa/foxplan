@@ -1,4 +1,3 @@
-{# templates/pages/Insights/index.twig #}
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {% set navigationTheme = {
@@ -9,11 +8,10 @@
     iconColor: 'text-foxplan-yellow',
 } %}
 
-{# 1. Define the Card Macro using the new featuredImage handle #}
+{# Define the Card Macro #}
 {% macro articleCard(article, aspectRatio) %}
     <a href="{{ article.url }}" class="article-card mb-16 group block w-full no-underline">
         <div class="{{ aspectRatio }} bg-foxplan-charcoal-brown/5 mb-6 overflow-hidden">
-            {# UPDATED: Fetching featuredImage instead of heroImage #}
             {% set img = article.featuredImage.one() %}
             {% if img %}
                 <img src="{{ img.url }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{{ article.title }}">
@@ -23,15 +21,12 @@
                 </div>
             {% endif %}
         </div>
-
         <p class="font-montreal text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown/60 mb-3">
             {{ article.postDate | date('F d, Y') }}
         </p>
-
         <h3 class="font-serif text-2xl md:text-3xl text-foxplan-charcoal-brown mb-4 leading-tight group-hover:opacity-70 transition-opacity">
             {{ article.title }}
         </h3>
-
         <span class="inline-block text-[10px] font-bold uppercase tracking-widest text-foxplan-charcoal-brown border-b border-foxplan-charcoal-brown pb-1 group-hover:opacity-50 transition-opacity">
             Read More
         </span>
@@ -41,11 +36,11 @@
 {% import _self as macros %}
 
 {% block blockAppBody %}
-    {# 2. FETCH CATEGORIES #}
+    {# FETCH CATEGORIES #}
     {% set dynamicCategories = craft.categories.group('articleCategories').all() %}
     {% set firstCategorySlug = dynamicCategories|length ? dynamicCategories[0].slug : '' %}
 
-    {# 3. HERO SECTION #}
+    {# HERO SECTION #}
     <section class="w-full bg-foxplan-yellow text-foxplan-charcoal-brown pt-32 pb-24 px-8 md:px-16">
         <h1 class="font-serif text-8xl md:text-9xl mb-8 tracking-tighter text-foxplan-charcoal-brown">Insights</h1>
         <p class="font-aktiv-grotesk text-xl max-w-2xl opacity-80">
@@ -53,9 +48,8 @@
         </p>
     </section>
 
-    {# 4. TABS WRAPPER #}
+    {# TABS WRAPPER #}
     <div x-data="{ activeTab: '{{ firstCategorySlug }}' }" class="relative w-full">
-
         {% set tabList = [] %}
         {% for cat in dynamicCategories %}
             {% set tabList = tabList | merge([{ id: cat.slug, label: cat.title }]) %}
@@ -73,18 +67,15 @@
             } only %}
         {% endif %}
 
-        {# 5. CONTENT AREA #}
+        {# CONTENT AREA #}
         <div class="w-full bg-foxplan-neutral-beige pt-20 pb-0 min-h-screen">
             {% for category in dynamicCategories %}
                 <div x-show="activeTab === '{{ category.slug }}'" x-cloak x-transition>
-
-                    {# 6. Segmented 60/40 Header #}
+                    {# Search and Sort Header #}
                     <div class="grid grid-cols-1 md:grid-cols-10 gap-x-12 lg:gap-x-16 w-full mb-16 items-end px-[20px]">
                         <div class="md:col-span-6 border-b border-foxplan-charcoal-brown/20 pb-2 flex items-center">
                             <span class="mr-3 opacity-60">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
-                                </svg>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/></svg>
                             </span>
                             <input type="search" placeholder="Search in {{ category.title }}" class="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 p-0 text-lg text-foxplan-charcoal-brown/60 placeholder-foxplan-charcoal-brown/40 font-light">
                         </div>
@@ -95,31 +86,16 @@
                         </div>
                     </div>
 
-                    {# 7. The 60/40 Mirrored Grid #}
-                    {% set articles = craft.entries()
-                        .section('article')
-                        .relatedTo(category)
-                        .with(['featuredImage'])
-                        .orderBy('postDate desc')
-                        .all()
-                    %}
-
+                    {# Article Grid #}
+                    {% set articles = craft.entries().section('article').relatedTo(category).with(['featuredImage']).orderBy('postDate desc').all() %}
                     <div class="grid grid-cols-1 md:grid-cols-10 gap-x-12 lg:gap-x-16 w-full items-start px-[20px]">
                         {% for article in articles %}
                             {% set isLeftColumn = loop.index0 % 2 == 0 %}
                             {% set isEvenRow = (loop.index0 // 2) % 2 == 0 %}
-
-                            {% if isEvenRow %}
-                                <div class="{{ isLeftColumn ? 'md:col-span-6' : 'md:col-span-4' }}">
-                                    {% set ratio = isLeftColumn ? 'aspect-[21/10]' : 'aspect-[21/9]' %}
-                                    {{ macros.articleCard(article, ratio) }}
-                                </div>
-                            {% else %}
-                                <div class="{{ isLeftColumn ? 'md:col-span-4' : 'md:col-span-6' }}">
-                                    {% set ratio = isLeftColumn ? 'aspect-[21/9]' : 'aspect-[21/10]' %}
-                                    {{ macros.articleCard(article, ratio) }}
-                                </div>
-                            {% endif %}
+                            <div class="{{ isEvenRow ? (isLeftColumn ? 'md:col-span-6' : 'md:col-span-4') : (isLeftColumn ? 'md:col-span-4' : 'md:col-span-6') }}">
+                                {% set ratio = isEvenRow ? (isLeftColumn ? 'aspect-[21/10]' : 'aspect-[21/9]') : (isLeftColumn ? 'aspect-[21/9]' : 'aspect-[21/10]') %}
+                                {{ macros.articleCard(article, ratio) }}
+                            </div>
                         {% else %}
                             <div class="col-span-10 py-32 text-center">
                                 <p class="font-serif text-2xl text-foxplan-charcoal-brown/40 italic">No entries found.</p>
@@ -128,16 +104,10 @@
                     </div>
                 </div>
             {% endfor %}
-
-            {# 8. NEWSLETTER SECTIONS #}
-            <div class="px-4">
-                {% include '_sections/newsletter/newsletter-signup.twig' %}
-            </div>
-            {% include '_sections/newsletter/Subscribe-newsletter.twig' %}
         </div>
     </div>
 
-    {# 9. FOOTER #}
+    {# FOOTER #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-neutral-beige',
@@ -147,4 +117,8 @@
             buttonTextColor: 'text-foxplan-white'
         }
     }) }}
+
+    {# 1. OVERLAY COMPONENT (Triggers on Land) #}
+    {% include '_sections/overlays/newsletter-popup.twig' %}
+
 {% endblock %}

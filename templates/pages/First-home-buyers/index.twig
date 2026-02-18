@@ -6,116 +6,118 @@
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
 
-
 {% block blockAppBody %}
+    {# 1. Initialize the shared state for the overlay #}
+    <div x-data="{ showFirstHomeOverlay: false }" class="relative">
 
-    {# --- 1. Hero Section Setup --- #}
-    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
-    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
-    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
-    {% set pageHeroImage = entry.heroImage.one() ?? null %}
+        {# --- Hero Section Setup --- #}
+        {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
+        {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch...' %}
+        {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
+        {% set pageHeroImage = entry.heroImage.one() ?? null %}
 
-    {{ include('_sections/hero-sections/hero-arrow.twig', {
-        props: {
-            heading: pageHeading,
-            bodyText: pageBody,
-            buttonText: pageButton,
-            imageAsset: pageHeroImage,
-            imagePath: 'images/Insurance_hero.jpg',
-            backgroundColor: 'bg-foxplan-yellow',
-            buttonUrl: '/contact-us',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-white'
-        }
-    }) }}
-    {# help-for-buying section #}
-    {{ include('_sections/content-sections/help-for-buying-your-first-home.twig', {
-        props: {
-            paragraphHeading: entry.paragraphHeading,
-            infoBlock: entry.infoBlock.exists() ? entry.infoBlock.all() : [],
-            backgroundColor: 'bg-foxplan-yellow',
-            textColor: 'text-foxplan-charcoal-brown',
-        }
-    }) }}
+        {{ include('_sections/hero-sections/hero-arrow.twig', {
+            props: {
+                heading: pageHeading,
+                bodyText: pageBody,
+                buttonText: pageButton,
+                imageAsset: pageHeroImage,
+                imagePath: 'images/Insurance_hero.jpg',
+                backgroundColor: 'bg-foxplan-yellow',
+                buttonUrl: '/contact-us',
+                buttonBgColor: 'bg-foxplan-charcoal-brown',
+                buttonTextColor: 'text-foxplan-white'
+            }
+        }) }}
 
+        {# help-for-buying section #}
+        {{ include('_sections/content-sections/help-for-buying-your-first-home.twig', {
+            props: {
+                paragraphHeading: entry.paragraphHeading,
+                infoBlock: entry.infoBlock.exists() ? entry.infoBlock.all() : [],
+                backgroundColor: 'bg-foxplan-yellow',
+                textColor: 'text-foxplan-charcoal-brown',
+            }
+        }) }}
 
-    {#    benefits section #}
-    {% set benefitsHeading = entry.paragraphHeading2 ?? 'About group insurance' %}
-    {% set benefitsIntro = entry.bodyText2 ?? '' %}
+        {# benefits section #}
+        {% set benefitsHeading = entry.paragraphHeading2 ?? 'About group insurance' %}
+        {% set accordionItems = [] %}
+        {% if entry.accordion is defined %}
+            {% for block in entry.accordion.all() %}
+                {% set accordionItems = accordionItems | merge([{
+                    'title': block.accordionHeading,
+                    'text': block.accordionBodyText
+                }]) %}
+            {% endfor %}
+        {% endif %}
 
+        {{ include('_sections/content-sections/benefits.twig', {
+            props: {
+                paragraphHeading: benefitsHeading,
+                bodyText: entry.bodyText2 ?? '',
+                items: accordionItems,
+                backgroundColor: 'bg-foxplan-charcoal-brown',
+                textColor: 'text-foxplan-yellow'
+            }
+        }) }}
 
-    {% set accordionItems = [] %}
+        {# who we work with section #}
+        {{ include('_sections/content-sections/who-we-work-with.twig', {
+            props: {
+                title: 'WHO WE WORK WITH',
+                backgroundColor: 'bg-foxplan-neutral-beige',
+                textColor: 'text-foxplan-charcoal-brown',
+                borderColor: 'border-foxplan-charcoal-brown/20',
+                logos: [
+                    { src: 'images/logo/AIA_Logo.svg', alt: 'AIA' },
+                    { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ' }
+                ]
+            }
+        }) }}
 
-    {% if entry.accordion is defined %}
-        {% for block in entry.accordion.all() %}
-            {% set accordionItems = accordionItems | merge([{
-                'title': block.accordionHeading,
-                'text': block.accordionBodyText
-            }]) %}
-        {% endfor %}
-    {% endif %}
+        {# 2. Image and text section: Trigger is inside this included file #}
+        {{ include('_sections/hero-sections/section.twig', {
+            props: {
+                title: entry.paragraphHeading3 ?? 'Get the First Home Buyers Guide',
+                bodyText: entry.bodyText3 ?? '',
+                buttonText: entry.button2 ?? 'Download now',
+                imageSrc: entry.image.one() ? entry.image.one().url : null,
+                backgroundColor: 'bg-foxplan-neutral-beige',
+                textColor: 'text-foxplan-charcoal-brown',
+                buttonBgColor: 'bg-foxplan-charcoal-brown',
+                buttonTextColor: 'text-foxplan-neutral-beige',
+                borderColor: 'border-foxplan-charcoal-brown'
+            }
+        }) }}
 
+        {# Testimonials #}
+        {{ include('_sections/testimonials/testimonial-two.twig', {
+            data: {
+                paragraphHeading4: entry.paragraphHeading4 ?? 'Hear what our clients are saying'
+            }
+        }) }}
 
-    {{ include('_sections/content-sections/benefits.twig', {
-        props: {
-            paragraphHeading: benefitsHeading,
-            bodyText: benefitsIntro,
-            items: accordionItems,
-            backgroundColor: 'bg-foxplan-charcoal-brown',
-            textColor: 'text-foxplan-yellow'
-        }
-    }) }}
+        {# Footer #}
+        {{ include('_components/footer/footer-High-fidelity.twig', {
+            props: {
+                backgroundColor: 'bg-foxplan-charcoal-brown',
+                textColor: 'text-foxplan-yellow',
+                logoColor: 'text-foxplan-yellow',
+                buttonColor: 'bg-foxplan-yellow',
+                buttonTextColor: 'text-foxplan-charcoal-brown',
+                separatorColor: 'text-foxplan-yellow'
+            }
+        }) }}
 
-    {# who we work with section #}
-    {{ include('_sections/content-sections/who-we-work-with.twig', {
-        props: {
-            title: 'WHO WE WORK WITH',
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-foxplan-charcoal-brown',
-            borderColor: 'border-foxplan-charcoal-brown/20',
-            logos: [
-                { src: 'images/logo/AIA_Logo.svg', alt: 'AIA' },
-                { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ' }
-            ]
-        }
-    }) }}
+        {# 3. The high-fidelity overlay with Calendly widget #}
+        {{ include('_sections/overlays/first-home.twig') }}
 
-    {# image and text section #}
-    {% set sectionImage = entry.image.one() %}
+    </div>
 
-    {{ include('_sections/hero-sections/section.twig', {
-        props: {
-            title: entry.paragraphHeading3 ?? 'Get the First Home Buyers Guide',
-            bodyText: entry.bodyText3 ?? '',
-            buttonText: entry.button2 ?? '',
-            imageSrc: sectionImage ? sectionImage.url : null,
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-foxplan-charcoal-brown',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-neutral-beige',
-            borderColor: 'border-foxplan-charcoal-brown'
-        }
-    }) }}
-
-    {# Testimonials #}
-    {{ include('_sections/testimonials/testimonial-two.twig', {
-        data: {
-            paragraphHeading4: entry.paragraphHeading4 ?? 'Hear what our clients are saying'
-        }
-    }) }}
-
-    {# Footer #}
-    {{ include('_components/footer/footer-High-fidelity.twig', {
-        props: {
-            backgroundColor: 'bg-foxplan-charcoal-brown',
-            textColor: 'text-foxplan-yellow',
-            logoColor: 'text-foxplan-yellow',
-            buttonColor: 'bg-foxplan-yellow',
-            buttonTextColor: 'text-foxplan-charcoal-brown',
-            separatorColor: 'text-foxplan-yellow'
-        }
-    }) }}
-
-
+    {% css %}
+        /* Ensures the overlay is hidden until Alpine.js loads */
+        [x-cloak] { display: none !important; }
+    {% endcss %}
 
 {% endblock %}
