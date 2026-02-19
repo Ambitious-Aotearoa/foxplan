@@ -14,9 +14,9 @@
     </div>
 
     {# --- SECTION 1: Yellow --- #}
-    <div class="bg-foxplan-yellow pt-24 pb-12 relative z-20">
+    <div class="bg-foxplan-yellow pt-6 md:pt-12 lg:pt-24 pb-12  relative z-20 ">
         <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start">
-            <div class="col-span-1 md:col-span-6 px-8 md:pl-12 lg:pl-16">
+            <div class="col-span-1 md:col-span-6 px-4 md:px-6 lg:px-8 mb-4">
                 <div class="max-w-2xl">
                     <h2 class="font-serif text-5xl lg:text-[5rem] leading-[0.9] tracking-tight mb-8 text-foxplan-charcoal-brown">
                         {{ entry.paragraphHeading | raw }}
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-span-1 md:col-start-7 md:col-span-4">
-                <div class="w-full relative -mb-48 md:-mb-72 lg:-mb-96 z-30">
+                <div class="w-full relative -mb-48 md:-mb-72 lg:-mb-96 z-30 px-4 md:px-0 lg:px-0">
                     <img src="{{ alias('@web/dist/images/About_1.jpg') }}" class="w-full h-[650px] lg:h-[900px] object-cover shadow-2xl">
                 </div>
             </div>
@@ -35,13 +35,13 @@
     </div>
 
     {# --- SECTION 2: White --- #}
-    <div class="bg-white pt-[150px] md:pt-[250px] relative z-10 pb-0">
+    <div class="bg-foxplan-white pt-[150px] md:pt-[250px] relative z-10 pb-0 mt-14 md:mt-0 lg:mt-0">
         <div class="grid grid-cols-1 md:grid-cols-10 w-full">
-            <div class="col-span-1 md:col-span-4 self-start leading-[0]">
+            <div class="col-span-1 md:col-span-4 self-start leading-[0] px-4 md:px-0 lg:px-0">
                 <img src="{{ alias('@web/dist/images/About_2.jpg') }}" class="w-full h-[550px] lg:h-[750px] object-cover block">
             </div>
-            <div class="col-span-1 md:col-start-7 md:col-span-4 px-8 md:pl-0 md:pr-12 lg:pr-24 self-start">
-                <div class="mt-[200px] pb-32">
+            <div class="col-span-1 md:col-start-7 md:col-span-4 px-4 md:px-0 lg:px-0 md:pl-0 md:pr-12 lg:pr-24 self-start">
+                <div class="mt-8 lg:mt-[200px] pb-6 lg:pb-32 ">
                     <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-8">
                         {{ entry.paragraphHeading2 | raw }}
                     </h2>
@@ -54,9 +54,9 @@
     </div>
 
     {# --- SECTION 3: Light Beige --- #}
-    <div class="bg-[#F8F3ED] relative pt-0">
-        <div class="grid grid-cols-1 md:grid-cols-10 w-full min-h-[700px] items-end">
-            <div class="col-span-1 md:col-span-6 px-8 md:pl-12 lg:pl-16 pb-20">
+    <div class="bg-foxplan-neutral-beige relative pt-4 md:pt-0 lg:pt-0 ">
+        <div class="grid grid-cols-1 md:grid-cols-10 w-full min-h-[600px] md:min-h-[700px] items-end">
+            <div class="col-span-1 md:col-span-6 px-4 md:px-8 md:pl-12 lg:pl-16 lg:pb-20">
                 <div class="max-w-xl">
                     <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-8">
                         {{ entry.paragraphHeading3 | raw }}
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="col-span-1 md:col-span-4 self-center flex items-center">
-                <div class="w-full h-full py-20 pr-8 lg:pr-16">
+                <div class="w-full h-full lg:pb-20 md:pr-8 lg:pr-16 px-4 md:px-0 lg:px-0">
                     <img src="{{ alias('@web/dist/images/About_3.jpg') }}" class="w-full h-auto max-h-[550px] object-cover block shadow-md">
                 </div>
             </div>
@@ -75,16 +75,16 @@
     </div>
 
     {# --- SECTION 4: White --- #}
-    <div class="bg-white relative pt-0">
-        <div class="grid grid-cols-1 md:grid-cols-10 w-full min-h-[700px] items-end">
+    <div class="bg-foxplan-white relative pt-0">
+        <div class="grid grid-cols-1 md:grid-cols-10 w-full min-h-[600px] md:min-h-[700px] items-end">
             <div class="col-span-1 md:col-span-4 self-center flex items-center">
-                <div class="w-full h-full py-20 pl-8 lg:pl-16">
+                <div class="w-full h-full py-8 lg:py-20 px-4 md:px-0 lg:px-0 lg:pl-16">
                     <img src="{{ alias('@web/dist/images/About_4.jpg') }}" class="w-full h-auto max-h-[550px] object-cover block shadow-md">
                 </div>
             </div>
-            <div class="col-span-1 md:col-start-7 md:col-span-4 px-8 lg:px-0 pb-24">
+            <div class="col-span-1 md:col-start-7 md:col-span-4 px-4 lg:px-0 pb-24">
                 <div class="max-w-md">
-                    <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-8">
+                    <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-4 lg:mb-8">
                         {{ entry.paragraphHeading4 | raw }}
                     </h2>
                     <div class="font-aktiv text-base md:text-lg text-foxplan-charcoal-brown/80">

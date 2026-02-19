@@ -1,3 +1,5 @@
+{# templates/_sections/info-block.twig #}
+
 {# 1. Define Defaults #}
 {% set defaults = {
     paragraphHeading: null,
@@ -12,43 +14,43 @@
 
 <section class="w-full relative z-20 {{ data.backgroundColor }} pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden border-b {{ data.borderColor }}">
     <div class="w-full">
-        <div class="flex flex-wrap w-full items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-10 w-full items-start">
 
-            {# Left Side: Now featuring the Paragraph Heading #}
-            <div class="w-full md:w-[30%] pl-8 md:pl-10 pr-12 mb-12 md:mb-0">
+            {# Left Side: Heading #}
+            <div class="lg:col-span-3 px-4 md:px-4 lg:px-6 lg:pr-12 mb-12 lg:mb-0">
                 <div class="max-w-md">
                     {% if data.paragraphHeading %}
-                        <h2 class="font-serif text-5xl lg:text-[4.5rem] font-light leading-[0.8] tracking-tight {{ data.textColor }}">
+                        <h2 class="font-serif tracking-tight {{ data.textColor }} break-normal"
+                            style="font-size: clamp(2.5rem, 5vw + 1rem, 5.5rem); line-height: 0.85; word-break: keep-all;">
                             {{ data.paragraphHeading | raw }}
                         </h2>
                     {% endif %}
                 </div>
             </div>
 
-            {# Right Side: Displaying the Info Block content #}
-            <div class="w-full md:w-[70%]">
-                <div class="w-full px-8 md:px-0 pr-8 md:pr-20">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
+            {# Right Side: Info Content #}
+            <div class="lg:col-span-7">
+                <div class="w-full px-4 md:px-4 lg:px-0 lg:pr-20">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 md:gap-y-16">
 
-                        {# Loop through the nested Info Block matrix entries #}
                         {% for block in data.infoBlock %}
                             <div class="flex flex-col">
-
-                                {# Using the handles from your first and last screenshots #}
                                 {% if block.blockHeading %}
-                                    <h3 class="font-serif text-2xl md:text-[2.6rem] font-light leading-tight mb-4 {{ data.textColor }}">
+                                    <h3 class="font-serif leading-tight mb-2 lg:mb-4 {{ data.textColor }} break-normal"
+                                        style="font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem); word-break: keep-all;">
                                         {{ block.blockHeading }}
                                     </h3>
                                 {% endif %}
 
                                 {% if block.blockBodyText %}
-                                    <div class="font-aktiv text-[15px] leading-relaxed opacity-80 {{ data.textColor }}">
+                                    <div class="font-aktiv leading-relaxed font-medium opacity-90 {{ data.textColor }}"
+                                         style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.15rem);">
                                         {{ block.blockBodyText }}
                                     </div>
                                 {% endif %}
 
                                 {% if block.blockLinkUrl %}
-                                    <a href="{{ block.blockLinkUrl }}" class="mt-4 text-sm font-bold tracking-widest uppercase underline {{ data.textColor }}">
+                                    <a href="{{ block.blockLinkUrl }}" class="mt-4 text-xs font-bold tracking-widest uppercase underline {{ data.textColor }} hover:opacity-70 transition-opacity">
                                         Learn More
                                     </a>
                                 {% endif %}

@@ -1,7 +1,7 @@
+{# templates/_sections/content-sections/home-guide.twig #}
+
 {# 1. Map Backend Data using confirmed handles #}
 {% set sectionImage = entry.image.one() %}
-
-{# Since buttonUrl is 'Plain Text', we fetch it directly as a string #}
 {% set rawUrl = entry.buttonUrl ?? '' %}
 
 {% set defaults = {
@@ -9,7 +9,7 @@
     bodyText: entry.bodyText2 ?? '',
     buttonText: entry.button2 ?? '',
     imageSrc: sectionImage ? sectionImage.url : null,
-    buttonUrl: rawUrl ? (rawUrl|first == '/' or 'http' in rawUrl ? rawUrl : '/' ~ rawUrl) : '#',
+    buttonUrl: '',
     backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown',
     buttonBgColor: 'bg-foxplan-charcoal-brown',
@@ -20,34 +20,36 @@
 {% set data = defaults | merge(props ?? {}) %}
 
 <section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">
-    <div class="px-[20px] pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="px-4 md:px-6 lg:px-8 py-12 lg:py-16 md:pt-24 md:pb-24">
         <div class="flex flex-wrap md:flex-nowrap w-full items-center gap-0">
 
             {# Left Column: 30% Width #}
-            <div class="w-full md:w-[30%] pr-8 lg:pr-12">
+            <div class="w-full md:w-[30%] mb-12 md:mb-0 pr-8 lg:pr-12">
                 <div class="max-w-md">
-                    <h2 class="font-serif text-5xl md:text-6xl lg:text-[4.5rem] font-normal {{ data.textColor }} leading-[0.85] tracking-tight {{ (data.bodyText or data.buttonText) ? 'mb-8' : '' }}">
+                    <h2 class="font-serif tracking-tight {{ data.textColor }} break-normal {{ (data.bodyText or data.buttonText) ? 'mb-8' : '' }}"
+                        style="font-size: clamp(2.25rem, 4vw + 1rem, 4.5rem); line-height: 0.85; word-break: keep-all;">
                         {{ data.title | raw }}
                     </h2>
 
                     {% if data.bodyText is not empty %}
-                        <div class="font-aktiv-grotesk text-base md:text-lg {{ data.textColor }} leading-relaxed {{ data.buttonText ? 'mb-10' : '' }}">
+                        <div class="font-aktiv opacity-90 {{ data.textColor }} font-medium {{ data.buttonText ? 'mb-10' : '' }}"
+                             style="font-size: clamp(0.9rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;">
                             {{ data.bodyText | raw }}
                         </div>
                     {% endif %}
 
                     {% if data.buttonText is not empty %}
-                    {# IMPORTANT: The @click must be on a wrapper that Alpine can see #}
-                    <div @click="showFirstHomeOverlay = true" class="cursor-pointer inline-block">
-                        {% include '_components/ui/button/button.twig' with {
-                        props: {
-                        text: data.buttonText,
-                        url: null,
-                        backgroundColor: data.buttonBgColor,
-                        textColor: data.buttonTextColor
-                        }
-                        } only %}
-                    </div>
+                        <div @click="showFirstHomeOverlay = true" class="cursor-pointer inline-block">
+                            {% include '_components/ui/button/button.twig' with {
+                                props: {
+                                    text: data.buttonText,
+                                    url: data.buttonUrl,
+                                    backgroundColor: data.buttonBgColor,
+                                    textColor: data.buttonTextColor,
+                                    classes: 'px-10 py-4 text-xs font-bold tracking-widest uppercase rounded-none'
+                                }
+                            } only %}
+                        </div>
                     {% endif %}
                 </div>
             </div>
@@ -59,7 +61,8 @@
                     {% if data.imageSrc %}
                         <img src="{{ data.imageSrc }}" alt="{{ data.title|striptags }}" class="{{ imgClasses }}">
                     {% else %}
-                        <img src="{{ craft.vite.asset('images/Insights_4.jpg') }}" alt="{{ data.title|striptags }}" class="{{ imgClasses }}">
+                        <img src="{{ craft.vite.asset('images/Insights_4.jpg') }}" alt="{{ data.title|striptags }}"
+                             class="{{ imgClasses }}">
                     {% endif %}
                 </div>
             </div>

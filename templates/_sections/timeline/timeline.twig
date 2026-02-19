@@ -29,11 +29,9 @@
             }
         });
 
-        {# --- SOLID TRANSITION LOGIC --- #}
-        {# Start cards fully opaque but positioned below the viewport #}
         gsap.set(cards.slice(1), {
             yPercent: 100,
-            opacity: 1, {# No transparency #}
+            opacity: 1,
             clipPath: 'inset(0% 0% 0% 0%)'
         });
 
@@ -41,7 +39,7 @@
             if (i > 0) {
                 tl.to(card, {
                     yPercent: 0,
-                    ease: 'none', {# Linear movement feels more solid for timeline scrub #}
+                    ease: 'none',
                 }, i - 1);
             }
         });
@@ -56,40 +54,39 @@
     }
 }"
      x-ref="mainSection"
-     class="w-full bg-foxplan-neutral-beige h-screen flex flex-col justify-center px-5 overflow-hidden">
+     class="w-full bg-foxplan-neutral-beige h-screen flex flex-col justify-center px-4 overflow-hidden pt-0 md:pt-6 lg:pt-8">
 
     {# --- HEADING --- #}
-    <div class="w-full flex flex-col items-center justify-center text-center mb-12">
-        <h2 class="font-serif text-5xl md:text-[6.5rem] lg:text-[7.5rem] font-light leading-[0.85] tracking-tighter text-foxplan-charcoal-brown max-w-6xl mx-auto">
+    <div class="w-full flex flex-col items-center justify-center text-center mb-6 md:mb-12">
+        <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown max-w-6xl mx-auto break-normal"
+            style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
             30 Years of<br>Financial Expertise
         </h2>
     </div>
 
     {# --- TIMELINE TRACK --- #}
-    <section class="w-full mb-12 select-none z-[100]">
-        <div class="relative w-full mb-10 pt-10">
-            {# Background Track #}
+    <section class="w-full mb-6 md:mb-12 select-none z-[100]">
+        <div class="relative w-full mb-6 md:mb-10 pt-10">
             <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-foxplan-charcoal-brown opacity-20"></div>
 
-            {# Active Animated Arrow Track #}
             <div class="absolute top-1/2 -translate-y-1/2 left-0 flex items-center pointer-events-none"
                  :style="`width: ${arrowWidth}%;` ">
-
-                {# Animated Dashed Line #}
                 <div class="flex-grow border-t-2 border-foxplan-charcoal-brown border-dashed h-0"></div>
-
-                {# The Chevron Arrow Head: Matching Screenshot 2026-02-11 at 12.00.24 pm.png #}
                 <div class="relative flex-shrink-0 flex items-center justify-center">
                     <div class="w-4 h-4 border-t-2 border-r-2 border-foxplan-charcoal-brown rotate-45 -ml-2"></div>
                 </div>
             </div>
         </div>
 
-        <div class="flex justify-between w-full font-serif text-3xl text-foxplan-charcoal-brown">
+        <div class="flex justify-between w-full font-serif text-foxplan-charcoal-brown">
             {% for card in milestones %}
                 <div class="flex-1 flex justify-center items-center">
+                    {#
+                    YEAR SCALE: Scaled down for mobile (20px) and medium screens (32px).
+                    #}
                     <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 font-bold' : 'opacity-40'"
-                          class="transition-all duration-300">
+                          class="transition-all duration-300"
+                          style="font-size: clamp(1.25rem, 2vw + 1rem, 2rem);">
                         {{ card.milestoneYear }}
                     </span>
                 </div>
@@ -98,23 +95,34 @@
     </section>
 
     {# --- CARD AREA: SOLID OVERLAP --- #}
-    <div class="relative w-full h-[450px] overflow-hidden">
+    {#
+    FIX: Height increased to h-[500px] to prevent card content from being cut on small/medium screens.
+    #}
+    <div class="relative w-full h-[500px] lg:h-[450px] overflow-hidden">
         {% for card in milestones %}
-            {% set isYellow = loop.index is even %}
-            <div class="milestone-card-wrapper absolute inset-0 z-[{{ loop.index * 10 }}]">
-                {% include '_components/ui/card/card.twig' with {
-                    props: {
-                        year: card.milestoneYear,
-                        title: card.milestoneTitle,
-                        text: card.milestoneText,
-                        cardBg: isYellow ? 'bg-[#F1C44F]' : 'bg-white',
-                        textColor: isYellow ? 'text-black' : 'text-[#270E15]',
-                        accentColor: isYellow ? 'text-black' : 'text-[#270E15]',
-                        squareColor: isYellow ? 'bg-black' : 'bg-[#270E15]',
-                        titleColor: isYellow ? 'text-black' : 'text-[#270E15]'
-                    }
-                } only %}
-            </div>
+        {% set isYellow = loop.index is even %}
+        <div class="milestone-card-wrapper absolute inset-0 z-[{{ loop.index * 10 }}]">
+            {% include '_components/ui/card/card.twig' with {
+            props: {
+            year: card.milestoneYear,
+            title: card.milestoneTitle,
+            text: card.milestoneText,
+            titleSize: 'clamp(1.5rem, 2vw + 1rem, 2rem)',
+            textSize: 'clamp(1rem, 0.5vw + 0.8rem, 1.25rem)',
+            cardBg: isYellow ? 'bg-foxplan-yellow' : 'bg-white',
+            textColor: 'text-foxplan-charcoal-brown',
+            accentColor: 'text-foxplan-charcoal-brown',
+            squareColor: 'bg-foxplan-charcoal-brown',
+            titleColor: 'text-foxplan-charcoal-brown'
+            }
+            } only %}
+        </div>
         {% endfor %}
     </div>
 </div>
+
+<style>
+    .milestone-card-wrapper {
+        will-change: transform, clip-path;
+    }
+</style>

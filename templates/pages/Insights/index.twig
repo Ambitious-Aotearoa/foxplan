@@ -10,7 +10,7 @@
 
 {# Define the Card Macro #}
 {% macro articleCard(article, aspectRatio) %}
-    <a href="{{ article.url }}" class="article-card mb-16 group block w-full no-underline">
+    <a href="{{ article.url }}" class="article-card mb-4 md:mb-8 lg:mb-16 group block w-full no-underline">
         <div class="{{ aspectRatio }} bg-foxplan-charcoal-brown/5 mb-6 overflow-hidden">
             {% set img = article.featuredImage.one() %}
             {% if img %}
@@ -21,10 +21,11 @@
                 </div>
             {% endif %}
         </div>
-        <p class="font-montreal text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown/60 mb-3">
+        <p class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown/60 mb-3">
             {{ article.postDate | date('F d, Y') }}
         </p>
-        <h3 class="font-serif text-2xl md:text-3xl text-foxplan-charcoal-brown mb-4 leading-tight group-hover:opacity-70 transition-opacity">
+        <h3 class="font-serif text-foxplan-charcoal-brown mb-4 group-hover:opacity-70 transition-opacity break-normal"
+            style="font-size: clamp(1.5rem, 2vw + 1rem, 2rem); line-height: 1.1; word-break: keep-all;">
             {{ article.title }}
         </h3>
         <span class="inline-block text-[10px] font-bold uppercase tracking-widest text-foxplan-charcoal-brown border-b border-foxplan-charcoal-brown pb-1 group-hover:opacity-50 transition-opacity">
@@ -38,70 +39,183 @@
 {% block blockAppBody %}
     {# FETCH CATEGORIES #}
     {% set dynamicCategories = craft.categories.group('articleCategories').all() %}
-    {% set firstCategorySlug = dynamicCategories|length ? dynamicCategories[0].slug : '' %}
+
+    {# 1. CREATE CUSTOM TABS LIST STARTING WITH 'ALL' #}
+    {% set customTabs = [{ slug: 'all', title: 'ALL' }] %}
+    {% for cat in dynamicCategories %}
+        {% set customTabs = customTabs | merge([{ slug: cat.slug, title: cat.title }]) %}
+    {% endfor %}
 
     {# HERO SECTION #}
-    <section class="w-full bg-foxplan-yellow text-foxplan-charcoal-brown pt-32 pb-24 px-8 md:px-16">
-        <h1 class="font-serif text-8xl md:text-9xl mb-8 tracking-tighter text-foxplan-charcoal-brown">Insights</h1>
-        <p class="font-aktiv-grotesk text-xl max-w-2xl opacity-80">
+    <section class="w-full bg-foxplan-yellow text-foxplan-charcoal-brown pt-32 pb-8 md:pb-12 lg:pb-24 px-4 md:px-6 lg:px-8">
+        <h1 class="font-serif tracking-tight text-foxplan-charcoal-brown break-normal mb-8"
+            style="font-size: clamp(2.5rem, 5vw + 1rem, 5.5rem); line-height: 0.85; word-break: keep-all;">
+            Insights
+        </h1>
+        <p class="opacity-80 max-w-2xl font-medium"
+           style="font-size: clamp(1rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;">
             The latest updates on finance and practical tips to help Kiwis make smarter financial decisions.
         </p>
     </section>
 
-    {# TABS WRAPPER #}
-    <div x-data="{ activeTab: '{{ firstCategorySlug }}' }" class="relative w-full">
-        {% set tabList = [] %}
-        {% for cat in dynamicCategories %}
-            {% set tabList = tabList | merge([{ id: cat.slug, label: cat.title }]) %}
-        {% endfor %}
+    {# TABS WRAPPER WITH SEARCH, SORT, AND LOAD MORE #}
+    <div x-data="{
+        activeTab: 'all',
+        mobileMenuOpen: false,
+        sortOrder: 'desc',
+        searchQuery: '',
+        limit: 10,
 
-        {% if tabList is not empty %}
+        loadMore() {
+            this.limit = this.limit + 8;
+        },
+        getActiveLabel() {
+            const labels = {
+                {% for tab in customTabs %}
+                    '{{ tab.slug }}': '{{ tab.title }}',
+                {% endfor %}
+            };
+            return labels[this.activeTab] || 'Select Category';
+        },
+        shouldShow(title, index) {
+            if (this.searchQuery && !title.toLowerCase().includes(this.searchQuery.toLowerCase())) {
+                return false;
+            }
+            return index < this.limit;
+        }
+    }" class="relative w-full">
+
+        {# 1. MOBILE DROPDOWN #}
+        <div class="lg:hidden w-full bg-foxplan-yellow px-4 md:px-6 lg:px-8 pb-8">
+            <div class="relative">
+                <button
+                        @click="mobileMenuOpen = !mobileMenuOpen"
+                        class="w-full flex items-center justify-between border-b border-foxplan-charcoal-brown/20 py-4 text-left font-serif text-2xl transition-all duration-300 focus:outline-none"
+                        :class="mobileMenuOpen ? 'bg-foxplan-white text-foxplan-charcoal-brown px-4' : 'text-foxplan-charcoal-brown'"
+                >
+                    <span x-text="getActiveLabel()"></span>
+                    <svg class="w-5 h-5 transition-transform duration-300" :class="mobileMenuOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+
+                <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" class="absolute z-50 w-full bg-foxplan-white border border-foxplan-charcoal-brown/10 shadow-xl left-0 top-full mt-1">
+                    {% for tab in customTabs %}
+                        <button @click="activeTab = '{{ tab.slug }}'; mobileMenuOpen = false; limit = 10" class="w-full text-left px-6 py-4 font-serif text-xl border-b border-foxplan-charcoal-brown/5 transition-colors" :class="activeTab === '{{ tab.slug }}' ? 'text-foxplan-charcoal-brown bg-foxplan-neutral-beige font-bold' : 'text-foxplan-charcoal-brown/60 hover:bg-foxplan-neutral-beige/50'">
+                            {{ tab.title }}
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        {# 2. DESKTOP TABS #}
+        <div class="hidden lg:block">
+            {% set desktopTabList = [] %}
+            {% for tab in customTabs %}
+                {% set desktopTabList = desktopTabList | merge([{ id: tab.slug, label: tab.title }]) %}
+            {% endfor %}
+
             {% include '_components/ui/tabs/tabs-services.twig' with {
                 props: {
-                    tabs: tabList,
+                    tabs: desktopTabList,
                     navBg: 'bg-foxplan-yellow',
                     activeBg: 'bg-foxplan-neutral-beige',
                     activeText: 'text-foxplan-charcoal-brown',
                     inactiveText: 'text-foxplan-charcoal-brown/60',
                 }
             } only %}
-        {% endif %}
+        </div>
 
-        {# CONTENT AREA #}
+        {# 3. CONTENT AREA #}
         <div class="w-full bg-foxplan-neutral-beige pt-20 pb-0 min-h-screen">
-            {% for category in dynamicCategories %}
-                <div x-show="activeTab === '{{ category.slug }}'" x-cloak x-transition>
-                    {# Search and Sort Header #}
+
+            {% for tab in customTabs %}
+                <div x-show="activeTab === '{{ tab.slug }}'" x-cloak x-transition>
+
+                    {# Header with Search and Sort #}
                     <div class="grid grid-cols-1 md:grid-cols-10 gap-x-12 lg:gap-x-16 w-full mb-16 items-end px-[20px]">
                         <div class="md:col-span-6 border-b border-foxplan-charcoal-brown/20 pb-2 flex items-center">
                             <span class="mr-3 opacity-60">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/></svg>
                             </span>
-                            <input type="search" placeholder="Search in {{ category.title }}" class="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 p-0 text-lg text-foxplan-charcoal-brown/60 placeholder-foxplan-charcoal-brown/40 font-light">
+                            <input
+                                    type="search"
+                                    x-model="searchQuery"
+                                    placeholder="Search in {{ tab.slug == 'all' ? 'all Insights' : tab.title }}"
+                                    class="w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 p-0 text-lg text-foxplan-charcoal-brown font-medium placeholder-foxplan-charcoal-brown/30"
+                            >
                         </div>
-                        <div class="md:col-span-4 border-b border-foxplan-charcoal-brown/20 pb-2 flex items-center justify-between mt-4 md:mt-0">
-                            <select class="bg-transparent border-none outline-none focus:outline-none focus:ring-0 p-0 text-lg text-foxplan-charcoal-brown/60 font-light appearance-none cursor-pointer w-full">
-                                <option>Sort by date</option>
+
+                        {# Sort Dropdown #}
+                        <div class="md:col-span-4 border-b border-foxplan-charcoal-brown/20 pb-2 flex items-center justify-between mt-4 md:mt-0 relative">
+                            <select
+                                    x-model="sortOrder"
+                                    class="bg-transparent border-none outline-none focus:outline-none focus:ring-0 p-0 text-lg text-foxplan-charcoal-brown font-medium appearance-none cursor-pointer w-full"
+                            >
+                                <option value="desc" disabled selected x-show="sortOrder === 'desc'">Sort by date</option>
+                                <option value="desc">Newest to Oldest</option>
+                                <option value="asc">Oldest to Newest</option>
                             </select>
+                            <span class="pointer-events-none absolute right-0">
+                                <svg class="w-4 h-4 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                            </span>
                         </div>
                     </div>
 
                     {# Article Grid #}
-                    {% set articles = craft.entries().section('article').relatedTo(category).with(['featuredImage']).orderBy('postDate desc').all() %}
+                    {% set baseQuery = tab.slug == 'all' ? craft.entries().section('article') : craft.entries().section('article').relatedTo(craft.categories.slug(tab.slug).one()) %}
+                    {% set allEntries = baseQuery.all() %}
+                    {% set totalCount = allEntries|length %}
+
                     <div class="grid grid-cols-1 md:grid-cols-10 gap-x-12 lg:gap-x-16 w-full items-start px-[20px]">
-                        {% for article in articles %}
-                            {% set isLeftColumn = loop.index0 % 2 == 0 %}
-                            {% set isEvenRow = (loop.index0 // 2) % 2 == 0 %}
-                            <div class="{{ isEvenRow ? (isLeftColumn ? 'md:col-span-6' : 'md:col-span-4') : (isLeftColumn ? 'md:col-span-4' : 'md:col-span-6') }}">
-                                {% set ratio = isEvenRow ? (isLeftColumn ? 'aspect-[21/10]' : 'aspect-[21/9]') : (isLeftColumn ? 'aspect-[21/9]' : 'aspect-[21/10]') %}
-                                {{ macros.articleCard(article, ratio) }}
+
+                        {# Newest Grid #}
+                        <template x-if="sortOrder === 'desc'">
+                            <div class="grid grid-cols-1 md:grid-cols-10 col-span-10 gap-x-12 lg:gap-x-16">
+                                {% for article in baseQuery.orderBy('postDate desc').all() %}
+                                    <div
+                                            x-show="shouldShow('{{ article.title|escape('js') }}', {{ loop.index0 }})"
+                                            class="{{ loop.index0 % 4 == 0 or loop.index0 % 4 == 3 ? 'md:col-span-6' : 'md:col-span-4' }}"
+                                    >
+                                        {% set ratio = loop.index0 % 4 == 0 or loop.index0 % 4 == 3 ? 'aspect-[21/10]' : 'aspect-[21/9]' %}
+                                        {{ macros.articleCard(article, ratio) }}
+                                    </div>
+                                {% endfor %}
                             </div>
-                        {% else %}
-                            <div class="col-span-10 py-32 text-center">
-                                <p class="font-serif text-2xl text-foxplan-charcoal-brown/40 italic">No entries found.</p>
+                        </template>
+
+                        {# Oldest Grid #}
+                        <template x-if="sortOrder === 'asc'">
+                            <div class="grid grid-cols-1 md:grid-cols-10 col-span-10 gap-x-12 lg:gap-x-16">
+                                {% for article in baseQuery.orderBy('postDate asc').all() %}
+                                    <div
+                                            x-show="shouldShow('{{ article.title|escape('js') }}', {{ loop.index0 }})"
+                                            class="{{ loop.index0 % 4 == 0 or loop.index0 % 4 == 3 ? 'md:col-span-6' : 'md:col-span-4' }}"
+                                    >
+                                        {% set ratio = loop.index0 % 4 == 0 or loop.index0 % 4 == 3 ? 'aspect-[21/10]' : 'aspect-[21/9]' %}
+                                        {{ macros.articleCard(article, ratio) }}
+                                    </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
+                        </template>
                     </div>
+
+                    {# 4. LOAD MORE BUTTON #}
+                    {% if totalCount > 10 %}
+                        <div
+                                x-show="limit < {{ totalCount }} && !searchQuery"
+                                class="w-full flex justify-center mt-16 pb-20"
+                        >
+                            <button
+                                    type="button"
+                                    @click="loadMore()"
+                                    class="inline-block px-12 py-4 bg-foxplan-charcoal-brown text-foxplan-white uppercase tracking-widest text-[12px] font-bold hover:bg-opacity-90 transition-all focus:outline-none"
+                            >
+                                Load More
+                            </button>
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
@@ -118,7 +232,5 @@
         }
     }) }}
 
-    {# 1. OVERLAY COMPONENT (Triggers on Land) #}
     {% include '_sections/overlays/newsletter-popup.twig' %}
-
 {% endblock %}

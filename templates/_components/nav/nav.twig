@@ -1,7 +1,6 @@
 {# templates/_components/nav/nav.twig #}
 
 {# --- 1. FETCH DATA --- #}
-{# Fetch any article at the top to ensure it is available within the loop scope #}
 {% set navArticle = craft.entries()
     .section('article')
     .with(['featuredImage'])
@@ -63,27 +62,17 @@
      x-data="{
         openTab: null,
         mobileMenuOpen: false,
+        activeMobileTab: null, {# Added to manage mutual exclusivity on mobile #}
         searchOpen: false,
         searchQuery: '',
         allLinks: [
-            {# 1. Add Main Navbar Tabs to searchable links #}
             {% for handle in ['accounting', 'insurance', 'Savings & Investment', 'Business', 'Mortgages', 'News', 'About'] %}
                 {% set tabUrl = (handle in ['News', 'About']) ? 'javascript:void(0)' : url(handle|lower|replace({' & ': '-', ' ': '-'})) %}
-                {
-                    title: '{{ handle|capitalize|e('js') }}',
-                    url: '{{ tabUrl|e('js') }}',
-                    category: 'Main Menu'
-                },
+                { title: '{{ handle|capitalize|e('js') }}', url: '{{ tabUrl|e('js') }}', category: 'Main Menu' },
             {% endfor %}
-
-            {# 2. Add Mega Menu Items #}
             {% for handle, items in megaMenuData %}
                 {% for item in items %}
-                    {
-                        title: '{{ item.title|e('js') }}',
-                        url: '{{ item.url|e('js') }}',
-                        category: '{{ handle|capitalize|e('js') }}'
-                    },
+                    { title: '{{ item.title|e('js') }}', url: '{{ item.url|e('js') }}', category: '{{ handle|capitalize|e('js') }}' },
                 {% endfor %}
             {% endfor %}
         ],
@@ -100,12 +89,10 @@
     {# --- MAIN HEADER --- #}
     <div class="w-full {{ theme.backgroundColor }} relative z-[510]">
         <div class="flex items-center h-16 lg:h-20">
-            {# Logo #}
             <a href="/" class="flex items-center h-full pl-6 lg:pl-8 pr-[30px] lg:pr-[60px] flex-none {{ theme.textColor }}">
                 {{ svg(alias(logoPath))|attr({ class: 'h-10 lg:h-11 w-auto ' ~ theme.logoFilter, alt: 'FoxPlan Logo' }) }}
             </a>
 
-            {# Desktop Tabs #}
             <div class="flex-grow flex items-center h-full">
                 <div class="hidden lg:flex items-center justify-between w-full max-w-[1000px] mx-auto text-[15px] font-medium {{ theme.textColor }} h-full">
                     {% for handle in ['accounting', 'insurance', 'Savings & Investment', 'Business', 'Mortgages', 'News', 'About'] %}
@@ -131,7 +118,6 @@
                 </div>
             </div>
 
-            {# Actions - Right Side #}
             <div class="flex flex-none items-center h-full pr-4 lg:pr-0">
                 <button @click="searchOpen = true"
                         class="w-14 lg:w-16 h-full flex items-center justify-center cursor-pointer group
@@ -187,18 +173,19 @@
                     {% set hasDropdown = (megaMenuData[handle] is defined) and (megaMenuData[handle]|length > 0) %}
                     {% set tabUrl = (handle in ['News', 'About']) ? 'javascript:void(0)' : url(handle|lower|replace({' & ': '-', ' ': '-'})) %}
 
-                    <div x-data="{ expanded: false }" class="border-b border-foxplan-charcoal-brown/10 py-6">
+                    <div class="border-b border-foxplan-charcoal-brown/10 py-6">
                         <div class="flex items-center justify-between font-aktiv uppercase tracking-[0.15em] text-foxplan-charcoal-brown">
                             <a href="{{ tabUrl }}" class="flex-grow" style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">{{ handle }}</a>
                             {% if hasDropdown %}
-                                <button @click="expanded = !expanded" class="p-2">
-                                    <svg class="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300" :class="expanded ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                {# Mutual Exclusive Toggle Logic #}
+                                <button @click="activeMobileTab = (activeMobileTab === '{{ handle }}' ? null : '{{ handle }}')" class="p-2">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300" :class="activeMobileTab === '{{ handle }}' ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                 </button>
                             {% endif %}
                         </div>
 
                         {% if hasDropdown %}
-                            <div x-show="expanded" x-collapse class="mt-6 flex flex-col gap-5 pl-4 font-aktiv">
+                            <div x-show="activeMobileTab === '{{ handle }}'" x-collapse class="mt-6 flex flex-col gap-5 pl-4 font-aktiv">
                                 {% for subItem in megaMenuData[handle] %}
                                     <a href="{{ subItem.url }}" class="opacity-60 hover:opacity-100 transition-opacity" style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);">{{ subItem.title }}</a>
                                 {% endfor %}
@@ -218,7 +205,7 @@
              x-transition:enter-start="opacity-0"
              x-transition:enter-end="opacity-100"
              x-transition:leave="transition ease-in duration-200"
-             class="fixed inset-0 z-[2000] bg-foxplan-neutral-beige flex flex-col items-center pt-[15vh] px-6"
+             class="fixed inset-0 z-[1000] bg-foxplan-neutral-beige flex flex-col items-center pt-[15vh] px-6"
              style="display: none;">
 
             <button @click="searchOpen = false; searchQuery = ''" class="absolute top-10 right-10 text-foxplan-charcoal-brown hover:rotate-90 transition-transform duration-300 p-2 cursor-pointer">
