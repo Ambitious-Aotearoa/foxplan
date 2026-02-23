@@ -1,4 +1,4 @@
-dateModified: 1771471543
+dateModified: 1771879559
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
@@ -45,6 +45,7 @@ meta:
     01ecd437-5f62-458f-b583-9d1b745716e4: icons # icons
     1f3b761a-df20-421d-a75d-d0d3f165e693: 'Business planning' # Business planning
     2cba3be1-3443-4238-b63d-512bb6544a41: 'News Images' # News Images
+    2ed3c1eb-4182-42c9-979f-0f2b02e8e628: 'Button URL' # Button URL
     3a18a3a4-7da8-482b-b475-06dfad80f264: 'Spotify URL' # Spotify URL
     3ca03225-96ae-4b44-87f2-2f3b0d32d166: 'Testimonial Author' # Testimonial Author
     3cd32da9-06b0-44c6-a0a8-54568bfbb9b3: Group-workplace-insurance # Group-workplace-insurance
@@ -144,6 +145,7 @@ meta:
     a8da3467-e2fa-4b90-b5e8-7df257de2ebc: Image # Image
     a30fb669-985c-4116-8bf1-8ca04a3af56c: Article # Article
     a82e8874-a0f4-4805-b59d-8c47d4867d7c: Tags # Tags
+    a3678b64-b1c5-4dc1-9751-51560dbabe64: icons # icons
     a60554c1-42e9-4a93-b213-3950bf23db7d: 'Button URL' # Button URL
     aad93b84-e999-4d54-bc1e-8f65472830f4: Partners # Partners
     ab6e0b50-c8e4-46a6-87e1-30dc93191009: "Personal\_& Medical  Insurance" # Personal & Medical  Insurance
@@ -153,6 +155,7 @@ meta:
     b3e0436c-c0e6-4ebd-8278-c69c2a07f9e6: Insights # Insights
     b8dfe219-cd2b-4062-b6c5-2a0b07241d1a: 'Careers Page' # Careers Page
     b21bad80-2c2d-4197-aeab-31f8b56a3bee: 'Spotify Playlist' # Spotify Playlist
+    b30bd8f6-6a9f-410d-80b5-44f1baf3babf: 'Featured Image' # Featured Image
     b898b7e2-c466-4f6e-89b2-5fc8070636bd: 'Contact Us Page' # Contact Us Page
     b974ddd6-5e6a-460f-8100-45bdf6fe5c1d: 'Provider Name' # Provider Name
     b692872d-72dd-446b-9762-81992436c375: podcasts # podcasts
@@ -177,7 +180,9 @@ meta:
     dd0c598b-fc22-4c8d-9255-b3c858be4247: 'Savings and Investment Page' # Savings and Investment Page
     df4f2326-3181-40b6-a383-e26ebe3080d8: 'Retirement Planning' # Retirement Planning
     e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a: 'Hero Image' # Hero Image
+    e1de6612-ffab-49d4-8b6e-40acfa08eb0e: 'News Images' # News Images
     e4ad5282-5b53-4193-bf9a-40d21e1aab4d: Date # Date
+    e5dec3e6-b6ec-4836-b7dd-a8c4cbf9b4a8: 'Podcast images' # Podcast images
     e6b57a9c-ff58-47d6-be33-ec0322d1188b: 'Meet the team' # Meet the team
     e7aad41d-ba44-478d-90e0-02389f7524fa: Button # Button
     e81cf8c1-9688-4e3a-87c1-29b504143b92: About # About

@@ -48,12 +48,6 @@
                         }) }}
                     </div>
 
-                    {#
-                    FIXES:
-                    - Removed uppercase.
-                    - Restored original size: text-4xl md:text-5xl.
-                    - Maintained 0.85 leading and keep-all for mobile safety.
-                    #}
                     <h2 class="font-serif tracking-tight {{ data.textColor }} mb-8 break-normal"
                         style="font-size: inherit; line-height: 0.85; word-break: keep-all;">
                         <span class="text-4xl md:text-5xl">Ready to reach your<br>financial goals?</span>
@@ -65,7 +59,7 @@
 
                     {% include '_components/ui/button/button.twig' with {
                         props: {
-                            text: 'Get started',
+                            text: 'Book a chat',
                             url: '/contact-us',
                             style: 'primary',
                             backgroundColor: data.buttonColor,
@@ -104,7 +98,7 @@
                         </div>
 
                         {# DIV B: Secondary Services #}
-                        <div class="flex flex-col gap-y-6 lg:gap-y-12">
+                        <div class="flex flex-col gap-y-4 ">
                             <a href="/insurance" class="text-fluid-prehead font-bold {{ data.textColor }} flex items-center gap-2">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> INSURANCE
                             </a>

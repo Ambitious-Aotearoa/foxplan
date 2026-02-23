@@ -1,138 +1,94 @@
-{# _sections/contact-us/contact-us.twig #}
 
-{# 1. FETCH DYNAMIC DATA FROM CRAFT #}
-{% set insightTags = craft.tags.group('insights').all() %}
-{% set serviceOptions = insightTags|map(t => t.title) %}
-{% set adviserEntries = craft.entries.section('advisers').all() %}
-{% set adviserNames = adviserEntries|map(a => a.title) %}
+{% set descriptionClasses = 'mb-12 text-foxplan-charcoal-brown font-aktiv font-medium opacity-80' %}
+{% set descriptionStyle = 'font-size: clamp(1rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;' %}
+{% set tabTitleClasses = 'font-serif font-light text-foxplan-charcoal-brown mb-10 tracking-tighter break-normal' %}
+{% set tabTitleStyle = 'font-size: clamp(2.75rem, 6vw + 1rem, 7rem); line-height: 0.85; word-break: keep-all;' %}
 
-{% if serviceOptions is empty %}{% set serviceOptions = ['Insurance', 'Mortgages', 'KiwiSaver'] %}{% endif %}
 
-{# 2. CORRECT MATRIX FETCHING (Using 'tabs' handle) #}
-{# Based on your layout, the field is 'tabs' #}
-{% set allBlocks = entry.tabs.all() ?? [] %}
 
-{# Filter blocks by their handles #}
-{% set bookBlock = allBlocks|filter(b => b.type.handle == 'bookAnAdviser')|first %}
-{% set locBlock = allBlocks|filter(b => b.type.handle == 'location')|first %}
+{% macro render_tab_layout(title, body, descriptionClasses, descriptionStyle, tabTitleClasses, tabTitleStyle, mode = 'form') %}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-12 lg:gap-x-24 mt-4 px-0 items-start">
 
-{# Asset handles #}
-{% set bookImage = (bookBlock and bookBlock.image is defined) ? bookBlock.image.one() : null %}
-{% set locImage = (locBlock and locBlock.image is defined) ? locBlock.image.one() : null %}
-
-{% set fallbackContact = alias('@web/dist/images/Contact_1.jpg') %}
-
-{# 3. MAP DATA OBJECT #}
-{% set contactData = {
-    call: {
-        heading: entry.contactMainHeading2 ?? 'Get in touch',
-        description: entry.contactBodytext2 ?? ''
-    },
-    callback: {
-        heading: (bookBlock) ? bookBlock.contactMainHeading3 : 'Book an adviser',
-        body1: (bookBlock) ? bookBlock.contactBodytext3 : '',
-        body2: 'If you know who you would like to speak to, you can select their name from the dropdown list.',
-        imageSrc: bookImage ? bookImage.url : fallbackContact,
-        advisers: adviserNames,
-        services: serviceOptions
-    },
-    location: {
-        heading: (locBlock) ? locBlock.contactMainHeading : 'Our Location',
-        body: (locBlock) ? locBlock.contactBodytext : '',
-        imageSrc: locImage ? locImage.url : fallbackContact
-    }
-} %}
-
-        {# Styling Classes #}
-        {% set descriptionClasses = 'text-base leading-relaxed mb-6 text-foxplan-charcoal-brown font-aktiv-grotesk font-light whitespace-pre-wrap' %}
-        {% set labelClasses = 'text-sm font-semibold uppercase tracking-wider mb-2 block text-foxplan-charcoal-brown font-aktiv-grotesk' %}
-        {% set inputClasses = 'w-full py-2 border-b border-gray-400 focus:outline-none focus:border-gray-900 bg-transparent text-foxplan-charcoal-brown font-aktiv-grotesk' %}
-        {% set tabTitleClasses = 'font-serif text-4xl sm:text-5xl lg:text-[5.5rem] font-light leading-none mb-0 text-foxplan-charcoal-brown' %}
-
-        {# --- MACROS --- #}
-
-        {% macro render_call_tab_content(data, descriptionClasses) %}
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 mt-4 px-0">
-                <div class="md:col-span-5">
-                    <div class="{{ descriptionClasses }}">{{ data.description|raw }}</div>
-                </div>
-                <div class="md:col-span-7">
-                    {{ include('_components/form/Contact-form.twig', {
-                        props: { submitText: 'Submit' }
-                    }) }}
-                </div>
-            </div>
-        {% endmacro %}
-
-{% macro render_callback_tab_content(data, descriptionClasses, labelClasses, inputClasses) %}
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-0 mt-4 items-stretch">
-        <div class="lg:col-span-5 px-0">
-            <div class="{{ descriptionClasses }}">{{ data.body1|raw }}</div>
-            <div class="grid grid-cols-2 gap-x-8 mt-10 mb-10">
-                <div>
-                    <label class="{{ labelClasses }}">SELECT ADVISER</label>
-                    <select class="{{ inputClasses }} appearance-none rounded-none bg-transparent">
-                        <option value="">Choose an Adviser</option>
-                        {% for name in data.advisers %}
-                            <option value="{{ name }}">{{ name }}</option>{% endfor %}
-                    </select>
-                </div>
-                <div>
-                    <label class="{{ labelClasses }}">SELECT SERVICE</label>
-                    <select class="{{ inputClasses }} appearance-none rounded-none bg-transparent">
-                        <option value="">Choose a Service</option>
-                        {% for service in data.services %}
-                            <option value="{{ service }}">{{ service }}</option>{% endfor %}
-                    </select>
-                </div>
-            </div>
-            <div class="{{ descriptionClasses }} mb-10">{{ data.body2|raw }}</div>
-            <div class="flex">
-                {{ include('_components/ui/button/button.twig', {
-                    props: { text: 'Book Now', url: '#', style: 'secondary' }
-                }) }}
-            </div>
-        </div>
-        <div class="hidden lg:block lg:col-span-7 pl-12">
-            <div class="w-full h-[500px] overflow-hidden">
-                <img src="{{ data.imageSrc }}" alt="FoxPlan" class="w-full h-full object-cover">
-            </div>
+    {# Left Column: Architectural Title and Description #}
+    <div class="lg:col-span-6">
+        <h3 class="{{ tabTitleClasses }}" style="{{ tabTitleStyle }}">
+            {{ title }}
+        </h3>
+        <div class="{{ descriptionClasses }}" style="{{ descriptionStyle }}">
+            {{ body|raw }}
         </div>
     </div>
-{% endmacro %}
 
-{% macro render_location_tab_content(data, descriptionClasses) %}
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-0 mt-4 items-stretch">
-        <div class="lg:col-span-5 px-0">
-            {# Corrected to pull from locBlock.contactBodytext #}
-            <div class="{{ descriptionClasses }}">{{ data.body|raw }}</div>
-        </div>
-        <div class="hidden lg:block lg:col-span-7 pl-12">
-            <div class="w-full h-[500px] overflow-hidden">
-                <img src="{{ data.imageSrc }}" alt="Location" class="w-full h-full object-cover">
+    {# Right Column: Content Area #}
+    <div class="lg:col-span-6 pt-4 lg:pt-16">
+        {% if mode == 'form' %}
+            {{ include('_components/form/Contact-form.twig', {
+                props: { submitText: 'Submit' }
+            }) | raw }}
+
+            {# Fixed: Changed 'elif' to 'elseif' #}
+        {% elseif mode == 'calendly' %}
+            <div class="w-full overflow-hidden" style="height: 750px;">
+                <div class="calendly-inline-widget"
+                     data-url="https://calendly.com/foxplansales/discovery-phone-call-clone?hide_event_type_details=1&background_color=f4f1ea&text_color=2d2926&primary_color=e9bc44"
+                     style="min-width:320px;height:100%;">
+                </div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
             </div>
-        </div>
+
+            {# Fixed: Changed 'elif' to 'elseif' #}
+        {% elseif mode == 'map' %}
+            <div class="w-full aspect-[4/3] bg-white flex items-center justify-center border border-foxplan-charcoal-brown/5 shadow-sm">
+                <p class="font-aktiv text-[10px] uppercase tracking-widest text-foxplan-charcoal-brown/30 italic">
+                    Map here soon
+                </p>
+            </div>
+        {% endif %}
     </div>
+</div>
 {% endmacro %}
 
 {% import _self as macros %}
 
+{# --- 3. COMPONENT DATA --- #}
 {% set tabsComponentData = {
     defaultTab: 'call',
     backgroundColor: 'bg-foxplan-neutral-beige',
     textColor: 'text-foxplan-charcoal-brown',
-    titleClasses: tabTitleClasses,
     tabs: [
-        { id: 'call', label: 'Get in touch', title: contactData.call.heading, content: macros.render_call_tab_content(contactData.call, descriptionClasses) },
-        { id: 'callback', label: 'Book an adviser', title: contactData.callback.heading, content: macros.render_callback_tab_content(contactData.callback, descriptionClasses, labelClasses, inputClasses) },
-        { id: 'location', label: 'Our Location', title: contactData.location.heading, content: macros.render_location_tab_content(contactData.location, descriptionClasses) }
+        {
+            id: 'call',
+            label: 'Get in touch',
+            content: macros.render_tab_layout(
+            entry.contactMainHeading2 ?? 'Get in touch',
+            entry.contactBodytext2 ?? '',
+            descriptionClasses, descriptionStyle, tabTitleClasses, tabTitleStyle, 'form'
+        )
+        },
+        {
+            id: 'callback',
+            label: 'Book an adviser',
+            content: macros.render_tab_layout(
+            entry.contactMainHeading3 ?? 'Book an adviser',
+            entry.contactBodytext3 ?? '',
+            descriptionClasses, descriptionStyle, tabTitleClasses, tabTitleStyle, 'calendly'
+        )
+        },
+        {
+            id: 'location',
+            label: 'Our Location',
+            content: macros.render_tab_layout(
+            entry.contactMainHeading ?? 'Our Location',
+            entry.contactBodytext ?? '',
+            descriptionClasses, descriptionStyle, tabTitleClasses, tabTitleStyle, 'map'
+        )
+        }
     ]
 } %}
 
-{# --- RENDER --- #}
-<section class="w-full bg-foxplan-neutral-beige pt-16 pb-20 overflow-x-hidden"
-         x-data="{ activeTab: '{{ tabsComponentData.defaultTab }}' }">
-    <div class="w-full px-4 lg:px-12">
+{# --- 4. RENDER --- #}
+<section class="w-full bg-foxplan-neutral-beige pt-24 pb-32 overflow-x-hidden">
+    <div class="w-full px-4 md:px-8 lg:px-16">
         {% include '_components/ui/tabs/tabs.twig' with { data: tabsComponentData } %}
     </div>
 </section>

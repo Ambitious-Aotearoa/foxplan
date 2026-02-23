@@ -45,7 +45,7 @@
         }]) %}
     {% endfor %}
 
-    {# 3. Interactive Section Wrapper (Using the exact same Alpine logic) #}
+    {# 3. Interactive Section Wrapper #}
     <div x-data="{ activeTab: 'accountingWealthManagement' }" class="bg-foxplan-neutral-beige">
 
         {# Reuse the Tabs Component for perfect visual consistency #}
@@ -71,13 +71,12 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
                         {% for member in tab.members %}
                             <div class="team-card flex flex-col h-full">
-                                {# Portrait (Summoned from Asset Field) #}
+                                {# Portrait images#}
                                 <div class="aspect-square bg-gray-200 mb-6 overflow-hidden">
-                                    {# Ensure your member field handle matches 'memberImage' or similar #}
                                     {% set portrait = member.memberImage.one() %}
                                     <img src="{{ portrait ? portrait.url : craft.vite.asset('images/About_1.jpg') }}"
                                          alt="{{ member.memberName }}"
-                                         class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                                         class="w-full h-full object-cover transition-all duration-500">
                                 </div>
 
                                 <h3 class="font-serif text-2xl text-foxplan-charcoal-brown leading-tight">

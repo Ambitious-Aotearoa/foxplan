@@ -1,7 +1,7 @@
 columnSuffix: null
-handle: foxIcon
+handle: featuredImage
 instructions: null
-name: 'Fox icon'
+name: 'Featured Image'
 searchable: false
 settings:
   allowSelfRelations: false
@@ -10,7 +10,7 @@ settings:
   allowedKinds: null
   branchLimit: null
   defaultPlacement: end
-  defaultUploadLocationSource: null
+  defaultUploadLocationSource: 'volume:e1de6612-ffab-49d4-8b6e-40acfa08eb0e' # News Images
   defaultUploadLocationSubpath: null
   maintainHierarchy: false
   maxRelations: null
@@ -19,11 +19,11 @@ settings:
   restrictFiles: false
   restrictLocation: false
   restrictedDefaultUploadSubpath: null
-  restrictedLocationSource: null
+  restrictedLocationSource: 'volume:f88356ec-2dc9-4085-8264-222f67a2732c' # Article Images
   restrictedLocationSubpath: null
   selectionLabel: null
   showSearchInput: true
-  showSiteMenu: false
+  showSiteMenu: true
   showUnpermittedFiles: false
   showUnpermittedVolumes: false
   sources: '*'

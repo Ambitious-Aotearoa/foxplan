@@ -1,6 +1,5 @@
-{# templates/_sections/hero-sections/hero-2.twig #}
+{# templates/_sections/hero-sections/hero-contact.twig #}
 
-{# 1. FETCH DATA FROM THE FIELD LAYOUT #}
 {% set contentSource = entry ?? block ?? null %}
 
 {% set entryTitle = contentSource.title ?? null %}
@@ -8,7 +7,6 @@
 {% set entryButtonText = contentSource.button ?? null %}
 {% set entryButtonLink = contentSource.buttonLink ?? '#' %}
 
-{# 2. SETUP DEFAULTS AND MERGE PROPS #}
 {% set defaults = {
     backgroundColor: 'bg-foxplan-charcoal-brown',
     textColor: 'text-foxplan-charcoal-brown',
@@ -18,21 +16,20 @@
 
 {% set data = defaults | merge(props | default({})) %}
 
-{# 3. DEFINE STATIC DISK PATH FOR RELIABILITY #}
+{% set titleStyles = 'font-size: clamp(3.5rem, 9vw + 1rem, 9rem); line-height: 0.85; word-break: keep-all;' %}
+
+{% set bodyStyles = 'font-size: 16px; line-height: 1.2;' %}
+
 {% set staticImagePath = alias('@web/dist/' ~ data.imageSrc) %}
 
 <section class="w-full {{ data.backgroundColor }} overflow-hidden relative">
-    <div class="grid grid-cols-1 md:grid-cols-10">
-
-        {# 10% EMPTY SPACE COLUMN #}
+    <div class="grid grid-cols-1 md:grid-cols-10 px-4 md:px-0 lg:px-0">
+{#style for section  #}
         <div class="hidden md:block md:col-span-1"></div>
-
-        {# 90% CONTENT COLUMN #}
         <div class="col-span-1 md:col-span-9 flex flex-col">
 
             {# IMAGE BLOCK #}
             <div class="relative w-full h-[500px] lg:h-[650px] overflow-hidden">
-                {# UPDATED: Use the static path to ensure visibility without Vite #}
                 <img
                         src="{{ staticImagePath }}"
                         alt="{{ entryTitle }}"
@@ -42,7 +39,8 @@
                 {# TITLE OVERLAY #}
                 {% if entryTitle %}
                     <div class="absolute bottom-0 left-0 px-4 pb-4">
-                        <h1 class="font-serif text-[6rem] md:text-[8rem] lg:text-[11rem] {{ data.titleColor }} leading-[0.8] tracking-tighter">
+                        <h1 class="font-serif {{ data.titleColor }} tracking-tighter break-normal"
+                            style="{{ titleStyles }}">
                             {{ entryTitle | raw }}
                         </h1>
                     </div>
@@ -50,12 +48,13 @@
             </div>
 
             {# BOTTOM CONTENT BLOCK #}
-            <div class="px-4 mb-20 ">
+            <div class="px-4 mb-20">
                 <div class="max-w-[450px]">
 
-                    {# BODY TEXT #}
+                    {# BODY TEXT - UPDATED TO 16/120 #}
                     {% if entryBody %}
-                        <p class="font-aktiv-grotesk font-light text-lg md:text-xl {{ data.textColor }} leading-[1.2] mb-10">
+                        <p class="font-aktiv {{ data.textColor }} mb-10"
+                           style="{{ bodyStyles }}">
                             {{ entryBody | raw }}
                         </p>
                     {% endif %}
@@ -69,7 +68,7 @@
                                     url: entryButtonLink,
                                     backgroundColor: 'bg-[#1D1013]',
                                     textColor: 'text-white',
-                                    classes: 'px-8 py-3 text-[10px] tracking-[0.2em] uppercase font-montreal rounded-none'
+                                    classes: 'px-8 py-3 text-[10px] tracking-[0.2em] uppercase font-aktiv font-bold rounded-none'
                                 }
                             } only %}
                         </div>

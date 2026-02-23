@@ -1,7 +1,7 @@
 {#
 Our Services Slider Section
 - Typography: strictly using Season Serif and Aktiv Grotesk
-- Component Integration: Using the standard button component
+- Component Integration: Using the standard button component with dynamic URL from Craft
 - Mobile Preview: Enlarged cards (90vw width / 600px min-height)
 #}
 
@@ -32,14 +32,14 @@ Our Services Slider Section
         </div>
     </div>
 
-{#    2. SLIDER TRACK: Strict 20px gap above cards }#}
+    {# 2. SLIDER TRACK: Strict 20px gap above cards #}
     <div class="relative px-[20px] flex-grow flex items-start mt-[20px]">
         <div id="slider-track" class="flex gap-[12px] will-change-transform">
 
             {% if entry.services is defined %}
                 {% for block in entry.services.all() %}
                     <div class="service-card flex-shrink-0 bg-foxplan-neutral-beige px-6 lg:px-12 flex flex-col justify-start pt-[30px] min-h-[600px] lg:min-h-[650px]
-                                w-[90vw] md:w-[45vw] lg:w-[calc((100%/3)-6px)] border-r-[1px] border-foxplan-yellow last:border-none">
+                                 w-[90vw] md:w-[45vw] lg:w-[calc((100%/3)-6px)] border-r-[1px] border-foxplan-yellow last:border-none">
 
                         <div class="flex-grow flex flex-col justify-start">
                             <h3 class="font-serif mb-8 {{ data.textColor }}"
@@ -54,10 +54,11 @@ Our Services Slider Section
 
                             {% if block.button is not empty %}
                                 <div class="mb-12">
-                                    {# INTEGRATED COMPONENT: Using the shared button component #}
+                                    {# INTEGRATED COMPONENT: buttonUrl pulled from Craft field handle #}
                                     {{ include('_components/ui/button/button.twig', {
                                         props: {
-                                            button: 'Learn More',
+                                            button: block.button,
+                                            url: block.buttonUrl,
                                             backgroundColor: 'bg-foxplan-charcoal-brown',
                                             textColor: 'text-foxplan-neutral-beige',
                                             arrowColor: 'text-foxplan-neutral-beige'
@@ -96,22 +97,24 @@ Our Services Slider Section
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        gsap.registerPlugin(ScrollTrigger);
-        const section = document.querySelector('#services-horizontal-section');
-        const track = document.querySelector('#slider-track');
-        const getScrollDistance = () => track.scrollWidth - window.innerWidth + 40;
+        if (typeof gsap !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            const section = document.querySelector('#services-horizontal-section');
+            const track = document.querySelector('#slider-track');
+            const getScrollDistance = () => track.scrollWidth - window.innerWidth + 40;
 
-        gsap.to(track, {
-            x: () => -getScrollDistance(),
-            ease: "none",
-            scrollTrigger: {
-                trigger: section,
-                pin: true,
-                start: "top top",
-                end: () => "+=" + getScrollDistance(),
-                scrub: 1,
-                invalidateOnRefresh: true,
-            }
-        });
+            gsap.to(track, {
+                x: () => -getScrollDistance(),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: section,
+                    pin: true,
+                    start: "top top",
+                    end: () => "+=" + getScrollDistance(),
+                    scrub: 1,
+                    invalidateOnRefresh: true,
+                }
+            });
+        }
     });
 </script>

@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -39,6 +40,7 @@ fieldLayouts:
             dateAdded: '2026-01-16T03:30:46+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 850eeb95-fac6-4d9c-a93f-eb8e4939ca9a # blockBodyText
             handle: null
             instructions: null
@@ -53,6 +55,7 @@ fieldLayouts:
         name: Content
         uid: 3b9fe4f4-ecfb-4134-82ff-968729cd5bad
         userCondition: null
+    thumbFieldKey: null
 handle: clientTestimonial
 hasTitleField: true
 icon: null
@@ -64,3 +67,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

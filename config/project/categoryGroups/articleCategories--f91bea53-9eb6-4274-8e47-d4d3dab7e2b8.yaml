@@ -37,6 +37,7 @@ fieldLayouts:
         name: Content
         uid: 5374de46-919d-46f3-9bba-c1adac173aae
         userCondition: null
+    thumbFieldKey: null
 handle: articleCategories
 name: 'Article Categories'
 siteSettings:

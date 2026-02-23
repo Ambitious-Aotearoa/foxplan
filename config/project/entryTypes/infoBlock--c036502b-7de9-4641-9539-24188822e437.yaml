@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -11,6 +12,7 @@ fieldLayouts:
             dateAdded: '2026-01-15T21:58:05+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 024975a0-c902-455c-8531-31c3d872cb09 # blockHeading
             handle: null
             instructions: null
@@ -26,6 +28,7 @@ fieldLayouts:
             dateAdded: '2026-01-15T21:58:05+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 850eeb95-fac6-4d9c-a93f-eb8e4939ca9a # blockBodyText
             handle: null
             instructions: null
@@ -41,6 +44,7 @@ fieldLayouts:
             dateAdded: '2026-01-15T21:58:35+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 5a33ed06-c4f0-4d32-be5f-033502c710e5 # blockLinkUrl
             handle: null
             instructions: null
@@ -55,6 +59,7 @@ fieldLayouts:
         name: Content
         uid: 4bd01650-002b-4ad7-ba98-61902d76e9db
         userCondition: null
+    thumbFieldKey: null
 handle: infoBlock
 hasTitleField: false
 icon: null
@@ -66,3 +71,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

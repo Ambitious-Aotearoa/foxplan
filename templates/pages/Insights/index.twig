@@ -134,7 +134,7 @@
                 <div x-show="activeTab === '{{ tab.slug }}'" x-cloak x-transition>
 
                     {# Header with Search and Sort #}
-                    <div class="grid grid-cols-1 md:grid-cols-10 gap-x-12 lg:gap-x-16 w-full mb-16 items-end px-[20px]">
+                    <div class="grid grid-cols-1 md:grid-cols-10 lg:gap-x-16 w-full mb-16 items-end px-4 md:px-6 lg:px-8">
                         <div class="md:col-span-6 border-b border-foxplan-charcoal-brown/20 pb-2 flex items-center">
                             <span class="mr-3 opacity-60">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/></svg>
@@ -168,7 +168,7 @@
                     {% set allEntries = baseQuery.all() %}
                     {% set totalCount = allEntries|length %}
 
-                    <div class="grid grid-cols-1 md:grid-cols-10 gap-x-12 lg:gap-x-16 w-full items-start px-[20px]">
+                    <div class="grid grid-cols-1 md:grid-cols-10 lg:gap-x-16 w-full items-start px-[20px]">
 
                         {# Newest Grid #}
                         <template x-if="sortOrder === 'desc'">
@@ -220,6 +220,14 @@
             {% endfor %}
         </div>
     </div>
+
+    {# newsletter section#}
+    {% include '_sections/newsletter/newsletter-signup-1.twig' %}
+
+
+    {# LISTEN TO PODCAST #}
+    {% include '_sections/newsletter/Subscribe-newsletter.twig' %}
+
 
     {# FOOTER #}
     {{ include('_components/footer/footer-High-fidelity.twig', {

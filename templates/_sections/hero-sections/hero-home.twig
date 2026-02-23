@@ -91,16 +91,17 @@
             {% endif %}
 
             {% if data.buttonText %}
-                <div class="inline-block">
-                    {% include '_components/ui/button/button.twig' with {
-                        props: {
-                            text: data.buttonText,
-                            style: 'primary',
-                            url: '/#',
-                            backgroundColor: data.buttonBgColor,
-                            textColor: 'text-white',
-                        }
-                    } only %}
+                <div class="mt-4">
+                    <div @click="showBookCallOverlay = true" class="cursor-pointer inline-block">
+                        {% include '_components/ui/button/button.twig' with {
+                            props: {
+                                text: data.buttonText,
+                                style: 'primary',
+                                url: null,
+                                backgroundColor: data.buttonBgColor,
+                            }
+                        } only %}
+                    </div>
                 </div>
             {% endif %}
         </div>

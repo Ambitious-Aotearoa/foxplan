@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -11,6 +12,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T02:17:10+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: ae1eb8ab-68f8-419c-8bb8-c19ed7985884 # Insights Image
             handle: null
             instructions: null
@@ -26,6 +28,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T02:17:10+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e4ad5282-5b53-4193-bf9a-40d21e1aab4d # Date
             handle: null
             instructions: null
@@ -41,6 +44,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T02:17:10+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 4a5c0332-8175-4c2d-b8c5-0e1602083956 # Insights Heading 
             handle: null
             instructions: null
@@ -56,6 +60,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T02:17:10+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
             instructions: null
@@ -71,6 +76,7 @@ fieldLayouts:
             dateAdded: '2025-12-17T02:11:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: a82e8874-a0f4-4805-b59d-8c47d4867d7c # Tags
             handle: null
             instructions: null
@@ -85,6 +91,7 @@ fieldLayouts:
         name: Content
         uid: 8d118a6b-d2d6-49fd-9a68-5688fdae6426
         userCondition: null
+    thumbFieldKey: null
 handle: insights
 hasTitleField: false
 icon: null
@@ -96,3 +103,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

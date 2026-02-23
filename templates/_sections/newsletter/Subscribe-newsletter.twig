@@ -4,23 +4,33 @@
     heading: 'Subscribe to Dollars and Sense Podcast',
     body: 'Check out our podcast for weekly tips, market insights, and practical strategies.',
     ctaText: 'Listen now',
-    ctaUrl: '#'
 } %}
 
 {# Hardcoded path to the local image file #}
 {% set podcastImagePath = '/dist/images/Podcast_2.jpg' %}
 
-<section class="w-full bg-foxplan-charcoal-brown py-20 px-[20px]">
+<section class="w-full bg-foxplan-charcoal-brown py-24 px-4 md:px-6 lg:px-8 overflow-hidden">
     <div class="w-full">
-        <div class="grid grid-cols-1 md:grid-cols-10 gap-x-8 lg:gap-x-12 items-end">
+        {#
+        GRID LAYOUT:
+        #}
+        <div class="grid grid-cols-1 md:grid-cols-10 gap-x-8 lg:gap-x-16 items-end">
 
-            {# Left Column: Content (40%) #}
+            {# Left Column: Content (40% / 4 Columns) #}
             <div class="md:col-span-4 order-2 md:order-1 flex flex-col justify-end">
-                <h2 class="font-serif text-foxplan-yellow text-[3.2rem] md:text-[3.8rem] leading-[1.1] mb-6">
+                {#
+                HEADING:
+                #}
+                <h2 class="font-serif text-foxplan-yellow tracking-tight break-normal mb-8"
+                    style="font-size: clamp(2.25rem, 4vw + 1rem, 4.5rem); line-height: 0.85; word-break: keep-all;">
                     {{ knowledgeData.heading }}
                 </h2>
 
-                <p class="font-aktiv-grotesk text-foxplan-yellow/80 text-lg mb-8 max-w-sm">
+                {#
+                BODY:
+                #}
+                <p class="font-aktiv text-foxplan-yellow opacity-80 mb-10 max-w-sm font-medium"
+                   style="font-size: clamp(1rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;">
                     {{ knowledgeData.body }}
                 </p>
 
@@ -28,21 +38,22 @@
                     {% include '_components/ui/button/button.twig' with {
                         props: {
                             text: knowledgeData.ctaText,
-                            link: knowledgeData.ctaUrl,
+                            url: '/dollars-and-sense-podcast',
                             backgroundColor: 'bg-foxplan-yellow',
                             textColor: 'text-foxplan-charcoal-brown',
-                            hasArrow: true
+                            hasArrow: true,
+                            classes: 'px-10 py-4 text-xs font-bold tracking-widest uppercase rounded-none'
                         }
                     } only %}
                 </div>
             </div>
 
-            {# Right Column: Image (60%) #}
-            <div class="md:col-span-6 order-1 md:order-2 mb-10 md:mb-0">
-                <div class="aspect-[16/7] w-full overflow-hidden">
+            {# Right Column: Image (60% / 6 Columns) #}
+            <div class="md:col-span-6 order-1 md:order-2 mb-12 md:mb-0">
+                <div class="aspect-[16/7] w-full overflow-hidden shadow-2xl">
                     <img src="{{ podcastImagePath }}"
-                         alt="Podcast Lifestyle"
-                         class="w-full h-full object-cover">
+                         alt="Dollars and Sense Podcast"
+                         class="w-full h-full object-cover block transition-transform duration-700 hover:scale-105">
                 </div>
             </div>
 

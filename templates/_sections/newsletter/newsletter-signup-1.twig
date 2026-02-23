@@ -1,52 +1,55 @@
 {# _sections/newsletter/newsletter-signup-1.twig #}
 
-{% set ctaData = {
+{% set data = {
     topLabel: 'SUBSCRIBE',
-    heading: 'For regular financial insights, <br> subscribe to our newsletter.',
+    heading: 'For regular financial insights, subscribe to our newsletter.',
     placeholder: 'Enter your email address',
     submitText: 'SUBMIT'
 } %}
 
-<section class="w-full bg-foxplan-charcoal-brown border-l-[24px] border-foxplan-charcoal-brown">
-    <div id="newsletter-container" class="bg-foxplan-neutral-beige py-12 md:py-16 px-[40px] md:px-[60px] transition-all duration-500">
+<section class="w-full bg-foxplan-charcoal-brown border-l-0 md:border-l-[24px] border-foxplan-charcoal-brown">
 
-        <div class="grid grid-cols-1 md:grid-cols-10 gap-x-0">
-            <div class="md:col-span-9 lg:col-span-8">
-                <span class="font-montreal text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown mb-6 block">{{ ctaData.topLabel }}</span>
+    {#
+    PADDING:
+    #}
+    <div id="newsletter-container" class="bg-foxplan-neutral-beige py-4 lg:py-24 px-4 md:px-6 transition-all duration-500">
+
+        <div class="w-full">
+            <span class="font-aktiv text-[10px] font-bold uppercase tracking-[0.2em] text-foxplan-charcoal-brown mb-8 block">
+                {{ data.topLabel }}
+            </span>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center">
 
                 <div id="newsletter-content">
-                    <h2 class="font-serif text-[2.5rem] md:text-[3.5rem] font-light leading-[1.1] text-foxplan-charcoal-brown mb-8">
-                        {{ ctaData.heading | raw }}
+                    <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown break-normal"
+                        style="font-size: clamp(2rem, 4vw + 1rem, 4.5rem); line-height: 0.85; word-break: keep-all;">
+                        {{ data.heading | raw }}
                     </h2>
+                </div>
 
-                    {#
-                    We use 'onsubmit' to prevent the default refresh behavior,
-                    thus banishing the 'Resubmission' message forever
-                    #}
-                    <form id="newsletter-form" onsubmit="handleNewsletterSubmit(event)" class="max-w-2xl">
-                        <div class="flex items-center justify-between border-b border-foxplan-charcoal-brown/30 pb-1">
+                <div id="newsletter-form-container">
+                    <form id="newsletter-form" onsubmit="handleNewsletterSubmit(event)" class="w-full">
+                        <div class="flex items-center justify-between border-b border-foxplan-charcoal-brown/30 pb-2">
                             <input
                                     type="email"
                                     name="email"
-                                    placeholder="{{ ctaData.placeholder }}"
-                                    class="w-full text-base font-montreal py-2 bg-transparent focus:outline-none placeholder-foxplan-charcoal-brown/40 text-foxplan-charcoal-brown"
+                                    placeholder="{{ data.placeholder }}"
+                                    class="w-full text-base font-aktiv py-4 bg-transparent focus:outline-none placeholder-foxplan-charcoal-brown/30 text-foxplan-charcoal-brown"
                                     required
                             >
-                            <button type="submit" class="font-montreal text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown hover:opacity-60 transition-opacity ml-4 flex-shrink-0">
-                                {{ ctaData.submitText }}
+                            <button type="submit" class="flex items-center font-aktiv text-[10px] font-bold uppercase tracking-[0.2em] text-foxplan-charcoal-brown hover:opacity-60 transition-opacity ml-4 flex-shrink-0">
+                                {{ data.submitText }}
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
                             </button>
                         </div>
                     </form>
+
                 </div>
 
-                {# A polite Success Message to replace the form #}
-                <div id="newsletter-success" class="hidden">
-                    <h2 class="font-serif text-[2.5rem] md:text-[3.5rem] font-light leading-[1.1] text-foxplan-charcoal-brown">
-                        Thank you for subscribing.
-                    </h2>
-                </div>
             </div>
         </div>
     </div>
 </section>
-

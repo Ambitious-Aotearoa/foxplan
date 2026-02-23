@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
@@ -11,6 +12,7 @@ fieldLayouts:
             dateAdded: '2025-12-16T21:31:54+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: d2442bfd-d769-4080-9505-d553f86821d8 # Tabs Subheading
             handle: null
             instructions: null
@@ -26,6 +28,7 @@ fieldLayouts:
             dateAdded: '2025-12-16T21:31:54+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f83b90ed-4415-49b6-85c7-e4f1a4a11e72 # Insights Tab Image
             handle: null
             instructions: null
@@ -41,6 +44,7 @@ fieldLayouts:
             dateAdded: '2025-12-16T23:14:36+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e4ad5282-5b53-4193-bf9a-40d21e1aab4d # Date
             handle: null
             instructions: null
@@ -56,6 +60,7 @@ fieldLayouts:
             dateAdded: '2025-12-16T23:04:27+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 5ca1faf9-4255-419a-9685-fa7e60d769b6 # Insights Body Text
             handle: null
             instructions: null
@@ -71,6 +76,7 @@ fieldLayouts:
             dateAdded: '2025-12-16T23:02:29+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
             handle: null
             instructions: null
@@ -85,6 +91,7 @@ fieldLayouts:
         name: Content
         uid: 214ab86c-1406-454e-bdd4-1d3ed5c7889f
         userCondition: null
+    thumbFieldKey: null
 handle: insightsTabs
 hasTitleField: false
 icon: null
@@ -96,3 +103,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

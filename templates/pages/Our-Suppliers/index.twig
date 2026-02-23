@@ -1,18 +1,16 @@
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {# 1. Navigation Theme Setup #}
-{% set navigationTheme = {
-    backgroundColor: 'bg-foxplan-charcoal-brown',
-    textColor: 'text-foxplan-yellow',
-    searchBgColor: 'bg-foxplan-yellow',
-    ctaBgColor: 'bg-foxplan-yellow',
-    iconColor: 'text-foxplan-neutral-beige',
-} %}
+ {% set navigationTheme = {
+     backgroundColor: 'bg-foxplan-yellow',
+     textColor: 'text-foxplan-charcoal-brown',
+     actionBgColor: 'bg-foxplan-charcoal-brown'
+ } %}
 
 {% block blockAppBody %}
 
     {# Hero Section (Original Styles) #}
-    <section class="w-full bg-foxplan-charcoal-brown text-foxplan-yellow pt-24 pb-24 px-8 md:px-12 lg:px-16">
+    <section class="w-full text-foxplan-charcoal-brown bg-foxplan-yellow pt-24 pb-24 px-8 md:px-12 lg:px-16">
         <div class="max-w-7xl">
             <h1 class="font-serif text-7xl md:text-8xl lg:text-9xl mb-8 tracking-tight leading-none text-left">
                 Our suppliers
@@ -60,11 +58,11 @@
         {% include '_components/ui/tabs/tabs-services.twig' with {
             props: {
                 tabs: supplierData.tabs,
-                navBg: 'bg-foxplan-charcoal-brown',
+                navBg: 'bg-foxplan-yellow',
                 activeBg: 'bg-foxplan-neutral-beige',
                 activeText: 'text-foxplan-charcoal-brown',
-                inactiveText: 'text-foxplan-yellow/60',
-                hoverText: 'hover:text-foxplan-yellow',
+                inactiveText: 'text-foxplan-charcoal-brown/60',
+                hoverText: 'hover:text-foxplan-charcoal-brown',
             }
         } only %}
 

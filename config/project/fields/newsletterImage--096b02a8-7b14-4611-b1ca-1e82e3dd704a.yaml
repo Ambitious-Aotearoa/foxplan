@@ -22,7 +22,6 @@ settings:
   restrictedLocationSource: null
   restrictedLocationSubpath: null
   selectionLabel: null
-  showCardsInGrid: false
   showSearchInput: true
   showSiteMenu: false
   showUnpermittedFiles: false

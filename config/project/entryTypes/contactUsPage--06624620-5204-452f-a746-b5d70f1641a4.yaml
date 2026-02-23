@@ -144,22 +144,6 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
-          -
-            dateAdded: '2026-01-29T01:15:27+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 54110518-8867-4558-ad4b-ed19922348c4
-            userCondition: null
-            warning: null
-            width: 100
         name: 'Book an adviser'
         uid: 94e2bc7e-d4d7-472a-bc33-c98842d90f4d
         userCondition: null

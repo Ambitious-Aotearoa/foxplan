@@ -1,5 +1,7 @@
+altTranslationKeyFormat: null
+altTranslationMethod: none
 fieldLayouts:
-  08087a07-ce5e-45a8-9240-7d53feaa97c6:
+  be1d9cfa-bc4f-4e35-afe4-ec44cf2abce2:
     cardThumbAlignment: end
     tabs:
       -
@@ -10,7 +12,7 @@ fieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
-            dateAdded: '2025-12-16T23:37:46+00:00'
+            dateAdded: '2026-02-13T01:23:09+00:00'
             disabled: false
             elementCondition: null
             id: null
@@ -28,14 +30,21 @@ fieldLayouts:
             step: null
             tip: null
             title: null
-            type: craft\fieldlayoutelements\TitleField
-            uid: 7e71b720-d860-4ae4-8ff7-08e982aa741e
+            type: craft\fieldlayoutelements\assets\AssetTitleField
+            uid: 95b72bf5-93f1-4b08-9db6-0031638bb23f
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: 03f69ffe-82ec-43f2-833a-935a22fd7b8d
+        uid: 221d828d-01aa-4d1f-a6a7-f13e565b1edc
         userCondition: null
     thumbFieldKey: null
-handle: insights
-name: Insights
+fs: foxplanAssets
+handle: newsImages
+name: 'News Images'
+sortOrder: 6
+subpath: news-images
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+transformFs: foxplanTransforms
+transformSubpath: news-transforms

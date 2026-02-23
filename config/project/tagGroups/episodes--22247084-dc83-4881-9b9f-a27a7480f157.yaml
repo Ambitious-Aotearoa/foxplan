@@ -36,5 +36,6 @@ fieldLayouts:
         name: Content
         uid: 7d173034-10d7-46a6-970d-2b258c5ff56c
         userCondition: null
+    thumbFieldKey: null
 handle: episodes
 name: Episodes
