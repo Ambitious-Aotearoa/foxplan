@@ -11,35 +11,31 @@
 {% block blockAppBody %}
 
     {#  ARTICLES #}
-
-    {# Example of how to include the template above #}
     {% include "_sections/content-sections/article-template.twig" with {
         entry: entry,
         category: entry.articleCategories.one(),
         mainImage: entry.featuredImage.one()
     } %}
 
-    {# 3. RELATED INSIGHTS: Fetches articles from the same Category #}
+    {# RELATED INSIGHTS #}
     {% include '_sections/content-sections/link-to-insights.twig' with {
         entry: entry,
         bgColor: 'bg-foxplan-charcoal-brown',
         textColor: 'text-foxplan-neutral-beige'
     } only %}
 
-    {# 4. NEWSLETTER SIGNUP #}
+    {#  NEWSLETTER SIGNUP #}
     {% include '_sections/newsletter/newsletter-signup.twig' %}
 
-    {# 5. footer #}
+    {# FOOTER #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-yellow',
             textColor: 'text-foxplan-charcoal-brown',
             logoColor: 'text-foxplan-charcoal-brown',
             buttonColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-whitepages',
-            foxplanText: 'foxplan',
-            borderTopColor: 'border-foxplan-yellow/20',
-            borderTopWidth: 'border-t-2'
+            buttonTextColor: 'text-foxplan-neutral-beige',
+
         }
     }) }}
 

@@ -18,7 +18,7 @@
     {# --- SECTION 1: Yellow --- #}
     <div class="bg-foxplan-yellow pt-8 lg:pt-24 pb-12 relative z-20">
         <div class="grid grid-cols-1 min-[1401px]:grid-cols-10 w-full items-start">
-            <div class="col-span-1 min-[1401px]:col-span-6 px-4 lg:px-8 md:pl-12 lg:pl-4 lg:mb-4 ">
+            <div class="col-span-1 min-[1401px]:col-span-6 px-4 md:px-6 lg:px-8 lg:pl-4 lg:mb-4 ">
                 <div class="max-w-2xl">
                     {# FONT: Season Serif#}
                     <h2 class="font-serif leading-[0.9] tracking-tight mb-8 text-foxplan-charcoal-brown "
@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <div class="col-span-1 min-[1401px]:col-start-7 min-[1401px]:col-span-4 px-4 md:px-4 mt-6 md:mt-4 lg:mt-2 mb-12">
+            <div class="col-span-1 min-[1401px]:col-start-7 min-[1401px]:col-span-4 px-4 md:px-6 mt-6 md:mt-4 lg:mt-2 mb-12">
                 <div class="w-full relative -mb-48 md:-mb-72 lg:-mb-96 z-30">
                     <img src="{{ section1Image ? section1Image.url : fallback1 }}"
                          alt="{{ section1Image.title ?? 'About Foxplan' }}"
@@ -72,19 +72,19 @@
             <div class="col-span-1 min-[1401px]:col-start-7 min-[1401px]:col-span-4 px-4 lg:px-8 md:pl-0 md:pr-12 lg:pr-24 pb-24 md:pb-40 order-1 min-[1401px]:order-none">
                 <div>
                     {# FONT: Season Serif  #}
-                    <h2 class="font-serif leading-[0.9] text-foxplan-charcoal-brown mb-8 "
+                    <h2 class="font-serif leading-[0.9] text-foxplan-charcoal-brown mb-8 md:px-6  "
                         style="font-size: clamp(3rem, 5vw + 1rem, 4.5rem);">
                         {{ entry.paragraphHeading5 | raw }}
                     </h2>
 
                     {# FONT: Aktiv Grotesk  #}
-                    <div class="font-aktiv-grotesk text-foxplan-charcoal-brown mb-10 font-medium"
+                    <div class="font-aktiv-grotesk text-foxplan-charcoal-brown mb-10 font-medium md:px-6"
                          style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.125rem);">
                         {{ entry.bodyText4 | raw }}
                     </div>
 
                     {% if entry.button3 is not empty %}
-                        <div class="inline-block">
+                        <div class="inline-block md:px-6">
                             {% include '_components/ui/button/button.twig' with {
                                 props: {
                                     text: entry.button3,

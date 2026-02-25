@@ -1,0 +1,25 @@
+{# _components/ui/icons/facebook-icon.twig #}
+
+{# 1. SET COMPONENT DEFAULTS #}
+{% set defaults = {
+    iconColor: 'fill-white',
+    boxColor: 'bg-foxplan-charcoal-brown',
+    size: 'w-8 h-8',
+    url: null
+} %}
+
+{# 2. MERGE WITH PASSED PROPS #}
+{% set props = defaults | merge(props | default({})) %}
+
+{% if props.url %}
+<a href="{{ props.url }}" target="_blank" rel="noopener noreferrer" class="block hover:opacity-80 transition-opacity">
+    {% endif %}
+    {# THE BOX: Flex container for centering with changeable background color #}
+    <div class="flex items-center justify-center rounded-sm {{ props.size }} {{ props.boxColor }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-1/2 h-1/2">
+            <path d="M16.2223 3H13.3456C11.6384 3 9.73959 3.718 9.73959 6.19259C9.74792 7.05482 9.73959 7.8806 9.73959 8.80995H7.76465V11.9527H9.8007V21H13.5421V11.893H16.0115L16.2349 8.80113H13.4776C13.4776 8.80113 13.4838 7.42575 13.4776 7.02634C13.4776 6.04844 14.4951 6.10444 14.5563 6.10444C15.0405 6.10444 15.982 6.10585 16.2237 6.10444V3H16.2223Z" class="{{ props.iconColor }}" />
+        </svg>
+    </div>
+    {% if props.url %}
+</a>
+{% endif %}

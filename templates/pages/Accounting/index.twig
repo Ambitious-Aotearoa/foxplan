@@ -10,7 +10,7 @@
     {# 1. Initialize shared state for the booking overlay #}
     <div x-data="{ showBookCallOverlay: false }" class="relative">
 
-        {# 2. Hero Section - buttonUrl set to '#' triggers the popup #}
+        {# 2. Hero Section #}
         {{ include('_sections/hero-sections/hero-arrow.twig', {
             props: {
                 buttonUrl: '#',
@@ -63,7 +63,5 @@
 
     </div>
 
-    {% css %}
-        [x-cloak] { display: none !important; }
-    {% endcss %}
+
 {% endblock %}

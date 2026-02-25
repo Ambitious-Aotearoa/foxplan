@@ -1,5 +1,15 @@
 <section
         x-show="showBookCallOverlay"
+        {# Strict Scroll Lock Logic #}
+        x-init="$watch('showBookCallOverlay', value => {
+        if (value) {
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+        }
+    })"
         x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"

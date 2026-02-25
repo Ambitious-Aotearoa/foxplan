@@ -1,4 +1,4 @@
-dateModified: 1771879559
+dateModified: 1771898268
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
@@ -54,6 +54,7 @@ meta:
     04a2bc2e-175b-46fd-bb75-a4b8f4b663f0: Our-Investment-Committee # Our-Investment-Committee
     4a5c0332-8175-4c2d-b8c5-0e1602083956: 'Insights Heading ' # Insights Heading 
     4c9973ff-0107-4739-a889-f352e62eca08: 'Large Paragraph' # Large Paragraph
+    4dea1fe8-e9c5-4649-9256-e46d676283cc: 'Social Links' # Social Links
     4ed0dee4-59be-4290-bdff-e30f5d363215: 'Podcast Episodes' # Podcast Episodes
     5a2fa5d4-7817-40c9-b68f-a7e82da4bb56: 'Accordion heading1' # Accordion heading1
     5a33ed06-c4f0-4d32-be5f-033502c710e5: blockLinkUrl # blockLinkUrl
@@ -81,6 +82,7 @@ meta:
     8fc9a1ea-062c-4285-953d-598793e2da38: 'Service Card' # Service Card
     09a98099-02ba-4caf-9a69-5c2e6b631b09: 'Milestone Title' # Milestone Title
     9bdc992e-fe2b-4e1d-926a-01d9a7b5772d: 'Info Block' # Info Block
+    9cbda385-c5d0-4789-be07-15ec1b46b4da: Instagram # Instagram
     9d5444d6-0da9-4778-9426-4aaad4fd1490: 'Career Benefit matrix' # Career Benefit matrix
     20a2a580-d219-4d89-85de-c3cef6cd5616: 'First Home Buyers' # First Home Buyers
     21b7b768-00fc-45e6-93ad-a17640300f0b: 'Employee financial wellbeing' # Employee financial wellbeing
@@ -96,6 +98,7 @@ meta:
     56f32641-e789-4c85-9d66-1a59f42e95d2: foxplan # foxplan
     57b202f1-c4d8-4b39-bc56-d1eeb2b1244b: 'Hero Subheading' # Hero Subheading
     60ac3db5-de5e-4810-a0b1-4743170e9b60: Timeline # Timeline
+    063c4225-b94a-40fb-8780-16692d701a02: LinkedIn # LinkedIn
     64be8bff-539f-4a96-9c76-ecff739d9d87: 'Refinancing & Refixing' # Refinancing & Refixing
     68fa3aba-96db-477b-ac3c-539df750eb60: 'Property investment' # Property investment
     71a09bda-7456-438b-ae19-e1689203cc57: Sub-links # Sub-links
@@ -109,6 +112,7 @@ meta:
     096b02a8-7b14-4611-b1ca-1e82e3dd704a: 'Newsletter Image' # Newsletter Image
     96c1e443-01b6-463e-b149-11a8187fafae: 'Matrix Title' # Matrix Title
     197d008b-abaf-40fa-9c38-173ac170b291: 'Article Heading' # Article Heading
+    213a9e8b-5fd6-423e-a7d0-628598de026e: Facebook # Facebook
     222ba10e-eabb-490d-b424-074aac4d84dd: 'Our Suppliers' # Our Suppliers
     383dafac-19c3-4559-9459-54a9919aada4: 'Body Text' # Body Text
     442aaa5f-2531-4a40-a133-1b9bcbd25b08: 'Our Suppliers' # Our Suppliers
@@ -237,10 +241,3 @@ system:
   name: foxplan
   schemaVersion: 5.9.0.8
   timeZone: America/Los_Angeles
-users:
-  allowPublicRegistration: false
-  defaultGroup: null
-  photoSubpath: null
-  photoVolumeUid: null
-  require2fa: false
-  requireEmailVerification: true

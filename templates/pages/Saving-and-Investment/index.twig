@@ -2,92 +2,89 @@
 
 {% set navigationTheme = {
     backgroundColor: 'bg-foxplan-neutral-beige',
-    textColor: 'text-black',
+    textColor: 'text-foxplan-charcoal-brown',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
 
 {% block blockAppBody %}
+    {# 1. Initialize shared state for the booking overlay #}
+    <div x-data="{ showBookCallOverlay: false }" class="relative">
 
-    {# 1. Hero Section #}
-    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
-    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
-    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
-    {% set pageHeroImage = entry.heroImage.one() ?? null %}
+        {# 2. Hero Section #}
+        {{ include('_sections/hero-sections/hero-arrow.twig', {
+            props: {
+                buttonUrl: '#',
+                backgroundColor: 'bg-foxplan-neutral-beige',
+                buttonBgColor: 'bg-foxplan-charcoal-brown',
+                buttonTextColor: 'text-foxplan-neutral-beige'
+            }
+        }) }}
 
-    {{ include('_sections/hero-sections/hero-arrow.twig', {
-        props: {
-            heading: pageHeading,
-            bodyText: pageBody,
-            buttonText: pageButton,
-            imageAsset: pageHeroImage,
-            imagePath: 'images/Insurance_hero.jpg',
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            buttonUrl: '/contact-us',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-neutral-beige'
-        }
-    }) }}
+        {# 3. Benefits #}
+        {% include "_sections/content-sections/how-we-work.twig" with {
+            entry: entry,
+            props: {
+                backgroundColor: 'bg-foxplan-yellow',
+                textColor: 'text-foxplan-charcoal-brown',
+                mainHeading: entry.paragraphHeading ?? 'How we work with you',
+                mainBody: entry.bodyText ?? '',
+            }
+        } %}
 
-    {#2. Benefits #}
-    {% include "_sections/content-sections/how-we-work.twig" with {
-        entry: entry,
-        props: {
-            backgroundColor: 'bg-foxplan-yellow',
-            textColor: 'text-foxplan-charcoal-brown',
-            mainHeading: entry.paragraphHeading ?? 'How we work with you',
-            mainBody: entry.bodyText ?? '',
-        }
-    } %}
+        {# 4. Services Grid #}
+        {% set serviceItems = [] %}
 
-    {# 3. Services Grid #}
-    {# 1. Prepare the items array in the format the template expects #}
-    {% set serviceItems = [] %}
+        {% if entry.infoBlock is defined %}
+            {% for block in entry.infoBlock.all() %}
+                {% set serviceItems = serviceItems | merge([{
+                    'title': block.blockHeading ?? 'Service Title',
+                    'text': block.blockBodyText ?? '',
+                    'link': block.blockLinkUrl ?? '#'
+                }]) %}
+            {% endfor %}
+        {% endif %}
 
-    {% if entry.infoBlock is defined %}
-        {% for block in entry.infoBlock.all() %}
-            {% set serviceItems = serviceItems | merge([{
-                'title': block.blockHeading ?? 'Service Title',
-                'text': block.blockBodyText ?? '',
-                'link': block.blockLinkUrl ?? '#'
-            }]) %}
-        {% endfor %}
-    {% endif %}
+        {{ include('_sections/services/our-services-1.twig', {
+            props: {
+                title: entry.paragraphHeading2 ?? 'Our Services',
+                backgroundColor: 'bg-foxplan-yellow',
+                buttonBgColor: 'bg-foxplan-charcoal-brown',
+                buttonTextColor: 'text-white',
+                items: serviceItems
+            }
+        }) }}
 
-    {# 2. Include the section with the mapped 'items' #}
-    {{ include('_sections/services/our-services-1.twig', {
-        props: {
-            title: entry.paragraphHeading2 ?? 'Our Services',
-            backgroundColor: 'bg-foxplan-yellow',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-white',
-            items: serviceItems
-        }
-    }) }}
+        {# 5. Partner Section #}
+        {{ include('_sections/content-sections/who-we-work-with.twig', {
+            props: {
+                title: 'WHO WE WORK WITH',
+                backgroundColor: 'bg-foxplan-neutral-beige',
+                textColor: 'text-foxplan-charcoal-brown',
+                borderColor: 'border-foxplan-charcoal-brown/20',
+                logos: [
+                    { src: 'images/logo/AIA_Logo.svg', alt: 'AIA' },
+                    { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ' }
+                ]
+            }
+        }) }}
 
-    {# 4. Partner Section #}
-    {{ include('_sections/content-sections/who-we-work-with.twig', {
-        props: {
-            title: 'WHO WE WORK WITH',
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-foxplan-charcoal-brown',
-            borderColor: 'border-foxplan-charcoal-brown/20',
-            logos: [
-                { src: 'images/logo/AIA_Logo.svg', alt: 'AIA' },
-                { src: 'images/logo/ANZ_Logo.svg', alt: 'ANZ' }
-            ]
-        }
-    }) }}
+        {# 6. Footer #}
 
-    {# footer #}
+        {{ include('_components/footer/footer-High-fidelity.twig', {
+            props: {
+                backgroundColor: 'bg-foxplan-charcoal-brown',
+                textColor: 'text-foxplan-yellow',
+                logoColor: 'text-foxplan-yellow',
+                buttonColor: 'bg-foxplan-yellow',
+                buttonTextColor: 'text-foxplan-charcoal-brown',
+                separatorColor: 'text-foxplan-yellow'
+            }
+        }) }}
 
-    {{ include('_components/footer/footer-High-fidelity.twig', {
-        props: {
-            backgroundColor: 'bg-foxplan-charcoal-brown',
-            textColor: 'text-foxplan-yellow',
-            logoColor: 'text-foxplan-yellow',
-            buttonColor: 'bg-foxplan-yellow',
-            buttonTextColor: 'text-foxplan-charcoal-brown',
-            separatorColor: 'text-foxplan-yellow'
-        }
-    }) }}
+        {# 7. THE BOOKING OVERLAY #}
+        {{ include('_sections/overlays/book-a-call.twig') }}
+
+    </div>
+
+
 {% endblock %}

@@ -1,11 +1,7 @@
 {# templates/_sections/hero-sections/hero-arrow.twig #}
 
-{# 1. CORRECTED IMAGE FETCHING FROM CRAFT #}
 {% set sourceEntry = entry ?? craft.entries.section('accounting').one() %}
-{# Fetching the image from your hero Matrix block or the entry itself #}
 {% set heroImageAsset = props.imageAsset ?? entry.heroImage.one() ?? null %}
-
-{# Arrow Logic #}
 {% set arrowPath = '@webroot/dist/images/placeholder/Arrow_1.svg' %}
 
 {% set defaults = {
@@ -16,76 +12,63 @@
     buttonBgColor: 'bg-foxplan-charcoal-brown',
     buttonTextColor: 'text-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown',
-    buttonUrl: '#'
+
+buttonUrl: props.buttonUrl ?? null
 } %}
 
 {% set data = defaults | merge(props ?? {}) %}
 
-<section class="w-full py-16 {{ data.backgroundColor }} overflow-hidden"
+<section class="w-full pt-10 pb-10 {{ data.backgroundColor }} overflow-hidden"
          x-data="{ revealed: false }"
          x-init="setTimeout(() => revealed = true, 150)">
 
-    <div class="flex flex-wrap w-full items-center mb-10 relative">
-        {# --- THE ARROW --- #}
+    <div class="flex flex-wrap w-full items-center mb-5 relative">
         <div class="hidden md:flex w-[30%] items-center justify-start pr-8 lg:pr-12">
             <div class="w-full h-8 flex items-center">
                 <div class="transition-all duration-[2500ms] overflow-hidden"
-                     style="transition-timing-function: steps(15); width: 0px; opacity: 0;"
                      :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0px; opacity: 0;'">
-                    <div class="w-full h-auto fill-current {{ data.textColor }}">
-                        {{ svg(alias(arrowPath))|attr({
-                            class: 'w-full h-auto block object-contain max-h-6 object-left',
-                            role: 'presentation'
-                        }) }}
-                    </div>
+                    {{ svg(alias(arrowPath))|attr({
+                        class: 'w-full h-auto block max-h-6 fill-current ' ~ data.textColor
+                    }) }}
                 </div>
             </div>
         </div>
 
-        {# --- THE TEXT --- #}
         <div class="w-full md:w-[70%] px-4 md:px-6 lg:px-8">
-            <h2 class="font-serif leading-[0.85] tracking-tight {{ data.textColor }}"
+            <h2 class="font-serif leading-[0.85] tracking-tight {{ data.textColor }} whitespace-nowrap lg:whitespace-normal"
                 style="font-size: clamp(3rem, 8vw + 1rem, 7.5rem);">
-                {{ data.heading | raw }}
-            </h2>
-        </div>
+    {{ data.heading | raw }}
+    </h2>
+    </div>
     </div>
 
-    <div class="flex flex-wrap lg:flex-nowrap items-end">
-        <div class="w-full lg:w-[70%] relative overflow-hidden">
-            <div class="relative w-full aspect-[16/9] lg:aspect-auto lg:h-[600px] px-4 lg:px-0">
-                {# 2. RENDERING THE CRAFT IMAGE #}
+    <div class="flex flex-wrap xl:flex-nowrap items-end">
+        <div class="w-full xl:w-[70%] relative overflow-hidden">
+            <div class="relative w-full aspect-[16/9] xl:aspect-[21/10] px-4 lg:px-6 xl:px-0">
                 {% if heroImageAsset %}
-                    <img src="{{ heroImageAsset.url }}"
-                         alt="{{ heroImageAsset.title }}"
-                         class="w-full h-full object-cover">
-                {% else %}
-                    {# Fallback if no image is found in Craft #}
-                    <img src="/dist/images/placeholder/hero-sample.jpg" class="w-full h-full object-cover">
+                <img src="{{ heroImageAsset.url }}" class="w-full h-full object-cover">
                 {% endif %}
             </div>
         </div>
 
-        {# --- CONTENT COLUMN --- #}
-        <div class="w-full lg:w-[30%] px-4 md:px-6 lg:px-8 space-y-6 pt-10 lg:pt-0">
+        <div class="w-full xl:w-[30%] px-4 md:px-6 lg:px-8 space-y-4 pt-4 xl:pt-0">
             {% if data.bodyText %}
-                <div class="font-aktiv-grotesk leading-relaxed {{ data.textColor }} font-medium"
-                     style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.5rem);">
+                <div class="font-aktiv-grotesk leading-relaxed {{ data.textColor }} font-medium break-words hyphens-none"
+                     style="font-size: clamp(1rem, 0.7vw + 0.5rem, 1.25rem); word-break: keep-all;">
                     {{ data.bodyText | raw }}
                 </div>
             {% endif %}
 
-            {# 3. RESTORED BUTTON #}
             {% if data.buttonText %}
-                <div class="mt-4">
+                <div class="mt-2">
                     <div @click="showBookCallOverlay = true" class="cursor-pointer inline-block">
                         {% include '_components/ui/button/button.twig' with {
                             props: {
                                 text: data.buttonText,
-                                style: 'primary',
                                 url: null,
                                 backgroundColor: data.buttonBgColor,
-                                textColor: data.buttonTextColor
+                                textColor: data.buttonTextColor,
+                                classes: 'px-10 py-4 text-[10px] tracking-[0.2em] font-bold uppercase rounded-none'
                             }
                         } only %}
                     </div>

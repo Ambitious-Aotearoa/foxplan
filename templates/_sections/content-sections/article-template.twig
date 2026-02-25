@@ -11,24 +11,43 @@
 
     {# --- HERO SECTION (Title, Date, Image) --- #}
     <section class="w-full pt-24 pb-0 overflow-hidden">
-        <div class="px-[20px] max-w-full mx-auto">
+        <div class="px-4 md:px-6 lg:px-8 max-w-full mx-auto">
 
             {# Article Title #}
-            <h1 class="font-serif text-foxplan-charcoal-brown text-[4.5rem] md:text-[6rem] lg:text-[7.5rem] leading-[0.9] tracking-tighter mb-12 max-w-[90%] lg:max-w-[80%]">
+            <h1 class="font-serif text-foxplan-charcoal-brown leading-[0.9] tracking-tighter mb-12 max-w-[90%] lg:max-w-[80%] break-keep hyphens-none"
+                style="font-size: clamp(3rem, 8vw, 7.5rem);">
                 {{ entry.title }}
             </h1>
 
             <div class="grid grid-cols-1 md:grid-cols-10 gap-x-0 items-start">
-                {# Meta Information (Date & Category) #}
+                {# Date & Category #}
+                {# 1. FETCH ALL CATEGORIES #}
+                {% set categories = entry.articleCategories.all() %}
+
                 <div class="md:col-span-3 lg:col-span-2">
-                    <div class="font-montreal text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown flex flex-wrap gap-y-2 pt-1">
-                        <span class="mr-6 block md:inline-block">{{ entry.postDate | date('j F Y') | upper }}</span>
-                        {% if category %}
-                            <span class="flex items-center">
-                                {{ category.title | upper }}
-                                <span class="ml-2 mt-[-2px]">•</span>
-                            </span>
-                        {% endif %}
+                    <div class="font-montreal text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown pt-1 pb-4">
+
+                        {# Container for the whole list #}
+                        <div class="flex flex-col gap-y-2">
+
+                            {% for cat in categories %}
+                                <div class="flex items-start">
+                                    {#  DATE  #}
+                                    <div class="w-[140px] shrink-0">
+                                        {% if loop.first %}
+                                            {{ entry.postDate | date('j F Y') | upper }}
+                                        {% endif %}
+                                    </div>
+
+                                    {# CATEGORY#}
+                                    <div class="flex items-center">
+                                        <span class="whitespace-nowrap">{{ cat.title | upper }}</span>
+                                        <span class="ml-3 mt-[-2px] block">•</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
                     </div>
                 </div>
 
@@ -50,9 +69,9 @@
         </div>
     </section>
 
-    {# --- CONTENT SECTION (Normal padding for body text) --- #}
-    <section class="w-full pt-24 pb-32">
-        <div class="px-8 md:px-16 lg:px-24 max-w-[1440px] mx-auto">
+    {# --- CONTENT SECTION --- #}
+    <section class="w-full pt-8 md:pt-12 lg:pt-24 pb-8 md:pb-20 lg:pb-32">
+        <div class="px-4 md:px-8 mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-10 gap-x-0 relative">
 
                 {# Column Offset #}
@@ -60,10 +79,19 @@
 
                 {# Main Body Content #}
                 <div class="md:col-span-6 lg:col-span-6">
-                    <div class="font-montreal font-light text-foxplan-charcoal-brown leading-[1.6] text-[1.125rem] rich-text-content">
+                    <div class="font-montreal font-light text-foxplan-charcoal-brown leading-[1.6] rich-text-content"
+                         style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.25rem);">
                         <style>
-                            .rich-text-content h2 { font-family: serif; font-size: 2.5rem; margin-top: 3rem; margin-bottom: 1.25rem; color: #000; line-height: 1.1; }
-                            .rich-text-content p { margin-bottom: 1.5rem; }
+                            .rich-text-content h2 {
+                                font-family: serif;
+                                font-size: clamp(2rem, 3vw + 1rem, 3rem);
+                                margin-top: 3rem;
+                                margin-bottom: 1.25rem;
+                                color: #000;
+                                line-height: 1.1;
+                                word-break: keep-all;
+                            }
+                            .rich-text-content p { margin-bottom: 1.5rem; word-break: keep-all; }
                             .rich-text-content p:last-child { margin-bottom: 0; }
                             .rich-text-content img { width: 100%; height: auto; margin: 2rem 0; }
                         </style>
@@ -85,16 +113,56 @@
                     </div>
                 </div>
 
+                {# SOCIAL LINKS FETCHED FROM GLOBALS #}
+                {% set facebookUrl = socialLinks.facebook ?? null %}
+                {% set instagramUrl = socialLinks.instagram ?? null %}
+                {% set linkedinUrl = socialLinks.linkedin ?? null %}
+
                 {# Sticky Social Sidebar #}
                 <div class="hidden md:block md:col-start-10 md:col-span-1">
-                    <div class="sticky top-32 flex flex-col items-end">
-                        {% set currentUrl = entry.url | url_encode %}
-                        <a href="https://twitter.com/intent/tweet?url={{ currentUrl }}" target="_blank" class="{{ sidebarSquareClasses }}">𝕏</a>
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ currentUrl }}" target="_blank" class="{{ sidebarSquareClasses }} font-bold text-[11px]">in</a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ currentUrl }}" target="_blank" class="{{ sidebarSquareClasses }} font-bold text-[12px]">f</a>
+                    <div class="sticky top-32 flex flex-col items-end gap-3">
+
+                        {# FACEBOOK #}
+                        {% if facebookUrl %}
+                            {{ include('_components/ui/icons/facebook-icon.twig', {
+                                props: {
+                                    iconColor: 'fill-white',
+                                    boxColor: 'bg-[#1D1013]',
+                                    size: 'w-8 h-8',
+                                    url: facebookUrl
+                                }
+                            }) }}
+                        {% endif %}
+
+                        {# INSTAGRAM #}
+                        {% if instagramUrl %}
+                            {{ include('_components/ui/icons/instagram-icon.twig', {
+                                props: {
+                                    iconColor: 'fill-white',
+                                    boxColor: 'bg-[#1D1013]',
+                                    size: 'w-8 h-8',
+                                    url: instagramUrl
+                                }
+                            }) }}
+                        {% endif %}
+
+                        {# LINKEDIN #}
+                        {% if linkedinUrl %}
+                            {{ include('_components/ui/icons/linkedin-icon.twig', {
+                                props: {
+                                    iconColor: 'fill-white',
+                                    boxColor: 'bg-[#1D1013]',
+                                    size: 'w-8 h-8',
+                                    url: linkedinUrl
+                                }
+                            }) }}
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
+
+
         </div>
     </section>
 </main>

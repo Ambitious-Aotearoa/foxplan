@@ -2,14 +2,19 @@
 
 {# 1. Map Backend Data using confirmed handles #}
 {% set sectionImage = entry.image.one() %}
+
+{# Fetching the link from the 'buttonUrl' field seen in Screenshot 3.45.06pm #}
 {% set rawUrl = entry.buttonUrl ?? '' %}
+
+{# Process the URL: if it's a slug, convert to a full site URL #}
+{% set finalUrl = rawUrl ? url(rawUrl) : '' %}
 
 {% set defaults = {
     title: entry.paragraphHeading2 ?? 'Get the First Home Buyers Guide',
     bodyText: entry.bodyText2 ?? '',
     buttonText: entry.button2 ?? '',
     imageSrc: sectionImage ? sectionImage.url : null,
-    buttonUrl: '',
+    buttonUrl: finalUrl,
     backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown',
     buttonBgColor: 'bg-foxplan-charcoal-brown',
@@ -20,7 +25,8 @@
 {% set data = defaults | merge(props ?? {}) %}
 
 <section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">
-    <div class="px-4 md:px-6 lg:px-8 py-12 lg:py-16 md:pt-24 md:pb-24">
+    {# Maintained consistent 80px extra spacing for desktop #}
+    <div class="px-4 md:px-6 lg:px-8 py-12 lg:py-16 lg:pt-32 lg:pb-32">
         <div class="flex flex-wrap md:flex-nowrap w-full items-center gap-0">
 
             {# Left Column: 30% Width #}
@@ -39,14 +45,15 @@
                     {% endif %}
 
                     {% if data.buttonText is not empty %}
-                        <div @click="showFirstHomeOverlay = true" class="cursor-pointer inline-block">
+                        {# The button now pulls the dynamic finalUrl #}
+                        <div class="inline-block">
                             {% include '_components/ui/button/button.twig' with {
                                 props: {
                                     text: data.buttonText,
                                     url: data.buttonUrl,
                                     backgroundColor: data.buttonBgColor,
                                     textColor: data.buttonTextColor,
-                                    classes: 'px-10 py-4 text-xs font-bold tracking-widest uppercase rounded-none'
+                                    classes: 'px-10 py-4 text-[10px] tracking-[0.2em] uppercase font-aktiv font-bold rounded-none'
                                 }
                             } only %}
                         </div>

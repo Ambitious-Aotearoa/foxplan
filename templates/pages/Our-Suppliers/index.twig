@@ -1,27 +1,27 @@
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {# 1. Navigation Theme Setup #}
- {% set navigationTheme = {
-     backgroundColor: 'bg-foxplan-yellow',
-     textColor: 'text-foxplan-charcoal-brown',
-     actionBgColor: 'bg-foxplan-charcoal-brown'
- } %}
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-foxplan-charcoal-brown',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
 
 {% block blockAppBody %}
 
-    {# Hero Section (Original Styles) #}
-    <section class="w-full text-foxplan-charcoal-brown bg-foxplan-yellow pt-24 pb-24 px-8 md:px-12 lg:px-16">
-        <div class="max-w-7xl">
-            <h1 class="font-serif text-7xl md:text-8xl lg:text-9xl mb-8 tracking-tight leading-none text-left">
-                Our suppliers
-            </h1>
-            <p class="font-aktiv-grotesk text-xl md:text-2xl max-w-2xl leading-relaxed opacity-90 text-left">
-                We partner with leading financial institutions to ensure you get the best possible outcomes for your investments, insurance, and lending needs.
-            </p>
-        </div>
+    {# HERO SECTION (Architectural Design) #}
+    <section class="w-full bg-foxplan-yellow text-foxplan-charcoal-brown pt-12 lg:pt-32 pb-8 md:pb-12 lg:pb-24 px-4 md:px-6 lg:px-8">
+        <h1 class="font-serif tracking-tight text-foxplan-charcoal-brown break-normal mb-8"
+            style="font-size: clamp(2.5rem, 5vw + 1rem, 5.5rem); line-height: 0.85; word-break: keep-all;">
+            Our Suppliers
+        </h1>
+        <p class="opacity-80 max-w-2xl font-medium"
+           style="font-size: clamp(1rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;">
+            We partner with leading financial institutions to ensure you get the best possible outcomes for your investments, insurance, and lending needs.
+        </p>
     </section>
 
-    {# --- DYNAMIC DATA FETCHING --- #}
+    {# --- DATA FETCHING (Fixed with 'title' key) --- #}
     {% set tabDefinitions = [
         { id: 'investmentsKiwisaver', label: 'Investments & Kiwisaver' },
         { id: 'insurance', label: 'Insurance' },
@@ -30,15 +30,13 @@
     ] %}
 
     {% set supplierTabs = [] %}
-
     {% for tab in tabDefinitions %}
-        {# CRITICAL FIX: The section handle is 'ourSuppliers' #}
-        {# The field handle is 'supplierCategory' #}
         {% set suppliersForTab = craft.entries()
             .section('ourSuppliers')
             .supplierCategory(tab.id)
             .all() %}
 
+        {# ADDED 'title' key here to match suppliers.twig requirements #}
         {% set supplierTabs = supplierTabs|merge([{
             id: tab.id,
             label: tab.label,
@@ -47,33 +45,65 @@
         }]) %}
     {% endfor %}
 
-    {% set supplierData = {
-        tabs: supplierTabs
-    } %}
+    {# INTERACTIVE WRAPPER #}
+    <div x-data="{
+        activeTab: 'investmentsKiwisaver',
+        mobileMenuOpen: false,
+        getActiveLabel() {
+            const labels = {
+                {% for tab in tabDefinitions %} '{{ tab.id }}': '{{ tab.label }}', {% endfor %}
+            };
+            return labels[this.activeTab] || 'Select Category';
+        }
+    }" class="relative w-full">
 
-    {# 2. Interactive Section Wrapper #}
-    <div x-data="{ activeTab: 'investmentsKiwisaver' }" class="bg-foxplan-yellow">
+        {# 1. MOBILE DROPDOWN (Insights Style) #}
+        <div class="lg:hidden w-full bg-foxplan-yellow px-4 md:px-6 lg:px-8 pb-8">
+            <div class="relative">
+                <button
+                        @click="mobileMenuOpen = !mobileMenuOpen"
+                        class="w-full flex items-center justify-between border-b border-foxplan-charcoal-brown/20 py-4 text-left font-serif text-2xl transition-all duration-300 focus:outline-none"
+                        :class="mobileMenuOpen ? 'bg-foxplan-white text-foxplan-charcoal-brown px-4' : 'text-foxplan-charcoal-brown'"
+                >
+                    <span x-text="getActiveLabel()"></span>
+                    <svg class="w-5 h-5 transition-transform duration-300" :class="mobileMenuOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
 
-        {# Tabs Component #}
-        {% include '_components/ui/tabs/tabs-services.twig' with {
-            props: {
-                tabs: supplierData.tabs,
-                navBg: 'bg-foxplan-yellow',
-                activeBg: 'bg-foxplan-neutral-beige',
-                activeText: 'text-foxplan-charcoal-brown',
-                inactiveText: 'text-foxplan-charcoal-brown/60',
-                hoverText: 'hover:text-foxplan-charcoal-brown',
-            }
-        } only %}
+                <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" x-cloak x-transition:enter="transition ease-out duration-200" class="absolute z-50 w-full bg-foxplan-white border border-foxplan-charcoal-brown/10 shadow-xl left-0 top-full mt-1">
+                    {% for tab in tabDefinitions %}
+                        <button @click="activeTab = '{{ tab.id }}'; mobileMenuOpen = false;" class="w-full text-left px-6 py-4 font-serif text-xl border-b border-foxplan-charcoal-brown/5 transition-colors" :class="activeTab === '{{ tab.id }}' ? 'text-foxplan-charcoal-brown bg-foxplan-neutral-beige font-bold' : 'text-foxplan-charcoal-brown/60 hover:bg-foxplan-neutral-beige/50'">
+                            {{ tab.label }}
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
 
-        {# Suppliers Section #}
-        {% include '_sections/content-sections/suppliers.twig' with {
-            data: supplierData
-        } only %}
+        {# 2. DESKTOP TABS #}
+        <div class="hidden lg:block">
+            {% include '_components/ui/tabs/tabs-services.twig' with {
+                props: {
+                    tabs: supplierTabs,
+                    navBg: 'bg-foxplan-yellow',
+                    activeBg: 'bg-foxplan-neutral-beige',
+                    activeText: 'text-foxplan-charcoal-brown',
+                    inactiveText: 'text-foxplan-charcoal-brown/60',
+                    hoverText: 'hover:text-foxplan-charcoal-brown',
+                }
+            } only %}
+        </div>
 
+        {# 3. CONTENT AREA #}
+        <div class="w-full bg-foxplan-neutral-beige min-h-screen">
+            {% include '_sections/content-sections/suppliers.twig' with {
+                data: { tabs: supplierTabs }
+            } only %}
+        </div>
     </div>
 
-    {# 3. Footer #}
+    {# 3. FOOTER #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-yellow',
@@ -81,12 +111,8 @@
             logoColor: 'text-foxplan-charcoal-brown',
             buttonColor: 'bg-foxplan-charcoal-brown',
             buttonTextColor: 'text-foxplan-yellow',
-            foxplanText: 'foxplan',
-            borderTopColor: 'border-foxplan-charcoal-brown/20',
-            borderTopWidth: 'border-t-2'
+            foxplanText: 'foxplan'
         }
     }) }}
-
-
 
 {% endblock %}

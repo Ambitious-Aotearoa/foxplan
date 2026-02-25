@@ -1,78 +1,61 @@
-{#
-Full-width section with 20px padding (px-5).
-#}
+{# templates/_sections/content-sections/accounting-pricing.twig #}
+
 <section class="w-full bg-foxplan-neutral-beige py-16 md:py-24 px-5 border-b border-foxplan-charcoal-brown/10 overflow-hidden">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start mb-16 px-4 md:px-6 lg:px-8">
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-0 items-end mb-16">
-
-        {#
-        Column 1: Paragraph Heading
-        Constrained so the text 'ends' at the first column divider line.
-        #}
-        <div class="w-full md:border-r md:border-transparent">
-            <h2 class="text-5xl md:text-7xl font-serif text-foxplan-charcoal-brown leading-[1.1] max-w-[380px]">
-                {{ block.paragraphHeading3 ?? '' }}
-            </h2>
+        {# Column 1: Main Heading #}
+        <div class="md:col-span-7">
+            <h3 class="font-serif leading-[0.95] tracking-tighter text-foxplan-charcoal-brown break-keep hyphens-none"
+                style="font-size: clamp(3rem, 8vw, 7.5rem);">
+                {{ block.paragraphHeading3 | raw }}
+            </h3>
         </div>
 
-        {# Column 2: Empty Middle Column #}
-        <div class="hidden md:block"></div>
-
-        {#
-        Column 3: Body Text
-        Starts exactly where the third table column starts.
-        Includes 20px right margin (pr-5).
-        #}
-        <div class="w-full md:pr-5">
-            <div class="text-base md:text-lg leading-relaxed text-foxplan-charcoal-brown/90 max-w-[320px]">
+        {# Column 2: Body Text #}
+        <div class="md:col-span-5 pt-4 md:pt-14 lg:pt-24">
+            <div class="font-aktiv leading-relaxed text-foxplan-charcoal-brown/90 break-keep hyphens-none"
+                 style="font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);">
                 {{ block.bodyText2 ?? '' }}
             </div>
         </div>
     </div>
 
+    {# Pricing Table: Strictly fluid grid #}
     <div class="w-full border border-foxplan-charcoal-brown/20 grid grid-cols-1 md:grid-cols-3">
-
-        {# Table fields are arrays; no .all() required #}
         {% set rows = block.accountingTable ?? [] %}
-
-        {#
-        Dynamic Headers from Craft Table:
-        Row 1: Tier Labels (Silver, Gold, Platinum)
-        Row 2: Prices
-        Row 3: Focus
-        #}
         {% set headerLabel = rows[0] ?? null %}
         {% set headerPrice = rows[1] ?? null %}
         {% set headerFocus = rows[2] ?? null %}
-
-        {# Mapping column handles from Craft Table settings #}
         {% set colHandles = ['col2', 'col3', 'col4'] %}
 
         {% for handle in colHandles %}
             <div class="p-8 lg:p-12 border-b md:border-b-0 md:border-r border-foxplan-charcoal-brown/20 last:border-r-0 last:border-b-0">
 
-                {# Silver/Gold/Platinum from Row 1 #}
-                <span class="block text-xs font-bold tracking-widest text-foxplan-charcoal-brown/60 uppercase mb-4">
+                {# Tier Label #}
+                <span class="block font-bold tracking-widest text-foxplan-charcoal-brown/60 uppercase mb-4"
+                      style="font-size: clamp(0.7rem, 0.1vw + 0.6rem, 0.85rem);">
                     {{ attribute(headerLabel, handle) ?? '' }}
                 </span>
 
-                {# Price from Row 2 #}
-                <div class="text-4xl font-serif text-foxplan-charcoal-brown mb-2">
+                {# Price: Restored large architectural scale #}
+                <div class="font-serif text-foxplan-charcoal-brown mb-2 break-keep"
+                     style="font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);">
                     {{ attribute(headerPrice, handle) ?? '' }}
                 </div>
 
-                {# Focus from Row 3 #}
-                <p class="text-sm font-medium text-foxplan-charcoal-brown/70 mb-10 italic">
+                {# Focus #}
+                <p class="font-medium text-foxplan-charcoal-brown/70 mb-10 italic break-keep"
+                   style="font-size: clamp(0.85rem, 0.2vw + 0.75rem, 1rem);">
                     Focus: {{ attribute(headerFocus, handle) ?? '' }}
                 </p>
 
                 <ul class="space-y-0">
-                    {# Features from Row 4 onwards #}
                     {% for row in rows %}
                         {% if loop.index > 3 %}
                             {% set cellData = attribute(row, handle) %}
                             {% if cellData %}
-                                <li class="py-4 border-b border-foxplan-charcoal-brown/10 text-sm text-foxplan-charcoal-brown/90 last:border-0 font-light">
+                                <li class="py-4 border-b border-foxplan-charcoal-brown/10 text-foxplan-charcoal-brown/90 last:border-0 font-light break-keep"
+                                    style="font-size: clamp(0.85rem, 0.15vw + 0.75rem, 1rem);">
                                     {{ cellData }}
                                 </li>
                             {% endif %}
@@ -81,6 +64,5 @@ Full-width section with 20px padding (px-5).
                 </ul>
             </div>
         {% endfor %}
-
     </div>
 </section>

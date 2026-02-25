@@ -1,0 +1,62 @@
+fieldLayouts:
+  d5caa274-cf95-4a56-a0dc-07b9fda30514:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-02-23T23:31:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 213a9e8b-5fd6-423e-a7d0-628598de026e # Facebook
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e941483c-096b-4b8b-b728-75dde8cecf33
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-23T23:31:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 9cbda385-c5d0-4789-be07-15ec1b46b4da # Instagram
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5bbb718f-39ee-4a34-9f7f-b49d2d3cbff0
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-02-23T23:31:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 063c4225-b94a-40fb-8780-16692d701a02 # LinkedIn
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5863e93e-8e26-4848-97db-ea602a68e24c
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Social Links'
+        uid: fb941bd2-f57b-4c50-8eaa-cca192349504
+        userCondition: null
+    thumbFieldKey: null
+handle: socialLinks
+name: 'Social Links'
+sortOrder: 1

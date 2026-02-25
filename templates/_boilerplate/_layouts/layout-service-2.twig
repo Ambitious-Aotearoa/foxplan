@@ -65,7 +65,15 @@
     }) }}
 
     {# 6. Guide/CTA (Image and Text Section) #}
-    {% include "_sections/hero-sections/section.twig" with { entry: entry } %}
+    {% include "_sections/hero-sections/section.twig" with {
+        entry: entry,
+        props: {
+            title: entry.paragraphHeading2 ?? '',
+            bodyText: entry.bodyText2 ?? '',
+            buttonText: entry.button2 ?? '',
+            buttonUrl: 'pages/Kiwisaver-Calculator',
+        }
+    } %}
 
     {# 7. Testimonial #}
     {% include "_sections/testimonials/testimonial-two.twig" %}

@@ -3,26 +3,25 @@
 {# 1. Navigation Theme Setup #}
 {% set navigationTheme = {
     backgroundColor: 'bg-foxplan-yellow',
-    textColor: 'text-black',
+    textColor: 'text-foxplan-charcoal-brown',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
 
 {% block blockAppBody %}
 
-    {# 2. Hero Section (Aligned with Suppliers Style) #}
-    <section class="w-full bg-foxplan-yellow text-foxplan-charcoal-brown pt-24 pb-24 px-8 md:px-12 lg:px-16">
-        <div class="max-w-7xl">
-            <h1 class="font-serif text-7xl md:text-8xl lg:text-9xl mb-8 tracking-tight leading-none text-left">
-                Meet the Team
-            </h1>
-            <p class="font-aktiv-grotesk text-xl md:text-2xl max-w-2xl leading-relaxed opacity-90 text-left">
-                Our strength lies in our people. We have decades of experience and a shared commitment to helping Kiwis
-                make smart, confident financial decisions.
-            </p>
-        </div>
+    {# 2. HERO SECTION (Updated with Architectural Clamps) #}
+    <section class="w-full bg-foxplan-yellow text-foxplan-charcoal-brown pt-12 lg:pt-32 pb-8 md:pb-12 lg:pb-24 px-4 md:px-6 lg:px-8">
+        <h1 class="font-serif tracking-tight text-foxplan-charcoal-brown break-normal mb-8"
+            style="font-size: clamp(2.5rem, 5vw + 1rem, 5.5rem); line-height: 0.85; word-break: keep-all;">
+            Meet the Team
+        </h1>
+        <p class="opacity-80 max-w-2xl font-medium"
+           style="font-size: clamp(1rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;">
+            Our strength lies in our people. We have decades of experience and a shared commitment to helping Kiwis make smart, confident financial decisions.
+        </p>
     </section>
 
-    {# --- DYNAMIC DATA FETCHING (Aligned with Suppliers Logic) --- #}
+    {# --- DYNAMIC DATA FETCHING (Fixed with 'title' key for consistency) --- #}
     {% set tabDefinitions = [
         { id: 'accountingWealthManagement', label: 'Accounting & Wealth Management' },
         { id: 'financialAdvisers', label: 'Financial Advisers' },
@@ -30,9 +29,7 @@
     ] %}
 
     {% set teamTabs = [] %}
-
     {% for tab in tabDefinitions %}
-        {# Fetching from 'meetTheTeam' section using your category handle #}
         {% set membersForTab = craft.entries()
             .section('meetTheTeam')
             .category(tab.id)
@@ -41,63 +38,102 @@
         {% set teamTabs = teamTabs|merge([{
             id: tab.id,
             label: tab.label,
+            title: tab.label,
             members: membersForTab
         }]) %}
     {% endfor %}
 
-    {# 3. Interactive Section Wrapper #}
-    <div x-data="{ activeTab: 'accountingWealthManagement' }" class="bg-foxplan-neutral-beige">
+    {# 3. INTERACTIVE SECTION WRAPPER #}
+    <div x-data="{
+        activeTab: 'accountingWealthManagement',
+        mobileMenuOpen: false,
+        getActiveLabel() {
+            const labels = {
+                {% for tab in tabDefinitions %} '{{ tab.id }}': '{{ tab.label }}', {% endfor %}
+            };
+            return labels[this.activeTab] || 'Select Department';
+        }
+    }" class="relative w-full">
 
-        {# Reuse the Tabs Component for perfect visual consistency #}
-        {% include '_components/ui/tabs/tabs-services.twig' with {
-            props: {
-                tabs: teamTabs,
-                navBg: 'bg-foxplan-yellow',
-                activeBg: 'bg-foxplan-neutral-beige',
-                activeText: 'text-foxplan-charcoal-brown',
-                inactiveText: 'text-foxplan-charcoal-brown/60',
-                hoverText: 'hover:text-foxplan-charcoal-brown',
-            }
-        } only %}
+        {# MOBILE DROPDOWN (Strictly following the High-Fidelity Design) #}
+        <div class="lg:hidden w-full bg-foxplan-yellow px-4 md:px-6 lg:px-8 pb-8">
+            <div class="relative">
+                <button
+                        @click="mobileMenuOpen = !mobileMenuOpen"
+                        class="w-full flex items-center justify-between border-b border-foxplan-charcoal-brown/20 py-4 text-left font-serif text-2xl transition-all duration-300 focus:outline-none"
+                        :class="mobileMenuOpen ? 'bg-foxplan-white text-foxplan-charcoal-brown px-4' : 'text-foxplan-charcoal-brown'"
+                >
+                    <span x-text="getActiveLabel()"></span>
+                    <svg class="w-5 h-5 transition-transform duration-300" :class="mobileMenuOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
 
-        {# Team Content Grid #}
-        <div class="px-6 md:px-12 py-16">
+                <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" x-cloak x-transition:enter="transition ease-out duration-200" class="absolute z-50 w-full bg-foxplan-white border border-foxplan-charcoal-brown/10 shadow-xl left-0 top-full mt-1">
+                    {% for tab in tabDefinitions %}
+                        <button @click="activeTab = '{{ tab.id }}'; mobileMenuOpen = false;" class="w-full text-left px-6 py-4 font-serif text-xl border-b border-foxplan-charcoal-brown/5 transition-colors" :class="activeTab === '{{ tab.id }}' ? 'text-foxplan-charcoal-brown bg-foxplan-neutral-beige font-bold' : 'text-foxplan-charcoal-brown/60 hover:bg-foxplan-neutral-beige/50'">
+                            {{ tab.label }}
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        {# DESKTOP TABS #}
+        <div class="hidden lg:block">
+            {% include '_components/ui/tabs/tabs-services.twig' with {
+                props: {
+                    tabs: teamTabs,
+                    navBg: 'bg-foxplan-yellow',
+                    activeBg: 'bg-foxplan-neutral-beige',
+                    activeText: 'text-foxplan-charcoal-brown',
+                    inactiveText: 'text-foxplan-charcoal-brown/60',
+                    hoverText: 'hover:text-foxplan-charcoal-brown',
+                }
+            } only %}
+        </div>
+
+        {# TEAM CONTENT GRID #}
+        <div class="w-full bg-foxplan-neutral-beige pt-16 lg:pt-32 pb-24 px-4 md:px-12 lg:px-20 min-h-screen">
             {% for tab in teamTabs %}
                 <div x-show="activeTab === '{{ tab.id }}'"
-                     x-transition:enter="transition ease-out duration-300"
-                     x-transition:enter-start="opacity-0 transform translate-y-4"
-                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                     x-cloak
+                     x-transition:enter="transition ease-out duration-500"
+                     x-transition:enter-start="opacity-0 translate-y-4"
+                     x-transition:enter-end="opacity-100 translate-y-0">
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
                         {% for member in tab.members %}
-                            <div class="team-card flex flex-col h-full">
-                                {# Portrait images#}
-                                <div class="aspect-square bg-gray-200 mb-6 overflow-hidden">
+                            <div class="team-card flex flex-col h-full group">
+                                {# Portrait images with hover effect #}
+                                <div class="aspect-square bg-foxplan-charcoal-brown/5 mb-8 overflow-hidden">
                                     {% set portrait = member.memberImage.one() %}
                                     <img src="{{ portrait ? portrait.url : craft.vite.asset('images/About_1.jpg') }}"
                                          alt="{{ member.memberName }}"
-                                         class="w-full h-full object-cover transition-all duration-500">
+                                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                                 </div>
 
-                                <h3 class="font-serif text-2xl text-foxplan-charcoal-brown leading-tight">
+                                <h3 class="font-serif text-foxplan-charcoal-brown mb-2"
+                                    style="font-size: clamp(1.875rem, 3vw, 2.25rem); line-height: 1.1;">
                                     {{ member.memberName }}
                                 </h3>
 
-                                <p class="font-aktiv-grotesk text-xs uppercase tracking-wider text-foxplan-charcoal-brown opacity-80 mb-4">
+                                <p class="font-aktiv text-[12px] font-bold uppercase tracking-[0.05em] text-foxplan-charcoal-brown opacity-70 mb-6">
                                     {{ member.jobTitle }}
                                 </p>
 
                                 {% if member.phoneNumber %}
                                     <div class="mb-4">
                                         <a href="tel:{{ member.phoneNumber|replace('/[^0-9+]/', '') }}"
-                                           class="text-sm font-normal text-foxplan-charcoal-brown hover:underline">
-                                            <span class="opacity-60">P:</span> {{ member.phoneNumber }}
+                                           class="font-aktiv text-sm text-foxplan-charcoal-brown hover:underline">
+                                            <span class="opacity-40 font-bold uppercase mr-1">P:</span> {{ member.phoneNumber }}
                                         </a>
                                     </div>
                                 {% endif %}
 
                                 {% if member.bodyText %}
-                                    <div class="font-aktiv-grotesk text-sm text-foxplan-charcoal-brown leading-relaxed max-w-prose">
+                                    <div class="font-aktiv text-foxplan-charcoal-brown opacity-90 leading-relaxed max-w-prose space-y-4"
+                                         style="font-size: clamp(1rem, 0.4vw + 0.8rem, 1.1rem);">
                                         {{ member.bodyText | raw }}
                                     </div>
                                 {% endif %}
@@ -109,15 +145,15 @@
         </div>
     </div>
 
-    {# 4. Footer #}
+    {# 4. FOOTER #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
-            backgroundColor: 'bg-foxplan-charcoal-brown',
-            textColor: 'text-foxplan-yellow',
-            logoColor: 'text-foxplan-yellow',
-            buttonColor: 'bg-foxplan-yellow',
-            buttonTextColor: 'text-foxplan-charcoal-brown',
-            separatorColor: 'text-foxplan-yellow'
+            backgroundColor: 'bg-foxplan-yellow',
+            textColor: 'text-foxplan-charcoal-brown',
+            logoColor: 'text-foxplan-charcoal-brown',
+            buttonColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-yellow',
+            foxplanText: 'foxplan'
         }
     }) }}
 
