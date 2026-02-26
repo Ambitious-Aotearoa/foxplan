@@ -1,4 +1,3 @@
-{# 1. Extend the base boilerplate #}
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {% set navigationTheme = {
@@ -6,27 +5,17 @@
     textColor: 'text-black',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
-{# 2. Fill the body block defined in layout-base #}
+
 {% block blockAppBody %}
 
-    {# 1. Hero Section #}
-    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Mortgages' %}
-    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : "Whether you're buying your first home, or you're a seasoned investor, we can help you find the right mortgage." %}
-    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Book a call' %}
-    {% set pageButtonUrl = (entry.buttonLink is defined and entry.buttonLink|length) ? entry.buttonLink : '#' %}
+    {# 1. Initialize shared state for the booking overlay #}
+    <div x-data="{ showBookCallOverlay: false }" class="relative">
 
-    {% include '_sections/hero-sections/hero-1.twig' with {
-        entry: entry,
-        props: {
-            title: pageHeading,
-            bodyText: pageBody,
-            button: pageButton,
-            buttonLink: pageButtonUrl,
-            backgroundColor:  'bg-foxplan-neutral-beige'
-        }
-    } %}
+    {# 2. Hero Section #}
+    {% include "_sections/hero-sections/hero-1.twig" with { data: entry } %}
 
-    {#2. Explore Services Section #}
+
+    {# 3. Explore Services Section #}
     {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with {
         props: {
             mainHeading: entry.paragraphHeading ?? 'Our Services',
@@ -38,13 +27,10 @@
     } only %}
 
     {# 4. How We Work Section (Matrix: accordion) #}
-    {# 1. Summon the data with the correct handles #}
     {% set benefitsHeading = entry.paragraphHeading3 ?? 'About group insurance' %}
     {% set benefitsIntro = entry.bodyText ?? '' %}
 
-    {# 1. Loop through the 'accordion' matrix #}
     {% set accordionItems = [] %}
-    {# Ensure 'accordion' is the handle of the Matrix field on this specific entry #}
     {% if entry.accordion is defined %}
         {% for block in entry.accordion.all() %}
             {% set accordionItems = accordionItems | merge([{
@@ -54,7 +40,6 @@
         {% endfor %}
     {% endif %}
 
-    {#  Deliver the data to the benefits section using 'props' #}
     {{ include('_sections/content-sections/benefits.twig', {
         props: {
             paragraphHeading: benefitsHeading,
@@ -65,7 +50,7 @@
         }
     }) }}
 
-    {#  footer #}
+    {# 5. Footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',
@@ -76,5 +61,8 @@
             separatorColor: 'text-foxplan-yellow'
         }
     }) }}
+
+    {# 6. THE BOOKING OVERLAY #}
+    {{ include('_sections/overlays/book-a-call.twig') }}
 
 {% endblock %}

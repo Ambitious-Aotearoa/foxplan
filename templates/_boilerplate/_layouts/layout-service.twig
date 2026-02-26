@@ -9,14 +9,15 @@
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
 
-{# 2. Fill the body block defined in layout-base #}
 {% block blockAppBody %}
 
-       {# 3. Include the Hero Section #}
-    {# 3. Include the Hero Section #}
+    {# 1. Initialize shared state for the booking overlay #}
+    <div x-data="{ showBookCallOverlay: false }" class="relative">
+
+    {# 2. Hero Section #}
     {% include "_sections/hero-sections/hero-1.twig" with { data: entry } %}
 
-             {# 4. Include the "Help Me Buying Your First Home" Section #}
+    {# 3. Info Section #}
     {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with {
         props: {
             paragraphHeading: entry.paragraphHeading,
@@ -24,7 +25,7 @@
         }
     } %}
 
-    {# 5. Benefits Section #}
+    {# 4. Benefits Section #}
     {% set benefitsHeading = entry.paragraphHeading2 ?? 'About group insurance' %}
     {% set benefitsIntro = entry.bodyText ?? '' %}
 
@@ -48,20 +49,16 @@
         }
     }) }}
 
-{#    #}{# --- WHO WE WORK WITH (Logos) --- #}
+    {# 5. WHO WE WORK WITH  #}
     {% include "_sections/content-sections/who-we-work-with.twig" with {
         data: (entry.pageBuilder ?? null) ? entry.pageBuilder.all()|filter(b => b.type == "whoWeWorkWith")|first : null
     } only %}
 
-    {# 7. Testimonial #}
+    {# 6. Testimonial #}
     {% include "_sections/testimonials/testimonial-two.twig" %}
-    {# 8. Main Page Content #}
-    {# This 'innerContent' block allows individual pages to add their specific content below the hero #}
-    <div class="service-page-content">
-        {% block innerContent %}{% endblock %}
-    </div>
 
-    {# footer #}
+
+    {# 7. Footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',
@@ -72,5 +69,8 @@
             separatorColor: 'text-foxplan-yellow'
         }
     }) }}
+
+    {# 8. THE BOOKING OVERLAY #}
+    {{ include('_sections/overlays/book-a-call.twig') }}
 
 {% endblock %}

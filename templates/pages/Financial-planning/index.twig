@@ -1,4 +1,3 @@
-{# 1. Extend the base boilerplate #}
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {% set navigationTheme = {
@@ -7,19 +6,20 @@
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
 
-{# 2. Fill the body block defined in layout-base #}
 {% block blockAppBody %}
 
-    {# 3. Include the Hero Section #}
+    {# 1. Initialize shared state for the booking overlay #}
+    <div x-data="{ showBookCallOverlay: false }" class="relative">
+
+    {# 2. Hero Section #}
     {% include "_sections/hero-sections/hero-1.twig" with { data: entry } %}
 
-    {# 4. Section #}
+    {# 3. Info Section #}
     {% set helpSectionProps = {
         paragraphHeading: entry.paragraphHeading ?? null,
         infoBlock: []
     } %}
 
-    {#  Map the Matrix blocks for the "Info Block" #}
     {% if entry.infoBlock is defined %}
         {% for block in entry.infoBlock.all() %}
             {% set helpSectionProps = helpSectionProps | merge({
@@ -32,12 +32,11 @@
         {% endfor %}
     {% endif %}
 
-    {# Pass the mapped data as 'props' #}
     {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with {
         props: helpSectionProps
     } %}
 
-    {# 5. Benefits Section #}
+    {# 4. How we work Section #}
     {% include "_sections/content-sections/how-we-work.twig" with {
         entry: entry,
         props: {
@@ -47,7 +46,7 @@
         }
     } %}
 
-    {# 5. how we work Section #}
+    {# 5.Benefits #}
     {% set benefitsHeading = entry.paragraphHeading3 ?? 'About group insurance' %}
     {% set benefitsIntro = entry.bodyText ?? '' %}
 
@@ -71,14 +70,10 @@
         }
     }) }}
 
-
-
-    {# 7. Testimonial #}
+    {# 6. Testimonial #}
     {% include "_sections/testimonials/testimonial-two.twig" %}
 
-
-
-    {# 9. footer #}
+    {# 7. Footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',
@@ -89,5 +84,8 @@
             separatorColor: 'text-foxplan-yellow'
         }
     }) }}
+
+    {# 8. THE BOOKING OVERLAY #}
+    {{ include('_sections/overlays/book-a-call.twig') }}
 
 {% endblock %}

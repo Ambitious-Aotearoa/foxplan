@@ -1,4 +1,3 @@
-{# 1. Extend the base boilerplate #}
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {% set navigationTheme = {
@@ -7,19 +6,21 @@
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
 
-{# 2. Fill the body block defined in layout-base #}
 {% block blockAppBody %}
 
-    {# 3. Include the Hero Section #}
+    {# 1. Initialize shared state for the booking overlay #}
+    <div x-data="{ showBookCallOverlay: false }" class="relative">
+
+    {# 2. Hero Section #}
     {% include "_sections/hero-sections/hero-1.twig" with { data: entry } %}
 
-    {# 4. Include the "Help Me Buying Your First Home" Section #}
+
+    {# 3. Info section #}
     {% set helpSectionProps = {
         paragraphHeading: entry.paragraphHeading ?? null,
         infoBlock: []
     } %}
 
-    {# 2. Map the Matrix blocks for the "Info Block" #}
     {% if entry.infoBlock is defined %}
         {% for block in entry.infoBlock.all() %}
             {% set helpSectionProps = helpSectionProps | merge({
@@ -32,18 +33,15 @@
         {% endfor %}
     {% endif %}
 
-    {# 3. Pass the mapped data as 'props' #}
     {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with {
         props: helpSectionProps
     } %}
 
-    {# 5. Benefits Section #}
+    {# 4. Benefits Section #}
     {% set benefitsHeading = entry.paragraphHeading3 ?? 'About group insurance' %}
     {% set benefitsIntro = entry.bodyText ?? '' %}
 
-    {#  Loop through the 'accordion' matrix #}
     {% set accordionItems = [] %}
-    {# Ensure 'accordion' is the handle of the Matrix field on this specific entry #}
     {% if entry.accordion is defined %}
         {% for block in entry.accordion.all() %}
             {% set accordionItems = accordionItems | merge([{
@@ -53,7 +51,6 @@
         {% endfor %}
     {% endif %}
 
-    {#  Deliver the data to the benefits section using 'props' #}
     {{ include('_sections/content-sections/benefits.twig', {
         props: {
             paragraphHeading: benefitsHeading,
@@ -64,26 +61,21 @@
         }
     }) }}
 
-    {# 6. Guide/CTA (Image and Text Section) #}
+    {# 5. Image and Text Section #}
     {% include "_sections/hero-sections/section.twig" with {
         entry: entry,
         props: {
             title: entry.paragraphHeading2 ?? '',
             bodyText: entry.bodyText2 ?? '',
             buttonText: entry.button2 ?? '',
-            buttonUrl: 'pages/Kiwisaver-Calculator',
+            buttonUrl: entry.buttonUrl
         }
     } %}
 
-    {# 7. Testimonial #}
+    {# 6. Testimonial #}
     {% include "_sections/testimonials/testimonial-two.twig" %}
 
-    {# 8. Main Page Content #}
-    <div class="service-page-content">
-        {% block innerContent %}{% endblock %}
-    </div>
-
-    {# 9. footer #}
+    {# 7. footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',
@@ -94,5 +86,8 @@
             separatorColor: 'text-foxplan-yellow'
         }
     }) }}
+
+    {# 8. THE BOOKING OVERLAY #}
+    {{ include('_sections/overlays/book-a-call.twig') }}
 
 {% endblock %}

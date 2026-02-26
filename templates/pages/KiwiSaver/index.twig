@@ -8,10 +8,13 @@
 
 {% block blockAppBody %}
 
-    {# 1. Hero #}
+    {# 1. Initialize shared state for the booking overlay #}
+    <div x-data="{ showBookCallOverlay: false }" class="relative">
+
+    {# 2. Hero Section #}
     {% include "_sections/hero-sections/hero-1.twig" with { data: entry } %}
 
-    {# 2. Info Block #}
+    {# 3. Info Block #}
     {% set helpSectionProps = {
         paragraphHeading: entry.paragraphHeading ?? null,
         infoBlock: []
@@ -33,7 +36,7 @@
         props: helpSectionProps
     } %}
 
-    {# 3. Benefits Section #}
+    {# 4. Benefits Section #}
 
     {% include "_sections/content-sections/how-we-work.twig" with {
         entry: entry,
@@ -44,7 +47,7 @@
         }
     } %}
 
-    {# 4. How We Work Section (Matrix: accordion) #}
+    {# 5. How We Work Section (Matrix: accordion) #}
     {% set benefitsHeading = entry.paragraphHeading3 ?? 'About group insurance' %}
     {% set benefitsIntro = entry.bodyText ?? '' %}
 
@@ -68,7 +71,7 @@
         }
     }) }}
 
-    {# 5. Kiwisaver calculator #}
+    {# 6. Kiwisaver calculator #}
     {% include "_sections/hero-sections/section.twig" with {
         entry: entry,
         props: {
@@ -79,7 +82,7 @@
         }
     } %}
 
-    {#  6. Testimonials  #}
+    {#  7. Testimonials  #}
     {% include "_sections/testimonials/testimonial-two.twig" with {
         data: {
             sectionTitle: entry.paragraphHeading5 ?? 'Hear what our clients are saying',
@@ -89,7 +92,7 @@
     } %}
 
 
-    {# 7. Footer #}
+    {# 8. Footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',
@@ -101,5 +104,7 @@
         }
     }) }}
 
+    {# 9. THE BOOKING OVERLAY #}
+    {{ include('_sections/overlays/book-a-call.twig') }}
 
 {% endblock %}

@@ -41,12 +41,12 @@
 {# --- 1-4. Logic remains the same (Hero Image, Buttons, etc.) --- #}
 {# ... (Keep your existing variable setup at the top) ... #}
 
-<section class="relative w-full flex flex-col lg:block min-h-[850px] lg:min-h-[900px] {{ data.backgroundColor }} overflow-hidden"
+<section class="relative w-full flex flex-col lg:block min-h-[850px] {{ data.backgroundColor }} overflow-hidden"
          x-data="{ revealed: false }"
          x-init="$nextTick(() => { setTimeout(() => revealed = true, 300) })">
 
     {# --- IMAGE LAYER --- #}
-    <div class="relative lg:absolute px-4 lg:px-0 lg:right-[20px] lg:bottom-[80px] w-full lg:w-[60%] h-[400px] lg:h-auto lg:top-[30%] z-10 order-2 lg:order-none mt-2 mb-5 lg:mt-0 lg:mb-0">
+    <div class="relative lg:absolute px-4 lg:px-0 lg:right-[20px] lg:bottom-[80px] w-full lg:w-[60%] h-[400px] md:[200px] lg:h-auto lg:top-[30%] z-10 order-2 lg:order-none mt-2 mb-5 lg:mt-0 lg:mb-0">
         <img src="{{ data.imagePath }}"
              alt="{{ heroImageAsset.title ?? 'Hero Image' }}"
              class="w-full h-full object-cover shadow-sm">
@@ -67,22 +67,23 @@
     </div>
 
     {# --- CONTENT LAYER --- #}
-    <div class="relative z-[110] flex flex-col justify-between px-4 lg:px-16 pt-20 lg:pt-12 order-1 lg:order-none">
+    <div class="relative z-[110] flex flex-col justify-between px-4 lg:px-16 pt-20 md:pt-8 lg:pt-12 order-1 lg:order-none">
         <div class="w-full">
-            <h1 class="font-['Season_VF-TRIAL']  leading-[0.8] tracking-tight {{ data.textColor }}"
+            <h1 class="font-['Season_VF-TRIAL'] leading-[0.8] tracking-tight {{ data.textColor }}"
                 style="font-size: clamp(3.75rem, 10vw + 1rem, 9rem);">
 
-                <span class="block relative z-[120]">
-                    {{ data.headingLine1 }}
-                </span>
+            <span class="block relative z-[120]">
+                {{ data.headingLine1 }}
+            </span>
 
                 <span class="block relative lg:pl-[45%] lg:mt-8 z-[120]">
-                    {{ data.headingLine2 }}
-                </span>
+                {{ data.headingLine2 }}
+            </span>
             </h1>
         </div>
 
-        <div class="relative mt-8 lg:mt-[200px] xl:mt-[300px] mb-[30px] lg:mb-[80px] left-0 w-full lg:w-[40%] flex flex-col items-start order-3 lg:order-none">
+        {# Adjusted md:mt to reduce space on medium screens #}
+        <div class="relative mt-[100px] md:mt-[60px] lg:mt-[280px] mb-[30px] lg:mb-[80px] left-0 w-full lg:w-[40%] flex flex-col items-start order-3 lg:order-none">
             {% if data.bodyText %}
                 <div class="font-['aktiv-grotesk'] font-light leading-snug {{ data.textColor }} mb-8 max-w-md"
                      style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);">

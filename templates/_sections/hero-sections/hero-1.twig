@@ -7,7 +7,6 @@
     title: entry.title ?? 'Mortgages',
     bodyText: entry.heroBodyText ?? "Whether you're buying your first home...",
     button: entry.button ?? 'Book a call',
-    buttonLink: entry.buttonLink ?? '/contact-us',
     imageSrc: heroImage ? heroImage.url : null,
     backgroundColor: entry.backgroundColor.value ?? 'bg-foxplan-neutral-beige',
     textColor: 'text-foxplan-charcoal-brown'
@@ -22,44 +21,47 @@
             </h1>
         </div>
 
-        {# Flex Container #}
+        {# Flex Container: Keeps the 30/70 architectural split #}
         <div class="flex flex-col md:flex-row w-full items-stretch">
 
             {# Left Content Column: 30% #}
-            <div class="w-full md:w-[30%] px-4 md:px-6 lg:px-8 lg:pr-12 pb-10 lg:pb-20 flex flex-col justify-start">
+            <div class="w-full md:w-[30%] px-4 md:px-6 lg:px-8 lg:pr-12 pb-10 lg:pb-12 flex flex-col justify-start">
                 <div class="max-w-md">
-
-                    {# BODY CLAMP: Refined scale (18px to 24px) #}
-                    <div class="font-aktiv leading-relaxed mb-10 {{ heroData.textColor }} font-medium"
+                    <div class="font-aktiv leading-relaxed mb-8 {{ heroData.textColor }} font-medium"
                          style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.5rem);">
                         {{ heroData.bodyText | raw }}
                     </div>
 
-                    {# --- BUTTON COMPONENT WITH ORIGINAL SIZING --- #}
-                    {% include '_components/ui/button/button.twig' with {
-                        props: {
-                            text: heroData.button,
-                            url: heroData.buttonLink,
-                            style: 'primary',
-                            backgroundColor: 'bg-foxplan-charcoal-brown',
-                            textColor: 'text-foxplan-neutral-beige',
-                            classes: 'px-10 py-4 text-xs font-bold tracking-widest uppercase rounded-none'
-                        }
-                    } only %}
+                    <div @click="showBookCallOverlay = true" class="cursor-pointer inline-block">
+                        {% include '_components/ui/button/button.twig' with {
+                            props: {
+                                text: heroData.button,
+                                url: null,
+                                style: 'primary',
+                                backgroundColor: 'bg-foxplan-charcoal-brown',
+                                textColor: 'text-foxplan-neutral-beige',
+                                classes: 'px-10 py-4 text-xs font-bold tracking-widest uppercase rounded-none'
+                            }
+                        } only %}
+                    </div>
                 </div>
             </div>
 
-            {# Right Image Column: 70% #}
-            <div class="w-full md:w-[70%] md:min-h-[600px] mb-4 md:mb-0 lg:mb-0 px-4 md:px-0 lg:px-0">
-                {% if heroData.imageSrc %}
-                    <img src="{{ heroData.imageSrc }}"
-                         alt="{{ heroData.title | striptags }}"
-                         class="w-full h-full object-cover block">
-                {% else %}
-                    <img src="{{ craft.vite.asset('images/Mortgage_1.jpg') }}"
-                         alt="{{ heroData.title | striptags }}"
-                         class="w-full h-full object-cover block">
-                {% endif %}
+            {#
+            Right Image Column (70%)
+            #}
+            <div class="w-full md:w-[70%] mb-4 md:mb-0 lg:mb-0 px-4 md:px-0 lg:px-0">
+                <div class="relative w-full aspect-[16/9] md:aspect-[16/7] h-full overflow-hidden">
+                    {% if heroData.imageSrc %}
+                        <img src="{{ heroData.imageSrc }}"
+                             alt="{{ heroData.title | striptags }}"
+                             class="w-full h-full object-cover block">
+                    {% else %}
+                        <img src="{{ craft.vite.asset('images/Mortgage_1.jpg') }}"
+                             alt="{{ heroData.title | striptags }}"
+                             class="w-full h-full object-cover block">
+                    {% endif %}
+                </div>
             </div>
 
         </div>
