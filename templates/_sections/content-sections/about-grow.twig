@@ -1,51 +1,58 @@
+{# templates/_sections/about-grow.twig #}
 
 <section class="w-full relative overflow-hidden" id="scroll-container">
 
-    {# --- THE REFINED DOTTED LINE & MOVING DOT --- #}
-    <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] z-50 pointer-events-none">
+    {# --- THE DOTTED LINE --- #}
+    <div class="absolute left-1/2 -translate-x-1/2 top-[500px] bottom-[200px] md:top-0 md:bottom-0 md:h-full w-[2px] z-10 pointer-events-none">
         <div class="h-full w-full border-l-2 border-dashed border-foxplan-charcoal-brown/10"></div>
         <div id="progress-line"
              class="absolute top-0 left-0 w-full border-l-2 border-dashed border-foxplan-charcoal-brown transition-all duration-75 ease-out"
-             style="height: 0%; clip-path: inset(0 0 0 0);"></div>
+             style="height: 0%;"></div>
         <div id="scrolling-dot"
-             class="absolute left-1/2 -translate-x-1/2 top-0 w-3 h-3 bg-foxplan-charcoal-brown rounded-full shadow-sm opacity-0 transition-opacity duration-300"
+             class="absolute left-1/2 -translate-x-1/2 top-0 w-3 h-3 bg-foxplan-charcoal-brown rounded-full opacity-0 transition-opacity duration-300"
              style="transform: translate(-50%, -50%);">
         </div>
     </div>
 
     {# --- SECTION 1: Yellow --- #}
-    <div class="bg-foxplan-yellow pt-6 md:pt-12 lg:pt-24 pb-12  relative z-20 ">
-        <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start">
-            <div class="col-span-1 md:col-span-6 px-4 md:px-6 lg:px-8 mb-4">
-                <div class="max-w-2xl">
-                    <h2 class="font-serif text-5xl lg:text-[5rem] leading-[0.9] tracking-tight mb-8 text-foxplan-charcoal-brown">
-                        {{ entry.paragraphHeading | raw }}
-                    </h2>
-                    <div class="font-aktiv text-base md:text-lg opacity-80 text-foxplan-charcoal-brown">
-                        {{ entry.bodyText | raw }}
-                    </div>
+    <div class="bg-foxplan-yellow pt-6 md:pt-12 lg:pt-24 pb-20 md:pb-12 relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 md:gap-20 lg:gap-0 w-full items-start relative">
+            <div class="col-span-1 md:col-span-1 lg:col-start-7 lg:col-span-4 order-1 md:order-2 relative z-20 bg-foxplan-yellow md:bg-transparent">
+                <div class="w-full px-4 md:px-0 mb-8 md:mb-0 lg:-mb-72 xl:-mb-96">
+                    <img src="{{ alias('@web/dist/images/About_1.jpg') }}"
+                         class="w-full aspect-[370/362] md:aspect-[4/5] lg:aspect-[4/5] object-cover ">
                 </div>
             </div>
-            <div class="col-span-1 md:col-start-7 md:col-span-4">
-                <div class="w-full relative -mb-48 md:-mb-72 lg:-mb-96 z-30 px-4 md:px-0 lg:px-0">
-                    <img src="{{ alias('@web/dist/images/About_1.jpg') }}" class="w-full h-[650px] lg:h-[900px] object-cover shadow-2xl">
+            <div class="col-span-1 md:col-span-1 lg:col-span-6 px-4 md:px-6 lg:px-8 order-2 md:order-1 relative z-20 bg-foxplan-yellow md:bg-transparent">
+                <div class="max-w-2xl pb-12 md:py-12 lg:py-0">
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-[5rem] leading-[1.1] md:leading-[0.9] tracking-tight mb-8 text-foxplan-charcoal-brown">
+                        {{ entry.paragraphHeading | raw }}
+                    </h2>
+                    <div class="font-aktiv text-base md:text-xl lg:text-lg opacity-80 text-foxplan-charcoal-brown">
+                        {{ entry.bodyText | raw }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="h-24 md:h-0 w-full"></div>
+
     {# --- SECTION 2: White --- #}
-    <div class="bg-foxplan-white pt-[150px] md:pt-[250px] relative z-10 pb-0 mt-14 md:mt-0 lg:mt-0">
-        <div class="grid grid-cols-1 md:grid-cols-10 w-full">
-            <div class="col-span-1 md:col-span-4 self-start leading-[0] px-4 md:px-0 lg:px-0">
-                <img src="{{ alias('@web/dist/images/About_2.jpg') }}" class="w-full h-[550px] lg:h-[750px] object-cover block">
+    <div class="bg-foxplan-white pt-20 md:pt-32 lg:pt-[250px] relative pb-20 md:pb-0">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 md:gap-20 lg:gap-0 w-full relative">
+            <div class="col-span-1 md:col-span-1 lg:col-span-4 order-1 relative z-20 bg-foxplan-white md:bg-transparent">
+                <div class="px-4 md:px-0 py-6 md:py-0">
+                    <img src="{{ alias('@web/dist/images/About_2.jpg') }}"
+                         class="w-full aspect-[370/362] md:aspect-[4/5] lg:aspect-[4/5] object-cover">
+                </div>
             </div>
-            <div class="col-span-1 md:col-start-7 md:col-span-4 px-4 md:px-0 lg:px-0 md:pl-0 md:pr-12 lg:pr-24 self-start">
-                <div class="mt-8 lg:mt-[200px] pb-6 lg:pb-32 ">
-                    <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-8">
+            <div class="col-span-1 md:col-span-1 lg:col-start-7 lg:col-span-4 px-4 md:px-0 md:pr-4 lg:pr-12  order-2 relative z-20 bg-foxplan-white md:bg-transparent">
+                <div class="md:py-12 lg:mt-[200px] lg:pb-32">
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-[4.5rem] leading-[1.1] md:leading-[0.9] text-foxplan-charcoal-brown mb-8">
                         {{ entry.paragraphHeading2 | raw }}
                     </h2>
-                    <div class="font-aktiv text-base md:text-lg text-foxplan-charcoal-brown/80 mb-8">
+                    <div class="font-aktiv text-base md:text-xl lg:text-lg text-foxplan-charcoal-brown/80">
                         {{ entry.bodyText2 | raw }}
                     </div>
                 </div>
@@ -53,76 +60,75 @@
         </div>
     </div>
 
+    <div class="h-24 md:h-0 w-full"></div>
+
     {# --- SECTION 3: Light Beige --- #}
-    <div class="bg-foxplan-neutral-beige relative pt-4 md:pt-0 lg:pt-0 ">
-        <div class="grid grid-cols-1 md:grid-cols-10 w-full min-h-[600px] md:min-h-[700px] items-end">
-            <div class="col-span-1 md:col-span-6 px-4 md:px-8 md:pl-12 lg:pl-16 lg:pb-20">
-                <div class="max-w-xl">
-                    <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-8">
-                        {{ entry.paragraphHeading3 | raw }}
-                    </h2>
-                    <div class="font-aktiv text-base md:text-lg text-foxplan-charcoal-brown/80">
-                        {{ entry.bodyText3 | raw }}
-                    </div>
+    <div class="bg-foxplan-neutral-beige relative pt-20 md:pt-12 lg:pt-0 pb-20 md:pb-0">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 md:gap-20 lg:gap-0 w-full items-center relative">
+            <div class="col-span-1 md:col-span-1 lg:col-span-4 order-1 md:order-2 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
+                <div class="w-full h-full md:pb-0 lg:pb-20 lg:pr-16 px-4 md:px-0 py-6 md:py-0">
+                    <img src="{{ alias('@web/dist/images/About_3.jpg') }}"
+                         class="w-full aspect-[370/362] md:aspect-[4/5] lg:aspect-[4/5] object-cover">
                 </div>
             </div>
-            <div class="col-span-1 md:col-span-4 self-center flex items-center">
-                <div class="w-full h-full lg:pb-20 md:pr-8 lg:pr-16 px-4 md:px-0 lg:px-0">
-                    <img src="{{ alias('@web/dist/images/About_3.jpg') }}" class="w-full h-auto max-h-[550px] object-cover block shadow-md">
+            <div class="col-span-1 md:col-span-1 lg:col-span-6 px-4 md:px-8 lg:pl-16 lg:pb-20 order-2 md:order-1 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
+                <div class="max-w-xl pb-12 md:py-12 lg:py-0">
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-[4.5rem] leading-[1.1] md:leading-[0.9] text-foxplan-charcoal-brown mb-8">
+                        {{ entry.paragraphHeading3 | raw }}
+                    </h2>
+                    <div class="font-aktiv text-base md:text-xl lg:text-lg text-foxplan-charcoal-brown/80">
+                        {{ entry.bodyText3 | raw }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="h-24 md:h-0 w-full"></div>
+
     {# --- SECTION 4: White --- #}
-    <div class="bg-foxplan-white relative pt-0">
-        <div class="grid grid-cols-1 md:grid-cols-10 w-full min-h-[600px] md:min-h-[700px] items-end">
-            <div class="col-span-1 md:col-span-4 self-center flex items-center">
-                <div class="w-full h-full py-8 lg:py-20 px-4 md:px-0 lg:px-0 lg:pl-16">
-                    <img src="{{ alias('@web/dist/images/About_4.jpg') }}" class="w-full h-auto max-h-[550px] object-cover block shadow-md">
+
+    <div class="bg-foxplan-white relative pt-20 pb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 md:gap-20 lg:gap-0 w-full relative">
+            <div class="col-span-1 md:col-span-1 lg:col-span-4 order-1 relative z-20 bg-foxplan-white md:bg-transparent">
+                <div class="px-4 md:px-0 py-6 md:py-0">
+                    <img src="{{ alias('@web/dist/images/About_4.jpg') }}"
+                         class="w-full aspect-[370/362] md:aspect-[4/5] lg:aspect-[4/5] object-cover">
                 </div>
             </div>
-            <div class="col-span-1 md:col-start-7 md:col-span-4 px-4 lg:px-0 pb-24">
-                <div class="max-w-md">
-                    <h2 class="font-serif text-5xl lg:text-[4.5rem] leading-[0.9] text-foxplan-charcoal-brown mb-4 lg:mb-8">
+            <div class="col-span-1 md:col-span-1 lg:col-start-7 lg:col-span-4 px-4 md:px-0 md:pr-4 lg:pr-12  order-2 relative z-20 bg-foxplan-white md:bg-transparent">
+                <div class="md:py-12 lg:mt-[200px] lg:pb-32">
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-[4.5rem] leading-[1.1] md:leading-[0.9] text-foxplan-charcoal-brown mb-8">
                         {{ entry.paragraphHeading4 | raw }}
                     </h2>
-                    <div class="font-aktiv text-base md:text-lg text-foxplan-charcoal-brown/80">
+                    <div class="font-aktiv text-base md:text-xl lg:text-lg text-foxplan-charcoal-brown/80">
                         {{ entry.bodyText4 | raw }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const container = document.getElementById('scroll-container');
+    document.addEventListener('DOMContentLoaded', function () {
         const dot = document.getElementById('scrolling-dot');
         const progressLine = document.getElementById('progress-line');
+        const timelineWrapper = dot.parentElement;
 
         function updateTimeline() {
-            const containerRect = container.getBoundingClientRect();
+            const timelineRect = timelineWrapper.getBoundingClientRect();
             const viewHeight = window.innerHeight;
+            let scrollProgress = (viewHeight / 2 - timelineRect.top) / timelineRect.height;
 
-            // We calculate progress based on the center of the viewport
-            let scrollProgress = (viewHeight / 2 - containerRect.top) / containerRect.height;
-
-            // Logic to prevent the half-circle issue at start/end
-            // The dot only appears when it is safely within the section boundaries
-            if (scrollProgress > 0.02 && scrollProgress < 0.98) {
+            if (scrollProgress > 0 && scrollProgress < 1.0) {
                 dot.style.opacity = "1";
             } else {
                 dot.style.opacity = "0";
             }
 
-            // Clamp progress between 0 and 1
             scrollProgress = Math.max(0, Math.min(1, scrollProgress));
             const percentage = scrollProgress * 100;
-
-            // Move the Dot and grow the Darker Dotted Line
             dot.style.top = percentage + '%';
             progressLine.style.height = percentage + '%';
         }

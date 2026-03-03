@@ -22,6 +22,7 @@
                 end: '+=800%',
                 pin: true,
                 scrub: 1,
+                id: 'timelineTrigger',
                 onUpdate: (self) => {
                     this.activeIndex = Math.round(self.progress * (this.totalSteps - 1));
                     this.arrowWidth = this.calculateArrow(self.progress);
@@ -51,72 +52,92 @@
         const centerOfLast = 100 - (columnWidth / 2);
         const availableRange = centerOfLast - centerOfFirst;
         return centerOfFirst + (progress * availableRange);
+    },
+
+    {# UPDATED: Instant navigation logic #}
+    scrollToIndex(index) {
+        const trigger = ScrollTrigger.getById('timelineTrigger');
+        if (!trigger) return;
+
+        const targetProgress = index / (this.totalSteps - 1);
+        const scrollPos = trigger.start + (trigger.end - trigger.start) * targetProgress;
+
+        window.scrollTo({
+            top: scrollPos + 2, {# Small offset ensures GSAP registers the card state instantly #}
+            behavior: 'auto'  {# Changed to 'auto' for instant popup #}
+        });
     }
 }"
      x-ref="mainSection"
-     class="w-full bg-foxplan-neutral-beige h-screen flex flex-col justify-center px-4 overflow-hidden pt-0 md:pt-6 lg:pt-8">
+     class="w-full bg-foxplan-neutral-beige h-screen flex flex-col px-0 overflow-hidden pt-0 md:pt-6 lg:pt-8">
 
-    {# --- HEADING --- #}
-    <div class="w-full flex flex-col items-center justify-center text-center mb-6 md:mb-12">
-        <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown max-w-6xl mx-auto break-normal"
-            style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
-            30 Years of<br>Financial Expertise
-        </h2>
-    </div>
+    {# --- STICKY HEADER & TIMELINE AREA --- #}
+    <div class="sticky top-0 z-[110] bg-foxplan-neutral-beige pt-8 pb-4 px-4">
+        {# --- HEADING --- #}
+        <div class="w-full flex flex-col items-center justify-center text-center mb-4 md:mb-12">
+            <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown max-w-6xl mx-auto break-normal"
+                style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
+                30 Years of<br>Financial Expertise
+            </h2>
+        </div>
 
-    {# --- TIMELINE TRACK --- #}
-    <section class="w-full mb-6 md:mb-12 select-none z-[100]">
-        <div class="relative w-full mb-6 md:mb-10 pt-10">
-            <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-foxplan-charcoal-brown opacity-20"></div>
+        {# --- TIMELINE TRACK --- #}
+        <section class="w-full mb-6 md:mb-12 select-none z-[100] overflow-hidden">
+            <div class="relative w-full mb-6 md:mb-10 pt-10 px-4 md:px-0">
+                <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-foxplan-charcoal-brown opacity-20"></div>
 
-            <div class="absolute top-1/2 -translate-y-1/2 left-0 flex items-center pointer-events-none"
-                 :style="`width: ${arrowWidth}%;` ">
-                <div class="flex-grow border-t-2 border-foxplan-charcoal-brown border-dashed h-0"></div>
-                <div class="relative flex-shrink-0 flex items-center justify-center">
-                    <div class="w-4 h-4 border-t-2 border-r-2 border-foxplan-charcoal-brown rotate-45 -ml-2"></div>
+                <div class="absolute top-1/2 -translate-y-1/2 left-0 flex items-center pointer-events-none transition-all duration-300 ease-out"
+                     :style="`width: ${arrowWidth}%;` ">
+                    <div class="flex-grow border-t-2 border-foxplan-charcoal-brown border-dashed h-0"></div>
+                    <div class="relative flex-shrink-0 flex items-center justify-center">
+                        <div class="w-4 h-4 border-t-2 border-r-2 border-foxplan-charcoal-brown rotate-45 -ml-2"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="flex justify-between w-full font-serif text-foxplan-charcoal-brown">
-            {% for card in milestones %}
-                <div class="flex-1 flex justify-center items-center">
-                    {#
-                    YEAR SCALE: Scaled down for mobile (20px) and medium screens (32px).
-                    #}
-                    <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 font-bold' : 'opacity-40'"
-                          class="transition-all duration-300"
-                          style="font-size: clamp(1.25rem, 2vw + 1rem, 2rem);">
-                        {{ card.milestoneYear }}
-                    </span>
-                </div>
-            {% endfor %}
-        </div>
-    </section>
-
-    {# --- CARD AREA: SOLID OVERLAP --- #}
-    {#
-    FIX: Height increased to h-[500px] to prevent card content from being cut on small/medium screens.
-    #}
-    <div class="relative w-full h-[500px] lg:h-[450px] overflow-hidden">
-        {% for card in milestones %}
-        {% set isYellow = loop.index is even %}
-        <div class="milestone-card-wrapper absolute inset-0 z-[{{ loop.index * 10 }}]">
-            {% include '_components/ui/card/card.twig' with {
-            props: {
-            year: card.milestoneYear,
-            title: card.milestoneTitle,
-            text: card.milestoneText,
-            titleSize: 'clamp(1.5rem, 2vw + 1rem, 2rem)',
-            textSize: 'clamp(1rem, 0.5vw + 0.8rem, 1.25rem)',
-            cardBg: isYellow ? 'bg-foxplan-yellow' : 'bg-white',
-            textColor: 'text-foxplan-charcoal-brown',
-            accentColor: 'text-foxplan-charcoal-brown',
-            squareColor: 'bg-foxplan-charcoal-brown',
-            titleColor: 'text-foxplan-charcoal-brown'
+            <div x-ref="yearsContainer"
+                 class="w-full overflow-x-auto no-scrollbar scroll-smooth"
+                 x-effect="
+            if (activeIndex >= 0 && window.innerWidth < 768) {
+                const container = $refs.yearsContainer;
+                const activeEl = container.children[0].children[activeIndex];
+                if (activeEl) {
+                    const offset = activeEl.offsetLeft - (container.offsetWidth / 2) + (activeEl.offsetWidth / 2);
+                    container.scrollTo({ left: offset, behavior: 'smooth' });
+                }
             }
-            } only %}
-        </div>
+         ">
+                <div class="flex md:justify-between min-w-max md:min-w-full px-8 md:px-0 gap-12 md:gap-0 font-serif text-foxplan-charcoal-brown">
+                    {% for card in milestones %}
+                        <button type="button"
+                                class="flex-shrink-0 flex justify-center items-center cursor-pointer outline-none focus:ring-0"
+                                @click="scrollToIndex({{ loop.index0 }})">
+                            <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 font-bold scale-110 text-foxplan-charcoal-brown' : 'opacity-40 scale-100'"
+                                  class="transition-all duration-300 inline-block pointer-events-none"
+                                  style="font-size: clamp(1.25rem, 2vw + 1rem, 2rem);">
+                                {{ card.milestoneYear }}
+                            </span>
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+
+    {# --- CARD AREA --- #}
+    <div class="relative w-full flex-grow overflow-hidden px-4 mb-4">
+        {% for card in milestones %}
+            {% set isYellow = loop.index is even %}
+            <div class="milestone-card-wrapper absolute inset-x-4 top-0 z-[{{ loop.index * 10 }}] h-full">
+                {% include '_components/ui/card/card.twig' with {
+                    props: {
+                        year: card.milestoneYear,
+                        title: card.milestoneTitle,
+                        text: card.milestoneText,
+                        cardBg: isYellow ? 'bg-foxplan-yellow' : 'bg-white',
+                    }
+                } only %}
+            </div>
         {% endfor %}
     </div>
 </div>
@@ -124,5 +145,12 @@
 <style>
     .milestone-card-wrapper {
         will-change: transform, clip-path;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 </style>

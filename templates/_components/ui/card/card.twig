@@ -3,27 +3,36 @@
     year: '1996',
     title: 'Title',
     text: 'Text...',
-    cardBg: 'bg-white',
-    accentColor: 'text-[#270E15]',
-    squareColor: 'bg-[#270E15]',
-    titleColor: 'text-[#270E15]',
-    textColor: 'text-[#270E15]',
+    textColor: 'text-foxplan-charcoal-brown',
+    accentColor: 'text-foxplan-charcoal-brown',
+    squareColor: 'bg-foxplan-charcoal-brown',
+    titleColor: 'text-foxplan-charcoal-brown'
 } %}
 {% set data = defaults | merge(props | default({})) %}
 
-<div class="w-full h-full {{ data.cardBg }} flex items-center shadow-lg rounded-sm will-change-transform">
-    <div class="grid grid-cols-[30%_70%] w-full items-start text-left pl-6 pr-5">
-        <div class="flex items-center gap-3 whitespace-nowrap pt-4 md:pt-6">
-            <div class="w-4 h-4 {{ data.squareColor }}"></div>
-            <span class="font-aktiv text-sm font-bold tracking-[0.2em] uppercase {{ data.accentColor }}">
+<div class="w-full h-full {{ data.cardBg }} flex items-start lg:items-center shadow-lg rounded-sm overflow-hidden will-change-transform">
+
+    {# Changed md: to lg: for the grid and alignment to keep medium screens vertical #}
+    <div class="flex flex-col lg:grid lg:grid-cols-[30%_70%] w-full items-start text-left md:py-40 md:px-20 lg:py-0"
+         style="padding: clamp(2.5rem, 5vw, 5rem) clamp(1.5rem, 3vw, 3rem);">
+
+        {# --- YEAR & SQUARE SECTION --- #}
+        {# Margin bottom remains until the large screen grid kicks in #}
+        <div class="flex items-center gap-3 whitespace-nowrap mb-8 lg:mb-0 md:pt-40 pt-20 lg:pt-0" >
+            <div class="w-3 h-3 md:w-4 md:h-4 {{ data.squareColor }}"></div>
+            <span class="font-aktiv text-sm md:text-base font-bold tracking-[0.2em] uppercase {{ data.accentColor }}">
                 {{ data.year }}
             </span>
         </div>
+
+        {# --- TITLE AND TEXT SECTION --- #}
         <div class="w-full">
-            <h3 class="font-serif text-5xl md:text-[5.5rem] mb-10 leading-[0.85] tracking-tight {{ data.titleColor }}">
+            <h3 class="font-serif leading-[1.0] lg:leading-[0.9] tracking-tight {{ data.titleColor }} mb-6 lg:mb-10 pt-10 md:pt-20 lg:pt-0"
+                style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
                 {{ data.title }}
             </h3>
-            <p class="font-aktiv text-lg md:text-[1.4rem] leading-relaxed {{ data.textColor }} opacity-90">
+            <p class="font-aktiv font-light lg:font-normal leading-relaxed {{ data.textColor }} opacity-90"
+               style="font-size: clamp(1.3125rem, 1.5vw, 1.5rem);">
                 {{ data.text }}
             </p>
         </div>

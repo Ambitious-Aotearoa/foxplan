@@ -26,9 +26,7 @@
     {% set benefitsHeading = entry.paragraphHeading4 ?? 'About group insurance' %}
     {% set benefitsIntro = entry.bodyText ?? '' %}
 
-    {# 1. Loop through the 'accordion' matrix #}
     {% set accordionItems = [] %}
-    {# Ensure 'accordion' is the handle of the Matrix field on this specific entry #}
     {% if entry.accordion is defined %}
         {% for block in entry.accordion.all() %}
             {% set accordionItems = accordionItems | merge([{
@@ -38,7 +36,6 @@
         {% endfor %}
     {% endif %}
 
-    {#  Deliver the data to the benefits section using 'props' #}
     {{ include('_sections/content-sections/benefits.twig', {
         props: {
             paragraphHeading: benefitsHeading,

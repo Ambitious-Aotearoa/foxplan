@@ -16,65 +16,68 @@
          x-init="setTimeout(() => revealed = true, 150)">
 
     {# 1. HERO CONTENT #}
-    <div class="relative w-full max-w-[1400px] mx-auto px-4 h-[500px] md:h-[650px] flex items-center justify-center">
-        <div class="relative w-[70%] h-[80%] mt-10 z-10">
+    <div class="relative w-full max-w-[1400px] mx-auto px-4 h-auto pt-16 md:pt-24 lg:h-[650px] lg:pt-0 flex flex-col lg:flex-row items-center justify-center">
+
+        {# Image container #}
+        <div class="relative w-[85%] md:w-[75%] lg:w-[70%] h-[300px] md:h-[450px] lg:h-[80%] z-10">
             <img src="{{ heroImagePath }}" alt="Equity Partners" class="w-full h-full object-cover">
         </div>
 
-        <div class="absolute top-[20%] left-[-4%] md:left-[-7%] lg:left-[-10%] z-20">
-            <h1 class="font-serif text-[100px] md:text-[180px] leading-none text-foxplan-charcoal-brown tracking-tighter">
+        {# Heading 1: Centered and overlapping on mobile/tablet, original position on large #}
+        <div class="absolute top-[4%] md:top-[3%] lg:top-[20%]
+                left-1/2 -translate-x-1/2 lg:left-[-3%] lg:translate-x-0
+                z-20 w-full lg:w-auto text-center lg:text-left">
+            <h1 class="font-serif text-7xl md:text-9xl lg:text-[180px] leading-none text-foxplan-charcoal-brown tracking-tighter">
                 {{ data.heading1 }}
             </h1>
         </div>
 
-        <div class="absolute bottom-[8%] right-[-5%] md:right-[-8%] lg:right-[-12%] z-20">
-            <h1 class="font-serif text-[100px] md:text-[180px] leading-none text-foxplan-charcoal-brown tracking-tighter">
+        {# Heading 2: Centered and overlapping on mobile/tablet, original position on large #}
+        <div class="absolute bottom-[-11%] md:bottom-[-12%] lg:bottom-[8%]
+                left-1/2 -translate-x-1/2 lg:left-auto lg:right-[-3%] lg:translate-x-0
+                z-20 w-full lg:w-auto text-center lg:text-right">
+            <h1 class="font-serif text-7xl md:text-9xl lg:text-[180px] leading-none text-foxplan-charcoal-brown tracking-tighter">
                 {{ data.heading2 }}
             </h1>
         </div>
     </div>
 
-    {# 2. THE GROWING ARROW: REALISTIC & SMALL VERSION #}
-    <div class="relative w-full mb-10 px-[10px]">
-        {# Reduced container height for a tighter, more realistic feel #}
+    {# 2. THE GROWING ARROW #}
+    {# Changed: Margin top added for mobile spacing #}
+    <div class="relative w-full mt-20  lg:mt-0 mb-10 lg:mb-2 px-[10px]">
         <div class="overflow-hidden transition-all duration-[4500ms] h-[16px] relative"
              style="transition-timing-function: steps(60);"
              :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0%; opacity: 0;'">
 
-            {# Grid ensures the line and head are separate entities that never overlap #}
             <div class="w-[calc(100vw-20px)] h-full grid grid-cols-[1fr_auto_16px] items-center relative">
-
-                {# THE LINE: Ends exactly where the head begins #}
                 <div class="h-0 border-t-2 border-dashed border-foxplan-charcoal-brown"></div>
-
-                {# THE HEAD: Small, high-fidelity chevron #}
                 <div class="flex items-center justify-center flex-shrink-0">
                     <div class="w-2 h-0 border-t-2 border-foxplan-charcoal-brown"></div>
                     <div class="w-3 h-3 border-t-2 border-r-2 border-foxplan-charcoal-brown rotate-45 transform origin-center -ml-2"></div>
                 </div>
-
                 <div></div>
             </div>
         </div>
     </div>
 
     {# 3. BODY TEXT & BUTTON #}
-    <div class="w-full flex flex-col items-center justify-center px-4">
-        <div class="max-w-2xl text-center mb-4">
-            <p class="text-sm md:text-base text-foxplan-charcoal-brown leading-relaxed opacity-90">
+    <div class="w-full flex flex-col items-center justify-center px-6">
+        <div class="max-w-2xl text-center mb-6">
+            {# Increased mobile padding and slightly larger text for readability #}
+            <p class="text-base md:text-lg lg:text-base text-foxplan-charcoal-brown leading-relaxed opacity-90">
                 {{ data.body | raw }}
             </p>
         </div>
 
         <div class="flex">
             {% include '_components/ui/button/button.twig' with {
-                props: {
-                    text: data.buttonText,
-                    url: data.buttonUrl,
-                    backgroundColor: 'bg-foxplan-charcoal-brown',
-                    textColor: 'text-white',
-                    classes: 'px-8 py-3 mb-12 text-[10px] tracking-[0.2em] uppercase font-montreal rounded-none'
-                }
+            props: {
+            text: data.buttonText,
+            url: data.buttonUrl,
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-white',
+            classes: 'px-10 py-4 lg:px-8 lg:py-3 mb-12 text-[11px] lg:text-[10px] tracking-[0.2em] uppercase font-montreal rounded-none'
+            }
             } only %}
         </div>
     </div>

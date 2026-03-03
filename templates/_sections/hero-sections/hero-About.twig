@@ -10,28 +10,27 @@
     bodyText: entry.heroBodyText ?? '',
 } %}
 
-<section class="w-full py-20 {{ data.backgroundColor }} overflow-hidden"
+<section class="w-full py-20 {{ data.backgroundColor }} overflow-hidden flex flex-col md:block"
          x-data="{ revealed: false }"
          x-init="setTimeout(() => revealed = true, 150)">
 
-    {# --- ROW 1: Full Width Title --- #}
-    <div class="w-full px-4 md:px-6 lg:px-8 mb-4 md:mb-6 lg:mb-12">
+    {# --- ROW 1: Title (Order 2 on Mobile) --- #}
+    <div class="w-full px-4 md:px-6 lg:px-8 mb-4 md:mb-6 lg:mb-12 order-2 md:order-none">
         <h1 class="font-serif tracking-tight {{ data.textColor }} break-normal"
             style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
             {{ data.title | raw }}
         </h1>
     </div>
 
-    {# --- ROW 2: Arrow (50%) and Body Text (50%) --- #}
-    <div class="flex flex-wrap w-full items-start mb-6 md:mb-12 lg:mb-16">
+    {# --- ROW 2: Arrow (Order 1 on Mobile) and Body Text (Order 4 on Mobile) --- #}
+    {# On mobile, we let the child elements handle their own ordering inside the parent flex-col #}
+    <div class="contents md:flex md:flex-wrap w-full items-start mb-6 md:mb-12 lg:mb-16">
 
-        {# THE ARROW: 50% width to match Image 1 width #}
-        <div class="hidden md:flex w-1/2 pt-4 items-center justify-start pr-12 lg:pr-16">
+        {# THE ARROW: Appears at the very top on mobile #}
+        <div class="w-full md:w-1/2 pt-4 flex items-center justify-start px-4 md:px-0 md:pr-12 lg:pr-16 order-1 md:order-none mb-8 md:mb-0">
             <div class="w-full relative flex items-center">
                 <div class="h-0 border-t-2 border-dashed border-foxplan-charcoal-brown transition-all duration-[2000ms] ease-out relative"
                      :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 2px; opacity: 0;'">
-
-                    {# The Arrow Head: Chevron Style #}
                     <div class="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center">
                         <div class="w-4 h-4 border-t-2 border-r-2 border-foxplan-charcoal-brown rotate-45 -mr-1"></div>
                     </div>
@@ -39,10 +38,10 @@
             </div>
         </div>
 
-        {# THE TEXT: 50% width to match Image 2 start point #}
-        <div class="w-full md:w-1/2 px-4 md:px-6 lg:px-8">
+        {# THE TEXT: Appears at the bottom on mobile #}
+        <div class="w-full md:w-1/2 px-4 md:px-6 lg:px-8 order-4 md:order-none">
             {% if data.bodyText %}
-                <div class="font-aktiv leading-relaxed {{ data.textColor }} font-medium max-w-4xl pr-8 lg:pr-24"
+                <div class="font-aktiv leading-relaxed {{ data.textColor }} font-medium max-w-4xl md:pr-8 lg:pr-24"
                      style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.5rem);">
                     {{ data.bodyText | raw }}
                 </div>
@@ -50,8 +49,8 @@
         </div>
     </div>
 
-    {# --- ROW 3: Two-Image Grid (50/50 Split) --- #}
-    <div class="w-full px-4 md:px-6 lg:px-8 ">
+    {# --- ROW 3: Two-Image Grid (Order 3 on Mobile) --- #}
+    <div class="w-full px-4 md:px-6 lg:px-8 order-3 md:order-none mb-8 md:mb-0">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="aspect-[16/10] overflow-hidden">
                 {% if img1 %}

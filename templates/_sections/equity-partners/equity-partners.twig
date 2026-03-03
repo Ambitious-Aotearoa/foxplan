@@ -1,6 +1,6 @@
-{# _sections/equity-partners/equity-partners.twig #}
+{# templates/_sections/equity-partners/equity-partners.twig #}
 
-{# Content Fetching #}
+{# --- 1. CONTENT & IMAGE FETCHING --- #}
 {% set heading = entry.paragraphHeading %}
 {% set description = entry.mediumParagraph %}
 {% set heading2 = entry.paragraphHeading2 %}
@@ -8,12 +8,10 @@
 {% set heading3 = entry.paragraphHeading3 %}
 {% set body3 = entry.bodyText3 %}
 
-{# Dynamic Image Fetching from Craft Asset Fields #}
 {% set imgMain = entry.image.one() %}
 {% set imgSec2 = entry.image2.one() %}
 {% set imgSec3 = entry.image3.one() %}
 
-{# Fallback Hardcoded Paths for Local Development without Vite #}
 {% set fallbackMain = alias('@web/dist/images/About_1.jpg') %}
 {% set fallbackSec2 = alias('@web/dist/images/About_2.jpg') %}
 {% set fallbackSec3 = alias('@web/dist/images/About_3.jpg') %}
@@ -21,7 +19,7 @@
 <section class="relative w-full bg-foxplan-neutral-beige overflow-hidden" id="equity-partners-section">
 
     {# --- ANIMATED DOTTED LINE & MOVING DOT --- #}
-    <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] z-50 pointer-events-none">
+    <div class="absolute left-1/2 -translate-x-1/2 top-[500px] bottom-[200px] md:top-0 md:bottom-0 md:h-full w-[2px] z-10 pointer-events-none">
         <div class="h-full w-full border-l-2 border-dashed border-foxplan-charcoal-brown/10"></div>
         <div id="progress-line"
              class="absolute top-0 left-0 w-full border-l-2 border-dashed border-foxplan-charcoal-brown transition-all duration-75 ease-out"
@@ -32,25 +30,26 @@
         </div>
     </div>
 
-    <div class="w-full relative z-10">
+    <div class="w-full relative">
 
         {# --- SECTION 1: HERO --- #}
-        <div class="grid grid-cols-1 md:grid-cols-2 items-start mt-[200px]">
-            <div class="w-full">
-                <div class="w-full max-w-[85%] aspect-[5/4] overflow-hidden">
-                    {# Priority: Asset Field -> Static Fallback #}
-                    <img src="{{ imgMain ? imgMain.url : fallbackMain }}"
-                         alt="{{ imgMain ? imgMain.title : 'Equity Partners' }}"
-                         class="w-full h-full object-cover">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 items-start  md:mt-0 lg:mt-[200px] mb-24 md:mb-40 relative">
+            <div class="col-span-1 lg:col-span-4 order-1 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
+                <div class="w-full px-6 md:px-0 md:pr-12 aspect-[5/4] md:aspect-[4/5] lg:aspect-[4/5] overflow-hidden py-4 md:py-0">
+                    <img src="{{ imgMain ? imgMain.url : fallbackMain }}" class="w-full h-full object-cover">
                 </div>
             </div>
 
-            <div class="flex flex-col items-end pt-0">
-                <div class="w-full md:w-[75%] lg:w-[70%] mr-[20px]">
-                    <h2 class="font-sterling text-[50px] text-foxplan-charcoal-brown mb-8 leading-[0.8] m-0 p-0">
+            <div class="col-span-1 lg:col-start-7 lg:col-span-4 order-2 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
+                <div class="px-6 md:px-0 md:pl-12 md:pr-12 lg:mr-[20px] pb-12 md:pb-24 lg:pb-0">
+                    {# Heading 1: Season Font with Clamp #}
+                    <h2 class="font-serif text-foxplan-charcoal-brown mb-8 leading-[0.8] tracking-tight"
+                        style="font-size: clamp(2.5rem, 6vw, 4.375rem);">
                         {{ heading }}
                     </h2>
-                    <div class="font-montreal font-light text-[24px] text-foxplan-charcoal-brown mb-4 leading-relaxed">
+                    {# Body 1: Aktiv Font with Clamp #}
+                    <div class="font-aktiv font-light text-foxplan-charcoal-brown mb-4 leading-relaxed"
+                         style="font-size: clamp(1.125rem, 1.5vw, 1.5rem);">
                         {{ description|raw }}
                     </div>
                     <div class="w-full mt-4">
@@ -60,76 +59,70 @@
             </div>
         </div>
 
-        {# --- VERTICAL SPACER --- #}
-        <div class="w-full mt-[250px]"></div>
+        {# --- SECTION 2 --- #}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 items-start mb-24 md:mb-40 relative">
+            <div class="col-span-1 lg:col-start-7 lg:col-span-4 order-1 md:order-2 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
+                <div class="w-full px-6 md:px-0 md:pl-12 aspect-[4/5] lg:aspect-[4/5] overflow-hidden shadow-sm pb-4 md:py-0">
+                    <img src="{{ imgSec2 ? imgSec2.url : fallbackSec2 }}" class="w-full h-full object-cover">
+                </div>
+            </div>
 
-        {# --- LOWER STAGGERED GRID --- #}
-        <div class="grid grid-cols-1 md:grid-cols-2 items-start">
-
-            {# LEFT COLUMN: Section 2 Text & Section 3 Image #}
-            <div class="flex flex-col items-start pt-0">
-                <div class="pl-[20px] pr-8 md:pr-12 lg:pr-24">
-                    <h2 class="font-sterling text-[50px] text-foxplan-charcoal-brown mb-16 leading-[1.1] m-0 p-0">
+            <div class="col-span-1 lg:col-span-4 order-2 md:order-1 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
+                <div class="px-6 md:px-0 md:pr-12 md:pl-12 lg:pl-[20px] pb-12 md:pb-24 lg:pb-0">
+                    {# Heading 2: Season Font with Clamp #}
+                    <h2 class="font-serif text-foxplan-charcoal-brown mb-8 leading-[0.8] tracking-tight"
+                        style="font-size: clamp(2.5rem, 6vw, 4.375rem);">
                         {{ heading2 }}
                     </h2>
-                    <div class="font-montreal font-light text-[20px] text-foxplan-charcoal-brown leading-relaxed max-w-md">
+                    {# Body 2: Aktiv Font with Clamp #}
+                    <div class="font-aktiv font-light text-foxplan-charcoal-brown leading-relaxed max-w-md"
+                         style="font-size: clamp(1.125rem, 1.25vw, 1.25rem);">
                         {{ body2|raw }}
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="w-full max-w-[85%] mt-[450px]">
-                    <div class="w-full aspect-[4/3] overflow-hidden shadow-sm">
-                        <img src="{{ imgSec3 ? imgSec3.url : fallbackSec3 }}"
-                             class="w-full h-full object-cover"
-                             alt="{{ imgSec3 ? imgSec3.title : 'Equity Partners' }}">
-                    </div>
+        {# --- SECTION 3 --- #}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 items-start relative pb-0 md:pb-0">
+            <div class="col-span-1 lg:col-span-4 order-1 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
+                <div class="w-full px-6 md:px-0 md:pr-12 aspect-[4/3] md:aspect-[4/5] lg:aspect-[4/5] overflow-hidden shadow-sm py-4 md:py-0">
+                    <img src="{{ imgSec3 ? imgSec3.url : fallbackSec3 }}" class="w-full h-full object-cover">
                 </div>
             </div>
 
-            {# RIGHT COLUMN: Section 2 Image & Centered Section 3 Text #}
-            <div class="flex flex-col items-end pt-0">
-                <div class="w-full max-w-[75%] lg:max-w-[70%] mb-48">
-                    <div class="w-full aspect-[4/5] overflow-hidden shadow-sm">
-                        <img src="{{ imgSec2 ? imgSec2.url : fallbackSec2 }}"
-                             class="w-full h-full object-cover"
-                             alt="{{ imgSec2 ? imgSec2.title : 'Equity Partners' }}">
-                    </div>
-                </div>
-
-                <div class="w-full flex justify-center md:justify-end">
-                    <div class="w-full md:w-[75%] lg:w-[70%] mr-[20px] mt-[50px]">
-                        <h2 class="font-sterling text-[50px] text-foxplan-charcoal-brown mb-16 leading-[1.1] m-0 p-0 text-left">
-                            {{ heading3 }}
-                        </h2>
-                        <div class="font-montreal font-light text-[20px] text-foxplan-charcoal-brown leading-relaxed text-left">
-                            {{ body3|raw }}
-                        </div>
+            <div class="col-span-1 lg:col-start-7 lg:col-span-4 order-2 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
+                <div class="px-6 md:px-0 md:pl-12 md:pr-12 lg:mr-[20px] pb-24 md:pb-24 lg:pb-0">
+                    {# Heading 3: Season Font with Clamp #}
+                    <h2 class="font-serif text-foxplan-charcoal-brown mb-8 leading-[0.8] tracking-tight"
+                        style="font-size: clamp(2.5rem, 6vw, 4.375rem);">
+                        {{ heading3 }}
+                    </h2>
+                    {# Body 3: Aktiv Font with Clamp #}
+                    <div class="font-aktiv font-light text-foxplan-charcoal-brown leading-relaxed"
+                         style="font-size: clamp(1.125rem, 1.25vw, 1.25rem);">
+                        {{ body3|raw }}
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const container = document.getElementById('equity-partners-section');
         const dot = document.getElementById('scrolling-dot');
         const progressLine = document.getElementById('progress-line');
+        const timelineWrapper = dot ? dot.parentElement : null;
 
         function updateTimeline() {
-            if (!container || !dot || !progressLine) return;
-            const containerRect = container.getBoundingClientRect();
+            if (!dot || !progressLine || !timelineWrapper) return;
+            const timelineRect = timelineWrapper.getBoundingClientRect();
             const viewHeight = window.innerHeight;
 
-            let scrollProgress = (viewHeight / 2 - containerRect.top) / containerRect.height;
+            let scrollProgress = (viewHeight / 2 - timelineRect.top) / timelineRect.height;
 
-            if (scrollProgress > 0.02 && scrollProgress < 0.98) {
-                dot.style.opacity = "1";
-            } else {
-                dot.style.opacity = "0";
-            }
+            dot.style.opacity = (scrollProgress > 0 && scrollProgress < 1.0) ? "1" : "0";
 
             scrollProgress = Math.max(0, Math.min(1, scrollProgress));
             const percentage = scrollProgress * 100;
