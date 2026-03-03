@@ -1,8 +1,86 @@
 
+/* --- Season Serif Family --- */
+
+/* Light */
 @font-face {
-    font-family: 'SeasonSerifTRIALLight';
-    src: url('./assets/fonts/season-serif/SeasonSerifTRIALLight.woff2') format('woff2'),
-    url('./assets/fonts/season-serif/SeasonSerifTRIALLight.woff') format('woff');
+    font-family: 'Season Serif';
+    src: url('./assets/fonts/season-serif/SeasonSerif-TRIAL-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Season Serif';
+    src: url('./assets/fonts/season-serif/SeasonSerif-TRIAL-LightItalic.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* Medium */
+@font-face {
+    font-family: 'Season Serif';
+    src: url('./assets/fonts/season-serif/SeasonSerif-TRIAL-Medium.otf') format('opentype');
     font-weight: 500;
+    font-style: normal;
+}
+
+/* Bold */
+@font-face {
+    font-family: 'Season Serif';
+    src: url('./assets/fonts/season-serif/SeasonSerif-TRIAL-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Season Serif';
+    src: url('./assets/fonts/season-serif/SeasonSerif-TRIAL-BoldItalic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* Heavy */
+@font-face {
+    font-family: 'Season Serif';
+    src: url('./assets/fonts/season-serif/SeasonSerif-TRIAL-Heavy.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* Aktiv family */
+
+@font-face {
+    font-family: "aktiv-grotesk", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "aktiv-grotesk", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "aktiv-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "aktiv-grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "aktiv-grotesk", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "aktiv-grotesk", sans-serif;
+    font-weight: 300;
     font-style: normal;
 }

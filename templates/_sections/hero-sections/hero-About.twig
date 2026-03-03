@@ -14,16 +14,15 @@
          x-data="{ revealed: false }"
          x-init="setTimeout(() => revealed = true, 150)">
 
-    {# --- ROW 1: Title (Order 2 on Mobile) --- #}
+    {# --- ROW 1: Title  --- #}
     <div class="w-full px-4 md:px-6 lg:px-8 mb-4 md:mb-6 lg:mb-12 order-2 md:order-none">
-        <h1 class="font-serif tracking-tight {{ data.textColor }} break-normal"
+        <h1 class="font-serif-season  {{ data.textColor }} break-normal"
             style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
             {{ data.title | raw }}
         </h1>
     </div>
 
-    {# --- ROW 2: Arrow (Order 1 on Mobile) and Body Text (Order 4 on Mobile) --- #}
-    {# On mobile, we let the child elements handle their own ordering inside the parent flex-col #}
+    {# --- ROW 2 --- #}
     <div class="contents md:flex md:flex-wrap w-full items-start mb-6 md:mb-12 lg:mb-16">
 
         {# THE ARROW: Appears at the very top on mobile #}

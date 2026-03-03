@@ -38,8 +38,7 @@
 
 {% set data = defaults | merge(props ?? {}) %}
 
-{# --- 1-4. Logic remains the same (Hero Image, Buttons, etc.) --- #}
-{# ... (Keep your existing variable setup at the top) ... #}
+
 
 <section class="relative w-full flex flex-col lg:block min-h-[850px] {{ data.backgroundColor }} overflow-hidden"
          x-data="{ revealed: false }"
@@ -69,7 +68,7 @@
     {# --- CONTENT LAYER --- #}
     <div class="relative z-[110] flex flex-col justify-between px-4 lg:px-16 pt-20 md:pt-8 lg:pt-12 order-1 lg:order-none">
         <div class="w-full">
-            <h1 class="font-serif leading-[0.8] tracking-tight {{ data.textColor }}"
+            <h1 class="font-serif leading-[0.8] tracking-[0.02em] {{ data.textColor }}"
                 style="font-size: clamp(3.75rem, 10vw + 1rem, 9rem);">
 
             <span class="block relative z-[120]">
