@@ -30,18 +30,18 @@
             {% set hasContent = item.ExpandableBodyText is not empty %}
 
             <div
-                    class="{{ props.backgroundColor }} overflow-hidden mr-[20px] transition-all duration-300 ease-out transform hover:scale-[1.015] hover:shadow-xl hover:z-20 relative border-b border-gray-100 last:border-0"
+                    class="{{ props.backgroundColor }} overflow-hidden lg:mr-[20px] transition-all duration-300 ease-out transform hover:scale-[1.015] hover:shadow-xl hover:z-20 relative border-b border-gray-100 last:border-0"
                     :class="openItem === {{ loop.index0 }} ? 'z-10' : 'z-0'"
             >
                 <button
-                        class="w-full flex items-center justify-between py-6 text-left group transition-colors duration-200"
+                        class="w-full flex items-center justify-between py-2 md:py-6 text-left group transition-colors duration-200"
                         {% if hasContent %}
                             @click="openItem = openItem === {{ loop.index0 }} ? -1 : {{ loop.index0 }}"
                         {% else %}
                             disabled
                         {% endif %}
                 >
-                    <h3 class="{{ props.titleFont }} {{ props.titleSize }} {{ props.titleCase }} {{ props.titleWeight }} {{ props.textColor }} pr-4 pl-8 transition-transform duration-300 group-hover:translate-x-1">
+                    <h3 class="{{ props.titleFont }} {{ props.titleSize }} {{ props.titleCase }} {{ props.titleWeight }} {{ props.textColor }} px-4 md:px-8 transition-transform duration-300 group-hover:translate-x-1">
                         {{ item.expandableHeadingTitle|default('Item ' ~ loop.index) }}
                     </h3>
 

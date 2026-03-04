@@ -4,11 +4,11 @@
 {% set defaults = {
     heading: 'The Dollars and Sense Newsletter',
     description: 'Don’t have time to listen? Get the low-down on the latest episode of Dollars and Sense with our regular episode newsletter.',
-    backgroundColor: 'bg-white',
-    headingColor: 'text-gray-900',
-    bodyColor: 'text-black',
-    borderColor: 'border-gray-300',
-    accentColor: 'text-gray-500'
+    backgroundColor: '',
+    headingColor: '',
+    bodyColor: '',
+    borderColor: '',
+    accentColor: ''
 } %}
 
 {% set sectionData = defaults | merge(data ?? {}) %}
@@ -18,8 +18,7 @@
     .section('article')
     .tags(':notempty:')
     .with(['featuredImage', 'tags'])
-    .all()
-%}
+    .all() %}
 
 {% if taggedArticles|length %}
     <section
@@ -27,7 +26,7 @@
             {# Alpine state handles visibility without page refresh #}
             x-data="{ limit: 3, total: {{ taggedArticles|length }} }"
     >
-        <div class="px-8 md:px-12 w-full">
+        <div class="px-4 md:px-6 lg:px-8 w-full">
 
             <h2 class="font-serif text-5xl md:text-7xl lg:text-8xl font-normal {{ sectionData.headingColor }} leading-[0.85] tracking-tight mb-6 max-w-4xl">
                 {{ sectionData.heading }}

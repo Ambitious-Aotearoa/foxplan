@@ -6,7 +6,6 @@
 {% set allFeaturedImages = entry.featuredImage.all() %}
 
 {# 2. PREPARE SHARING DATA #}
-{# Use 'url_encode' to ensure resharing to personal accounts works perfectly without breaking #}
 {% set shareUrl   = entry.url | url_encode %}
 {% set shareTitle = entry.title | url_encode %}
 
@@ -16,34 +15,39 @@
     <section class="w-full pt-24 pb-0 overflow-hidden">
         <div class="px-4 md:px-6 lg:px-8 max-w-full mx-auto">
 
-            {#
-            ARTICLE TITLE:
-            Uses clamp for fluid scaling and a max-width to force wrapping on large screens.
-            #}
-            <h1 class="font-serif text-foxplan-charcoal-brown leading-[0.9] tracking-tighter mb-12 max-w-[90%] lg:max-w-[80%] break-keep hyphens-none"
+            {# ARTICLE TITLE: Using standard FoxPlan serif and fluid clamp #}
+            <h1 class="font-serif text-foxplan-charcoal-brown leading-[0.9] tracking-tighter mb-12 max-w-[90%] lg:max-w-[80%] break-keep"
                 style="font-size: clamp(3rem, 8vw, 7.5rem);">
                 {{ entry.title }}
             </h1>
 
+            {# articles/_entry.twig #}
+
             <div class="grid grid-cols-1 md:grid-cols-10 gap-x-0 items-start">
 
-                {#DATE & CATEGORIES COLUMN (Left 30% / 2 cols) #}
+                {# DATE & CATEGORIES COLUMN #}
                 <div class="md:col-span-3 lg:col-span-2">
-                    <div class="font-montreal text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown pt-1 pb-4">
-                        <div class="flex flex-col gap-y-2">
+                    <div class="font-aktiv-grotesk text-[10px] uppercase tracking-[0.2em] text-foxplan-charcoal-brown"
+                         style="padding-top: clamp(0.25rem, 1vw, 0.75rem); padding-bottom: clamp(2rem, 4vw, 3rem);">
+
+                        <div class="flex flex-col" style="gap: clamp(0.5rem, 1vw, 0.75rem);">
                             {% for cat in categories %}
-                                <div class="flex items-start">
-                                    {# Fixed-width spacer for date ensures vertical alignment for categories #}
-                                    <div class="w-[140px] shrink-0">
+
+                                <div class="grid grid-cols-[minmax(120px,12vw)_1fr] items-center">
+
+                                    {# 1. Date Column #}
+                                    <div class="whitespace-nowrap pr-4">
                                         {% if loop.first %}
                                             {{ entry.postDate | date('j F Y') | upper }}
+
                                         {% endif %}
                                     </div>
 
-                                    {# Category title with tightly tucked bullet #}
+                                    {# 2. Tags/Categories Column #}
                                     <div class="flex items-center">
                                         <span class="whitespace-nowrap">{{ cat.title | upper }}</span>
-                                        <span class="ml-3 mt-[-2px] block">•</span>
+                                        <span class="block mt-[-2px]"
+                                              style="margin-left: clamp(0.5rem, 2vw, 1.25rem);">•</span>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -51,17 +55,11 @@
                     </div>
                 </div>
 
-                {# FEATURED IMAGE (Right 70% / 8 cols) #}
+                {# FEATURED IMAGE (70-80% span) #}
                 <div class="md:col-span-7 lg:col-span-8">
                     <div class="aspect-[16/9] w-full overflow-hidden bg-foxplan-charcoal-brown/5">
                         {% if mainImage %}
-                            <img src="{{ mainImage.url }}"
-                                 alt="{{ mainImage.title ?: entry.title }}"
-                                 class="w-full h-full object-cover">
-                        {% else %}
-                            <div class="w-full h-full flex items-center justify-center border border-foxplan-charcoal-brown/10">
-                                <span class="text-[10px] uppercase tracking-widest opacity-30 italic">No Featured Image Found</span>
-                            </div>
+                            <img src="{{ mainImage.url }}" class="w-full h-full object-cover">
                         {% endif %}
                     </div>
                 </div>
@@ -70,42 +68,41 @@
     </section>
 
     {# --- CONTENT SECTION --- #}
-    <section class="w-full pt-8 md:pt-12 lg:pt-24 pb-8 md:pb-20 lg:pb-32">
+    <section class="w-full pt-8 md:pt-12 lg:pt-24 pb-12 md:pb-20 lg:pb-32">
         <div class="px-4 md:px-6 lg:px-8 mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-10 gap-x-0 relative">
 
-                {# Column Offset: Aligns body text with the featured image start #}
+                {# Column Offset #}
                 <div class="hidden md:block md:col-span-3 lg:col-span-2"></div>
 
-                {# Main Body Content (6 Cols) #}
+                {# Main Body Content #}
                 <div class="md:col-span-6 lg:col-span-6">
-                    <div class="font-montreal font-light text-foxplan-charcoal-brown leading-[1.6] rich-text-content"
-                         style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.25rem);">
+                    <div class="font-aktiv-grotesk font-light text-foxplan-charcoal-brown leading-[1.6] rich-text-content"
+                         style="font-size: clamp(1rem, 1.2vw, 1.15rem);">
 
                         <style>
+                            /* Using standard Season and Clamps for subheaders */
                             .rich-text-content h2 {
-                                font-family: serif;
-                                font-size: clamp(2rem, 3vw + 1rem, 3rem);
-                                margin-top: 3rem;
-                                margin-bottom: 1.25rem;
-                                color: #000;
+                                font-family: 'SeasonSerifTRIALLight', serif;
+                                font-size: clamp(1.75rem, 3vw, 2.5rem);
+                                margin-top: 3.5rem;
+                                margin-bottom: 1.5rem;
+                                color: #270E15;
                                 line-height: 1.1;
-                                word-break: keep-all;
                             }
-                            .rich-text-content p { margin-bottom: 1.5rem; word-break: keep-all; }
-                            .rich-text-content p:last-child { margin-bottom: 0; }
-                            .rich-text-content img { width: 100%; height: auto; margin: 2rem 0; }
+                            .rich-text-content p { margin-bottom: 1.75rem; }
+                            .rich-text-content img { width: 100%; height: auto; margin: 3rem 0; border-radius: 2px; }
                         </style>
 
                         {% if entry.insightBody %}
                             {{ entry.insightBody | raw }}
                         {% endif %}
 
-
+                        {# Secondary Images Grid #}
                         {% if allFeaturedImages|length > 1 %}
-                            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {% for image in allFeaturedImages|slice(1) %}
-                                    <div class="aspect-square overflow-hidden bg-gray-100">
+                                    <div class="aspect-square overflow-hidden bg-foxplan-charcoal-brown/5">
                                         <img src="{{ image.url }}" alt="{{ image.title }}" class="w-full h-full object-cover">
                                     </div>
                                 {% endfor %}
@@ -114,33 +111,26 @@
                     </div>
                 </div>
 
-{# STICKY SOCIAL SIDEBAR (Final Column) #}
-                {# Icons now dynamically share the specific article to user's personal accounts #}
+                {# STICKY SOCIAL SIDEBAR #}
                 <div class="hidden md:block md:col-start-10 md:col-span-1">
                     <div class="sticky top-32 flex flex-col items-end gap-3">
-
-                        {# FACEBOOK SHARING #}
                         {{ include('_components/ui/icons/facebook-icon.twig', {
                             props: {
-                                iconColor: 'fill-white',
-                                boxColor: 'bg-[#1D1013]',
+                                iconColor: 'fill-foxplan-white',
+                                boxColor: 'bg-foxplan-charcoal-brown',
                                 size: 'w-8 h-8',
                                 url: "https://www.facebook.com/sharer/sharer.php?u=" ~ shareUrl
                             }
                         }) }}
 
-{#LINKEDIN SHARING #}
                         {{ include('_components/ui/icons/linkedin-icon.twig', {
                             props: {
-                                iconColor: 'fill-white',
-                                boxColor: 'bg-[#1D1013]',
+                                iconColor: 'fill-foxplan-white',
+                                boxColor: 'bg-foxplan-charcoal-brown',
                                 size: 'w-8 h-8',
                                 url: "https://www.linkedin.com/sharing/share-offsite/?url=" ~ shareUrl
                             }
                         }) }}
-
-
-
                     </div>
                 </div>
             </div>

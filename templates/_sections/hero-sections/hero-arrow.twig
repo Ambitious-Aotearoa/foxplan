@@ -10,7 +10,7 @@
     bodyText: entry.heroBodyText ?? '',
     buttonText: 'Book a call',
     buttonBgColor: 'bg-foxplan-charcoal-brown',
-    buttonTextColor: 'text-foxplan-yellow',
+    buttonTextColor: 'text-foxplan-neutral-beige',
     textColor: 'text-foxplan-charcoal-brown',
 
 buttonUrl: props.buttonUrl ?? null
@@ -18,12 +18,12 @@ buttonUrl: props.buttonUrl ?? null
 
 {% set data = defaults | merge(props ?? {}) %}
 
-<section class="w-full pt-10 pb-10 {{ data.backgroundColor }} overflow-hidden"
+<section class="w-full pt-10 pb-20 {{ data.backgroundColor }} overflow-hidden"
          x-data="{ revealed: false }"
          x-init="setTimeout(() => revealed = true, 150)">
 
     <div class="flex flex-wrap w-full items-center mb-5 relative">
-        <div class="hidden md:flex w-[30%] items-center justify-start pr-8 lg:pr-12">
+        <div class="hidden md:flex flex-1 items-center justify-start pr-8 lg:pr-12">
             <div class="w-full h-8 flex items-center">
                 <div class="transition-all duration-[2500ms] overflow-hidden"
                      :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0px; opacity: 0;'">
@@ -35,11 +35,11 @@ buttonUrl: props.buttonUrl ?? null
         </div>
 
         <div class="w-full md:w-[70%] px-4 md:px-6 lg:px-8">
-            <h2 class="font-serif leading-[0.85] tracking-tight {{ data.textColor }} whitespace-nowrap lg:whitespace-normal"
+            <h2 class="font-serif leading-[0.85] tracking-tight {{ data.textColor }} whitespace-normal"
                 style="font-size: clamp(3rem, 8vw + 1rem, 7.5rem);">
-    {{ data.heading | raw }}
-    </h2>
-    </div>
+                {{ data.heading | raw }}
+            </h2>
+        </div>
     </div>
 
     <div class="flex flex-wrap xl:flex-nowrap items-end">

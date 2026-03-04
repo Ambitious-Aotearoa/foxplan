@@ -3,10 +3,10 @@
 {% set defaults = {
     title: 'Services',
     description: '',
-    backgroundColor: 'bg-white',
+    backgroundColor: 'bg-foxplan-white',
     items: [],
     buttonBgColor: 'bg-foxplan-charcoal-brown',
-    buttonTextColor: 'text-white'
+    buttonTextColor: 'text-foxplan-neutral-beige'
 } %}
 
 {% set data = defaults | merge(props | default({})) %}
@@ -18,12 +18,6 @@
         {# --- LEFT SIDE: 30% Width --- #}
         <div class="col-span-1 md:col-span-3 px-4 md:px-6 lg:px-8 md:mb-0 lg:mb-12 ">
             <div class="max-w-md">
-                {#
-                REFINED HEADING CLAMP:
-                - Min: 2.25rem (36px) for small mobile screens.
-                - Preferred: 5vw + 1rem scales more conservatively for Medium screens.
-                - Max: 6.5rem (104px) maintains your full desktop size.
-                #}
                 <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown mb-8 break-normal"
                     style="font-size: clamp(2.25rem, 5vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
                     {{ data.title | raw }}
@@ -42,7 +36,7 @@
         <div class="col-span-1 md:col-span-7 px-4 md:px-6 lg:px-8">
             <div class="w-full">
                 {% for group in groupedItems %}
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 lg:gap-x-12 gap-y-16 mb-16 last:mb-0 items-start">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 lg:gap-x-12 gap-y-8 lg:gap-y-16 mb-8 md:mb-16 last:mb-0 items-start">
 
                         {% for item in group %}
                             <div class="flex flex-col h-full items-start text-left pr-4">
@@ -51,7 +45,7 @@
                                     {{ item.title }}
                                 </h3>
 
-                                <div class="font-aktiv text-foxplan-charcoal-brown/90 leading-relaxed mb-8 w-full font-medium"
+                                <div class="font-aktiv text-foxplan-charcoal-brown/90 leading-relaxed mb-4 md:mb-8 w-full font-medium"
                                      style="font-size: clamp(0.9rem, 0.4vw + 0.8rem, 1.15rem);">
                                     {{ item.text | raw }}
                                 </div>

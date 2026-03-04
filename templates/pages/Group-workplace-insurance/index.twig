@@ -18,8 +18,8 @@
     {# 3. Explore Services Section #}
     {% include "_sections/content-sections/help-for-buying-your-first-home.twig" with {
         props: {
-            mainHeading: entry.paragraphHeading ?? 'Our Services',
-            services: entry.infoBlock.all() ?? [],
+            paragraphHeading: entry.paragraphHeading ?? 'Our Services',
+            infoBlock: entry.infoBlock.all() ?? [],
             backgroundColor: 'bg-foxplan-neutral-beige',
             textColor: 'text-foxplan-charcoal-brown',
             borderColor: 'border-foxplan-charcoal-brown/20'

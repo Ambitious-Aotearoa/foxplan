@@ -11,14 +11,12 @@
     {# 1. Hero Section #}
     {{ include('_sections/hero-sections/hero-About.twig') }}
 
-
-    {# 2. image text section with arrow #}
+    {#  image text section  #}
     {{ include('_sections/content-sections/about-grow.twig') }}
 
-    {# Place this wherever you wish the timeline to appear in your main template #}
     {% include "_sections/timeline/timeline.twig" %}
 
-    {# 4. footer #}
+    {#  footer #}
     {{ include('_components/footer/footer-High-fidelity.twig', {
         props: {
             backgroundColor: 'bg-foxplan-charcoal-brown',

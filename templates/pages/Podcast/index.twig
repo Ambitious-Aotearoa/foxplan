@@ -2,7 +2,7 @@
 
 {% set navigationTheme = {
     backgroundColor: 'bg-foxplan-yellow',
-    textColor: 'text-black',
+    textColor: 'text-foxplan-charcoal-brown',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
 
@@ -19,9 +19,9 @@
     {# 2. about-the-pod #}
     {{ include('_sections/content-sections/about-podcast.twig', {
         data: {
-            backgroundColor: 'bg-foxplan-charcoal-brown',
-            borderColor: 'border-foxplan-yellow',
-            textColor: 'text-foxplan-yellow',
+            backgroundColor: 'bg-foxplan-yellow',
+            borderColor: 'border-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-charcoal-brown',
             topLabel: entry.mainTitle ?? 'ABOUT THE POD',
             bodyText: entry.largeParagraph ?? '',
             showLogo: true
@@ -45,8 +45,7 @@
             backgroundColor: 'bg-foxplan-neutral-beige',
             headingColor: 'text-foxplan-charcoal-brown',
             bodyColor: 'text-foxplan-charcoal-brown',
-            borderColor: 'border-foxplan-charcoal-brown/20',
-            accentColor: 'text-foxplan-charcoal-brown/60',
+            borderColor: 'border-foxplan-charcoal-brown',
         }
     }) }}
 
