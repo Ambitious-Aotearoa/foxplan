@@ -31,7 +31,6 @@
     }) }}
 
     {# 2. Benefits #}
-    {# templates/pages/First-home-buyers/index.twig #}
 
     {# --- Info Block / Services Section --- #}
     {{ include('_sections/content-sections/help-for-buying-your-first-home.twig', {
@@ -40,7 +39,7 @@
             infoBlock: entry.infoBlock.exists() ? entry.infoBlock.all() : [],
             backgroundColor: 'bg-foxplan-yellow',
             textColor: 'text-foxplan-charcoal-brown',
-            borderColor: 'border-[#270E15]'
+
         }
     }) }}
 
@@ -66,13 +65,13 @@
             paragraphHeading: benefitsHeading,
             bodyText: benefitsIntro,
             items: accordionItems,
-            backgroundColor: 'bg-foxplan-charcoal-brown',
-            textColor: 'text-foxplan-yellow'
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            textColor: 'text-foxplan-charcoal-brown'
         }
     }) }}
 
 
-    {#     5. section #}
+    {#5. section #}
     {#  Image and Text Section #}
     {% set sectionImage = entry.image.one() %}
 

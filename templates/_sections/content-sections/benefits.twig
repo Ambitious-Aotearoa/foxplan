@@ -62,7 +62,7 @@
                  :style="'height: ' + yPos + 'px'"></div>
 
             {# Scrolling Dot (Synced with Grow) #}
-            <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-{{ textBaseColor }} rounded-full shadow-md transition-opacity duration-300"
+            <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-{{ textBaseColor }} rounded-full transition-opacity duration-300"
                  :class="yPos > 0 ? 'opacity-100' : 'opacity-0'"
                  :style="'transform: translate(-50%, -50%); top: ' + yPos + 'px'"></div>
         </div>
@@ -85,7 +85,7 @@
                             }
                          }"
                          x-init="$watch('yPos', () => checkActive())"
-                         :class="(isScrollActive) ? 'bg-white p-8 md:p-10 translate-x-2 md:translate-x-4 shadow-lg opacity-100' : 'bg-transparent p-8 md:p-10 translate-x-0 shadow-none opacity-40'">
+                         :class="(isScrollActive) ? 'bg-foxplan-white p-8 md:p-10 translate-x-2 md:translate-x-4 opacity-100' : 'bg-transparent p-8 md:p-10 translate-x-0  opacity-40'">
 
                         {% if item.title %}
                             <h4 class="font-aktiv text-[10px] font-bold tracking-[0.2em] uppercase mb-3 text-foxplan-charcoal-brown">

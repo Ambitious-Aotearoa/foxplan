@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -14,10 +15,10 @@
             theme: {
                 extend: {
                     colors: {
-                        'foxplan-yellow': { DEFAULT: '#FBC938' },
-                        'foxplan-neutral-beige': '#F9EFD8',
-                        'foxplan-white': '#FEFCF7',
-                        'foxplan-charcoal-brown': '#270E15',
+                        'foxplan-yellow': 'var(--foxplan-yellow)',
+                        'foxplan-charcoal-brown': 'var(--foxplan-charcoal-brown)',
+                        'foxplan-neutral-beige': 'var(--foxplan-neutral-beige)',
+                        'foxplan-white': 'var(--foxplan-white)',
                     },
                     fontFamily: {
                         'serif': ['"Season Serif"', 'serif'],
@@ -34,6 +35,13 @@
     </script>
 
     <style>
+
+        :root {
+            --foxplan-yellow: #FBC938;
+            --foxplan-neutral-beige: #F9EFD8;
+            --foxplan-white: #FEFCF7;
+            --foxplan-charcoal-brown: #270E15;
+        }
         [x-cloak] {
             display: none !important;
         }
@@ -50,9 +58,11 @@
             font-family: 'SeasonSerifTRIALLight', serif;
         }
 
-        .font-aktiv-grotesk {
+        .font-aktiv {
             font-family: 'aktiv-grotesk', sans-serif;
         }
+
+
     </style>
 
     {# 2. Animation Libraries (Load in Head or before body to prevent init errors) #}
@@ -63,7 +73,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="antialiased font-aktiv-grotesk text-foxplan-charcoal-brown bg-foxplan-neutral-beige">
+<body class="antialiased font-aktiv text-foxplan-charcoal-brown bg-foxplan-neutral-beige">
 
 {{ include("_components/nav/nav.twig", { navigationTheme: navigationTheme ?? null }, withContext = true) }}
 
