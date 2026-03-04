@@ -13,87 +13,86 @@
          x-data="{
             yPos: 0,
             handleScroll() {
-                let lineContainer = this.$refs.lineContainer;
-                if (!lineContainer) return;
+                let container = this.$refs.lineContainer;
+                if (!container) return;
 
-                let lineRect = lineContainer.getBoundingClientRect();
+                let rect = container.getBoundingClientRect();
+                let windowH = window.innerHeight;
 
-                // Progress logic: calculates circle position relative to the line container
-                let scrollProgress = (window.innerHeight / 2) - lineRect.top;
-                let percentage = Math.max(0, Math.min(scrollProgress / lineRect.height, 1));
+                {# Matches your Grow logic: Trigger at 50% of viewport #}
+                let scrollProgress = (windowH / 2) - rect.top;
+                let percentage = Math.max(0, Math.min(scrollProgress / rect.height, 1));
 
-                this.yPos = percentage * lineRect.height;
+                this.yPos = percentage * rect.height;
             }
          }"
          x-init="handleScroll()"
-         @scroll.window="handleScroll()"
+         @scroll.window.passive="handleScroll()"
          x-ref="sectionWrapper">
 
     <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start relative">
 
         {# --- LEFT SIDE: HEADING --- #}
-        <div class="md:col-span-3 px-6 md:px-6 lg:px-8 md:pl-12 lg:pl-16 mb-12 md:mb-0">
+        <div class="md:col-span-3 px-8 md:pl-12 lg:pl-16 mb-12 md:mb-0">
             <h2 class="font-serif tracking-tight {{ data.textColor }} break-normal"
                 style="font-size: clamp(2.25rem, 4vw + 1rem, 4.5rem); line-height: 0.85; word-break: keep-all;">
                 {{ data.paragraphHeading | raw }}
             </h2>
 
             {% if data.bodyText and data.bodyText|trim is not empty %}
-                <div class="font-aktiv opacity-90 max-w-xs mt-6 {{ data.textColor }} font-medium"
-                     style="font-size: clamp(0.9rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;">
+                <div class="font-aktiv opacity-90 max-w-xs mt-6 {{ data.textColor }} font-medium text-lg">
                     {{ data.bodyText | raw }}
                 </div>
             {% endif %}
         </div>
 
-        {# --- THE INTERACTIVE LINE --- #}
-        <div class="flex absolute z-30 w-8 justify-center
-                    left-8 md:left-[30%]
+        {# --- THE INTERACTIVE LINE (SYNCED WITH ABOUT-GROW) --- #}
+        <div class="flex absolute z-30 w-[2px] justify-center
+                    left-6 md:left-[30%]
                     top-[180px] md:top-0
                     bottom-0"
              x-ref="lineContainer">
 
-            {# Background Dashed Line #}
-            <div class="h-full w-px border-l border-dashed border-{{ textBaseColor }} opacity-20"></div>
+            {# 1. Static Track: border-dashed with 10% opacity per your Grow file #}
+            <div class="h-full w-full border-l-2 border-dashed border-{{ textBaseColor }}/10"></div>
 
-            {# Solid Progress Line #}
-            <div class="absolute top-0 w-px border-l-2 border-solid border-{{ textBaseColor }} transition-all duration-75 ease-out"
+            {# 2. Active Progress: border-dashed with full color #}
+            <div class="absolute top-0 left-0 w-full border-l-2 border-dashed border-{{ textBaseColor }} transition-all duration-75 ease-out"
                  :style="'height: ' + yPos + 'px'"></div>
 
-            {# Circle Indicator #}
-            <div class="absolute w-4 h-4 bg-{{ textBaseColor }} rounded-full shadow-md -translate-x-[0.5px] transition-all duration-75 ease-out"
-                 :style="'transform: translateY(' + yPos + 'px)'"></div>
+            {# 3. The Scrolling Dot: Fixed size and center alignment #}
+            <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-{{ textBaseColor }} rounded-full shadow-md transition-opacity duration-300"
+                 :class="yPos > 0 ? 'opacity-100' : 'opacity-0'"
+                 :style="'transform: translate(-50%, -50%); top: ' + yPos + 'px'"></div>
         </div>
 
-        {# --- RIGHT SIDE (The Cards) --- #}
-        <div class="col-span-1 md:col-span-7 px-4 pl-16 md:px-6 lg:px-8 md:pl-20 pr-[20px]">
+        {# --- RIGHT SIDE: ACCORDION CARDS --- #}
+        <div class="col-span-1 md:col-span-7 px-4 pl-14 md:pl-20 pr-[40px]">
             <div class="flex flex-col space-y-6">
                 {% for item in data.items %}
-                    <div class="benefit-card group w-full transition-all duration-300 rounded-none cursor-pointer select-none outline-none"
+                    <div class="benefit-card group w-full transition-all duration-500 rounded-none"
                          x-data="{
                             isScrollActive: false,
                             checkActive() {
                                 let rect = $el.getBoundingClientRect();
-                                let lineRect = $refs.lineContainer.getBoundingClientRect();
-                                let circleGlobalY = lineRect.top + yPos;
+                                let triggerPoint = window.innerHeight / 2;
 
-                                this.isScrollActive = (circleGlobalY >= rect.top && circleGlobalY <= rect.bottom);
+                                {# Highlighting logic: Activates as the dot passes through the card bounds #}
+                                this.isScrollActive = (rect.top <= triggerPoint && rect.bottom >= triggerPoint);
                             }
                          }"
                          x-init="$watch('yPos', () => checkActive())"
-                         :class="(isScrollActive) ? 'bg-foxplan-white p-8 md:p-10 md:translate-x-4 shadow-lg' : 'bg-transparent p-8 md:p-10 md:translate-x-0 shadow-none'">
+                         :class="(isScrollActive) ? 'bg-white p-8 md:p-10 translate-x-2 md:translate-x-4 shadow-lg' : 'bg-transparent p-8 md:p-10 translate-x-0 shadow-none opacity-40'">
 
                         {% if item.title %}
-                            <h4 class="font-aktiv text-[10px] font-bold tracking-[0.2em] uppercase mb-3 transition-all duration-500"
-                                :class="(isScrollActive) ? 'text-foxplan-charcoal-brown opacity-100' : '{{ data.textColor }} opacity-40'">
+                            <h4 class="font-aktiv text-[10px] font-bold tracking-[0.2em] uppercase mb-3 text-foxplan-charcoal-brown">
                                 {{ item.title }}
                             </h4>
                         {% endif %}
 
                         {% if item.text %}
-                            <div class="font-serif transition-all duration-500 w-full break-normal"
-                                 style="font-size: clamp(1.2rem, 2vw + 0.8rem, 2rem); line-height: 1.25; word-break: keep-all;"
-                                 :class="(isScrollActive) ? 'text-foxplan-charcoal-brown opacity-100' : '{{ data.textColor }} opacity-60'">
+                            <div class="font-serif text-foxplan-charcoal-brown"
+                                 style="font-size: clamp(1.4rem, 2vw + 1rem, 2.2rem); line-height: 1.2;">
                                 {{ item.text | raw }}
                             </div>
                         {% endif %}
