@@ -99,12 +99,12 @@
                             <div class="flex-grow">
                                 {# Episode Title Clamp: Scales from 1.75rem (28px) to 2.25rem (36px) #}
                                 <h3 @click="openPlayer('{{ audioUrl }}', '{{ epTitle }}')"
-                                    class="font-serif leading-tight cursor-pointer text-foxplan-charcoal-brown mb-3 group-hover:text-foxplan-neutral-beige transition-colors"
+                                    class="font-serif leading-tight cursor-pointer text-foxplan-charcoal-brown mb-3  transition-colors"
                                     style="font-size: clamp(1.75rem, 3vw, 2.25rem);">
                                     {{ episode.mainHeading ?? episode.title }}
                                 </h3>
 
-                                <div class="flex items-center gap-2 text-[11px] text-foxplan-charcoal-brown group-hover:text-foxplan-neutral-beige font-sans uppercase tracking-wider font-bold">
+                                <div class="flex items-center gap-2 text-[11px] text-foxplan-charcoal-brown  font-sans uppercase tracking-wider font-bold">
                                     <span>{{ episode.postDate | date('M d, Y') | upper }}</span>
                                     {% if episode.episodeDuration matches '/^\\d+$/' %}
                                         <span>•</span>
