@@ -10,88 +10,87 @@
     {# 1. Hero Section #}
     <div x-data="{ showBookCallOverlay: false }" class="relative">
 
-    {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
-    {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
-    {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
-    {% set pageHeroImage = entry.heroImage.one() ?? null %}
+        {% set pageHeading = (entry.title is defined and entry.title|length) ? entry.title : 'Insurance' %}
+        {% set pageBody = (entry.heroBodyText is defined and entry.heroBodyText|length) ? entry.heroBodyText : 'Kiwis are a laidback bunch, but our ‘she’ll be right’ attitude also means that many of us are underinsured.' %}
+        {% set pageButton = (entry.button is defined and entry.button|length) ? entry.button : 'Get in touch' %}
+        {% set pageHeroImage = entry.heroImage.one() ?? null %}
 
-    {{ include('_sections/hero-sections/hero-arrow.twig', {
-        props: {
-            heading: pageHeading,
-            bodyText: pageBody,
-            buttonText: pageButton,
-            imageAsset: pageHeroImage,
-            backgroundColor: 'bg-foxplan-yellow',
-            buttonUrl: '#',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-neutral-beige'
-        }
-    }) }}
+        {{ include('_sections/hero-sections/hero-arrow.twig', {
+            props: {
+                heading: pageHeading,
+                bodyText: pageBody,
+                buttonText: pageButton,
+                imageAsset: pageHeroImage,
+                backgroundColor: 'bg-foxplan-yellow',
+                buttonUrl: '#',
+                buttonBgColor: 'bg-foxplan-charcoal-brown',
+                buttonTextColor: 'text-foxplan-neutral-beige'
+            }
+        }) }}
 
-{#    {Accordion section  }#}
-    {% include "_sections/content-sections/how-we-work.twig" with {
-        entry: entry,
-        props: {
-            backgroundColor: 'bg-foxplan-yellow',
-            textColor: 'text-foxplan-charcoal-brown',
-            mainHeading: entry.paragraphHeading ?? 'How we work with you',
-            mainBody: entry.bodyText ?? '',
-        }
-    } %}
+        {#    {Accordion section  } #}
+        {% include "_sections/content-sections/how-we-work.twig" with {
+            entry: entry,
+            props: {
+                backgroundColor: 'bg-foxplan-yellow',
+                textColor: 'text-foxplan-charcoal-brown',
+                mainHeading: entry.paragraphHeading ?? 'How we work with you',
+                mainBody: entry.bodyText ?? '',
+            }
+        } %}
 
-    {# explore services #}
-    {% set serviceItems = [] %}
+        {# explore services #}
+        {% set serviceItems = [] %}
 
-    {% if entry.infoBlock is defined %}
-        {% for block in entry.infoBlock.all() %}
-            {% set serviceItems = serviceItems | merge([{
-                'title': block.blockHeading ?? 'Service Title',
-                'text': block.blockBodyText ?? '',
-                'link': block.blockLinkUrl ?? '#'
-            }]) %}
-        {% endfor %}
-    {% endif %}
+        {% if entry.infoBlock is defined %}
+            {% for block in entry.infoBlock.all() %}
+                {% set serviceItems = serviceItems | merge([{
+                    'title': block.blockHeading ?? 'Service Title',
+                    'text': block.blockBodyText ?? '',
+                    'link': block.blockLinkUrl ?? '#'
+                }]) %}
+            {% endfor %}
+        {% endif %}
 
 
-    {{ include('_sections/services/our-services-1.twig', {
-        props: {
-            title: entry.paragraphHeading2 ?? 'Our Services',
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-white',
-            items: serviceItems
-        }
-    }) }}
+        {{ include('_sections/services/our-services-1.twig', {
+            props: {
+                title: entry.paragraphHeading2 ?? 'Our Services',
+                backgroundColor: 'bg-foxplan-neutral-beige',
+                buttonBgColor: 'bg-foxplan-charcoal-brown',
+                buttonTextColor: 'text-white',
+                items: serviceItems
+            }
+        }) }}
 
-    {# partner section #}
-    {{ include('_sections/content-sections/who-we-work-with.twig', {
-        props: {
-            title:           'WHO WE WORK WITH',
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor:       'text-foxplan-charcoal-brown',
-            borderColor:     'border-foxplan-charcoal-brown/20',
-            assetVolume:     'suppliersLogo'
-        }
-    }) }}
+        {# partner section #}
+        {{ include('_sections/content-sections/who-we-work-with.twig', {
+            props: {
+                title:           'WHO WE WORK WITH',
+                backgroundColor: 'bg-foxplan-neutral-beige',
+                textColor:       'text-foxplan-charcoal-brown',
+                borderColor:     'border-foxplan-charcoal-brown',
+                assetVolume:     'suppliersLogo'
+            }
+        }) }}
 
-    {# footer #}
-    {{ include('_components/footer/footer-High-fidelity.twig', {
-        props: {
-            backgroundColor: 'bg-foxplan-charcoal-brown',
-            textColor: 'text-foxplan-yellow',
-            logoColor: 'text-foxplan-yellow',
-            buttonColor: 'bg-foxplan-yellow',
-            buttonTextColor: 'text-foxplan-charcoal-brown',
-            separatorColor: 'text-foxplan-yellow'
-        }
-    }) }}
+        {# footer #}
+        {{ include('_components/footer/footer-High-fidelity.twig', {
+            props: {
+                backgroundColor: 'bg-foxplan-charcoal-brown',
+                textColor: 'text-foxplan-yellow',
+                logoColor: 'text-foxplan-yellow',
+                buttonColor: 'bg-foxplan-yellow',
+                buttonTextColor: 'text-foxplan-charcoal-brown',
+                separatorColor: 'text-foxplan-yellow'
+            }
+        }) }}
+
         {# 6. THE BOOKING OVERLAY #}
         {{ include('_sections/overlays/book-a-call.twig') }}
 
     </div>
 
-    {% css %}
-        [x-cloak] { display: none !important; }
-    {% endcss %}
+
 
 {% endblock %}

@@ -1,8 +1,8 @@
 {#
 Our Services Slider Section
+- Spacing Fix: Reduced margin after title for a tighter, professional look
 - Typography: strictly using Season Serif and Aktiv Grotesk
-- Component Integration: Using the standard button component with dynamic URL from Craft
-- Mobile Preview: Enlarged cards (90vw width / 600px min-height)
+- Padding: Using responsive px-4 md:px-6 lg:px-8 as requested
 #}
 
 {% set defaults = {
@@ -17,7 +17,7 @@ Our Services Slider Section
 <section class="w-full h-screen flex flex-col pt-16 pb-0 {{ data.backgroundColor }} overflow-hidden" id="services-horizontal-section">
 
     {# 1. HEADER SECTION #}
-    <div class="w-full px-[20px] flex-shrink-0">
+    <div class="w-full px-4 md:px-6 lg:px-8 flex-shrink-0">
         <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8">
             <h2 class="font-serif {{ data.textColor }} leading-tight"
                 style="font-size: clamp(3rem, 8vw + 1rem, 7.5rem);">
@@ -25,15 +25,15 @@ Our Services Slider Section
             </h2>
             {% if data.introText %}
                 <div class="max-w-md font-aktiv-grotesk {{ data.textColor }} pt-2 lg:pt-4 font-light"
-                     style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.5rem);">
+                     style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.25rem);">
                     {{ data.introText | raw }}
                 </div>
             {% endif %}
         </div>
     </div>
 
-    {# 2. SLIDER TRACK: Strict 20px gap above cards #}
-    <div class="relative px-[20px] flex-grow flex items-start mt-[20px]">
+    {# 2. SLIDER TRACK #}
+    <div class="relative px-4 md:px-6 lg:px-8 flex-grow flex items-start mt-[20px]">
         <div id="slider-track" class="flex gap-[12px] will-change-transform">
 
             {% if entry.services is defined %}
@@ -42,22 +42,23 @@ Our Services Slider Section
                                  w-[90vw] md:w-[45vw] lg:w-[calc((100%/3)-6px)] border-r-[1px] border-foxplan-yellow last:border-none">
 
                         <div class="flex-grow flex flex-col justify-start">
-                            <h3 class="font-serif mb-8 {{ data.textColor }}"
+
+                            <h3 class="font-serif mb-2 md:mb-4 {{ data.textColor }} min-h-[2.2em] leading-[1.1]"
                                 style="font-size: clamp(2rem, 2vw + 1rem, 3rem);">
                                 {{ block.mainHeading | raw }}
                             </h3>
 
-                            <div class="font-aktiv-grotesk mb-10 {{ data.textColor }} opacity-90 leading-snug font-light"
+
+                            <div class="font-aktiv-grotesk md:mb-6 lg:mb-8 {{ data.textColor }} opacity-90 leading-snug font-light min-h-[140px]"
                                  style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.125rem);">
                                 {{ block.bodyText | raw }}
                             </div>
 
-                            {% if block.button is not empty %}
-                                <div class="mb-12">
-                                    {# INTEGRATED COMPONENT: buttonUrl pulled from Craft field handle #}
+                            {% if block.buttonUrl is not empty %}
+                                <div class="mb-10">
                                     {{ include('_components/ui/button/button.twig', {
                                         props: {
-                                            button: block.button,
+                                            button: 'LEARN MORE',
                                             url: block.buttonUrl,
                                             backgroundColor: 'bg-foxplan-charcoal-brown',
                                             textColor: 'text-foxplan-neutral-beige',

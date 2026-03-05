@@ -140,47 +140,28 @@
 
                         </div>
 
-                        {# SOCIAL LINKS #}
-                        {% set facebookUrl = socialLinks.facebook ?? null %}
-                        {% set instagramUrl = socialLinks.instagram ?? null %}
-                        {% set linkedinUrl = socialLinks.linkedin ?? null %}
+                        {# SOCIAL LINKS ALIGNED WITH BUTTON ENDS #}
+                        {% set isDarkBg = props.backgroundColor == 'bg-foxplan-charcoal-brown' %}
+                        {% set socialIconColor = isDarkBg ? 'text-foxplan-charcoal-brown' : 'text-foxplan-neutral-beige' %}
+                        {% set socialBoxColor  = isDarkBg ? 'bg-foxplan-yellow' : 'bg-foxplan-charcoal-brown' %}
 
-                        <div class="flex gap-3 pt-4">
-                            {# FACEBOOK #}
-                            {% if facebookUrl %}
+                        <div class="flex gap-2 mt-10">
+                            {% if socialLinks.facebook ?? null %}
                                 {{ include('_components/ui/icons/facebook-icon.twig', {
-                                    props: {
-                                        iconColor: 'fill-white',
-                                        boxColor: 'bg-[#1D1013]',
-                                        size: 'w-8 h-8',
-                                        url: facebookUrl
-                                    }
+                                    props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.facebook }
                                 }) }}
                             {% endif %}
-
-                            {# INSTAGRAM #}
-                            {% if instagramUrl %}
+                            {% if socialLinks.instagram ?? null %}
                                 {{ include('_components/ui/icons/instagram-icon.twig', {
-                                    props: {
-                                        iconColor: 'fill-white',
-                                        boxColor: 'bg-[#1D1013]',
-                                        size: 'w-8 h-8',
-                                        url: instagramUrl
-                                    }
+                                    props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.instagram }
+                                }) }}
+                            {% endif %}
+                            {% if socialLinks.linkedin ?? null %}
+                                {{ include('_components/ui/icons/linkedin-icon.twig', {
+                                    props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.linkedin }
                                 }) }}
                             {% endif %}
 
-                            {# LINKEDIN #}
-                            {% if linkedinUrl %}
-                                {{ include('_components/ui/icons/linkedin-icon.twig', {
-                                    props: {
-                                        iconColor: 'fill-white',
-                                        boxColor: 'bg-[#1D1013]',
-                                        size: 'w-8 h-8',
-                                        url: linkedinUrl
-                                    }
-                                }) }}
-                            {% endif %}
 
                         </div>
 

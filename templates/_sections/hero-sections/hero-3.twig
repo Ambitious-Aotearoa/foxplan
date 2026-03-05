@@ -1,58 +1,82 @@
-{# 1. Configuration - Fully Hardcoded #}
-{% set sectionData = {
-    heading: 'Complaints Policy',
-    body: '',
-    buttonText: 'Contact an adviser',
-    buttonLink: '#',
-    headingColor: 'text-foxplan-charcoal-brown',
-    bodyTextColor: 'text-foxplan-charcoal-brown',
-    accentColor: 'bg-foxplan-yellow'
+{# templates/_sections/hero-sections/hero-3.twig #}
+
+{# 1. DATA MAPPING #}
+{% set contentSource = entry ?? block ?? null %}
+
+{# Use hardcoded defaults if entry fields aren't populated #}
+{% set entryTitle = contentSource.title ?? 'Complaints Policy' %}
+{% set entryBody = contentSource.heroBodyText ?? '' %}
+{% set entryButtonText = contentSource.button ?? null %}
+{% set entryButtonLink = contentSource.buttonLink ?? '#' %}
+
+{% set defaults = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-foxplan-charcoal-brown',
+    titleColor: 'text-foxplan-charcoal-brown',
+    imageSrc: 'images/PropertyInvestment_hero.jpg'
 } %}
 
-{# Full Section Yellow Background - Adjusted padding for a clean finish #}
-<section class="w-full {{ sectionData.accentColor }} pt-0 pb-16 md:pb-20 font-aktiv overflow-hidden relative">
-    <div class="mx-auto relative">
+{% set data = defaults | merge(props | default({})) %}
 
-        <div class="grid grid-cols-1 md:grid-cols-10 w-full relative items-stretch">
+{# 2. STYLES #}
+{% set titleStyles = 'font-size: clamp(3.5rem, 9vw + 1rem, 9rem); line-height: 0.85; word-break: keep-all;' %}
+{% set bodyStyles = 'font-size: 16px; line-height: 1.2;' %}
+{% set staticImagePath = alias('@web/dist/' ~ data.imageSrc) %}
 
-            {# 20% Spacer #}
-            <div class="hidden md:block md:col-span-2"></div>
+<section class="w-full {{ data.backgroundColor }} overflow-hidden relative">
+    <div class="grid grid-cols-1 md:grid-cols-10 px-0">
 
-            {# 80% Content Area #}
-            <div class="col-span-1 md:col-span-8 relative">
+        <div class="hidden md:block md:col-span-1"></div>
 
-                {# Image Container - Height remains grand at 85vh #}
-                <div class="w-full h-[65vh] md:h-[85vh] relative">
-                    {# UPDATED: Points directly to the web/dist/images folder #}
-                    <img src="{{ alias('@web/dist/images/PropertyInvestment_hero.jpg') }}"
-                         alt="{{ sectionData.heading }}"
-                         class="w-full h-full object-cover block">
+        <div class="col-span-1 md:col-span-9 flex flex-col">
 
-                    {# HEADING #}
-                    <div class="absolute bottom-0 left-0 md:left-8 w-full z-20 -translate-y-[30%]">
-                        <h2 class="font-serif font-light {{ sectionData.headingColor }} leading-[0.8] tracking-tighter"
-                            style="font-size: clamp(60px, 10vw, 160px);">
-                            {{ sectionData.heading }}
-                        </h2>
+            {# IMAGE BLOCK #}
+            <div class="relative w-full h-[500px] lg:h-[750px] px-4 md:px-0 overflow-hidden">
+                <img
+                        src="{{ staticImagePath }}"
+                        alt="{{ entryTitle }}"
+                        class="w-full h-full object-cover"
+                >
+
+                {# TITLE OVERLAY #}
+                {% if entryTitle %}
+                    <div class="absolute bottom-0 left-0 px-8 md:px-12 pb-6">
+                        <h1 class="font-serif {{ data.titleColor }} tracking-tighter break-normal"
+                            style="{{ titleStyles }}">
+                            {{ entryTitle | raw }}
+                        </h1>
                     </div>
-                </div>
+                {% endif %}
+            </div>
 
+            {# BOTTOM CONTENT BLOCK #}
+            <div class="px-4 md:px-0 mt-12 mb-10">
+{#                <div class="max-w-[450px]">#}
 
-                {# The yellow background of the <section> will naturally fill this space #}
-                <div class="pt-16 md:pt-20 px-8 md:px-0">
-                    {% if sectionData.body %}
-                        <div class="max-w-xl">
-                            <div class="text-base md:text-lg {{ sectionData.bodyTextColor }} leading-relaxed mb-10 font-medium">
-                                {{ sectionData.body | raw }}
-                            </div>
-                        </div>
-                    {% else %}
-                        {# This empty div ensures the spacing is maintained even without text #}
-                        <div class="h-4"></div>
-                    {% endif %}
-                </div>
+{#                    #}{# BODY TEXT #}
+{#                    {% if entryBody %}#}
+{#                        <p class="font-aktiv {{ data.textColor }} mb-10"#}
+{#                           style="{{ bodyStyles }}">#}
+{#                            {{ entryBody | raw }}#}
+{#                        </p>#}
+{#                    {% endif %}#}
+
+{#                    #}{# BUTTON #}
+{#                    {% if entryButtonText %}#}
+{#                        <div class="flex">#}
+{#                            {% include '_components/ui/button/button.twig' with {#}
+{#                                props: {#}
+{#                                    text: entryButtonText,#}
+{#                                    url: entryButtonLink,#}
+{#                                    backgroundColor: 'bg-foxplan-charcoal-brown',#}
+{#                                    textColor: 'text-white',#}
+{#                                    classes: 'px-8 py-4 text-[11px] tracking-[0.2em] uppercase font-aktiv font-bold rounded-none'#}
+{#                                }#}
+{#                            } only %}#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{#                </div>#}
             </div>
         </div>
-
     </div>
 </section>

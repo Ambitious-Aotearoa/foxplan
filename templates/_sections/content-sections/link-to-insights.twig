@@ -5,7 +5,19 @@
     .all() %}
 
 {% if relatedArticles|length > 0 %}
-    <section class="w-full bg-foxplan-charcoal-brown pt-12 lg:pt-24 pb-0 relative overflow-hidden">
+    <section class="w-full bg-foxplan-charcoal-brown pt-12 lg:pt-24 pb-0 relative overflow-hidden"
+             x-data="{
+                revealed: false,
+                checkScroll() {
+                    if (this.revealed) return;
+                    let rect = this.$el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                        this.revealed = true;
+                    }
+                }
+             }"
+             x-init="setTimeout(() => checkScroll(), 200)"
+             @scroll.window.passive="checkScroll()">
 
         <div class="px-4 md:px-6 lg:px-8 relative z-10">
             <h2 class="font-serif text-foxplan-neutral-beige mb-8 lg:mb-16 tracking-tight"
@@ -21,7 +33,6 @@
                         </p>
 
                         <a href="{{ article.url }}" class="block mb-8">
-                            {# Fluid clamp for heading size #}
                             <h3 class="font-serif text-foxplan-neutral-beige group-hover:opacity-70 transition-opacity leading-[1.15]"
                                 style="font-size: clamp(1.5rem, 2vw + 0.5rem, 2.2rem);">
                                 {{ article.title }}
@@ -36,17 +47,19 @@
             </div>
         </div>
 
-        {# --- THE STATIC ARCS --- #}
+        {# --- THE ANIMATED ARCS --- #}
         <div class="relative w-full h-[200px] md:h-[300px] lg:h-[400px] mt-4 pointer-events-none hidden lg:block overflow-visible px-4 md:px-6 lg:px-8">
 
-            <div class="relative w-full h-full text-foxplan-neutral-beige opacity-100">
+            <div class="transition-all duration-[6000ms] overflow-hidden text-foxplan-neutral-beige"
+                 style="transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); width: 0%; opacity: 0;"
+                 :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0%; opacity: 0;'">
 
                 <svg class="w-full h-auto block fill-none stroke-current overflow-visible"
                      viewBox="0 0 2100 410"
                      xmlns="http://www.w3.org/2000/svg"
                      style="min-width: 2100px;">
                     <g stroke-width="1.2">
-                        {# 3 Solid Circular Arcs #}
+                        {#  Solid Circular Arcs #}
                         <path d="M0,400 A350,350 0 0,1 700,400 A350,350 0 0,1 1400,400 A350,350 0 0,1 2100,400"
                               style="stroke: currentColor;" />
 

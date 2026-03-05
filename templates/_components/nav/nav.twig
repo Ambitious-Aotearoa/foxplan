@@ -4,8 +4,7 @@
 {% set navArticle = craft.entries()
     .section('article')
     .with(['featuredImage'])
-    .one()
-%}
+    .one() %}
 
 {# --- 2. Theme Logic --- #}
 {% set defaultTheme = {
@@ -89,12 +88,13 @@
     {# --- MAIN HEADER --- #}
     <div class="w-full {{ theme.backgroundColor }} relative z-[510]">
         <div class="flex items-center h-16 lg:h-20">
-            <a href="/" class="flex items-center h-full pl-6 lg:pl-8 pr-[30px] lg:pr-[60px] flex-none {{ theme.textColor }}">
+            <a href="/"
+               class="flex items-center h-full pl-6 lg:pl-8 pr-[30px] lg:pr-[60px] flex-none {{ theme.textColor }}">
                 {{ svg(alias(logoPath))|attr({ class: 'h-10 lg:h-11 w-auto ' ~ theme.logoFilter, alt: 'FoxPlan Logo' }) }}
             </a>
 
             <div class="flex-grow flex items-center h-full">
-                <div class="hidden lg:flex items-center justify-between w-full max-w-[1000px] mx-auto text-[15px] font-medium {{ theme.textColor }} h-full">
+                <div class="hidden lg:flex items-center justify-between w-full max-w-[1000px] mx-auto text-[14px] font-medium {{ theme.textColor }} h-full">
                     {% for handle in ['accounting', 'insurance', 'Savings & Investment', 'Business', 'Mortgages', 'News', 'About'] %}
                         {% set hasDropdown = megaMenuData[handle] is defined and megaMenuData[handle]|length > 0 %}
                         {% set isStatic = handle in ['News', 'About'] %}
@@ -109,7 +109,8 @@
                                     <svg class="w-3 h-3 transition-transform duration-200"
                                          :class="openTab === '{{ handle }}' ? 'rotate-180' : ''" fill="none"
                                          stroke="currentColor" viewBox="0 0 24 24">
-                                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round"
+                                              stroke-linejoin="round"/>
                                     </svg>
                                 {% endif %}
                             </span>
@@ -125,13 +126,17 @@
                                text-foxplan-charcoal-brown">
                     <div class="w-7 lg:w-5 h-7 lg:h-5 transition-transform group-hover:scale-110">
                         <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                            <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M17.5 17.5L13.875 13.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+                            <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M17.5 17.5L13.875 13.875" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="square" stroke-linejoin="round"/>
                         </svg>
                     </div>
                 </button>
 
-                <button @click="mobileMenuOpen = true" class="lg:hidden p-4 text-foxplan-charcoal-brown cursor-pointer flex flex-col gap-1.5 items-end">
+                <button @click="mobileMenuOpen = true"
+                        class="lg:hidden p-4 text-foxplan-charcoal-brown cursor-pointer flex flex-col gap-1.5 items-end">
                     <span class="w-8 h-0.5 bg-current"></span>
                     <span class="w-5 h-0.5 bg-current"></span>
                     <span class="w-8 h-0.5 bg-current"></span>
@@ -163,7 +168,9 @@
                 {{ svg(alias(logoPath))|attr({ class: 'h-10 w-auto fill-current text-foxplan-charcoal-brown' }) }}
             </a>
             <button @click="mobileMenuOpen = false" class="p-2 text-foxplan-charcoal-brown cursor-pointer">
-                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
             </button>
         </div>
 
@@ -175,25 +182,36 @@
 
                     <div class="border-b border-foxplan-charcoal-brown/10 py-6">
                         <div class="flex items-center justify-between font-aktiv uppercase tracking-[0.15em] text-foxplan-charcoal-brown">
-                            <a href="{{ tabUrl }}" class="flex-grow" style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">{{ handle }}</a>
+                            <a href="{{ tabUrl }}" class="flex-grow"
+                               style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">{{ handle }}</a>
                             {% if hasDropdown %}
                                 {# Mutual Exclusive Toggle Logic #}
-                                <button @click="activeMobileTab = (activeMobileTab === '{{ handle }}' ? null : '{{ handle }}')" class="p-2">
-                                    <svg class="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300" :class="activeMobileTab === '{{ handle }}' ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <button @click="activeMobileTab = (activeMobileTab === '{{ handle }}' ? null : '{{ handle }}')"
+                                        class="p-2">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300"
+                                         :class="activeMobileTab === '{{ handle }}' ? 'rotate-180' : ''" fill="none"
+                                         stroke="currentColor" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round"
+                                              stroke-linejoin="round"/>
+                                    </svg>
                                 </button>
                             {% endif %}
                         </div>
 
                         {% if hasDropdown %}
-                            <div x-show="activeMobileTab === '{{ handle }}'" x-collapse class="mt-6 flex flex-col gap-5 pl-4 font-aktiv">
+                            <div x-show="activeMobileTab === '{{ handle }}'" x-collapse
+                                 class="mt-6 flex flex-col gap-5 pl-4 font-aktiv">
                                 {% for subItem in megaMenuData[handle] %}
-                                    <a href="{{ subItem.url }}" class="opacity-60 hover:opacity-100 transition-opacity" style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);">{{ subItem.title }}</a>
+                                    <a href="{{ subItem.url }}" class="opacity-60 hover:opacity-100 transition-opacity"
+                                       style="font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);">{{ subItem.title }}</a>
                                 {% endfor %}
                             </div>
                         {% endif %}
                     </div>
                 {% endfor %}
-                <a href="/contact-us" class="border-b border-foxplan-charcoal-brown/10 py-8 font-aktiv uppercase tracking-[0.15em] text-foxplan-charcoal-brown" style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">Contact</a>
+                <a href="/contact-us"
+                   class="border-b border-foxplan-charcoal-brown/10 py-8 font-aktiv uppercase tracking-[0.15em] text-foxplan-charcoal-brown"
+                   style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">Contact</a>
             </div>
         </div>
     </div>
@@ -208,7 +226,8 @@
              class="fixed inset-0 z-[1000] bg-foxplan-neutral-beige flex flex-col items-center pt-[15vh] px-6"
              style="display: none;">
 
-            <button @click="searchOpen = false; searchQuery = ''" class="absolute top-10 right-10 text-foxplan-charcoal-brown hover:rotate-90 transition-transform duration-300 p-2 cursor-pointer">
+            <button @click="searchOpen = false; searchQuery = ''"
+                    class="absolute top-10 right-10 text-foxplan-charcoal-brown hover:rotate-90 transition-transform duration-300 p-2 cursor-pointer">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -216,25 +235,41 @@
 
             <div class="w-full max-w-4xl">
                 <div class="text-center mb-12">
-                    <h2 class="text-[60px] lg:text-[80px] font-serif text-foxplan-charcoal-brown leading-tight mb-4">Search anything</h2>
+                    <h2 class="text-[60px] lg:text-[80px] font-serif text-foxplan-charcoal-brown leading-tight mb-4">
+                        Search anything</h2>
                 </div>
 
                 <div class="relative border-b border-foxplan-charcoal-brown pb-4 flex items-center">
-                    <svg class="w-6 h-6 text-foxplan-charcoal-brown mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2"/></svg>
-                    <input type="text" x-model="searchQuery" placeholder="Search here" class="bg-transparent border-none outline-none text-2xl w-full placeholder:text-foxplan-charcoal-brown/30 text-foxplan-charcoal-brown" x-ref="searchInput" x-effect="if(searchOpen) { setTimeout(() => $refs.searchInput.focus(), 100) }">
+                    <svg class="w-6 h-6 text-foxplan-charcoal-brown mr-4" fill="none" stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" stroke-width="2"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2"/>
+                    </svg>
+                    <input type="text" x-model="searchQuery" placeholder="Search here"
+                           class="bg-transparent border-none outline-none text-2xl w-full placeholder:text-foxplan-tint-line text-foxplan-charcoal-brown"
+                           x-ref="searchInput"
+                           x-effect="if(searchOpen) { setTimeout(() => $refs.searchInput.focus(), 100) }">
                 </div>
 
                 <div class="mt-8 max-h-[50vh] overflow-y-auto">
                     <template x-for="result in filteredResults" :key="result.url">
-                        <a :href="result.url" class="group flex items-center justify-between py-6 border-b border-foxplan-charcoal-brown/10 hover:px-4 transition-all duration-300">
+                        <a :href="result.url"
+                           class="group flex items-center justify-between py-6 border-b border-foxplan-charcoal-brown/10 hover:px-4 transition-all duration-300">
                             <div>
-                                <span class="text-[10px] tracking-widest uppercase text-foxplan-charcoal-brown/40 block mb-1" x-text="result.category"></span>
-                                <h3 class="text-2xl text-foxplan-charcoal-brown group-hover:text-black transition-colors" x-text="result.title"></h3>
+                                <span class="text-[10px] tracking-widest uppercase text-foxplan-charcoal-brown/40 block mb-1"
+                                      x-text="result.category"></span>
+                                <h3 class="text-2xl text-foxplan-charcoal-brown group-hover:text-black transition-colors"
+                                    x-text="result.title"></h3>
                             </div>
-                            <svg class="w-6 h-6 text-foxplan-charcoal-brown opacity-0 group-hover:opacity-100 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="w-6 h-6 text-foxplan-charcoal-brown opacity-0 group-hover:opacity-100 transition-all"
+                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                            </svg>
                         </a>
                     </template>
-                    <div x-show="searchQuery !== '' && filteredResults.length === 0" class="py-12 text-center text-foxplan-charcoal-brown">
+                    <div x-show="searchQuery !== '' && filteredResults.length === 0"
+                         class="py-12 text-center text-foxplan-charcoal-brown">
                         No results found for "<span x-text="searchQuery"></span>"
                     </div>
                 </div>
@@ -247,17 +282,26 @@
         <div x-show="openTab === '{{ handle }}'"
              x-transition
              style="display: none;"
-             class="hidden lg:block absolute top-full left-0 right-0 z-[600] px-5"
+             class="hidden lg:block absolute top-full left-0 right-0 z-[600] px-[clamp(1.25rem,3vw,2.5rem)]"
              @mouseenter="openTab = '{{ handle }}'"
              @mouseleave="openTab = null">
-            <div class="bg-foxplan-white shadow-2xl flex w-full min-h-[450px] ">
+
+            <div class="bg-foxplan-white flex w-full min-h-[clamp(400px,45vh,500px)]">
+
                 <div class="w-2/3 grid grid-cols-3">
                     {% for subItem in items %}
-                        <div class="p-8 border-r border-b border-foxplan-tint-line last:border-r-0">
-                            <a href="{{ subItem.url }}" class="block group/link mb-4 border-l-2 border-foxplan-yellow pl-3">
-                                <p class="text-[11px] font-bold tracking-[0.2em] text-foxplan-charcoal-brown uppercase group-hover/link:text-black transition-colors">{{ subItem.title }}</p>
+                        <div class="p-[clamp(1.5rem,2.5vw,2rem)] border-r border-b border-foxplan-tint-line last:border-r-0">
+                            <a href="{{ subItem.url }}"
+                               class="block group/link mb-4 border-l-2 border-foxplan-yellow pl-3">
+
+                                <p class="text-[12px] font-bold tracking-[0.2em] text-foxplan-charcoal-brown uppercase group-hover/link:text-black transition-colors">
+                                    {{ subItem.title }}
+                                </p>
                             </a>
-                            <p class="text-sm text-foxplan-charcoal-brown/60 leading-relaxed">{{ subItem.desc }}</p>
+
+                            <p class="text-[14px] text-foxplan-charcoal-brown leading-relaxed">
+                                {{ subItem.desc }}
+                            </p>
                         </div>
                     {% endfor %}
                 </div>
@@ -271,22 +315,34 @@
                                      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                      alt="{{ navArticle.title }}">
                             {% endif %}
+
                             <div class="absolute inset-0 bg-gradient-to-t from-foxplan-charcoal-brown/90 via-foxplan-charcoal-brown/30 to-transparent transition-opacity duration-300 group-hover:opacity-90"></div>
-                            <div class="absolute bottom-12 left-8 right-8 text-white">
-                                <span class="bg-foxplan-yellow text-foxplan-charcoal-brown text-[10px] font-bold px-3 py-1 rounded-full mb-4 inline-block uppercase tracking-widest">
+
+
+                            <div class="absolute bottom-[clamp(2rem,5vh,3.5rem)] left-[clamp(1.5rem,3vw,2.5rem)] right-[clamp(1.5rem,3vw,2.5rem)] text-white">
+
+
+                                <span class="bg-foxplan-yellow text-foxplan-charcoal-brown font-aktiv font-bold px-3 py-1 rounded-full mb-4 inline-block uppercase tracking-widest"
+                                      style="font-size: clamp(0.625rem, 0.75vw, 0.75rem);">
                                     {{ navArticle.postDate | date('j F Y') | upper }}
-                                </span>
-                                <h3 class="text-2xl font-medium mb-4 leading-tight group-hover:text-foxplan-yellow transition-colors duration-300">
+                </span>
+
+                                <h3 class="font-serif font-medium mb-4 leading-tight group-hover:text-foxplan-yellow transition-colors duration-300"
+                                    style="font-size: clamp(1.5rem, 2.2vw, 2rem);">
                                     {{ navArticle.title }}
                                 </h3>
-                                <span class="text-[11px] font-bold border-b border-white pb-1 group-hover:border-foxplan-yellow transition-colors duration-300 uppercase">
-                                    Read More
-                                </span>
+
+                                <span class="font-aktiv font-bold border-b border-white pb-1 group-hover:border-foxplan-yellow transition-colors duration-300 uppercase"
+                                      style="font-size: clamp(0.625rem, 0.75vw, 0.75rem);">
+                    Read More
+                </span>
                             </div>
                         </a>
                     {% else %}
                         <div class="absolute inset-0 flex items-center justify-center p-8 text-center">
-                            <p class="text-foxplan-charcoal-brown italic">Check back soon for new insights.</p>
+                            <p class="text-foxplan-charcoal-brown italic font-aktiv" style="font-size: 16px;">
+                                Check back soon for new insights.
+                            </p>
                         </div>
                     {% endif %}
                 </div>
