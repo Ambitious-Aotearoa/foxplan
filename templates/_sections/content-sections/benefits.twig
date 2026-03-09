@@ -9,7 +9,7 @@
 
 {% set textBaseColor = data.textColor | replace('text-', '') %}
 
-<section class="w-full {{ data.backgroundColor }} py-[clamp(4rem,10vh,7rem)] overflow-hidden relative"
+<section class="w-full {{ data.backgroundColor }} py-24 overflow-hidden relative"
          x-data="{
             yPos: 0,
             handleScroll() {
@@ -29,14 +29,15 @@
     <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start relative">
 
         {# --- LEFT SIDE: HEADING --- #}
-        {# Expanded to 4 columns for both iPad (md) and Laptop (lg) to prevent text overlap #}
-        <div class="md:col-span-4 xl:col-span-3 px-6 md:px-8 lg:px-12 xl:pl-16 mb-12 md:mb-0">
+        <div class="md:col-span-5 xl:col-span-3 px-6 md:px-10 lg:px-16 xl:pl-16 mb-12 md:mb-0">
+            {# CLAMP: Main Heading typo #}
             <h2 class="font-serif tracking-tight {{ data.textColor }} break-normal"
                 style="font-size: clamp(2.25rem, 4vw + 1rem, 4.5rem); line-height: 0.85; word-break: keep-all;">
                 {{ data.paragraphHeading | raw }}
             </h2>
 
             {% if data.bodyText and data.bodyText|trim is not empty %}
+                {# CLAMP: Body text typo #}
                 <div class="font-aktiv opacity-90 max-w-xs mt-6 {{ data.textColor }} font-medium"
                      style="font-size: clamp(0.9rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;">
                     {{ data.bodyText | raw }}
@@ -45,11 +46,10 @@
         </div>
 
         {# --- THE INTERACTIVE LINE --- #}
-        {# Aligned to 40% for iPad/Laptop range, 30% for XL Desktop #}
         <div class="flex absolute z-30 w-[2px] justify-center
-                    left-8 md:left-[40%] xl:left-[30%]
-                    top-[220px] md:top-0
-                    bottom-0"
+            left-8 md:left-[48%] xl:left-[30%]
+            top-[120px] md:top-0
+            bottom-0"
              x-ref="lineContainer">
 
             <div class="h-full w-full border-l-2 border-dashed border-{{ textBaseColor }}/20"></div>
@@ -63,7 +63,7 @@
         </div>
 
         {# --- RIGHT SIDE: ACCORDION CARDS --- #}
-        <div class="col-span-1 md:col-span-6 xl:col-span-7 px-4 pl-16 md:pl-20 xl:pl-24 pr-[clamp(1rem,5vw,3rem)]">
+        <div class="col-span-1 md:col-span-5 xl:col-span-7 px-4 pl-16 md:pl-12 lg:pl-16 xl:pl-24 pr-8">
             <div class="flex flex-col space-y-6">
                 {% for item in data.items %}
                     <div class="benefit-card group w-full transition-all duration-500 rounded-none"
@@ -77,7 +77,7 @@
                             }
                          }"
                          x-init="$watch('yPos', () => checkActive())"
-                         :class="(isScrollActive) ? 'bg-foxplan-white p-8 md:p-10 translate-x-2 md:translate-x-4 opacity-100 shadow-2xl' : 'bg-transparent p-8 md:p-10 translate-x-0 opacity-40'">
+                         :class="(isScrollActive) ? 'bg-foxplan-white p-8 md:p-10 translate-x-2 md:translate-x-4 opacity-100 ' : 'bg-transparent p-8 md:p-10 translate-x-0 opacity-40'">
 
                         {% if item.title %}
                             <h4 class="font-aktiv text-[10px] font-bold tracking-[0.2em] uppercase mb-4 text-foxplan-charcoal-brown/60">
@@ -86,6 +86,7 @@
                         {% endif %}
 
                         {% if item.text %}
+                            {# CLAMP: Benefit card text typo #}
                             <div class="font-serif text-foxplan-charcoal-brown"
                                  style="font-size: clamp(1.3rem, 2vw + 0.8rem, 2.25rem); line-height: 1.2;">
                                 {{ item.text | raw }}

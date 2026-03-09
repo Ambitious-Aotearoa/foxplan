@@ -54,7 +54,6 @@
         return centerOfFirst + (progress * availableRange);
     },
 
-    {# UPDATED: Instant navigation logic #}
     scrollToIndex(index) {
         const trigger = ScrollTrigger.getById('timelineTrigger');
         if (!trigger) return;
@@ -63,8 +62,8 @@
         const scrollPos = trigger.start + (trigger.end - trigger.start) * targetProgress;
 
         window.scrollTo({
-            top: scrollPos + 2, {# Small offset ensures GSAP registers the card state instantly #}
-            behavior: 'auto'  {# Changed to 'auto' for instant popup #}
+            top: scrollPos + 2,
+            behavior: 'auto'
         });
     }
 }"
@@ -72,7 +71,7 @@
      class="w-full bg-foxplan-neutral-beige h-screen flex flex-col px-0 overflow-hidden pt-0 md:pt-6 lg:pt-8">
 
     {# --- STICKY HEADER & TIMELINE AREA --- #}
-    <div class="sticky top-0 z-[110] bg-foxplan-neutral-beige pt-8 pb-4 px-4">
+    <div class="sticky top-0 z-[110] bg-foxplan-neutral-beige pt-6 pb-4 px-4">
         {# --- HEADING --- #}
         <div class="w-full flex flex-col items-center justify-center text-center mb-4 md:mb-12">
             <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown max-w-6xl mx-auto break-normal"
@@ -83,7 +82,7 @@
 
         {# --- TIMELINE TRACK --- #}
         <section class="w-full mb-6 md:mb-12 select-none z-[100] overflow-hidden">
-            <div class="relative w-full mb-6 md:mb-10 pt-10 px-4 md:px-0">
+            <div class="relative w-full mb-4 md:mb-10 pt-6 px-4 md:px-0">
                 <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-foxplan-charcoal-brown opacity-20"></div>
 
                 <div class="absolute top-1/2 -translate-y-1/2 left-0 flex items-center pointer-events-none transition-all duration-300 ease-out"
@@ -134,7 +133,7 @@
                         year: card.milestoneYear,
                         title: card.milestoneTitle,
                         text: card.milestoneText,
-                        cardBg: isYellow ? 'bg-foxplan-yellow' : 'bg-white',
+                        cardBg: isYellow ? 'bg-foxplan-yellow' : 'bg-foxplan-white',
                     }
                 } only %}
             </div>
@@ -145,6 +144,7 @@
 <style>
     .milestone-card-wrapper {
         will-change: transform, clip-path;
+        overscroll-behavior: contain;
     }
     .no-scrollbar::-webkit-scrollbar {
         display: none;
@@ -154,3 +154,5 @@
         scrollbar-width: none;
     }
 </style>
+
+
