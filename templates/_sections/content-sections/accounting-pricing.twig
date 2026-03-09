@@ -1,7 +1,10 @@
 {# templates/_sections/content-sections/accounting-pricing.twig #}
 
-<section class="w-full bg-foxplan-neutral-beige py-16 md:py-24 px-5 border-b border-foxplan-charcoal-brown overflow-hidden">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start mb-16 px-4 md:px-6 lg:px-8">
+
+<section class="w-full bg-foxplan-neutral-beige py-8 md:py-24 px-4 md:px-6 lg:px-8 border-b border-foxplan-charcoal-brown overflow-hidden">
+
+    {# HEADER GRID#}
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-0 md:gap-16 items-start mb-16">
 
         {# Column 1: Main Heading #}
         <div class="md:col-span-7">
@@ -20,7 +23,7 @@
         </div>
     </div>
 
-    {# Pricing Table: Strictly fluid grid #}
+    {# PRICING TABLE #}
     <div class="w-full border border-foxplan-charcoal-brown grid grid-cols-1 md:grid-cols-3">
         {% set rows = block.accountingTable ?? [] %}
         {% set headerLabel = rows[0] ?? null %}
@@ -37,7 +40,7 @@
                     {{ attribute(headerLabel, handle) ?? '' }}
                 </span>
 
-                {# Price: Restored large architectural scale #}
+                {# Price #}
                 <div class="font-serif text-foxplan-charcoal-brown mb-2 break-keep"
                      style="font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);">
                     {{ attribute(headerPrice, handle) ?? '' }}
