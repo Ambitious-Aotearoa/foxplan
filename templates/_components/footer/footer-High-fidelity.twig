@@ -31,61 +31,64 @@
         @scroll.window="updateRatio()"
         x-init="updateRatio()"
 >
-    <div class="fixed bottom-0 left-0 w-full h-200 {{ data.backgroundColor }} flex flex-col justify-between">
+    <div class="fixed bottom-0 left-0 w-full min-h-full md:h-auto lg:h-full {{ data.backgroundColor }} flex flex-col justify-end">
 
         <div
-                class="max-w-full mx-auto px-4 lg:px-8 pt-10 md:pt-40 lg:pt-40 relative z-10 w-full transition-transform duration-75 ease-out"
-                :style="`transform: scale(${0.9 + (ratio * 0.1)}); opacity: ${0.5 + (ratio * 0.5)};`"
+                class="max-w-full mx-auto px-4 lg:px-8 pt-20 pb-10 relative z-10 w-full transition-transform duration-75 ease-out"
+                :style="`transform: scale(${0.9 + (ratio * 0.1)}); opacity: ${0.5 + (ratio * 0.5)});`"
         >
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-4 lg:mb-10 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-6 lg:gap-12 mb-4 lg:mb-10 items-stretch">
+
                 {# --- LEFT SIDE: LOGO & CTA --- #}
-                <div class="lg:col-span-5">
-                    <div class="mb-10 md:mb-4 md:pt-6 {{ data.logoColor }} block">
-                        {{ svg(alias(data.logoPath))|attr({
-                            class: 'w-32 md:w-28 h-auto fill-current',
-                            alt: 'FoxPlan Logo',
-                            role: 'img'
-                        }) }}
+                <div class="lg:col-span-5 flex flex-col justify-between">
+                    <div>
+                        <div class="mb-10 md:mb-4 md:pt-6 {{ data.logoColor }} block">
+                            {{ svg(alias(data.logoPath))|attr({
+                                class: 'w-32 md:w-28 h-auto fill-current',
+                                alt: 'FoxPlan Logo',
+                                role: 'img'
+                            }) }}
+                        </div>
+
+                        <h2 class="font-serif tracking-tight {{ data.textColor }} mb-8 break-normal"
+                            style="{{ ctaTitleStyles }} word-break: keep-all;">
+                            Ready to reach your<br>financial goals?
+                        </h2>
+
+                        <p class="{{ data.textColor }} opacity-90 max-w-xs mb-4 lg:mb-8" style="{{ paraStyles }}">
+                            Book a chat with one of our financial advisers to get started.
+                        </p>
                     </div>
 
-                    <h2 class="font-serif tracking-tight {{ data.textColor }} mb-8 break-normal"
-                        style="{{ ctaTitleStyles }} word-break: keep-all;">
-                        Ready to reach your<br>financial goals?
-                    </h2>
-
-                    <p class="{{ data.textColor }} opacity-90 max-w-xs mb-8" style="{{ paraStyles }}">
-                        Book a chat with one of our financial advisers to get started.
-                    </p>
-
-                    {% include '_components/ui/button/button.twig' with {
-                        props: {
-                            text: 'Get in Touch',
-                            url: '/contact-us',
-                            style: 'primary',
-                            backgroundColor: data.buttonColor,
-                            textColor: data.buttonTextColor,
-                            classes: 'px-4 py-1.5 text-[10px] tracking-[0.2em] uppercase font-aktiv font-bold rounded-none'
-                        }
-                    } only %}
+                    <div class="mt-auto">
+                        {% include '_components/ui/button/button.twig' with {
+                            props: {
+                                text: 'Get in Touch',
+                                url: '/contact-us',
+                                style: 'primary',
+                                backgroundColor: data.buttonColor,
+                                textColor: data.buttonTextColor,
+                                classes: 'px-4 py-1.5 text-[10px] tracking-[0.2em] uppercase font-aktiv font-bold rounded-none w-full md:w-auto'
+                            }
+                        } only %}
+                    </div>
                 </div>
 
                 {# --- RIGHT SIDE: LINKS GRID --- #}
-                <div class="lg:col-span-7 pt-10">
+                <div class="lg:col-span-7 pt-6 lg:pt-10 flex flex-col justify-between">
                     <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-6 lg:gap-y-12 gap-x-8">
 
+                        {# Column 1: Mortgages / Accounting / Location #}
                         <div class="flex flex-col gap-y-4">
-                            <a href="/mortgages" class="font-bold {{ data.textColor }} flex items-center gap-2"
-                               style="{{ preheadStyles }}">
+                            <a href="/mortgages" class="font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> MORTGAGES
                             </a>
-                            <a href="/accounting" class="font-bold {{ data.textColor }} flex items-center gap-2"
-                               style="{{ preheadStyles }}">
+                            <a href="/accounting" class="font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> ACCOUNTING
                             </a>
                             <div class="pt-4">
-                                <h3 class="font-bold {{ data.textColor }} flex items-center gap-2 mb-3"
-                                    style="{{ preheadStyles }}">
+                                <h3 class="font-bold {{ data.textColor }} flex items-center gap-2 mb-3" style="{{ preheadStyles }}">
                                     <span class="{{ data.separatorColor }} opacity-40">|</span> LOCATION
                                 </h3>
                                 <div class="pl-4 {{ data.textColor }} opacity-90" style="{{ paraStyles }}">
@@ -95,18 +98,16 @@
                             </div>
                         </div>
 
+                        {# Column 2: Insurance / Business / Phone #}
                         <div class="flex flex-col gap-y-4">
-                            <a href="/insurance" class="font-bold {{ data.textColor }} flex items-center gap-2"
-                               style="{{ preheadStyles }}">
+                            <a href="/insurance" class="font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> INSURANCE
                             </a>
-                            <a href="/business" class="font-bold {{ data.textColor }} flex items-center gap-2"
-                               style="{{ preheadStyles }}">
+                            <a href="/business" class="font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> BUSINESS
                             </a>
                             <div class="pt-4">
-                                <h3 class="font-bold {{ data.textColor }} flex items-center gap-2 mb-3"
-                                    style="{{ preheadStyles }}">
+                                <h3 class="font-bold {{ data.textColor }} flex items-center gap-2 mb-3" style="{{ preheadStyles }}">
                                     <span class="{{ data.separatorColor }} opacity-40">|</span> PHONE
                                 </h3>
                                 <div class="pl-4 {{ data.textColor }} opacity-90" style="{{ paraStyles }}">
@@ -116,68 +117,66 @@
                             </div>
                         </div>
 
+                        {# Column 3: Savings / About / Legal #}
                         <div class="flex flex-col gap-y-4">
-
-                            <a href="/savingS-investment" class="font-bold {{ data.textColor }} flex items-center gap-2"
-                               style="{{ preheadStyles }}">
+                            <a href="/savings-investment" class="font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> SAVINGS & INVESTMENT
                             </a>
-                            <a href="/about" class="font-bold {{ data.textColor }} flex items-center gap-2"
-                               style="{{ preheadStyles }}">
+                            <a href="/about" class="font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
                                 <span class="{{ data.separatorColor }} opacity-40">|</span> ABOUT US
                             </a>
                             <div class="pt-4">
-                                <h3 class="font-bold {{ data.textColor }} flex items-center gap-2 mb-3"
-                                    style="{{ preheadStyles }}">
+                                <h3 class="font-bold {{ data.textColor }} flex items-center gap-2 mb-3" style="{{ preheadStyles }}">
                                     <span class="{{ data.separatorColor }} opacity-40">|</span> LEGAL
                                 </h3>
                                 <div class="pl-4 space-y-1 {{ data.textColor }} opacity-90" style="{{ paraStyles }}">
                                     <a href="/pages/Privacy" class="block">Privacy Policy</a>
                                     <a href="/pages/Complaints-Policy" class="block">Complaints</a>
+                                    <a href="/pages/Disclaimer" class="block">Disclaimer</a>
+                                    <a href="/pages/Disclosure" class="block">Disclosure</a>
                                 </div>
                             </div>
-
-
                         </div>
 
-                        {# SOCIAL LINKS ALIGNED WITH BUTTON ENDS #}
-                        {% set isDarkBg = props.backgroundColor == 'bg-foxplan-charcoal-brown' %}
+                        {# --- SOCIAL LINKS: Parallel to Legal on Mobile, Bottom Aligned on Desktop --- #}
+                        {% set isDarkBg = data.backgroundColor == 'bg-foxplan-charcoal-brown' %}
                         {% set socialIconColor = isDarkBg ? 'text-foxplan-charcoal-brown' : 'text-foxplan-neutral-beige' %}
                         {% set socialBoxColor  = isDarkBg ? 'bg-foxplan-yellow' : 'bg-foxplan-charcoal-brown' %}
 
-                        <div class="flex gap-2 mt-10">
-                            {% if socialLinks.facebook ?? null %}
-                                {{ include('_components/ui/icons/facebook-icon.twig', {
-                                    props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.facebook }
-                                }) }}
-                            {% endif %}
-                            {% if socialLinks.instagram ?? null %}
-                                {{ include('_components/ui/icons/instagram-icon.twig', {
-                                    props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.instagram }
-                                }) }}
-                            {% endif %}
-                            {% if socialLinks.linkedin ?? null %}
-                                {{ include('_components/ui/icons/linkedin-icon.twig', {
-                                    props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.linkedin }
-                                }) }}
-                            {% endif %}
-
-
+                        {# lg:col-start-3 ensures it stays under the 3rd column on desktop #}
+                        {# mt-2 on mobile ensures it lines up parallel to the Legal links #}
+                        <div class="flex items-end lg:col-start-3 lg:mt-0 mt-2">
+                            <div class="flex gap-2">
+                                {% if socialLinks.facebook ?? null %}
+                                    {{ include('_components/ui/icons/facebook-icon.twig', {
+                                        props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.facebook }
+                                    }) }}
+                                {% endif %}
+                                {% if socialLinks.instagram ?? null %}
+                                    {{ include('_components/ui/icons/instagram-icon.twig', {
+                                        props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.instagram }
+                                    }) }}
+                                {% endif %}
+                                {% if socialLinks.linkedin ?? null %}
+                                    {{ include('_components/ui/icons/linkedin-icon.twig', {
+                                        props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.linkedin }
+                                    }) }}
+                                {% endif %}
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
 
-        {# ---  GIANT BACKGROUND TEXT --- #}
-        <div class="w-full pointer-events-none pb-0">
+        {# --- GIANT BACKGROUND TEXT --- #}
+        <div class="w-full pointer-events-none p-0 m-0 overflow-visible relative z-0">
             <h1
                     class="w-full text-[28vw] font-bold leading-[0.7] select-none tracking-[-0.06em] text-center {{ data.textColor }}
-                           mt-7   lg:translate-y-0 transition-transform duration-75 ease-out"
-                    :style="`transform: scale(${0.7 + (ratio * 0.3)}) translateY(${22 - (ratio * 5)}%);`"
+                       transition-transform duration-75 ease-out"
+                    :style="`transform: scale(${0.7 + (ratio * 0.3)}) translateY(${10 - (ratio * 10)}%);`"
             >
-              foxplan
+                foxplan
             </h1>
         </div>
     </div>

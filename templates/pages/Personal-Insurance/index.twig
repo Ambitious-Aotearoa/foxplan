@@ -2,7 +2,7 @@
 
 {% set navigationTheme = {
     backgroundColor: 'bg-foxplan-neutral-beige',
-    textColor: 'text-black',
+    textColor: 'text-foxplan-charcoal-brown',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
 {% block blockAppBody %}
@@ -11,10 +11,7 @@
     <div class="container mx-auto px-8">
         <div class="w-full flex flex-col items-center justify-center text-center">
 
-            {#
-            The 'leading-[0.85]' and 'tracking-tighter' classes are crucial
-            to achieving the editorial, high-end look of the large serif text.
-            #}
+
             <h2 class="font-serif text-5xl md:text-[6.5rem] lg:text-[7.5rem] font-light leading-[0.85] tracking-tighter text-foxplan-charcoal-brown max-w-6xl mx-auto">
                 30 Years of<br>Financial Expertise
             </h2>
@@ -23,7 +20,7 @@
     </div>
 </section>
 
-    {# Static Timeline Section with Draggable Growing Arrow #}
+
 
     {# 1. Dependencies #}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -132,17 +129,17 @@
                             title: card.title,
                             text: card.text,
                             cardBg: card.bg,
-                            textColor: card.bg == 'bg-white' ? 'text-[#270E15]' : 'text-black',
-                            accentColor: card.bg == 'bg-white' ? 'text-[#270E15]' : 'text-black',
-                            squareColor: card.bg == 'bg-white' ? 'bg-[#270E15]' : 'bg-black',
-                            titleColor: card.bg == 'bg-white' ? 'text-[#270E15]' : 'text-black'
+                            textColor: card.bg == 'bg-foxplan-white' ? 'text-foxplan-charcoal-brown' : 'text-foxplan-charcoal-brown',
+                            accentColor: card.bg == 'bg-foxplan-white' ? 'text-foxplan-charcoal-brown' : 'text-foxplan-charcoal-brown',
+                            squareColor: card.bg == 'bg-foxplan-white' ? 'bg-foxplan-charcoal-brown' : 'bg-foxplan-charcoal-brown',
+                            titleColor: card.bg == 'bg-foxplan-white' ? 'text-foxplan-charcoal-brown' : 'text-foxplan-charcoal-brown'
                         }
                     } only %}
                 </div>
             {% endfor %}
         </div>
     </div>
-{#    _components/ui/card/card.twig#}
+
 
     {# footer #}
 
@@ -153,9 +150,7 @@
             logoColor: 'text-foxplan-yellow',
             buttonColor: 'bg-foxplan-yellow',
             buttonTextColor: 'text-foxplan-charcoal-brown',
-            foxplanText: 'foxplan',
-            borderTopColor: 'border-foxplan-yellow/20',
-            borderTopWidth: 'border-t-2'
+
         }
     }) }}
 {% endblock %}

@@ -2,7 +2,7 @@
 
 {% set navigationTheme = {
     backgroundColor: 'bg-foxplan-yellow',
-    textColor: 'text-black',
+    textColor: 'text-foxplan-charcoal-brown',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
 
@@ -76,7 +76,7 @@
             }
         }) }}
 
-        {# 2. Image and text section: Trigger is inside this included file #}
+        {# 2. Image and text section#}
         {{ include('_sections/hero-sections/section.twig', {
             props: {
                 title: entry.paragraphHeading3 ?? 'Get the First Home Buyers Guide',
@@ -110,14 +110,11 @@
             }
         }) }}
 
-        {# 3. The high-fidelity overlay with Calendly widget #}
+
         {{ include('_sections/overlays/first-home.twig') }}
 
     </div>
 
-    {% css %}
-        /* Ensures the overlay is hidden until Alpine.js loads */
-        [x-cloak] { display: none !important; }
-    {% endcss %}
+
 
 {% endblock %}

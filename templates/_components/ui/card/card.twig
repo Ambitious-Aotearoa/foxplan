@@ -12,12 +12,10 @@
 
 <div class="w-full h-full {{ data.cardBg }} flex items-start lg:items-center shadow-lg rounded-sm overflow-hidden will-change-transform">
 
-    {# Changed md: to lg: for the grid and alignment to keep medium screens vertical #}
     <div class="flex flex-col lg:grid lg:grid-cols-[30%_70%] w-full items-start text-left md:py-40 md:px-20 lg:py-0"
          style="padding: clamp(2.5rem, 5vw, 5rem) clamp(1.5rem, 3vw, 3rem);">
 
         {# --- YEAR & SQUARE SECTION --- #}
-        {# Margin bottom remains until the large screen grid kicks in #}
         <div class="flex items-center gap-3 whitespace-nowrap mb-4 lg:mb-0 md:pt-40 pt-4 md:pt-6 lg:pt-6" >
             <div class="w-3 h-3 md:w-4 md:h-4 {{ data.squareColor }}"></div>
             <span class="font-aktiv text-sm md:text-base font-bold tracking-[0.2em] uppercase {{ data.accentColor }}">

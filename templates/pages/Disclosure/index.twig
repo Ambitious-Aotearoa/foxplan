@@ -1,0 +1,237 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-neutral-beige',
+    textColor: 'text-foxplan-charcoal-brown',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+
+{% block blockAppBody %}
+    {# 1. HERO / HEADING SECTION #}
+    <section class="w-full bg-foxplan-neutral-beige pt-32 pb-16">
+        <div class="px-[20px] max-w-[1440px] mx-auto text-center">
+            <h1 class="font-serif text-foxplan-charcoal-brown tracking-tighter leading-[0.9]"
+                style="font-size: clamp(3rem, 8vw + 1rem, 7.5rem);">
+                Disclosure
+            </h1>
+        </div>
+    </section>
+
+    {# 2. MAIN CONTENT SECTION #}
+    <section class="w-full bg-foxplan-neutral-beige pb-32">
+        <div class="px-[20px] max-w-[1440px] mx-auto">
+            <div class="font-aktiv font-light text-foxplan-charcoal-brown max-w-5xl mx-auto space-y-16">
+
+                {# About Us Section #}
+                <div class="space-y-6">
+                    <h2 class="font-serif text-2xl font-bold">About us, our licence and our advisers</h2>
+                    <p class="opacity-90">FoxPlan Limited (FSP39630) is a Financial Advice Provider (FAP) licensed and regulated by the Financial Markets Authority to provide financial advice.</p>
+                </div>
+
+                {# Our People #}
+                <div class="space-y-4">
+                    <h3 class="font-serif text-xl font-bold">Our People</h3>
+                    <p class="opacity-90">FoxPlan Limited (the licensed FAP) engage financial advisers to provide financial advice on their behalf.</p>
+                </div>
+
+                {# Our Advice & Provider Table #}
+                <div class="space-y-6">
+                    <h3 class="font-serif text-xl font-bold">Our Advice</h3>
+                    <p class="opacity-90">FoxPlan provides financial planning services and provides financial advice about personal and business insurance, general insurance (home, contents, car), KiwiSaver, investments and home loans.</p>
+                    <p class="opacity-90">Not all of FoxPlan’s advisers provide all these types of financial advice. The person that you are dealing with may only be able to provide some types of advice. Once we have talked to you and found out what you need, we will make sure that the right person works with you to provide the appropriate type of advice.</p>
+
+                    {# Provider Table #}
+                    <div class="w-full border border-foxplan-tint-line overflow-x-auto mt-8">
+                        <div class="grid grid-cols-5 min-w-[900px]">
+                            {% set headers = ['Personal & Business Insurance', 'Investment', 'Home Loans', 'General Insurance', 'KiwiSaver'] %}
+                            {% for header in headers %}
+                                <div class="bg-foxplan-charcoal-brown text-white p-4 font-bold text-[14px] leading-tight flex items-center min-h-[80px] border-r border-white/10 last:border-r-0">
+                                    {{ header }}
+                                </div>
+                            {% endfor %}
+
+                            {# Content Col 1 #}
+                            <div class="p-4 border-r border-foxplan-tint-line"><ul class="text-[13px] list-disc ml-4 space-y-1"><li>Accuro Health Insurance</li><li>AIA NZ</li><li>Resolution Life</li><li>Asteron Life</li><li>Chubb Life</li><li>Fidelity Life</li><li>NIB</li><li>Partners Life</li><li>Southern Cross</li></ul></div>
+                            {# Content Col 2 #}
+                            <div class="p-4 border-r border-foxplan-tint-line"><ul class="text-[13px] list-disc ml-4 space-y-1"><li>ANZ NZ Investments</li><li>Consilium</li><li>Synergy Investments</li><li>i-Select</li></ul></div>
+                            {# Content Col 3 #}
+                            <div class="p-4 border-r border-foxplan-tint-line"><ul class="text-[13px] list-disc ml-4 space-y-1"><li>ANZ Bank</li><li>ASB Bank</li><li>BNZ Bank</li><li>SBS Bank</li><li>Sovereign Home loans</li><li>The Co-operative Bank</li><li>Westpac</li><li>Other Lenders*</li></ul></div>
+                            {# Content Col 4 #}
+                            <div class="p-4 border-r border-foxplan-tint-line"><ul class="text-[13px] list-disc ml-4 space-y-1"><li>AON</li><li>GYB</li><li>High Street Insurance Brokers</li></ul></div>
+                            {# Content Col 5 #}
+                            <div class="p-4"><ul class="text-[13px] list-disc ml-4 space-y-1"><li>ANZ NZ Investments</li><li>Booster</li><li>Fisher Funds</li></ul></div>
+                        </div>
+                    </div>
+                </div>
+
+                {# FEES OR EXPENSES SECTION - MATCHING SCREENSHOT #}
+                <div class="space-y-8 pt-8 border-t border-foxplan-tint-line">
+                    <h2 class="font-serif text-2xl font-bold">Fees or expenses</h2>
+
+                    <div class="space-y-6 opacity-90 leading-relaxed text-[16px]">
+                        <p>Generally, we will not charge fees in relation to advice for <strong>insurance, KiwiSaver and home loan products</strong> because we will be paid a commission by the product providers.</p>
+
+                        <p>We may charge you a fee for some <strong>investment and home loan products</strong> advice, however we will agree this with you in your scope of advice and provide you more details of this before we proceed.</p>
+
+                        <p>We will charge you a fee if we provide you with a <strong>financial plan</strong>.</p>
+
+                        <ul class="list-disc ml-10 space-y-4">
+                            <li>This fee will be based on scope, nature and complexity and will be for the initial advice, ongoing advice or annual advice and services associated with your financial plan.</li>
+                            <li>We will confirm with you the exact fees we will charge before we proceed and at the time the advice is provided.</li>
+                        </ul>
+
+                        <p>We will charge you a fee for any <strong>financial advice provided on a consultancy basis</strong></p>
+
+                        <ul class="list-disc ml-10 space-y-4">
+                            <li>This fee may be a fixed fee, or it may be charged on an hourly rate. We will let you know before we commence our services that we will be charging a fee for our consultation and provide you an estimate of the amount.</li>
+                        </ul>
+
+                        <p>For some <strong>investment products</strong>, if you invest your funds through certain product providers, you will be charged an “Adviser Fee” which is based on the value of your funds over management. The provider will deduct this Adviser Fee from your funds under management and then pay a percentage of this to FoxPlan Ltd (the Licensed FAP). This will be an ongoing monthly cost to you. We will provide more specific details about how the Adviser Fee is calculated and whether it applies to you once we know more about your needs.</p>
+
+                        <p>We will provide more specific details of the relevant fee amounts when we know more about your needs and at the time our advice is given.</p>
+
+                        <p class="underline font-bold pt-4">‘Clawback costs’ for some home loan and insurance products</p>
+
+                        <p>If you cancel certain home loan or insurance products within a specified time period, we may have to make a payment to the product provider to reimburse them some of the commission they have paid us. If this occurs, we will invoice you for the same amount. We will give you more information about this, which products and product providers it applies to, and the relevant time periods that apply once we have an understanding of your needs.</p>
+                    </div>
+                </div>
+                {# CONFLICTS OF INTEREST AND COMMISSIONS SECTION - MATCHING SCREENSHOT #}
+                <div class="space-y-8 pt-8 border-t border-foxplan-tint-line">
+                    <h2 class="font-serif text-2xl font-bold">Conflicts of interest and commissions</h2>
+
+                    <div class="space-y-6 opacity-90 leading-relaxed text-[16px]">
+                        <h3 class="font-serif text-xl font-bold">Commissions</h3>
+
+                        <p>FoxPlan Ltd (the licensed FAP) receives a commission from the product providers through which FoxPlan places business. The amount of the commission received usually depends on the type and value of the business placed with them.</p>
+
+                        <ul class="list-disc ml-10 space-y-4">
+                            <li>Typically, for <u><strong>insurance products</strong></u> we receive an upfront initial commission based on the value of the premium and an annual ongoing commission, for every year the premium is in force.</li>
+                            <li>Typically, for <u><strong>home loan products</strong></u> we receive an upfront initial commission based on the amount borrowed and we receive an annual ongoing commission from some lenders, for every year the lending is in force.</li>
+                            <li>Typically, for <u><strong>KiwiSaver products</strong></u> we do not receive an upfront initial commission, but we receive an annual ongoing commission based on a percentage of the total amount of the investment.</li>
+                        </ul>
+
+                        <p>We will provide more specific details of the relevant commission amounts when we know more about your needs and at the time our advice is given.</p>
+
+                        <div class="pt-4 space-y-6">
+                            <h3 class="font-serif text-xl font-bold">Remuneration and bonuses</h3>
+
+                            <ul class="list-disc ml-10 space-y-4">
+                                <li>The financial advisers engaged by FoxPlan Ltd (the licensed FAP) receive either self-employed remuneration or salary. They will also receive a percentage of the fees and commissions generated from their advice</li>
+                                <li>The authorised bodies engaged by FoxPlan Ltd (the licensed FAP) will also receive a percentage of the fees and commission generated from advice provided by the authorised body’s financial advisers.</li>
+                                <li><strong>Bonuses</strong> - All financial advisers engaged by FoxPlan Ltd (the licensed FAP) are eligible to receive a bonus if a certain level of overall performance is achieved. Whether a bonus is granted is based on many factors, such as quality of advice, client service, client care & compliance.</li>
+                                <li>From time to time, product providers or FoxPlan may pay additional or unexpected bonuses, incentives, or payments that relate to past or current business. These payments may be received after advice has been provided and are included within the overall remuneration arrangements disclosed here.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                {# Remaining sections: Referral, Managed Conflicts, Complaints, Duties #}
+                <div class="space-y-8 pt-8 border-t border-foxplan-tint-line">
+                    <h2 class="font-serif text-2xl font-bold">Referral to other professionals</h2>
+                    <p class="opacity-90">If at any time the potential need arises for the use of another professional, we will undertake to refer you to an appropriate professional. If an appropriate professional cannot be located, we will undertake to advise you as soon as possible so that you may engage a professional of your choice.</p>
+
+                    <h3 class="font-serif text-xl font-bold pt-4">Fire and General referrals</h3>
+                    <p class="opacity-90">We have referral relationships for Fire and General insurance, to whom we refer our clients for Fire and General insurance products. They provide the advice. For this referral service we may receive a referral commission and an annual ongoing commission, for every year the policy is in force. We will provide further information to our clients when this is applicable.</p>
+
+                    <h3 class="font-serif text-xl font-bold pt-4">Other conflicts of interest</h3>
+                    <p class="opacity-90">From time to time, product providers may also assist FoxPlan with funding to sponsor our annual client event or reward us for the overall business we provide to them. They may give us tickets to sports events, hampers, or other incentives.</p>
+                </div>
+
+                {# HOW WE MANAGE CONFLICTS OF INTEREST #}
+                <div class="space-y-8 pt-8 border-t border-foxplan-tint-line">
+                    <h2 class="font-serif text-2xl font-bold">How we manage conflicts of interest</h2>
+                    <p class="opacity-90">To ensure our financial advisers prioritise clients’ interests:</p>
+
+                    <ul class="list-disc ml-10 space-y-4 opacity-90 leading-relaxed text-[16px]">
+                        <li>We follow an advice process that ensures our recommendations are made appropriately, based on clients’ goals and circumstances.</li>
+                        <li>Our financial advisers undergo annual training about how to manage conflicts of interest.</li>
+                        <li>We maintain registers of conflicts of interests and the gifts and incentives we receive over the value of $300. These registers are monitored regularly, and additional training is provided as required.</li>
+                        <li>We undertake an annual independent Compliance Assurance Review by Strategi.</li>
+                    </ul>
+                </div>
+
+                {# COMPLAINTS HANDLING AND DISPUTE RESOLUTION #}
+                <div class="space-y-8 pt-8 border-t border-foxplan-tint-line">
+                    <h2 class="font-serif text-2xl font-bold">Complaints handling and dispute resolution</h2>
+                    <p class="opacity-90">If you are not satisfied with our service or financial advice, please tell us as soon as possible.</p>
+
+                    <div class="space-y-1 pl-2 opacity-90">
+                        <p><strong>Call:</strong> 04 918 4659</p>
+                        <p><strong>Email:</strong> <a href="mailto:info@foxplan.nz" class="underline">info@foxplan.nz</a></p>
+                        <p><strong>Write to:</strong> PO Box 2795. Wellington 6140</p>
+                    </div>
+
+                    <div class="space-y-6 pt-4">
+                        <p class="font-bold">When we receive a complaint:</p>
+
+                        <ul class="list-disc ml-10 space-y-4 opacity-90 leading-relaxed text-[16px]">
+                            <li>We will consider your complaint and let you know how we intend to resolve it. Where possible, we try to resolve your complaint immediately.</li>
+                            <li>If we are unable to resolve your complaint immediately, we will acknowledge your complaint within 2 business days. We may contact you to get further information about your complaint.</li>
+                            <li>We aim to resolve complaints within 10 working days of receiving them. If we need more time to investigate your complaint, we will let you know when you can expect to receive a response to your complaint.</li>
+                            <li>We will contact you by phone, email or letter to let you know whether we can resolve your complaint and how we propose to do so.</li>
+                        </ul>
+                    </div>
+
+                    <p class="opacity-90 leading-relaxed">
+                        If we cannot agree on how to fix the issue, you can contact our external disputes resolution scheme, <strong>Financial Dispute Resolution Scheme (FDRS)</strong>. FDRS provides a free and independent dispute resolution service that may help to resolve your complaint. To contact FDRS:
+                    </p>
+
+                    <div class="space-y-1 pl-2 opacity-90">
+                        <p><strong>Call:</strong> 0508 337 337</p>
+                        <p><strong>Email:</strong> <a href="mailto:enquiries@fdrs.org.nz" class="underline">enquiries@fdrs.org.nz</a></p>
+                        <p><strong>Write to:</strong> Freepost 231075, PO Box 2272, Wellington 6140.</p>
+                    </div>
+                </div>
+
+                {# DUTIES INFORMATION  #}
+                <div class="space-y-8 pt-8 border-t border-foxplan-charcoal-brown/10">
+                    <h2 class="font-serif text-2xl font-bold">Duties information</h2>
+
+                    <div class="space-y-6 opacity-90 leading-relaxed text-[16px]">
+                        <p>FoxPlan Ltd and our financial advisers have duties under the Financial Markets Conduct Act 2013 relating to the way that we give advice.</p>
+
+                        <p>We are required to:</p>
+
+                        <ul class="list-disc ml-10 space-y-4">
+                            <li>give priority to your interests</li>
+                            <li>exercise care, diligence, and skill</li>
+                            <li>meet standards of competence, knowledge and skill set by the Code of Professional Conduct for Financial Advice Services</li>
+                            <li>meet standards of ethical behaviour, conduct and client care set by the Code of Professional Conduct for Financial Advice Services</li>
+                        </ul>
+
+                        <p class="pt-6">
+                            For completeness I note that in July 2021, FoxPlan Ltd was censured under s75D(2)(f) of the Financial Adviser Act 2008. More information about this is available on the Financial Markets Authority website at <a href="https://www.fma.govt.nz" target="_blank" class="underline">www.fma.govt.nz</a>.
+                        </p>
+                    </div>
+                </div>
+
+                {# CONTACT DETAILS #}
+                <div class="space-y-8 pt-8 border-t border-foxplan-charcoal-brown/10">
+                    <h2 class="font-serif text-2xl font-bold">Contact details</h2>
+
+                    <div class="space-y-6 opacity-90 leading-relaxed text-[16px]">
+                        <p>FoxPlan Limited (FSP39630) is the Financial Advice Provider.</p>
+
+                        <div class="space-y-2">
+                            <p><strong>Call:</strong> 04 918 4659 or 0800 NO STRESS (0800 667 873)</p>
+                            <p><strong>Email:</strong> <a href="mailto:info@foxplan.nz" class="underline">info@foxplan.nz</a></p>
+                            <p><strong>Write to:</strong> PO Box 2795, Wellington 6140</p>
+                            <p><strong>Visit us on:</strong> Level 8, 138 The Terrace, Wellington 6011</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    {# Footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            logoColor: 'text-foxplan-yellow',
+            buttonColor: 'bg-foxplan-yellow',
+            buttonTextColor: 'text-foxplan-charcoal-brown',
+        }
+    }) }}
+{% endblock %}

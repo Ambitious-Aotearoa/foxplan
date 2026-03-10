@@ -27,11 +27,10 @@
             </h1>
 
             {#
-            BODY TEXT: Reduced max-width (max-w-[320px]) and light weight
-            to match your evidence
+            BODY TEXT
             #}
             {% if data.bodyText is not empty %}
-                <p class="font-aktiv-grotesk font-light text-lg md:text-xl {{ data.textColor }} leading-[1.1] mb-10 max-w-[320px]">
+                <p class="font-aktiv font-light text-lg md:text-xl {{ data.textColor }} leading-[1.1] mb-10 max-w-[320px]">
                     {{ data.bodyText | raw }}
                 </p>
             {% endif %}

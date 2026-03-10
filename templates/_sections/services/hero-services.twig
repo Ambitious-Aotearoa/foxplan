@@ -24,7 +24,7 @@ Our Services Slider Section
                 {{ data.heading | raw }}
             </h2>
             {% if data.introText %}
-                <div class="max-w-md font-aktiv-grotesk {{ data.textColor }} pt-2 lg:pt-4 font-light"
+                <div class="max-w-md font-aktiv {{ data.textColor }} pt-2 lg:pt-4 font-light"
                      style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.25rem);">
                     {{ data.introText | raw }}
                 </div>
@@ -49,7 +49,7 @@ Our Services Slider Section
                             </h3>
 
 
-                            <div class="font-aktiv-grotesk md:mb-6 lg:mb-8 {{ data.textColor }} opacity-90 leading-snug font-light min-h-[140px]"
+                            <div class="font-aktiv md:mb-6 lg:mb-8 {{ data.textColor }} opacity-90 leading-snug font-light min-h-[140px]"
                                  style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.125rem);">
                                 {{ block.bodyText | raw }}
                             </div>
@@ -77,7 +77,7 @@ Our Services Slider Section
                                             {% set linkText = parts[0] | trim %}
                                             {% set linkUrl = parts[1] is defined ? parts[1] | trim : '#' %}
                                             <li>
-                                                <a href="{{ linkUrl }}" class="font-aktiv-grotesk {{ data.textColor }} hover:underline block opacity-80 hover:opacity-100 transition-all font-light"
+                                                <a href="{{ linkUrl }}" class="font-aktiv {{ data.textColor }} hover:underline block opacity-80 hover:opacity-100 transition-all font-light"
                                                    style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.25rem);">
                                                     {{ linkText }}
                                                 </a>

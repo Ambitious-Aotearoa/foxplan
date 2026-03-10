@@ -30,14 +30,12 @@
 
         {# --- LEFT SIDE: HEADING --- #}
         <div class="md:col-span-5 xl:col-span-3 px-6 md:px-10 lg:px-16 xl:pl-16 mb-12 md:mb-0">
-            {# CLAMP: Main Heading typo #}
             <h2 class="font-serif tracking-tight {{ data.textColor }} break-normal"
                 style="font-size: clamp(2.25rem, 4vw + 1rem, 4.5rem); line-height: 0.85; word-break: keep-all;">
                 {{ data.paragraphHeading | raw }}
             </h2>
 
             {% if data.bodyText and data.bodyText|trim is not empty %}
-                {# CLAMP: Body text typo #}
                 <div class="font-aktiv opacity-90 max-w-xs mt-6 {{ data.textColor }} font-medium"
                      style="font-size: clamp(0.9rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;">
                     {{ data.bodyText | raw }}
@@ -48,7 +46,7 @@
         {# --- THE INTERACTIVE LINE --- #}
         <div class="flex absolute z-30 w-[2px] justify-center
             left-8 md:left-[48%] xl:left-[30%]
-            top-[120px] md:top-0
+            top-[130px] md:top-0
             bottom-0"
              x-ref="lineContainer">
 
@@ -86,7 +84,6 @@
                         {% endif %}
 
                         {% if item.text %}
-                            {# CLAMP: Benefit card text typo #}
                             <div class="font-serif text-foxplan-charcoal-brown"
                                  style="font-size: clamp(1.3rem, 2vw + 0.8rem, 2.25rem); line-height: 1.2;">
                                 {{ item.text | raw }}

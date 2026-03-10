@@ -21,7 +21,7 @@
         </p>
     </section>
 
-    {# --- DATA FETCHING (Fixed with 'title' key) --- #}
+    {# --- DATA FETCHING --- #}
     {% set tabDefinitions = [
         { id: 'investmentsKiwisaver', label: 'Investments & Kiwisaver' },
         { id: 'insurance', label: 'Insurance' },
@@ -36,7 +36,6 @@
             .supplierCategory(tab.id)
             .all() %}
 
-        {# ADDED 'title' key here to match suppliers.twig requirements #}
         {% set supplierTabs = supplierTabs|merge([{
             id: tab.id,
             label: tab.label,
@@ -57,7 +56,7 @@
         }
     }" class="relative w-full">
 
-        {# 1. MOBILE DROPDOWN (Insights Style) #}
+        {# 1. MOBILE DROPDOWN #}
         <div class="lg:hidden w-full bg-foxplan-yellow px-4 md:px-6 lg:px-8 pb-8">
             <div class="relative">
                 <button

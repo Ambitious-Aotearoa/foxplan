@@ -9,7 +9,6 @@
 {% block blockAppBody %}
 
     {# calculator section #}
-    {# Ensure the folder is named 'calculator' (singular) and the file is 'savings-calculator.twig' #}
     {{ include('_sections/calculator/saving-calculator.twig', ignore_missing = false) }}
 
 
@@ -87,7 +86,7 @@
                 </div>
             </div>
 
-            {# Chart Body - CLEAN: NO TOOLTIPS #}
+            {# Chart Body  #}
             <div class="relative h-[550px] w-full mt-10">
                 {# Y-Axis #}
                 <div class="absolute left-0 h-full flex flex-col justify-between text-[11px] font-bold uppercase tracking-wider opacity-30 pr-10 text-right w-24 pointer-events-none z-0">
