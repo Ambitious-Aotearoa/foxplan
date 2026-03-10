@@ -1,0 +1,155 @@
+{# templates/_sections/content-sections/home-guide.twig #}
+
+{% set sectionImage = entry.image.one() %}
+{% set rawUrl = entry.buttonUrl ?? '' %}
+{% set finalUrl = rawUrl ? url(rawUrl) : '' %}
+
+{% set defaults = {
+    title: entry.paragraphHeading2 ?? 'Get the First Home Buyers Guide',
+    bodyText: entry.bodyText2 ?? '',
+    buttonText: entry.button2 ?? '',
+    imageSrc: sectionImage ? sectionImage.url : null,
+    buttonUrl: finalUrl,
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-foxplan-charcoal-brown',
+    buttonBgColor: 'bg-foxplan-charcoal-brown',
+    buttonTextColor: 'text-foxplan-neutral-beige',
+    borderColor: 'border-foxplan-charcoal-brown'
+} %}
+
+{% set data = defaults | merge(props is iterable ? props : {}) %}
+
+<div x-data="{ showFirstHomeOverlay: false }">
+    <section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">
+        <div class="px-4 md:px-6 lg:px-8 py-12 lg:py-16 lg:pt-32 lg:pb-32">
+            <div class="flex flex-wrap md:flex-nowrap w-full items-center gap-0">
+
+                {# Left Column #}
+                <div class="w-full md:w-[30%] mb-12 md:mb-0 pr-0 md:pr-8 lg:pr-12">
+                    <div class="max-w-md">
+                        <h2 class="font-serif tracking-tight {{ data.textColor }} whitespace-normal {{ (data.bodyText or data.buttonText) ? 'mb-8' : '' }}"
+                            style="font-size: clamp(2.25rem, 4vw + 1rem, 4.5rem);
+                                   line-height: 1.05;
+                                   word-break: break-word;
+                                   overflow-wrap: break-word;
+                                   text-wrap: balance;">
+                            {{ data.title | raw }}
+                        </h2>
+
+                        {% if data.bodyText is not empty %}
+                            <div class="font-aktiv opacity-90 {{ data.textColor }} font-medium {{ data.buttonText ? 'mb-10' : '' }}"
+                                 style="font-size: clamp(0.9rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;">
+                                {{ data.bodyText | raw }}
+                            </div>
+                        {% endif %}
+
+                        {% if data.buttonText is not empty %}
+                            <div class="inline-block">
+                                {{ include('_components/ui/button/button.twig', {
+                                    props: {
+                                        text: data.buttonText,
+                                        tag: 'button',
+                                        classes: 'px-10 py-4 !w-auto',
+                                        attributes: {
+                                            '@click': 'showFirstHomeOverlay = true'
+                                        }
+                                    }
+                                }) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {# Right Side #}
+                <div class="w-full md:w-[70%]">
+                    <div class="w-full relative overflow-hidden">
+                        {% set imgClasses = "w-full h-[350px] md:h-[550px] lg:h-[650px] object-cover block" %}
+                        {% if data.imageSrc %}
+                            <img src="{{ data.imageSrc }}" alt="{{ data.title|striptags }}" class="{{ imgClasses }}">
+                        {% else %}
+                            <img src="{{ craft.vite.asset('images/Insights_4.jpg') }}" alt="{{ data.title|striptags }}"
+                                 class="{{ imgClasses }}">
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    {# Overlay #}
+    <section
+            x-show="showFirstHomeOverlay"
+            x-cloak
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            x-effect="showFirstHomeOverlay ? document.body.style.overflow='hidden' : document.body.style.overflow=''"
+            class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+    >
+        <div
+                @click.away="showFirstHomeOverlay = false"
+                x-data="{ step: 1 }"
+                x-effect="!showFirstHomeOverlay ? setTimeout(() => step = 1, 300) : null"
+                class="relative w-full max-w-4xl bg-foxplan-neutral-beige shadow-2xl p-6 md:p-12 overflow-y-auto max-h-[95vh]"
+        >
+            <button @click="showFirstHomeOverlay = false" class="absolute top-6 right-6 text-foxplan-charcoal-brown hover:opacity-60 transition-opacity z-50">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            {# STEP 1: Form #}
+            <div x-show="step === 1" x-transition:enter="transition delay-200 duration-300" x-transition:enter-start="opacity-0">
+                <h2 class="font-serif text-5xl md:text-7xl text-foxplan-charcoal-brown mb-6">Get the guide</h2>
+                <p class="text-xl text-gray-700 leading-relaxed mb-10 max-w-md">Ready to get your finances in great shape? Fill in your details below.</p>
+
+                <form @submit.prevent="step = 2" class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="relative">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-foxplan-charcoal-brown mb-2">First Name</label>
+                            <input type="text" placeholder="John" required class="w-full border-b border-foxplan-charcoal-brown py-2 px-2 focus:border-foxplan-charcoal-brown outline-none transition-colors bg-transparent rounded-none">
+                        </div>
+                        <div class="relative">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-foxplan-charcoal-brown mb-2">Last Name</label>
+                            <input type="text" placeholder="Doe" required class="w-full border-b border-foxplan-charcoal-brown py-2 px-2 focus:border-foxplan-charcoal-brown outline-none transition-colors bg-transparent rounded-none">
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-foxplan-charcoal-brown mb-2">Email Address</label>
+                        <input type="email" placeholder="johndoe@email.com" required class="w-full border-b border-foxplan-charcoal-brown py-2 px-2 focus:border-foxplan-charcoal-brown outline-none transition-colors bg-transparent rounded-none">
+                    </div>
+
+                    <div class="inline-block">
+                        {# FIX: Added type="submit" to attributes so it triggers the form @submit #}
+                        {{ include('_components/ui/button/button.twig', {
+                            props: {
+                                text: 'Download now',
+                                classes: 'text-lg !w-auto',
+                                attributes: {
+                                    'type': 'submit'
+                                }
+                            }
+                        }) }}
+                    </div>
+                </form>
+            </div>
+
+            {# STEP 2: Thank You #}
+            <div x-show="step === 2" x-transition:enter="transition delay-200 duration-300" x-transition:enter-start="opacity-0" class="w-full">
+                <div class="text-center md:text-left mb-4">
+                    <h2 class="font-serif text-5xl md:text-6xl text-foxplan-charcoal-brown mb-2">Thank You!</h2>
+                    <p class="text-lg text-gray-700">Your download is on its way! Book a discovery call below.</p>
+                </div>
+                <div class="border-t border-foxplan-charcoal-brown pt-4">
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/foxplansales/discovery-phone-call-clone?hide_event_type_details=1&background_color=f9efd8&primary_color=270e15&text_color=270e15" style="min-width:320px;height:700px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% js "https://assets.calendly.com/assets/external/widget.js" %}

@@ -54,7 +54,6 @@
         return centerOfFirst + (progress * availableRange);
     },
 
-    {# UPDATED: Instant navigation logic #}
     scrollToIndex(index) {
         const trigger = ScrollTrigger.getById('timelineTrigger');
         if (!trigger) return;
@@ -63,8 +62,8 @@
         const scrollPos = trigger.start + (trigger.end - trigger.start) * targetProgress;
 
         window.scrollTo({
-            top: scrollPos + 2, {# Small offset ensures GSAP registers the card state instantly #}
-            behavior: 'auto'  {# Changed to 'auto' for instant popup #}
+            top: scrollPos + 2,
+            behavior: 'auto'
         });
     }
 }"
@@ -107,12 +106,13 @@
                 }
             }
          ">
-                <div class="flex md:justify-between min-w-max md:min-w-full px-8 md:px-0 gap-12 md:gap-0 font-serif text-foxplan-charcoal-brown">
+                <div class="flex flex-nowrap md:justify-between min-w-max md:min-w-full px-8 md:px-0 font-serif text-foxplan-charcoal-brown">
                     {% for card in milestones %}
                         <button type="button"
-                                class="flex-shrink-0 flex justify-center items-center cursor-pointer outline-none focus:ring-0"
+                                class="flex-shrink-0 w-24 md:w-32 flex justify-center items-center cursor-pointer outline-none focus:ring-0"
                                 @click="scrollToIndex({{ loop.index0 }})">
-                            <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 font-bold scale-110 text-foxplan-charcoal-brown' : 'opacity-40 scale-100'"
+                            {# REMOVED: font-bold and scale classes to keep original size #}
+                            <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 text-foxplan-charcoal-brown' : 'opacity-40'"
                                   class="transition-all duration-300 inline-block pointer-events-none"
                                   style="font-size: clamp(1.25rem, 2vw + 1rem, 2rem);">
                                 {{ card.milestoneYear }}
