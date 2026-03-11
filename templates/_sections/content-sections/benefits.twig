@@ -13,7 +13,6 @@
          x-data="{
             yPos: 0,
             lineStart: 0,
-            {# Dynamically calculate the starting point of the accordion on mobile #}
             updateMetrics() {
                 if (window.innerWidth < 768 && this.$refs.accordionContainer) {
                     this.lineStart = this.$refs.accordionContainer.offsetTop;
@@ -63,25 +62,27 @@
 
         {# --- THE INTERACTIVE LINE --- #}
         <div class="flex absolute z-30 w-[2px] justify-center
-            left-6 md:left-[48%] xl:left-[30%]
-            bottom-0"
+    left-6 md:left-[48%] xl:left-[30%]
+    bottom-0"
              x-ref="lineContainer"
-                {# Binds the top position to the calculated lineStart on mobile #}
              :style="'top: ' + lineStart + 'px'">
 
-            {# Background Dotted Line #}
+            {# Background Dotted Line (The Track) #}
             <div class="h-full w-full border-l-2 border-dashed border-foxplan-charcoal-brown opacity-20"></div>
 
             {# Progress Dotted Line (Active) #}
+            {# REMOVED: transition-all and duration-75 #}
             <div id="progress-line"
-                 class="absolute top-0 left-0 w-full border-l-2 border-dashed border-foxplan-charcoal-brown transition-all duration-75 ease-out"
+                 class="absolute top-0 left-0 w-full border-l-2 border-dashed border-foxplan-charcoal-brown"
                  :style="'height: ' + yPos + 'px'"></div>
 
-            {# Scrolling Dot #}
+            {# Scrolling Dot (The Tip) #}
+            {# REMOVED: transition-opacity and transform: translate(-50%, -50%) #}
             <div id="scrolling-dot"
-                 class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-foxplan-charcoal-brown rounded-full shadow-sm transition-opacity duration-300"
+                 class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-foxplan-charcoal-brown rounded-full shadow-sm"
                  :class="yPos > 0 ? 'opacity-100' : 'opacity-0'"
-                 :style="'transform: translate(-50%, -50%); top: ' + yPos + 'px'"></div>
+                 :style="'top: ' + (yPos - 6) + 'px; transition: opacity 300ms;'">
+            </div>
         </div>
 
         {# --- RIGHT SIDE: ACCORDION CARDS --- #}
