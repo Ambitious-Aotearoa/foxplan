@@ -71,20 +71,24 @@
      class="w-full bg-foxplan-neutral-beige h-screen flex flex-col px-0 overflow-hidden pt-0 md:pt-6 lg:pt-8">
 
     {# --- STICKY HEADER & TIMELINE AREA --- #}
-    <div class="sticky top-0 z-[110] bg-foxplan-neutral-beige pt-8 pb-4 px-4">
-        {# --- HEADING --- #}
-        <div class="w-full flex flex-col items-center justify-center text-center mb-4 md:mb-12">
+    <div class="sticky top-0 z-[110] bg-foxplan-neutral-beige pt-8 pb-4">
+
+        {# Heading #}
+        <div class="w-full flex flex-col items-center justify-center text-center mb-4 md:mb-12 px-4">
             <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown max-w-6xl mx-auto break-normal"
                 style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
                 30 Years of<br>Financial Expertise
             </h2>
         </div>
 
-        {# --- TIMELINE TRACK --- #}
         <section class="w-full mb-6 md:mb-12 select-none z-[100] overflow-hidden">
-            <div class="relative w-full mb-6 md:mb-10 pt-10 px-4 md:px-0">
+
+            {# Arrow Track #}
+            {# UPDATED: Added md:px-20 to match card padding #}
+            <div class="relative w-full mb-6 md:mb-10 pt-10 px-4 md:px-20">
                 <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-foxplan-charcoal-brown opacity-20"></div>
 
+                {# Arrow Progress Line #}
                 <div class="absolute top-1/2 -translate-y-1/2 left-0 flex items-center pointer-events-none transition-all duration-300 ease-out"
                      :style="`width: ${arrowWidth}%;` ">
                     <div class="flex-grow border-t-2 border-foxplan-charcoal-brown border-dashed h-0"></div>
@@ -94,26 +98,31 @@
                 </div>
             </div>
 
+            {# Years Scroller #}
             <div x-ref="yearsContainer"
                  class="w-full overflow-x-auto no-scrollbar scroll-smooth"
                  x-effect="
-            if (activeIndex >= 0 && window.innerWidth < 768) {
-                const container = $refs.yearsContainer;
-                const activeEl = container.children[0].children[activeIndex];
-                if (activeEl) {
-                    const offset = activeEl.offsetLeft - (container.offsetWidth / 2) + (activeEl.offsetWidth / 2);
-                    container.scrollTo({ left: offset, behavior: 'smooth' });
-                }
-            }
-         ">
-                <div class="flex flex-nowrap md:justify-between min-w-max md:min-w-full px-8 md:px-0 font-serif text-foxplan-charcoal-brown">
+                    if (activeIndex >= 0 && window.innerWidth < 768) {
+                        const container = $refs.yearsContainer;
+                        const activeEl = container.children[0].children[activeIndex];
+                        if (activeEl) {
+                            const offset = activeEl.offsetLeft - 16;
+                            container.scrollTo({ left: offset, behavior: 'smooth' });
+                        }
+                    }
+                 ">
+                {#
+                UPDATED:
+                1. Changed md:px-0 to md:px-20 to align exactly with the card content edge.
+                2. Kept md:justify-between so years spread out across the track as before.
+                #}
+                <div class="flex flex-nowrap px-4 md:px-20 md:justify-between min-w-max md:min-w-full font-serif text-foxplan-charcoal-brown">
                     {% for card in milestones %}
                         <button type="button"
-                                class="flex-shrink-0 w-24 md:w-32 flex justify-center items-center cursor-pointer outline-none focus:ring-0"
+                                class="flex-shrink-0 pr-12 md:pr-0 flex justify-start items-center cursor-pointer outline-none focus:ring-0"
                                 @click="scrollToIndex({{ loop.index0 }})">
-                            {# REMOVED: font-bold and scale classes to keep original size #}
                             <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 text-foxplan-charcoal-brown' : 'opacity-40'"
-                                  class="transition-all duration-300 inline-block pointer-events-none"
+                                  class="transition-all duration-300 inline-block pointer-events-none whitespace-nowrap"
                                   style="font-size: clamp(1.25rem, 2vw + 1rem, 2rem);">
                                 {{ card.milestoneYear }}
                             </span>

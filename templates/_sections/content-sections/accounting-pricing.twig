@@ -8,11 +8,11 @@
 
         {# Column 1: Main Heading #}
         <div class="w-full md:col-span-7 min-w-0">
-            <h2 class="font-serif text-foxplan-charcoal-brown leading-[1.05] tracking-tight whitespace-normal"
-                style="font-size: clamp(2.4rem, 12vw, 4.5rem);
-               word-break: break-word;
-               overflow-wrap: break-word;
-               text-wrap: balance;">
+            <h2 class="font-serif text-foxplan-charcoal-brown leading-[1.1] tracking-tight whitespace-normal"
+                style="font-size: clamp(2.1rem, 10vw, 4.5rem);
+                   word-break: normal;
+                   overflow-wrap: normal;
+                   text-wrap: balance;">
                 {{ block.paragraphHeading3 | raw }}
             </h2>
         </div>
@@ -21,8 +21,8 @@
         <div class="w-full md:col-span-5 min-w-0">
             <div class="leading-relaxed text-foxplan-charcoal-brown font-aktiv opacity-90"
                  style="font-size: clamp(1rem, 1vw + 0.6rem, 1.125rem);
-                word-break: break-word;
-                overflow-wrap: break-word;">
+                    word-break: normal;
+                    overflow-wrap: normal;">
                 {{ block.bodyText2 ?? '' }}
             </div>
         </div>
