@@ -31,11 +31,13 @@
         @scroll.window="updateRatio()"
         x-init="updateRatio()"
 >
-    <div class="fixed bottom-0 left-0 w-full min-h-full md:h-auto lg:h-full {{ data.backgroundColor }} flex flex-col justify-start md:justify-end">
+    {# FIXED: Added hardware acceleration (will-change and backface-visibility) to stop flickering and the 'p line' artifact #}
+    <div class="fixed bottom-0 left-0 w-full min-h-full md:h-auto lg:h-full {{ data.backgroundColor }} flex flex-col justify-start md:justify-end"
+         style="will-change: transform; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: translateZ(0);">
 
         <div
                 class="max-w-full mx-auto px-4 md:px-6 lg:px-8 pt-60 md:pt-20 pb-6 md:pb-10 relative z-10 w-full transition-transform duration-75 ease-out"
-                :style="`transform: scale(${0.9 + (ratio * 0.1)}); opacity: ${0.5 + (ratio * 0.5)};`"
+                :style="`transform: scale(${0.9 + (ratio * 0.1)}) translateZ(0); opacity: ${0.5 + (ratio * 0.5)};`"
         >
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-6 lg:gap-12 mb-4 lg:mb-10 items-stretch">
