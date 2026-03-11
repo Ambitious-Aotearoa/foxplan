@@ -60,9 +60,10 @@
                     </div>
 
                     <div class="w-full md:w-[70%] px-4 lg:px-8 md:px-0 pr-12 lg:pr-32">
+
                         <h2 class="font-serif tracking-tight {{ props.textColor }} break-normal"
-                            style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
-                            {{ props.sectionTitle | nl2br | raw }}
+                            style="font-size: clamp(2.25rem, 4vw + 1rem, 7.5rem); line-height: 0.85; word-break: keep-all;">
+                            {{ props.sectionTitle | replace({'<p>': '', '</p>': ''}) | nl2br | raw }}
                         </h2>
                     </div>
                 </div>

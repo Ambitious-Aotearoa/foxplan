@@ -39,14 +39,12 @@
     <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start relative">
 
         {# --- LEFT SIDE: HEADING --- #}
-        {# Standardized to px-4 for mobile alignment #}
         <div class="md:col-span-5 xl:col-span-3 px-4 md:px-8 lg:px-8 xl:pl-8 mb-12 md:mb-0">
-            <h2 class="font-serif tracking-tight {{ data.textColor }} whitespace-normal"
+            <h2 class="font-serif tracking-tight {{ data.textColor }} whitespace-normal leading-[0.9] md:leading-[0.95]"
                 style="font-size: clamp(2.1rem, 10vw, 4.5rem);
-                       line-height: 1.15 !important;
-                       word-break: normal !important;
-                       overflow-wrap: break-word !important;
-                       text-wrap: balance;">
+           word-break: normal !important;
+           overflow-wrap: break-word !important;
+           text-wrap: pretty;">
                 {{ data.paragraphHeading | raw }}
             </h2>
 
@@ -71,13 +69,11 @@
             <div class="h-full w-full border-l-2 border-dashed border-foxplan-charcoal-brown opacity-20"></div>
 
             {# Progress Dotted Line (Active) #}
-            {# REMOVED: transition-all and duration-75 #}
             <div id="progress-line"
                  class="absolute top-0 left-0 w-full border-l-2 border-dashed border-foxplan-charcoal-brown"
                  :style="'height: ' + yPos + 'px'"></div>
 
             {# Scrolling Dot (The Tip) #}
-            {# REMOVED: transition-opacity and transform: translate(-50%, -50%) #}
             <div id="scrolling-dot"
                  class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-foxplan-charcoal-brown rounded-full shadow-sm"
                  :class="yPos > 0 ? 'opacity-100' : 'opacity-0'"
