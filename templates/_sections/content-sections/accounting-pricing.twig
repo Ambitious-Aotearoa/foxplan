@@ -1,34 +1,27 @@
 {# templates/_sections/content-sections/accounting-pricing.twig #}
 
-
 <section class="w-full bg-foxplan-neutral-beige py-8 md:py-24 px-4 md:px-6 lg:px-8 border-b border-foxplan-charcoal-brown overflow-hidden">
 
-    {# HEADER GRID#}
-    <div class="flex flex-col md:grid md:grid-cols-12 gap-y-10 md:gap-x-16 md:items-end mb-16 w-full max-w-full overflow-hidden">
+    {# HEADER GRID - Made fully fluid with responsive grid spans #}
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-16 md:items-end mb-16 w-full">
 
         {# Column 1: Main Heading #}
-        <div class="w-full md:col-span-7 min-w-0">
-            <h2 class="font-serif text-foxplan-charcoal-brown leading-[1.1] tracking-tight whitespace-normal"
-                style="font-size: clamp(2.1rem, 10vw, 4.5rem);
-                   word-break: normal;
-                   overflow-wrap: normal;
-                   text-wrap: balance;">
+        <div class="md:col-span-7">
+            {# Removed clamp() and fixed styles for fluid Tailwind sizes and natural wrapping #}
+            <h2 class="font-serif text-foxplan-charcoal-brown text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight break-words">
                 {{ block.paragraphHeading3 | raw }}
             </h2>
         </div>
 
         {# Column 2: Body Text #}
-        <div class="w-full md:col-span-5 min-w-0">
-            <div class="leading-relaxed text-foxplan-charcoal-brown font-aktiv opacity-90"
-                 style="font-size: clamp(1rem, 1vw + 0.6rem, 1.125rem);
-                    word-break: normal;
-                    overflow-wrap: normal;">
+        <div class="md:col-span-5">
+            <div class="leading-relaxed text-foxplan-charcoal-brown font-aktiv opacity-90 text-base md:text-lg lg:text-xl break-words">
                 {{ block.bodyText2 ?? '' }}
             </div>
         </div>
     </div>
 
-    {# PRICING TABLE #}
+    {# PRICING TABLE - Using fluid grid flow #}
     <div class="w-full border border-foxplan-charcoal-brown grid grid-cols-1 md:grid-cols-3">
         {% set rows = block.accountingTable ?? [] %}
         {% set headerLabel = rows[0] ?? null %}
@@ -37,34 +30,29 @@
         {% set colHandles = ['col2', 'col3', 'col4'] %}
 
         {% for handle in colHandles %}
-            <div class="p-8 lg:p-12 border-b md:border-b-0 md:border-r border-foxplan-charcoal-brown last:border-r-0 last:border-b-0">
+            <div class="p-6 sm:p-8 lg:p-12 border-b md:border-b-0 md:border-r border-foxplan-charcoal-brown last:border-r-0 last:border-b-0">
 
                 {# Tier Label #}
-                <span class="block font-bold tracking-widest text-foxplan-charcoal-brown uppercase mb-4"
-                      style="font-size: clamp(0.7rem, 0.1vw + 0.6rem, 0.85rem);">
+                <span class="block font-bold tracking-widest text-foxplan-charcoal-brown uppercase mb-4 text-xs md:text-sm">
                     {{ attribute(headerLabel, handle) ?? '' }}
                 </span>
 
-                {# Price #}
-                <div class="font-serif text-foxplan-charcoal-brown mb-2 break-keep"
-                     style="font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);">
+                {# Price - Fluid text sizing #}
+                <div class="font-serif text-foxplan-charcoal-brown mb-2 text-5xl md:text-6xl lg:text-7xl break-words">
                     {{ attribute(headerPrice, handle) ?? '' }}
                 </div>
 
                 {# Focus #}
-                <p class="font-medium text-foxplan-charcoal-brown mb-10 italic break-normal"
-                   style="font-size: clamp(0.85rem, 0.2vw + 0.75rem, 1rem);">
+                <p class="font-medium text-foxplan-charcoal-brown mb-10 italic text-sm md:text-base break-words">
                     Focus: {{ attribute(headerFocus, handle) ?? '' }}
                 </p>
-
 
                 <ul class="space-y-0">
                     {% for row in rows %}
                         {% if loop.index > 3 %}
                             {% set cellData = attribute(row, handle) %}
                             {% if cellData %}
-                                <li class="py-4 border-b border-foxplan-charcoal-brown text-foxplan-charcoal-brown last:border-0 font-light break-keep"
-                                    style="font-size: clamp(0.85rem, 0.15vw + 0.75rem, 1rem);">
+                                <li class="py-4 border-b border-foxplan-charcoal-brown text-foxplan-charcoal-brown last:border-0 font-light text-sm md:text-base break-words">
                                     {{ cellData }}
                                 </li>
                             {% endif %}
