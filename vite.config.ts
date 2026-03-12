@@ -33,7 +33,7 @@ export default defineConfig(({ command }) => ({
         outDir: 'web/dist',
         rollupOptions: {
             input: {
-                app: './src/js/app.js',
+                app: 'src/js/app.js',
             }
         },
         emptyOutDir: true

@@ -8,11 +8,11 @@
 
 {# --- 2. Theme Logic --- #}
 {% set defaultTheme = {
-    backgroundColor: 'bg-foxplan-neutral-beige',
+    backgroundColor: '',
     textColor: 'text-foxplan-charcoal-brown',
     searchBgColor: 'bg-foxplan-charcoal-brown',
     ctaBgColor: 'bg-foxplan-charcoal-brown',
-    iconColor: 'text-foxplan-neutral-beige',
+    iconColor: 'text-foxplan-white',
     logoFilter: 'fill-current'
 } %}
 
@@ -122,8 +122,9 @@
             <div class="flex flex-none items-center h-full pr-4 lg:pr-0">
                 <button @click="searchOpen = true"
                         class="w-14 lg:w-16 h-full flex items-center justify-center cursor-pointer group
-                               lg:{{ theme.searchBgColor }} lg:{{ theme.iconColor }}
-                               text-foxplan-charcoal-brown">
+               lg:{{ theme.searchBgColor }} lg:{{ theme.iconColor }}
+               text-foxplan-charcoal-brown
+               lg:border-r {{ theme.backgroundColor ?: 'border-foxplan-charcoal-brown' }}">
                     <div class="w-7 lg:w-5 h-7 lg:h-5 transition-transform group-hover:scale-110">
                         <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
                             <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"

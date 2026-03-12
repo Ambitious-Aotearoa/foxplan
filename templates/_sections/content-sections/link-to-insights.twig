@@ -27,19 +27,19 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 lg:gap-x-20">
                 {% for article in relatedArticles %}
-                    <div class="pt-4 lg:pt-8 pb-6 lg:pb-12 border-t border-foxplan-neutral-beige/10 flex flex-col items-start group">
-                        <p class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-foxplan-neutral-beige/40 mb-4">
+                    <div class="pt-4 lg:pt-8 pb-6 lg:pb-8 border-t border-foxplan-neutral-beige/10 flex flex-col items-start group">
+                        <p class="font-aktiv text-[14px] uppercase tracking-none text-foxplan-neutral-beige mb-4">
                             {{ article.postDate | date('F d, Y') | upper }}
                         </p>
 
                         <a href="{{ article.url }}" class="block mb-8">
-                            <h3 class="font-serif text-foxplan-neutral-beige group-hover:opacity-70 transition-opacity leading-[1.15]"
+                            <h3 class="font-serif text-foxplan-neutral-beige group-hover:opacity-70 transition-opacity leading-[1.15] max-w-sm"
                                 style="font-size: clamp(1.5rem, 2vw + 0.5rem, 2.2rem);">
                                 {{ article.title }}
                             </h3>
                         </a>
 
-                        <a href="{{ article.url }}" class="font-aktiv text-[10px] uppercase tracking-[0.2em] text-foxplan-neutral-beige border-b border-foxplan-neutral-beige/30 hover:border-foxplan-neutral-beige transition-all pb-1">
+                        <a href="{{ article.url }}" class="font-aktiv text-[14px] uppercase tracking-none text-foxplan-neutral-beige  transition-all pb-1">
                             READ MORE
                         </a>
                     </div>
