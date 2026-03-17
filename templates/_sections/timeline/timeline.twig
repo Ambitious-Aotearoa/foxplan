@@ -100,31 +100,23 @@
                 </div>
             </div>
 
-            {# Years Scroller #}
+            {# --- Years Scroller --- #}
             <div x-ref="yearsContainer"
                  class="w-full overflow-x-auto no-scrollbar scroll-smooth"
-                 x-effect="
-                    if (activeIndex >= 0 && window.innerWidth < 768) {
-                        const container = $refs.yearsContainer;
-                        const activeEl = container.children[0].children[activeIndex];
-                        if (activeEl) {
-                            // Mobile align to card edge (16px)
-                            const offset = activeEl.offsetLeft - 16;
-                            container.scrollTo({ left: offset, behavior: 'smooth' });
-                        }
-                    }
-                 ">
+                 x-effect="...">
 
-                <div class="flex flex-nowrap px-4 md:px-20 md:justify-between min-w-max md:min-w-full font-serif text-foxplan-charcoal-brown">
+                {# Changed md:justify-between to md:justify-start to keep years grouped together #}
+                <div class="flex flex-nowrap px-4 md:px-6 md:justify-start md:gap-x-12 min-w-max md:min-w-full font-serif text-foxplan-charcoal-brown">
                     {% for card in milestones %}
                         <button type="button"
+                                {# Removed md:flex-1 so the buttons only take the space they need #}
                                 class="flex-shrink-0 pr-12 md:pr-0 flex justify-start items-center cursor-pointer outline-none focus:ring-0"
                                 @click="scrollToIndex({{ loop.index0 }})">
-                            <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 text-foxplan-charcoal-brown' : 'opacity-40'"
-                                  class="transition-all duration-300 inline-block pointer-events-none whitespace-nowrap"
-                                  style="font-size: clamp(1.25rem, 2vw + 1rem, 2rem);">
-                                {{ card.milestoneYear }}
-                            </span>
+                <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 text-foxplan-charcoal-brown' : 'opacity-40'"
+                      class="transition-all duration-300 inline-block pointer-events-none whitespace-nowrap"
+                      style="font-size: clamp(1.25rem, 2vw + 1rem, 2rem);">
+                    {{ card.milestoneYear }}
+                </span>
                         </button>
                     {% endfor %}
                 </div>
