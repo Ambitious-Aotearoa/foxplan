@@ -35,9 +35,9 @@
     ) %}
 
 {% set buttonClasses = [
-    'group relative inline-flex items-center overflow-hidden',
+    'group relative inline-flex items-center justify-center overflow-hidden',
     'font-aktiv cursor-pointer transition-all duration-300 uppercase tracking-widest font-bold',
-    'py-2 px-6 w-full xl:w-auto',
+    'py-2 px-6 w-full lg:w-auto',
     bgClass,
     textClass,
     'hover:opacity-80 active:opacity-100',
@@ -48,6 +48,7 @@
     props.disabled ? 'opacity-50 cursor-not-allowed',
     props.classes
 ] | filter | join(' ') %}
+
 
 {% set textScaleStyle = 'font-size: 0.875rem;' %}
 {% set tag = props.url and not props.disabled ? 'a' : 'button' %}
@@ -62,8 +63,7 @@
 } | merge(props.attributes) | filter %}
 
 <{{ tag }}{% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %}>
-
-    <span class="btn__text flex items-center justify-start gap-4">
+<span class="btn__text flex items-center justify-center gap-4">
         {{ props.text }}
 
     {% if props.style in ['primary', 'secondary', 'default-round'] or props.icon %}
