@@ -34,12 +34,10 @@
     props.style == 'outline' ? 'text-foxplan-charcoal-brown' : 'text-foxplan-neutral-beige'
     ) %}
 
-
 {% set buttonClasses = [
-   
-    'group relative inline-flex items-center justify-start overflow-hidden',
+    'group relative inline-flex items-center overflow-hidden',
     'font-aktiv cursor-pointer transition-all duration-300 uppercase tracking-widest font-bold',
-    'py-4 px-6 w-full lg:w-auto',
+    'py-2 px-6 w-full xl:w-auto',
     bgClass,
     textClass,
     'hover:opacity-80 active:opacity-100',
@@ -51,27 +49,29 @@
     props.classes
 ] | filter | join(' ') %}
 
-{# Logic for tag and attributes stays same #}
+{% set textScaleStyle = 'font-size: 0.875rem;' %}
 {% set tag = props.url and not props.disabled ? 'a' : 'button' %}
+
+{# Build attributes #}
 {% set attributes = {
     class: buttonClasses,
     href: props.url ?: null,
     disabled: props.disabled ?: null,
     type: tag == 'button' ? 'button' : null,
-    style: 'font-size: 0.875rem;'
+    style: textScaleStyle
 } | merge(props.attributes) | filter %}
 
 <{{ tag }}{% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %}>
 
-    <span class="btn__text flex items-center justify-between w-full gap-8">
-        <span class="text-left">{{ props.text }}</span>
+    <span class="btn__text flex items-center justify-start gap-4">
+        {{ props.text }}
 
-        {% if props.style in ['primary', 'secondary', 'default-round'] or props.icon %}
-            <svg class="transition-transform duration-300 group-hover:translate-x-1 shrink-0"
-                 style="width: 1.2rem; height: 1.2rem;"
-                 viewBox="0 0 20 20"
-                 fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
+    {% if props.style in ['primary', 'secondary', 'default-round'] or props.icon %}
+        <svg class="transition-transform duration-300 group-hover:translate-x-1"
+             style="width: clamp(1.1rem, 1.2vw, 1.5rem); height: clamp(1.1rem, 1.2vw, 1.5rem);"
+             viewBox="0 0 20 20"
+             fill="none"
+             xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.5 4.5L17.5 8.5L13.5 12.5"
                       stroke="currentColor"
                       stroke-width="1.8"
@@ -83,6 +83,6 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"/>
             </svg>
-        {% endif %}
+    {% endif %}
     </span>
 </{{ tag }}>
