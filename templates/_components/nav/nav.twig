@@ -57,6 +57,7 @@
     ]
 } %}
 
+
 {# --- 1. FETCH ADDITIONAL DATA FOR SEARCH --- #}
 {% set teamMembers = craft.entries().section('meetTheTeam').all() %}
 {% set committeeMembers = craft.entries().section('committeeMembers').all() %}
@@ -69,35 +70,29 @@
         searchOpen: false,
         searchQuery: '',
         allLinks: [
-            {# 1. Existing Main Menu Links #}
             {% for handle in ['accounting', 'insurance', 'Savings & Investment', 'Business', 'Mortgages', 'News', 'About'] %}
                 {% set tabUrl = (handle in ['News', 'About']) ? 'javascript:void(0)' : url(handle|lower|replace({' & ': '-', ' ': '-'})) %}
                 { title: '{{ handle|capitalize|e('js') }}', url: '{{ tabUrl|e('js') }}', category: 'Main Menu' },
             {% endfor %}
 
-            {# 2. Existing Mega Menu Items #}
             {% for handle, items in megaMenuData %}
                 {% for item in items %}
                     { title: '{{ item.title|e('js') }}', url: '{{ item.url|e('js') }}', category: '{{ handle|capitalize|e('js') }}' },
                 {% endfor %}
             {% endfor %}
 
-            {# 3. Dynamic Team Members (from CMS) #}
             {% for member in teamMembers %}
                 { title: '{{ member.title|e('js') }}', url: '/pages/Meet-the-team', category: 'Team Member' },
             {% endfor %}
 
-            {# 4. Dynamic Committee Members (from CMS) #}
             {% for member in committeeMembers %}
                 { title: '{{ member.title|e('js') }}', url: '/our-investment-committee', category: 'Investment Committee' },
             {% endfor %}
 
-            {# 5. Legal & Footer Links #}
             { title: 'Privacy Policy', url: '/pages/Privacy', category: 'Legal' },
             { title: 'Complaints', url: '/pages/Complaints-Policy', category: 'Legal' },
             { title: 'Disclaimer', url: '/pages/Disclaimer', category: 'Legal' },
             { title: 'Disclosure', url: '/pages/Disclosure', category: 'Legal' }
-
         ],
         get filteredResults() {
             if (this.searchQuery === '') return [];
@@ -111,7 +106,7 @@
 
     {# --- MAIN HEADER --- #}
     <div class="w-full {{ theme.backgroundColor }} relative z-[510]">
-        <div class="flex items-center h-16 lg:h-20">
+        <div class="flex items-center h-16 lg:h-16">
             <a href="/"
                class="flex items-center h-full pl-6 lg:pl-8 pr-[30px] lg:pr-[60px] flex-none {{ theme.textColor }}">
                 {{ svg(alias(logoPath))|attr({ class: 'h-10 lg:h-11 w-auto ' ~ theme.logoFilter, alt: 'FoxPlan Logo' }) }}
@@ -126,7 +121,8 @@
 
                         <a href="{{ tabUrl }}"
                            class="h-full px-4 flex items-center cursor-pointer hover:opacity-60 transition group {{ isStatic ? 'cursor-default' : '' }}"
-                                {% if hasDropdown %} @mouseenter="openTab = '{{ handle }}'" {% endif %}>
+
+                           @mouseenter="openTab = {{ hasDropdown ? "'" ~ handle ~ "'" : 'null' }}">
                             <span class="flex items-center gap-1">
                                 {{ handle|capitalize }}
                                 {% if hasDropdown %}
@@ -213,7 +209,6 @@
                             <a href="{{ tabUrl }}" class="flex-grow"
                                style="font-size: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);">{{ handle }}</a>
                             {% if hasDropdown %}
-                                {# Mutual Exclusive Toggle Logic #}
                                 <button @click="activeMobileTab = (activeMobileTab === '{{ handle }}' ? null : '{{ handle }}')"
                                         class="p-2">
                                     <svg class="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300"
@@ -296,10 +291,6 @@
                             </svg>
                         </a>
                     </template>
-                    <div x-show="searchQuery !== '' && filteredResults.length === 0"
-                         class="py-12 text-center text-foxplan-charcoal-brown">
-                        No results found for "<span x-text="searchQuery"></span>"
-                    </div>
                 </div>
             </div>
         </div>
@@ -343,35 +334,22 @@
                                      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                      alt="{{ navArticle.title }}">
                             {% endif %}
-
                             <div class="absolute inset-0 bg-gradient-to-t from-foxplan-charcoal-brown/90 via-foxplan-charcoal-brown/30 to-transparent transition-opacity duration-300 group-hover:opacity-90"></div>
-
-
                             <div class="absolute bottom-[clamp(2rem,5vh,3.5rem)] left-[clamp(1.5rem,3vw,2.5rem)] right-[clamp(1.5rem,3vw,2.5rem)] text-white">
-
-
                                 <span class="bg-foxplan-yellow text-foxplan-charcoal-brown font-aktiv font-bold px-3 py-1 rounded-full mb-4 inline-block uppercase tracking-widest"
                                       style="font-size: clamp(0.625rem, 0.75vw, 0.75rem);">
                                     {{ navArticle.postDate | date('j F Y') | upper }}
-                </span>
-
+                                </span>
                                 <h3 class="font-serif font-medium mb-4 leading-tight group-hover:text-foxplan-yellow transition-colors duration-300"
                                     style="font-size: clamp(1.5rem, 2.2vw, 2rem);">
                                     {{ navArticle.title }}
                                 </h3>
-
                                 <span class="font-aktiv font-bold border-b border-white pb-1 group-hover:border-foxplan-yellow transition-colors duration-300 uppercase"
                                       style="font-size: clamp(0.625rem, 0.75vw, 0.75rem);">
-                    Read More
-                </span>
+                                    Read More
+                                </span>
                             </div>
                         </a>
-                    {% else %}
-                        <div class="absolute inset-0 flex items-center justify-center p-8 text-center">
-                            <p class="text-foxplan-charcoal-brown italic font-aktiv" style="font-size: 16px;">
-                                Check back soon for new insights.
-                            </p>
-                        </div>
                     {% endif %}
                 </div>
             </div>

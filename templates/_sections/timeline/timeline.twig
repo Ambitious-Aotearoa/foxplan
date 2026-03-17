@@ -30,14 +30,11 @@
             }
         });
 
-        // Initial state: Set all cards except the first one below the viewport
         gsap.set(cards.slice(1), {
             yPercent: 100,
             opacity: 1,
             clipPath: 'inset(0% 0% 0% 0%)'
         });
-
-        // Timeline Logic: Added a 0.4 offset so that first card have time to be read
 
         cards.forEach((card, i) => {
             if (i > 0) {
@@ -60,23 +57,15 @@
     scrollToIndex(index) {
         const trigger = ScrollTrigger.getById('timelineTrigger');
         if (!trigger) return;
-
         const targetProgress = index / (this.totalSteps - 1);
         const scrollPos = trigger.start + (trigger.end - trigger.start) * targetProgress;
-
-        window.scrollTo({
-            top: scrollPos + 2,
-            behavior: 'auto'
-        });
+        window.scrollTo({ top: scrollPos + 2, behavior: 'auto' });
     }
 }"
      x-ref="mainSection"
      class="w-full bg-foxplan-neutral-beige h-screen flex flex-col px-0 overflow-hidden pt-0 md:pt-6 lg:pt-8">
 
-    {# --- STICKY HEADER & TIMELINE AREA --- #}
     <div class="sticky top-0 z-[110] bg-foxplan-neutral-beige pt-8 pb-4">
-
-        {# --- HEADING --- #}
         <div class="w-full flex flex-col items-center justify-center text-center mb-4 md:mb-12 px-4">
             <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown max-w-6xl mx-auto break-normal"
                 style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
@@ -84,13 +73,10 @@
             </h2>
         </div>
 
-        {# --- TIMELINE TRACK --- #}
         <section class="w-full mb-6 md:mb-12 select-none z-[100] overflow-hidden">
-
+            {# Arrow Track: md:px-20 aligns the dashed line start with the card content #}
             <div class="relative w-full mb-6 md:mb-10 pt-10 px-4 md:px-20">
                 <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-foxplan-charcoal-brown opacity-20"></div>
-
-                {# Arrow Progress Line #}
                 <div class="absolute top-1/2 -translate-y-1/2 left-0 flex items-center pointer-events-none transition-all duration-300 ease-out"
                      :style="`width: ${arrowWidth}%;` ">
                     <div class="flex-grow border-t-2 border-foxplan-charcoal-brown border-dashed h-0"></div>
@@ -100,23 +86,31 @@
                 </div>
             </div>
 
-            {# --- Years Scroller --- #}
+            {# Years Scroller #}
             <div x-ref="yearsContainer"
                  class="w-full overflow-x-auto no-scrollbar scroll-smooth"
-                 x-effect="...">
-
-                {# Changed md:justify-between to md:justify-start to keep years grouped together #}
-                <div class="flex flex-nowrap px-4 md:px-6 md:justify-start md:gap-x-12 min-w-max md:min-w-full font-serif text-foxplan-charcoal-brown">
+                 x-effect="
+                    if (activeIndex >= 0 && window.innerWidth < 768) {
+                        const container = $refs.yearsContainer;
+                        const activeEl = container.children[0].children[activeIndex];
+                        if (activeEl) {
+                            {# Offset of 32px matches px-8 padding to align with card edge #}
+                            const offset = activeEl.offsetLeft - 32;
+                            container.scrollTo({ left: offset, behavior: 'smooth' });
+                        }
+                    }
+                 ">
+                {# px-8 on mobile and md:px-20 on desktop ensures year text starts where the card content starts #}
+                <div class="flex flex-nowrap px-8 md:px-20 md:justify-between min-w-max md:min-w-full font-serif text-foxplan-charcoal-brown">
                     {% for card in milestones %}
                         <button type="button"
-                                {# Removed md:flex-1 so the buttons only take the space they need #}
                                 class="flex-shrink-0 pr-12 md:pr-0 flex justify-start items-center cursor-pointer outline-none focus:ring-0"
                                 @click="scrollToIndex({{ loop.index0 }})">
-                <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 text-foxplan-charcoal-brown' : 'opacity-40'"
-                      class="transition-all duration-300 inline-block pointer-events-none whitespace-nowrap"
-                      style="font-size: clamp(1.25rem, 2vw + 1rem, 2rem);">
-                    {{ card.milestoneYear }}
-                </span>
+                            <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 text-foxplan-charcoal-brown' : 'opacity-40'"
+                                  class="transition-all duration-300 inline-block pointer-events-none whitespace-nowrap"
+                                  style="font-size: clamp(1.25rem, 2vw + 1rem, 2rem);">
+                                {{ card.milestoneYear }}
+                            </span>
                         </button>
                     {% endfor %}
                 </div>
@@ -124,7 +118,6 @@
         </section>
     </div>
 
-    {# --- CARD AREA --- #}
     <div class="relative w-full flex-grow overflow-hidden px-4 mb-4">
         {% for card in milestones %}
             {% set isYellow = loop.index is even %}
@@ -141,6 +134,19 @@
         {% endfor %}
     </div>
 </div>
+
+<style>
+    .milestone-card-wrapper {
+        will-change: transform, clip-path;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
 
 <style>
     .milestone-card-wrapper {
