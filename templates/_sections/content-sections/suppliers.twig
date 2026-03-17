@@ -16,7 +16,6 @@
                 {# Services Grid #}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-20">
                     {% for supplier in tab.suppliers %}
-                        {# Entire card is the link using 'buttonUrl' #}
                         <a href="{{ supplier.buttonUrl }}"
                            target="_blank"
                            class="group supplier-card flex flex-col h-full transition-all duration-300 hover:-translate-y-2">
@@ -27,7 +26,7 @@
                                 {% if image %}
                                     <img src="{{ image.url }}"
                                          alt="{{ supplier.providerName }}"
-                                         class="max-h-full max-w-[240px] object-contain object-left transition-transform duration-500 group-hover:scale-105">
+                                         class="max-h-full max-w-[240px] object-contain object-left transition-transform duration-500 group-hover:scale-100">
                                 {% else %}
                                     <div class="h-full w-48 bg-gray-100/50 flex items-center justify-center border border-gray-200">
                                         <span class="text-[10px] uppercase tracking-widest opacity-30">Logo Pending</span>

@@ -38,25 +38,41 @@
         {# --- SECTION 1: HERO --- #}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 items-start md:mt-0 lg:mt-[200px] mb-24 md:mb-40 relative">
             <div class="col-span-1 lg:col-span-4 order-1 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
-                <div class="w-full px-6 md:px-0 md:pr-12 aspect-[5/4] md:aspect-[4/5] lg:aspect-[4/5] overflow-hidden py-4 md:py-0">
+                <div class="w-full px-4 md:px-0 md:pr-12 aspect-[5/4] md:aspect-[4/5] lg:aspect-[4/5] overflow-hidden py-4 md:py-0">
                     <img src="{{ imgMain ? imgMain.url : fallbackMain }}" class="w-full h-full object-cover">
                 </div>
             </div>
 
             <div class="col-span-1 lg:col-start-7 lg:col-span-4 order-2 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
-                <div class="px-6 md:px-0 md:pl-12 md:pr-12 lg:mr-[20px] pb-12 md:pb-24 lg:pb-0">
-                    {# Heading Fix: line-height adjusted for mobile wrapping #}
+                <div class="px-4 md:px-0 md:pl-12 md:pr-12 lg:mr-[20px] pb-12 md:pb-24 lg:pb-0">
+                    {# Heading #}
                     <h2 class="font-serif text-foxplan-charcoal-brown mb-8 tracking-tight whitespace-normal"
-                        style="font-size: clamp(2.5rem, 6vw, 4.375rem); line-height: 1.05; word-break: break-word; text-wrap: balance;">
+                        style="font-size: clamp(2.5rem, 6vw, 4.375rem); line-height: 1; word-break: break-word; text-wrap: balance;">
                         {{ heading }}
                     </h2>
-                    <div class="font-aktiv font-light text-foxplan-charcoal-brown mb-4 leading-relaxed"
+
+                    {# Description #}
+                    <div class="font-aktiv font-light text-foxplan-charcoal-brown mb-6 leading-relaxed"
                          style="font-size: clamp(1.125rem, 1.5vw, 1.5rem); word-break: normal;">
                         {{ description|raw }}
                     </div>
-                    <div class="w-full mt-4">
-                        {{ include('_components/ui/accordion/accordion-2.twig') }}
+
+                    <div class="w-full flex flex-col font-aktiv text-foxplan-charcoal-brown ">
+                        {% set items = [
+                            'Equity ownership in a growing business',
+                            'Compliance, marketing & operations support',
+                            'Ongoing income even after you retire',
+                            'A futureproofed business exit strategy'
+                        ] %}
+
+                        {% for item in items %}
+                            <div class="py-2 border-b border-foxplan-charcoal-brown"
+                                 style="font-size: clamp(1rem, 1.2vw, 1.25rem);">
+                                {{ item }}
+                            </div>
+                        {% endfor %}
                     </div>
+
                 </div>
             </div>
         </div>
@@ -64,13 +80,13 @@
         {# --- SECTION 2 --- #}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 items-start mb-24 md:mb-40 relative">
             <div class="col-span-1 lg:col-start-7 lg:col-span-4 order-1 md:order-2 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
-                <div class="w-full px-6 md:px-0 md:pl-12 aspect-[4/5] lg:aspect-[4/5] overflow-hidden shadow-sm pb-4 md:py-0">
+                <div class="w-full px-4 md:px-0 md:pl-12 aspect-[4/5] lg:aspect-[4/5] overflow-hidden shadow-sm pb-4 md:py-0">
                     <img src="{{ imgSec2 ? imgSec2.url : fallbackSec2 }}" class="w-full h-full object-cover">
                 </div>
             </div>
 
             <div class="col-span-1 lg:col-span-4 order-2 md:order-1 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
-                <div class="px-6 md:px-0 md:pr-12 md:pl-12 lg:pl-[20px] pb-12 md:pb-24 lg:pb-0">
+                <div class="px-4 md:px-0 md:pr-12 md:pl-12 lg:pl-[20px] pb-12 md:pb-24 lg:pb-0">
                     <h2 class="font-serif text-foxplan-charcoal-brown mb-8 tracking-tight whitespace-normal"
                         style="font-size: clamp(2.5rem, 6vw, 4.375rem); line-height: 1.05; word-break: break-word; text-wrap: balance;">
                         {{ heading2 }}
@@ -86,13 +102,13 @@
         {# --- SECTION 3 --- #}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 items-start relative pb-0 md:pb-0">
             <div class="col-span-1 lg:col-span-4 order-1 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
-                <div class="w-full px-6 md:px-0 md:pr-12 aspect-[4/3] md:aspect-[4/5] lg:aspect-[4/5] overflow-hidden shadow-sm py-4 md:py-0">
+                <div class="w-full px-4 md:px-0 md:pr-12 aspect-[4/3] md:aspect-[4/5] lg:aspect-[4/5] overflow-hidden shadow-sm py-4 md:py-0">
                     <img src="{{ imgSec3 ? imgSec3.url : fallbackSec3 }}" class="w-full h-full object-cover">
                 </div>
             </div>
 
             <div class="col-span-1 lg:col-start-7 lg:col-span-4 order-2 relative z-20 bg-foxplan-neutral-beige md:bg-transparent">
-                <div class="px-6 md:px-0 md:pl-12 md:pr-12 lg:mr-[20px] pb-24 md:pb-24 lg:pb-0">
+                <div class="px-4 md:px-0 md:pl-12 md:pr-12 lg:mr-[20px] pb-24 md:pb-24 lg:pb-0">
                     <h2 class="font-serif text-foxplan-charcoal-brown mb-8 tracking-tight whitespace-normal"
                         style="font-size: clamp(2.5rem, 6vw, 4.375rem); line-height: 1.05; word-break: break-word; text-wrap: balance;">
                         {{ heading3 }}
@@ -118,7 +134,6 @@
             const timelineRect = timelineWrapper.getBoundingClientRect();
             const viewHeight = window.innerHeight;
 
-            {# Middle of screen trigger #}
             let scrollProgress = (viewHeight / 2 - timelineRect.top) / timelineRect.height;
 
             dot.style.opacity = (scrollProgress > 0 && scrollProgress < 1.0) ? "1" : "0";

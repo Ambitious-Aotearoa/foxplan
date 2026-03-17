@@ -30,18 +30,21 @@
             }
         });
 
+        // Initial state: Set all cards except the first one below the viewport
         gsap.set(cards.slice(1), {
             yPercent: 100,
             opacity: 1,
             clipPath: 'inset(0% 0% 0% 0%)'
         });
 
+        // Timeline Logic: Added a 0.4 offset so that first card have time to be read
+
         cards.forEach((card, i) => {
             if (i > 0) {
                 tl.to(card, {
                     yPercent: 0,
                     ease: 'none',
-                }, i - 1);
+                }, (i - 1) + 0.5);
             }
         });
     },
@@ -73,7 +76,7 @@
     {# --- STICKY HEADER & TIMELINE AREA --- #}
     <div class="sticky top-0 z-[110] bg-foxplan-neutral-beige pt-8 pb-4">
 
-        {# Heading #}
+        {# --- HEADING --- #}
         <div class="w-full flex flex-col items-center justify-center text-center mb-4 md:mb-12 px-4">
             <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown max-w-6xl mx-auto break-normal"
                 style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
@@ -81,10 +84,9 @@
             </h2>
         </div>
 
+        {# --- TIMELINE TRACK --- #}
         <section class="w-full mb-6 md:mb-12 select-none z-[100] overflow-hidden">
 
-            {# Arrow Track #}
-            {# UPDATED: Added md:px-20 to match card padding #}
             <div class="relative w-full mb-6 md:mb-10 pt-10 px-4 md:px-20">
                 <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-foxplan-charcoal-brown opacity-20"></div>
 
@@ -106,16 +108,13 @@
                         const container = $refs.yearsContainer;
                         const activeEl = container.children[0].children[activeIndex];
                         if (activeEl) {
+                            // Mobile align to card edge (16px)
                             const offset = activeEl.offsetLeft - 16;
                             container.scrollTo({ left: offset, behavior: 'smooth' });
                         }
                     }
                  ">
-                {#
-                UPDATED:
-                1. Changed md:px-0 to md:px-20 to align exactly with the card content edge.
-                2. Kept md:justify-between so years spread out across the track as before.
-                #}
+
                 <div class="flex flex-nowrap px-4 md:px-20 md:justify-between min-w-max md:min-w-full font-serif text-foxplan-charcoal-brown">
                     {% for card in milestones %}
                         <button type="button"

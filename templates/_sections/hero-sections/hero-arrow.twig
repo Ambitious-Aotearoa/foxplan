@@ -12,8 +12,7 @@
     buttonBgColor: 'bg-foxplan-charcoal-brown',
     buttonTextColor: 'text-foxplan-white',
     textColor: 'text-foxplan-charcoal-brown',
-
-buttonUrl: props.buttonUrl ?? null
+    buttonUrl: props.buttonUrl ?? null
 } %}
 
 {% set data = defaults | merge(props ?? {}) %}
@@ -35,10 +34,11 @@ buttonUrl: props.buttonUrl ?? null
         </div>
 
         <div class="w-full md:w-[70%] px-4 md:px-6 lg:px-8">
-            <h2 class="font-serif leading-[0.85] tracking-tight {{ data.textColor }} whitespace-normal"
-                style="font-size: clamp(3rem, 8vw + 1rem, 7.5rem); line-height: 1.0;">
+            {# Heading wrapped in a div #}
+            <div class="font-serif leading-[0.85] tracking-tight {{ data.textColor }} whitespace-normal"
+                 style="font-size: clamp(3rem, 8vw + 1rem, 7.5rem); line-height: 1.0;">
                 {{ data.heading | raw }}
-            </h2>
+            </div>
         </div>
     </div>
 
@@ -46,7 +46,7 @@ buttonUrl: props.buttonUrl ?? null
         <div class="w-full xl:w-[70%] relative overflow-hidden">
             <div class="relative w-full aspect-[16/9] xl:aspect-[21/10] px-4 lg:px-6 xl:px-0">
                 {% if heroImageAsset %}
-                <img src="{{ heroImageAsset.url }}" class="w-full h-full object-cover">
+                    <img src="{{ heroImageAsset.url }}" class="w-full h-full object-cover">
                 {% endif %}
             </div>
         </div>
@@ -55,7 +55,7 @@ buttonUrl: props.buttonUrl ?? null
             {% if data.bodyText %}
                 <div class="font-aktiv leading-relaxed {{ data.textColor }} font-medium break-words hyphens-none"
                      style="font-size: clamp(1rem, 0.7vw + 0.5rem, 1.25rem); word-break: keep-all;">
-                    {{ data.bodyText | raw }}
+                    {{ data.bodyText | replace({'<p>': '<div>', '</p>': '</div>'}) | raw }}
                 </div>
             {% endif %}
 
@@ -68,7 +68,6 @@ buttonUrl: props.buttonUrl ?? null
                                 url: null,
                                 backgroundColor: data.buttonBgColor,
                                 textColor: data.buttonTextColor,
-                                classes: 'px-10 py-4 text-[10px] tracking-[0.2em] font-bold uppercase rounded-none'
                             }
                         } only %}
                     </div>

@@ -88,14 +88,14 @@
                 {% for item in data.items %}
                     <div class="benefit-card group w-full transition-all duration-500 rounded-none"
                          x-data="{
-                            isScrollActive: false,
-                            checkActive() {
-                                let rect = $el.getBoundingClientRect();
-                                let lineRect = $refs.lineContainer.getBoundingClientRect();
-                                let circleGlobalY = lineRect.top + yPos;
-                                this.isScrollActive = (circleGlobalY >= rect.top && circleGlobalY <= rect.bottom);
-                            }
-                         }"
+                    isScrollActive: false,
+                    checkActive() {
+                        let rect = $el.getBoundingClientRect();
+                        let lineRect = $refs.lineContainer.getBoundingClientRect();
+                        let circleGlobalY = lineRect.top + yPos;
+                        this.isScrollActive = (circleGlobalY >= rect.top && circleGlobalY <= rect.bottom);
+                    }
+                 }"
                          x-init="$watch('yPos', () => checkActive())"
                          :class="(isScrollActive) ? 'bg-white p-8 md:p-10 translate-x-2 md:translate-x-4 opacity-100 shadow-sm' : 'bg-transparent p-8 md:p-10 translate-x-0 opacity-40'">
 
@@ -106,11 +106,15 @@
                         {% endif %}
 
                         {% if item.text %}
-                            <div class="font-serif text-foxplan-charcoal-brown"
+                            <div class="font-serif text-foxplan-charcoal-brown
+                                [&_ul]:list-disc [&_ol]:list-decimal
+                                [&_ul]:list-inside [&_ol]:list-inside
+                                [&_ul]:mt-4 [&_ol]:mt-4
+                                [&_li]:mb-2 [&_li]:pl-0 [&_li]:leading-normal"
                                  style="font-size: clamp(1.3rem, 2vw + 0.8rem, 2.25rem);
-                                        line-height: 1.25 !important;
-                                        word-break: normal !important;
-                                        overflow-wrap: break-word !important;">
+                                line-height: 1.25 !important;
+                                word-break: normal !important;
+                                overflow-wrap: break-word !important;">
                                 {{ item.text | raw }}
                             </div>
                         {% endif %}

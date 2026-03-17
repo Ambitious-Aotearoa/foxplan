@@ -1,3 +1,4 @@
+css: "[\r\n  {\r\n    \"name\": \"Aligned List\",\r\n    \"element\": \"ul\",\r\n    \"styles\": {\r\n      \"padding-left\": \"25px\",\r\n      \"list-style-position\": \"outside\"\r\n    }\r\n  }\r\n]"
 headingLevels:
   - 1
   - 2
@@ -11,6 +12,9 @@ options:
     options:
       - left
       - right
+  indentBlock:
+    offset: 40
+    unit: px
 toolbar:
   - heading
   - '|'
@@ -21,3 +25,5 @@ toolbar:
   - bulletedList
   - numberedList
   - alignment
+  - outdent
+  - indent

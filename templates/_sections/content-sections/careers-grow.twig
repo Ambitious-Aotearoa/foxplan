@@ -3,7 +3,7 @@
 <section class="w-full relative overflow-hidden bg-foxplan-neutral-beige" id="career-scroll-container">
 
     {# --- HEADER SECTION --- #}
-    <div class="w-full py-8 md:py-16 lg:py-24 text-center px-8 relative z-20">
+    <div class="w-full py-8 md:py-16 lg:py-24 text-center px-4 relative z-20">
         <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown mb-6 max-w-4xl mx-auto break-normal"
             style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
             {{ entry.paragraphHeading2 | raw }}
@@ -47,7 +47,7 @@
                  style="height: 0px;"></div>
 
             <div id="career-scrolling-dot"
-                 class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-foxplan-charcoal-brown rounded-full shadow-sm opacity-0"
+                 class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-foxplan-charcoal-brown rounded-full opacity-0"
                  style="top: 0px; transition: opacity 300ms;">
             </div>
         </div>
@@ -60,7 +60,7 @@
 
                     {# Image Side #}
                     <div class="col-span-1 md:col-span-4 {{ imageOnLeft ? 'md:col-start-1' : 'md:col-start-7 md:order-2' }} px-4 md:px-0 lg:px-0">
-                        <div class="w-full relative shadow-xl">
+                        <div class="w-full relative ">
                             {% if section.asset %}
                                 <img src="{{ section.asset.url }}"
                                      class="w-full h-[500px] lg:h-[700px] object-cover block"
@@ -74,7 +74,7 @@
                     </div>
 
                     {# Text Side #}
-                    <div class="col-span-1 md:col-span-4 pt-2 {{ imageOnLeft ? 'md:col-start-7 px-8 md:px-0 md:pr-12 lg:pr-24' : 'md:col-start-1 px-8 md:pl-12 lg:pl-16 md:order-1' }}">
+                    <div class="col-span-1 md:col-span-4 pt-2 {{ imageOnLeft ? 'md:col-start-7 px-4 md:px-0 md:pr-12 lg:pr-24' : 'md:col-start-1 px-4 md:pl-12 lg:pl-16 md:order-1' }}">
                         <div class="max-w-xl">
                             <span class="text-xs font-bold uppercase tracking-widest text-foxplan-charcoal-brown/50 mb-4 block">
                                 {{ section.prehead }}
@@ -138,7 +138,7 @@
             progressLine.style.height = percentage + '%';
         }
 
-        // --- Intersection Observer (Permanent Highlight) ---
+        // --- Intersection Observer  ---
         const observerOptions = {
             root: null,
             rootMargin: '0px 0px -25% 0px',

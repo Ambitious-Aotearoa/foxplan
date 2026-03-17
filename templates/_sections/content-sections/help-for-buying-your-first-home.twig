@@ -17,12 +17,16 @@
             {# Left Side #}
             <div class="lg:col-span-3 mb-12 lg:mb-0 lg:pr-12">
                 {% if data.paragraphHeading %}
-                    <h2 class="font-serif tracking-tight {{ data.textColor }} leading-[0.85]"
-                        style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
+                    <h2 class="font-serif tracking-tight {{ data.textColor }}"
+                        style="font-size: clamp(2.4rem, 5vw, 5rem);
+                   line-height: 1 !important;
+                   text-wrap: balance;">
                         {{ data.paragraphHeading | raw }}
                     </h2>
                 {% endif %}
             </div>
+
+
 
             {# Right Side #}
             <div class="lg:col-span-7">
