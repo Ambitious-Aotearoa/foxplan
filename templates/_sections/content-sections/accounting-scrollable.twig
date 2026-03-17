@@ -37,7 +37,7 @@
          class="relative z-10 flex flex-nowrap overflow-x-auto gap-6 px-4 md:px-6 lg:px-8 mb-6 md:mb-10 snap-x snap-mandatory no-scrollbar scroll-smooth">
 
         {% for card in block.heroMatrix.all() %}
-            <div class="flex-shrink-0 min-w-[85vw] md:min-w-[45vw] lg:min-w-[calc((100%/3)-2rem)] bg-foxplan-neutral-beige p-8 md:px-6 lg:p-12 text-foxplan-charcoal-brown snap-start flex flex-col h-auto min-h-[350px] lg:h-[550px] overflow-hidden">
+            <div class="flex-shrink-0 min-w-[85vw] md:min-w-[45vw] lg:min-w-[calc((100%/3)-2rem)] bg-foxplan-neutral-beige p-5 md:px-6 lg:p-12 text-foxplan-charcoal-brown snap-start flex flex-col h-auto min-h-[350px] lg:h-[550px] overflow-hidden">
 
                 <div class="mb-6 md:mb-10 flex-shrink-0">
                     {{ include('_components/ui/icons/performance-icon.twig', {
@@ -45,14 +45,16 @@
                     }) }}
                 </div>
 
-                <h3 class="font-serif mb-4 md:mb-6 leading-tight flex-shrink-0 w-full"
-                    style="font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem); text-wrap: balance;">
+                {# Heading converted to div - styles preserved exactly #}
+                <div class="font-serif mb-4 md:mb-6 leading-tight flex-shrink-0 w-full max-w-xs md:max-w-sm lg:max-w-none"
+                     style="font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem); text-wrap: balance;">
                     {{ card.mainHeading }}
-                </h3>
+                </div>
 
-                <div class="font-aktiv leading-relaxed font-medium text-left whitespace-normal max-w-[32ch] md:max-w-[38ch] lg:max-w-none"
+                {# Body text converted to div - space and constraints preserved #}
+                <div class="font-aktiv leading-relaxed font-medium text-left whitespace-normal max-w-xs md:max-w-sm lg:max-w-none"
                      style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.125rem); word-break: normal;">
-                    {{ card.bodyText }}
+                    {{ card.bodyText | replace({'<p>': '<div>', '</p>': '</div>'}) | raw }}
                 </div>
             </div>
         {% endfor %}
