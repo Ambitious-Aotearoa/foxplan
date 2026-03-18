@@ -22,14 +22,17 @@
 <div x-data="{ showFirstHomeOverlay: false }">
     <section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">
         <div class="px-4 md:px-6 lg:px-8 py-12 lg:py-16 lg:pt-32 lg:pb-32">
-            <div class="flex flex-wrap md:flex-nowrap w-full items-center gap-0">
+
+            {# Changed items-center to items-start below #}
+            <div class="flex flex-wrap md:flex-nowrap w-full items-start gap-0">
 
                 {# Left Column #}
                 <div class="w-full md:w-[30%] mb-12 md:mb-0 pr-0 md:pr-8 lg:pr-12">
                     <div class="max-w-md">
+                        {# Removed top margin/padding and ensured line-height doesn't create a gap #}
                         <h2 class="font-serif tracking-tight {{ data.textColor }} whitespace-normal {{ (data.bodyText or data.buttonText) ? 'mb-8' : '' }}"
                             style="font-size: clamp(2.25rem, 4vw + 1rem, 4.5rem);
-                                   line-height: 1.05;
+                                   line-height: 1;
                                    word-break: break-word;
                                    overflow-wrap: break-word;
                                    text-wrap: balance;">
@@ -39,7 +42,8 @@
                         {% if data.bodyText is not empty %}
                             <div class="font-aktiv opacity-90 {{ data.textColor }} font-medium {{ data.buttonText ? 'mb-10' : '' }}"
                                  style="font-size: clamp(0.9rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;">
-                                {{ data.bodyText | raw }}
+                                {# Added striptags to keep alignment tight #}
+                                {{ data.bodyText | striptags | raw }}
                             </div>
                         {% endif %}
 
@@ -63,6 +67,7 @@
                 {# Right Side #}
                 <div class="w-full md:w-[70%]">
                     <div class="w-full relative overflow-hidden">
+                        {# Image starts at the very top of its container #}
                         {% set imgClasses = "w-full h-[350px] md:h-[550px] lg:h-[650px] object-cover block" %}
                         {% if data.imageSrc %}
                             <img src="{{ data.imageSrc }}" alt="{{ data.title|striptags }}" class="{{ imgClasses }}">

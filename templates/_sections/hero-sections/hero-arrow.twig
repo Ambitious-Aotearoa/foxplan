@@ -52,10 +52,12 @@
         </div>
 
         <div class="w-full xl:w-[30%] px-4 md:px-6 lg:px-8 space-y-4 pt-4 xl:pt-0">
+
             {% if data.bodyText %}
                 <div class="font-aktiv leading-relaxed {{ data.textColor }} font-medium break-words hyphens-none"
                      style="font-size: clamp(1rem, 0.7vw + 0.5rem, 1.25rem); word-break: keep-all;">
-                    {{ data.bodyText | replace({'<p>': '<div>', '</p>': '</div>'}) | raw }}
+
+                    {{ data.bodyText | striptags | raw }}
                 </div>
             {% endif %}
 

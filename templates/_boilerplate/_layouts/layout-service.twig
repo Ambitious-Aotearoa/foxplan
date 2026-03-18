@@ -55,7 +55,12 @@
     } only %}
 
     {# 6. Testimonial #}
-    {% include "_sections/testimonials/testimonial-two.twig" %}
+    {{ include('_sections/testimonials/testimonial-two.twig', {
+        props: {
+            borderColor: 'border-foxplan-charcoal-brown',
+        }
+    }) }}
+
 
 
     {# 7. Footer #}

@@ -1,0 +1,52 @@
+fieldLayouts:
+  70fe9a1c-de64-408a-b0ca-d61fde152204:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-03-18T02:22:02+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f4cdde7e-f4b5-4ca0-9555-c5dbcd7d6c23 # Favicon
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c9d28025-4f2f-4737-a271-f53dd8e94770
+            userCondition: null
+            warning: null
+            width: 100
+        name: Favicon
+        uid: b788a848-aa1a-40e6-bdf9-c73d53b7e171
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-03-18T02:22:02+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 5cc80fc2-9baf-4ff2-8de3-0de4bb7a3ef0 # Webclip
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b6361298-0d39-4567-83ac-b2b42d09939b
+            userCondition: null
+            warning: null
+            width: 100
+        name: Webclip
+        uid: dd3882d6-451b-4310-a04e-7ae9d2386826
+        userCondition: null
+    thumbFieldKey: null
+handle: siteSettings
+name: 'Site Settings'
+sortOrder: 2

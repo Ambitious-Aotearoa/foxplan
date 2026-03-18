@@ -1,4 +1,4 @@
-dateModified: 1773699001
+dateModified: 1773800522
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
@@ -60,6 +60,7 @@ meta:
     5a33ed06-c4f0-4d32-be5f-033502c710e5: blockLinkUrl # blockLinkUrl
     5b7ffe03-2220-4d5c-8b2a-3d7e12c525be: 'Equity Partners' # Equity Partners
     5ca1faf9-4255-419a-9685-fa7e60d769b6: 'Insights Body Text' # Insights Body Text
+    5cc80fc2-9baf-4ff2-8de3-0de4bb7a3ef0: Webclip # Webclip
     5cede0e4-ef0c-4e1f-b901-5b98851b4218: 'Accordion Body Text' # Accordion Body Text
     5e5bb650-f40f-4a0a-b4e2-96821fdaae9a: 'Committee Members' # Committee Members
     5f9ab0c0-59fc-4921-ae4d-b5295b968b0a: Savings # Savings
@@ -111,9 +112,9 @@ meta:
     93cc1844-5f6e-4858-86da-315bd52cda7c: 'Property Upgrade' # Property Upgrade
     096b02a8-7b14-4611-b1ca-1e82e3dd704a: 'Newsletter Image' # Newsletter Image
     96c1e443-01b6-463e-b149-11a8187fafae: 'Matrix Title' # Matrix Title
-    146fe77f-4ff5-4ac8-9b18-d0d483526804: equity # equity
     197d008b-abaf-40fa-9c38-173ac170b291: 'Article Heading' # Article Heading
     213a9e8b-5fd6-423e-a7d0-628598de026e: Facebook # Facebook
+    222af9fb-54f1-410e-bbe1-d8a98905aa7a: 'Site Settings' # Site Settings
     222ba10e-eabb-490d-b424-074aac4d84dd: 'Our Suppliers' # Our Suppliers
     383dafac-19c3-4559-9459-54a9919aada4: 'Body Text' # Body Text
     442aaa5f-2531-4a40-a133-1b9bcbd25b08: 'Our Suppliers' # Our Suppliers
@@ -200,6 +201,7 @@ meta:
     ecf3a398-13d9-4319-a852-69760e9374a9: 'financial wellbeing page' # financial wellbeing page
     efeb5ea9-1bf7-4e7d-a7fa-d14d0e4d081b: 'Article Categories' # Article Categories
     f1c902fb-3573-4fe5-872f-68ef7fe938e5: 'Heading Line2' # Heading Line2
+    f4cdde7e-f4b5-4ca0-9555-c5dbcd7d6c23: Favicon # Favicon
     f7a5e91d-6352-49c1-91d0-6a6491f0edaf: 'Page Builder' # Page Builder
     f41f4500-6b84-466c-89f3-dae1d5c3bf36: Category # Category
     f83b90ed-4415-49b6-85c7-e4f1a4a11e72: 'Insights Tab Image' # Insights Tab Image

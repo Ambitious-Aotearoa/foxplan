@@ -1,9 +1,11 @@
 {# templates/_components/form/Contact-form.twig #}
 
+{# 1. Define base classes #}
 {% set labelClasses = 'text-sm font-semibold uppercase tracking-wider mb-2 block text-foxplan-charcoal-brown font-aktiv' %}
-{% set inputClasses = 'w-full py-2 border-b border-gray-400 focus:outline-none focus:border-gray-900 bg-transparent placeholder-gray-500 text-foxplan-charcoal-brown font-aktiv' %}
+{# inputClasses handles the border and font, but we let the specific elements handle their own text color #}
+{% set inputClasses = 'w-full py-2 border-b border-foxplan-charcoal-brown focus:outline-none bg-transparent placeholder-foxplan-charcoal-brown/60 font-aktiv transition-colors duration-200' %}
 
-{# Fetch dynamic services from Insights tags #}
+{# 2. Fetch dynamic services #}
 {% set insightTags = craft.tags.group('insights').all() %}
 {% set serviceOptions = insightTags|map(t => t.title) %}
 
@@ -11,55 +13,78 @@
     {{ csrfInput() }}
 
     <div class="grid grid-cols-12 gap-x-8 gap-y-12 pb-12">
+
         {# First Name #}
         <div class="col-span-12 md:col-span-6">
             <label for="first_name" class="{{ labelClasses }}">First Name</label>
-            <input type="text" id="first_name" name="first_name" placeholder="John" class="{{ inputClasses }}" required>
+            <input type="text" id="first_name" name="first_name" placeholder="John"
+                   class="{{ inputClasses }} text-foxplan-charcoal-brown" required>
         </div>
 
         {# Last Name #}
         <div class="col-span-12 md:col-span-6">
             <label for="last_name" class="{{ labelClasses }}">Last Name</label>
-            <input type="text" id="last_name" name="last_name" placeholder="Doe" class="{{ inputClasses }}" required>
+            <input type="text" id="last_name" name="last_name" placeholder="Doe"
+                   class="{{ inputClasses }} text-foxplan-charcoal-brown" required>
         </div>
 
-        {# Interest Dropdown (Dynamic) #}
+        {# Interest Dropdown #}
         <div class="col-span-12 md:col-span-6">
-            <label for="interest" class="{{ labelClasses }}" >I am interested in</label>
-            <select id="interest" name="interest" class="{{ inputClasses }} appearance-none rounded-none">
-                <option value="" disabled selected>Select a service</option>
-                {% for service in serviceOptions %}
-                    <option value="{{ service }}">{{ service }}</option>
-                {% endfor %}
-            </select>
+            <label for="interest" class="{{ labelClasses }}">I am interested in</label>
+            <div class="relative">
+                <select id="interest" name="interest"
+                        class="{{ inputClasses }} appearance-none rounded-none w-full pr-8 [&:invalid]:text-foxplan-charcoal-brown/60 text-foxplan-charcoal-brown"
+                        required>
+                    <option value="" disabled selected>Select a service</option>
+                    {% for service in serviceOptions %}
+                        <option value="{{ service }}" class="text-foxplan-charcoal-brown">{{ service }}</option>
+                    {% endfor %}
+                </select>
+                {# Custom Arrow #}
+                <div class="absolute right-0 bottom-3 pointer-events-none text-foxplan-charcoal-brown/60">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </div>
         </div>
 
         {# Best Time to Call #}
         <div class="col-span-12 md:col-span-6">
             <label for="call_time" class="{{ labelClasses }}">Best time to call</label>
-            <select id="call_time" name="call_time" class="{{ inputClasses }} appearance-none rounded-none">
-                <option value="Morning">Morning</option>
-                <option value="Afternoon">Afternoon</option>
-                <option value="Evening">Evening</option>
-            </select>
+            <div class="relative">
+                <select id="call_time" name="call_time"
+                        class="{{ inputClasses }} appearance-none rounded-none w-full pr-8 [&:invalid]:text-foxplan-charcoal-brown/60 text-foxplan-charcoal-brown"
+                        required>
+                    <option value="" disabled selected>Select a time</option>
+                    <option value="Morning" class="text-foxplan-charcoal-brown">Morning</option>
+                    <option value="Afternoon" class="text-foxplan-charcoal-brown">Afternoon</option>
+                    <option value="Evening" class="text-foxplan-charcoal-brown">Evening</option>
+                </select>
+                {# Custom Arrow #}
+                <div class="absolute right-0 bottom-3 pointer-events-none text-foxplan-charcoal-brown/60">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </div>
         </div>
 
         {# Phone #}
         <div class="col-span-12 md:col-span-6">
             <label for="phone" class="{{ labelClasses }}">Phone</label>
-            <input type="tel" id="phone" name="phone" placeholder="1234 567 890" class="{{ inputClasses }}">
+            <input type="tel" id="phone" name="phone" placeholder="1234 567 890"
+                   class="{{ inputClasses }} text-foxplan-charcoal-brown">
         </div>
 
         {# Email #}
         <div class="col-span-12 md:col-span-6">
             <label for="email" class="{{ labelClasses }}">Email</label>
-            <input type="email" id="email" name="email" placeholder="johndoe@email.com" class="{{ inputClasses }}" required>
+            <input type="email" id="email" name="email" placeholder="johndoe@email.com"
+                   class="{{ inputClasses }} text-foxplan-charcoal-brown" required>
         </div>
 
         {# Message #}
         <div class="col-span-12">
             <label for="message" class="{{ labelClasses }}">Message</label>
-            <textarea id="message" name="message" rows="4" placeholder="Enter your message" class="{{ inputClasses }} resize-none"></textarea>
+            <textarea id="message" name="message" rows="4" placeholder="Enter your message"
+                      class="{{ inputClasses }} text-foxplan-charcoal-brown resize-none"></textarea>
         </div>
 
         {# Submit Button #}
@@ -67,7 +92,8 @@
             {{ include('_components/ui/button/button.twig', {
                 props: {
                     text: props.submitText ?? 'Submit',
-                    style: 'secondary',
+                    backgroundColor: 'bg-foxplan-charcoal-brown',
+                    textColor: 'text-foxplan-white',
                     type: 'submit'
                 }
             }) }}

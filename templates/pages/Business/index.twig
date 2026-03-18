@@ -1,7 +1,7 @@
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {% set navigationTheme = {
-    backgroundColor: 'bg-foxplan-neutral-beige',
+    backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown',
     actionBgColor: 'bg-foxplan-charcoal-brown'
 } %}
@@ -15,7 +15,7 @@
         {{ include('_sections/hero-sections/hero-arrow.twig', {
             props: {
                 buttonUrl: '#',
-                backgroundColor: 'bg-foxplan-neutral-beige',
+                backgroundColor: 'bg-foxplan-yellow',
                 buttonBgColor: 'bg-foxplan-charcoal-brown',
                 buttonTextColor: 'text-foxplan-white'
             }
@@ -63,7 +63,8 @@
 
         {{ include('_sections/testimonials/testimonial-two.twig', {
             data: {
-                paragraphHeading4: block.paragraphHeading4 ?? 'Hear what our clients are saying'
+                paragraphHeading4: block.paragraphHeading4 ?? 'Hear what our clients are saying',
+                borderColor: 'border-foxplan-charcoal-brown'
             },
             testimonials: testimonialEntries
         }) }}

@@ -4,23 +4,13 @@ instructions: null
 name: 'medium paragraph'
 searchable: false
 settings:
-  availableTransforms: ''
-  availableVolumes: '*'
-  characterLimit: null
-  ckeConfig: 146fe77f-4ff5-4ac8-9b18-d0d483526804 # equity
-  createButtonLabel: null
-  defaultTransform: null
-  expandEntryButtons: false
-  fullGraphqlData: true
-  parseEmbeds: false
-  purifierConfig: null
-  purifyHtml: true
-  showUnpermittedFiles: false
-  showUnpermittedVolumes: false
-  showWordCount: false
-  sourceEditingGroups:
-    - __ADMINS__
-  wordLimit: null
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
 translationKeyFormat: null
 translationMethod: none
-type: craft\ckeditor\Field
+type: craft\fields\PlainText

@@ -16,7 +16,7 @@
                 buttonUrl: '#',
                 backgroundColor: 'bg-foxplan-yellow',
                 buttonBgColor: 'bg-foxplan-charcoal-brown',
-                buttonTextColor: 'text-foxplan-yellow'
+                buttonTextColor: 'text-foxplan-white'
             }
         }) }}
 
@@ -72,9 +72,18 @@
 
 
         {# Testimonials #}
+        {% set testimonialEntries = craft.entries().section('testimonials').all() %}
+
         {{ include('_sections/testimonials/testimonial-two.twig', {
-            data: { paragraphHeading4: entry.paragraphHeading4 ?? 'Hear what our clients are saying' }
+            data: {
+                paragraphHeading4: block.paragraphHeading4 ?? 'Hear what our clients are saying',
+                borderColor: 'border-foxplan-charcoal-brown'
+            },
+            testimonials: testimonialEntries
         }) }}
+
+
+
 
         {# Footer #}
         {{ include('_components/footer/footer-High-fidelity.twig', {
@@ -83,7 +92,7 @@
                 textColor: 'text-foxplan-yellow',
                 logoColor: 'text-foxplan-yellow',
                 buttonColor: 'bg-foxplan-yellow',
-                buttonTextColor: 'text-foxplan-white',
+                buttonTextColor: 'text-foxplan-charcoal-brown',
                 separatorColor: 'text-foxplan-yellow'
             }
         }) }}
