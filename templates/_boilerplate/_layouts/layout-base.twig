@@ -12,22 +12,22 @@
 
     {# Favicon and Webclip #}
 
+    {# 1. Fetch from the 'siteSettings' Global Set using the correct handles #}
     {% set siteFavicon = siteSettings.faviconField.one() %}
     {% set siteWebclip = siteSettings.webclipField.one() %}
 
-    {#  Favicon  #}
+    {# Favicon #}
     {% if siteFavicon %}
         <link rel="icon" type="{{ siteFavicon.mimeType }}" href="{{ siteFavicon.url }}">
-        <link rel="shortcut icon" href="{{ siteFavicon.url }}">
     {% endif %}
 
-    {#  Webclip  #}
+    {# Webclip (Apple Touch Icon) #}
     {% if siteWebclip %}
-        <link rel="apple-touch-icon" href="{{ siteWebclip.url }}">
+        <link rel="apple-touch-icon" sizes="256x256" href="{{ siteWebclip.url }}">
     {% elseif siteFavicon %}
+        {# Fallback to favicon if webclip is empty #}
         <link rel="apple-touch-icon" href="{{ siteFavicon.url }}">
     {% endif %}
-
 
     <script src="https://cdn.tailwindcss.com"></script>
 
