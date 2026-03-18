@@ -1,4 +1,4 @@
-dateModified: 1773800522
+dateModified: 1773870530
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
@@ -222,6 +222,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 3.0.0.0
+  contact-form:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   dospaces:
     edition: standard
     enabled: true

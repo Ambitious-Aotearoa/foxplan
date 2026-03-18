@@ -8,36 +8,27 @@
 
     {# 1. CSS & Fonts #}
     <link rel="stylesheet" href="https://use.typekit.net/hty7zmt.css">
-    {# 1. Fetch the Global Set by its handle #}
-    {% set settings = craft.app.globals.getSetByHandle('siteSettings') %}
 
-    {# 2. Check if the global set exists before using it #}
-    {% if settings %}
-        {% set siteFavicon = settings.faviconField.one() %}
-        {% set siteWebclip = settings.webclipField.one() %}
 
-        {# Favicon Implementation #}
-        {% if siteFavicon %}
-            <link rel="icon" type="{{ siteFavicon.mimeType }}" href="{{ siteFavicon.url }}">
-            <link rel="shortcut icon" href="{{ siteFavicon.url }}">
-        {% else %}
-            {# Fallback to manual path if field is empty #}
-            <link rel="icon" type="image/svg+xml" href="/images/favicon_32x32.svg">
-        {% endif %}
+    {# Favicon and Webclip #}
 
-        {# Webclip Implementation #}
-        {% if siteWebclip %}
-            <link rel="apple-touch-icon" href="{{ siteWebclip.url }}">
-        {% else %}
-            {# Fallback to manual path for 256x256 #}
-            <link rel="apple-touch-icon" href="/images/webclip_256x256.svg">
-        {% endif %}
+    {% set siteFavicon = siteSettings.faviconField.one() %}
+    {% set siteWebclip = siteSettings.webclipField.one() %}
 
-    {% else %}
-        {# 3. Total Fallback if the 'siteSettings' handle itself is wrong #}
-        <link rel="icon" type="image/svg+xml" href="/images/favicon_32x32.svg">
-        <link rel="apple-touch-icon" href="/images/webclip_256x256.svg">
+    {#  Favicon  #}
+    {% if siteFavicon %}
+        <link rel="icon" type="{{ siteFavicon.mimeType }}" href="{{ siteFavicon.url }}">
+        <link rel="shortcut icon" href="{{ siteFavicon.url }}">
     {% endif %}
+
+    {#  Webclip  #}
+    {% if siteWebclip %}
+        <link rel="apple-touch-icon" href="{{ siteWebclip.url }}">
+    {% elseif siteFavicon %}
+        <link rel="apple-touch-icon" href="{{ siteFavicon.url }}">
+    {% endif %}
+
+
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>

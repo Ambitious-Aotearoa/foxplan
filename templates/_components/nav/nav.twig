@@ -143,11 +143,11 @@
             <div class="flex flex-none items-start h-full pr-4 lg:pr-0">
                 {# Search Button #}
                 <button @click="searchOpen = true"
-                        class="w-14 lg:w-16 h-12 lg:h-16 flex items-center justify-center cursor-pointer group
+                        class="w-14 lg:w-16 h-12 lg:h-16 flex items-center justify-center cursor-pointer group transition-all duration-300 hover:opacity-80
            lg:{{ theme.searchBgColor }} lg:{{ theme.iconColor }}
            text-foxplan-charcoal-brown
            lg:border-r {{ theme.backgroundColor ?: 'border-foxplan-charcoal-brown' }}">
-                    <div class="w-7 lg:w-5 h-7 lg:h-5 transition-transform group-hover:scale-110">
+                    <div class="w-7 lg:w-5 h-7 lg:h-5 transition-transform">
                         <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
                             <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
                                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -168,14 +168,16 @@
 
                 {# CTA Button #}
                 <div class="hidden lg:block">
+                    {% set ctaHoverClass = 'bg-foxplan-yellow' in theme.ctaBgColor ? 'hover:opacity-70' : 'hover:opacity-80' %}
+
                     {% include '_components/ui/button/button.twig' with {
-                        props: {
-                            text: 'GET IN TOUCH',
-                            url: url('contact-us'),
-                            classes: 'h-12 lg:h-16 px-10 flex items-center uppercase tracking-widest text-sm font-bold rounded-none '
-                            ~ theme.ctaBgColor ~ ' '
-                            ~ theme.ctaTextColor
-                        }
+                    props: {
+                    text: 'GET IN TOUCH',
+                    url: url('contact-us'),
+                    backgroundColor: theme.ctaBgColor,
+                    textColor: theme.ctaTextColor,
+                    classes: 'h-12 lg:h-16 px-10 flex items-center uppercase tracking-widest text-sm font-bold rounded-none transition-all duration-300 ' ~ ctaHoverClass
+                    }
                     } only %}
                 </div>
             </div>

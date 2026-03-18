@@ -12,7 +12,7 @@
     {#
     PADDING:
     #}
-    <div id="newsletter-container" class="bg-foxplan-neutral-beige py-4 lg:py-24 px-4 md:px-6 transition-all duration-500">
+    <div id="newsletter-container" class="bg-foxplan-yellow py-4 lg:py-24 px-4 md:px-6 transition-all duration-500">
 
         <div class="w-full">
             <span class="font-aktiv text-[10px] font-bold uppercase tracking-[0.2em] text-foxplan-charcoal-brown mb-8 block">
@@ -38,11 +38,13 @@
                                     class="w-full text-base font-aktiv py-4 bg-transparent focus:outline-none placeholder-foxplan-charcoal-brown text-foxplan-charcoal-brown"
                                     required
                             >
-                            <button type="submit" class="flex items-center font-aktiv text-[10px] font-bold uppercase tracking-[0.2em] text-foxplan-charcoal-brown hover:opacity-60 transition-opacity ml-4 flex-shrink-0">
+                            <button type="submit" class="flex items-center font-aktiv text-[14px] font-bold uppercase tracking-[0.2em] text-foxplan-charcoal-brown hover:opacity-60 transition-opacity ml-4 flex-shrink-0">
                                 {{ data.submitText }}
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12H18" stroke="#270E15" stroke-linecap="square"/>
+                                    <path d="M12 5L19 12L12 19" stroke="#270E15" stroke-linecap="square"/>
                                 </svg>
+
                             </button>
                         </div>
                     </form>

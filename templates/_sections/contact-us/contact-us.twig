@@ -9,7 +9,7 @@
 {% macro render_tab_layout(title, body, descriptionClasses, descriptionStyle, tabTitleClasses, tabTitleStyle, mode = 'form') %}
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-12 lg:gap-x-24 mt-4 px-0 items-start">
 
-    {# Left Column: Architectural Title and Description #}
+    {# Left Column #}
     <div class="lg:col-span-6">
         <h3 class="{{ tabTitleClasses }}" style="{{ tabTitleStyle }}">
             {{ title }}
@@ -23,10 +23,10 @@
     <div class="lg:col-span-6 pt-4 lg:pt-16">
         {% if mode == 'form' %}
             {{ include('_components/form/Contact-form.twig', {
-                props: { submitText: 'Submit' }
+                props: { submitText: 'Submit',
+                url: '/pages/Thank-You',}
             }) | raw }}
 
-            {# Fixed: Changed 'elif' to 'elseif' #}
         {% elseif mode == 'calendly' %}
             <div class="w-full overflow-hidden" style="height: 750px;">
                 <div class="calendly-inline-widget"
@@ -36,7 +36,6 @@
                 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
             </div>
 
-            {# Fixed: Changed 'elif' to 'elseif' #}
         {% elseif mode == 'map' %}
             <div class="w-full aspect-[4/3] bg-white flex items-center justify-center border border-foxplan-charcoal-brown/5 shadow-sm">
                 <p class="font-aktiv text-[10px] uppercase tracking-widest text-foxplan-charcoal-brown/30 italic">

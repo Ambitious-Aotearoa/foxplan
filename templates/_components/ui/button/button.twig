@@ -5,7 +5,7 @@
     text: 'Learn More',
     style: 'primary',
     size: 'medium',
-    url: null,
+    url: none,
     icon: null,
     iconPosition: 'left',
     fullWidth: false,
@@ -34,13 +34,26 @@
     props.style == 'outline' ? 'text-foxplan-charcoal-brown' : 'text-foxplan-neutral-beige'
     ) %}
 
+{# Hover colors #}
+{% set hoverClass = '' %}
+{% if 'bg-foxplan-charcoal-brown' in bgClass %}
+    {% set hoverClass = 'hover:opacity-80' %}
+{% elseif 'bg-foxplan-yellow' in bgClass %}
+    {% set hoverClass = 'hover:opacity-70' %}
+{% elseif 'bg-white' in bgClass or 'bg-foxplan-white' in bgClass %}
+    {% set hoverClass = 'hover:bg-foxplan-neutral-beige' %}
+{% else %}
+    {% set hoverClass = 'hover:opacity-80' %}
+{% endif %}
+
 {% set buttonClasses = [
     'group relative inline-flex items-center justify-center overflow-hidden',
     'font-aktiv cursor-pointer transition-all duration-300 uppercase tracking-widest font-bold',
     'py-2 px-6 w-full lg:w-auto',
     bgClass,
     textClass,
-    'hover:opacity-80 active:opacity-100',
+    hoverClass,
+    'active:opacity-100',
     props.style == 'secondary' ? 'rounded-full',
     props.style == 'default-round' ? 'rounded-none',
     props.style == 'outline' ? 'border border-foxplan-charcoal-brown',
@@ -58,16 +71,16 @@
     class: buttonClasses,
     href: props.url ?: null,
     disabled: props.disabled ?: null,
-    type: tag == 'button' ? 'button' : null,
+    type: tag == 'button' ? (props.attributes.type ?? 'button') : null,
     style: textScaleStyle
-} | merge(props.attributes) | filter %}
+    } | merge(props.attributes) | filter %}
 
 <{{ tag }}{% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %}>
 <span class="btn__text flex items-center justify-center gap-4">
         {{ props.text }}
 
     {% if props.style in ['primary', 'secondary', 'default-round'] or props.icon %}
-        <svg class="transition-transform duration-300 group-hover:translate-x-1"
+        <svg class="transition-transform duration-300"
              style="width: clamp(1.1rem, 1.2vw, 1.5rem); height: clamp(1.1rem, 1.2vw, 1.5rem);"
              viewBox="0 0 20 20"
              fill="none"

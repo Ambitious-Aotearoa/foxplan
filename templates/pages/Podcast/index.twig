@@ -1,9 +1,12 @@
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
 {% set navigationTheme = {
-    backgroundColor: 'bg-foxplan-yellow',
-    textColor: 'text-foxplan-charcoal-brown',
-    actionBgColor: 'bg-foxplan-charcoal-brown'
+    backgroundColor: 'bg-foxplan-charcoal-brown',
+    textColor: 'text-foxplan-yellow',
+    actionBgColor: 'bg-foxplan-charcoal-brown',
+    searchBgColor: 'bg-foxplan-charcoal-brown',
+    ctaBgColor: 'bg-foxplan-yellow',
+    ctaTextColor: 'text-foxplan-charcoal-brown'
 } %}
 
 {% block blockAppBody %}
@@ -11,12 +14,14 @@
     {# 1. Hero Section #}
     {{ include('_sections/hero-sections/hero-arrow.twig', {
         props: {
-            backgroundColor: 'bg-foxplan-yellow',
+            backgroundColor: 'bg-foxplan-charcoal-brown',
+            textColor: 'text-foxplan-yellow',
+            arrowColor: 'text-foxplan-yellow',
             buttonText: '',
         }
     }) }}
 
-    {# 2. about-the-pod #}
+{#    {2. about-the-pod }#}
     {{ include('_sections/content-sections/about-podcast.twig', {
         data: {
             backgroundColor: 'bg-foxplan-yellow',
