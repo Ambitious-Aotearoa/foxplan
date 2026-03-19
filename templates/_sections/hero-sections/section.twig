@@ -23,13 +23,11 @@
 <section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">
     <div class="px-4 md:px-6 lg:px-8 py-12 lg:py-16 lg:pt-32 lg:pb-32">
 
-        {# 2. Changed items-center to items-start to align tops #}
         <div class="flex flex-wrap md:flex-nowrap w-full items-start gap-0">
 
             {# Left Column: 30% Width #}
             <div class="w-full md:w-[30%] mb-12 md:mb-0 pr-8 lg:pr-12">
                 <div class="max-w-md">
-                    {# 3. Tightened line-height to 1.0 for better top-alignment #}
                     <h2 class="font-serif tracking-tight {{ data.textColor }} break-normal {{ (data.bodyText or data.buttonText) ? 'mb-8' : '' }}"
                         style="font-size: clamp(2.25rem, 4vw + 1rem, 4.5rem); line-height: 1.0; word-break: keep-all;">
                         {{ data.title | raw }}

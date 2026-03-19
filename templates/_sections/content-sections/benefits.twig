@@ -40,7 +40,6 @@
     <div class="grid grid-cols-1 xl:grid-cols-10 w-full items-start relative">
 
         {# --- LEFT SIDE: HEADING --- #}
-        {# FIXED: Changed md to span full width to match mobile; xl keeps side-by-side #}
         <div class="col-span-1 xl:col-span-3 px-4 md:px-8 xl:pl-8 mb-12 xl:mb-0">
             <h2 class="font-serif tracking-tight {{ data.textColor }} whitespace-normal leading-[0.9] md:leading-[0.95]"
                 style="font-size: clamp(2.1rem, 10vw, 4.5rem);
@@ -61,7 +60,7 @@
         </div>
 
         {# --- THE INTERACTIVE LINE --- #}
-        {# FIXED: left-6 for all screens below xl, then positions at 30% for desktop #}
+
         <div class="flex absolute z-30 w-[2px] justify-center
     left-6 xl:left-[30%]
     bottom-0"
@@ -85,7 +84,7 @@
         </div>
 
         {# --- RIGHT SIDE: ACCORDION CARDS --- #}
-        {# FIXED: Increased padding-left for consistency on md screens now that line is on the far left #}
+
         <div class="col-span-1 xl:col-span-7 px-4 pl-12 md:pl-16 xl:pl-24 pr-8"
              x-ref="accordionContainer">
             <div class="flex flex-col space-y-6">
@@ -101,20 +100,21 @@
                     }
                  }"
                          x-init="$watch('yPos', () => checkActive())"
-                         :class="(isScrollActive) ? 'bg-white p-8 md:p-10 translate-x-2 md:translate-x-4 opacity-100 shadow-sm' : 'bg-transparent p-8 md:p-10 translate-x-0 opacity-40'">
+                         :class="(isScrollActive) ? 'bg-foxplan-white p-8 md:p-10 translate-x-2 md:translate-x-4 opacity-100 shadow-sm' : 'bg-transparent p-8 md:p-10 translate-x-0 opacity-40'">
 
                         {% if item.title %}
-                            <h4 class="font-aktiv text-[10px] font-bold tracking-[0.2em] uppercase mb-4 text-foxplan-charcoal-brown/60">
+                            <h4 class="font-aktiv font-bold tracking-[0.2em] uppercase mb-4 text-foxplan-charcoal-brown/60"
+                                style="font-weight: 400; font-size: clamp(0.625rem, 1vw, 0.75rem);">
                                 {{ item.title }}
                             </h4>
                         {% endif %}
 
                         {% if item.text %}
-                            <div class="font-serif text-foxplan-charcoal-brown"
+                            <div class="font-serif text-foxplan-charcoal-brown benefit-text-content"
                                  style="font-size: clamp(1.3rem, 2vw + 0.8rem, 2.25rem);
-                                line-height: 1.25 !important;
-                                word-break: normal !important;
-                                overflow-wrap: break-word !important;">
+                line-height: 1.25 !important;
+                word-break: normal !important;
+                overflow-wrap: break-word !important;">
                                 {{ item.text | raw }}
                             </div>
                         {% endif %}
@@ -124,3 +124,25 @@
         </div>
     </div>
 </section>
+
+<style>
+    .benefit-text-content ul {
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .benefit-text-content li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .benefit-text-content li::before {
+        content: "•";
+        color: currentColor;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+</style>

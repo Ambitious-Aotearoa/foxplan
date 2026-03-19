@@ -30,7 +30,7 @@
             {% set hasContent = item.ExpandableBodyText is not empty %}
 
             <div
-                    class="{{ props.backgroundColor }} overflow-hidden lg:mr-[20px] transition-all duration-300 ease-out transform hover:scale-[1.015] hover:shadow-xl hover:z-20 relative border-b border-gray-100 last:border-0"
+                    class="{{ props.backgroundColor }} overflow-hidden lg:mr-[20px] transition-all duration-300 ease-out transform hover:scale-[1.015] hover:z-20 relative"
                     :class="openItem === {{ loop.index0 }} ? 'z-10' : 'z-0'"
             >
                 <button

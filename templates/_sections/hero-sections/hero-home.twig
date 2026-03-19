@@ -65,18 +65,22 @@
     </div>
 
     {# --- CONTENT LAYER --- #}
-    <div class="relative z-[110] flex flex-col justify-between px-4 lg:px-16 pt-20 md:pt-8 lg:pt-12 order-1 lg:order-none">
-        <div class="w-full">
-            <h1 class="font-serif leading-[0.8] tracking-[0.02em] {{ data.textColor }}"
-                style="font-size: clamp(3.75rem, 10vw + 1rem, 9rem);">
-                <span class="block relative z-[120]">
-                    {{ data.headingLine1 }}
-                </span>
-                <span class="block relative lg:pl-[45%] lg:mt-8 z-[120]">
-                    {{ data.headingLine2 }}
-                </span>
-            </h1>
-        </div>
+    <div class="relative z-[110] flex flex-col justify-between px-4 lg:px-16 pt-8 md:pt-8 lg:pt-12 order-1 lg:order-none">
+            <div class="w-full">
+                <h1 class="font-serif leading-[0.8] tracking-[0.02em] {{ data.textColor }}"
+                    style="font-size: clamp(3rem, 8vw + 1rem, 8.5rem);"> {# Slightly reduced max clamp to prevent overflow on smaller laptops #}
+
+                    {# Line 1 #}
+                    <span class="block relative z-[120] whitespace-nowrap">
+                {{ data.headingLine1 }}
+            </span>
+
+                    {# Line 2 - Removed 'block', added 'whitespace-nowrap' #}
+                    <span class="inline-block relative lg:ml-[45%] mt-4 md:mt-6 lg:mt-8 z-[120] whitespace-nowrap">
+                {{ data.headingLine2 }}
+            </span>
+                </h1>
+            </div>
 
         <div class="relative mt-[60px] lg:mt-[280px] mb-[30px] lg:mb-[80px] left-0 w-full lg:w-[45%] flex flex-col items-start order-3 lg:order-none">
             {% if data.bodyText %}
