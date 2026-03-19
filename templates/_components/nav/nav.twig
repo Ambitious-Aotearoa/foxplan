@@ -108,46 +108,48 @@
     {# --- MAIN HEADER --- #}
     <div class="w-full {{ theme.backgroundColor }} relative z-[510]">
         <div class="flex items-center h-16 lg:h-16">
+            {# Logo Section - Slightly reduced padding-right on smaller desktop #}
             <a href="/"
-               class="flex items-center h-full pl-6 lg:pl-8 pr-[30px] lg:pr-[60px] flex-none {{ theme.textColor }}">
-                {{ svg(alias(logoPath))|attr({ class: 'h-10 lg:h-11 w-auto ' ~ theme.logoFilter, alt: 'FoxPlan Logo' }) }}
+               class="flex items-center h-full pl-6 lg:pl-8 pr-4 xl:pr-[60px] flex-none {{ theme.textColor }}">
+                {{ svg(alias(logoPath))|attr({ class: 'h-9 lg:h-11 w-auto ' ~ theme.logoFilter, alt: 'FoxPlan Logo' }) }}
             </a>
 
-            <div class="flex-grow flex items-center h-full">
-                <div class="hidden lg:flex items-center justify-between w-full max-w-[1000px] mx-auto text-[14px] font-medium {{ theme.textColor }} h-full">
+            {# Center Nav - Added flex-shrink to prioritize the CTA buttons #}
+            <div class="flex-grow flex-shrink flex items-center h-full overflow-hidden">
+                <div class="hidden lg:flex items-center justify-around w-full mx-auto text-[13px] xl:text-[14px] font-medium {{ theme.textColor }} h-full">
                     {% for handle in ['accounting', 'insurance', 'Savings & Investment', 'Business', 'Mortgages', 'News', 'About'] %}
                         {% set hasDropdown = megaMenuData[handle] is defined and megaMenuData[handle]|length > 0 %}
                         {% set isStatic = handle in ['News', 'About'] %}
                         {% set tabUrl = isStatic ? 'javascript:void(0)' : url(handle|lower|replace({' & ': '-', ' ': '-'})) %}
 
                         <a href="{{ tabUrl }}"
-                           class="h-full px-4 flex items-center cursor-pointer hover:opacity-60 transition group {{ isStatic ? 'cursor-default' : '' }}"
-
+                           class="h-full px-1.5 xl:px-2 flex items-center cursor-pointer hover:opacity-60 transition group {{ isStatic ? 'cursor-default' : '' }}"
                            @mouseenter="openTab = {{ hasDropdown ? "'" ~ handle ~ "'" : 'null' }}">
-                            <span class="flex items-center gap-1">
-                                {{ handle|capitalize }}
-                                {% if hasDropdown %}
-                                    <svg class="w-3 h-3 transition-transform duration-200"
-                                         :class="openTab === '{{ handle }}' ? 'rotate-180' : ''" fill="none"
-                                         stroke="currentColor" viewBox="0 0 24 24">
-                                        <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round"
-                                              stroke-linejoin="round"/>
-                                    </svg>
-                                {% endif %}
-                            </span>
+                        <span class="flex items-center gap-1 whitespace-nowrap">
+                            {{ handle|capitalize }}
+                            {% if hasDropdown %}
+                                <svg class="w-3 h-3 transition-transform duration-200"
+                                     :class="openTab === '{{ handle }}' ? 'rotate-180' : ''" fill="none"
+                                     stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                            {% endif %}
+                        </span>
                         </a>
                     {% endfor %}
                 </div>
             </div>
 
-            <div class="flex flex-none items-start h-full pr-4 lg:pr-0">
-                {# Search Button #}
+            {# Right side Buttons - Adjusted padding to be much smaller on tight screens #}
+            <div class="flex flex-none justify-end items-stretch h-full pr-4 lg:pr-0">
+                {# Search Button - Smaller padding #}
                 <button @click="searchOpen = true"
-                        class="w-14 lg:w-16 h-12 lg:h-16 flex items-center justify-center cursor-pointer group transition-all duration-300 hover:opacity-80
-           lg:{{ theme.searchBgColor }} lg:{{ theme.iconColor }}
-           text-foxplan-charcoal-brown
-           lg:border-r {{ theme.backgroundColor ?: 'border-foxplan-charcoal-brown' }}">
-                    <div class="w-7 lg:w-5 h-7 lg:h-5 transition-transform">
+                        class="h-full px-3 lg:px-4 xl:px-6 flex items-center justify-center cursor-pointer group transition-all duration-300 hover:opacity-80
+       lg:{{ theme.searchBgColor }} lg:{{ theme.iconColor }}
+       text-foxplan-charcoal-brown
+       lg:border-r {{ theme.backgroundColor ?: 'border-foxplan-charcoal-brown' }}">
+                    <div class="w-6 lg:w-5 h-6 lg:h-5 transition-transform">
                         <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
                             <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
                                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -160,24 +162,24 @@
 
                 {# Mobile Toggle #}
                 <button @click="mobileMenuOpen = true"
-                        class="lg:hidden p-4 text-foxplan-charcoal-brown cursor-pointer flex flex-col gap-1.5 items-end">
+                        class="lg:hidden h-full px-4 text-foxplan-charcoal-brown cursor-pointer flex flex-col justify-center gap-1.5 items-end">
                     <span class="w-8 h-0.5 bg-current"></span>
                     <span class="w-5 h-0.5 bg-current"></span>
                     <span class="w-8 h-0.5 bg-current"></span>
                 </button>
 
-                {# CTA Button #}
-                <div class="hidden lg:block">
+                {# CTA Button - Smaller font and padding on medium/large screens #}
+                <div class="hidden lg:block h-full">
                     {% set ctaHoverClass = 'bg-foxplan-yellow' in theme.ctaBgColor ? 'hover:opacity-70' : 'hover:opacity-80' %}
 
                     {% include '_components/ui/button/button.twig' with {
-                    props: {
-                    text: 'GET IN TOUCH',
-                    url: url('contact-us'),
-                    backgroundColor: theme.ctaBgColor,
-                    textColor: theme.ctaTextColor,
-                    classes: 'h-12 lg:h-16 px-10 flex items-center uppercase tracking-widest text-sm font-bold rounded-none transition-all duration-300 ' ~ ctaHoverClass
-                    }
+                        props: {
+                            text: 'GET IN TOUCH',
+                            url: url('contact-us'),
+                            backgroundColor: theme.ctaBgColor,
+                            textColor: theme.ctaTextColor,
+                            classes: 'h-full px-4 xl:px-8 flex items-center uppercase tracking-widest text-[11px] xl:text-sm font-bold rounded-none transition-all duration-300 whitespace-nowrap ' ~ ctaHoverClass
+                        }
                     } only %}
                 </div>
             </div>

@@ -1,4 +1,3 @@
-
 {% set heroImageAsset = (entry is defined and entry.heroImage is defined) ? entry.heroImage.one() : null %}
 
 {#  Image  #}
@@ -37,8 +36,6 @@
 
 {% set data = defaults | merge(props ?? {}) %}
 
-
-
 <section class="relative w-full flex flex-col lg:block min-h-[900px] {{ data.backgroundColor }} overflow-hidden"
          x-data="{ revealed: false }"
          x-init="$nextTick(() => { setTimeout(() => revealed = true, 300) })">
@@ -50,41 +47,35 @@
              class="w-full h-full object-cover shadow-sm">
     </div>
 
-    {# --- THE ARROW --- #}
-    <div class="absolute left-0 top-[60%] -translate-y-1/2 pointer-events-none hidden lg:block z-[100]">
-        <div class="transition-all duration-[2500ms] overflow-hidden"
-             style="transition-timing-function: steps(60);"
-             :style="revealed ? 'width: 45vw; opacity: 1;' : 'width: 0vw; opacity: 0;'">
-            <div class="w-[45vw] h-12 fill-current {{ data.textColor }}">
-                {{ svg(alias(arrowPath))|attr({
-                    class: 'w-full h-full object-contain object-left',
-                    role: 'presentation'
-                }) }}
-            </div>
+    {# --- CONTENT & ARROW WRAPPER --- #}
+    <div class="relative z-[110] flex flex-col justify-between px-4 lg:px-8 pt-8 md:pt-8 lg:pt-12 order-1 lg:order-none">
+
+        <div class="w-full">
+            <h1 class="font-serif leading-[0.8] tracking-[0.02em] {{ data.textColor }}"
+                style="font-size: clamp(3rem, 8vw + 1rem, 8.5rem);">
+                <span class="block relative z-[120] whitespace-nowrap">{{ data.headingLine1 }}</span>
+                <span class="inline-block relative lg:ml-[45%] mt-4 md:mt-6 lg:mt-8 z-[120] whitespace-nowrap">{{ data.headingLine2 }}</span>
+            </h1>
         </div>
-    </div>
-
-    {# --- CONTENT LAYER --- #}
-    <div class="relative z-[110] flex flex-col justify-between px-4 lg:px-16 pt-8 md:pt-8 lg:pt-12 order-1 lg:order-none">
-            <div class="w-full">
-                <h1 class="font-serif leading-[0.8] tracking-[0.02em] {{ data.textColor }}"
-                    style="font-size: clamp(3rem, 8vw + 1rem, 8.5rem);"> {# Slightly reduced max clamp to prevent overflow on smaller laptops #}
-
-                    {# Line 1 #}
-                    <span class="block relative z-[120] whitespace-nowrap">
-                {{ data.headingLine1 }}
-            </span>
-
-                    {# Line 2 - Removed 'block', added 'whitespace-nowrap' #}
-                    <span class="inline-block relative lg:ml-[45%] mt-4 md:mt-6 lg:mt-8 z-[120] whitespace-nowrap">
-                {{ data.headingLine2 }}
-            </span>
-                </h1>
-            </div>
 
         <div class="relative mt-[60px] lg:mt-[280px] mb-[30px] lg:mb-[80px] left-0 w-full lg:w-[45%] flex flex-col items-start order-3 lg:order-none">
+
+            {# --- THE ARROW (Moved inside content flow) --- #}
+            <div class="absolute left-0 -top-12 pointer-events-none hidden lg:block z-[120] -translate-x-[8px]">
+                <div class="transition-all duration-[2500ms] overflow-hidden"
+                     style="transition-timing-function: steps(60);"
+                     :style="revealed ? 'width: 45vw; opacity: 1;' : 'width: 0vw; opacity: 0;'">
+                    <div class="w-[45vw] h-12 fill-current {{ data.textColor }}">
+                        {{ svg(alias(arrowPath))|attr({
+                            class: 'w-full h-full object-contain object-left',
+                            role: 'presentation'
+                        }) }}
+                    </div>
+                </div>
+            </div>
+
             {% if data.bodyText %}
-                <div class="font-aktiv font-light leading-[1.10] {{ data.textColor }} mb-8 max-w-sm"
+                <div class="relative z-[100] pt-4 font-aktiv font-light leading-[1.10] {{ data.textColor }} mb-8 max-w-sm"
                      style="font-size: clamp(1.25rem, 2vw + 1rem, 1.75rem);">
                     {{ data.bodyText | replace({'<p>': '', '</p>': ''}) | raw }}
                 </div>
