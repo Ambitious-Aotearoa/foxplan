@@ -1,101 +1,44 @@
 {# _components/ui/button/button.twig #}
 
-{# Set component defaults #}
 {% set defaults = {
     text: 'Learn More',
     style: 'primary',
-    size: 'medium',
     url: none,
-    icon: null,
-    iconPosition: 'left',
-    fullWidth: false,
-    disabled: false,
     backgroundColor: null,
     textColor: null,
-    classes: '',
-    attributes: {}
+    classes: ''
 } %}
 
-{# Merge with passed props #}
 {% set props = defaults | merge(props | default({})) %}
 
 {# Dynamic Color Logic #}
-{% set bgClass = props.backgroundColor ?: (
-    props.style == 'primary' ? 'bg-foxplan-charcoal-brown' :
-    props.style == 'secondary' ? 'bg-foxplan-charcoal-brown' :
-    props.style == 'default-round' ? 'bg-foxplan-yellow' :
-    props.style == 'outline' ? 'bg-transparent' : 'bg-foxplan-charcoal-brown'
-    ) %}
-
-{% set textClass = props.textColor ?: (
-    props.style == 'primary' ? 'text-foxplan-neutral-beige' :
-    props.style == 'secondary' ? 'text-foxplan-neutral-beige' :
-    props.style == 'default-round' ? 'text-foxplan-charcoal-brown' :
-    props.style == 'outline' ? 'text-foxplan-charcoal-brown' : 'text-foxplan-neutral-beige'
-    ) %}
-
-{# Hover colors #}
-{% set hoverClass = '' %}
-{% if 'bg-foxplan-charcoal-brown' in bgClass %}
-    {% set hoverClass = 'hover:opacity-80' %}
-{% elseif 'bg-foxplan-yellow' in bgClass %}
-    {% set hoverClass = 'hover:opacity-70' %}
-{% elseif 'bg-white' in bgClass or 'bg-foxplan-white' in bgClass %}
-    {% set hoverClass = 'hover:bg-foxplan-neutral-beige' %}
-{% else %}
-    {% set hoverClass = 'hover:opacity-80' %}
-{% endif %}
+{% set bgClass = props.backgroundColor ?: 'bg-foxplan-charcoal-brown' %}
+{% set textClass = props.textColor ?: 'text-foxplan-neutral-beige' %}
 
 {% set buttonClasses = [
     'group relative inline-flex items-center justify-center overflow-hidden',
     'font-aktiv cursor-pointer transition-all duration-300 uppercase tracking-widest font-bold',
-    'py-2 px-6 w-full lg:w-auto',
+
+    'py-2 px-3 md:px-4 lg:px-8 whitespace-nowrap',
     bgClass,
     textClass,
-    hoverClass,
-    'active:opacity-100',
-    props.style == 'secondary' ? 'rounded-full',
-    props.style == 'default-round' ? 'rounded-none',
-    props.style == 'outline' ? 'border border-foxplan-charcoal-brown',
-    props.fullWidth ? '!w-full',
-    props.disabled ? 'opacity-50 cursor-not-allowed',
+    'hover:opacity-80 active:opacity-100',
     props.classes
 ] | filter | join(' ') %}
 
+{# FIX: Fluid font size from 12px to 14px #}
+{% set textScaleStyle = 'font-size: clamp(0.75rem, 0.9vw, 0.875rem);' %}
+{% set tag = props.url ? 'a' : 'button' %}
 
-{% set textScaleStyle = 'font-size: 0.875rem;' %}
-{% set tag = props.url and not props.disabled ? 'a' : 'button' %}
+<{{ tag }} class="{{ buttonClasses }}" style="{{ textScaleStyle }}" {% if props.url %}href="{{ props.url }}"{% endif %}>
 
-{# Build attributes #}
-{% set attributes = {
-    class: buttonClasses,
-    href: props.url ?: null,
-    disabled: props.disabled ?: null,
-    type: tag == 'button' ? (props.attributes.type ?? 'button') : null,
-    style: textScaleStyle
-    } | merge(props.attributes) | filter %}
-
-<{{ tag }}{% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %}>
-<span class="btn__text flex items-center justify-center gap-4">
+    <span class="btn__text flex items-center justify-center gap-1.5 md:gap-2 lg:gap-4">
         {{ props.text }}
-
-    {% if props.style in ['primary', 'secondary', 'default-round'] or props.icon %}
-        <svg class="transition-transform duration-300"
-             style="width: clamp(1.1rem, 1.2vw, 1.5rem); height: clamp(1.1rem, 1.2vw, 1.5rem);"
-             viewBox="0 0 20 20"
-             fill="none"
-             xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.5 4.5L17.5 8.5L13.5 12.5"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"/>
-                <path d="M2.5 15.5V11.5C2.5 9.84315 3.84315 8.5 5.5 8.5H17.5"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"/>
-            </svg>
-    {% endif %}
+        <svg class="transition-transform duration-300 shrink-0"
+             style="width: clamp(0.9rem, 1.1vw, 1.3rem); height: clamp(0.9rem, 1.1vw, 1.3rem);"
+             viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.5 4.5L17.5 8.5L13.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2.5 15.5V11.5C2.5 9.84315 3.84315 8.5 5.5 8.5H17.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </span>
 </{{ tag }}>

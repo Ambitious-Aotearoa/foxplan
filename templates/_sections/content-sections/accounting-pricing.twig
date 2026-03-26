@@ -1,19 +1,15 @@
 {# templates/_sections/content-sections/accounting-pricing.twig #}
 
-<section class="w-full bg-foxplan-neutral-beige py-8 md:py-24 px-4 md:px-6 lg:px-8 border-b border-foxplan-charcoal-brown overflow-hidden">
+<section class="w-full bg-foxplan-neutral-beige py-8 md:py-24 px-4 md:px-6 lg:px-8 overflow-hidden">
 
-    {# HEADER GRID - Made fully fluid with responsive grid spans #}
+    {# HEADER GRID #}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-[clamp(2rem,6vw,5rem)] items-end mb-16 w-full">
-
-        {# Column 1: Main Heading #}
         <div class="lg:col-span-7">
             <h2 class="font-serif text-foxplan-charcoal-brown leading-[1.1] tracking-tight break-words"
                 style="font-size: clamp(2.5rem, 6vw, 4.5rem);">
                 {{ block.paragraphHeading3 | raw }}
             </h2>
         </div>
-
-        {# Column 2: Body Text #}
         <div class="lg:col-span-5">
             <div class="leading-relaxed text-foxplan-charcoal-brown font-aktiv opacity-90 break-words"
                  style="font-size: clamp(1rem, 1vw + 0.5rem, 1.125rem);">
@@ -31,24 +27,28 @@
         {% set colHandles = ['col2', 'col3', 'col4'] %}
 
         {% for handle in colHandles %}
-
-            <div class="p-6 sm:p-8 lg:p-10 border-b md:border-b-0 md:border-r border-foxplan-charcoal-brown last:border-r-0 last:border-b-0 grid grid-rows-[auto_auto_auto_1fr]">
+            <div class="p-4 lg:p-10 border-b md:border-b-0 md:border-r border-foxplan-charcoal-brown last:border-r-0 last:border-b-0 grid grid-rows-[auto_auto_auto_1fr]">
 
                 {# 1. Label Section #}
                 <div class="block font-bold tracking-wider text-foxplan-charcoal-brown uppercase mb-2 text-xs md:text-sm">
                     {{ attribute(headerLabel, handle) ?? '' }}
                 </div>
 
-                {# 2. Price Section - Reduced size to 4xl/5xl/6xl #}
-                <div class="font-serif text-foxplan-charcoal-brown mb-4 break-words text-4xl md:text-5xl lg:text-6xl"
-                     style="line-height: 1.1;">
-                    {{ attribute(headerPrice, handle) ?? '' }}
-                </div>
+                {# 2. Price Section - ONE LINE WITH FLUID SCALING #}
+                <div class="font-serif text-foxplan-charcoal-brown mb-4 whitespace-nowrap"
+                     style="font-size: clamp(1.4rem, 3.8vw, 3.8rem); line-height: 1.1;">
+                    {% set priceValue = attribute(headerPrice, handle) ?? '' %}
 
+                    {# Removed opacity-70 to keep color identical to the price #}
+                    {{ priceValue | replace({
+                        '/ month': '<span style="font-size: 0.6em; margin-left: 0.2em;">/ month</span>',
+                        '/month': '<span style="font-size: 0.6em; margin-left: 0.2em;">/ month</span>'
+                    }) | raw }}
+                </div>
                 {# 3. Focus Section #}
                 <div class="font-medium text-foxplan-charcoal-brown mb-8 break-words text-sm md:text-base"
                      style="line-height: 1.4;">
-                     {{ attribute(headerFocus, handle) ?? '' }}
+                    {{ attribute(headerFocus, handle) ?? '' }}
                 </div>
 
                 {# 4. Features List #}
@@ -68,4 +68,3 @@
         {% endfor %}
     </div>
 </section>
-

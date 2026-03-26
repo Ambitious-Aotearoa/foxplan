@@ -10,26 +10,17 @@
     folder:          null
 } | merge(props ?? {}) %}
 
-{# 2. FETCH LOGOS #}
+{# 2. FETCH LOGOS - Limited to 8 for exactly 2 rows on desktop #}
+{% set logoQuery = craft.assets()
+    .volume(data.assetVolume)
+    .kind('image')
+    .limit(8) %}
 
-{% set volume = craft.app.volumes.getVolumeByHandle(data.assetVolume) %}
-{% set folderId = null %}
-
-
-{% if data.folder and volume %}
-    {% set folder = craft.app.assets.findFolder({
-        volumeId: volume.id,
-        name: data.folder
-    }) %}
-    {% set folderId = folder ? folder.id : null %}
+{% if data.folder %}
+    {% do logoQuery.folderPath(data.folder ~ '/') %}
 {% endif %}
 
-{% set displayLogos = craft.assets()
-    .volume(data.assetVolume)
-    .folderId(folderId)
-    .kind('image')
-    .limit(8)
-    .all() %}
+{% set displayLogos = logoQuery.all() %}
 
 {% if displayLogos|length > 0 %}
     <section class="w-full {{ data.backgroundColor }}">
@@ -42,13 +33,11 @@
             </div>
 
             <div class="px-4 md:px-6 lg:px-8 pb-16">
-                <div class="border {{ data.borderColor }}">
+                {# Added border-t and border-l to the container to complete the grid frame #}
+                <div class="border-t border-l {{ data.borderColor }}">
                     <div class="grid grid-cols-2 md:grid-cols-4" id="logo-grid">
                         {% for logo in displayLogos %}
-                            <div class="logo-card relative overflow-hidden aspect-[1.6/1] flex items-center justify-center p-4 md:p-8 border-r border-b {{ data.borderColor }}
-                            [&:nth-child(2n)]:border-r-0 md:[&:nth-child(2n)]:border-r md:[&:nth-child(4n)]:border-r-0
-                            [&:nth-last-child(-n+2)]:border-b-0 md:[&:nth-last-child(-n+4)]:border-b-0">
-
+                            <div class="logo-card relative overflow-hidden aspect-[1.6/1] flex items-center justify-center p-4 md:p-8 border-r border-b {{ data.borderColor }}">
                                 <div class="logo-wrapper transition-all duration-700 ease-in-out flex items-center justify-center w-[120px] h-[40px] md:w-[160px] md:h-[60px]">
                                     <img src="{{ logo.url }}"
                                          alt="{{ logo.title }}"

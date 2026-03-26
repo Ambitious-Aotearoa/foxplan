@@ -60,7 +60,6 @@
         </div>
 
         {# --- THE INTERACTIVE LINE --- #}
-
         <div class="flex absolute z-30 w-[2px] justify-center
     left-6 xl:left-[30%]
     bottom-0"
@@ -68,12 +67,15 @@
              :style="'top: ' + lineStart + 'px'">
 
             {# Background Dotted Line (The Track) #}
-            <div class="h-full w-full border-l-2 border-dashed border-foxplan-charcoal-brown opacity-20"></div>
+            <div class="h-full w-full border-l-2 border-dashed border-foxplan-charcoal-brown opacity-20"
+                 :style="'clip-path: inset(' + yPos + 'px 0 0 0)'">
+            </div>
 
             {# Progress Dotted Line (Active) #}
             <div id="progress-line"
                  class="absolute top-0 left-0 w-full border-l-2 border-dashed border-foxplan-charcoal-brown"
-                 :style="'height: ' + yPos + 'px'"></div>
+                 :style="'height: ' + yPos + 'px'">
+            </div>
 
             {# Scrolling Dot (The Tip) #}
             <div id="scrolling-dot"

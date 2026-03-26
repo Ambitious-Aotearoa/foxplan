@@ -55,7 +55,7 @@
                 {# --- LEFT SIDE: LOGO & CTA --- #}
                 <div class="lg:col-span-5 flex flex-col justify-between">
                     <div>
-                        <div class="mb-6 md:mb-4 md:pt-6 {{ data.logoColor }} block">
+                        <div class="mb-6 md:mb-4 md:pt-6 {{ data.logoColor }} hidden md:block">
                             {{ svg(alias(data.logoPath))|attr({
                                 class: 'w-32 md:w-28 h-auto fill-current',
                                 alt: 'FoxPlan Logo',
@@ -84,7 +84,6 @@
                                 style: 'primary',
                                 backgroundColor: data.buttonColor,
                                 textColor: data.buttonTextColor,
-                                classes: 'px-4 py-1.5 text-[10px] tracking-[0.2em] uppercase font-aktiv font-bold rounded-none w-full md:w-auto'
                             }
                         } only %}
                     </div>
@@ -96,14 +95,17 @@
 
                         {# Column 1 #}
                         <div class="flex flex-col gap-y-4">
-                            <a href="/mortgages" class="font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
-                                <span class="{{ data.separatorColor }} opacity-40">|</span> MORTGAGES
+                            <a href="/mortgages" class="font-bold {{ data.textColor }} flex items-center gap-2 group" style="{{ preheadStyles }}">
+                                <span class="{{ data.separatorColor }} opacity-40">|</span>
+                                <span class="transition-opacity duration-300 group-hover:opacity-70">MORTGAGES</span>
                             </a>
-                            <a href="/accounting" class="font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
-                                <span class="{{ data.separatorColor }} opacity-40">|</span> ACCOUNTING
+                            <a href="/financial-planning" class="font-bold {{ data.textColor }} flex items-center gap-2 group" style="{{ preheadStyles }}">
+                                <span class="{{ data.separatorColor }} opacity-40">|</span>
+                                <span class="transition-opacity duration-300 group-hover:opacity-70">FINANCIAL PLANNING</span>
                             </a>
-                            <a href="/savings-investment" class="lg:hidden font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
-                                <span class="{{ data.separatorColor }} opacity-40">|</span> SAVINGS & INVESTMENT
+                            <a href="/savings-investment" class="lg:hidden font-bold {{ data.textColor }} flex items-center gap-2 group" style="{{ preheadStyles }}">
+                                <span class="{{ data.separatorColor }} opacity-40">|</span>
+                                <span class="transition-opacity duration-300 group-hover:opacity-70">SAVINGS & INVESTMENT</span>
                             </a>
                             <div class="pt-4">
                                 <h3 class="font-bold {{ data.textColor }} flex items-center gap-2 mb-3" style="{{ preheadStyles }}">
@@ -118,14 +120,17 @@
 
                         {# Column 2 #}
                         <div class="flex flex-col gap-y-4">
-                            <a href="/insurance" class="font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
-                                <span class="{{ data.separatorColor }} opacity-40">|</span> INSURANCE
+                            <a href="/insurance" class="font-bold {{ data.textColor }} flex items-center gap-2 group" style="{{ preheadStyles }}">
+                                <span class="{{ data.separatorColor }} opacity-40">|</span>
+                                <span class="transition-opacity duration-300 group-hover:opacity-70">INSURANCE</span>
                             </a>
-                            <a href="/business" class="font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
-                                <span class="{{ data.separatorColor }} opacity-40">|</span> BUSINESS
+                            <a href="/business" class="font-bold {{ data.textColor }} flex items-center gap-2 group" style="{{ preheadStyles }}">
+                                <span class="{{ data.separatorColor }} opacity-40">|</span>
+                                <span class="transition-opacity duration-300 group-hover:opacity-70">BUSINESS & ACCOUNTING</span>
                             </a>
-                            <a href="/about" class="lg:hidden font-bold {{ data.textColor }} flex items-center gap-2" style="{{ preheadStyles }}">
-                                <span class="{{ data.separatorColor }} opacity-40">|</span> ABOUT US
+                            <a href="/about" class="lg:hidden font-bold {{ data.textColor }} flex items-center gap-2 group" style="{{ preheadStyles }}">
+                                <span class="{{ data.separatorColor }} opacity-40">|</span>
+                                <span class="transition-opacity duration-300 group-hover:opacity-70">ABOUT US</span>
                             </a>
                             <div class="pt-4">
                                 <h3 class="font-bold {{ data.textColor }} flex items-center gap-2 mb-3" style="{{ preheadStyles }}">
@@ -142,26 +147,28 @@
 
                         {# Column 3 #}
                         <div class="flex flex-col gap-y-4">
-                            <a href="/savings-investment" class="hidden lg:flex font-bold {{ data.textColor }} items-center gap-2" style="{{ preheadStyles }}">
-                                <span class="{{ data.separatorColor }} opacity-40">|</span> SAVINGS & INVESTMENT
+                            <a href="/savings-investment" class="hidden lg:flex font-bold {{ data.textColor }} items-center gap-2 group" style="{{ preheadStyles }}">
+                                <span class="{{ data.separatorColor }} opacity-40">|</span>
+                                <span class="transition-opacity duration-300 group-hover:opacity-70">SAVINGS & INVESTMENT</span>
                             </a>
-                            <a href="/about" class="hidden lg:flex font-bold {{ data.textColor }} items-center gap-2" style="{{ preheadStyles }}">
-                                <span class="{{ data.separatorColor }} opacity-40">|</span> ABOUT US
+                            <a href="/about" class="hidden lg:flex font-bold {{ data.textColor }} items-center gap-2 group" style="{{ preheadStyles }}">
+                                <span class="{{ data.separatorColor }} opacity-40">|</span>
+                                <span class="transition-opacity duration-300 group-hover:opacity-70">ABOUT US</span>
                             </a>
                             <div class="pt-4">
                                 <h3 class="font-bold {{ data.textColor }} flex items-center gap-2 mb-3" style="{{ preheadStyles }}">
                                     <span class="{{ data.separatorColor }} opacity-40">|</span> LEGAL
                                 </h3>
                                 <div class="pl-3 space-y-1 {{ data.textColor }} opacity-90" style="{{ paraStyles }}">
-                                    <a href="/pages/Privacy" class="block">Privacy Policy</a>
-                                    <a href="/pages/Complaints-Policy" class="block">Complaints</a>
-                                    <a href="/pages/Disclaimer" class="block">Disclaimer</a>
-                                    <a href="/pages/Disclosure" class="block">Disclosure</a>
+                                    <a href="/pages/Privacy" class="block transition-opacity duration-300 hover:opacity-70">Privacy Policy</a>
+                                    <a href="/pages/Complaints-Policy" class="block transition-opacity duration-300 hover:opacity-70">Complaints</a>
+                                    <a href="/pages/Disclaimer" class="block transition-opacity duration-300 hover:opacity-70">Disclaimer</a>
+                                    <a href="/pages/Disclosure" class="block transition-opacity duration-300 hover:opacity-70">Disclosure</a>
                                 </div>
                             </div>
                         </div>
 
-                        {# --- SOCIAL LINKS VARIABLES --- #}
+                        {# --- SOCIAL LINKS --- #}
                         {% set isDarkBg = data.backgroundColor == 'bg-foxplan-charcoal-brown' %}
                         {% set socialIconColor = isDarkBg ? 'text-foxplan-charcoal-brown' : 'text-foxplan-neutral-beige' %}
                         {% set socialBoxColor  = isDarkBg ? 'bg-foxplan-yellow' : 'bg-foxplan-charcoal-brown' %}
@@ -169,19 +176,25 @@
                         <div class="flex items-end lg:col-start-3 lg:mt-0 mt-2">
                             <div class="flex gap-2">
                                 {% if socialLinks.facebook ?? null %}
-                                    {{ include('_components/ui/icons/facebook-icon.twig', {
-                                        props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.facebook }
-                                    }) }}
+                                    <div class="hover:opacity-70 transition-opacity duration-300">
+                                        {{ include('_components/ui/icons/facebook-icon.twig', {
+                                            props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.facebook }
+                                        }) }}
+                                    </div>
                                 {% endif %}
                                 {% if socialLinks.instagram ?? null %}
-                                    {{ include('_components/ui/icons/instagram-icon.twig', {
-                                        props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.instagram }
-                                    }) }}
+                                    <div class="hover:opacity-70 transition-opacity duration-300">
+                                        {{ include('_components/ui/icons/instagram-icon.twig', {
+                                            props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.instagram }
+                                        }) }}
+                                    </div>
                                 {% endif %}
                                 {% if socialLinks.linkedin ?? null %}
-                                    {{ include('_components/ui/icons/linkedin-icon.twig', {
-                                        props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.linkedin }
-                                    }) }}
+                                    <div class="hover:opacity-70 transition-opacity duration-300">
+                                        {{ include('_components/ui/icons/linkedin-icon.twig', {
+                                            props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.linkedin }
+                                        }) }}
+                                    </div>
                                 {% endif %}
                             </div>
                         </div>
@@ -202,3 +215,4 @@
         </div>
     </div>
 </footer>
+

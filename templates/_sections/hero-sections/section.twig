@@ -17,10 +17,14 @@
     borderColor: 'border-foxplan-charcoal-brown'
 } %}
 
-{# 1. Safety merge for incoming props #}
 {% set data = defaults | merge(props ?? {}) %}
 
-<section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">
+<section class="{{ data.backgroundColor }} w-full overflow-hidden relative
+                before:content-[''] before:absolute before:top-0
+                before:left-4 md:before:left-6 lg:before:left-8
+                before:right-4 md:before:right-6 lg:before:right-8
+                before:border-t before:border-foxplan-charcoal-brown">
+
     <div class="px-4 md:px-6 lg:px-8 py-12 lg:py-16 lg:pt-32 lg:pb-32">
 
         <div class="flex flex-wrap md:flex-nowrap w-full items-start gap-0">
@@ -36,7 +40,6 @@
                     {% if data.bodyText is not empty %}
                         <div class="font-aktiv opacity-90 {{ data.textColor }} font-medium {{ data.buttonText ? 'mb-10' : '' }}"
                              style="font-size: clamp(0.9rem, 0.4vw + 0.8rem, 1.1rem); line-height: 1.4;">
-                            {# 4. Stripped tags to remove <p> margins #}
                             {{ data.bodyText | striptags | raw }}
                         </div>
                     {% endif %}

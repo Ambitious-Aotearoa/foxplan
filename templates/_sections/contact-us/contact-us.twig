@@ -37,10 +37,16 @@
             </div>
 
         {% elseif mode == 'map' %}
-            <div class="w-full aspect-[4/3] bg-white flex items-center justify-center border border-foxplan-charcoal-brown/5 shadow-sm">
-                <p class="font-aktiv text-[10px] uppercase tracking-widest text-foxplan-charcoal-brown/30 italic">
-                    Map here soon
-                </p>
+            <div class="w-full aspect-[4/3] bg-white border border-foxplan-charcoal-brown/5 shadow-sm overflow-hidden relative">
+                <iframe
+                        src="https://www.google.com/maps/d/u/2/embed?mid=1zbTdzdZDuhfCVEjzwo3CvP0KWueSVbI&ehbc=2E312F&noprof=1"
+                        width="100%"
+                        height="115%"
+                        style="border:0; position: absolute; top: -55px; left: 0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         {% endif %}
     </div>

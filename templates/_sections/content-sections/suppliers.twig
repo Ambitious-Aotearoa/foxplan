@@ -1,53 +1,61 @@
-<section class="w-full bg-foxplan-neutral-beige py-6 lg:py-16">
-    {# Increased to 40px side margins #}
-    <div class="px-4 md:px-6 lg:px-8 w-full mx-auto" x-show="activeTab">
+{# _sections/content-sections/suppliers.twig #}
 
-        {% for tab in data.tabs %}
-            <div x-show="activeTab === '{{ tab.id }}'"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0 transform translate-y-4"
-                 x-transition:enter-end="opacity-100 transform translate-y-0">
+<div class="w-full" x-show="activeTab">
+    {% for tab in data.tabs %}
+        <div x-show="activeTab === '{{ tab.id }}'"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 transform translate-y-4"
+             x-transition:enter-end="opacity-100 transform translate-y-0"
+             class="w-full px-4 md:px-6 lg:px-10 pt-12 md:pt-16 lg:pt-20">
 
-                {# Large Tab Heading #}
-                <h2 class="font-serif text-5xl md:text-7xl text-foxplan-charcoal-brown mb-16 tracking-tight">
-                    {{ tab.title }}
-                </h2>
+            {# Large Tab Heading #}
+            <h2 class="font-serif text-foxplan-charcoal-brown mb-20 tracking-tight leading-[0.85] text-left"
+                style="font-size: clamp(2.2rem, 5.5vw, 4.5rem); word-break: keep-all;">
+                {{ tab.title }}
+            </h2>
 
-                {# Services Grid #}
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-20">
-                    {% for supplier in tab.suppliers %}
-                        <a href="{{ supplier.buttonUrl }}"
-                           target="_blank"
-                           class="group supplier-card flex flex-col h-full transition-all duration-300 hover:-translate-y-2">
+            {# Services Grid #}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-4 md:gap-y-12 lg:gap-y-24">
+                {% for supplier in tab.suppliers %}
+                    <a href="{{ supplier.buttonUrl }}"
+                       target="_blank"
 
-                            {# Maintained Large Logo Container #}
-                            <div class="h-24 w-full mb-8 flex items-center justify-start overflow-hidden">
-                                {% set image = supplier.suppliersImage.one() %}
-                                {% if image %}
-                                    <img src="{{ image.url }}"
-                                         alt="{{ supplier.providerName }}"
-                                         class="max-h-full max-w-[240px] object-contain object-left transition-transform duration-500 group-hover:scale-100">
-                                {% else %}
-                                    <div class="h-full w-48 bg-gray-100/50 flex items-center justify-center border border-gray-200">
-                                        <span class="text-[10px] uppercase tracking-widest opacity-30">Logo Pending</span>
-                                    </div>
-                                {% endif %}
-                            </div>
+                       class="group supplier-card flex flex-col h-full
+          transition-all duration-300 ease-out
+          hover:-translate-y-2 active:translate-y-0
+          transform-gpu will-change-transform">
 
-                            {# Provider Name #}
-                            <h3 class="font-serif text-3xl text-foxplan-charcoal-brown leading-tight mb-3">
+                        {# Logo Container #}
+                        <div class="h-20 w-full mb-6 flex items-center justify-start">
+                            {% set image = supplier.suppliersImage.one() %}
+                            {% if image %}
+                                <img src="{{ image.url }}"
+                                     alt="{{ supplier.providerName }}"
+                                        {# Simplified img class: removed group-hover:scale-105 #}
+                                     class="max-h-full max-w-[220px] object-contain object-left transition-transform duration-500">
+                            {% else %}
+                                <div class="h-full w-44 bg-foxplan-charcoal-brown/5 flex items-center justify-center border border-foxplan-charcoal-brown/10">
+                                    <span class="text-[9px] uppercase tracking-widest opacity-40">Logo Pending</span>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        {# Provider Info #}
+                        <div class="flex flex-col grow">
+                            <h3 class="font-serif text-2xl md:text-3xl text-foxplan-charcoal-brown leading-tight mb-4 group-hover:text-opacity-70 transition-opacity">
                                 {{ supplier.providerName }}
                             </h3>
 
-                            {# Contact Info #}
-                            <div class="font-montreal text-lg text-foxplan-charcoal-brown opacity-90 leading-snug">
+                            <div class="font-montreal text-base md:text-lg text-foxplan-charcoal-brown opacity-80 leading-snug">
                                 {{ supplier.contactInfo | raw }}
                             </div>
+                        </div>
 
-                        </a>
-                    {% endfor %}
-                </div>
+                        {# Bottom Divider #}
+                        <div class="w-full h-[1px] bg-foxplan-charcoal-brown/10 mt-12 group-hover:bg-foxplan-charcoal-brown/30 transition-colors"></div>
+                    </a>
+                {% endfor %}
             </div>
-        {% endfor %}
-    </div>
-</section>
+        </div>
+    {% endfor %}
+</div>

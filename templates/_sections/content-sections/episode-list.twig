@@ -77,19 +77,20 @@
 
                     <div class="flex flex-col md:flex-row md:items-center justify-between py-10 px-2 group transition-all duration-300 hover:bg-foxplan-charcoal-brown/80">
 
-                        <div class="flex flex-col md:flex-row items-start md:items-center flex-grow pr-0 md:pr-8">
+                        {# Changed flex-col to flex-row to put image and text side-by-side on mobile #}
+                        <div class="flex flex-row items-start md:items-center flex-grow pr-0 md:pr-8">
 
-                            {# Uniform Image Div (Layout Unchanged) #}
-                            <div class="relative aspect-square w-full md:w-32 md:h-32 mb-6 md:mb-0 md:mr-8 flex-shrink-0 overflow-hidden bg-foxplan-charcoal-brown/10 cursor-pointer rounded-sm"
+                            {# Uniform Image Div (Size kept at w-20 as requested) #}
+                            <div class="relative aspect-square w-20 md:w-32 md:h-32 mr-6 md:mr-8 flex-shrink-0 overflow-hidden bg-foxplan-charcoal-brown/10 cursor-pointer rounded-sm"
                                  @click="openPlayer('{{ audioUrl }}', '{{ epTitle }}')">
 
                                 <img src="{{ craftImage ? craftImage.url : staticPodcastThumb }}"
                                      alt="{{ episode.title }}"
                                      class="w-full h-full object-cover block transition-all duration-500 group-hover:scale-105">
 
-                                {# Play Icon - MOBILE ONLY #}
-                                <div class="md:hidden absolute top-3 left-3 z-10 w-9 h-9 bg-foxplan-neutral-beige rounded-sm flex items-center justify-center shadow-lg">
-                                    <svg class="w-5 h-5 text-foxplan-charcoal-brown ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                {# Play Icon - Updated to small dark square per previous context #}
+                                <div class="md:hidden absolute top-1.5 left-1.5 z-10 w-6 h-6 bg-foxplan-charcoal-brown flex items-center justify-center shadow-lg">
+                                    <svg class="w-3.5 h-3.5 text-foxplan-neutral-beige ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M8 5v14l11-7z"/>
                                     </svg>
                                 </div>
@@ -97,14 +98,13 @@
 
                             {# Text Content #}
                             <div class="flex-grow">
-                                {# Episode Title Clamp: Scales from 1.75rem (28px) to 2.25rem (36px) #}
                                 <h3 @click="openPlayer('{{ audioUrl }}', '{{ epTitle }}')"
-                                    class="font-serif leading-tight cursor-pointer text-foxplan-charcoal-brown mb-3  transition-colors"
-                                    style="font-size: clamp(1.75rem, 3vw, 2.25rem);">
+                                    class="font-serif leading-tight cursor-pointer text-foxplan-charcoal-brown mb-3 transition-colors"
+                                    style="font-size: clamp(1.25rem, 3vw, 2.25rem);">
                                     {{ episode.mainHeading ?? episode.title }}
                                 </h3>
 
-                                <div class="flex items-center gap-2 text-[11px] text-foxplan-charcoal-brown  font-sans uppercase tracking-wider font-bold">
+                                <div class="flex items-center gap-2 text-[11px] text-foxplan-charcoal-brown font-sans uppercase tracking-wider font-bold">
                                     <span>{{ episode.postDate | date('M d, Y') | upper }}</span>
                                     {% if episode.episodeDuration matches '/^\\d+$/' %}
                                         <span>•</span>
@@ -131,10 +131,9 @@
 
             {# PAGINATION CONTROLS #}
             <div id="episode-pagination" class="mt-16 flex justify-center items-center gap-10">
+                {# --- PREVIOUS BUTTON: Only renders if a prevUrl exists --- #}
                 {% if pageInfo.prevUrl %}
                     <a @click.prevent="loadPage('{{ pageInfo.prevUrl }}')" href="{{ pageInfo.prevUrl }}" class="text-foxplan-charcoal-brown hover:text-foxplan-yellow transition-colors text-lg font-light">← Prev</a>
-                {% else %}
-                    <span class="text-foxplan-charcoal-brown/20 cursor-not-allowed text-lg font-light">← Prev</span>
                 {% endif %}
 
                 <div class="flex items-center gap-8">
@@ -143,10 +142,9 @@
                     {% for page, url in pageInfo.getNextUrls(2) %}<a @click.prevent="loadPage('{{ url }}')" href="{{ url }}" class="text-foxplan-charcoal-brown/20 hover:text-foxplan-charcoal-brown text-xl font-light transition-colors">{{ page }}</a>{% endfor %}
                 </div>
 
+                {# --- NEXT BUTTON: Only renders if a nextUrl exists --- #}
                 {% if pageInfo.nextUrl %}
                     <a @click.prevent="loadPage('{{ pageInfo.nextUrl }}')" href="{{ pageInfo.nextUrl }}" class="text-foxplan-charcoal-brown hover:text-foxplan-yellow transition-colors text-lg font-light">Next →</a>
-                {% else %}
-                    <span class="text-foxplan-charcoal-brown/20 cursor-not-allowed text-lg font-light">Next →</span>
                 {% endif %}
             </div>
         </div>
