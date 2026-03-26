@@ -125,14 +125,18 @@
      @keydown.escape.window="searchOpen = false; mobileMenuOpen = false; searchQuery = ''">
 
     {# --- HEADER CONTENT --- #}
-    <div class="w-full {{ theme.backgroundColor }} relative z-[510] transition-all duration-300" @mouseleave="openTab = null">
+    <div class="w-full {{ theme.backgroundColor }} relative z-[510] transition-all duration-300"
+         @mouseleave="openTab = null">
         <div class="flex items-center h-16 lg:h-16">
-            <a href="/" class="flex items-center h-full pl-4 lg:pl-6 pr-4 xl:pr-10 flex-none {{ theme.textColor }} pt-1.5 overflow-hidden">
+            <a href="/"
+               class="flex items-center h-full pl-4 lg:pl-6 pr-4 xl:pr-10 flex-none {{ theme.textColor }} pt-1.5 overflow-hidden">
                 <div class="relative h-7 lg:h-9 xl:h-11 w-auto flex items-center">
-                    <div class="transition-all duration-500 transform" :class="isScrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'">
+                    <div class="transition-all duration-500 transform"
+                         :class="isScrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'">
                         {{ svg(alias(wordmarkPath))|attr({ class: 'h-7 lg:h-9 xl:h-11 w-auto ' ~ theme.logoFilter }) }}
                     </div>
-                    <div class="absolute inset-0 flex items-center transition-all duration-500 transform" :class="isScrolled ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'" x-cloak>
+                    <div class="absolute inset-0 flex items-center transition-all duration-500 transform"
+                         :class="isScrolled ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'" x-cloak>
                         {{ svg(alias(iconPath))|attr({ class: 'h-6 lg:h-8 xl:h-9 w-auto ' ~ theme.logoFilter }) }}
                     </div>
                 </div>
@@ -151,7 +155,12 @@
                             <span class="flex items-center gap-0.5 xl:gap-1 whitespace-nowrap">
                                 {{ handle }}
                                 {% if hasDropdown %}
-                                    <svg class="w-2.5 h-2.5 xl:w-3 xl:h-3 transition-transform duration-200" :class="openTab === '{{ handle }}' ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    <svg class="w-2.5 h-2.5 xl:w-3 xl:h-3 transition-transform duration-200"
+                                         :class="openTab === '{{ handle }}' ? 'rotate-180' : ''" fill="none"
+                                         stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"
+                                                                                         stroke-width="2"
+                                                                                         stroke-linecap="round"
+                                                                                         stroke-linejoin="round"/></svg>
                                 {% endif %}
                             </span>
                         </a>
@@ -161,12 +170,19 @@
 
             <div class="flex flex-none justify-end items-stretch h-full">
                 {# SEARCH BUTTON #}
-                <button @click="searchOpen = true" class="h-full px-4 lg:px-5 flex items-center justify-center cursor-pointer lg:{{ theme.searchBgColor }} lg:{{ theme.iconColor }} {{ theme.textColor }} lg:border-r border-foxplan-charcoal-brown/10">
-                    <svg viewBox="0 0 20 20" fill="none" class="w-6 h-6 lg:w-4 xl:w-5 lg:h-4 xl:h-5"><path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 17.5L13.875 13.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/></svg>
+                <button @click="searchOpen = true"
+                        class="h-full px-4 lg:px-5 flex items-center justify-center cursor-pointer lg:{{ theme.searchBgColor }} lg:{{ theme.iconColor }} {{ theme.textColor }} lg:border-r border-foxplan-charcoal-brown/10">
+                    <svg viewBox="0 0 20 20" fill="none" class="w-6 h-6 lg:w-4 xl:w-5 lg:h-4 xl:h-5">
+                        <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+                              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17.5 17.5L13.875 13.875" stroke="currentColor" stroke-width="1.5"
+                              stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
                 </button>
 
                 {# HAMBURGER BUTTON #}
-                <button @click="mobileMenuOpen = true" class="lg:hidden h-full px-5 {{ theme.textColor }} flex flex-col justify-center items-end gap-1.5 cursor-pointer">
+                <button @click="mobileMenuOpen = true"
+                        class="lg:hidden h-full px-5 {{ theme.textColor }} flex flex-col justify-center items-end gap-1.5 cursor-pointer">
                     <span class="w-8 h-0.5 bg-current"></span>
                     <span class="w-5 h-0.5 bg-current"></span>
                     <span class="w-8 h-0.5 bg-current"></span>
@@ -207,8 +223,8 @@
                             {% for subItem in items %}
 
                                 <a href="{{ subItem.url }}"
-                                   class="group/link border-r border-b border-foxplan-tint-line last:border-r-0 flex flex-col transition-colors
-           {{ itemCount == 2 ? 'p-12 justify-center' : 'p-8 justify-start' }}">
+                                   class="group/link border-r border-b border-foxplan-tint-line last:border-r-0 flex flex-col transition-colors duration-300 hover:bg-[#CECECE]
+   {{ itemCount == 2 ? 'p-12 justify-center' : 'p-8 justify-start' }}">
 
                                     <div class="mb-4 border-l-[3px] border-foxplan-yellow pl-4">
                                         <p class="text-[13px] font-bold tracking-[0.15em] text-foxplan-charcoal-brown uppercase leading-tight group-hover/link:text-black transition-colors">
@@ -233,7 +249,9 @@
                                 {% set navImg = navArticle.featuredImage.one() %}
                                 <a href="{{ navArticle.url }}" class="block w-full h-full relative no-underline">
                                     {% if navImg %}
-                                        <img src="{{ navImg.url }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="{{ navArticle.title }}">
+                                        <img src="{{ navImg.url }}"
+                                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                             alt="{{ navArticle.title }}">
                                     {% endif %}
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"></div>
                                     <div class="absolute inset-0 p-10 flex flex-col justify-end">
@@ -278,7 +296,8 @@
                     {{ svg(alias(wordmarkPath))|attr({ class: 'h-8 w-auto fill-foxplan-charcoal-brown' }) }}
                 </div>
 
-                <button @click="mobileMenuOpen = false" class="p-2 text-foxplan-charcoal-brown focus:outline-none" aria-label="Close Menu">
+                <button @click="mobileMenuOpen = false" class="p-2 text-foxplan-charcoal-brown focus:outline-none"
+                        aria-label="Close Menu">
                     <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -317,7 +336,8 @@
                                         <svg class="w-5 h-5 transition-transform duration-300"
                                              :class="activeMobileTab === '{{ handle }}' ? 'rotate-180' : ''"
                                              fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
                                         </svg>
                                     </button>
                                 {% endif %}
@@ -353,21 +373,45 @@
 
     {# --- SEARCH OVERLAY --- #}
     <template x-teleport="body">
-        <div x-show="searchOpen" x-transition.opacity class="fixed inset-0 z-[10002] bg-foxplan-neutral-beige flex flex-col items-center pt-[10vh] lg:pt-[15vh] px-6" style="display: none;">
-            <button @click="searchOpen = false; searchQuery = ''" class="absolute top-6 right-6 lg:top-10 lg:right-10 text-foxplan-charcoal-brown p-2"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div x-show="searchOpen" x-transition.opacity
+             class="fixed inset-0 z-[10002] bg-foxplan-neutral-beige flex flex-col items-center pt-[10vh] lg:pt-[15vh] px-6"
+             style="display: none;">
+            <button @click="searchOpen = false; searchQuery = ''"
+                    class="absolute top-6 right-6 lg:top-10 lg:right-10 text-foxplan-charcoal-brown p-2">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
             <div class="w-full max-w-4xl">
-                <div class="text-center mb-8 lg:mb-12"><h2 class="text-[40px] lg:text-[80px] font-serif text-foxplan-charcoal-brown leading-tight mb-4">Search anything</h2></div>
+                <div class="text-center mb-8 lg:mb-12"><h2
+                            class="text-[40px] lg:text-[80px] font-serif text-foxplan-charcoal-brown leading-tight mb-4">
+                        Search anything</h2></div>
 
                 <div class="relative border-b border-foxplan-charcoal-brown/30 pb-4 flex items-center">
-                    <svg class="w-8 h-8 lg:w-10 lg:h-10 text-foxplan-charcoal-brown/40 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2"><circle cx="10.5" cy="10.5" r="7.5"/><line x1="21" y1="21" x2="15.8" y2="15.8"/></svg>
-                    <input type="text" x-model="searchQuery" placeholder="Search by keyword, topic or title" class="bg-transparent border-none outline-none text-xl lg:text-3xl w-full text-foxplan-charcoal-brown placeholder:text-foxplan-charcoal-brown/30 font-aktiv" x-ref="searchInput" x-effect="if(searchOpen) { setTimeout(() => $refs.searchInput.focus(), 100) }">
+                    <svg class="w-8 h-8 lg:w-10 lg:h-10 text-foxplan-charcoal-brown/40 mr-4" fill="none"
+                         stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2">
+                        <circle cx="10.5" cy="10.5" r="7.5"/>
+                        <line x1="21" y1="21" x2="15.8" y2="15.8"/>
+                    </svg>
+                    <input type="text" x-model="searchQuery" placeholder="Search by keyword, topic or title"
+                           class="bg-transparent border-none outline-none text-xl lg:text-3xl w-full text-foxplan-charcoal-brown placeholder:text-foxplan-charcoal-brown/30 font-aktiv"
+                           x-ref="searchInput"
+                           x-effect="if(searchOpen) { setTimeout(() => $refs.searchInput.focus(), 100) }">
                 </div>
 
                 <div class="mt-8 max-h-[60vh] overflow-y-auto pb-20">
                     <template x-for="result in filteredResults" :key="result.url">
-                        <a :href="result.url" class="group flex items-center justify-between py-6 border-b border-foxplan-charcoal-brown/10 hover:px-4 transition-all">
-                            <div><span class="text-[10px] tracking-widest uppercase text-foxplan-charcoal-brown/40 block mb-1" x-text="result.category"></span><h3 class="text-xl lg:text-2xl text-foxplan-charcoal-brown group-hover:text-black" x-text="result.title"></h3></div>
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <a :href="result.url"
+                           class="group flex items-center justify-between py-6 border-b border-foxplan-charcoal-brown/10 hover:px-4 transition-all">
+                            <div>
+                                <span class="text-[10px] tracking-widest uppercase text-foxplan-charcoal-brown/40 block mb-1"
+                                      x-text="result.category"></span>
+                                <h3 class="text-xl lg:text-2xl text-foxplan-charcoal-brown group-hover:text-black"
+                                    x-text="result.title"></h3></div>
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                            </svg>
                         </a>
                     </template>
                 </div>
