@@ -129,8 +129,8 @@
          @mouseleave="openTab = null">
         <div class="flex items-center h-16 lg:h-16">
             <a href="/"
-               class="flex items-center h-full pl-4 lg:pl-6 pr-4 xl:pr-10 flex-none {{ theme.textColor }} pt-1.5 overflow-hidden">
-                <div class="relative h-7 lg:h-9 xl:h-11 w-auto flex items-center">
+               class="flex items-center h-full pl-4 lg:pl-6  pr-4 xl:pr-10 flex-none {{ theme.textColor }} pt-1.5 overflow-hidden ">
+                <div class="relative  h-7 lg:h-9 xl:h-11 w-auto flex items-center">
                     <div class="transition-all duration-500 transform"
                          :class="isScrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'">
                         {{ svg(alias(wordmarkPath))|attr({ class: 'h-7 lg:h-9 xl:h-11 w-auto ' ~ theme.logoFilter }) }}
@@ -143,7 +143,7 @@
             </a>
 
             <div class="flex-grow flex-shrink flex items-center h-full overflow-hidden">
-                <div class="hidden lg:flex items-center justify-around w-full mx-auto text-[12px] xl:text-[14px] font-medium {{ theme.textColor }} h-full">
+                <div class="hidden lg:flex items-center justify-around w-full mx-auto text-[12px] xl:text-[14px] font-medium {{ theme.textColor }} h-full ">
                     {% for handle in mainNavOrder %}
                         {% set hasDropdown = megaMenuData[handle] is defined and megaMenuData[handle]|length > 0 %}
                         {% set isStatic = handle in ['News', 'About'] %}
@@ -171,7 +171,7 @@
             <div class="flex flex-none justify-end items-stretch h-full">
                 {# SEARCH BUTTON #}
                 <button @click="searchOpen = true"
-                        class="h-full px-4 lg:px-5 flex items-center justify-center cursor-pointer lg:{{ theme.searchBgColor }} lg:{{ theme.iconColor }} {{ theme.textColor }} lg:border-r border-foxplan-charcoal-brown/10">
+                        class="h-full px-4 lg:px-5 flex items-center justify-center cursor-pointer lg:{{ theme.searchBgColor }} lg:{{ theme.iconColor }} {{ theme.textColor }} lg:border-r border-foxplan-charcoal-brown/10 ">
                     <svg viewBox="0 0 20 20" fill="none" class="w-6 h-6 lg:w-4 xl:w-5 lg:h-4 xl:h-5">
                         <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
                               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -215,7 +215,7 @@
                  @mouseleave="openTab = null">
 
                 <div class="px-8 w-full max-w-[1920px] mx-auto flex justify-center">
-                    <div class="flex bg-[#FCF9F6] border border-foxplan-tint-line shadow-2xl overflow-hidden
+                    <div class="flex bg-foxplan-white border border-foxplan-tint-line shadow-2xl overflow-hidden
                     {{ itemCount == 6 ? 'w-full min-h-[450px]' : 'max-w-6xl min-h-[420px]' }}">
 
                         {# LEFT SIDE: LINKS #}
@@ -223,7 +223,7 @@
                             {% for subItem in items %}
 
                                 <a href="{{ subItem.url }}"
-                                   class="group/link border-r border-b border-foxplan-tint-line last:border-r-0 flex flex-col transition-colors duration-300 hover:bg-[#CECECE]
+                                   class="group/link border-r border-b border-foxplan-tint-line last:border-r-0 flex flex-col transition-colors duration-300 hover:bg-[#EFEFEF]
    {{ itemCount == 2 ? 'p-12 justify-center' : 'p-8 justify-start' }}">
 
                                     <div class="mb-4 border-l-[3px] border-foxplan-yellow pl-4">
@@ -275,7 +275,7 @@
     </div>
 
     {# --- MOBILE MENU OVERLAY --- #}
-    {# --- MOBILE MENU OVERLAY --- #}
+
     <template x-teleport="body">
         <div x-show="mobileMenuOpen"
                 {# 1. Overlay Slide Transition #}
@@ -290,19 +290,16 @@
              x-cloak>
 
             {# --- MOBILE HEADER --- #}
-            <div class="flex items-center justify-between h-16 px-6 border-b border-foxplan-tint-line/50">
-                <div class="w-32">
-                    {# Assuming wordmarkPath is defined in your main nav context #}
-                    {{ svg(alias(wordmarkPath))|attr({ class: 'h-8 w-auto fill-foxplan-charcoal-brown' }) }}
-                </div>
-
-                <button @click="mobileMenuOpen = false" class="p-2 text-foxplan-charcoal-brown focus:outline-none"
-                        aria-label="Close Menu">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="flex items-center justify-between h-20 px-4 md:px-6 ">
+                {{ svg(alias(wordmarkPath))|attr({ class: 'h-7 lg:h-9 xl:h-11 w-auto fill-foxplan-charcoal-brown' }) }}
+                <button @click="mobileMenuOpen = false" class="p-2 text-foxplan-charcoal-brown">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
             </div>
+
+
 
             {# --- MOBILE NAVIGATION LINKS --- #}
             <div class="flex-grow flex flex-col px-8 py-10 overflow-y-auto">

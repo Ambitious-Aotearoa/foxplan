@@ -21,46 +21,46 @@
     {# PRICING TABLE #}
     <div class="w-full border border-foxplan-charcoal-brown grid grid-cols-1 md:grid-cols-3">
         {% set rows = block.accountingTable ?? [] %}
+
+        {# Extract Headers #}
         {% set headerLabel = rows[0] ?? null %}
         {% set headerPrice = rows[1] ?? null %}
         {% set headerFocus = rows[2] ?? null %}
         {% set colHandles = ['col2', 'col3', 'col4'] %}
 
         {% for handle in colHandles %}
-            <div class="p-4 lg:p-10 border-b md:border-b-0 md:border-r border-foxplan-charcoal-brown last:border-r-0 last:border-b-0 grid grid-rows-[auto_auto_auto_1fr]">
+            {# Added h-full and flex-col to ensure columns stretch equally #}
+            <div class="flex flex-col p-4 lg:p-10 border-b md:border-b-0 md:border-r border-foxplan-charcoal-brown last:border-r-0 last:border-b-0 h-full">
 
-                {# 1. Label Section #}
-                <div class="block font-bold tracking-wider text-foxplan-charcoal-brown uppercase mb-2 text-xs md:text-sm">
+                {# 1. Label Section - Fixed height to keep price aligned #}
+                <div class="font-bold tracking-wider text-foxplan-charcoal-brown uppercase mb-2 text-xs md:text-sm min-h-[2rem]">
                     {{ attribute(headerLabel, handle) ?? '' }}
                 </div>
 
-                {# 2. Price Section - ONE LINE WITH FLUID SCALING #}
+                {# 2. Price Section #}
                 <div class="font-serif text-foxplan-charcoal-brown mb-4 whitespace-nowrap"
                      style="font-size: clamp(1.4rem, 3.8vw, 3.8rem); line-height: 1.1;">
                     {% set priceValue = attribute(headerPrice, handle) ?? '' %}
-
-                    {# Removed opacity-70 to keep color identical to the price #}
                     {{ priceValue | replace({
-                        '/ month': '<span style="font-size: 0.6em; margin-left: 0.2em;">/ month</span>',
-                        '/month': '<span style="font-size: 0.6em; margin-left: 0.2em;">/ month</span>'
+                        '/ month': '<span style="font-size: 0.5em; margin-left: 0.2em;">/ month</span>',
+                        '/month': '<span style="font-size: 0.5em; margin-left: 0.2em;">/ month</span>'
                     }) | raw }}
                 </div>
-                {# 3. Focus Section #}
-                <div class="font-medium text-foxplan-charcoal-brown mb-8 break-words text-sm md:text-base"
+
+                {# 3. Focus Section - Added min-height so short text doesn't move the list up #}
+                <div class="font-medium text-foxplan-charcoal-brown mb-8 break-words text-sm md:text-base min-h-[4rem]"
                      style="line-height: 1.4;">
                     {{ attribute(headerFocus, handle) ?? '' }}
                 </div>
 
-                {# 4. Features List #}
-                <ul class="space-y-0 w-full">
+                {# 4. Features List - flex-grow ensures the list area fills the remaining space #}
+                <ul class="flex-grow space-y-0 w-full">
                     {% for row in rows %}
                         {% if loop.index > 3 %}
                             {% set cellData = attribute(row, handle) %}
-                            {% if cellData %}
-                                <li class="py-3 border-b border-foxplan-charcoal-brown text-foxplan-charcoal-brown last:border-0 font-light text-sm md:text-base break-words">
-                                    {{ cellData }}
-                                </li>
-                            {% endif %}
+                            <li class="py-4 border-b border-foxplan-charcoal-brown text-foxplan-charcoal-brown font-light text-sm md:text-base break-words last:border-0">
+                                {{ cellData ?? '&nbsp;' | raw }}
+                            </li>
                         {% endif %}
                     {% endfor %}
                 </ul>

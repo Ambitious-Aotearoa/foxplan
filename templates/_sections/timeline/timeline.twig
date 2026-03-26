@@ -63,19 +63,19 @@
     }
 }"
      x-ref="mainSection"
-     class="w-full bg-foxplan-neutral-beige h-screen flex flex-col px-0 overflow-hidden pt-0 md:pt-6 lg:pt-8">
+     class="w-full bg-foxplan-neutral-beige h-screen flex flex-col px-0 overflow-hidden pt-0 md:pt-4 lg:pt-6">
 
-    <div class="sticky top-0 z-[110] bg-foxplan-neutral-beige pt-8 pb-4">
-        <div class="w-full flex flex-col items-center justify-center text-center mb-4 md:mb-12 px-4">
+    <div class="sticky top-0 z-[110] bg-foxplan-neutral-beige pt-8 md:pt-12 pb-2">
+        <div class="w-full flex flex-col items-center justify-center text-center mb-2 md:mb-4 px-4">
             <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown max-w-6xl mx-auto break-normal"
-                style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
+                style="font-size: clamp(2.5rem, 5vw + 1rem, 5.5rem); line-height: 0.85; word-break: keep-all;">
                 30 Years of<br>Financial Expertise
             </h2>
         </div>
 
-        <section class="w-full mb-6 md:mb-12 select-none z-[100] overflow-hidden">
-            {# Arrow Track: md:px-20 aligns the dashed line start with the card content #}
-            <div class="relative w-full mb-6 md:mb-10 pt-10 px-4 md:px-20">
+        <section class="w-full mb-2 md:mb-4 select-none z-[100] overflow-hidden"> {# Reduced margin below arrow section #}
+            {# Arrow Track #}
+            <div class="relative w-full mb-2 pt-6 px-4 md:px-20"> {# Reduced pt-10 to pt-6 and mb-6 to mb-2 #}
                 <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-foxplan-charcoal-brown opacity-20"></div>
                 <div class="absolute top-1/2 -translate-y-1/2 left-0 flex items-center pointer-events-none transition-all duration-300 ease-out"
                      :style="`width: ${arrowWidth}%;` ">
@@ -89,26 +89,15 @@
             {# Years Scroller #}
             <div x-ref="yearsContainer"
                  class="w-full overflow-x-auto no-scrollbar scroll-smooth"
-                 x-effect="
-                    if (activeIndex >= 0 && window.innerWidth < 768) {
-                        const container = $refs.yearsContainer;
-                        const activeEl = container.children[0].children[activeIndex];
-                        if (activeEl) {
-                            {# Offset of 32px matches px-8 padding to align with card edge #}
-                            const offset = activeEl.offsetLeft - 32;
-                            container.scrollTo({ left: offset, behavior: 'smooth' });
-                        }
-                    }
-                 ">
-                {# px-8 on mobile and md:px-20 on desktop ensures year text starts where the card content starts #}
-                <div class="flex flex-nowrap px-8 md:px-20 md:justify-between min-w-max md:min-w-full font-serif text-foxplan-charcoal-brown">
+                 x-effect="...">
+                <div class="flex flex-nowrap px-8 md:px-20 lg:pt-4 md:justify-between min-w-max md:min-w-full font-serif text-foxplan-charcoal-brown"> {# Reduced lg:pt-8 to lg:pt-4 #}
                     {% for card in milestones %}
                         <button type="button"
                                 class="flex-shrink-0 pr-12 md:pr-0 flex justify-start items-center cursor-pointer outline-none focus:ring-0"
                                 @click="scrollToIndex({{ loop.index0 }})">
                             <span :class="activeIndex === {{ loop.index0 }} ? 'opacity-100 text-foxplan-charcoal-brown' : 'opacity-40'"
                                   class="transition-all duration-300 inline-block pointer-events-none whitespace-nowrap"
-                                  style="font-size: clamp(1.25rem, 2vw + 1rem, 2rem);">
+                                  style="font-size: clamp(1.25rem, 1.5vw + 1rem, 1.75rem);">
                                 {{ card.milestoneYear }}
                             </span>
                         </button>
@@ -118,7 +107,8 @@
         </section>
     </div>
 
-    <div class="relative w-full flex-grow overflow-hidden px-4 mb-4">
+    {# Card Container: Increased lg:pt-12 to give more internal spacing #}
+    <div class="relative w-full flex-grow overflow-hidden px-4 mb-4 lg:pt-12">
         {% for card in milestones %}
             {% set isYellow = loop.index is even %}
             <div class="milestone-card-wrapper absolute inset-x-4 top-0 z-[{{ loop.index * 10 }}] h-full">
@@ -134,29 +124,3 @@
         {% endfor %}
     </div>
 </div>
-
-<style>
-    .milestone-card-wrapper {
-        will-change: transform, clip-path;
-    }
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-</style>
-
-<style>
-    .milestone-card-wrapper {
-        will-change: transform, clip-path;
-    }
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-</style>
