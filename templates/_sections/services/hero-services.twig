@@ -73,7 +73,7 @@
                                             {% set linkUrl = parts[1] is defined ? parts[1] | trim : '#' %}
                                             <li>
                                                 <a href="{{ linkUrl }}" class="font-aktiv {{ data.textColor }} hover:underline block opacity-80 hover:opacity-100 transition-all font-light"
-                                                   style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.25rem);">
+                                                   style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.25rem); font-weight: 400">
                                                     {{ linkText }}
                                                 </a>
                                             </li>

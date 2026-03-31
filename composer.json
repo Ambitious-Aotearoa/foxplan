@@ -6,6 +6,7 @@
     "craftcms/cms": "^5.9.6",
     "craftcms/contact-form": "^3.1",
     "craftcms/feed-me": "^6.11.0",
+    "hybridinteractive/craft-contact-form-extensions": "^5.0.0",
     "nystudio107/craft-vite": "5.0.1",
     "spicyweb/craft-embedded-assets": "^5.4.7",
     "vaersaagod/dospaces": "3.2.1",

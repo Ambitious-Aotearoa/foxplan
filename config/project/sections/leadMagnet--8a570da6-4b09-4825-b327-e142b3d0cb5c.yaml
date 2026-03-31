@@ -2,10 +2,10 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: 6f417e1b-aeca-45dd-a6c4-f44be7f2bcbe # Disclosure
-handle: disclosure
+    uid: f36e735a-60ff-4440-89e5-8e1111da491c # First Home Guide
+handle: leadMagnet
 maxAuthors: 1
-name: Disclosure
+name: 'lead magnet'
 previewTargets:
   -
     label: 'Primary entry page'
@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: pages/Disclosure/index.twig
-    uriFormat: disclosure
+    template: first-home-guide/_entry.twig
+    uriFormat: first-home-guide
 type: single

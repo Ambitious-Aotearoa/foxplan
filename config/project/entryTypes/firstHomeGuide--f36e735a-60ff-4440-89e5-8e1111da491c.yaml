@@ -1,0 +1,106 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  f9a484f0-c3cb-4f95-8633-702169d14fe5:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-03-31T22:50:33+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: cdb20c3a-80d2-463f-aa8d-6bba1050142a # Email Subject
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fed4d784-ca3b-443c-8a54-9224c4d2d8f1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:50:33+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: c84e062f-0833-4c9d-86e4-b1b469506e3b # Email Greeting
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2a0cf06f-c17e-46ef-b059-0c8fc35630ba
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:50:33+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 3a475d44-7e98-4077-b3fd-5b819666e596 # Email Body
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a283ee26-16c0-4438-8ec2-e782d29685c8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T22:50:33+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 2de20070-eb47-4109-9589-d1c774ea32ac # Attachment Message
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2abe8572-1c52-40b1-8725-5f5f970fea42
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-03-31T23:08:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: da547108-c5ee-4f88-b8f8-3fc04c77235a # Downloadable Item
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f571609f-9536-4f5d-9dbc-5c2e48825502
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 4cfc0ec7-0089-431d-ba9b-296be3770899
+        userCondition: null
+    thumbFieldKey: null
+handle: firstHomeGuide
+hasTitleField: false
+icon: null
+name: 'First Home Guide'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

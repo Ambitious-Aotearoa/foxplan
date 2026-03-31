@@ -43,7 +43,7 @@
 
         {# --- THE TEXT --- #}
         <div class="w-full md:w-[70%] px-4 md:px-6 lg:px-8">
-            <h2 class="font-serif leading-[0.92] tracking-tight {{ data.textColor }}"
+            <h2 class="font-serif leading-[0.95] tracking-tight {{ data.textColor }}"
                 style="font-size: clamp(3rem, 8vw + 1rem, 7.5rem);">
                 {{ data.heading | raw }}
             </h2>
@@ -53,7 +53,6 @@
     <div class="flex flex-wrap lg:flex-nowrap items-end">
         <div class="w-full lg:w-[70%] relative overflow-hidden">
             <div class="relative w-full aspect-[16/9] lg:aspect-auto lg:h-[600px] px-4 lg:px-0">
-                {# 2. RENDERING THE CRAFT IMAGE #}
                 {% if heroImageAsset %}
                     <img src="{{ heroImageAsset.url }}"
                          alt="{{ heroImageAsset.title }}"
@@ -66,7 +65,7 @@
         {# --- CONTENT COLUMN --- #}
         <div class="w-full lg:w-[30%] px-4 md:px-6 lg:px-8 space-y-6 pt-10 lg:pt-0">
             {% if data.bodyText %}
-                <div class="font-aktiv leading-[0.95] {{ data.textColor }} font-medium"
+                <div class="font-aktiv leading-[1.15] {{ data.textColor }} font-medium"
                      style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.5rem); font-weight: 300;">
                     {{ data.bodyText | raw }}
                 </div>
