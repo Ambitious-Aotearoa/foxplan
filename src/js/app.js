@@ -12,5 +12,16 @@ import.meta.glob([
     '../images/**/*.{png,jpg,jpeg,svg,webp,gif}',
 ]);
 
-// 3. Your other JS (Alpine, GSAP, etc.)
+// 3. Alpine.js
+import Alpine from 'alpinejs';
+window.Alpine = Alpine;
+Alpine.start();
+
+// 4. GSAP
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+window.gsap = gsap;
+window.ScrollTrigger = ScrollTrigger;
+
 console.log("Assets initialized");

@@ -6,7 +6,8 @@
     url: none,
     backgroundColor: null,
     textColor: null,
-    classes: ''
+    classes: '',
+    attributes: {}
 } %}
 
 {% set props = defaults | merge(props | default({})) %}
@@ -18,7 +19,7 @@
 {% set buttonClasses = [
     'group relative inline-flex items-center justify-center overflow-hidden',
     'font-aktiv cursor-pointer transition-all duration-300 uppercase tracking-widest font-bold',
-
+    'appearance-none border-0 border-solid',
     'py-2 px-3 md:px-4 lg:px-8 whitespace-nowrap',
     bgClass,
     textClass,
@@ -30,7 +31,7 @@
 {% set textScaleStyle = 'font-size: clamp(0.75rem, 0.9vw, 0.875rem);' %}
 {% set tag = props.url ? 'a' : 'button' %}
 
-<{{ tag }} class="{{ buttonClasses }}" style="{{ textScaleStyle }}" {% if props.url %}href="{{ props.url }}"{% endif %}>
+<{{ tag }} class="{{ buttonClasses }}" style="{{ textScaleStyle }}" {% if props.url %}href="{{ props.url }}"{% endif %}{% for attrName, attrValue in props.attributes %} {{ attrName }}="{{ attrValue }}"{% endfor %}>
 
     <span class="btn__text flex items-center justify-center gap-1.5 md:gap-2 lg:gap-4">
         {{ props.text }}

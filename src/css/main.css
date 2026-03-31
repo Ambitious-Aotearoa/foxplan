@@ -1,3 +1,4 @@
+@import "tailwindcss";
 
 /* ========================================
    THEME COLORS (FoxPlan)
@@ -7,6 +8,74 @@
     --color-foxplan-neutral-beige: #F9EFD8;
     --color-foxplan-white: #FEFCF7;
     --color-foxplan-charcoal-brown: #270E15;
+    --color-foxplan-tint-line: #CECECE;
+
+    --font-serif: 'Foxplan-Serif', serif;
+}
+
+/* ========================================
+   CSS CUSTOM PROPERTIES
+   ======================================== */
+:root {
+    --foxplan-yellow: #FBC938;
+    --foxplan-neutral-beige: #F9EFD8;
+    --foxplan-white: #FEFCF7;
+    --foxplan-charcoal-brown: #270E15;
+    --foxplan-tint-line: #CECECE;
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+[x-cloak] {
+    display: none !important;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overscroll-behavior-y: none;
+    background-color: var(--foxplan-neutral-beige);
+}
+
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   V4 PREFLIGHT PATCHES
+   ======================================== */
+
+/*
+ * In Tailwind v4, <button> elements no longer get border-style: solid
+ * from the preflight reset. This restores expected behaviour globally.
+ */
+button {
+    border-style: solid;
+}
+
+/* ========================================
+   FONT UTILITIES
+   ======================================== */
+.font-serif {
+    font-family: 'Foxplan-Serif', serif;
+    font-variation-settings: 'wght' 420, 'SERF' 50, 'slnt' 0;
+}
+
+.font-serif-vf {
+    font-family: 'Foxplan-Serif', serif;
+    font-variation-settings: 'wght' 420, 'SERF' 50, 'slnt' 0;
+}
+
+.font-aktiv {
+    font-family: 'aktiv-grotesk', sans-serif;
 }
 
 .some-class {
