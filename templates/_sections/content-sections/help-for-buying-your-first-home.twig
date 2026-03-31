@@ -35,7 +35,7 @@
                         <div class="flex flex-col">
                             {% if block.blockHeading %}
                                 <div class="mb-3">
-                                    <h3 class="font-serif leading-[1.1] {{ data.textColor }} tracking-tight"
+                                    <h3 class="font-serif leading-[0.95] {{ data.textColor }} tracking-tight"
                                         style="font-size: clamp(1.4rem, 2.2vw, 2rem); text-wrap: balance;">
                                         {{ block.blockHeading }}
                                     </h3>
@@ -43,7 +43,7 @@
                             {% endif %}
 
                             {% if block.blockBodyText %}
-                                <div class="font-aktiv leading-relaxed font-normal opacity-90 {{ data.textColor }}"
+                                <div class="font-aktiv leading-[0.95] font-normal opacity-90 {{ data.textColor }}"
                                      style="font-size: clamp(0.95rem, 1vw, 1.05rem); text-wrap: pretty;">
                                     {{ block.blockBodyText | raw }}
                                 </div>

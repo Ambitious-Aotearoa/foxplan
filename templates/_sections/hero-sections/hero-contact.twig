@@ -16,7 +16,7 @@
 
 {% set data = defaults | merge(props | default({})) %}
 
-{% set titleStyles = 'font-size: clamp(3.5rem, 9vw + 1rem, 9rem); line-height: 0.85; word-break: keep-all;' %}
+{% set titleStyles = 'font-size: clamp(3.5rem, 9vw + 1rem, 9rem); line-height: 0.95; word-break: keep-all;' %}
 
 {% set bodyStyles = 'font-size: 16px; line-height: 1.2;' %}
 
@@ -66,9 +66,8 @@
                                 props: {
                                     text: entryButtonText,
                                     url: entryButtonLink,
-                                    backgroundColor: 'bg-[#1D1013]',
-                                    textColor: 'text-white',
-                                    classes: 'px-8 py-3 text-[10px] tracking-[0.2em] uppercase font-aktiv font-bold rounded-none'
+                                    backgroundColor: 'bg-foxplan-charcoal-brown',
+                                    textColor: 'text-foxplan-white',
                                 }
                             } only %}
                         </div>

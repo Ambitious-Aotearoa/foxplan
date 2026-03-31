@@ -8,20 +8,16 @@
     formAction: '#'
 } %}
 
-{# Tailwind Class Definitions refined for the 60/40 aesthetic #}
+{# Tailwind Class  #}
 {% set topLabelClasses = 'text-[10px] font-bold text-foxplan-charcoal-brown/40 uppercase tracking-[0.2em] mb-4 block' %}
-{% set mainHeadingClasses = 'font-serif text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-light leading-[1.1] text-foxplan-charcoal-brown tracking-tight' %}
+{% set mainHeadingClasses = 'font-serif text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-light leading-[1] text-foxplan-charcoal-brown tracking-tight' %}
 {% set inputClasses = 'w-full text-lg py-3 bg-transparent focus:outline-none placeholder-foxplan-charcoal-brown/30 text-foxplan-charcoal-brown font-light' %}
 {% set submitTextClasses = 'text-[10px] font-bold text-foxplan-charcoal-brown uppercase tracking-widest cursor-pointer hover:opacity-60 transition-opacity' %}
 {% set inputContainerClasses = 'flex items-center justify-between border-b border-foxplan-charcoal-brown/20 focus-within:border-foxplan-charcoal-brown' %}
 
-{# Top border as requested and fixed 20px margins #}
 <section class="w-full border-t border-foxplan-charcoal-brown/60 pt-16 pb-24 px-[20px]">
     <div class="w-full">
-        {#
-        60/40 Grid Layout:
-        Left (Heading) spans 6 columns, Right (Form) spans 4 columns
-        #}
+
         <div class="grid grid-cols-1 md:grid-cols-10 gap-x-12 lg:gap-x-16 items-end">
 
             {# Left Column: Heading (60%) #}

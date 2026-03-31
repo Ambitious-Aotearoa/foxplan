@@ -12,7 +12,7 @@
     {# 2. HERO SECTION #}
     <section class="w-full bg-foxplan-yellow text-foxplan-charcoal-brown pt-12 lg:pt-32 pb-8 md:pb-12 lg:pb-24 px-4 md:px-6 lg:px-8">
         <h1 class="font-serif tracking-tight text-foxplan-charcoal-brown break-normal mb-8"
-            style="font-size: clamp(2.5rem, 5vw + 1rem, 5.5rem); line-height: 0.85; word-break: keep-all;">
+            style="font-size: clamp(2.5rem, 5vw + 1rem, 5.5rem); line-height: 0.95; word-break: keep-all;">
             Meet the Team
         </h1>
         <p class="opacity-80 max-w-2xl font-medium"
@@ -55,7 +55,7 @@
         }
     }" class="relative w-full">
 
-        {# MOBILE DROPDOWN (Strictly following the High-Fidelity Design) #}
+        {# MOBILE DROPDOWN  #}
         <div class="lg:hidden w-full bg-foxplan-yellow px-4 md:px-6 lg:px-8 pb-8">
             <div class="relative">
                 <button
@@ -105,7 +105,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
                         {% for member in tab.members %}
                             <div class="team-card flex flex-col h-full group">
-                                {# Portrait images with hover effect #}
+
                                 <div class="aspect-square bg-foxplan-charcoal-brown/5 mb-8 overflow-hidden">
                                     {% set portrait = member.memberImage.one() %}
                                     <img src="{{ portrait ? portrait.url : craft.vite.asset('images/About_1.jpg') }}"

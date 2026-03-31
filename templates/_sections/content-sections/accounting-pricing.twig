@@ -5,7 +5,7 @@
     {# HEADER GRID #}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-[clamp(2rem,6vw,5rem)] items-end mb-16 w-full">
         <div class="lg:col-span-7">
-            <h2 class="font-serif text-foxplan-charcoal-brown leading-[1.1] tracking-tight break-words"
+            <h2 class="font-serif text-foxplan-charcoal-brown leading-[0.95] tracking-tight break-words"
                 style="font-size: clamp(2.5rem, 6vw, 4.5rem);">
                 {{ block.paragraphHeading3 | raw }}
             </h2>
@@ -29,17 +29,16 @@
         {% set colHandles = ['col2', 'col3', 'col4'] %}
 
         {% for handle in colHandles %}
-            {# Added h-full and flex-col to ensure columns stretch equally #}
             <div class="flex flex-col p-4 lg:p-10 border-b md:border-b-0 md:border-r border-foxplan-charcoal-brown last:border-r-0 last:border-b-0 h-full">
 
-                {# 1. Label Section - Fixed height to keep price aligned #}
+                {# 1. Label Section #}
                 <div class="font-bold tracking-wider text-foxplan-charcoal-brown uppercase mb-2 text-xs md:text-sm min-h-[2rem]">
                     {{ attribute(headerLabel, handle) ?? '' }}
                 </div>
 
                 {# 2. Price Section #}
                 <div class="font-serif text-foxplan-charcoal-brown mb-4 whitespace-nowrap"
-                     style="font-size: clamp(1.4rem, 3.8vw, 3.8rem); line-height: 1.1;">
+                     style="font-size: clamp(1.4rem, 3.8vw, 3.8rem); line-height: 0.95;">
                     {% set priceValue = attribute(headerPrice, handle) ?? '' %}
                     {{ priceValue | replace({
                         '/ month': '<span style="font-size: 0.5em; margin-left: 0.2em;">/ month</span>',
@@ -47,13 +46,13 @@
                     }) | raw }}
                 </div>
 
-                {# 3. Focus Section - Added min-height so short text doesn't move the list up #}
+                {# 3. Focus Section #}
                 <div class="font-medium text-foxplan-charcoal-brown mb-8 break-words text-sm md:text-base min-h-[4rem]"
-                     style="line-height: 1.4;">
+                     style="line-height: 0.95;">
                     {{ attribute(headerFocus, handle) ?? '' }}
                 </div>
 
-                {# 4. Features List - flex-grow ensures the list area fills the remaining space #}
+                {# 4. Features List  #}
                 <ul class="flex-grow space-y-0 w-full">
                     {% for row in rows %}
                         {% if loop.index > 3 %}

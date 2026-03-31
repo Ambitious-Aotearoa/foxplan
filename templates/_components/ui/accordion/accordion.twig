@@ -27,12 +27,8 @@
             <div class="{{ props.backgroundColor }} overflow-hidden lg:mr-[20px] max-w-5xl transition-all duration-300 ease-out transform hover:scale-[1.01] hover:z-20 relative shadow-sm flex flex-col"
                  :class="openItem === {{ loop.index0 }} ? 'z-10 shadow-md' : 'z-0'">
 
-                {#
-                FIX 1: Smaller min-heights
-                Reduced from 6.5rem to 4.5rem on desktop to keep the box tight.
-                #}
                 <button class="w-full flex-1 flex items-center justify-between text-left group transition-colors duration-200
-               {# FIX: Unified min-height to match the largest 2-line title #}
+
                min-h-[4rem] md:min-h-[4.5rem] lg:min-h-[5rem]"
                         {% if hasContent %}
                     @click="openItem = openItem === {{ loop.index0 }} ? -1 : {{ loop.index0 }}"
@@ -42,7 +38,6 @@
 
                     {# TITLE AREA #}
                     <div class="flex-1 px-6 md:px-10 py-2">
-                        {# FIX: Reduced font-size slightly to clamp(1.2rem, 2vw, 1.75rem) #}
                         <h3 class="{{ props.titleFont }} {{ props.titleCase }} {{ props.titleWeight }} {{ props.textColor }} transition-transform duration-300 group-hover:translate-x-1"
                             style="font-size: clamp(1.2rem, 1.8vw, 1.75rem);
                    line-height: 1.15;
@@ -69,7 +64,7 @@
                 {% if hasContent %}
                     <div x-show="openItem === {{ loop.index0 }}" x-collapse style="display: none;">
                         <div class="pb-8 px-6 md:px-10">
-                            {# FIX 3: Increased Content Font Size #}
+
                             <div class="{{ props.contentFont }} {{ props.contentWeight }} {{ props.textColor }} {{ props.contentLeading }} {{ props.contentOpacity }}
                                         max-w-3xl
                                         [&_ul]:list-none [&_ul]:p-0 [&_ul]:m-0

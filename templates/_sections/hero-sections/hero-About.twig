@@ -17,7 +17,7 @@
     {# --- ROW 1: Title  --- #}
     <div class="w-full px-4 md:px-6 lg:px-8 mb-4 md:mb-6 lg:mb-12 order-2 md:order-none">
         <h1 class="font-serif  {{ data.textColor }} break-normal"
-            style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
+            style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.95; word-break: keep-all;">
             {{ data.title | raw }}
         </h1>
     </div>
@@ -25,7 +25,7 @@
     {# --- ROW 2 --- #}
     <div class="contents md:flex md:flex-wrap w-full items-start mb-6 md:mb-12 lg:mb-16">
 
-        {# THE ARROW: Appears at the very top on mobile #}
+        {# THE ARROW #}
         <div class="w-full md:w-1/2 pt-4 flex items-center justify-start px-4 md:px-0 md:pr-12 lg:pr-16 order-1 md:order-none mb-8 md:mb-0">
             <div class="w-full relative flex items-center">
                 <div class="h-0 border-t-2 border-dashed border-foxplan-charcoal-brown transition-all duration-[2000ms] ease-out relative"
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        {# THE TEXT: Appears at the bottom on mobile #}
+        {# THE TEXT #}
         <div class="w-full md:w-1/2 px-4 md:px-6 lg:px-8 order-4 md:order-none">
             {% if data.bodyText %}
                 <div class="font-aktiv leading-relaxed {{ data.textColor }} font-medium max-w-4xl md:pr-8 lg:pr-24"

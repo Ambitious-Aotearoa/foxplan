@@ -15,10 +15,10 @@
 <section class="w-full relative z-20 py-8 md:py-16 lg:py-24 {{ data.backgroundColor }} overflow-hidden">
     <div class="grid grid-cols-1 md:grid-cols-10 w-full items-start">
 
-        {# --- LEFT SIDE: 30% Width (3 out of 10 columns) --- #}
+        {# --- LEFT SIDE --- #}
         <div class="col-span-1 md:col-span-3 pl-4 md:pl-8 pr-8">
             <div class="w-full">
-                <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown mb-8 leading-[0.85] text-balance md:max-w-[10ch]"
+                <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown mb-8 leading-[0.9] text-balance md:max-w-[10ch]"
                     style="font-size: clamp(2.2rem, 5.5vw, 4.5rem); word-break: keep-all;">
                     {{ data.title | raw }}
                 </h2>
@@ -64,7 +64,7 @@
                                             style: 'primary',
                                             backgroundColor: data.buttonBgColor,
                                             textColor: data.buttonTextColor,
-                                            classes: 'rounded-none'
+                                       
                                         }
                                     } only %}
                                 </div>

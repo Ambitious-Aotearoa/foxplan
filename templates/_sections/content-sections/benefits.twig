@@ -105,7 +105,7 @@
                          :class="(isScrollActive) ? 'bg-foxplan-white p-8 md:p-10 translate-x-2 md:translate-x-4 opacity-100 shadow-sm' : 'bg-transparent p-8 md:p-10 translate-x-0 opacity-40'">
 
                         {% if item.title %}
-                            <h4 class="font-aktiv font-bold tracking-[0.2em] uppercase mb-4 text-foxplan-charcoal-brown/60"
+                            <h4 class="font-aktiv font-bold tracking-[0.95] uppercase mb-4 text-foxplan-charcoal-brown/60"
                                 style="font-weight: 400; font-size: clamp(0.625rem, 1vw, 0.75rem);">
                                 {{ item.title }}
                             </h4>
@@ -114,7 +114,7 @@
                         {% if item.text %}
                             <div class="font-serif text-foxplan-charcoal-brown benefit-text-content"
                                  style="font-size: clamp(1.3rem, 2vw + 0.8rem, 2.25rem);
-                line-height: 1.25 !important;
+                line-height: 1 !important;
                 word-break: normal !important;
                 overflow-wrap: break-word !important;">
                                 {{ item.text | raw }}

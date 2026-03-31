@@ -10,7 +10,7 @@
     folder:          null
 } | merge(props ?? {}) %}
 
-{# 2. FETCH LOGOS - Limited to 8 for exactly 2 rows on desktop #}
+{# 2. FETCH LOGOS #}
 {% set logoQuery = craft.assets()
     .volume(data.assetVolume)
     .kind('image')
@@ -33,7 +33,6 @@
             </div>
 
             <div class="px-4 md:px-6 lg:px-8 pb-16">
-                {# Added border-t and border-l to the container to complete the grid frame #}
                 <div class="border-t border-l {{ data.borderColor }}">
                     <div class="grid grid-cols-2 md:grid-cols-4" id="logo-grid">
                         {% for logo in displayLogos %}

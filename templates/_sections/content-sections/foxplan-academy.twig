@@ -14,13 +14,12 @@
 <section class="w-full {{ data.backgroundColor }} py-12 md:py-24 overflow-hidden">
 
     <div class="w-full {{ data.containerPadding }}">
-        {# Strictly 30/70 split #}
         <div class="flex flex-col md:flex-row w-full items-start">
 
             {# Left Column: Label (30%) #}
             <div class="w-full md:w-[30%] mb-6 md:mb-0 pr-0 md:pr-12">
     <span class="font-aktiv {{ data.labelColor }} uppercase tracking-widest block font-normal"
-          style="font-size: clamp(0.8rem, 0.9vw, 1rem); line-height: 1.2;">
+          style="font-size: clamp(0.8rem, 0.9vw, 1rem); line-height: 0.95;">
         {{ data.topLabel }}
     </span>
             </div>
@@ -28,7 +27,7 @@
             {# Right Column: Body Text (70%) #}
             <div class="w-full md:w-[70%]">
                 <div class="font-aktiv {{ data.textColor }} break-normal"
-                     style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.6rem); line-height: 1.5; word-break: keep-all; font-weight: 300;">
+                     style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.6rem); line-height: 1.15; word-break: keep-all; font-weight: 300;">
                     {{ data.body | raw }}
                 </div>
             </div>

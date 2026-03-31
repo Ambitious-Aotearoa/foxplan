@@ -20,14 +20,14 @@
     'group relative inline-flex items-center justify-center overflow-hidden',
     'font-aktiv cursor-pointer transition-all duration-300 uppercase tracking-widest font-bold',
     'appearance-none border-0 border-solid',
-    'py-2 px-3 md:px-4 lg:px-8 whitespace-nowrap',
+    'py-3 px-4 md:px-4 lg:px-6 whitespace-nowrap',
     bgClass,
     textClass,
     'hover:opacity-80 active:opacity-100',
     props.classes
 ] | filter | join(' ') %}
 
-{# FIX: Fluid font size from 12px to 14px #}
+
 {% set textScaleStyle = 'font-size: clamp(0.75rem, 0.9vw, 0.875rem);' %}
 {% set tag = props.url ? 'a' : 'button' %}
 

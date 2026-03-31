@@ -31,10 +31,9 @@
                             {% if image %}
                                 <img src="{{ image.url }}"
                                      alt="{{ supplier.providerName }}"
-                                        {# Simplified img class: removed group-hover:scale-105 #}
                                      class="max-h-full max-w-[220px] object-contain object-left transition-transform duration-500">
                             {% else %}
-                                <div class="h-full w-44 bg-foxplan-charcoal-brown/5 flex items-center justify-center border border-foxplan-charcoal-brown/10">
+                                <div class="h-full w-44 bg-foxplan-charcoal-brown/5 flex items-center justify-center ">
                                     <span class="text-[9px] uppercase tracking-widest opacity-40">Logo Pending</span>
                                 </div>
                             {% endif %}
@@ -51,8 +50,7 @@
                             </div>
                         </div>
 
-                        {# Bottom Divider #}
-                        <div class="w-full h-[1px] bg-foxplan-charcoal-brown/10 mt-12 group-hover:bg-foxplan-charcoal-brown/30 transition-colors"></div>
+
                     </a>
                 {% endfor %}
             </div>

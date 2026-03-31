@@ -13,7 +13,7 @@
 
 <nav class="w-full {{ props.navBg }} sticky top-0 z-20" x-data="{ dropdownOpen: false }">
 
-    {# --- MOBILE DROPDOWN (Small Screens Only) --- #}
+    {# --- MOBILE DROPDOWN --- #}
     <div class="lg:hidden w-full relative">
         <button
                 type="button"
@@ -49,8 +49,8 @@
         </div>
     </div>
 
-    {# --- DESKTOP GRID (Large Screens Only) --- #}
-    <div class="hidden lg:grid lg:grid-cols-{{ props.tabs|length }} w-full">
+    {# --- DESKTOP GRID --- #}
+    <div class="hidden lg:grid w-full" style="grid-template-columns: repeat({{ props.tabs|length }}, minmax(0, 1fr));">
         {% for tab in props.tabs %}
             <button
                     type="button"

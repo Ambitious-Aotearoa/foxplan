@@ -61,7 +61,6 @@
 
             {# HEADER #}
             <div class="flex justify-between items-center mb-12 border-b border-b-foxplan-charcoal-brown pb-6">
-                {# Heading Clamp: Scales from 2.25rem (36px) to 3.75rem (60px) #}
                 <h2 class="font-serif text-foxplan-charcoal-brown"
                     style="font-size: clamp(2.25rem, 5vw, 3.75rem);">
                     All episodes
@@ -77,10 +76,8 @@
 
                     <div class="flex flex-col md:flex-row md:items-center justify-between py-10 px-2 group transition-all duration-300 hover:bg-foxplan-charcoal-brown/80">
 
-                        {# Changed flex-col to flex-row to put image and text side-by-side on mobile #}
                         <div class="flex flex-row items-start md:items-center flex-grow pr-0 md:pr-8">
 
-                            {# Uniform Image Div (Size kept at w-20 as requested) #}
                             <div class="relative aspect-square w-20 md:w-32 md:h-32 mr-6 md:mr-8 flex-shrink-0 overflow-hidden bg-foxplan-charcoal-brown/10 cursor-pointer rounded-sm"
                                  @click="openPlayer('{{ audioUrl }}', '{{ epTitle }}')">
 
@@ -88,7 +85,7 @@
                                      alt="{{ episode.title }}"
                                      class="w-full h-full object-cover block transition-all duration-500 group-hover:scale-105">
 
-                                {# Play Icon - Updated to small dark square per previous context #}
+
                                 <div class="md:hidden absolute top-1.5 left-1.5 z-10 w-6 h-6 bg-foxplan-charcoal-brown flex items-center justify-center shadow-lg">
                                     <svg class="w-3.5 h-3.5 text-foxplan-neutral-beige ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M8 5v14l11-7z"/>

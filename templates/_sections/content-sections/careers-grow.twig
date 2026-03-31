@@ -5,11 +5,11 @@
     {# --- HEADER SECTION --- #}
     <div class="w-full py-8 md:py-16 lg:py-24 text-center px-4 relative z-20">
         <h2 class="font-serif tracking-tight text-foxplan-charcoal-brown mb-6 max-w-4xl mx-auto break-normal"
-            style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.85; word-break: keep-all;">
+            style="font-size: clamp(2.5rem, 6vw + 1rem, 6.5rem); line-height: 0.95; word-break: keep-all;">
             {{ entry.paragraphHeading2 | raw }}
         </h2>
 
-        <div class="font-aktiv text-foxplan-charcoal-brown/70 max-w-2xl mx-auto italic font-medium"
+        <div class="font-aktiv text-foxplan-charcoal-brown/70 max-w-2xl mx-auto font-medium"
              style="font-size: clamp(1rem, 0.5vw + 0.8rem, 1.25rem);">
             {{ entry.bodyText2 | raw }}
         </div>
@@ -81,7 +81,7 @@
                             </span>
 
                             <h3 class="font-serif tracking-tight text-foxplan-charcoal-brown mb-10 break-normal"
-                                style="font-size: clamp(2rem, 4vw + 1rem, 3.5rem); line-height: 0.85; word-break: keep-all;">
+                                style="font-size: clamp(2rem, 4vw + 1rem, 3.5rem); line-height: 0.95; word-break: keep-all;">
                                 {{ section.title }}
                             </h3>
 
@@ -89,7 +89,7 @@
                                 {% for benefit in section.matrix %}
                                     <div class="benefit-item transition-all duration-700 ease-out text-foxplan-charcoal-brown/20 translate-x-0">
                                         <h4 class="font-serif mb-1 text-inherit"
-                                            style="font-size: clamp(1.25rem, 1vw + 1rem, 1.5rem); line-height: 1.1;">
+                                            style="font-size: clamp(1.25rem, 1vw + 1rem, 1.5rem); line-height: 0.95;">
                                             {{ benefit.matrixTitle }}
                                         </h4>
 

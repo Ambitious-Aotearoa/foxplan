@@ -31,7 +31,6 @@
         </div>
 
         {# Heading 2: Partners #}
-        {# Changed: Lowered lg:bottom to 5% and increased mobile mt to shift it down #}
         <div class="relative lg:absolute lg:bottom-[5%] lg:right-[5%] z-20 w-full lg:w-auto text-center lg:text-right mt-[-1rem] md:mt-[-2rem] lg:mt-0">
             <h1 class="font-serif text-[18vw] lg:text-[160px] leading-none text-foxplan-charcoal-brown tracking-tighter">
                 {{ data.heading2 }}
@@ -40,7 +39,6 @@
     </div>
 
     {# 2. THE GROWING ARROW #}
-    {# Added extra margin-top (mt-20) here to give "Partners" room to breathe now that it's lower #}
     <div class="relative w-full mt-20 lg:mt-24 mb-10 px-8">
         <div class="overflow-hidden transition-all duration-[4500ms] h-[16px] relative"
              style="transition-timing-function: steps(60);"
@@ -69,7 +67,7 @@
                     text: data.buttonText,
                     url: data.buttonUrl,
                     backgroundColor: 'bg-foxplan-charcoal-brown',
-                    textColor: 'text-white',
+                    textColor: 'text-foxplan-white',
                 }
             } only %}
         </div>

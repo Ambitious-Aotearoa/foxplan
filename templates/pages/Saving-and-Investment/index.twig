@@ -44,7 +44,6 @@
             {% endfor %}
         {% endif %}
 
-        {# Fix: redirect any service item links that wrongly point to the kiwisaver calculator #}
         {% set serviceItems = serviceItems | map(item => 'kiwisaver' in item.link ? item | merge({link: '/investment-calculator'}) : item) %}
 
         {{ include('_sections/services/our-services.twig', {
