@@ -8,7 +8,7 @@
 
     {# CSS & Fonts #}
     <link rel="stylesheet" href="https://use.typekit.net/hty7zmt.css">
-    <link rel="stylesheet" href="/fonts/fonts.css">
+    {# @font-face is now declared in main.css and compiled into the Vite bundle #}
 
     {# Vite-managed CSS + JS (compiled from src/js/app.js → web/dist/assets/) #}
     {# In dev: connects to the Vite dev server. In prod: reads the manifest. #}
@@ -26,81 +26,10 @@
         <link rel="apple-touch-icon" sizes="256x256" href="{{ siteWebclip.url }}">
     {% endif %}
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'foxplan-yellow': '#FBC938',
-                        'foxplan-charcoal-brown': '#270E15',
-                        'foxplan-neutral-beige': '#F9EFD8',
-                        'foxplan-white': '#FEFCF7',
-                        'foxplan-tint-line': '#CECECE',
-                    },
-                    fontFamily: {
-                        // Make sure the name in the array matches your @font-face exactly
-                        'serif': ['"Season Serif"', 'serif'],
-                        'foxplan': ['"foxplan-serif"', 'serif'],
-                        'sans-aktiv': ['"aktiv-grotesk"', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-
-    <style>
-
-        @font-face {
-            font-family: 'foxplan-serif';
-            src: url('/css/base/assets/fonts/foxplan.ttf') format('truetype-variations');
-            font-weight: 300 900;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        .hero-heading {
-            font-family: 'foxplan-serif', serif;
-            font-size: clamp(2.2rem, 5.5vw, 4.5rem);
-            letter-spacing: -0.025em;
-            line-height: 0.85;
-            font-variation-settings: 'wght' 468, 'SERF' 29, 'slnt' 0;
-        }
-
-        :root {
-            --foxplan-yellow: #FBC938;
-            --foxplan-neutral-beige: #F9EFD8;
-            --foxplan-white: #FEFCF7;
-            --foxplan-charcoal-brown: #270E15;
-            --foxplan-tint-line: #CECECE;
-        }
-
-        [x-cloak] { display: none !important; }
-
-        html {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            overscroll-behavior-y: none;
-            background-color: var(--foxplan-neutral-beige);
-        }
-
-        html::-webkit-scrollbar { display: none; }
-
-        html, body {
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100%;
-            overflow-x: hidden;
-        }
-    </style>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {# Tailwind, Alpine, and GSAP are all bundled via Vite — no CDN scripts needed #}
 </head>
 
-<body class="antialiased font-sans-aktiv text-foxplan-charcoal-brown bg-foxplan-neutral-beige">
+<body class="antialiased font-aktiv text-foxplan-charcoal-brown bg-foxplan-neutral-beige">
 
 {{ include("_components/nav/nav.twig", { navigationTheme: navigationTheme ?? null }, withContext = true) }}
 
@@ -108,8 +37,5 @@
     {% block blockAppBody %}{% endblock %}
 </main>
 
-<script>
-    gsap.registerPlugin(ScrollTrigger);
-</script>
 </body>
 </html>

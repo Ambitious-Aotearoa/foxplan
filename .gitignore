@@ -4,9 +4,9 @@
 .DS_Store
 node_modules/
 
-# Vite compiled output
-web/dist/assets/
-web/dist/.vite/
+# Vite compiled output — run npm run build on the server instead
+# web/dist/assets/
+# web/dist/.vite/
 
 # Vite pre-bundled deps cache
 node_modules/.vite/
