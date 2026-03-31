@@ -1,4 +1,4 @@
-dateModified: 1774326278
+dateModified: 1774915839
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
@@ -71,6 +71,7 @@ meta:
     6de15a75-8385-485f-b2de-3be7ba3f99d3: 'Public Schema' # Public Schema
     6e33f140-29a4-43ee-ac85-18ee6e66c2ef: Home # Home
     6e4443d9-4aa2-4c0a-886c-5bb0ff3becdb: Simple # Simple
+    6f417e1b-aeca-45dd-a6c4-f44be7f2bcbe: Disclosure # Disclosure
     7d29f47f-49be-42e4-a76a-2c52f645550a: Heading # Heading
     7de1a5c0-1411-43d5-9ca2-6996afd27316: 'Suppliers Title' # Suppliers Title
     07e0d992-aea7-43b3-95fc-46e6961f48e1: 'Career Benefit matrix' # Career Benefit matrix
@@ -98,6 +99,7 @@ meta:
     50a671c8-233b-479c-af1a-8dfcc5f25e8f: 'Supplier category' # Supplier category
     56f32641-e789-4c85-9d66-1a59f42e95d2: foxplan # foxplan
     57b202f1-c4d8-4b39-bc56-d1eeb2b1244b: 'Hero Subheading' # Hero Subheading
+    57f3690b-7700-425b-951b-93363b06feff: Privacy # Privacy
     60ac3db5-de5e-4810-a0b1-4743170e9b60: Timeline # Timeline
     063c4225-b94a-40fb-8780-16692d701a02: LinkedIn # LinkedIn
     64be8bff-539f-4a96-9c76-ecff739d9d87: 'Refinancing & Refixing' # Refinancing & Refixing
@@ -112,6 +114,7 @@ meta:
     93cc1844-5f6e-4858-86da-315bd52cda7c: 'Property Upgrade' # Property Upgrade
     096b02a8-7b14-4611-b1ca-1e82e3dd704a: 'Newsletter Image' # Newsletter Image
     96c1e443-01b6-463e-b149-11a8187fafae: 'Matrix Title' # Matrix Title
+    163edaaf-9dfc-40ca-9fc2-15da1ffda005: Complaints # Complaints
     197d008b-abaf-40fa-9c38-173ac170b291: 'Article Heading' # Article Heading
     213a9e8b-5fd6-423e-a7d0-628598de026e: Facebook # Facebook
     222af9fb-54f1-410e-bbe1-d8a98905aa7a: 'Site Settings' # Site Settings
@@ -151,15 +154,18 @@ meta:
     a8da3467-e2fa-4b90-b5e8-7df257de2ebc: Image # Image
     a30fb669-985c-4116-8bf1-8ca04a3af56c: Article # Article
     a82e8874-a0f4-4805-b59d-8c47d4867d7c: Tags # Tags
+    a633b2a5-b807-4b34-a16e-4fccfe297f16: Disclaimer # Disclaimer
     a3678b64-b1c5-4dc1-9751-51560dbabe64: icons # icons
     a60554c1-42e9-4a93-b213-3950bf23db7d: 'Button URL' # Button URL
     aad93b84-e999-4d54-bc1e-8f65472830f4: Partners # Partners
     ab6e0b50-c8e4-46a6-87e1-30dc93191009: "Personal\_& Medical  Insurance" # Personal & Medical  Insurance
     ad7daef3-ba4d-470a-8ee9-3bee8c28bcea: 'Newsletter Title' # Newsletter Title
     ae1eb8ab-68f8-419c-8bb8-c19ed7985884: 'Insights Image' # Insights Image
+    af4882ee-8166-4ffc-a8b0-ba6b3d4e9b15: Disclosure # Disclosure
     b3d02c0f-4eb6-471b-a4fd-e7ade89de423: 'Hero Matrix' # Hero Matrix
     b3e0436c-c0e6-4ebd-8278-c69c2a07f9e6: Insights # Insights
     b8dfe219-cd2b-4062-b6c5-2a0b07241d1a: 'Careers Page' # Careers Page
+    b8fb7c6f-f535-4aa2-9285-e31412193b9b: Complaints # Complaints
     b21bad80-2c2d-4197-aeab-31f8b56a3bee: 'Spotify Playlist' # Spotify Playlist
     b30bd8f6-6a9f-410d-80b5-44f1baf3babf: 'Featured Image' # Featured Image
     b898b7e2-c466-4f6e-89b2-5fc8070636bd: 'Contact Us Page' # Contact Us Page
@@ -173,9 +179,11 @@ meta:
     c7f147ed-33aa-4d4a-bf02-bbebd30804fe: 'Contact Bodytext' # Contact Bodytext
     c8cb479b-6ce3-44d4-8485-2de5b6cff170: 'Accounting Matrix' # Accounting Matrix
     c91c8b47-5983-4466-94b4-44c6cce8e323: 'Financial Planning' # Financial Planning
+    c24360ac-4126-48c2-9825-57239c96bd5e: Privacy # Privacy
     cc0e715a-9227-4f6e-9948-2b6b82ab16c3: Insights # Insights
     cd7d6292-1897-4386-b933-19976426821e: "Personal\_& Medical  Insurance" # Personal & Medical  Insurance
     ced4066b-92f7-424d-b675-f392ce22c644: 'Insights Tabs Data' # Insights Tabs Data
+    cf5b357a-5522-4b07-8228-b736b93a7cba: Disclaimer # Disclaimer
     cff38048-563c-4fdc-b87c-d5ddb0084953: Insurance # Insurance
     d9eed74d-4b09-4ac9-8402-86fabd752e4f: 'Hero Images' # Hero Images
     d71d9025-4b25-42b3-956c-faa7e975d728: 'Page Builder2' # Page Builder2

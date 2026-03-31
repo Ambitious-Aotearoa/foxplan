@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: cf5b357a-5522-4b07-8228-b736b93a7cba # Disclaimer
+handle: disclaimer
+maxAuthors: 1
+name: Disclaimer
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  904beb73-9861-43f3-8de7-90464f6457de: # foxplan
+    enabledByDefault: true
+    hasUrls: true
+    template: Disclaimer/index.twig
+    uriFormat: disclaimer
+type: single

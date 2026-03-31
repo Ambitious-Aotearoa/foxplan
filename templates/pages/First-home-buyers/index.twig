@@ -55,21 +55,16 @@
         }) }}
 
         {# First Home Section #}
+
         {% include '_sections/content-sections/first-home-section.twig' with {
             entry: entry,
             props: {
-            title: entry.paragraphHeading3 ?? 'Get the First Home Buyers Guide',
-            bodyText: entry.bodyText3 ?? '',
-            buttonText: entry.button2 ?? 'Download now',
-            imageSrc: entry.image.one() ? entry.image.one().url : null,
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-foxplan-charcoal-brown',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-white',
-            borderColor: 'border-foxplan-charcoal-brown',
-        }
-        }only %}
-
+                title: entry.paragraphHeading3 ?? 'Get the First Home Buyers Guide',
+                bodyText: entry.bodyText3 ?? '',
+                buttonText: entry.button2 ?? 'Download now',
+                backgroundColor: 'bg-foxplan-neutral-beige'
+            }
+        } only %}
 
         {# Testimonials #}
         {% set testimonialEntries = craft.entries().section('testimonials').all() %}

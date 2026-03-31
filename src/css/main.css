@@ -8,3 +8,7 @@
     --color-foxplan-white: #FEFCF7;
     --color-foxplan-charcoal-brown: #270E15;
 }
+
+.some-class {
+    height: auto;
+}
