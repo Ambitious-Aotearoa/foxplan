@@ -2,3 +2,11 @@
 /.idea
 /vendor
 .DS_Store
+node_modules/
+
+# Vite compiled output
+web/dist/assets/
+web/dist/.vite/
+
+# Vite pre-bundled deps cache
+node_modules/.vite/
