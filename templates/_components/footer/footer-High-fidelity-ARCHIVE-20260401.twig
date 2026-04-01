@@ -41,21 +41,12 @@
         setHeight() {
             const inner = this.$el.querySelector('.footer-inner');
             if (inner) {
-                const contentH = inner.scrollHeight;
-                const viewH = window.innerHeight;
-
-                if (contentH <= viewH) {
-                    // Content fits — use fixed parallax reveal.
-                    inner.style.position = 'fixed';
-                    this.$el.style.minHeight = (contentH + viewH) + 'px';
-                    this.$el.style.clipPath = 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)';
-                } else {
-                    // Content taller than viewport — fall back to
-                    // a normal in-flow footer, no parallax.
-                    inner.style.position = 'relative';
-                    this.$el.style.minHeight = '';
-                    this.$el.style.clipPath = 'none';
-                }
+                // Footer needs viewportHeight to scroll into view,
+                // PLUS footerContentHeight to fully reveal the content.
+                // Without this, short viewports can never scroll far enough
+                // to see the top of the footer.
+                const h = inner.scrollHeight + window.innerHeight;
+                this.$el.style.minHeight = h + 'px';
             }
         }
     }"
@@ -63,7 +54,7 @@
         @resize.window="updateRatio(); setHeight()"
         x-init="$nextTick(() => setHeight()); updateRatio()"
 >
-    <div class="footer-inner bottom-0 left-0 w-full {{ data.backgroundColor }} flex flex-col justify-start sm:justify-end"
+    <div class="footer-inner fixed bottom-0 left-0 w-full {{ data.backgroundColor }} flex flex-col justify-start sm:justify-end"
          style="will-change: transform; backface-visibility: hidden; transform: translateZ(0);">
 
         {# Animation Wrapper #}

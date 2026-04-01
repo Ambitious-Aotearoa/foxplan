@@ -62,6 +62,13 @@ html, body {
 }
 
 /* ========================================
+   SAFELIST — dynamic classes used via Twig variables that Tailwind can't scan
+   ======================================== */
+@source inline("{text,bg,border}-foxplan-{yellow,charcoal-brown,neutral-beige,white,tint-line}");
+@source inline("md:{text,bg}-foxplan-{yellow,charcoal-brown,neutral-beige,white,tint-line}");
+@source inline("lg:{text,bg,border}-foxplan-{yellow,charcoal-brown,neutral-beige,white,tint-line}");
+
+/* ========================================
    V4 PREFLIGHT PATCHES
    ======================================== */
 
