@@ -53,9 +53,8 @@
 
             {# BLOCK B: Section 2 Image #}
             <div class="order-4 md:order-none px-6 md:pl-0 mt-12 md:mt-0 lg:max-w-[100%] leading-[0]">
-                {# Added max-w-[70%] and mx-auto for mobile sizing #}
                 <img src="{{ section2Image ? section2Image.url : fallback2 }}"
-                     class="w-full max-w-[70%] md:max-w-none mx-auto md:mx-0 mb-12 md:mb-0 aspect-[4/5] object-cover shadow-sm block">
+                     class="w-full md:max-w-none mx-auto md:mx-0 mb-12 md:mb-0 aspect-[4/5] object-cover shadow-sm block">
             </div>
         </div>
 
@@ -67,13 +66,12 @@
 
             {# BLOCK C: Section 1 Image #}
             <div class="order-2 md:order-none px-4 md:pr-0 md:pl-8 pt-12 md:pt-24 lg:pt-32 max-w-[100%]">
-                {# Added max-w-[70%] and mx-auto for mobile sizing #}
                 <img src="{{ section1Image ? section1Image.url : fallback1 }}"
-                     class="w-full max-w-[70%] md:max-w-none mx-auto md:mx-0 mb-12 md:mb-0 aspect-[4/5] object-cover shadow-sm">
+                     class="w-full  md:max-w-none mx-auto md:mx-0 mb-12 md:mb-0 aspect-[4/5] object-cover shadow-sm">
             </div>
 
             {# BLOCK D: Section 2 Text #}
-            <div class="order-3 md:order-none px-6 md:pr-12 lg:pr-24 md:pl-12 pt-12 md:pt-24 lg:pt-40">
+            <div class="order-3 md:order-none px-6 md:pr-12 lg:pr-24  pt-12 md:pt-24 lg:pt-40">
                 <div class="max-w-md">
                     <h2 class="font-serif leading-[1.1] text-foxplan-charcoal-brown mb-6"
                         style="font-size: clamp(2.5rem, 4vw, 4rem);">

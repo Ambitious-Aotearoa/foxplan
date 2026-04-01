@@ -10,8 +10,9 @@
 
         {# Left Column #}
         <div class="xl:col-span-4 w-full">
-            <h2 class="font-serif text-foxplan-charcoal-brown leading-[1] mb-6 "
-                style="font-size: clamp(2.5rem, 6vw, 5rem); text-wrap: balance;">
+            {# Removed text-wrap: balance for mobile to ensure clean container calculation #}
+            <h2 class="font-serif text-foxplan-charcoal-brown leading-[1] mb-6 md:text-wrap-balance"
+                style="font-size: clamp(2.5rem, 6vw, 5rem);">
                 {{ block.paragraphHeading2 ?? '' }}
             </h2>
 
@@ -33,17 +34,16 @@
                 {% if matrixItems is not empty %}
                     {% for item in matrixItems %}
                         <div class="flex flex-col w-full">
-                            <h3 class="font-serif text-foxplan-charcoal-brown mb-3 leading-tight"
-                                style="font-size: clamp(1.3rem, 2vw, 1.8rem); text-wrap: balance;">
+                            <h3 class="font-serif text-foxplan-charcoal-brown mb-3 leading-tight md:text-wrap-balance"
+                                style="font-size: clamp(1.3rem, 2vw, 1.8rem);">
                                 {{ item.mainHeading ?? '' }}
                             </h3>
 
-                            <div class="leading-relaxed text-foxplan-charcoal-brown opacity-90 w-full "
+                            {# Cleaned up the restrictive overflow/word-break logic to allow fluid wrapping #}
+                            <div class="leading-relaxed text-foxplan-charcoal-brown opacity-90 w-full"
                                  style="font-size: clamp(0.95rem, 1vw, 1.05rem);
-                                        hyphens: none !important;
-                                        word-break: normal !important;
-                                        overflow-wrap: normal !important;
-                                        display: block;">
+                                        word-wrap: break-word;
+                                        overflow-wrap: break-word;">
                                 {{ item.bodyText | raw }}
                             </div>
                         </div>
