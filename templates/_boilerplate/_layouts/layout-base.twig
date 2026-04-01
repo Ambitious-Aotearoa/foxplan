@@ -29,7 +29,7 @@
     {# Tailwind, Alpine, and GSAP are all bundled via Vite — no CDN scripts needed #}
 </head>
 
-<body class="antialiased font-aktiv text-foxplan-charcoal-brown bg-foxplan-neutral-beige">
+<body class="antialiased font-aktiv text-foxplan-charcoal-brown bg-foxplan-neutral-beige" style="opacity: 0;">
 
 {{ include("_components/nav/nav.twig", { navigationTheme: navigationTheme ?? null }, withContext = true) }}
 
@@ -37,5 +37,23 @@
     {% block blockAppBody %}{% endblock %}
 </main>
 
+<script>
+    // Reveal page once styles AND fonts are loaded — prevents FOUC
+    (function() {
+        function reveal() {
+            document.body.style.transition = 'opacity 0.2s ease-in';
+            document.body.style.opacity = '1';
+        }
+        // Wait for fonts to finish loading, then reveal
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(reveal);
+        } else {
+            // Fallback for older browsers
+            window.addEventListener('load', reveal);
+        }
+        // Safety net — always reveal after 1.5s no matter what
+        setTimeout(reveal, 1500);
+    })();
+</script>
 </body>
 </html>
