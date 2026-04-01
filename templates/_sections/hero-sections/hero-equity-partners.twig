@@ -9,7 +9,8 @@
     buttonUrl: '/contact-us'
 } %}
 
-{% set heroImagePath = alias('@web/dist/' ~ data.imagePath) %}
+{% set heroAsset = (entry is defined and entry.heroImage is defined) ? entry.heroImage.one() : null %}
+{% set heroImagePath = heroAsset ? heroAsset.url : alias('@web/dist/' ~ data.imagePath) %}
 
 <section class="w-full bg-foxplan-neutral-beige overflow-hidden font-aktiv"
          x-data="{ revealed: false }"

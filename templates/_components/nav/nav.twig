@@ -71,7 +71,7 @@
 
 {% set mainNavOrder = ['Financial Planning', 'Insurance', 'Savings & Investment', 'Business & Accounting', 'Mortgages', 'News', 'About'] %}
 
-<nav class="w-full fixed top-0 left-0 right-0 z-[9999] font-aktiv"
+<nav class="w-full fixed top-0 left-0 right-0 z-[9999] font-aktiv transition-transform duration-500 ease-in-out"
      x-data="{
         openTab: null,
         mobileMenuOpen: false,
@@ -123,7 +123,9 @@
         }
      }"
      @scroll.window="isScrolled = (window.pageYOffset > 50)"
-     @keydown.escape.window="searchOpen = false; mobileMenuOpen = false; searchQuery = ''">
+     @keydown.escape.window="searchOpen = false; mobileMenuOpen = false; searchQuery = ''"
+     @footer-visible.window="$el.style.transitionDuration = '500ms'; $el.style.transform = 'translateY(-100%)'"
+     @footer-hidden.window="$el.style.transitionDuration = '300ms'; $el.style.transform = 'translateY(0)'">
 
     {# --- HEADER CONTENT --- #}
     <div class="w-full {{ theme.backgroundColor }} relative z-[510] transition-all duration-300"

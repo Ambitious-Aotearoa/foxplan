@@ -33,6 +33,10 @@
                     } else {
                         this.ratio = 0;
                     }
+                    // Tell the nav to hide/show once footer is half-revealed
+                    window.dispatchEvent(new CustomEvent(
+                        this.ratio > 0.3 ? 'footer-visible' : 'footer-hidden'
+                    ));
                     this.ticking = false;
                 });
                 this.ticking = true;
