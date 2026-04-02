@@ -1,0 +1,13 @@
+columnSuffix: null
+handle: displayingOnSite
+instructions: null
+name: 'Displaying on site'
+searchable: false
+settings:
+  default: true
+  offLabel: 'Not displayed'
+  onLabel: displayed
+  showLabelsInCards: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

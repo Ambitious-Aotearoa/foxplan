@@ -88,6 +88,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-04-01T22:10:30+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 46699356-6cc7-42a5-b0aa-71d2e2561bc9 # Displaying on site
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 195b23ab-af88-46bd-aa06-cbc9812d0f25
+            userCondition: null
+            warning: null
+            width: 100
         name: Suppliers
         uid: 5c994281-91e6-4edc-9148-29e8bb6da1e3
         userCondition: null

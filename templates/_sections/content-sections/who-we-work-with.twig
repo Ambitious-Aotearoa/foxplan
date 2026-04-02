@@ -20,9 +20,10 @@
     {% do logoQuery.folderPath(data.folder ~ '/') %}
 {% endif %}
 
-{% set displayLogos = logoQuery.all() %}
+{% set baseLogos = logoQuery.all() %}
+{% set totalSlots = 8 %}
 
-{% if displayLogos|length > 0 %}
+{% if baseLogos|length > 0 %}
     <section class="w-full {{ data.backgroundColor }}">
         <div class="w-full">
             <div class="pt-10 pb-6 px-4 md:px-6 lg:px-8">
@@ -35,7 +36,9 @@
             <div class="px-4 md:px-6 lg:px-8 pb-16">
                 <div class="border-t border-l {{ data.borderColor }}">
                     <div class="grid grid-cols-2 md:grid-cols-4" id="logo-grid">
-                        {% for logo in displayLogos %}
+
+                        {# 1. Loop through actual logos first #}
+                        {% for logo in baseLogos %}
                             <div class="logo-card relative overflow-hidden aspect-[1.6/1] flex items-center justify-center p-4 md:p-8 border-r border-b {{ data.borderColor }}">
                                 <div class="logo-wrapper transition-all duration-700 ease-in-out flex items-center justify-center w-[120px] h-[40px] md:w-[160px] md:h-[60px]">
                                     <img src="{{ logo.url }}"
@@ -44,12 +47,24 @@
                                 </div>
                             </div>
                         {% endfor %}
+
+                        {# 2. Fill the remaining slots with empty/placeholder cards #}
+                        {% if baseLogos|length < totalSlots %}
+                            {% for i in (baseLogos|length + 1)..totalSlots %}
+                                <div class="logo-card relative aspect-[1.6/1] flex items-center justify-center border-r border-b {{ data.borderColor }}">
+                                    {# Leave this empty or add a very subtle watermark/logo icon #}
+                                    <div class="opacity-10 grayscale">
+                                        {# Optional: <img src="/assets/img/logo-icon.svg" class="w-8 h-8"> #}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const wrappers = document.querySelectorAll('.logo-wrapper');

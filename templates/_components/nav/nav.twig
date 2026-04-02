@@ -101,13 +101,34 @@
                 { title: '{{ person.title|e('js') }}', url: '{{ person.url|e('js') }}', category: 'Investment Committee' },
             {% endfor %}
 
-            {% for page in policyPages %}
-                { title: '{{ page.title|e('js') }}', url: '{{ page.url|e('js') }}', category: 'Legal & Policy' },
-            {% endfor %}
-            { title: 'Disclaimer', url: '/pages/Disclaimer', category: 'Legal & Policy' },
-            { title: 'Privacy Policy', url: '/pages/Privacy-Policy', category: 'Legal & Policy' },
-            { title: 'Disclosure', url: '/pages/Disclosure', category: 'Legal & Policy' },
-            { title: 'Complaints Policy', url: '/pages/Complaints-Policy', category: 'Legal & Policy' }
+            {# 1. Fetch the entries first to ensure we have data #}
+{% set discEntry = craft.entries.section('disclaimer').one() %}
+{% set privEntry = craft.entries.section('privacyPolicy').one() %}
+{% set discLEntry = craft.entries.section('disclosure').one() %}
+{% set compEntry = craft.entries.section('complaintsPolicy').one() %}
+
+{# 2. The loop for dynamic pages #}
+{% for page in policyPages %}
+    { title: '{{ page.title|e('js') }}', url: '{{ page.url|e('js') }}', category: 'Legal & Policy' },
+{% endfor %}
+
+{# 3. The specific singles using the variables we set above #}
+{% if discEntry %}
+    { title: '{{ discEntry.title|e('js') }}', url: '{{ discEntry.url|e('js') }}', category: 'Legal & Policy' },
+{% endif %}
+
+{% if privEntry %}
+    { title: '{{ privEntry.title|e('js') }}', url: '{{ privEntry.url|e('js') }}', category: 'Legal & Policy' },
+{% endif %}
+
+{% if discLEntry %}
+    { title: '{{ discLEntry.title|e('js') }}', url: '{{ discLEntry.url|e('js') }}', category: 'Legal & Policy' },
+{% endif %}
+
+{% if compEntry %}
+    { title: '{{ compEntry.title|e('js') }}', url: '{{ compEntry.url|e('js') }}', category: 'Legal & Policy' },
+{% endif %}
+
         ],
 
         get filteredResults() {
