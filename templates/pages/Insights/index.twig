@@ -3,10 +3,15 @@
 {% set navigationTheme = {
     backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown',
-    searchBgColor: 'bg-foxplan-charcoal-brown',
+
     ctaBgColor: 'bg-foxplan-charcoal-brown',
+    logoFilter: 'fill-current',
     iconColor: 'text-foxplan-yellow',
+    ctaTextColor: 'text-foxplan-white',
+    searchColour: 'text-foxplan-charcoal-brown lg:text-foxplan-white'
 } %}
+
+
 
 {% macro articleCard(article, aspectRatio) %}
     <a href="{{ article.url }}" class="article-card mb-4 md:mb-8 lg:mb-16 group block w-full no-underline">

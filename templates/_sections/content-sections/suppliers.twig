@@ -1,4 +1,4 @@
-{# _sections/content-sections/suppliers.twig #}
+{# templates/_sections/content-sections/suppliers.twig #}
 
 <div class="w-full" x-show="activeTab">
     {% for tab in data.tabs %}
@@ -6,38 +6,39 @@
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0 transform translate-y-4"
              x-transition:enter-end="opacity-100 transform translate-y-0"
-             class="w-full px-4 md:px-6 lg:px-10 pt-12 md:pt-16 lg:pt-20">
+             class="w-full px-4 md:px-8 lg:px-12"
+             style="padding-top: clamp(3rem, 6vw, 5rem); padding-bottom: clamp(5rem, 15vw, 12.5rem);">
 
             {# Large Tab Heading #}
-            <h2 class="font-serif text-foxplan-charcoal-brown mb-20 tracking-tight leading-[0.85] text-left"
-                style="font-size: clamp(2.2rem, 5.5vw, 4.5rem); word-break: keep-all;">
+            <h2 class="font-serif text-foxplan-charcoal-brown tracking-tight leading-[0.85] text-left"
+                style="font-size: clamp(2.2rem, 5.5vw, 4.5rem); word-break: keep-all; margin-bottom: clamp(3.5rem, 7vw, 6rem);">
                 {{ tab.title }}
             </h2>
 
             {# Services Grid #}
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-4 md:gap-y-12 lg:gap-y-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-12 lg:gap-y-20">
                 {% for supplier in tab.suppliers %}
-
-
                     {% if supplier.displayingOnSite %}
 
                         <a href="{{ supplier.buttonUrl }}"
                            target="_blank"
                            class="group supplier-card flex flex-col h-full
-               transition-all duration-300 ease-out
-               hover:-translate-y-2 active:translate-y-0
-               transform-gpu will-change-transform">
+                                  transition-all duration-300 ease-out
+                                  hover:-translate-y-2 active:translate-y-0
+                                  transform-gpu will-change-transform">
 
-                            {# Logo Container #}
-                            <div class="h-20 w-full mb-6 flex items-center justify-start">
+                            {# Logo Container - Fluid height and width #}
+                            <div class="w-full mb-6 flex items-center justify-start"
+                                 style="height: clamp(3.5rem, 5vw, 5.5rem);">
                                 {% set image = supplier.suppliersImage.one() %}
                                 {% if image %}
                                     <img src="{{ image.url }}"
                                          alt="{{ supplier.providerName }}"
-                                         class="max-h-full max-w-[220px] object-contain object-left transition-transform duration-500">
+                                         class="max-h-full object-contain object-left transition-transform duration-500"
+                                         style="width: clamp(130px, 12vw + 1rem, 260px);">
                                 {% else %}
-                                    <div class="h-full w-44 bg-foxplan-charcoal-brown/5 flex items-center justify-center ">
+                                    <div class="h-full bg-foxplan-charcoal-brown/5 flex items-center justify-center"
+                                         style="width: clamp(130px, 12vw + 1rem, 260px);">
                                         <span class="text-[9px] uppercase tracking-widest opacity-40">Logo Pending</span>
                                     </div>
                                 {% endif %}
@@ -45,11 +46,13 @@
 
                             {# Provider Info #}
                             <div class="flex flex-col grow">
-                                <h3 class="font-serif text-2xl md:text-3xl text-foxplan-charcoal-brown leading-tight mb-4 group-hover:text-opacity-70 transition-opacity">
+                                <h3 class="font-serif text-foxplan-charcoal-brown leading-tight mb-4 group-hover:text-opacity-70 transition-opacity"
+                                    style="font-size: clamp(1.2rem, 1.8vw + 0.4rem, 1.85rem);">
                                     {{ supplier.providerName }}
                                 </h3>
 
-                                <div class="font-montreal text-base md:text-lg text-foxplan-charcoal-brown opacity-80 leading-snug">
+                                <div class="font-montreal text-foxplan-charcoal-brown opacity-80 leading-snug"
+                                     style="font-size: clamp(0.9rem, 0.4vw + 0.6rem, 1.1rem);">
                                     {{ supplier.contactInfo | raw }}
                                 </div>
                             </div>

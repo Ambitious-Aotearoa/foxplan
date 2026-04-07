@@ -103,7 +103,7 @@
 
             {# 1. Fetch the entries first to ensure we have data #}
 {% set discEntry = craft.entries.section('disclaimer').one() %}
-{% set privEntry = craft.entries.section('privacyPolicy').one() %}
+{% set privEntry = craft.entries.section('privacy').one() %}
 {% set discLEntry = craft.entries.section('disclosure').one() %}
 {% set compEntry = craft.entries.section('complaintsPolicy').one() %}
 
@@ -154,13 +154,14 @@
         <div class="flex items-center h-16 lg:h-16">
             <a href="/"
                class="flex items-center h-full pl-4 lg:pl-6  pr-4 xl:pr-10 flex-none {{ theme.textColor }} pt-1.5 overflow-hidden ">
-                <div class="relative  h-7 lg:h-9 xl:h-11 w-auto flex items-center">
-                    <div class="transition-all duration-500 transform"
-                         :class="isScrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'">
+                <div class="relative h-7 lg:h-9 xl:h-11 w-auto flex items-center">
+                    <div class="transition-all duration-700 ease-in-out"
+                         :class="isScrolled ? 'opacity-0 blur-sm pointer-events-none' : 'opacity-100 blur-0'">
                         {{ svg(alias(wordmarkPath))|attr({ class: 'h-7 lg:h-9 xl:h-11 w-auto ' ~ theme.logoFilter }) }}
                     </div>
-                    <div class="absolute inset-0 flex items-center transition-all duration-500 transform"
-                         :class="isScrolled ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'" x-cloak>
+
+                    <div class="absolute inset-0 flex items-center transition-all duration-700 ease-in-out"
+                         :class="isScrolled ? 'opacity-100 blur-0' : 'opacity-0 blur-sm pointer-events-none'" x-cloak>
                         {{ svg(alias(iconPath))|attr({ class: 'h-6 lg:h-8 xl:h-9 w-auto ' ~ theme.logoFilter }) }}
                     </div>
                 </div>

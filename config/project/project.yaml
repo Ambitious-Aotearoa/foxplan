@@ -1,4 +1,4 @@
-dateModified: 1775081430
+dateModified: 1775529881
 email:
   fromEmail: accounts@ambitious.co.nz
   fromName: foxplan
@@ -35,6 +35,8 @@ fs:
 meta:
   __names__:
     0a09611b-cfe5-4e31-a72f-3227ca7f029b: Accounting # Accounting
+    0a458dc5-c436-4b4b-ba78-e75ad232cbc0: LinkedIn # LinkedIn
+    0c5a963d-8301-4a85-9004-7978f833c912: Facebook # Facebook
     0e0d57f7-2d3a-4838-a8e6-ca93bcf682fd: Group-workplace-insurance # Group-workplace-insurance
     1a9ce3fa-1c8d-4886-80cd-77cc624c2a1a: 'Episode Duration' # Episode Duration
     1bce15eb-e441-43c8-bff3-cb4b0197fef2: 'Hero Body Text' # Hero Body Text
@@ -72,7 +74,6 @@ meta:
     6ceee63c-bd5c-42c7-b57b-470bd2226b4b: 'Newsletter Body Text' # Newsletter Body Text
     6de15a75-8385-485f-b2de-3be7ba3f99d3: 'Public Schema' # Public Schema
     6e33f140-29a4-43ee-ac85-18ee6e66c2ef: Home # Home
-    6e4443d9-4aa2-4c0a-886c-5bb0ff3becdb: Simple # Simple
     6f417e1b-aeca-45dd-a6c4-f44be7f2bcbe: Disclosure # Disclosure
     7d29f47f-49be-42e4-a76a-2c52f645550a: Heading # Heading
     7de1a5c0-1411-43d5-9ca2-6996afd27316: 'Suppliers Title' # Suppliers Title
@@ -133,6 +134,7 @@ meta:
     1757a17e-5538-4de5-9ff7-fa4d80af64a1: 'Location Heading' # Location Heading
     2366b4a5-f9f9-445f-a1fa-af2aed24c996: KiwiSaver # KiwiSaver
     3270e53f-a3c4-4994-8f80-9f1a9d8c1fdb: Accordion-Arrow # Accordion-Arrow
+    5818d753-48f4-4d4b-afc0-1de4ad2a820a: 'Displaying on site' # Displaying on site
     6389bccc-1b55-4096-821e-192e6a2bd80a: 'Business Page' # Business Page
     6389e4d4-c725-4073-ba17-8aac55dc636c: 'Page Builder' # Page Builder
     7069f7fb-6f5c-4fcc-8032-a42dc3ea3d4b: 'Investment planning' # Investment planning
@@ -166,6 +168,7 @@ meta:
     ad7daef3-ba4d-470a-8ee9-3bee8c28bcea: 'Newsletter Title' # Newsletter Title
     ae1eb8ab-68f8-419c-8bb8-c19ed7985884: 'Insights Image' # Insights Image
     af4882ee-8166-4ffc-a8b0-ba6b3d4e9b15: Disclosure # Disclosure
+    b3a7a45d-0731-47a9-87bb-e0776ef3778c: Instagram # Instagram
     b3d02c0f-4eb6-471b-a4fd-e7ade89de423: 'Hero Matrix' # Hero Matrix
     b3e0436c-c0e6-4ebd-8278-c69c2a07f9e6: Insights # Insights
     b8dfe219-cd2b-4062-b6c5-2a0b07241d1a: 'Careers Page' # Careers Page
@@ -228,7 +231,6 @@ meta:
     f42469eb-08c1-411f-a288-bc2841425be9: Testimonials # Testimonials
     f88356ec-2dc9-4085-8264-222f67a2732c: 'Article Images' # Article Images
     faa57aae-5553-4a99-b14f-596cda69cdc5: 'Financial Planning' # Financial Planning
-    fab13952-63c1-4575-b843-860d9cb8514d: 'Insights CK Editor' # Insights CK Editor
     fba1ff8e-0b24-45ff-8403-da24499dfef2: buttonLink # buttonLink
     fe02d7ad-a8ee-44e2-81e9-27e07f31372d: 'Advisors Name' # Advisors Name
     fe20e1d7-e0c5-4e62-80f5-8fc24cea698d: 'Client Testimonial' # Client Testimonial
@@ -237,7 +239,7 @@ plugins:
   ckeditor:
     edition: standard
     enabled: true
-    schemaVersion: 3.0.0.0
+    schemaVersion: 5.0.0.1
   contact-form:
     edition: standard
     enabled: true
@@ -258,6 +260,21 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 5.14.0
+  simple-sharing:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+    settings:
+      allowedPlatforms:
+        - facebook
+        - twitter
+        - linkedin
+      allowedSections:
+        - '38'
+  social-share:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   vite:
     edition: standard
     enabled: true

@@ -7,10 +7,8 @@ settings:
   availableTransforms: ''
   availableVolumes: '*'
   characterLimit: null
-  ckeConfig: null
   createButtonLabel: null
   defaultTransform: null
-  expandEntryButtons: false
   fullGraphqlData: true
   parseEmbeds: false
   purifierConfig: null

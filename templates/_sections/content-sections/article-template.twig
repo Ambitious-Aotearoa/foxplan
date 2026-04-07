@@ -6,8 +6,8 @@
 {% set allFeaturedImages = entry.featuredImage.all() %}
 
 {# 2. PREPARE SHARING DATA #}
-{% set shareUrl   = entry.url | url_encode %}
-{% set shareTitle = entry.title | url_encode %}
+{# Simple Sharing uses the entry URL to build the platform-specific share strings #}
+{% set shareUrl = entry.url %}
 
 <main class="min-h-screen bg-foxplan-neutral-beige">
 
@@ -102,24 +102,29 @@
                 {# STICKY SOCIAL SIDEBAR #}
                 <div class="hidden md:block md:col-start-10 md:col-span-1">
                     <div class="sticky top-32 flex flex-col items-end gap-3">
+
+                        {# Facebook #}
                         {{ include('_components/ui/icons/facebook-icon.twig', {
                             props: {
                                 iconColor: 'text-foxplan-neutral-beige',
                                 boxColor: 'bg-foxplan-charcoal-brown',
                                 size: 'w-8 h-8',
-                                url: socialLinks.facebook
+                                url: craft.simpleSharing.link(shareUrl, 'facebook')
                             }
                         }) }}
 
+                        {# LinkedIn #}
                         {{ include('_components/ui/icons/linkedin-icon.twig', {
-                            props: {
-                                iconColor: 'text-foxplan-neutral-beige',
-                                boxColor: 'bg-foxplan-charcoal-brown',
-                                size: 'w-8 h-8',
-                                url: socialLinks.linkedin
-                            }
+                        props: {
+                        iconColor: 'text-foxplan-neutral-beige',
+                        boxColor: 'bg-foxplan-charcoal-brown',
+                        size: 'w-8 h-8',
+                        url: 'https://www.linkedin.com/sharing/share-offsite/?url=' ~ entry.url | url_encode
+                        }
                         }) }}
 
+
+{#                        {Instagram Profile  }#}
                         {{ include('_components/ui/icons/instagram-icon.twig', {
                             props: {
                                 iconColor: 'text-foxplan-neutral-beige',
