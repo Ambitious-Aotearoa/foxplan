@@ -37,7 +37,7 @@
                             <tr>
                                 <td style="padding: 5px 0; color: #666; font-size: 14px; width: 120px;"><strong>Name:</strong></td>
                                 <td style="padding: 5px 0; color: #404040; font-size: 14px;">
-                                    {{ submission.fromName|default('') }} {{ submission.message.lastName|default('') }}
+                                    {{ submission.fromName|default('') }} {{ submission.message.LastName|default('') }}
                                 </td>
                             </tr>
                             <tr>
@@ -49,19 +49,19 @@
                             <tr>
                                 <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Phone:</strong></td>
                                 <td style="padding: 5px 0; color: #404040; font-size: 14px;">
-                                    {{ submission.message.phone|default('Not provided') }}
+                                    {{ submission.message.Phone|default('Not provided') }}
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Best Time To call:</strong></td>
+                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Best Time To Call:</strong></td>
                                 <td style="padding: 5px 0; color: #404040; font-size: 14px;">
-                                    {{ submission.message.callTime|default('Not provided') }}
+                                    {{ submission.message.BestTimeToCall|default('Not provided') }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>I am interested in:</strong></td>
                                 <td style="padding: 5px 0; color: #404040; font-size: 14px;">
-                                    {{ submission.message.interest|default('Not provided') }}
+                                    {{ submission.message.Interest|default('Not provided') }}
                                 </td>
                             </tr>
                         </table>
@@ -74,7 +74,7 @@
                             Message
                         </h2>
                         <p style="margin: 0; color: #404040; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">
-                            {{ submission.message.body|default('No message provided') }}
+                            {{ submission.message.Body|default('No message provided') }}
                         </p>
                     </td>
                 </tr>
