@@ -1,8 +1,14 @@
-dateModified: 1775529881
+dateModified: 1775622141
 email:
-  fromEmail: accounts@ambitious.co.nz
-  fromName: foxplan
-  transportType: craft\mail\transportadapters\Sendmail
+  fromEmail: $SYSTEM_EMAIL
+  fromName: Foxplan
+  replyToEmail: $REPLY_TO_EMAIL
+  template: null
+  transportSettings:
+    apiKey: $MAILGUN_API_KEY
+    domain: $MAILGUN_DOMAIN
+    endpoint: $MAILGUN_ENDPOINT
+  transportType: craft\mailgun\MailgunAdapter
 fs:
   foxplanAssets:
     hasUrls: true
@@ -260,6 +266,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 5.14.0
+  mailgun:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   simple-sharing:
     edition: standard
     enabled: true
