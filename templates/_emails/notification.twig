@@ -12,89 +12,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New FoxPlan Lead: {{ formName }}</title>
+    <title>New Website Contact</title>
 </head>
-<body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: {{ brandBeige }};">
-<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: {{ brandBeige }};">
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f5f5f5;">
     <tr>
         <td style="padding: 40px 20px;">
-            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid {{ brandTintLine }};">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e0e0e0;">
 
-                {# --- HEADER --- #}
                 <tr>
-                    <td style="background-color: {{ brandCharcoal }}; padding: 30px 40px;">
-                        <p style="margin: 0 0 5px 0; color: {{ brandBeige }}; font-size: 10px; font-weight: 700; uppercase; letter-spacing: 2px; opacity: 0.7;">INTERNAL NOTIFICATION</p>
-                        <h1 style="margin: 0; color: {{ brandBeige }}; font-size: 22px; font-weight: 300; letter-spacing: -0.02em;">
-                            New {{ formName }}
+                    <td style="background-color: #595C47; padding: 20px 30px;">
+                        <h1 style="margin: 0; color: #F7F2E0; font-size: 20px; font-weight: 400;">
+                           New Website Contact
                         </h1>
                     </td>
                 </tr>
 
-                {# --- CONTACT INFO --- #}
                 <tr>
-                    <td style="padding: 40px 40px 30px 40px; border-bottom: 1px solid {{ brandTintLine }};">
-                        <h2 style="margin: 0 0 20px 0; color: {{ brandCharcoal }}; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.5;">
+                    <td style="padding: 30px; border-bottom: 1px solid #e0e0e0;">
+                        <h2 style="margin: 0 0 15px 0; color: #404040; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
                             Contact Information
                         </h2>
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                            {% set fields = {
-                                'Name': (submission.message.firstName|default('') ~ ' ' ~ submission.message.lastName|default(''))|trim,
-                                'Email': submission.fromEmail|default('Not provided'),
-                                'Phone': submission.message.phone|default('Not provided'),
-                                'Region': submission.message.region|default('Not provided')
-                            } %}
-
-                            {% for label, value in fields %}
-                                <tr>
-                                    <td style="padding: 8px 0; color: {{ brandCharcoal }}; font-size: 14px; width: 100px; font-weight: 600;">{{ label }}:</td>
-                                    <td style="padding: 8px 0; color: {{ brandCharcoal }}; font-size: 14px; opacity: 0.8;">{{ value }}</td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    </td>
-                </tr>
-
-                {# --- ADDITIONAL DETAILS (Optional fields) --- #}
-                <tr>
-                    <td style="padding: 30px 40px; border-bottom: 1px solid {{ brandTintLine }};">
-                        <h2 style="margin: 0 0 20px 0; color: {{ brandCharcoal }}; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.5;">
-                            Inquiry Details
-                        </h2>
-                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tr>
-                                <td style="padding: 8px 0; color: {{ brandCharcoal }}; font-size: 14px; width: 100px; font-weight: 600;">Service:</td>
-                                <td style="padding: 8px 0; color: {{ brandCharcoal }}; font-size: 14px; opacity: 0.8;">{{ submission.message.service|default('General Inquiry') }}</td>
+                                <td style="padding: 5px 0; color: #666; font-size: 14px; width: 120px;"><strong>Name:</strong></td>
+                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.firstName|default('') }} {{ submission.message.lastName|default('') }}</td>
                             </tr>
-                            {% if submission.message.budget is defined %}
-                                <tr>
-                                    <td style="padding: 8px 0; color: {{ brandCharcoal }}; font-size: 14px; width: 100px; font-weight: 600;">Budget:</td>
-                                    <td style="padding: 8px 0; color: {{ brandCharcoal }}; font-size: 14px; opacity: 0.8;">{{ submission.message.budget }}</td>
-                                </tr>
-                            {% endif %}
+                            <tr>
+                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Email:</strong></td>
+                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.fromEmail|default('Not provided') }}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Phone:</strong></td>
+                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.phone|default('Not provided') }}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Region:</strong></td>
+                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.region|default('Not provided') }}</td>
+                            </tr>
                         </table>
                     </td>
                 </tr>
 
-                {# --- MESSAGE --- #}
-                <tr>
-                    <td style="padding: 30px 40px 50px 40px;">
-                        <h2 style="margin: 0 0 15px 0; color: {{ brandCharcoal }}; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.5;">
-                            Message / Comments
-                        </h2>
-                        <p style="margin: 0; color: {{ brandCharcoal }}; font-size: 15px; line-height: 1.6; white-space: pre-wrap; opacity: 0.9;">
-                            {{ submission.message.inquiry|default(submission.message.message|default('No message provided')) }}
-                        </p>
-                    </td>
-                </tr>
 
-                {# --- FOOTER --- #}
-                <tr>
-                    <td style="background-color: #fcfbf7; padding: 20px 40px; text-align: center; border-top: 1px solid {{ brandTintLine }};">
-                        <p style="margin: 0; color: {{ brandCharcoal }}; font-size: 11px; opacity: 0.5;">
-                            This lead was generated from the <strong>foxplan.nz</strong> website.
-                        </p>
-                    </td>
-                </tr>
+                    <tr>
+                        <td style="padding: 30px; border-bottom: 1px solid #e0e0e0;">
+                            <h2 style="margin: 0 0 15px 0; color: #404040; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                                Contact Details
+                            </h2>
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td style="padding: 5px 0; color: #666; font-size: 14px; width: 120px;"><strong>Service:</strong></td>
+                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.service|default('Not provided') }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Postcode:</strong></td>
+                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.postcode|default('Not provided') }}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding: 30px;">
+                            <h2 style="margin: 0 0 15px 0; color: #404040; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                                Message
+                            </h2>
+                            <p style="margin: 0; color: #404040; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">{{ submission.message.inquiry|default('No message provided') }}</p>
+                        </td>
+                    </tr>
+
 
             </table>
         </td>

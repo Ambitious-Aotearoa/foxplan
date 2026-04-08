@@ -1,4 +1,4 @@
-dateModified: 1775622141
+dateModified: 1775625546
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -254,6 +254,25 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.1
+    settings:
+      confirmationSubject: 'Thanks for contacting Foxplan'
+      confirmationTemplate: _emails/confirmation.twig
+      enableConfirmationEmail: '1'
+      enableDatabase: '1'
+      enableRecaptchaOverride: ''
+      enableTemplateOverwrite: '1'
+      notificationTemplate: _emails/notification.twig
+      recaptcha: ''
+      recaptchaDataBadge: bottomright
+      recaptchaDebug: ''
+      recaptchaHideBadge: ''
+      recaptchaSecretKey: ''
+      recaptchaSiteKey: ''
+      recaptchaThreshold: '0.5'
+      recaptchaTimeout: '5'
+      recaptchaUrl: ''
+      recaptchaVerificationUrl: ''
+      recaptchaVersion: ''
   dospaces:
     edition: standard
     enabled: true
