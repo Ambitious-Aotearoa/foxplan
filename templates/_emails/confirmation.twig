@@ -1,47 +1,149 @@
 {# _emails/confirmation.twig #}
-{# User mail Template #}
 
-{# FoxPlan Brand Colors #}
-{% set brandCharcoal = '#270E15' %}
-{% set brandBeige = '#F7F2E0' %}
-{% set brandTintLine = 'rgba(39, 14, 21, 0.1)' %}
+{# User mail Template — FoxPlan Brand Palette #}
 
 {% set formName = submission.message.formName|default('') %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light only">
+    <meta name="supported-color-schemes" content="light only">
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
     <title>Thank you for contacting Foxplan</title>
-</head>
-<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #F7F2E0;">
-<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #F7F2E0;">
-    <tr>
-        <td style="padding: 40px 20px;">
-            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+    <style>
 
+        :root { color-scheme: light only; }
+
+        body, table, td { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+
+        a[x-apple-data-detectors] { color: inherit !important; text-decoration: none !important; }
+
+        /* Outlook dark mode overrides */
+
+        [data-ogsc] body, [data-ogsb] body { background-color: #FBC938 !important; }
+
+        [data-ogsc] .fp-hero, [data-ogsb] .fp-hero { background-color: #FBC938 !important; }
+
+        [data-ogsc] .fp-hero-text, [data-ogsb] .fp-hero-text { color: #270E15 !important; }
+
+        [data-ogsc] .fp-body, [data-ogsb] .fp-body { background-color: #F9EFD8 !important; }
+
+        [data-ogsc] .fp-body-text, [data-ogsb] .fp-body-text { color: #270E15 !important; }
+
+        [data-ogsc] .fp-footer, [data-ogsb] .fp-footer { background-color: #270E15 !important; }
+
+        [data-ogsc] .fp-footer-text, [data-ogsb] .fp-footer-text { color: #F9EFD8 !important; }
+
+        [data-ogsc] .fp-outer, [data-ogsb] .fp-outer { background-color: #FBC938 !important; }
+
+        /* Apple Mail / iOS dark mode */
+
+        @media (prefers-color-scheme: dark) {
+
+            body, .fp-outer { background-color: #FBC938 !important; }
+
+            .fp-hero { background-color: #FBC938 !important; }
+
+            .fp-hero-text { color: #270E15 !important; }
+
+            .fp-body { background-color: #F9EFD8 !important; }
+
+            .fp-body-text { color: #270E15 !important; }
+
+            .fp-footer { background-color: #270E15 !important; }
+
+            .fp-footer-text { color: #F9EFD8 !important; }
+
+            h1, p { color: inherit !important; }
+
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #FBC938;" bgcolor="#FBC938">
+
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" class="fp-outer" style="background-color: #FBC938;" bgcolor="#FBC938">
+    <tr>
+        <td style="padding: 40px 20px;" align="center">
+
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600"><tr><td>
+            <![endif]-->
+
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 600px; margin: 0 auto;">
+
+                {# ── Yellow hero with brand name + tagline ── #}
                 <tr>
-                    <td style="background-color: #595C47; padding: 30px 40px; text-align: center;">
-                        <h1 style="margin: 0; color: #F7F2E0; font-size: 28px; font-weight: 300; letter-spacing: 2px;">Foxplan</h1>
+                    <td class="fp-hero" style="background-color: #FBC938; padding: 40px 40px 32px 40px;" bgcolor="#FBC938">
+                        <p class="fp-hero-text" style="margin: 0 0 16px 0; color: #270E15; font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;">FOXPLAN</p>
+                        <h1 class="fp-hero-text" style="margin: 0; color: #270E15; font-size: 28px; font-weight: 300; line-height: 1.2;">Finally, finances figured out.</h1>
                     </td>
                 </tr>
 
+                {# ── Beige content area ── #}
                 <tr>
+                    <td class="fp-body" style="background-color: #F9EFD8; padding: 40px;" bgcolor="#F9EFD8">
 
+                        <h2 class="fp-body-text" style="margin: 0 0 16px 0; color: #270E15; font-size: 22px; font-weight: 600; line-height: 1.3;">
+
+                            Thanks for reaching out.
+                        </h2>
+
+                        <p class="fp-body-text" style="margin: 0 0 24px 0; color: #270E15; font-size: 16px; line-height: 1.6;">
+
+                            We've received your message and one of our friendly Foxplan advisers will be in touch with you shortly.
+                        </p>
+
+                        {# ── Divider ── #}
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="padding: 8px 0;">
+                                    <div style="border-top: 1px solid rgba(39, 14, 21, 0.15); font-size: 1px; line-height: 1px;">&nbsp;</div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <p class="fp-body-text" style="margin: 16px 0 0 0; color: #270E15; font-size: 14px; line-height: 1.5; opacity: 0.6;">
+
+                            In the meantime, feel free to explore our services at
+                            <a href="https://foxplan.nz" style="color: #270E15; text-decoration: underline;">foxplan.nz</a>
+                        </p>
+
+                    </td>
                 </tr>
 
+                {# ── Charcoal footer ── #}
                 <tr>
-                    <td style="background-color: #404040; padding: 30px 40px; text-align: center;">
-                        <p style="margin: 0; color: #BBB1A0; font-size: 12px;">
-                            <a href="https://foxplan.nz" style="color: #BBB1A0;">foxplan.nz</a>
+                    <td class="fp-footer" style="background-color: #270E15; padding: 24px 40px; text-align: center;" bgcolor="#270E15">
+                        <p class="fp-footer-text" style="margin: 0 0 8px 0; color: #F9EFD8; font-size: 11px; line-height: 1.5;">
+
+                            Financial Planning · Retirement · Investment · KiwiSaver · Lending · Insurance
+                        </p>
+                        <p class="fp-footer-text" style="margin: 0; color: #F9EFD8; font-size: 11px; opacity: 0.5;">
+                            <a href="https://foxplan.nz" style="color: #F9EFD8; text-decoration: none;">foxplan.nz</a>
                         </p>
                     </td>
                 </tr>
 
             </table>
+
+            <!--[if mso]>
+            </td></tr></table>
+            <![endif]-->
+
         </td>
     </tr>
 </table>
+
 </body>
 </html>

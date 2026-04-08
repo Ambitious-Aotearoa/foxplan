@@ -23,7 +23,7 @@
                 <tr>
                     <td style="background-color: #595C47; padding: 20px 30px;">
                         <h1 style="margin: 0; color: #F7F2E0; font-size: 20px; font-weight: 400;">
-                           New Website Contact
+                            New Website Contact
                         </h1>
                     </td>
                 </tr>
@@ -36,52 +36,48 @@
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tr>
                                 <td style="padding: 5px 0; color: #666; font-size: 14px; width: 120px;"><strong>Name:</strong></td>
-                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.firstName|default('') }} {{ submission.message.lastName|default('') }}</td>
+                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">
+                                    {{ submission.fromName|default('') }} {{ submission.message.lastName|default('') }}
+                                </td>
                             </tr>
                             <tr>
                                 <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Email:</strong></td>
-                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.fromEmail|default('Not provided') }}</td>
+                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">
+                                    {{ submission.fromEmail|default('Not provided') }}
+                                </td>
                             </tr>
                             <tr>
                                 <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Phone:</strong></td>
-                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.phone|default('Not provided') }}</td>
+                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">
+                                    {{ submission.message.phone|default('Not provided') }}
+                                </td>
                             </tr>
                             <tr>
-                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Region:</strong></td>
-                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.region|default('Not provided') }}</td>
+                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Best Time To call:</strong></td>
+                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">
+                                    {{ submission.message.callTime|default('Not provided') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>I am interested in:</strong></td>
+                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">
+                                    {{ submission.message.interest|default('Not provided') }}
+                                </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
 
-
-                    <tr>
-                        <td style="padding: 30px; border-bottom: 1px solid #e0e0e0;">
-                            <h2 style="margin: 0 0 15px 0; color: #404040; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
-                                Contact Details
-                            </h2>
-                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                <tr>
-                                    <td style="padding: 5px 0; color: #666; font-size: 14px; width: 120px;"><strong>Service:</strong></td>
-                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.service|default('Not provided') }}</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Postcode:</strong></td>
-                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.postcode|default('Not provided') }}</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td style="padding: 30px;">
-                            <h2 style="margin: 0 0 15px 0; color: #404040; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
-                                Message
-                            </h2>
-                            <p style="margin: 0; color: #404040; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">{{ submission.message.inquiry|default('No message provided') }}</p>
-                        </td>
-                    </tr>
-
+                <tr>
+                    <td style="padding: 30px;">
+                        <h2 style="margin: 0 0 15px 0; color: #404040; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                            Message
+                        </h2>
+                        <p style="margin: 0; color: #404040; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">
+                            {{ submission.message.body|default('No message provided') }}
+                        </p>
+                    </td>
+                </tr>
 
             </table>
         </td>
