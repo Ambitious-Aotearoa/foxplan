@@ -41,8 +41,8 @@
                      style="font-size: clamp(1.4rem, 3.8vw, 3.8rem); line-height: 0.95;">
                     {% set priceValue = attribute(headerPrice, handle) ?? '' %}
                     {{ priceValue | replace({
-                        '/ month': '<span style="font-size: 0.5em; margin-left: 0.2em;">/ month</span>',
-                        '/month': '<span style="font-size: 0.5em; margin-left: 0.2em;">/ month</span>'
+                        '/ month': '<span style="font-size: 0.5em; margin-left: 0.2em;">/month</span>',
+                        '/month': '<span style="font-size: 0.5em; margin-left: 0.2em;">/month</span>'
                     }) | raw }}
                 </div>
 

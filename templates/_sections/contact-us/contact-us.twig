@@ -37,12 +37,21 @@
             </div>
 
         {% elseif mode == 'map' %}
-            <div class="w-full aspect-[4/3] bg-foxplan-white border border-foxplan-charcoal-brown/5 shadow-sm overflow-hidden relative">
+
+            <div class="w-full aspect-[4/3] bg-[#f4f1ea] border border-foxplan-charcoal-brown/5 shadow-sm overflow-hidden relative">
+
+                <div class="absolute inset-0 flex items-center justify-center bg-[#f4f1ea] z-0">
+                    <div class="animate-pulse flex flex-col items-center">
+                        <div class="w-8 h-8 border-2 border-foxplan-charcoal-brown/20 border-t-foxplan-charcoal-brown rounded-full animate-spin mb-2"></div>
+                        <span class="text-[10px] uppercase tracking-widest opacity-50">Loading Map...</span>
+                    </div>
+                </div>
+
                 <iframe
-                        src="https://www.google.com/maps/d/u/2/embed?mid=1zbTdzdZDuhfCVEjzwo3CvP0KWueSVbI&ehbc=2E312F&noprof=1"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.876540604169!2d174.7738221!3d-41.2854378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d38b0292723c799%3A0x6b1e6e0f769f37c3!2s138%20The%20Terrace%2C%20Wellington%20Central%2C%20Wellington%206011!5e0!3m2!1sen!2snz!4v1712540000000!5m2!1sen!2snz"
                         width="100%"
-                        height="115%"
-                        style="border:0; position: absolute; top: -55px; left: 0;"
+                        height="100%"
+                        style="border:0; position: absolute; top: 0; left: 0; z-index: 10;"
                         allowfullscreen=""
                         loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade">

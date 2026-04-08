@@ -1,112 +1,99 @@
 {# templates/_components/form/Contact-form.twig #}
 
-{# 1. Define base classes #}
 {% set labelClasses = 'text-sm font-semibold uppercase tracking-wider mb-2 block text-foxplan-charcoal-brown font-aktiv' %}
 {% set inputClasses = 'w-full py-2 border-b border-foxplan-charcoal-brown focus:outline-none bg-transparent placeholder-foxplan-charcoal-brown/60 font-aktiv transition-colors duration-200' %}
 
-{# 2. Fetch dynamic services #}
 {% set insightTags = craft.tags.group('insights').all() %}
 {% set serviceOptions = insightTags|map(t => t.title) %}
 
-<form action="" method="post" accept-charset="UTF-8" class="contact-form">
+<form action="" method="post" accept-charset="UTF-8" class="contact-form" id="foxplan-js-form">
     {{ actionInput('contact-form/send') }}
     {{ csrfInput() }}
 
-    {# The redirect must be hashed #}
     <input type="hidden" name="redirect" value="{{ 'pages/Thank-You'|hash }}">
 
     <div class="grid grid-cols-12 gap-x-8 gap-y-12 pb-12">
 
         {# First Name #}
         <div class="col-span-12 md:col-span-6">
-            <label for="first_name" class="{{ labelClasses }}">First Name</label>
-            <input type="text" id="first_name" name="first_name" placeholder="John"
-                   class="{{ inputClasses }} text-foxplan-charcoal-brown" required>
+            <label for="fromName" class="{{ labelClasses }}">First Name</label>
+            <input type="text" id="fromName" name="fromName" placeholder="John"
+                   class="{{ inputClasses }}" required>
         </div>
 
         {# Last Name #}
         <div class="col-span-12 md:col-span-6">
             <label for="last_name" class="{{ labelClasses }}">Last Name</label>
-            <input type="text" id="last_name" name="last_name" placeholder="Doe"
-                   class="{{ inputClasses }} text-foxplan-charcoal-brown" required>
+            <input type="text" id="last_name" name="message[LastName]" placeholder="Doe"
+                   class="{{ inputClasses }}" required>
         </div>
 
-        {# Interest Dropdown #}
+        {# Interest #}
         <div class="col-span-12 md:col-span-6">
             <label for="interest" class="{{ labelClasses }}">I am interested in</label>
-            <div class="relative">
-                <select id="interest" name="interest"
-                        class="{{ inputClasses }} appearance-none rounded-none w-full pr-8 [&:invalid]:text-foxplan-charcoal-brown/60 text-foxplan-charcoal-brown"
-                        required>
-                    <option value="" disabled selected>Select a service</option>
-                    {% for service in serviceOptions %}
-                        <option value="{{ service }}" class="text-foxplan-charcoal-brown">{{ service }}</option>
-                    {% endfor %}
-                </select>
-                {# Custom Arrow #}
-                <div class="absolute right-0 bottom-3 pointer-events-none text-foxplan-charcoal-brown/60">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </div>
-            </div>
+            <select id="interest" name="message[Interest]" class="{{ inputClasses }}" required>
+                <option value="" disabled selected>Select a service</option>
+                {% for service in serviceOptions %}
+                    <option value="{{ service }}">{{ service }}</option>
+                {% endfor %}
+            </select>
         </div>
 
         {# Best Time to Call #}
         <div class="col-span-12 md:col-span-6">
             <label for="call_time" class="{{ labelClasses }}">Best time to call</label>
-            <div class="relative">
-                <select id="call_time" name="call_time"
-                        class="{{ inputClasses }} appearance-none rounded-none w-full pr-8 [&:invalid]:text-foxplan-charcoal-brown/60 text-foxplan-charcoal-brown"
-                        required>
-                    <option value="" disabled selected>Select a time</option>
-                    <option value="Morning" class="text-foxplan-charcoal-brown">Morning</option>
-                    <option value="Afternoon" class="text-foxplan-charcoal-brown">Afternoon</option>
-                    <option value="Evening" class="text-foxplan-charcoal-brown">Evening</option>
-                </select>
-                {# Custom Arrow #}
-                <div class="absolute right-0 bottom-3 pointer-events-none text-foxplan-charcoal-brown/60">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </div>
-            </div>
+            <select id="call_time" name="message[BestTimeToCall]" class="{{ inputClasses }}" required>
+                <option value="" disabled selected>Select a time</option>
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Evening">Evening</option>
+            </select>
         </div>
 
         {# Phone #}
         <div class="col-span-12 md:col-span-6">
             <label for="phone" class="{{ labelClasses }}">Phone</label>
-            <input type="tel" id="phone" name="phone" placeholder="1234 567 890"
-                   class="{{ inputClasses }} text-foxplan-charcoal-brown">
+            <input type="tel" id="phone" name="message[Phone]" placeholder="1234 567 890"
+                   class="{{ inputClasses }}">
         </div>
 
         {# Email #}
         <div class="col-span-12 md:col-span-6">
-            <label for="email" class="{{ labelClasses }}">Email</label>
-            <input type="email" id="email" name="email" placeholder="johndoe@email.com"
-                   class="{{ inputClasses }} text-foxplan-charcoal-brown" required>
+            <label for="fromEmail" class="{{ labelClasses }}">Email</label>
+            <input type="email" id="fromEmail" name="fromEmail" placeholder="johndoe@email.com"
+                   class="{{ inputClasses }}" required>
         </div>
 
         {# Message #}
         <div class="col-span-12">
-            <label for="message" class="{{ labelClasses }}">Message</label>
-            <textarea id="message" name="message" rows="4" placeholder="Enter your message"
-                      class="{{ inputClasses }} text-foxplan-charcoal-brown resize-none"></textarea>
+            <label for="message_body" class="{{ labelClasses }}">Message</label>
+            <textarea id="message_body" name="message[Body]" rows="4"
+                      class="{{ inputClasses }} resize-none" required></textarea>
         </div>
 
         {# Submit Button #}
         <div class="col-span-12 mt-4">
-            {% include '_components/ui/button/button.twig' with {
-                props: {
-                    text: props.submitText ?? 'Submit',
-                    backgroundColor: 'bg-foxplan-charcoal-brown',
-                    textColor: 'text-foxplan-white',
-                    url: url('pages/Thank-You'),
-                    attributes: {
-                        type: 'submit'
-                    }
-                }
-            } only %}
+            <button type="submit" id="form-submit-btn"
+                    class="bg-foxplan-charcoal-brown text-foxplan-white py-4 px-12 uppercase tracking-widest text-xs font-bold transition-all disabled:cursor-not-allowed"
+                    disabled>
+                {{ props.submitText ?? 'Submit' }}
+            </button>
         </div>
     </div>
 </form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('foxplan-js-form');
+        const btn = document.getElementById('form-submit-btn');
+
+        const checkValidity = () => {
+            // Button enables only when all 'required' fields + textarea are filled
+            btn.disabled = !form.checkValidity();
+        };
+
+        form.addEventListener('input', checkValidity);
+        form.addEventListener('change', checkValidity);
+        checkValidity();
+    });
+</script>
