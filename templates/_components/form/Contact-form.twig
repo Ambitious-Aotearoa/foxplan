@@ -73,9 +73,9 @@
 
         {# Submit Button #}
         <div class="col-span-12 mt-4">
+            {# Removed 'disabled' so validation messages work. Set default cursor to default arrow. #}
             <button type="submit" id="form-submit-btn"
-                    class="bg-foxplan-charcoal-brown text-foxplan-white py-4 px-12 uppercase tracking-widest text-xs font-bold transition-all disabled:cursor-not-allowed"
-                    disabled>
+                    class="bg-foxplan-charcoal-brown text-foxplan-white py-4 px-12 uppercase tracking-widest text-xs font-bold transition-all cursor-default opacity-100">
                 {{ props.submitText ?? 'Submit' }}
             </button>
         </div>
@@ -87,13 +87,28 @@
         const form = document.getElementById('foxplan-js-form');
         const btn = document.getElementById('form-submit-btn');
 
-        const checkValidity = () => {
-            // Button enables only when all 'required' fields + textarea are filled
-            btn.disabled = !form.checkValidity();
+        // 1. Reset form on page load
+        form.reset();
+
+        const updateCursor = () => {
+            const isValid = form.checkValidity();
+
+            if (isValid) {
+                // Form is complete: change cursor to hand pointer
+                btn.classList.add('cursor-pointer');
+                btn.classList.remove('cursor-default');
+            } else {
+                // Form is incomplete: keep default arrow cursor
+                btn.classList.add('cursor-default');
+                btn.classList.remove('cursor-pointer');
+            }
         };
 
-        form.addEventListener('input', checkValidity);
-        form.addEventListener('change', checkValidity);
-        checkValidity();
+        // Listen for user typing or selecting
+        form.addEventListener('input', updateCursor);
+        form.addEventListener('change', updateCursor);
+
+        // Initial check on load
+        updateCursor();
     });
 </script>

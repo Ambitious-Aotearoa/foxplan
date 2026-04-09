@@ -1,9 +1,5 @@
 {# _emails/notification.twig #}
-{# Admin notification email  #}
-
 {% set formName = submission.message.formName|default('Website Inquiry') %}
-
-{# FoxPlan Brand Colors #}
 {% set brandCharcoal = '#270E15' %}
 {% set brandBeige = '#F7F2E0' %}
 {% set brandTintLine = 'rgba(39, 14, 21, 0.1)' %}
@@ -21,9 +17,13 @@
             <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e0e0e0;">
 
                 <tr>
-                    <td style="background-color: #595C47; padding: 20px 30px;">
-                        <h1 style="margin: 0; color: #F7F2E0; font-size: 20px; font-weight: 400;">
-                            New Website Contact
+                    <td style="background-color: #FBC938; padding: 20px 30px;">
+                        <h1 style="margin: 0; color: #270E15; font-size: 20px; font-weight: 400;">
+                            {% if formName == 'First Home Buyers Guide' %}
+                                Guide Download Request
+                            {% else %}
+                                New Website Contact
+                            {% endif %}
                         </h1>
                     </td>
                 </tr>
@@ -35,49 +35,55 @@
                         </h2>
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tr>
-                                <td style="padding: 5px 0; color: #666; font-size: 14px; width: 120px;"><strong>Name:</strong></td>
+                                <td style="padding: 5px 0; color: #666; font-size: 14px; width: 120px;"><strong>Name: </strong></td>
                                 <td style="padding: 5px 0; color: #404040; font-size: 14px;">
                                     {{ submission.fromName|default('') }} {{ submission.message.LastName|default('') }}
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Email:</strong></td>
+                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Email: </strong></td>
                                 <td style="padding: 5px 0; color: #404040; font-size: 14px;">
                                     {{ submission.fromEmail|default('Not provided') }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Phone:</strong></td>
-                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">
-                                    {{ submission.message.Phone|default('Not provided') }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Best Time To Call:</strong></td>
-                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">
-                                    {{ submission.message.BestTimeToCall|default('Not provided') }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>I am interested in:</strong></td>
-                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">
-                                    {{ submission.message.Interest|default('Not provided') }}
-                                </td>
-                            </tr>
+
+                            {% if formName != 'First Home Buyers Guide' %}
+                                <tr>
+                                    <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Phone: </strong></td>
+                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">
+                                        {{ submission.message.Phone|default('Not provided') }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Best Time To Call: </strong></td>
+                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">
+                                        {{ submission.message.BestTimeToCall|default('Not provided') }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>I am interested in: </strong></td>
+                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">
+                                        {{ submission.message.Interest|default('Not provided') }}
+                                    </td>
+                                </tr>
+                            {% endif %}
+
                         </table>
                     </td>
                 </tr>
 
-                <tr>
-                    <td style="padding: 30px;">
-                        <h2 style="margin: 0 0 15px 0; color: #404040; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
-                            Message
-                        </h2>
-                        <p style="margin: 0; color: #404040; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">
-                            {{ submission.message.Body|default('No message provided') }}
-                        </p>
-                    </td>
-                </tr>
+                {% if formName != 'First Home Buyers Guide' %}
+                    <tr>
+                        <td style="padding: 30px;">
+                            <h2 style="margin: 0 0 15px 0; color: #404040; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                                Message
+                            </h2>
+                            <p style="margin: 0; color: #404040; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">
+                                {{ submission.message.Body|default('No message provided') }}
+                            </p>
+                        </td>
+                    </tr>
+                {% endif %}
 
             </table>
         </td>

@@ -1,4 +1,4 @@
-dateModified: 1775625795
+dateModified: 1775687596
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -100,10 +100,12 @@ meta:
     21b7b768-00fc-45e6-93ad-a17640300f0b: 'Employee financial wellbeing' # Employee financial wellbeing
     30e93460-18e1-473b-90f6-17bed59eb35e: 'Contact Info' # Contact Info
     33a1b6df-526d-4d3c-84a1-dcc713555b4d: 'Job Title' # Job Title
+    38fb1215-8745-4b26-a4bc-fa81375d8e56: 'Guide PDF' # Guide PDF
     40a75dcf-4e4f-46ec-98ec-9424fc33fa4b: 'Podcast Page' # Podcast Page
     40dc7ecc-2b48-42e9-ba8d-6b387ee26597: 'Advisors Image' # Advisors Image
     41c2fab6-c090-4ba5-bd9b-34b43172425a: 'Milestone Year ' # Milestone Year 
     43ae8319-1d1a-467f-a54f-c45fae2a173d: Accounting # Accounting
+    44bb6238-457d-4a5b-a629-437f6ae0260d: Guide # Guide
     47d7c8bb-a751-46b1-9d2e-5ad509c8c477: 'Milestone Text' # Milestone Text
     48d413cb-263e-48f8-976a-5aecadda1537: 'Short term matrix' # Short term matrix
     50a671c8-233b-479c-af1a-8dfcc5f25e8f: 'Supplier category' # Supplier category
@@ -193,6 +195,7 @@ meta:
     c8cb479b-6ce3-44d4-8485-2de5b6cff170: 'Accounting Matrix' # Accounting Matrix
     c84e062f-0833-4c9d-86e4-b1b469506e3b: 'Email Greeting' # Email Greeting
     c91c8b47-5983-4466-94b4-44c6cce8e323: 'Financial Planning' # Financial Planning
+    c584f4b3-73fc-45f4-a8c0-a6d4530b61c6: 'Guide Pdf' # Guide Pdf
     c24360ac-4126-48c2-9825-57239c96bd5e: Privacy # Privacy
     cc0e715a-9227-4f6e-9948-2b6b82ab16c3: Insights # Insights
     cd7d6292-1897-4386-b933-19976426821e: "Personal\_& Medical  Insurance" # Personal & Medical  Insurance
@@ -250,6 +253,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
+    settings:
+      allowAttachments: ''
+      prependSender: 'On behalf of'
+      prependSubject: 'New message from foxplan'
   contact-form-extensions:
     edition: standard
     enabled: true

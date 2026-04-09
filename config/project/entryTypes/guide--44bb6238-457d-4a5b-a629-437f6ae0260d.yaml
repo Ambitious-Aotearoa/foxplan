@@ -1,0 +1,54 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  ad92a73d-6958-4ec5-91e0-1287ab2ccb79:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-04-08T22:24:40+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 85a0e333-2c25-48cb-9111-20a7cec6fd8b
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 279d6c55-2787-4695-9942-39d3b9fc6455
+        userCondition: null
+    thumbFieldKey: null
+handle: guide
+hasTitleField: true
+icon: null
+name: Guide
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

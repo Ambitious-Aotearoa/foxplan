@@ -1,0 +1,42 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  e0769eb1-9477-4275-9970-a92343fc1094:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-08T22:29:20+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 38fb1215-8745-4b26-a4bc-fa81375d8e56 # Guide PDF
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: bc87879f-3aef-4c83-a647-a9cb3055f631
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 5aacd26c-f915-47c8-b104-6c22819c941e
+        userCondition: null
+    thumbFieldKey: null
+handle: guidePdf
+hasTitleField: false
+icon: null
+name: 'Guide Pdf'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'
