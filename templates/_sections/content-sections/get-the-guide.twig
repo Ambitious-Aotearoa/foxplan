@@ -1,0 +1,32 @@
+{# templates/_sections/content-sections/get-the-guide.twig #}
+
+{% set defaults = {
+    title: entry.paragraphHeading2 ?? 'Get the guide',
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-foxplan-charcoal-brown'
+} %}
+
+{% set data = defaults | merge(props ?? {}) %}
+
+<section class="{{ data.backgroundColor }} w-full relative border-t border-foxplan-charcoal-brown/20">
+    <div class="px-4 md:px-6 lg:px-8 py-16 lg:py-24">
+
+        {# Container with 40/60 split #}
+        <div class="flex flex-wrap md:flex-nowrap w-full items-start gap-12 lg:gap-20">
+
+            {# Left Column: 40% Width #}
+            <div class="w-full md:w-[40%]">
+                <h2 class="font-serif tracking-tight {{ data.textColor }} leading-[0.95]"
+                    style="font-size: clamp(3.2rem, 7vw, 6rem); letter-spacing: -0.02em;">
+                    {{ data.title | raw }}
+                </h2>
+            </div>
+
+            {# Right Column: 60% Width #}
+            <div class="w-full md:w-[60%] ">
+                {% include '_components/form/kiwisaver-form.twig' %}
+            </div>
+
+        </div>
+    </div>
+</section>

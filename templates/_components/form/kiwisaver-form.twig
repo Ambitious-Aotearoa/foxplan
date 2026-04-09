@@ -1,0 +1,76 @@
+{# templates/_components/forms/kiwisaver-form.twig #}
+
+{% set colors = {
+    text: 'text-foxplan-charcoal-brown',
+    border: 'border-foxplan-charcoal-brown',
+    buttonBg: 'bg-foxplan-charcoal-brown',
+    buttonText: 'text-foxplan-white'
+} %}
+
+<div class="w-full max-w-2xl">
+    {# Body Text #}
+    <p class="font-aktiv {{ colors.text }} mb-12 font-light"
+       style="font-size: clamp(1.1rem, 1.5vw, 1.6rem); line-height: 1.15; letter-spacing: -0.01em;">
+        Fill in your details to receive your free KiwiSaver Guide and learn how to maximise your investment as you navigate life’s biggest milestones.
+    </p>
+
+    <form action="" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+        {{ csrfInput() }}
+
+        {# First Name #}
+        <div class="relative">
+            <input type="text" name="firstName" id="firstName" placeholder="First name" required
+                   class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none placeholder:{{ colors.text }} font-aktiv text-lg">
+        </div>
+
+        {# Last Name #}
+        <div class="relative">
+            <input type="text" name="lastName" id="lastName" placeholder="Last name" required
+                   class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none placeholder:{{ colors.text }} font-aktiv text-lg">
+        </div>
+
+        {# Email Address #}
+        <div class="relative">
+            <input type="email" name="email" id="email" placeholder="Email address" required
+                   class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none placeholder:{{ colors.text }} font-aktiv text-lg">
+        </div>
+
+        {# Select Dropdown #}
+        <div class="relative" x-data="{ open: false }">
+            <select name="preference"
+                    @click="open = !open"
+                    @blur="open = false"
+                    class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none appearance-none cursor-pointer font-aktiv text-lg {{ colors.text }}">
+                <option value="" disabled selected>I prefer to be called</option>
+                <option value="phone">Morning</option>
+                <option value="email">Afternoon</option>
+                <option value="email">Evening</option>
+            </select>
+            <div class="absolute right-0 bottom-3 pointer-events-none transition-transform duration-300"
+                 :class="open ? 'rotate-180' : ''">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+        </div>
+
+        {# Disclaimer Text #}
+        <div class="col-span-full pt-2">
+            <p class="text-sm leading-tight opacity-70 {{ colors.text }} font-aktiv max-w-xl">
+                By downloading this guide, you consent to being contacted by a FoxPlan adviser for general followup purposes. You can opt out at any time. See our
+                <a href="/privacy" class="underline underline-offset-2 hover:opacity-100">Privacy Policy</a> at foxplan.nz/privacy
+            </p>
+        </div>
+
+        {# Submit Button #}
+        <div class="col-span-full pt-4">
+            <button type="submit"
+                    class="{{ colors.buttonBg }} {{ colors.buttonText }} px-6 py-3 flex items-center gap-4 group transition-all hover:pr-8">
+                <span class="font-aktiv text-base font-medium">Submit</span>
+                <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none">
+                    <path d="M13 7L18 12M18 12L13 17M18 12L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </form>
+</div>

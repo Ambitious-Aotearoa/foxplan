@@ -1,4 +1,4 @@
-dateModified: 1775687596
+dateModified: 1775707801
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -68,6 +68,7 @@ meta:
     4ed0dee4-59be-4290-bdff-e30f5d363215: 'Podcast Episodes' # Podcast Episodes
     5a2fa5d4-7817-40c9-b68f-a7e82da4bb56: 'Accordion heading1' # Accordion heading1
     5a33ed06-c4f0-4d32-be5f-033502c710e5: blockLinkUrl # blockLinkUrl
+    5ae1f58b-05e4-453d-9fa8-47b973f32125: 'KiwiSaver Landing Page' # KiwiSaver Landing Page
     5b7ffe03-2220-4d5c-8b2a-3d7e12c525be: 'Equity Partners' # Equity Partners
     5ca1faf9-4255-419a-9685-fa7e60d769b6: 'Insights Body Text' # Insights Body Text
     5cc80fc2-9baf-4ff2-8de3-0de4bb7a3ef0: Webclip # Webclip
@@ -147,6 +148,7 @@ meta:
     6389e4d4-c725-4073-ba17-8aac55dc636c: 'Page Builder' # Page Builder
     7069f7fb-6f5c-4fcc-8032-a42dc3ea3d4b: 'Investment planning' # Investment planning
     7104b304-163f-4e10-bee8-5a82a8edeb29: 'Equity Partners' # Equity Partners
+    09254da4-cb4e-42da-881d-bc3b55500a8f: 'Landing Page' # Landing Page
     9315bb88-5d25-4861-81a8-0919dd5ba2b9: 'Newsletter Heading' # Newsletter Heading
     9968cc7c-feec-4d2d-a698-e5a687b167f9: Our-Investment-Committee # Our-Investment-Committee
     024975a0-c902-455c-8531-31c3d872cb09: blockHeading # blockHeading
