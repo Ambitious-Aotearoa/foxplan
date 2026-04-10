@@ -1,4 +1,4 @@
-dateModified: 1775707801
+dateModified: 1775786851
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -298,6 +298,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
+  seo:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.2.0
   simple-sharing:
     edition: standard
     enabled: true
