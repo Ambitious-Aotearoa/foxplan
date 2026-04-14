@@ -1,4 +1,4 @@
-dateModified: 1776136913
+dateModified: 1776144479
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -277,8 +277,8 @@ plugins:
       recaptchaDataBadge: bottomright
       recaptchaDebug: ''
       recaptchaHideBadge: ''
-      recaptchaSecretKey: 6LeRYLYsAAAAAL1XJHuM0AOuqnmmxGhxnMnt1VHQ
-      recaptchaSiteKey: 6LeRYLYsAAAAAPbywkWsiq4YH2lnQ3CoWFZqU_R7
+      recaptchaSecretKey: 6LcyPLYsAAAAALdGo4iQxptRTRF62Si0i0S-Cue-
+      recaptchaSiteKey: 6LcyPLYsAAAAANQmukUZ-5BHnUsisHmmsnBJxeeT
       recaptchaThreshold: '0.5'
       recaptchaTimeout: '5'
       recaptchaUrl: ''

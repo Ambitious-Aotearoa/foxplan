@@ -15,18 +15,13 @@
         Fill in your details to receive your free KiwiSaver Guide and learn how to maximise your investment as you navigate life's biggest milestones.
     </p>
 
-    <form action="" method="post" accept-charset="UTF-8" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10 contact-form" id="kiwisaver-guide-form">
+    <form action="" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
         {{ csrfInput() }}
         {{ actionInput('contact-form/send') }}
         {{ redirectInput('/thank-you-landing') }}
 
-        {# 1. ADD THIS FOR RECAPTCHA #}
-        {{ craft.contactFormExtensions.recaptcha | raw }}
-
         {# Hidden required fields for Contact Form plugin #}
         <input type="hidden" name="subject" value="KiwiSaver Guide Request">
-        <input type="hidden" name="message[formName]" value="KiwiSaver Guide Form">
-        {# body is required by some versions of the plugin as a fallback #}
         <input type="hidden" name="message[body]" value="New KiwiSaver guide request submission">
 
         {# Row 1: First name | Last name #}
@@ -80,17 +75,14 @@
 
         {# Submit Button #}
         <div class="col-span-full pt-4">
-            <div class="relative inline-block">
-                {% include '_components/ui/button/button.twig' with {
-                    props: {
-                        text: 'SUBMIT',
-                        backgroundColor: colors.buttonBg,
-                        textColor: colors.buttonText,
-                        tag: 'span'
-                    }
-                } only %}
-                <button type="submit" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"></button>
-            </div>
+            {% include '_components/ui/button/button.twig' with {
+                props: {
+                    text: 'SUBMIT',
+                    backgroundColor: colors.buttonBg,
+                    textColor: colors.buttonText,
+                    attributes: { 'type': 'submit' }
+                }
+            } only %}
         </div>
 
     </form>
