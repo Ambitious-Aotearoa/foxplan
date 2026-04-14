@@ -1,4 +1,4 @@
-{# 1. Get the PDF from the Asset field you just populated #}
+{# 1. Get the PDF from the Asset field #}
 {% set guideFile = entry.guidePdf.one() %}
 {% set guideUrl = guideFile ? guideFile.url : '' %}
 
@@ -29,23 +29,19 @@
         }
     },
     async handleDownloadAndSubmit(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
+        e.preventDefault();
+        const formData = new FormData(e.target);
 
-    // 1. Submit form (This triggers the email with the PDF attached)
-    fetch('', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-    });
+        // Submit form via AJAX
+        fetch('', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
 
-    // 2. We NO LONGER use window.open here.
-    // The user will get the file in their email instead.
-
-    // 3. Switch to Step 2 (Calendly)
-    this.step = 2;
-    this.$nextTick(() => { this.initCalendly(); });
-}
+        this.step = 2;
+        this.$nextTick(() => { this.initCalendly(); });
+    }
 }"
      x-init="$watch('showFirstHomeOverlay', value => {
     if (!value) setTimeout(() => step = 1, 300);
@@ -85,8 +81,13 @@
                     {{ actionInput('contact-form/send') }}
                     {{ csrfInput() }}
 
+                    {# ADDED RECAPTCHA HERE #}
+                    {{ craft.contactFormExtensions.recaptcha | raw }}
+
                     <input type="hidden" name="message[formName]" value="First Home Buyers Guide">
-                    <input type="hidden" name="message[disableConfirmation]" value="1">
+
+                    {# REMOVED disableConfirmation HERE TO ALLOW EMAILS #}
+
                     <div class="grid grid-cols-2 gap-8">
                         <div>
                             <label class="block text-xs font-bold uppercase mb-2">First Name</label>
@@ -113,7 +114,6 @@
             <div x-show="step === 2">
                 <div class="text-center md:text-left mb-6">
                     <h2 class="font-serif text-5xl text-foxplan-charcoal-brown mb-2">Thank You!</h2>
-                    {# Updated text below #}
                     <p class="text-lg text-gray-700 font-aktiv">Your guide is on its way to your inbox. While you wait, book your discovery call below.</p>
                 </div>
                 <div x-ref="calendlyTarget" style="min-width:320px;height:700px;"></div>
