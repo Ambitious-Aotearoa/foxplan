@@ -21,25 +21,32 @@ class Module extends \yii\base\Module
             Mailer::EVENT_AFTER_SEND,
             function (SendEvent $event) {
                 $submission = $event->submission;
-
-                // 1. Get the form name from the hidden input we added to the Twig form
                 $formName = $submission->message['formName'] ?? '';
 
-                // 2. Only run this for forms that are "Guides"
+                // 1. Only run for "Guide" forms
                 if (!str_contains($formName, 'Guide')) {
                     return;
                 }
 
-                // 3. DYNAMICALLY find the entry based on where the form was submitted
-                $entry = Entry::find()->id($submission->entryId)->one();
+                // 2. GET THE ENTRY DYNAMICALLY
+                // Since the model failed us, we grab the entryId from the POST request directly
+                $entryId = Craft::$app->request->getBodyParam('entryId');
 
-                if (!$entry) {
-                    Craft::error('Confirmation Email Error: Could not find entry with ID ' . $submission->entryId, __METHOD__);
+                if (!$entryId) {
+                    Craft::error('Confirmation Error: No entryId found in request.', __METHOD__);
                     return;
                 }
 
-                // 4. Get the PDF from the 'guidePdf' field on THAT specific entry
-                $guideAsset = $entry->guidePdf->one();
+                $entry = Entry::find()->id($entryId)->one();
+
+                if (!$entry) {
+                    Craft::error('Confirmation Error: Could not find entry with ID ' . $entryId, __METHOD__);
+                    return;
+                }
+
+                // 3. Get the PDF from the 'guidePdf' field (handle from your screenshot)
+                $guideAsset = $entry->guidePdf->one(); //
+
                 if (!$guideAsset) {
                     Craft::info('No PDF found for entry: ' . $entry->title, __METHOD__);
                     return;
@@ -50,8 +57,7 @@ class Module extends \yii\base\Module
                     return;
                 }
 
-                // 5. Setup the Subject line dynamically
-                // If it's KiwiSaver, use that title, otherwise use a default
+                // 4. Set Subject
                 $subject = ($formName === 'KiwiSaver Guide')
                     ? 'Here’s your KiwiSaver Guide'
                     : 'Your ' . $formName;
@@ -73,7 +79,7 @@ class Module extends \yii\base\Module
 
                 $mailer->send($message);
 
-                Craft::info("Dynamic confirmation sent: {$formName} to {$submission->fromEmail}", __METHOD__);
+                Craft::info("Success: {$formName} sent to {$submission->fromEmail}", __METHOD__);
             }
         );
     }
