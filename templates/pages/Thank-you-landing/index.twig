@@ -1,0 +1,69 @@
+{% extends "_boilerplate/_layouts/layout-base.twig" %}
+{% set navigationTheme = {
+    backgroundColor: 'bg-foxplan-yellow',
+    textColor: 'text-foxplan-charcoal-brown',
+    actionBgColor: 'bg-foxplan-charcoal-brown'
+} %}
+{% block blockAppBody %}
+    <section class="bg-foxplan-charcoal-brown w-full min-h-screen overflow-hidden relative">
+
+
+        <style>
+            .yellow-strip { width: 0.5rem; }
+            @media (min-width: 768px) { .yellow-strip { width: 0.75rem; } }
+            @media (min-width: 1024px) { .yellow-strip { width: 1rem; } }
+        </style>
+        <div class="yellow-strip hidden md:block absolute left-0 top-0 bottom-0 h-full z-30 pointer-events-none"
+             style="background-color: #FBC938;"></div>
+        <div class="pt-24 pb-20 px-4 md:pl-12 lg:pl-16 md:pr-6 lg:pr-12 max-w-[1920px] mx-auto">
+            {# 1. HEADLINE (Full Width) #}
+            <div class="w-full mb-12 lg:mb-20">
+                <h1 class="font-serif tracking-tight text-foxplan-yellow max-w-2xl"
+                    style="font-size: clamp(3.5rem, 9vw, 8.5rem); line-height: 0.95; word-break: keep-all;">
+                    Thanks for<br>requesting<br>our guide!
+                </h1>
+            </div>
+            {# 2. CONTENT ROW  #}
+            <div class="flex flex-col lg:flex-row w-full items-start gap-12 lg:gap-24">
+                <div class="w-full lg:w-[50%] flex flex-col">
+                    <div class="max-w-2xl">
+                        <p class="font-aktiv leading-[1.3] text-foxplan-yellow mb-10"
+                           style="font-size: clamp(1.1rem, 1.4vw, 1.5rem); font-weight: 300;">
+                            We've sent a copy to your email address. If you have big plans on the horizon you don't have
+                            to plan for them alone. A FoxPlan adviser can help you clarify your goals and make a roadmap
+                            to help you achieve them.
+                        </p>
+                        <p class="font-aktiv leading-snug text-foxplan-yellow opacity-85"
+                           style="font-size: 1rem; font-weight: 300; max-width: 500px;">
+                            If you would like to discuss your situation in more detail, you can book a no-obligation
+                            conversation with one of our licensed advisers. Select a time that works for you on our
+                            handy calendar to get started.
+                        </p>
+                    </div>
+                </div>
+
+                {# Right Column: Calendly Widget  #}
+                <div class="w-full lg:w-[50%] flex justify-start lg:justify-end">
+                    <div class="w-full overflow-hidden" style="min-height: 700px;">
+                        <div class="calendly-inline-widget"
+                             data-url="https://calendly.com/foxplansales/discovery-phone-call-clone?hide_event_type_details=1&background_color=f4f1ea&text_color=2d2926&primary_color=e9bc44"
+                             style="min-width:320px;height:700px;">
+                        </div>
+                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"
+                                async></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {# Footer #}
+    {{ include('_components/footer/footer-High-fidelity.twig', {
+        props: {
+            backgroundColor: 'bg-foxplan-neutral-beige',
+            textColor: 'text-foxplan-charcoal-brown',
+            logoColor: 'text-foxplan-charcoal-brown',
+            buttonColor: 'bg-foxplan-charcoal-brown',
+            buttonTextColor: 'text-foxplan-neutral-beige',
+        }
+    }) }}
+{% endblock %}

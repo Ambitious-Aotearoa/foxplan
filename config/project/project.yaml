@@ -1,4 +1,4 @@
-dateModified: 1775786851
+dateModified: 1776136913
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -154,6 +154,7 @@ meta:
     024975a0-c902-455c-8531-31c3d872cb09: blockHeading # blockHeading
     26603cf5-8da3-461b-9a66-2eda1d1dda14: Podcast # Podcast
     37578f45-0b1d-4513-b3f7-30085b31057c: 'Fox icon' # Fox icon
+    38277d5f-7d93-4cfc-84b1-808d0da5e966: 'Thank You Landing' # Thank You Landing
     60614e67-d787-46ca-8229-8a163deb7064: 'Heading Line1' # Heading Line1
     75267a9c-0192-4076-8b99-166c04ba40d2: 'First Home Buyers' # First Home Buyers
     98874d4e-7f67-4c96-8e6a-1ae5b6fc4961: Services # Services
@@ -241,6 +242,7 @@ meta:
     f9501fa8-ddf7-45c9-848a-c7ece198f27a: 'Paragraph Heading' # Paragraph Heading
     f42469eb-08c1-411f-a288-bc2841425be9: Testimonials # Testimonials
     f88356ec-2dc9-4085-8264-222f67a2732c: 'Article Images' # Article Images
+    f2060445-14a6-448a-bba6-d1ff5aaa0f5e: 'thank you' # thank you
     faa57aae-5553-4a99-b14f-596cda69cdc5: 'Financial Planning' # Financial Planning
     fba1ff8e-0b24-45ff-8403-da24499dfef2: buttonLink # buttonLink
     fe02d7ad-a8ee-44e2-81e9-27e07f31372d: 'Advisors Name' # Advisors Name
@@ -266,22 +268,22 @@ plugins:
     settings:
       confirmationSubject: 'Thanks for contacting Foxplan'
       confirmationTemplate: _emails/confirmation.twig
-      enableConfirmationEmail: '1'
+      enableConfirmationEmail: ''
       enableDatabase: '1'
       enableRecaptchaOverride: ''
       enableTemplateOverwrite: '1'
       notificationTemplate: _emails/notification.twig
-      recaptcha: ''
+      recaptcha: '1'
       recaptchaDataBadge: bottomright
       recaptchaDebug: ''
       recaptchaHideBadge: ''
-      recaptchaSecretKey: ''
-      recaptchaSiteKey: ''
+      recaptchaSecretKey: 6LeRYLYsAAAAAL1XJHuM0AOuqnmmxGhxnMnt1VHQ
+      recaptchaSiteKey: 6LeRYLYsAAAAAPbywkWsiq4YH2lnQ3CoWFZqU_R7
       recaptchaThreshold: '0.5'
       recaptchaTimeout: '5'
       recaptchaUrl: ''
       recaptchaVerificationUrl: ''
-      recaptchaVersion: ''
+      recaptchaVersion: '3'
   dospaces:
     edition: standard
     enabled: true

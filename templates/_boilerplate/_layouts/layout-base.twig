@@ -31,7 +31,10 @@
 
 <body class="antialiased font-aktiv text-foxplan-charcoal-brown bg-foxplan-neutral-beige" style="opacity: 0;">
 
-{{ include("_components/nav/nav.twig", { navigationTheme: navigationTheme ?? null }, withContext = true) }}
+{# Wrap the nav in a block called 'navigation' #}
+{% block navigation %}
+    {{ include("_components/nav/nav.twig", { navigationTheme: navigationTheme ?? null }, withContext = true) }}
+{% endblock %}
 
 <main class="w-full">
     {% block blockAppBody %}{% endblock %}

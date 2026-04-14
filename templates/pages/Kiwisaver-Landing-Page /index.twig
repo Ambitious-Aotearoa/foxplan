@@ -1,52 +1,59 @@
 {% extends "_boilerplate/_layouts/layout-base.twig" %}
 
- {# 1. Landing Page Navigation Setup #}
-    {% set landingPageTheme = {
-        backgroundColor: 'bg-foxplan-yellow',
-        logoPath: '/images/Logo_Lockup.svg'
-    } %}
+{# 1. Landing Page Navigation Override #}
+{% block navigation %}
+    {{ include("_components/nav/nav-landing-page.twig", {
+        theme: {
+            backgroundColor: 'bg-foxplan-yellow'
+        }
+    }) }}
+{% endblock %}
 
 {% block blockAppBody %}
+    <div class="pt-20">
+
+        {# 1. Hero Section #}
+        {{ include('_sections/hero-sections/hero-arrow.twig', {
+            props: {
+                backgroundColor: 'bg-foxplan-yellow',
+                buttonText: '',
+            }
+        }) }}
 
 
-    {# 1. Hero Section #}
-    {{ include('_sections/hero-sections/hero-arrow.twig', {
-        props: {
-            buttonUrl: '#',
-            backgroundColor: 'bg-foxplan-yellow',
-            buttonBgColor: 'bg-foxplan-charcoal-brown',
-            buttonTextColor: 'text-foxplan-white'
-        }
-    }) }}
 
-    {# 2. KiwiSaver Strategies Section #}
-    {{ include('_sections/content-sections/kiwi-strategies.twig', {
-        props: {
-            block: entry,
-            mainTitle: entry.mainTitle ?? 'How we work with you',
-            paragraphHeading: entry.paragraphHeading ?? '',
-            backgroundColor: 'bg-foxplan-charcoal-brown',
-            textColor: 'text-foxplan-yellow'
-        }
-    }) }}
 
-    {% include '_sections/content-sections/get-the-guide.twig' with {
-        props: {
-            title: "Get the guide",
-            backgroundColor: "bg-foxplan-yellow",
-            textColor: "text-foxplan-charcoal-brown"
-        }
-    } only %}
+        {# 2. KiwiSaver Strategies Section #}
+        {{ include('_sections/content-sections/kiwi-strategies.twig', {
+            props: {
+                block: entry,
+                mainTitle: entry.mainTitle ?? 'How we work with you',
+                paragraphHeading: entry.paragraphHeading ?? '',
+                backgroundColor: 'bg-foxplan-charcoal-brown',
+                textColor: 'text-foxplan-yellow'
+            }
+        }) }}
 
-    {{ include('_components/footer/footer-High-fidelity.twig', {
-        props: {
-            backgroundColor: 'bg-foxplan-neutral-beige',
-            textColor: 'text-foxplan-charcoal-brown',
-            logoColor: 'text-foxplan-charcoal-brown',
-            buttonColor: 'bg-foxplan-charcoal-beige',
-            buttonTextColor: 'text-foxplan-neutral-beige',
-            foxplanText: 'foxplan'
-        }
-    }) }}
+        {# 3. Get the Guide #}
+        {% include '_sections/content-sections/get-the-guide.twig' with {
+            props: {
+                title: "Get the guide",
+                backgroundColor: "bg-foxplan-yellow",
+                textColor: "text-foxplan-charcoal-brown"
+            }
+        } only %}
 
+        {# 4. Footer #}
+        {{ include('_components/footer/footer-High-fidelity.twig', {
+            props: {
+                backgroundColor: 'bg-foxplan-neutral-beige',
+                textColor: 'text-foxplan-charcoal-brown',
+                logoColor: 'text-foxplan-charcoal-brown',
+                buttonColor: 'bg-foxplan-charcoal-beige',
+                buttonTextColor: 'text-foxplan-neutral-beige',
+                foxplanText: 'foxplan'
+            }
+        }) }}
+
+    </div>
 {% endblock %}

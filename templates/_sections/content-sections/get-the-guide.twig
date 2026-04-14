@@ -8,22 +8,36 @@
 
 {% set data = defaults | merge(props ?? {}) %}
 
-<section class="{{ data.backgroundColor }} w-full relative border-t border-foxplan-charcoal-brown/20">
-    <div class="px-4 md:px-6 lg:px-8 py-16 lg:py-24">
+<section class="{{ data.backgroundColor }} w-full relative">
 
-        {# Container with 40/60 split #}
-        <div class="flex flex-wrap md:flex-nowrap w-full items-start gap-12 lg:gap-20">
+    <div class="beige-strip hidden md:block absolute left-0 top-0 bottom-0 h-full z-30 pointer-events-none"
+         style="width: 1.5rem; background-color: #F9EFD8;"></div>
 
-            {# Left Column: 40% Width #}
-            <div class="w-full md:w-[40%]">
+    {# On lg, wider strip #}
+    <style>
+        @media (min-width: 1024px) {
+            .beige-strip { width: 2rem !important; }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .beige-strip { width: 1.5rem !important; }
+        }
+    </style>
+
+
+    <div class="px-4 md:pl-16 lg:pl-20 md:pr-16 lg:pr-24 py-16 lg:py-24 relative z-10">
+
+        <div class="flex flex-wrap md:flex-nowrap w-full items-start gap-8 md:gap-16 lg:gap-24 xl:gap-32">
+
+            {# Left Column: Title #}
+            <div class="w-full md:w-[40%] shrink-0 pt-0">
                 <h2 class="font-serif tracking-tight {{ data.textColor }} leading-[0.95]"
-                    style="font-size: clamp(3.2rem, 7vw, 6rem); letter-spacing: -0.02em;">
+                    style="font-size: clamp(3.2rem, 7vw, 6rem); letter-spacing: -0.02em; margin-top: 0;">
                     {{ data.title | raw }}
                 </h2>
             </div>
 
-            {# Right Column: 60% Width #}
-            <div class="w-full md:w-[60%] ">
+            {# Right Column: Form #}
+            <div class="w-full md:w-[60%]">
                 {% include '_components/form/kiwisaver-form.twig' %}
             </div>
 
