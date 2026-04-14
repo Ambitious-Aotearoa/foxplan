@@ -6,9 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank you for contacting Foxplan</title>
+    <title>Your FoxPlan Guide</title>
     <style>
-        /* Outlook & iOS Dark Mode Fixes */
         :root { color-scheme: light only; }
         body, table, td { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
         @media (prefers-color-scheme: dark) {
@@ -36,12 +35,33 @@
                 {# Content Area #}
                 <tr>
                     <td style="background-color: #F9EFD8; padding: 40px;" bgcolor="#F9EFD8">
-                        {% if formName == 'First Home Buyers Guide' %}
+
+                        {% if formName == 'KiwiSaver Guide' %}
+                            {# KIWISAVER EMAIL CONTENT #}
+                            <h2 style="margin: 0 0 16px 0; color: #270E15; font-size: 22px; font-weight: 600;">Here’s your KiwiSaver Guide</h2>
+                            <p style="margin: 0 0 16px 0; color: #270E15; font-size: 16px; line-height: 1.6;">Hi {{ submission.fromName }},</p>
+                            <p style="margin: 0 0 16px 0; color: #270E15; font-size: 16px; line-height: 1.6;">
+                                Life isn’t always linear, but your KiwiSaver strategy can be. Our <strong>KiwiSaver Quick Action Guide</strong> is designed to help you protect your investments and maximise your money during life’s biggest milestones.
+                            </p>
+                            <p style="margin: 0 0 16px 0; color: #270E15; font-size: 16px; line-height: 1.6;">
+                                From travel to parental leave, retirement and buying a first home, making little changes now can keep your KiwiSaver tracking in the right direction.
+                            </p>
+                            <p style="margin: 0 0 24px 0; color: #270E15; font-size: 16px; line-height: 1.6;">
+                                <strong>Your guide is attached.</strong>
+                            </p>
+                            <p style="font-size: 12px; color: #270E15; opacity: 0.7; font-style: italic;">
+                                Please note, this guide provides general information only and does not constitute personalised financial advice.
+                            </p>
+
+                        {% elseif formName == 'First Home Buyers Guide' %}
+                            {# FIRST HOME EMAIL CONTENT #}
                             <h2 style="margin: 0 0 16px 0; color: #270E15; font-size: 22px; font-weight: 600;">Your guide is attached!</h2>
                             <p style="margin: 0 0 24px 0; color: #270E15; font-size: 16px; line-height: 1.6;">
                                 Hi {{ submission.fromName }}, thanks for downloading the <strong>First Home Buyers Guide</strong>. You'll find it attached to this email.
                             </p>
+
                         {% else %}
+                            {# STANDARD CONTACT CONTENT #}
                             <h2 style="margin: 0 0 16px 0; color: #270E15; font-size: 22px; font-weight: 600;">Thanks for reaching out.</h2>
                             <p style="margin: 0 0 24px 0; color: #270E15; font-size: 16px; line-height: 1.6;">
                                 We've received your message and one of our advisers will be in touch shortly.
@@ -50,7 +70,7 @@
 
                         <div style="border-top: 1px solid rgba(39, 14, 21, 0.15); margin-top: 20px; padding-top: 20px;">
                             <p style="color: #270E15; font-size: 14px; opacity: 0.6;">
-                                Explore more at <a href="https://foxplan.nz" style="color: #270E15;">foxplan.nz</a>
+                                Thanks,<br>The FoxPlan team
                             </p>
                         </div>
                     </td>
@@ -60,6 +80,9 @@
                 <tr>
                     <td style="background-color: #270E15; padding: 24px; text-align: center;" bgcolor="#270E15">
                         <p style="color: #F9EFD8; font-size: 11px;">Financial Planning · Retirement · Investment · KiwiSaver · Lending · Insurance</p>
+                        <p style="margin: 0; color: #F9EFD8; font-size: 11px; opacity: 0.5;">
+                            <a href="https://foxplan.nz" style="color: #F9EFD8; text-decoration: none;">foxplan.nz</a>
+                        </p>
                     </td>
                 </tr>
             </table>

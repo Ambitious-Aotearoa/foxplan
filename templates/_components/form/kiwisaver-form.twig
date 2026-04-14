@@ -8,8 +8,6 @@
 } %}
 
 <div class="w-full max-w-4xl">
-
-    {# Body Text #}
     <p class="font-aktiv {{ colors.text }} mb-12 font-light max-w-3xl"
        style="font-size: clamp(1.1rem, 1.5vw, 1.6rem); line-height: 1.15; letter-spacing: -0.01em; margin-top: 0;">
         Fill in your details to receive your free KiwiSaver Guide and learn how to maximise your investment as you navigate life's biggest milestones.
@@ -19,11 +17,16 @@
         {{ csrfInput() }}
         {{ redirectInput('/thank-you-landing') }}
 
+        {# Security #}
+        {{ craft.contactFormExtensions.recaptcha | raw }}
+
+        {# IDENTIFIER FOR EMAIL TEMPLATE #}
+        <input type="hidden" name="message[formName]" value="KiwiSaver Guide">
+
         {# Hidden required fields for Contact Form plugin #}
         <input type="hidden" name="subject" value="KiwiSaver Guide Request">
         <input type="hidden" name="message[body]" value="New KiwiSaver guide request submission">
 
-        {# Row 1: First name | Last name #}
         <div class="relative">
             <input type="text" name="fromName" id="firstName" placeholder="First name" required
                    class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none placeholder:{{ colors.text }} font-aktiv text-lg">
@@ -34,13 +37,11 @@
                    class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none placeholder:{{ colors.text }} font-aktiv text-lg">
         </div>
 
-        {# Row 2: Email address — full width #}
         <div class="relative col-span-full">
             <input type="email" name="fromEmail" id="email" placeholder="Email address" required
                    class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none placeholder:{{ colors.text }} font-aktiv text-lg">
         </div>
 
-        {# Row 3: Phone number | I prefer to be called #}
         <div class="relative">
             <input type="tel" name="message[phone]" id="phone" placeholder="Phone number" required
                    class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none placeholder:{{ colors.text }} font-aktiv text-lg">
@@ -64,15 +65,13 @@
             </div>
         </div>
 
-        {# Disclaimer #}
         <div class="col-span-full pt-2">
             <p class="text-sm leading-tight opacity-70 {{ colors.text }} font-aktiv max-w-xl">
-                By downloading this guide, you consent to being contacted by a FoxPlan adviser for general followup purposes. You can opt out at any time. See our
-                <a href="/privacy" class="underline underline-offset-2 hover:opacity-100">Privacy Policy</a> at foxplan.nz/privacy
+                By downloading this guide, you consent to being contacted by a FoxPlan adviser for general followup purposes. See our
+                <a href="/privacy" class="underline underline-offset-2 hover:opacity-100">Privacy Policy</a>.
             </p>
         </div>
 
-        {# Submit Button #}
         <div class="col-span-full pt-4">
             {% include '_components/ui/button/button.twig' with {
                 props: {
@@ -83,6 +82,5 @@
                 }
             } only %}
         </div>
-
     </form>
 </div>
