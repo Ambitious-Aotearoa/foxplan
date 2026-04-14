@@ -10,6 +10,10 @@
     {{ actionInput('contact-form/send') }}
     {{ csrfInput() }}
 
+    {# 1. ADD THIS FOR RECAPTCHA #}
+    {{ craft.contactFormExtensions.recaptcha | raw }}
+
+   
     <input type="hidden" name="redirect" value="{{ 'pages/Thank-You'|hash }}">
 
     <div class="grid grid-cols-12 gap-x-8 gap-y-12 pb-12">
