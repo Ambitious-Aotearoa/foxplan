@@ -22,27 +22,39 @@ class Module extends \yii\base\Module
             function (SendEvent $event) {
                 $submission = $event->submission;
 
-                if (($submission->message['formName'] ?? '') !== 'First Home Buyers Guide') {
+                // 1. Get the form name from the hidden input we added to the Twig form
+                $formName = $submission->message['formName'] ?? '';
+
+                // 2. Only run this for forms that are "Guides"
+                if (!str_contains($formName, 'Guide')) {
                     return;
                 }
 
-                $entry = Entry::find()->id(37)->one();
+                // 3. DYNAMICALLY find the entry based on where the form was submitted
+                $entry = Entry::find()->id($submission->entryId)->one();
+
                 if (!$entry) {
-                    Craft::error('Could not find entry 37', __METHOD__);
+                    Craft::error('Confirmation Email Error: Could not find entry with ID ' . $submission->entryId, __METHOD__);
                     return;
                 }
 
+                // 4. Get the PDF from the 'guidePdf' field on THAT specific entry
                 $guideAsset = $entry->guidePdf->one();
                 if (!$guideAsset) {
-                    Craft::error('Could not find guidePdf asset', __METHOD__);
+                    Craft::info('No PDF found for entry: ' . $entry->title, __METHOD__);
                     return;
                 }
 
                 $pdfPath = $guideAsset->getCopyOfFile();
                 if (!$pdfPath || !file_exists($pdfPath)) {
-                    Craft::error('PDF file not found', __METHOD__);
                     return;
                 }
+
+                // 5. Setup the Subject line dynamically
+                // If it's KiwiSaver, use that title, otherwise use a default
+                $subject = ($formName === 'KiwiSaver Guide')
+                    ? 'Here’s your KiwiSaver Guide'
+                    : 'Your ' . $formName;
 
                 // Render confirmation template
                 Craft::$app->view->setTemplateMode(\craft\web\View::TEMPLATE_MODE_SITE);
@@ -51,17 +63,17 @@ class Module extends \yii\base\Module
                     ['submission' => $submission]
                 );
 
-                // Send fresh email to customer with PDF attached
+                // Send the email
                 $mailer = Craft::$app->getMailer();
                 $message = new Message();
                 $message->setTo($submission->fromEmail);
-                $message->setSubject('Your First Home Buyers Guide');
+                $message->setSubject($subject);
                 $message->setHtmlBody($html);
                 $message->attach($pdfPath, ['fileName' => $guideAsset->filename]);
 
                 $mailer->send($message);
 
-                Craft::info('PDF confirmation sent to: ' . $submission->fromEmail, __METHOD__);
+                Craft::info("Dynamic confirmation sent: {$formName} to {$submission->fromEmail}", __METHOD__);
             }
         );
     }

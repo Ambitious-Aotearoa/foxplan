@@ -208,6 +208,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-04-14T22:27:51+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 38fb1215-8745-4b26-a4bc-fa81375d8e56 # Guide PDF
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9f20299b-7faa-489a-b5d1-448a41203908
+            userCondition: null
+            warning: null
+            width: 100
         name: 'Get the guide '
         uid: 848d98a2-7a59-4648-bc3e-52b620128dc3
         userCondition: null
