@@ -15,9 +15,8 @@
         Fill in your details to receive your free KiwiSaver Guide and learn how to maximise your investment as you navigate life's biggest milestones.
     </p>
 
-    <form action="" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+    <form action="/actions/contact-form/send" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
         {{ csrfInput() }}
-        {{ actionInput('contact-form/send') }}
         {{ redirectInput('/thank-you-landing') }}
 
         {# Hidden required fields for Contact Form plugin #}

@@ -81,16 +81,11 @@
             {# STEP 1: The Form #}
             <div x-show="step === 1">
                 <h2 class="font-serif text-5xl text-foxplan-charcoal-brown mb-6">Get the guide</h2>
-                <form method="post" action="" accept-charset="UTF-8" @submit="handleDownloadAndSubmit($event)" class="contact-form">
+                <form @submit="handleDownloadAndSubmit($event)">
                     {{ actionInput('contact-form/send') }}
                     {{ csrfInput() }}
-
-                    {# 1. ADD THIS FOR RECAPTCHA #}
-                    {{ craft.contactFormExtensions.recaptcha | raw }}
-
                     <input type="hidden" name="message[formName]" value="First Home Buyers Guide">
                     <input type="hidden" name="message[disableConfirmation]" value="1">
-
                     <div class="grid grid-cols-2 gap-8">
                         <div>
                             <label class="block text-xs font-bold uppercase mb-2">First Name</label>

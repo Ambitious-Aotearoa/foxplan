@@ -1,4 +1,4 @@
-dateModified: 1776144479
+dateModified: 1776144762
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -273,7 +273,7 @@ plugins:
       enableRecaptchaOverride: ''
       enableTemplateOverwrite: '1'
       notificationTemplate: _emails/notification.twig
-      recaptcha: '1'
+      recaptcha: ''
       recaptchaDataBadge: bottomright
       recaptchaDebug: ''
       recaptchaHideBadge: ''
