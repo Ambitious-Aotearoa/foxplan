@@ -74,16 +74,31 @@
             {# 3. RESTORED BUTTON #}
             {% if data.buttonText %}
                 <div class="mt-4">
-                    <div @click="showBookCallOverlay = true" class="cursor-pointer inline-block">
+                    <div @click="
+                const targetId = '{{ data.buttonUrl }}';
+                {# Only attempt to scroll if targetId starts with # AND has characters after it (e.g., #strategies) #}
+                const isAnchor = targetId.startsWith('#') && targetId.length > 1;
+                const targetEl = isAnchor ? document.querySelector(targetId) : null;
+
+                if (isAnchor && targetEl) {
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    {# If it's just '#' or a normal link, open the overlay #}
+                    showBookCallOverlay = true;
+                }
+             "
+                         class="cursor-pointer inline-block">
+
                         {% include '_components/ui/button/button.twig' with {
                             props: {
                                 text: data.buttonText,
                                 style: 'primary',
-                                url: null,
+                                url: data.buttonUrl,
                                 backgroundColor: data.buttonBgColor,
                                 textColor: data.buttonTextColor
                             }
                         } only %}
+
                     </div>
                 </div>
             {% endif %}
