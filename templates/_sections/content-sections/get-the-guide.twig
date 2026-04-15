@@ -1,19 +1,21 @@
 {# templates/_sections/content-sections/get-the-guide.twig #}
 
+
+{% set entry = entry ?? null %}
+
+{% set headline = props.paragraphHeading ?? (entry ? entry.paragraphHeading2 : '') %}
 {% set defaults = {
-    title: entry.paragraphHeading2 ?? 'Get the guide',
     backgroundColor: 'bg-foxplan-yellow',
     textColor: 'text-foxplan-charcoal-brown'
 } %}
 
 {% set data = defaults | merge(props ?? {}) %}
 
-<section class="{{ data.backgroundColor }} w-full relative">
+<section id="Form" class="{{ data.backgroundColor }} w-full relative overflow-hidden">
 
     <div class="beige-strip hidden md:block absolute left-0 top-0 bottom-0 h-full z-30 pointer-events-none"
          style="width: 2rem; background-color: #F9EFD8;"></div>
 
-    {# On lg, wider strip #}
     <style>
         @media (min-width: 1024px) {
             .beige-strip { width: 1.5rem !important; }
@@ -23,22 +25,23 @@
         }
     </style>
 
-
     <div class="px-4 md:pl-16 lg:pl-20 md:pr-16 lg:pr-24 py-16 lg:py-24 relative z-10">
-
         <div class="flex flex-wrap md:flex-nowrap w-full items-start gap-8 md:gap-16 lg:gap-24 xl:gap-32">
 
-            {# Left Column: Title #}
-            <div class="w-full md:w-[40%] shrink-0 pt-0">
+            {# Left Column: Headline #}
+            <div  class="w-full md:w-[40%] shrink-0 pt-0">
                 <h2 class="font-serif tracking-tight {{ data.textColor }} leading-[0.95]"
                     style="font-size: clamp(3.2rem, 7vw, 6rem); letter-spacing: -0.02em; margin-top: 0;">
-                    {{ data.title | raw }}
+                    {{ headline | raw }}
                 </h2>
             </div>
 
             {# Right Column: Form #}
             <div class="w-full md:w-[60%]">
-                {% include '_components/form/kiwisaver-form.twig' %}
+
+                {% include '_components/form/kiwisaver-form.twig' with {
+                    entry: entry
+                } %}
             </div>
 
         </div>

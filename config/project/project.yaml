@@ -1,4 +1,4 @@
-dateModified: 1776205671
+dateModified: 1776226144
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -47,6 +47,7 @@ meta:
     1a9ce3fa-1c8d-4886-80cd-77cc624c2a1a: 'Episode Duration' # Episode Duration
     1bce15eb-e441-43c8-bff3-cb4b0197fef2: 'Hero Body Text' # Hero Body Text
     1bf81b4c-12eb-4329-8dc6-5ce2b0f86018: 'Accordion Heading' # Accordion Heading
+    1cae6508-6f15-4d3b-ac58-8fea7303e323: 'Thankyou Page' # Thankyou Page
     01d859f3-0f5b-434d-b064-a75dd6b9f60f: Testimonial # Testimonial
     1e5a8282-7128-4cdd-8a59-3356f7b08ffe: Partners # Partners
     1ea1b840-4b19-4a98-8b5d-41c57d8af35b: Article # Article
@@ -57,6 +58,7 @@ meta:
     2ed3c1eb-4182-42c9-979f-0f2b02e8e628: 'Button URL' # Button URL
     3a18a3a4-7da8-482b-b475-06dfad80f264: 'Spotify URL' # Spotify URL
     3a475d44-7e98-4077-b3fd-5b819666e596: 'Email Body' # Email Body
+    3b71bc5d-7102-44d9-ba91-bfb278ee369a: 'investment calculator' # investment calculator
     3ca03225-96ae-4b44-87f2-2f3b0d32d166: 'Testimonial Author' # Testimonial Author
     3cd32da9-06b0-44c6-a0a8-54568bfbb9b3: Group-workplace-insurance # Group-workplace-insurance
     3df564bb-a8ff-48d9-88c0-1e1fec7a3cff: 'Accordion new' # Accordion new
@@ -68,7 +70,7 @@ meta:
     4ed0dee4-59be-4290-bdff-e30f5d363215: 'Podcast Episodes' # Podcast Episodes
     5a2fa5d4-7817-40c9-b68f-a7e82da4bb56: 'Accordion heading1' # Accordion heading1
     5a33ed06-c4f0-4d32-be5f-033502c710e5: blockLinkUrl # blockLinkUrl
-    5ae1f58b-05e4-453d-9fa8-47b973f32125: 'KiwiSaver Landing Page' # KiwiSaver Landing Page
+    5ae1f58b-05e4-453d-9fa8-47b973f32125: 'Kiwisaver Landing Page' # Kiwisaver Landing Page
     5b7ffe03-2220-4d5c-8b2a-3d7e12c525be: 'Equity Partners' # Equity Partners
     5ca1faf9-4255-419a-9685-fa7e60d769b6: 'Insights Body Text' # Insights Body Text
     5cc80fc2-9baf-4ff2-8de3-0de4bb7a3ef0: Webclip # Webclip
@@ -119,6 +121,7 @@ meta:
     68fa3aba-96db-477b-ac3c-539df750eb60: 'Property investment' # Property investment
     71a09bda-7456-438b-ae19-e1689203cc57: Sub-links # Sub-links
     072a5c6b-cdf2-4ed6-8bfd-4ac947d9cca7: 'Podcast images' # Podcast images
+    73cd81d0-a522-42dd-b397-ff88dc209d95: 'Kiwisaver Calculator' # Kiwisaver Calculator
     83ab9fed-c6f6-4bc3-868d-78df435d9da2: About # About
     85b764d9-d1dd-4aad-9cfb-e7432652aad7: 'Contact Main Heading' # Contact Main Heading
     85d0c31a-4e01-4008-8444-58f23d57cc31: 'Featured Image' # Featured Image
@@ -178,6 +181,7 @@ meta:
     ab6e0b50-c8e4-46a6-87e1-30dc93191009: "Personal\_& Medical  Insurance" # Personal & Medical  Insurance
     ad7daef3-ba4d-470a-8ee9-3bee8c28bcea: 'Newsletter Title' # Newsletter Title
     ae1eb8ab-68f8-419c-8bb8-c19ed7985884: 'Insights Image' # Insights Image
+    ae3b1cac-b5b2-4049-8f3b-9b0ea022dff5: 'Investment Calculator' # Investment Calculator
     af4882ee-8166-4ffc-a8b0-ba6b3d4e9b15: Disclosure # Disclosure
     b3a7a45d-0731-47a9-87bb-e0776ef3778c: Instagram # Instagram
     b3d02c0f-4eb6-471b-a4fd-e7ade89de423: 'Hero Matrix' # Hero Matrix
@@ -186,6 +190,7 @@ meta:
     b8fb7c6f-f535-4aa2-9285-e31412193b9b: Complaints # Complaints
     b21bad80-2c2d-4197-aeab-31f8b56a3bee: 'Spotify Playlist' # Spotify Playlist
     b30bd8f6-6a9f-410d-80b5-44f1baf3babf: 'Featured Image' # Featured Image
+    b235fa17-3de1-4a26-b99a-80ca66a403ed: 'kiwisaver calculator' # kiwisaver calculator
     b898b7e2-c466-4f6e-89b2-5fc8070636bd: 'Contact Us Page' # Contact Us Page
     b974ddd6-5e6a-460f-8100-45bdf6fe5c1d: 'Provider Name' # Provider Name
     b692872d-72dd-446b-9762-81992436c375: podcasts # podcasts
@@ -230,6 +235,7 @@ meta:
     ec05ea4a-53c2-41fa-a6c1-1b42827ace64: "Medium\_Term matrix" # Medium Term matrix
     ecf3a398-13d9-4319-a852-69760e9374a9: 'financial wellbeing page' # financial wellbeing page
     efeb5ea9-1bf7-4e7d-a7fa-d14d0e4d081b: 'Article Categories' # Article Categories
+    f0341208-fd79-4b55-bce1-6301b845d31c: 'Thank You' # Thank You
     f1c902fb-3573-4fe5-872f-68ef7fe938e5: 'Heading Line2' # Heading Line2
     f4cdde7e-f4b5-4ca0-9555-c5dbcd7d6c23: Favicon # Favicon
     f7a5e91d-6352-49c1-91d0-6a6491f0edaf: 'Page Builder' # Page Builder
@@ -268,7 +274,7 @@ plugins:
     settings:
       confirmationSubject: 'Thanks for contacting Foxplan'
       confirmationTemplate: _emails/confirmation.twig
-      enableConfirmationEmail: ''
+      enableConfirmationEmail: '1'
       enableDatabase: '1'
       enableRecaptchaOverride: ''
       enableTemplateOverwrite: '1'

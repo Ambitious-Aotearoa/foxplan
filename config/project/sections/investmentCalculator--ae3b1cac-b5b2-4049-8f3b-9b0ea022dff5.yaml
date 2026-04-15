@@ -2,10 +2,10 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: 09254da4-cb4e-42da-881d-bc3b55500a8f # Landing Page
-handle: kiwisaverLandingPage
+    uid: 3b71bc5d-7102-44d9-ba91-bfb278ee369a # investment calculator
+handle: investmentCalculator
 maxAuthors: 1
-name: 'Kiwisaver Landing Page'
+name: 'Investment Calculator'
 previewTargets:
   -
     label: 'Primary entry page'
@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: 'pages/Kiwisaver-Landing-Page /index.twig'
-    uriFormat: kiwisaver-landing-page
+    template: pages/Investment-Calculator/index.twig
+    uriFormat: investment-calculator
 type: single

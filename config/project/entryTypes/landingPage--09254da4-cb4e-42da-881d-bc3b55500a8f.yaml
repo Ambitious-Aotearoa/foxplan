@@ -224,6 +224,38 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-04-15T02:17:39+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4c9973ff-0107-4739-a889-f352e62eca08 # Large Paragraph
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fdd848c4-7f26-4f88-952e-4cddce298054
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-15T02:17:39+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: bodyText2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ebd552dc-183d-4b5b-bbef-156b0dbd7ec3
+            userCondition: null
+            warning: null
+            width: 100
         name: 'Get the guide '
         uid: 848d98a2-7a59-4648-bc3e-52b620128dc3
         userCondition: null

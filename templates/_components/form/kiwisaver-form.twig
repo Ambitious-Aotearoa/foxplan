@@ -1,5 +1,8 @@
 {# templates/_components/forms/kiwisaver-form.twig #}
 
+{# 1. Safety check: Ensure entry exists before we try to use it #}
+{% set entry = entry ?? null %}
+
 {% set colors = {
     text: 'text-foxplan-charcoal-brown',
     border: 'border-foxplan-charcoal-brown',
@@ -8,22 +11,19 @@
 } %}
 
 <div class="w-full max-w-4xl">
-    <p class="font-aktiv {{ colors.text }} mb-12 font-light max-w-3xl"
-       style="font-size: clamp(1.1rem, 1.5vw, 1.6rem); line-height: 1.15; letter-spacing: -0.01em; margin-top: 0;">
-        Fill in your details to receive your free KiwiSaver Guide and learn how to maximise your investment as you navigate life's biggest milestones.
-    </p>
+
+    <div  class="font-aktiv {{ colors.text }} mb-12 font-light max-w-3xl"
+         style="font-size: clamp(1.1rem, 1.5vw, 1.6rem); line-height: 1.15; letter-spacing: -0.01em; margin-top: 0;">
+        {{ entry ? entry.largeParagraph | raw : 'Fill in your details to receive your free guide.' }}
+    </div>
 
     <form action="/actions/contact-form/send" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
         {{ csrfInput() }}
         {{ redirectInput('/thank-you-landing') }}
 
-        {# Security #}
         {{ craft.contactFormExtensions.recaptcha | raw }}
 
-        {# IDENTIFIER FOR EMAIL TEMPLATE #}
         <input type="hidden" name="message[formName]" value="KiwiSaver Guide">
-
-        {# Hidden required fields for Contact Form plugin #}
         <input type="hidden" name="subject" value="KiwiSaver Guide Request">
         <input type="hidden" name="message[body]" value="New KiwiSaver guide request submission">
 
@@ -66,10 +66,10 @@
         </div>
 
         <div class="col-span-full pt-2">
-            <p class="text-sm leading-tight opacity-70 {{ colors.text }} font-aktiv max-w-xl">
-                By downloading this guide, you consent to being contacted by a FoxPlan adviser for general followup purposes. See our
-                <a href="/privacy" class="underline underline-offset-2 hover:opacity-100">Privacy Policy</a>.
-            </p>
+
+            <div class="text-sm leading-tight opacity-70 {{ colors.text }} font-aktiv max-w-xl">
+                {{ entry ? entry.bodyText2 | raw : 'By downloading this guide, you consent to being contacted by a FoxPlan adviser.' }}
+            </div>
         </div>
 
         <div class="col-span-full pt-4">
@@ -84,3 +84,11 @@
         </div>
     </form>
 </div>
+
+<script>
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            window.location.reload();
+        }
+    });
+</script>

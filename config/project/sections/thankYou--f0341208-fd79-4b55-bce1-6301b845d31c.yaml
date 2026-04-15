@@ -2,10 +2,10 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: 09254da4-cb4e-42da-881d-bc3b55500a8f # Landing Page
-handle: kiwisaverLandingPage
+    uid: 1cae6508-6f15-4d3b-ac58-8fea7303e323 # Thankyou Page
+handle: thankYou
 maxAuthors: 1
-name: 'Kiwisaver Landing Page'
+name: 'Thank You'
 previewTargets:
   -
     label: 'Primary entry page'
@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: 'pages/Kiwisaver-Landing-Page /index.twig'
-    uriFormat: kiwisaver-landing-page
+    template: pages/Thank-You/index.twig
+    uriFormat: thank-you
 type: single

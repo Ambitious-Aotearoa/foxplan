@@ -17,7 +17,7 @@
             props: {
                 backgroundColor: 'bg-foxplan-yellow',
                 buttonText: 'Learn More',
-                buttonUrl: '#strategies'
+                buttonUrl: '#Form'
             }
         }) }}
 
@@ -35,14 +35,16 @@
             }
         }) }}
 
+
         {# 3. Get the Guide #}
         {% include '_sections/content-sections/get-the-guide.twig' with {
+            entry: entry,
             props: {
-                title: "Get the guide",
                 backgroundColor: "bg-foxplan-yellow",
                 textColor: "text-foxplan-charcoal-brown"
             }
-        } only %}
+        } %}
+
 
         {# 4. Footer #}
         {{ include('_components/footer/footer-High-fidelity.twig', {

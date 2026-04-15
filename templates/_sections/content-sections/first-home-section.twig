@@ -30,7 +30,8 @@
     },
     async handleDownloadAndSubmit(e) {
         e.preventDefault();
-        const formData = new FormData(e.target);
+        const form = e.target;
+        const formData = new FormData(form);
 
         // Submit form via AJAX
         fetch('', {
@@ -39,6 +40,10 @@
             headers: { 'Accept': 'application/json' }
         });
 
+        // 1. REFRESH FORM: This clears the inputs immediately
+        form.reset();
+
+        // 2. Move to Calendly step
         this.step = 2;
         this.$nextTick(() => { this.initCalendly(); });
     }
@@ -81,12 +86,10 @@
                     {{ actionInput('contact-form/send') }}
                     {{ csrfInput() }}
 
-                    {# ADDED RECAPTCHA HERE #}
+                    {# Security: Captcha is here #}
                     {{ craft.contactFormExtensions.recaptcha | raw }}
 
                     <input type="hidden" name="message[formName]" value="First Home Buyers Guide">
-
-                    {# REMOVED disableConfirmation HERE TO ALLOW EMAILS #}
 
                     <div class="grid grid-cols-2 gap-8">
                         <div>
@@ -121,3 +124,12 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            window.location.reload();
+        }
+    });
+</script>

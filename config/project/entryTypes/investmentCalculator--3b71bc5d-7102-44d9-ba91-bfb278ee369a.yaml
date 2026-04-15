@@ -1,0 +1,54 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  0d8f03df-0a4c-4cae-9c4e-fe8b01438b57:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-04-15T03:18:15+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 6bb1ba64-8934-423e-a1b9-3bda142dfe39
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 0ee0e8bc-415e-480b-992a-992ec99be22c
+        userCondition: null
+    thumbFieldKey: null
+handle: investmentCalculator
+hasTitleField: true
+icon: null
+name: 'investment calculator'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

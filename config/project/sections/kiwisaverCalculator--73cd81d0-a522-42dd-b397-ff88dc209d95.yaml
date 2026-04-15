@@ -2,10 +2,10 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: 09254da4-cb4e-42da-881d-bc3b55500a8f # Landing Page
-handle: kiwisaverLandingPage
+    uid: b235fa17-3de1-4a26-b99a-80ca66a403ed # kiwisaver calculator
+handle: kiwisaverCalculator
 maxAuthors: 1
-name: 'Kiwisaver Landing Page'
+name: 'Kiwisaver Calculator'
 previewTargets:
   -
     label: 'Primary entry page'
@@ -16,6 +16,6 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: 'pages/Kiwisaver-Landing-Page /index.twig'
-    uriFormat: kiwisaver-landing-page
+    template: pages/Kiwisaver-Calculator/index.twig
+    uriFormat: kiwisaver-calculator
 type: single
