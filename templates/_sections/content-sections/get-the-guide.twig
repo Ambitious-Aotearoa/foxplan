@@ -11,21 +11,21 @@
 
 {% set data = defaults | merge(props ?? {}) %}
 
-<section id="Form" class="{{ data.backgroundColor }} w-full relative overflow-hidden">
+<section id="Form" class="{{ data.backgroundColor }} w-full relative overflow-hidden px-">
 
     <div class="beige-strip hidden md:block absolute left-0 top-0 bottom-0 h-full z-30 pointer-events-none"
-         style="width: 2rem; background-color: #F9EFD8;"></div>
+         style=" background-color: #F9EFD8;"></div>
 
     <style>
         @media (min-width: 1024px) {
-            .beige-strip { width: 1.5rem !important; }
+            .beige-strip { width: 2.2rem !important; }
         }
         @media (min-width: 768px) and (max-width: 1023px) {
             .beige-strip { width: 1rem !important; }
         }
     </style>
 
-    <div class="px-4 md:pl-16 lg:pl-20 md:pr-16 lg:pr-24 py-16 lg:py-24 relative z-10">
+    <div class="px-6 md:pl-16 lg:pl-20 md:pr-16 lg:pr-24 py-16 lg:py-24 relative z-10">
         <div class="flex flex-wrap md:flex-nowrap w-full items-start gap-8 md:gap-16 lg:gap-24 xl:gap-32">
 
             {# Left Column: Headline #}
