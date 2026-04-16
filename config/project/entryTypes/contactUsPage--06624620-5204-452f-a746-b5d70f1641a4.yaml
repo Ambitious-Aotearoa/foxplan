@@ -106,6 +106,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-04-15T22:40:14+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4768ec2a-8f50-4698-80e6-75c7975086db # Email Message Link
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1888ab88-e418-4fc1-b9f7-ef9d2e116ff7
+            userCondition: null
+            warning: null
+            width: 100
         name: 'Get in touch'
         uid: 02186849-e7d2-49cb-becc-93d2a1610a73
         userCondition: null

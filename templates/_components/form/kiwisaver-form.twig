@@ -1,6 +1,5 @@
 {# templates/_components/forms/kiwisaver-form.twig #}
 
-{# 1. Safety check: Ensure entry exists before we try to use it #}
 {% set entry = entry ?? null %}
 
 {% set colors = {
@@ -12,20 +11,26 @@
 
 <div class="w-full max-w-4xl">
 
-    <div  class="font-aktiv {{ colors.text }} mb-12 font-light max-w-3xl"
+    <div class="font-aktiv {{ colors.text }} mb-12 font-light max-w-3xl"
          style="font-size: clamp(1.1rem, 1.5vw, 1.6rem); line-height: 1.15; letter-spacing: -0.01em; margin-top: 0;">
         {{ entry ? entry.largeParagraph | raw : 'Fill in your details to receive your free guide.' }}
     </div>
 
-    <form action="/actions/contact-form/send" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+    <form method="post" action="" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+        {{ actionInput('contact-form/send') }}
         {{ csrfInput() }}
-        {{ redirectInput('/thank-you-landing') }}
+
+
+        {{ redirectInput(url(entry.slug, { thanks: 1 })) }}
 
         {{ craft.contactFormExtensions.recaptcha | raw }}
 
-        <input type="hidden" name="message[formName]" value="KiwiSaver Guide">
-        <input type="hidden" name="subject" value="KiwiSaver Guide Request">
-        <input type="hidden" name="message[body]" value="New KiwiSaver guide request submission">
+        {# Hidden fields for logic and admin triggers #}
+        <input type="hidden" name="message[entryId]" value="{{ entry.id }}">
+        <input type="hidden" name="message[formName]" value="{{ entry.title }} Guide">
+        <input type="hidden" name="subject" value="{{ entry.title }} Guide Request">
+
+        <input type="hidden" name="message[body]" value="A new download request has been submitted for the {{ entry.title }}.">
 
         <div class="relative">
             <input type="text" name="fromName" id="firstName" placeholder="First name" required
@@ -48,7 +53,7 @@
         </div>
 
         <div class="relative" x-data="{ open: false }">
-            <select name="message[preference]"
+            <select required name="message[preference]"
                     @click="open = !open"
                     @blur="open = false"
                     class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none appearance-none cursor-pointer font-aktiv text-lg {{ colors.text }}">
@@ -66,8 +71,7 @@
         </div>
 
         <div class="col-span-full pt-2">
-
-            <div class="text-sm leading-tight opacity-70 {{ colors.text }} font-aktiv max-w-xl">
+            <div class="text-sm leading-tight opacity-70 {{ colors.text }} font-aktiv max-w-3xl">
                 {{ entry ? entry.bodyText2 | raw : 'By downloading this guide, you consent to being contacted by a FoxPlan adviser.' }}
             </div>
         </div>
@@ -84,11 +88,3 @@
         </div>
     </form>
 </div>
-
-<script>
-    window.addEventListener('pageshow', function(event) {
-        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
-            window.location.reload();
-        }
-    });
-</script>

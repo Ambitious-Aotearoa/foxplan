@@ -1,0 +1,74 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  da8d668e-251b-4194-9742-082ccd742710:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-15T22:12:20+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 767b83f7-d307-414c-88de-9ca49acfd498 # Email Headline
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2c6c9b41-b699-46b6-a6fd-4e19d1bff6ad
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-15T22:12:20+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: df3f8542-21b5-4074-8265-09688dac5aaf # Email Intro
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 19f3293e-1324-4075-9d2e-327d93ef9ec6
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-15T22:12:20+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8b7ad83b-6682-4c3f-810d-a6c7cebfd20b # Email Body Content
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b32bea51-2bd5-4213-a3c4-a0fb53e9a53f
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: a9d62500-ca1a-416d-8333-b3387ac88c95
+        userCondition: null
+    thumbFieldKey: null
+handle: emailMessages
+hasTitleField: false
+icon: null
+name: 'Email Messages'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{emailHeadline}'

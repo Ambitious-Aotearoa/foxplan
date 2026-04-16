@@ -11,6 +11,9 @@
     {{ csrfInput() }}
     {{ craft.contactFormExtensions.recaptcha | raw }}
 
+    {# --- HYBRID TRIGGER --- #}
+    {# This tells the PHP Module to use the hardcoded 'contact' logic #}
+    <input type="hidden" name="message[formType]" value="contact">
 
     <input type="hidden" name="redirect" value="{{ 'pages/Thank-You'|hash }}">
 
@@ -105,7 +108,6 @@
         form.addEventListener('input', updateCursor);
         form.addEventListener('change', updateCursor);
 
-        // 1. REFRESH ON SUBMIT: Clears fields after a short delay so mail sends correctly
         form.addEventListener('submit', function() {
             setTimeout(() => {
                 this.reset();
@@ -116,7 +118,6 @@
         updateCursor();
     });
 
-    // 2. REFRESH
     window.addEventListener('pageshow', function(event) {
         if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
             window.location.reload();

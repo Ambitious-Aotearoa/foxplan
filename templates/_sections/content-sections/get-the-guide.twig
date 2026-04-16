@@ -11,14 +11,14 @@
 
 {% set data = defaults | merge(props ?? {}) %}
 
-<section id="Form" class="{{ data.backgroundColor }} w-full relative overflow-hidden px-">
+<section id="Form" class="{{ data.backgroundColor }} w-full relative overflow-hidden px-2">
 
     <div class="beige-strip hidden md:block absolute left-0 top-0 bottom-0 h-full z-30 pointer-events-none"
          style=" background-color: #F9EFD8;"></div>
 
     <style>
         @media (min-width: 1024px) {
-            .beige-strip { width: 2.2rem !important; }
+            .beige-strip { width: 2rem !important; }
         }
         @media (min-width: 768px) and (max-width: 1023px) {
             .beige-strip { width: 1rem !important; }
@@ -47,3 +47,12 @@
         </div>
     </div>
 </section>
+
+<script>
+
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            window.location.reload();
+        }
+    });
+</script>

@@ -65,12 +65,11 @@
     {% set heroImage = data.block.heroImage2.one() ?? null %}
     {% if heroImage %}
         <div class="w-full flex justify-end">
-
-            <div class="w-full px-2 md:pr-0">
-                <div class="md:border-l border-foxplan-charcoal-brown overflow-hidden">
+            <div class="w-full px-4 md:px-6 lg:px-8 md:pr-0">
+                <div class="md:border-l border-foxplan-charcoal-brown overflow-hidden max-h-[400px] lg:max-h-[500px] aspect-[16/7]">
                     <img src="{{ heroImage.url }}"
                          alt="{{ heroImage.alt ?? 'Hero Image' }}"
-                         class="w-full h-auto object-cover block">
+                         class="w-full h-full object-cover block">
                 </div>
             </div>
         </div>

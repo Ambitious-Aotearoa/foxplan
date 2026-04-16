@@ -2,7 +2,7 @@ allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
-  5ce9e5f4-10a7-4ee9-93ef-4fe0c83d489d:
+  9ac76186-ea5b-4562-82eb-e104b942d28e:
     cardThumbAlignment: end
     tabs:
       -
@@ -13,7 +13,7 @@ fieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
-            dateAdded: '2025-12-17T03:53:27+00:00'
+            dateAdded: '2026-04-15T21:35:27+00:00'
             disabled: false
             elementCondition: null
             id: null
@@ -32,12 +32,12 @@ fieldLayouts:
             tip: null
             title: null
             type: craft\fieldlayoutelements\entries\EntryTitleField
-            uid: 5e3e6e9c-c8f0-466f-8d93-c442d43166f6
+            uid: 37b5455b-b8e5-4796-a62e-db01cc25fa9f
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T04:01:57+00:00'
+            dateAdded: '2026-04-15T21:46:13+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -48,12 +48,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 868d6d41-23a0-4322-b87d-424461c6f935
+            uid: b0cd0860-ac38-4ebf-bd11-49d8430935e6
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T04:01:57+00:00'
+            dateAdded: '2026-04-15T21:46:13+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -64,12 +64,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 3a2eb9f4-de68-42dd-882b-84a1dbe90238
+            uid: a2f20dc2-c4c9-4db3-b571-b6bd29b3c472
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T04:01:57+00:00'
+            dateAdded: '2026-04-15T21:46:13+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -80,18 +80,50 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: d9a3c2ee-a005-472a-9c44-6a6ab45bf078
+            uid: f6259657-ddbc-4a15-a911-4a088a12533d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-15T21:46:13+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4f963b9c-84c8-44b1-a4ba-8305a890545e
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: c1a28a88-038d-4790-bcb0-80e1d2a8c4bc
+        uid: 82e1b15c-fda6-4a34-95c4-725ea725857b
         userCondition: null
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-12-17T04:01:57+00:00'
+            dateAdded: '2026-04-15T21:46:13+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 489aa9de-78dd-4788-80c7-9307d470bb57 # Main Title
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 437c2ff0-271b-4981-b6e8-45090c6289ae
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-15T21:46:13+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -102,12 +134,44 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 9cb0b17c-154b-4207-9989-6b44a90bc4a5
+            uid: c2063caa-51e7-4867-9faf-e44087a75bcf
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-01-21T20:59:59+00:00'
+            dateAdded: '2026-04-15T21:46:13+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 08e0c16f-f27c-40ca-b911-0f9728a92db1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-15T21:46:13+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e1bf3b3c-4ca1-4e7b-9e98-64e3052a587a # Hero Image
+            handle: heroImage2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 916594c0-852e-4057-822f-1809678d8097
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-15T21:46:13+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -118,18 +182,18 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 0156a87f-22e6-4d7d-92f8-3ccfcb151191
+            uid: bc1c35ed-ea1b-4b4d-a90e-c508a67e100e
             userCondition: null
             warning: null
             width: 100
-        name: 'Help for buying first home'
-        uid: 9a20415b-f591-440b-b9a4-c3e75178bb09
+        name: Strategies
+        uid: ba6e3896-69b1-4b3e-8c85-6cfb2c02113a
         userCondition: null
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-12-17T04:01:57+00:00'
+            dateAdded: '2026-04-15T21:46:13+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -140,114 +204,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: c08c9394-eaab-4481-bea0-cf324ab4f8b8
+            uid: 26b79621-d1be-4d3c-8697-606fa012ec64
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-12-17T04:01:57+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
-            handle: bodyText2
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 3eda82cf-969c-47c3-a0fd-e6c018c409f4
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T04:01:57+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: fe65fafc-55a8-474b-bd0f-a76a970e15a5 # Accordion
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: dcef830a-dd76-40d9-bc30-aea1c1ab85cd
-            userCondition: null
-            warning: null
-            width: 100
-        name: 'How we work with you'
-        uid: 31b7af35-7f83-4dad-8e21-53ae1479ba6e
-        userCondition: null
-      -
-        elementCondition: null
-        elements:
-          -
-            dateAdded: '2025-12-17T04:01:57+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
-            handle: paragraphHeading3
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: ad2568fa-2747-41e3-82c8-b9ee350f2632
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T04:01:57+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
-            handle: bodyText3
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: f41819a4-a87c-4ca1-af05-ffdf98929b8e
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T04:01:57+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: a8da3467-e2fa-4b90-b5e8-7df257de2ebc # Image
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 6246713b-a63a-409d-90a2-192dc3fd3e66
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-12-17T04:01:57+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: e7aad41d-ba44-478d-90e0-02389f7524fa # Button
-            handle: button2
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 57222f6d-15d4-43c6-8964-508246559750
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-04-08T22:33:14+00:00'
+            dateAdded: '2026-04-15T21:46:13+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -258,12 +220,44 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 8a5080e5-7e48-4ac5-b29f-baae32382c9d
+            uid: 9e0c3dfb-5773-4efd-a401-0d514e54adae
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T22:59:25+00:00'
+            dateAdded: '2026-04-15T21:46:13+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4c9973ff-0107-4739-a889-f352e62eca08 # Large Paragraph
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8c7a7a8d-2cc5-4bc2-a36d-1524f24e4fb7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-15T21:46:13+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: bodyText2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5ba8d40a-8645-41c3-8eca-34dd285b2c5b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-15T22:24:54+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -274,40 +268,72 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: b0540517-e3d3-4e1f-96c6-91a184cd7c48
+            uid: 2c0e48cf-3e7d-43e8-9eaf-4033ab34a92c
             userCondition: null
             warning: null
             width: 100
-        name: 'Get the first home buyers guide'
-        uid: e56a7bf6-e9fb-4da4-aab5-a9dd587b648e
+        name: 'Lead Magnet (Get the Guide)'
+        uid: a40b904f-926e-4e77-84b5-444575a17847
         userCondition: null
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-12-17T04:01:57+00:00'
+            dateAdded: '2026-04-15T21:46:13+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
-            handle: paragraphHeading4
+            fieldUid: cbd26eb9-425b-4f80-b796-58d777f40b96 # Main Headline
+            handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 24500d3f-b3c4-4c44-9e99-08dd3ac57eeb
+            uid: b5b210f0-1938-46ac-b750-b46035c235d3
             userCondition: null
             warning: null
             width: 100
-        name: Testimonials
-        uid: c14a0b49-5966-4164-a6a7-bfc7f82b3305
+          -
+            dateAdded: '2026-04-15T21:46:13+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4c9973ff-0107-4739-a889-f352e62eca08 # Large Paragraph
+            handle: largeParagraph2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b740a4f6-bf1e-411d-98a9-17449edfc3f9
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-15T21:46:13+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: bodyText3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 48199a67-1e4d-4156-a28e-8ab44aab461f
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Thank You Page'
+        uid: af70fa31-e3b2-47a0-baad-2f78b26f85af
         userCondition: null
     thumbFieldKey: null
-handle: firstHomeBuyers
+handle: landingPages
 hasTitleField: true
 icon: null
-name: 'First Home Buyers'
+name: 'Landing Pages'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null

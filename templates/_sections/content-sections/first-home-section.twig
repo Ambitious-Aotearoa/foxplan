@@ -86,6 +86,10 @@
                     {{ actionInput('contact-form/send') }}
                     {{ csrfInput() }}
 
+
+                    <input type="hidden" name="message[entryId]" value="{{ entry.id }}">
+                    <input type="hidden" name="message[formName]" value="First Home Buyers Guide">
+
                     {# Security: Captcha is here #}
                     {{ craft.contactFormExtensions.recaptcha | raw }}
 

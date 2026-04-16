@@ -2,10 +2,10 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: db3f4be3-1c80-405f-840c-01dddd834e4f # Meet the Team
-handle: meetTheTeam
+    uid: ada40f32-30fb-4a3e-8e4a-8c7eaf79db73 # Landing Pages
+handle: landingPages
 maxAuthors: 1
-name: 'Meet the team'
+name: 'Landing Pages'
 previewTargets:
   -
     label: 'Primary entry page'
@@ -16,9 +16,9 @@ siteSettings:
   904beb73-9861-43f3-8de7-90464f6457de: # foxplan
     enabledByDefault: true
     hasUrls: true
-    template: pages/Meet-the-team/index.twig
-    uriFormat: 'meet-the-team/{slug}'
+    template: pages/Landing-Pages/index.twig
+    uriFormat: '{slug}'
 structure:
   maxLevels: null
-  uid: 77113e78-39f3-4592-abb9-75993ce7aaea
+  uid: 7d6d9906-22df-4e8f-87ce-fd7409e93060
 type: structure
