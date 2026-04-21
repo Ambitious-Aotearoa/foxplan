@@ -1,12 +1,13 @@
+{# templates/_sections/hero-sections/hero-1.twig #}
+
 {% set heroImageAsset = (entry is defined and entry.heroImage is defined) ? entry.heroImage.one() : null %}
 
-{#  Image  #}
-{% if heroImageAsset %}
-    {% set finalImageUrl = heroImageAsset.getUrl() %}
-{% elseif props.imagePath is defined and props.imagePath is not empty %}
-    {% set finalImageUrl = craft.vite.asset(props.imagePath) %}
-{% else %}
-    {% set finalImageUrl = craft.vite.asset('images/hero.jpg') %}
+{# --- Image Logic Fix --- #}
+
+{% set staticFallback = null %}
+{% if not heroImageAsset %}
+    {% set staticPath = props.imagePath ?? 'images/hero.jpg' %}
+    {% set staticFallback = craft.vite.asset(staticPath) %}
 {% endif %}
 
 {#  Button #}
@@ -29,7 +30,6 @@
     headingLine2: entry.headingLine2 ?? '',
     bodyText: entry.heroBodyText ?? '',
     buttonText: processedButtonText,
-    imagePath: finalImageUrl,
     textColor: 'text-foxplan-charcoal-brown',
     buttonBgColor: 'bg-foxplan-charcoal-brown'
 } %}
@@ -42,9 +42,29 @@
 
     {# --- IMAGE LAYER --- #}
     <div class="relative lg:absolute px-4 lg:px-0 lg:right-[20px] lg:bottom-[80px] w-full lg:w-[60%] h-[400px] md:[200px] lg:h-auto lg:top-[30%] z-10 order-2 lg:order-none mt-2 mb-5 lg:mt-0 lg:mb-0">
-        <img src="{{ data.imagePath }}"
-             alt="{{ heroImageAsset.title ?? 'Hero Image' }}"
-             class="w-full h-full object-cover shadow-sm">
+        {% if heroImageAsset %}
+
+            {% set thumbSmall  = heroImageAsset.getUrl('heroSmall') ?: heroImageAsset.url %}
+            {% set thumbMedium = heroImageAsset.getUrl('heroMedium') ?: heroImageAsset.url %}
+            {% set thumbLarge  = heroImageAsset.getUrl('heroLarge') ?: heroImageAsset.url %}
+
+            <img
+                    src="{{ thumbMedium }}"
+                    srcset="{{ thumbSmall }} 768w,
+                        {{ thumbMedium }} 1200w,
+                        {{ thumbLarge }} 1920w"
+
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    alt="{{ heroImageAsset.title ?? 'Hero Image' }}"
+                    class="w-full h-full object-cover shadow-sm"
+                    loading="eager"
+                    fetchpriority="high">
+        {% else %}
+            <img src="{{ staticFallback }}"
+                 alt="Hero Image"
+                 class="w-full h-full object-cover shadow-sm"
+                 loading="eager">
+        {% endif %}
     </div>
 
     {# --- CONTENT & ARROW WRAPPER --- #}

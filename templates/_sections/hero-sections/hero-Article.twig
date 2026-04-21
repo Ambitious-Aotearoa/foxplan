@@ -31,12 +31,19 @@
             <div class="md:col-span-7 lg:col-span-8">
                 <div class="aspect-[16/7] w-full overflow-hidden bg-foxplan-charcoal-brown/5">
                     {% if heroImage %}
-                        <img src="{{ heroImage.url }}"
-                                {# Use the asset's alt text if defined, otherwise fallback to entry title #}
-                             alt="{{ heroImage.alt ?: entry.title }}"
-                             class="w-full h-full object-cover">
+                        {% set tSmall  = heroImage.getUrl('heroSmall') ?: heroImage.url %}
+                        {% set tMedium = heroImage.getUrl('heroMedium') ?: heroImage.url %}
+                        {% set tLarge  = heroImage.getUrl('heroLarge') ?: heroImage.url %}
+
+                        <img
+                                src="{{ tMedium }}"
+                                srcset="{{ tSmall }} 768w, {{ tMedium }} 1200w, {{ tLarge }} 1920w"
+                                sizes="(max-width: 1024px) 100vw, 80vw"
+                                alt="{{ heroImage.alt ?: entry.title }}"
+                                class="w-full h-full object-cover"
+                                loading="eager"
+                                fetchpriority="high">
                     {% else %}
-                        {# Fallback UI if import failed or image is missing #}
                         <div class="w-full h-full flex items-center justify-center border border-foxplan-charcoal-brown/10">
                             <span class="text-[10px] uppercase tracking-widest opacity-30 italic">Image Pending Import</span>
                         </div>

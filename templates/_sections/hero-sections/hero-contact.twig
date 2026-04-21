@@ -2,6 +2,9 @@
 
 {% set contentSource = entry ?? block ?? null %}
 
+{# 1. Get the CMS Asset if it exists #}
+{% set heroImageAsset = contentSource.heroImage is defined ? contentSource.heroImage.one() : null %}
+
 {% set entryTitle = contentSource.title ?? null %}
 {% set entryBody = contentSource.heroBodyText ?? null %}
 {% set entryButtonText = contentSource.button ?? null %}
@@ -17,24 +20,45 @@
 {% set data = defaults | merge(props | default({})) %}
 
 {% set titleStyles = 'font-size: clamp(3.5rem, 9vw + 1rem, 9rem); line-height: 0.95; word-break: keep-all;' %}
-
 {% set bodyStyles = 'font-size: 16px; line-height: 1.2;' %}
 
-{% set staticImagePath = alias('@web/dist/' ~ data.imageSrc) %}
+{# 2. Fallback for static image if no CMS asset is found #}
+{% set staticImagePath = craft.vite.asset(data.imageSrc) %}
 
 <section class="w-full {{ data.backgroundColor }} overflow-hidden relative">
     <div class="grid grid-cols-1 md:grid-cols-10 px-4 md:px-0 lg:px-0">
-{#style for section  #}
         <div class="hidden md:block md:col-span-1"></div>
         <div class="col-span-1 md:col-span-9 flex flex-col">
 
             {# IMAGE BLOCK #}
             <div class="relative w-full h-[500px] lg:h-[650px] overflow-hidden">
-                <img
-                        src="{{ staticImagePath }}"
-                        alt="{{ entryTitle }}"
-                        class="w-full h-full object-cover"
-                >
+
+                {% if heroImageAsset %}
+                    {# --- OPTIMIZED CMS IMAGE --- #}
+                    {% set thumbSmall  = heroImageAsset.getUrl('heroSmall') ?: heroImageAsset.url %}
+                    {% set thumbMedium = heroImageAsset.getUrl('heroMedium') ?: heroImageAsset.url %}
+                    {% set thumbLarge  = heroImageAsset.getUrl('heroLarge') ?: heroImageAsset.url %}
+
+                    <img
+                            src="{{ thumbMedium }}"
+                            srcset="{{ thumbSmall }} 768w,
+                                {{ thumbMedium }} 1200w,
+                                {{ thumbLarge }} 1920w"
+                            sizes="(max-width: 768px) 100vw, 90vw"
+                            alt="{{ entryTitle | striptags }}"
+                            class="w-full h-full object-cover"
+                            loading="eager"
+                            fetchpriority="high"
+                    >
+                {% else %}
+                    {# --- STATIC VITE FALLBACK --- #}
+                    <img
+                            src="{{ staticImagePath }}"
+                            alt="{{ entryTitle | striptags }}"
+                            class="w-full h-full object-cover"
+                            loading="eager"
+                    >
+                {% endif %}
 
                 {# TITLE OVERLAY #}
                 {% if entryTitle %}
@@ -50,8 +74,6 @@
             {# BOTTOM CONTENT BLOCK #}
             <div class=" mb-20">
                 <div class="max-w-[450px]">
-
-
                     {% if entryBody %}
                         <p class="font-aktiv {{ data.textColor }} mb-10"
                            style="{{ bodyStyles }} font-weight: 300;">

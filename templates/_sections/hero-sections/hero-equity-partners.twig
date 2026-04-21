@@ -10,7 +10,6 @@
 } %}
 
 {% set heroAsset = (entry is defined and entry.heroImage is defined) ? entry.heroImage.one() : null %}
-{% set heroImagePath = heroAsset ? heroAsset.url : alias('@web/dist/' ~ data.imagePath) %}
 
 <section class="w-full bg-foxplan-neutral-beige overflow-hidden font-aktiv"
          x-data="{ revealed: false }"
@@ -28,7 +27,25 @@
 
         {# Image container #}
         <div class="relative w-[85%] md:w-[75%] lg:w-[60%] aspect-[4/3] md:aspect-video lg:h-[480px] z-10">
-            <img src="{{ heroImagePath }}" alt="Equity Partners" class="w-full h-full object-cover">
+            {% if heroAsset %}
+                {% set tSmall  = heroAsset.getUrl('heroSmall') ?: heroAsset.url %}
+                {% set tMedium = heroAsset.getUrl('heroMedium') ?: heroAsset.url %}
+                {% set tLarge  = heroAsset.getUrl('heroLarge') ?: heroAsset.url %}
+
+                <img
+                        src="{{ tMedium }}"
+                        srcset="{{ tSmall }} 768w, {{ tMedium }} 1200w, {{ tLarge }} 1920w"
+                        sizes="(max-width: 1024px) 85vw, 60vw"
+                        alt="Equity Partners"
+                        class="w-full h-full object-cover"
+                        loading="eager"
+                        fetchpriority="high">
+            {% else %}
+                <img src="{{ craft.vite.asset(data.imagePath) }}"
+                     alt="Equity Partners"
+                     class="w-full h-full object-cover"
+                     loading="eager">
+            {% endif %}
         </div>
 
         {# Heading 2: Partners #}
