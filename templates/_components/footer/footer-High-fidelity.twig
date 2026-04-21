@@ -104,22 +104,22 @@
                         {# Column 1 #}
                         <div class="flex flex-col gap-y-3 sm:gap-y-4">
                             <a href="/mortgages" class="font-bold {{ data.textColor }} flex items-start gap-2 group" style="{{ preheadStyles }}">
-                                <span class="{{ data.separatorColor }} opacity-40 mt-0.5">|</span>
+                                <span class="{{ data.separatorColor }}  mt-0.5">|</span>
                                 <span class="transition-opacity duration-300 group-hover:opacity-70 uppercase">MORTGAGES</span>
                             </a>
                             <a href="/financial-planning" class="font-bold {{ data.textColor }} flex items-start gap-2" style="{{ preheadStyles }}">
-                                <span class="{{ data.separatorColor }} opacity-40 mt-0.5">|</span>
+                                <span class="{{ data.separatorColor }} mt-0.5">|</span>
                                 <span class="transition-opacity duration-300 group-hover:opacity-70 uppercase">FINANCIAL PLANNING</span>
                             </a>
                             <a href="/savings-investment" class="sm:hidden font-bold {{ data.textColor }} flex items-start gap-2 group" style="{{ preheadStyles }}">
-                                <span class="{{ data.separatorColor }} opacity-40 mt-0.5">|</span>
+                                <span class="{{ data.separatorColor }} mt-0.5">|</span>
                                 <span class="transition-opacity duration-300 group-hover:opacity-70 uppercase">SAVINGS & INVESTMENT</span>
                             </a>
                             <div class="pt-2 sm:pt-4">
                                 <h3 class="font-bold {{ data.textColor }} flex items-start gap-2 mb-2 sm:mb-3" style="{{ preheadStyles }}">
-                                    <span class="{{ data.separatorColor }} opacity-40 mt-0.5">|</span> LOCATION
+                                    <span class="{{ data.separatorColor }} mt-0.5">|</span> LOCATION
                                 </h3>
-                                <div class="pl-3 {{ data.textColor }} opacity-90" style="{{ paraStyles }}">
+                                <div class="pl-3 {{ data.textColor }} " style="{{ paraStyles }}">
                                     <p>Level 8, 138 The Terrace</p>
                                     <p>Wellington 6011</p>
                                 </div>
@@ -184,21 +184,21 @@
                         <div class="flex items-end sm:col-start-3 mt-2">
                             <div class="flex gap-2">
                                 {% if socialLinks.facebook ?? null %}
-                                    <div class="hover:opacity-70 transition-opacity duration-300">
+                                    <div class="hover:opacity-70 transition-opacity duration-300" aria-label="Follow us on Facebook">
                                         {{ include('_components/ui/icons/facebook-icon.twig', {
                                             props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.facebook }
                                         }) }}
                                     </div>
                                 {% endif %}
                                 {% if socialLinks.instagram ?? null %}
-                                    <div class="hover:opacity-70 transition-opacity duration-300">
+                                    <div class="hover:opacity-70 transition-opacity duration-300" aria-label="Follow us on Instagram">
                                         {{ include('_components/ui/icons/instagram-icon.twig', {
                                             props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.instagram }
                                         }) }}
                                     </div>
                                 {% endif %}
                                 {% if socialLinks.linkedin ?? null %}
-                                    <div class="hover:opacity-70 transition-opacity duration-300">
+                                    <div class="hover:opacity-70 transition-opacity duration-300" aria-label="Follow us on LinkedIn">
                                         {{ include('_components/ui/icons/linkedin-icon.twig', {
                                             props: { iconColor: socialIconColor, boxColor: socialBoxColor, size: 'w-8 h-8', url: socialLinks.linkedin }
                                         }) }}

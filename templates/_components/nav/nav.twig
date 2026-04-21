@@ -153,7 +153,7 @@
          @mouseleave="openTab = null">
         <div class="flex items-center h-16 lg:h-16">
             <a href="/"
-               class="flex items-center h-full pl-4 lg:pl-6  pr-4 xl:pr-10 flex-none {{ theme.textColor }} pt-1.5 overflow-hidden ">
+               class="flex items-center h-full pl-4 lg:pl-6  pr-4 xl:pr-10 flex-none {{ theme.textColor }} pt-1.5 overflow-hidden" aria-label="Go to FoxPlan Home">
                 <div class="relative h-7 lg:h-9 xl:h-11 w-auto flex items-center">
                     <div class="transition-all duration-700 ease-in-out transform"
                          :class="isScrolled ? 'scale-90 opacity-0 -translate-x-4' : 'scale-100 opacity-100 translate-x-0'">
@@ -196,7 +196,7 @@
             <div class="flex flex-none justify-end items-stretch h-full">
                 {# SEARCH BUTTON #}
                 <button @click="searchOpen = true"
-                        class="h-full px-4 lg:px-5 flex items-center justify-center cursor-pointer {{ theme.searchColour }} {{ theme.searchBgColor }} lg:border-r border-r border-white/20">
+                        class="h-full px-4 lg:px-5 flex items-center justify-center cursor-pointer {{ theme.searchColour }} {{ theme.searchBgColor }} lg:border-r border-r border-white/20" aria-label="Open Search">
                     <svg viewBox="0 0 20 20" fill="none" class="w-6 h-6 lg:w-4 xl:w-5 lg:h-4 xl:h-5">
                         <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
                               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -207,7 +207,7 @@
 
                 {# HAMBURGER BUTTON #}
                 <button @click="mobileMenuOpen = true"
-                        class="lg:hidden h-full px-5 {{ theme.textColor }} flex flex-col justify-center items-end gap-1.5 cursor-pointer">
+                        class="lg:hidden h-full px-5 {{ theme.textColor }} flex flex-col justify-center items-end gap-1.5 cursor-pointer" aria-label="Open Mobile Menu">
                     <span class="w-8 h-0.5 bg-current"></span>
                     <span class="w-5 h-0.5 bg-current"></span>
                     <span class="w-8 h-0.5 bg-current"></span>

@@ -35,6 +35,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-04-16T04:56:26+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d88c44ab-26ea-420e-a97d-8430b93e3aa9 # Hero Image Optimized
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f6c1b2ca-9a36-41e6-8fd7-70dca20cf61c
+            userCondition: null
+            warning: null
+            width: 100
         name: Content
         uid: b0869d00-430b-4ad1-bf74-809de4a0a712
         userCondition: null

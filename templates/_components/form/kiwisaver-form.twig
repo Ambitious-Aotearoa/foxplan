@@ -1,5 +1,3 @@
-{# templates/_components/forms/kiwisaver-form.twig #}
-
 {% set entry = entry ?? null %}
 
 {% set colors = {
@@ -16,22 +14,23 @@
         {{ entry ? entry.largeParagraph | raw : 'Fill in your details to receive your free guide.' }}
     </div>
 
-    <form method="post" action="" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+
+    <form method="post" action=""  class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
         {{ actionInput('contact-form/send') }}
         {{ csrfInput() }}
 
-
+        {# Keep the landing page redirect logic #}
         {{ redirectInput(url(entry.slug, { thanks: 1 })) }}
 
         {{ craft.contactFormExtensions.recaptcha | raw }}
 
-        {# Hidden fields for logic and admin triggers #}
+        {# Hidden fields for backend logic #}
         <input type="hidden" name="message[entryId]" value="{{ entry.id }}">
         <input type="hidden" name="message[formName]" value="{{ entry.title }} Guide">
         <input type="hidden" name="subject" value="{{ entry.title }} Guide Request">
-
         <input type="hidden" name="message[body]" value="A new download request has been submitted for the {{ entry.title }}.">
 
+        {# Form Fields #}
         <div class="relative">
             <input type="text" name="fromName" id="firstName" placeholder="First name" required
                    class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none placeholder:{{ colors.text }} font-aktiv text-lg">
@@ -77,6 +76,7 @@
         </div>
 
         <div class="col-span-full pt-4">
+
             {% include '_components/ui/button/button.twig' with {
                 props: {
                     text: 'SUBMIT',
@@ -88,3 +88,40 @@
         </div>
     </form>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('kiwi-js-form');
+        const btn = document.getElementById('form-submit-btn');
+
+        if (!form || !btn) return;
+
+        form.reset();
+
+        const updateCursor = () => {
+            const isValid = form.checkValidity();
+            if (isValid) {
+                btn.classList.add('cursor-pointer');
+                btn.classList.remove('cursor-default');
+                btn.style.opacity = "1";
+            } else {
+                btn.classList.add('cursor-default');
+                btn.classList.remove('cursor-pointer');
+                btn.style.opacity = "0.7";
+            }
+        };
+
+        form.addEventListener('input', updateCursor);
+        form.addEventListener('change', updateCursor);
+
+        form.addEventListener('submit', function() {
+            setTimeout(() => {
+                this.reset();
+                updateCursor();
+            }, 100);
+        });
+
+        updateCursor();
+    });
+</script>

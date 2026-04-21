@@ -1,7 +1,7 @@
 altTranslationKeyFormat: null
 altTranslationMethod: none
 fieldLayouts:
-  ffd62be4-752d-4baf-a1a5-cd98b4b35975:
+  450c7a7f-d093-479b-9eff-4ee794d9f753:
     cardThumbAlignment: end
     tabs:
       -
@@ -12,7 +12,7 @@ fieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
-            dateAdded: '2026-02-12T04:26:50+00:00'
+            dateAdded: '2026-04-16T05:20:06+00:00'
             disabled: false
             elementCondition: null
             id: null
@@ -31,20 +31,36 @@ fieldLayouts:
             tip: null
             title: null
             type: craft\fieldlayoutelements\assets\AssetTitleField
-            uid: 3a15b482-d734-4351-b574-efbe2fad5ee1
+            uid: df0088b9-d09b-4386-9cdd-8a99fa7a780e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-16T05:21:47+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d88c44ab-26ea-420e-a97d-8430b93e3aa9 # Hero Image Optimized
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d38f3fae-27ed-470b-a095-9f8f79a1b5cc
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: 7f3fa6b6-fd01-4fc2-b3db-252687d250e6
+        uid: 6d063f1b-6fb3-45b5-99a1-2e74d4eadc96
         userCondition: null
     thumbFieldKey: null
 fs: foxplanAssets
-handle: newsImages
-name: 'News Images'
-sortOrder: 6
-subpath: news-images
+handle: testOptimisedVolume
+name: 'test optimised volume'
+sortOrder: 7
+subpath: test-images
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
 transformFs: foxplanTransforms
-transformSubpath: news-transforms
+transformSubpath: test-images

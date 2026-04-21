@@ -1,13 +1,13 @@
 {# templates/_sections/hero-mortgages.twig #}
 
 {# 1. Fetch data from the entry #}
-{% set heroImage = entry.heroImage.one() %}
+{% set heroImageAsset = entry.heroImage.one() %}
 
 {% set heroData = {
     title: entry.title ?? 'Mortgages',
     bodyText: entry.heroBodyText ?? "Whether you're buying your first home...",
     button: entry.button ?? 'Book a call',
-    imageSrc: heroImage ? heroImage.url : null,
+    imageAsset: heroImageAsset,
     backgroundColor: entry.backgroundColor.value ?? 'bg-foxplan-neutral-beige',
     textColor: 'text-foxplan-charcoal-brown'
 } %}
@@ -52,23 +52,41 @@
                 </div>
             </div>
 
-            {#
-            RIGHT IMAGE COLUMN (70%)
-            #}
+            {# RIGHT IMAGE COLUMN (70%) #}
             <div class="w-full md:w-[65%] lg:w-[70%] mb-4 md:mb-0">
                 <div class="relative w-full aspect-[16/9] md:aspect-auto h-full overflow-hidden px-4 md:px-0">
-                    {% if heroData.imageSrc %}
-                        <img src="{{ heroData.imageSrc }}"
-                             alt="{{ heroData.title | striptags }}"
-                             class="w-full h-full object-cover block">
+                    {% if heroData.imageAsset %}
+
+                        {# 1. Define only the 3 standard handles #}
+                        {% set thumbSmall  = heroData.imageAsset.getUrl('heroSmall') ?: heroData.imageAsset.url %}
+                        {% set thumbMedium = heroData.imageAsset.getUrl('heroMedium') ?: heroData.imageAsset.url %}
+                        {% set thumbLarge  = heroData.imageAsset.getUrl('heroLarge') ?: heroData.imageAsset.url %}
+
+                        <img
+                                src="{{ thumbMedium }}"
+                                srcset="{{ thumbSmall }} 768w,
+                        {{ thumbMedium }} 1200w,
+                        {{ thumbLarge }} 1920w"
+
+                               
+                                sizes="(max-width: 768px) 100vw,
+                       (max-width: 1200px) 70vw,
+                       1920px"
+
+                                alt="{{ heroData.title | striptags }}"
+                                class="w-full h-full object-cover block"
+                                loading="eager"
+                                fetchpriority="high"
+                        >
                     {% else %}
+                        {# Static fallback from Vite #}
                         <img src="{{ craft.vite.asset('images/Mortgage_1.jpg') }}"
                              alt="{{ heroData.title | striptags }}"
-                             class="w-full h-full object-cover block">
+                             class="w-full h-full object-cover block"
+                             loading="eager">
                     {% endif %}
                 </div>
             </div>
-
         </div>
     </div>
 </section>

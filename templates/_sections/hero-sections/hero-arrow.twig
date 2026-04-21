@@ -1,9 +1,13 @@
 {# templates/_sections/hero-sections/hero-arrow.twig #}
 
 {% set sourceEntry = entry ?? craft.entries.section('accounting').one() %}
-{% set heroImageAsset = props.imageAsset ?? entry.heroImage.one() ?? null %}
 
-{# Arrow Logic #}
+{% set heroImageAsset = props.imageAsset ?? null %}
+
+{% if not heroImageAsset and entry is defined and entry %}
+    {% set heroImageAsset = entry.heroImageOptimized.one() ?? entry.heroImage.one() ?? null %}
+{% endif %}
+
 {% set arrowPath = '@webroot/dist/images/placeholder/Arrow_1.svg' %}
 
 {% set defaults = {
@@ -24,24 +28,20 @@
          x-init="setTimeout(() => revealed = true, 150)">
 
     <div class="flex flex-wrap w-full items-center mb-10 relative">
-        {# --- THE ARROW --- #}
         <div class="hidden md:flex w-[30%] items-center justify-start pr-8 lg:pr-12">
             <div class="w-full h-8 flex items-center">
                 <div class="transition-all duration-[2500ms] overflow-hidden"
                      style="transition-timing-function: steps(15); width: 0px; opacity: 0;"
                      :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0px; opacity: 0;'">
-
                     {{ svg(alias(arrowPath))|attr({
                         class: 'w-full h-auto block object-contain max-h-6 object-left fill-current ' ~ data.textColor,
                         role: 'presentation',
                         style: 'fill: currentColor !important;'
                     }) }}
-
                 </div>
             </div>
         </div>
 
-        {# --- THE TEXT --- #}
         <div class="w-full md:w-[70%] px-4 md:px-6 lg:px-8">
             <h2 class="font-serif leading-[0.95] tracking-tight {{ data.textColor }}"
                 style="font-size: clamp(3rem, 8vw + 1rem, 7.5rem);">
@@ -54,15 +54,28 @@
         <div class="w-full lg:w-[70%] relative overflow-hidden">
             <div class="relative w-full aspect-[16/9] lg:aspect-auto lg:h-[600px] px-4 lg:px-0">
                 {% if heroImageAsset %}
-                    <img src="{{ heroImageAsset.url }}"
-                         alt="{{ heroImageAsset.title }}"
-                         class="w-full h-full object-cover">
+                    {% set thumbSmall  = heroImageAsset.getUrl('heroSmall') %}
+                    {% set thumbMedium = heroImageAsset.getUrl('heroMedium') %}
+                    {% set thumbLarge  = heroImageAsset.getUrl('heroLarge') %}
 
+                    <img
+                            src="{{ thumbMedium }}"
+                            srcset="{{ thumbSmall }} 768w,
+                    {{ thumbMedium }} 1200w,
+                    {{ thumbLarge }} 1920w"
+
+                            sizes="(max-width: 768px) 100vw,
+                   (max-width: 1200px) 70vw,
+                   1920px"
+
+                            alt="{{ heroImageAsset.title }}"
+                            class="w-full h-full object-cover"
+                            loading="eager"
+                            fetchpriority="high">
                 {% endif %}
             </div>
         </div>
 
-        {# --- CONTENT COLUMN --- #}
         <div class="w-full lg:w-[30%] px-4 md:px-6 lg:px-8 space-y-6 pt-10 lg:pt-0">
             {% if data.bodyText %}
                 <div class="font-aktiv leading-[1.15] {{ data.textColor }} font-medium"
@@ -71,24 +84,19 @@
                 </div>
             {% endif %}
 
-            {# 3. RESTORED BUTTON #}
             {% if data.buttonText %}
                 <div class="mt-4">
                     <div @click="
-                const targetId = '{{ data.buttonUrl }}';
-                {# Only attempt to scroll if targetId starts with # AND has characters after it (e.g., #strategies) #}
-                const isAnchor = targetId.startsWith('#') && targetId.length > 1;
-                const targetEl = isAnchor ? document.querySelector(targetId) : null;
-
-                if (isAnchor && targetEl) {
-                    targetEl.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    {# If it's just '#' or a normal link, open the overlay #}
-                    showBookCallOverlay = true;
-                }
-             "
+                        const targetId = '{{ data.buttonUrl }}';
+                        const isAnchor = targetId.startsWith('#') && targetId.length > 1;
+                        const targetEl = isAnchor ? document.querySelector(targetId) : null;
+                        if (isAnchor && targetEl) {
+                            targetEl.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            showBookCallOverlay = true;
+                        }
+                     "
                          class="cursor-pointer inline-block">
-
                         {% include '_components/ui/button/button.twig' with {
                             props: {
                                 text: data.buttonText,
@@ -98,7 +106,6 @@
                                 textColor: data.buttonTextColor
                             }
                         } only %}
-
                     </div>
                 </div>
             {% endif %}

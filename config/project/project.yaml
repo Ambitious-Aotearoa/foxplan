@@ -1,4 +1,4 @@
-dateModified: 1776305789
+dateModified: 1776737202
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -47,13 +47,14 @@ meta:
     1a9ce3fa-1c8d-4886-80cd-77cc624c2a1a: 'Episode Duration' # Episode Duration
     1bce15eb-e441-43c8-bff3-cb4b0197fef2: 'Hero Body Text' # Hero Body Text
     1bf81b4c-12eb-4329-8dc6-5ce2b0f86018: 'Accordion Heading' # Accordion Heading
+    1c3e5348-6abc-41a0-9e61-22e4ee13eb19: 'test optimised volume' # test optimised volume
+    1ca654fb-557f-451e-ba74-b13834aad440: 'Hero Medium' # Hero Medium
     1cae6508-6f15-4d3b-ac58-8fea7303e323: 'Thankyou Page' # Thankyou Page
     01d859f3-0f5b-434d-b064-a75dd6b9f60f: Testimonial # Testimonial
     1e5a8282-7128-4cdd-8a59-3356f7b08ffe: Partners # Partners
     1ea1b840-4b19-4a98-8b5d-41c57d8af35b: Article # Article
     01ecd437-5f62-458f-b583-9d1b745716e4: icons # icons
     1f3b761a-df20-421d-a75d-d0d3f165e693: 'Business planning' # Business planning
-    2cba3be1-3443-4238-b63d-512bb6544a41: 'News Images' # News Images
     2de20070-eb47-4109-9589-d1c774ea32ac: 'Attachment Message' # Attachment Message
     2ed3c1eb-4182-42c9-979f-0f2b02e8e628: 'Button URL' # Button URL
     3a18a3a4-7da8-482b-b475-06dfad80f264: 'Spotify URL' # Spotify URL
@@ -101,6 +102,7 @@ meta:
     9bdc992e-fe2b-4e1d-926a-01d9a7b5772d: 'Info Block' # Info Block
     9cbda385-c5d0-4789-be07-15ec1b46b4da: Instagram # Instagram
     9d5444d6-0da9-4778-9426-4aaad4fd1490: 'Career Benefit matrix' # Career Benefit matrix
+    14f0653e-efe9-4957-a39d-a45fafc7f39e: 'Hero Small' # Hero Small
     20a2a580-d219-4d89-85de-c3cef6cd5616: 'First Home Buyers' # First Home Buyers
     21b7b768-00fc-45e6-93ad-a17640300f0b: 'Employee financial wellbeing' # Employee financial wellbeing
     30e93460-18e1-473b-90f6-17bed59eb35e: 'Contact Info' # Contact Info
@@ -195,11 +197,11 @@ meta:
     b8dfe219-cd2b-4062-b6c5-2a0b07241d1a: 'Careers Page' # Careers Page
     b8fb7c6f-f535-4aa2-9285-e31412193b9b: Complaints # Complaints
     b21bad80-2c2d-4197-aeab-31f8b56a3bee: 'Spotify Playlist' # Spotify Playlist
-    b30bd8f6-6a9f-410d-80b5-44f1baf3babf: 'Featured Image' # Featured Image
     b235fa17-3de1-4a26-b99a-80ca66a403ed: 'kiwisaver calculator' # kiwisaver calculator
     b898b7e2-c466-4f6e-89b2-5fc8070636bd: 'Contact Us Page' # Contact Us Page
     b974ddd6-5e6a-460f-8100-45bdf6fe5c1d: 'Provider Name' # Provider Name
     b692872d-72dd-446b-9762-81992436c375: podcasts # podcasts
+    bc06dd7f-b2cc-4005-af2e-87b42e0fa14f: 'Hero Large' # Hero Large
     bd9810cb-e0b5-44c9-a927-d6519786b086: Mortgages # Mortgages
     bed732d3-f5cc-42ac-bfc9-d5d1666a7a29: 'Page Builder2' # Page Builder2
     c036502b-7de9-4641-9539-24188822e437: 'Info Block' # Info Block
@@ -220,6 +222,7 @@ meta:
     cff38048-563c-4fdc-b87c-d5ddb0084953: Insurance # Insurance
     d9eed74d-4b09-4ac9-8402-86fabd752e4f: 'Hero Images' # Hero Images
     d71d9025-4b25-42b3-956c-faa7e975d728: 'Page Builder2' # Page Builder2
+    d88c44ab-26ea-420e-a97d-8430b93e3aa9: 'Hero Image Optimized' # Hero Image Optimized
     d391e190-d04a-4084-8e2b-dd70cb741339: 'Suppliers Logo' # Suppliers Logo
     d2442bfd-d769-4080-9505-d553f86821d8: 'Tabs Subheading' # Tabs Subheading
     d4886813-ca9f-4b8a-a82c-097ea4232f7e: 'Insight Body' # Insight Body
@@ -311,6 +314,11 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 5.14.0
+  image-optimize:
+    edition: standard
+    enabled: true
+    licenseKey: 5PCAOFD7FV3YGD7VITGV1HSB
+    schemaVersion: 1.0.0
   mailgun:
     edition: standard
     enabled: true
@@ -342,5 +350,6 @@ system:
   edition: solo
   live: true
   name: foxplan
+  retryDuration: null
   schemaVersion: 5.9.0.8
-  timeZone: America/Los_Angeles
+  timeZone: Pacific/Auckland

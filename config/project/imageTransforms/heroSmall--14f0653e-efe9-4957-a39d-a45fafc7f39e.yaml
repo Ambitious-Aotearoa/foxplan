@@ -1,0 +1,11 @@
+fill: null
+format: null
+handle: heroSmall
+height: 432
+interlace: none
+mode: crop
+name: 'Hero Small'
+position: center-center
+quality: null
+upscale: true
+width: 768

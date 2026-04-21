@@ -21,13 +21,13 @@
 
                 <span>{{ entry.postDate | date('F j, Y') | upper }}</span>
 
-                <span class="mx-4 opacity-40">|</span>
+                <span class="mx-4">|</span>
 
                 <div class="flex flex-wrap items-center gap-x-4">
                     {% for cat in categories %}
                         <div class="flex items-center gap-x-2">
                             <span>{{ cat.title | upper }}</span>
-                            <span class="text-[12px] leading-none select-none opacity-60">•</span>
+                            <span class="text-[12px] leading-none select-none">•</span>
                         </div>
                     {% endfor %}
                 </div>

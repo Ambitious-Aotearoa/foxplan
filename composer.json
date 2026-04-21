@@ -9,6 +9,7 @@
     "craftcms/mailgun": "^3.1.0",
     "ether/seo": "^5.0",
     "hybridinteractive/craft-contact-form-extensions": "^5.0.0",
+    "nystudio107/craft-imageoptimize": "^5.0.7",
     "nystudio107/craft-vite": "5.0.1",
     "spicyweb/craft-embedded-assets": "^5.4.7",
     "vaersaagod/dospaces": "3.2.1",

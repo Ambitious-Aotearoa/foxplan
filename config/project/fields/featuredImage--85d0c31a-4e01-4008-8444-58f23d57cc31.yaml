@@ -10,7 +10,7 @@ settings:
   allowedKinds: null
   branchLimit: null
   defaultPlacement: end
-  defaultUploadLocationSource: 'volume:2cba3be1-3443-4238-b63d-512bb6544a41' # News Images
+  defaultUploadLocationSource: 'volume:e1de6612-ffab-49d4-8b6e-40acfa08eb0e' # News Images
   defaultUploadLocationSubpath: null
   maintainHierarchy: false
   maxRelations: null

@@ -63,11 +63,29 @@
             <div class="w-full md:w-[70%]">
                 <div class="w-full relative overflow-hidden">
                     {% set imgClasses = "w-full h-[400px] md:h-[550px] lg:h-[650px] object-cover block" %}
+
                     {% if data.imageSrc %}
-                        <img src="{{ data.imageSrc }}" alt="{{ data.title|striptags }}" class="{{ imgClasses }}">
+                        {% set optimized = data.imageSrc.heroImageOptimized ?? null %}
+
+                        {% if optimized %}
+                            <img src="{{ optimized.src() }}"
+                                 srcset="{{ optimized.srcset() }}"
+                                 sizes="(max-width: 768px) 100vw, 70vw"
+                                 alt="{{ data.title|striptags }}"
+                                 class="{{ imgClasses }}"
+                                 loading="lazy">
+                        {% else %}
+                            <img src="{{ data.imageSrc.url ?? data.imageSrc }}"
+                                 alt="{{ data.title|striptags }}"
+                                 class="{{ imgClasses }}"
+                                 loading="lazy">
+                        {% endif %}
+
                     {% else %}
-                        <img src="{{ craft.vite.asset('images/Insights_4.jpg') }}" alt="{{ data.title|striptags }}"
-                             class="{{ imgClasses }}">
+                        <img src="{{ craft.vite.asset('images/Insights_4.jpg') }}"
+                             alt="{{ data.title|striptags }}"
+                             class="{{ imgClasses }}"
+                             loading="lazy">
                     {% endif %}
                 </div>
             </div>
