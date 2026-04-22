@@ -19,8 +19,36 @@
 <div x-data="{
     showFirstHomeOverlay: false,
     step: 1,
-    initCalendly() {
-        if (window.Calendly) {
+    calendlyScriptLoading: false,
+
+    async initCalendly() {
+        // 1. If script isn't there and not already loading, inject it
+        if (!window.Calendly && !this.calendlyScriptLoading) {
+            this.calendlyScriptLoading = true;
+            const script = document.createElement('script');
+            script.src = 'https://assets.calendly.com/assets/external/widget.js';
+            script.async = true;
+            document.head.appendChild(script);
+
+            await new Promise((resolve) => {
+                script.onload = () => {
+                    this.calendlyScriptLoading = false;
+                    resolve();
+                };
+            });
+        }
+
+        // 2. Wait a tiny beat if the script just finished to ensure global object is parsed
+        if (!window.Calendly) {
+            let attempts = 0;
+            while (!window.Calendly && attempts < 10) {
+                await new Promise(r => setTimeout(r, 100));
+                attempts++;
+            }
+        }
+
+        // 3. Initialize the widget
+        if (window.Calendly && this.$refs.calendlyTarget) {
             this.$refs.calendlyTarget.innerHTML = '';
             Calendly.initInlineWidget({
                 url: 'https://calendly.com/foxplansales/discovery-phone-call-clone?hide_event_type_details=1&background_color=f9efd8&primary_color=270e15&text_color=270e15',
@@ -28,30 +56,33 @@
             });
         }
     },
+
     async handleDownloadAndSubmit(e) {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
 
-        // Submit form via AJAX
-        fetch('', {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        });
+        // Submit form via AJAX to Craft CMS
+        try {
+            await fetch('', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+        } catch (error) {
+            console.error('Form submission failed:', error);
+        }
 
-        // 1. REFRESH FORM: This clears the inputs immediately
+        // Clear form and move to Step 2
         form.reset();
-
-        // 2. Move to Calendly step
         this.step = 2;
-        this.$nextTick(() => { this.initCalendly(); });
+
+        // Ensure DOM has updated to show the calendlyTarget ref
+        this.$nextTick(() => {
+            this.initCalendly();
+        });
     }
-}"
-     x-init="$watch('showFirstHomeOverlay', value => {
-    if (!value) setTimeout(() => step = 1, 300);
-    document.body.style.overflow = value ? 'hidden' : '';
-})">
+}">
 
     {# Main Section UI #}
     <section class="{{ data.backgroundColor }} w-full overflow-hidden border-t {{ data.borderColor }}">
