@@ -36,18 +36,26 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-16T04:56:12+00:00'
-            editCondition: null
+            attribute: alt
+            class: null
+            cols: null
+            dateAdded: '2026-04-21T23:59:42+00:00'
+            disabled: false
             elementCondition: null
-            elementEditCondition: null
-            fieldUid: d88c44ab-26ea-420e-a97d-8430b93e3aa9 # Hero Image Optimized
-            handle: null
+            id: null
             instructions: null
             label: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: true
             required: false
+            rows: null
             tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 3f303640-f047-492a-823e-4309f0a67224
+            title: null
+            type: craft\fieldlayoutelements\assets\AltField
+            uid: bc76625b-46d3-4f64-9374-dff475e071f9
             userCondition: null
             warning: null
             width: 100

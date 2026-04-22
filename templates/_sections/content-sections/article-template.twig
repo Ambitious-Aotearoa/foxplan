@@ -47,7 +47,8 @@
                     <div class="aspect-[16/9] w-full overflow-hidden bg-foxplan-charcoal-brown/5">
                         {% if mainImage %}
                             <img src="{{ mainImage.url }}"
-                                 alt="{{ mainImage.title ?: entry.title }}"
+                                    {# Updated: Try 'alt' field, then image title, then entry title #}
+                                 alt="{{ mainImage.alt | default(mainImage.title) | default(entry.title) | striptags }}"
                                  class="w-full h-full object-cover">
                         {% endif %}
                     </div>
@@ -91,7 +92,10 @@
                             <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {% for image in allFeaturedImages|slice(1) %}
                                     <div class="aspect-square overflow-hidden bg-foxplan-charcoal-brown/5">
-                                        <img src="{{ image.url }}" alt="{{ image.title }}" class="w-full h-full object-cover">
+                                        <img src="{{ image.url }}"
+                                                {# Updated: Use the new alt field for the secondary grid #}
+                                             alt="{{ image.alt | default(image.title) | striptags }}"
+                                             class="w-full h-full object-cover">
                                     </div>
                                 {% endfor %}
                             </div>
@@ -116,17 +120,17 @@
 
                         {# LinkedIn #}
                         {{ include('_components/ui/icons/linkedin-icon.twig', {
-                        props: {
+                            props: {
                                 ariaLabel: 'Share on LinkedIn',
-                        iconColor: 'text-foxplan-neutral-beige',
-                        boxColor: 'bg-foxplan-charcoal-brown',
-                        size: 'w-8 h-8',
-                        url: 'https://www.linkedin.com/sharing/share-offsite/?url=' ~ entry.url | url_encode
-                        }
+                                iconColor: 'text-foxplan-neutral-beige',
+                                boxColor: 'bg-foxplan-charcoal-brown',
+                                size: 'w-8 h-8',
+                                url: 'https://www.linkedin.com/sharing/share-offsite/?url=' ~ entry.url | url_encode
+                            }
                         }) }}
 
 
-{#                        {Instagram Profile  }#}
+                        {#                        {Instagram Profile  }#}
                         {{ include('_components/ui/icons/instagram-icon.twig', {
                             props: {
                                 ariaLabel: 'Follow us on Instagram',

@@ -39,7 +39,7 @@
                                 src="{{ tMedium }}"
                                 srcset="{{ tSmall }} 768w, {{ tMedium }} 1200w, {{ tLarge }} 1920w"
                                 sizes="(max-width: 1024px) 100vw, 80vw"
-                                alt="{{ heroImage.alt ?: entry.title }}"
+                                alt="{{ heroImage.alt | default(entry.title) | striptags }}"
                                 class="w-full h-full object-cover"
                                 loading="eager"
                                 fetchpriority="high">

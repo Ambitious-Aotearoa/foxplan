@@ -73,7 +73,7 @@
                                 src="{{ tMedium }}"
                                 srcset="{{ tSmall }} 768w, {{ tMedium }} 1200w, {{ tLarge }} 1920w"
                                 sizes="(max-width: 768px) 100vw, 70vw"
-                                alt="{{ data.title|striptags }}"
+                                alt="{{ image.alt | default(data.title) | striptags }}"
                                 class="{{ imgClasses }}"
                                 loading="lazy">
                     {% else %}

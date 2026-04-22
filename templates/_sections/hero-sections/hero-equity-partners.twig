@@ -36,7 +36,7 @@
                         src="{{ tMedium }}"
                         srcset="{{ tSmall }} 768w, {{ tMedium }} 1200w, {{ tLarge }} 1920w"
                         sizes="(max-width: 1024px) 85vw, 60vw"
-                        alt="Equity Partners"
+                        alt="{{ heroImage.alt | default('Equity Partners') | striptags }}"
                         class="w-full h-full object-cover"
                         loading="eager"
                         fetchpriority="high">

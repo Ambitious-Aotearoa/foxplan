@@ -45,7 +45,7 @@
                                 {{ thumbMedium }} 1200w,
                                 {{ thumbLarge }} 1920w"
                             sizes="(max-width: 768px) 100vw, 90vw"
-                            alt="{{ entryTitle | striptags }}"
+                            alt="{{ image.alt | default(entryTitle) | striptags }}"
                             class="w-full h-full object-cover"
                             loading="eager"
                             fetchpriority="high"

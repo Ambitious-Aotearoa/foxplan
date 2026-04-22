@@ -1,4 +1,4 @@
-dateModified: 1776737202
+dateModified: 1776818007
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -192,6 +192,7 @@ meta:
     ae3b1cac-b5b2-4049-8f3b-9b0ea022dff5: 'Investment Calculator' # Investment Calculator
     af4882ee-8166-4ffc-a8b0-ba6b3d4e9b15: Disclosure # Disclosure
     b3a7a45d-0731-47a9-87bb-e0776ef3778c: Instagram # Instagram
+    b3ce1a52-5fca-45a2-b345-5890ea94ab22: 'Alternative Text' # Alternative Text
     b3d02c0f-4eb6-471b-a4fd-e7ade89de423: 'Hero Matrix' # Hero Matrix
     b3e0436c-c0e6-4ebd-8278-c69c2a07f9e6: Insights # Insights
     b8dfe219-cd2b-4062-b6c5-2a0b07241d1a: 'Careers Page' # Careers Page

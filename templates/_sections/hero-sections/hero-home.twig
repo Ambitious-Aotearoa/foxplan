@@ -55,7 +55,7 @@
                         {{ thumbLarge }} 1920w"
 
                     sizes="(max-width: 1024px) 100vw, 60vw"
-                    alt="{{ heroImageAsset.title ?? 'Hero Image' }}"
+                    alt="{{ heroImageAsset.alt | default(heroImageAsset.title) | default('Hero Image') | striptags }}"
                     class="w-full h-full object-cover shadow-sm"
                     loading="eager"
                     fetchpriority="high">

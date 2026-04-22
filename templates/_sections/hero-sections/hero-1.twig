@@ -68,12 +68,13 @@
                         {{ thumbMedium }} 1200w,
                         {{ thumbLarge }} 1920w"
 
-
                                 sizes="(max-width: 768px) 100vw,
                        (max-width: 1200px) 70vw,
                        1920px"
 
-                                alt="{{ heroData.title | striptags }}"
+
+                                alt="{{ heroData.imageAsset.alt | default(heroData.title) | striptags }}"
+
                                 class="w-full h-full object-cover block"
                                 loading="eager"
                                 fetchpriority="high"
@@ -81,6 +82,7 @@
                     {% else %}
                         {# Static fallback from Vite #}
                         <img src="{{ craft.vite.asset('images/Mortgage_1.jpg') }}"
+
                              alt="{{ heroData.title | striptags }}"
                              class="w-full h-full object-cover block"
                              loading="eager">

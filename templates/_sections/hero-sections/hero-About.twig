@@ -70,7 +70,7 @@
                             src="{{ t2Medium }}"
                             srcset="{{ t2Small }} 768w, {{ t2Medium }} 1200w, {{ t2Large }} 1920w"
                             sizes="(max-width: 768px) 100vw, 50vw"
-                            alt="{{ data.title }}"
+                            alt="{{ image2.alt | default(data.title) | striptags }}"
                             class="w-full h-full object-cover"
                             loading="eager"
                             fetchpriority="high">

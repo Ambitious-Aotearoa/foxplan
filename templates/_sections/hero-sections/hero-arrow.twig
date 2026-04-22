@@ -55,24 +55,28 @@
             {# Image #}
             <div class="relative w-full aspect-[16/9] lg:aspect-auto lg:h-[600px] px-4 lg:px-0">
                 {% if heroImageAsset %}
-                    {% set thumbSmall  = heroImageAsset.getUrl('heroSmall') %}
-                    {% set thumbMedium = heroImageAsset.getUrl('heroMedium') %}
-                    {% set thumbLarge  = heroImageAsset.getUrl('heroLarge') %}
+                    {% set thumbSmall  = heroImageAsset.getUrl('heroSmall') ?: heroImageAsset.url %}
+                    {% set thumbMedium = heroImageAsset.getUrl('heroMedium') ?: heroImageAsset.url %}
+                    {% set thumbLarge  = heroImageAsset.getUrl('heroLarge') ?: heroImageAsset.url %}
 
-                    <img
-                            src="{{ thumbMedium }}"
-                            srcset="{{ thumbSmall }} 768w,
-                    {{ thumbMedium }} 1200w,
-                    {{ thumbLarge }} 1920w"
+                    <picture>
+                        <source media="(min-width: 1025px)"
+                                srcset="{{ thumbLarge }} 1920w, {{ thumbMedium }} 1200w"
+                                sizes="70vw">
 
-                            sizes="(max-width: 768px) 100vw,
-                   (max-width: 1200px) 70vw,
-                   1920px"
+                        <source media="(min-width: 769px)"
+                                srcset="{{ thumbMedium }} 1200w">
 
-                            alt="{{ heroImageAsset.title }}"
-                            class="w-full h-full object-cover"
-                            loading="eager"
-                            fetchpriority="high">
+
+                        <img
+                                src="{{ thumbMedium }}"
+                                srcset="{{ thumbSmall }} 768w, {{ thumbMedium }} 1200w"
+                                sizes="100vw"
+                                alt="{{ heroImageAsset.alt | default(heroImageAsset.title) | striptags }}"
+                                class="w-full h-full object-cover"
+                                loading="eager"
+                                fetchpriority="high">
+                    </picture>
                 {% endif %}
             </div>
         </div>

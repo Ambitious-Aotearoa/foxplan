@@ -109,11 +109,11 @@
                                 <div class="aspect-square bg-foxplan-charcoal-brown/5 mb-8 overflow-hidden">
                                     {% set portrait = member.memberImage.one() %}
                                     <img src="{{ portrait ? portrait.url : craft.vite.asset('images/About_1.jpg') }}"
-                                         alt="{{ member.memberName }}"
+                                         alt="{{ portrait.alt | default(member.memberName) | striptags }}"
                                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                                 </div>
 
-                                {# Forced height ONLY on medium screens to fix misalignment during text wrap; stripped on large #}
+
                                 <div class="md:min-h-[5rem] lg:min-h-0 flex flex-col justify-start">
                                     <h3 class="font-serif text-foxplan-charcoal-brown mb-2"
                                         style="font-size: clamp(1.875rem, 3vw, 2.25rem); line-height: 1.1;">
@@ -121,7 +121,7 @@
                                     </h3>
                                 </div>
 
-                                {# Job Title: Aligns phone numbers and body text on medium screens #}
+                                {# Job Title #}
                                 <div class="md:min-h-[4rem] lg:min-h-0 flex flex-col justify-start mb-6">
                                     <p class="font-aktiv text-[12px] font-bold uppercase tracking-[0.05em] text-foxplan-charcoal-brown opacity-70">
                                         {{ member.jobTitle }}

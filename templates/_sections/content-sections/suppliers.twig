@@ -33,7 +33,7 @@
                                 {% set image = supplier.suppliersImage.one() %}
                                 {% if image %}
                                     <img src="{{ image.url }}"
-                                         alt="{{ supplier.providerName }}"
+                                         alt="{{ image.alt | default(supplier.providerName) | striptags }}"
                                          class="max-h-full object-contain object-left transition-transform duration-500"
                                          style="width: clamp(130px, 12vw + 1rem, 260px);">
                                 {% else %}
