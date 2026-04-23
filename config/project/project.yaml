@@ -1,4 +1,4 @@
-dateModified: 1776919761
+dateModified: 1776920633
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -324,15 +324,6 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
-  recaptcha:
-    edition: standard
-    enabled: true
-    schemaVersion: 1.0.0
-    settings:
-      secretKey: 6LcyPLYsAAAAALdGo4iQxptRTRF62Si0i0S-Cue-
-      shareUserIPs: ''
-      siteKey: 6LcyPLYsAAAAANQmukUZ-5BHnUsisHmmsnBJxeeT
-      validateContactForm: '1'
   seo:
     edition: standard
     enabled: true
