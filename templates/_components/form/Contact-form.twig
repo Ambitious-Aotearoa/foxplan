@@ -12,7 +12,7 @@
     {{ craft.contactFormExtensions.recaptcha | raw }}
 
     {# --- HYBRID TRIGGER --- #}
-    {# This tells the PHP Module to use the hardcoded 'contact' logic #}
+
     <input type="hidden" name="message[formType]" value="contact">
 
     <input type="hidden" name="redirect" value="{{ 'pages/Thank-You'|hash }}">

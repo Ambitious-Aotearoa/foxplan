@@ -26,7 +26,7 @@
 
         {# Hidden fields for backend logic #}
         <input type="hidden" name="message[entryId]" value="{{ entry.id }}">
-        <input type="hidden" name="message[formName]" value="{{ entry.title }} ">
+        <input type="hidden" name="message[formName]" value="{{ entry.title|trim }}">
         <input type="hidden" name="subject" value="{{ entry.title }} Guide Request">
         <input type="hidden" name="message[body]" value="A new download request has been submitted for the {{ entry.title }}.">
 
