@@ -1,4 +1,4 @@
-dateModified: 1776818007
+dateModified: 1776899463
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -287,7 +287,7 @@ plugins:
     settings:
       confirmationSubject: 'Thanks for contacting Foxplan'
       confirmationTemplate: _emails/confirmation.twig
-      enableConfirmationEmail: '1'
+      enableConfirmationEmail: ''
       enableDatabase: '1'
       enableRecaptchaOverride: ''
       enableTemplateOverwrite: '1'

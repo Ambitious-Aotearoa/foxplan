@@ -1,8 +1,6 @@
 {# _emails/notification.twig #}
 {% set formName = submission.message.formName|default('Website Inquiry') %}
-{% set brandCharcoal = '#270E15' %}
-
-{% set isGuideRequest = 'Guide' in formName %}
+{% set isGuideRequest = 'Guide' in formName or submission.message.entryId is defined %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,18 +12,14 @@
 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f5f5f5;">
     <tr>
         <td style="padding: 40px 20px;">
-            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600"
-                   style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e0e0e0;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e0e0e0;">
 
                 {# Header #}
                 <tr>
                     <td style="background-color: #FBC938; padding: 20px 30px;">
                         <h1 style="margin: 0; color: #270E15; font-size: 20px; font-weight: 400; line-height: 1.4;">
                             {% if isGuideRequest %}
-                                Guide Download Request:
-                                <span style="display: block; font-weight: 600; margin-top: 4px;">
-                    {{ formName }}
-                </span>
+                                Guide Download Request: <span style="display: block; font-weight: 600; margin-top: 4px;">{{ formName }}</span>
                             {% else %}
                                 New Website Contact
                             {% endif %}
@@ -36,63 +30,56 @@
                 {# Contact Info Table #}
                 <tr>
                     <td style="padding: 30px; border-bottom: 1px solid #e0e0e0;">
-                        <h2 style="margin: 0 0 15px 0; color: #404040; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
-                            Contact Information
-                        </h2>
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tr>
-                                <td style="padding: 5px 0; color: #666; font-size: 14px; width: 150px;">
-                                    <strong>Name: </strong></td>
+                                <td style="padding: 5px 0; color: #666; font-size: 14px; width: 150px;"><strong>Name: </strong></td>
                                 <td style="padding: 5px 0; color: #404040; font-size: 14px;">
-                                    {{ submission.fromName|default('') }} {{ submission.message.lastName|default(submission.message.LastName|default('')) }}
+                                    {{ submission.fromName }} {{ submission.message.lastName ?? submission.message.LastName ?? '' }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Email: </strong></td>
-                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.fromEmail|default('Not provided') }}</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Phone: </strong></td>
-                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">
-                                    {{ submission.message.phone|default(submission.message.Phone|default('Not provided')) }}
-                                </td>
+                                <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.fromEmail }}</td>
                             </tr>
 
-                            {% if isGuideRequest %}
+                            {# Smart Row: Phone #}
+                            {% set phone = submission.message.phone ?? submission.message.Phone ?? null %}
+                            {% if phone %}
                                 <tr>
-                                    <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Call
-                                            Preference: </strong></td>
-                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.preference|default('Not provided') }}</td>
+                                    <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Phone: </strong></td>
+                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ phone }}</td>
                                 </tr>
-                            {% else %}
+                            {% endif %}
+
+                            {# Smart Row: Preference #}
+                            {% if submission.message.preference is defined %}
                                 <tr>
-                                    <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Best Time To
-                                            Call: </strong></td>
-                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.BestTimeToCall|default('Not provided') }}</td>
+                                    <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Call Preference: </strong></td>
+                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.preference }}</td>
                                 </tr>
+                            {% endif %}
+
+                            {# Standard Contact Fields #}
+                            {% if not isGuideRequest %}
                                 <tr>
-                                    <td style="padding: 5px 0; color: #666; font-size: 14px;">
-                                        <strong>Interest: </strong></td>
-                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.Interest|default('Not provided') }}</td>
+                                    <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Interest: </strong></td>
+                                    <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.message.Interest ?? 'Not provided' }}</td>
                                 </tr>
                             {% endif %}
                         </table>
                     </td>
                 </tr>
 
-                {# Message for Contact Form Only #}
-                {% if not isGuideRequest %}
+                {# Message Section #}
+                {% set bodyMessage = submission.message.body ?? submission.message.Body ?? null %}
+                {% if bodyMessage %}
                     <tr>
                         <td style="padding: 30px;">
-                            <h2 style="margin: 0 0 15px 0; color: #404040; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
-                                Message</h2>
-                            <p style="margin: 0; color: #404040; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">
-                                {{ submission.message.body|default(submission.message.Body|default('No message provided')) }}
-                            </p>
+                            <h2 style="margin: 0 0 15px 0; color: #404040; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Submission Details</h2>
+                            <p style="margin: 0; color: #404040; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">{{ bodyMessage }}</p>
                         </td>
                     </tr>
                 {% endif %}
-
             </table>
         </td>
     </tr>
