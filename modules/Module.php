@@ -1,122 +1,99 @@
 <?php
 namespace modules;
 
-use yii\base\Event;
+use Craft;
 use craft\contactform\Mailer;
 use craft\contactform\events\SendEvent;
 use craft\elements\Entry;
 use craft\elements\Asset;
 use craft\mail\Message;
 use craft\helpers\App;
-use Craft;
+use yii\base\Event;
 
 class Module extends \yii\base\Module
 {
     public function init(): void
     {
         parent::init();
-        $module = $this;
 
         Event::on(
             Mailer::class,
             Mailer::EVENT_BEFORE_SEND,
-            function (SendEvent $event) use ($module) {
-
-                // 1. SILENCE THE DEFAULT PLUGIN EMAIL
-                // This passes validation but prevents duplicate "ugly" emails.
+            function (SendEvent $event) {
+                // 1. Clear the default recipients so the plugin's default mailer
+                // effectively sends to "no one," allowing our custom logic to take over.
                 $event->toEmails = [];
 
                 $submission = $event->submission;
-
-                // 2. LOAD FROM .env
-                $systemEmail = App::env('SYSTEM_EMAIL');
-                $adminRecipient = App::env('ADMIN_RECIPIENT_EMAIL') ?: 'accounts@ambitious.co.nz';
-                $fromName = App::env('EMAIL_SENDER_NAME') ?: "Foxplan";
-                $replyTo = App::env('REPLY_TO_EMAIL');
-
-                // Extract message data
                 $messageData = $submission->message;
-                $formType = $messageData['formType'] ?? null;
+                $formType = $messageData['formType'] ?? 'dynamic';
                 $entryId = $messageData['entryId'] ?? null;
 
-                // --- 3. LOGIC FOR ALL FORMS ---
+                // 2. Use Environment Variables
+                $systemEmail = App::env('SYSTEM_EMAIL') ?: "noreply@mg.foxplan.nz";
+                $fromName = App::env('EMAIL_SENDER_NAME') ?: "Foxplan";
+                $adminRecipient = App::env('ADMIN_RECIPIENT_EMAIL') ?: "accounts@ambitious.co.nz";
 
-                // PATH A: Standard Contact Form
                 if ($formType === 'contact') {
-                    $module->_sendStandardEmails($submission, $systemEmail, $fromName, $adminRecipient, $replyTo);
-                }
-
-                // PATH B: Landing Pages & First Home Buyers (Anything with an entryId)
-                elseif ($entryId) {
+                    $this->_sendStandardEmails($submission, $systemEmail, $fromName, $adminRecipient);
+                } elseif ($entryId) {
                     $entry = Entry::find()->id((int)$entryId)->one();
                     if ($entry) {
-                        // Sends Notification to Admin
-                        $module->_sendAdminNotification($submission, $systemEmail, $fromName, $adminRecipient, $replyTo);
-
-                        // Sends PDF/Confirmation to User
-                        $emailEntry = $entry->emailMessageLink->one() ?? null;
-                        $guideAsset = $entry->guidePdf->one() ?? Asset::find()->relatedTo($entry)->extension('pdf')->one();
-
-                        if ($emailEntry) {
-                            $module->_sendUserConfirmation($submission, $emailEntry, $guideAsset, $systemEmail, $fromName);
-                        }
+                        $this->_sendLandingPageEmails($submission, $entry, $systemEmail, $fromName, $adminRecipient);
                     }
                 }
-
-                // CRITICAL: We NEVER set $event->handled = true;
-                // This ensures "Contact Form Extensions" saves the data for EVERY form.
             }
         );
     }
 
-    private function _sendAdminNotification($submission, $systemEmail, $fromName, $adminRecipient, $replyTo) {
+    private function _sendLandingPageEmails($submission, $entry, $systemEmail, $fromName, $adminRecipient) {
         try {
-            $message = new Message();
-            $message->setFrom([$systemEmail => $fromName]);
-            $message->setTo($adminRecipient);
-            $message->setReplyTo($submission->fromEmail);
-            $message->setSubject("New Lead: " . ($submission->message['formName'] ?? 'Website Inquiry'));
-            $message->setHtmlBody(Craft::$app->getView()->renderTemplate('_emails/notification', [
+            $emailEntry = $entry->emailMessageLink->one() ?? null;
+            $guideAsset = Asset::find()->relatedTo($entry)->kind('pdf')->one();
+
+            // USER CONFIRMATION
+            if ($emailEntry) {
+                $userMsg = new Message();
+                $userMsg->setFrom([$systemEmail => $fromName]);
+                $userMsg->setTo($submission->fromEmail);
+                $userMsg->setSubject($emailEntry->emailHeadline ?? "Your FoxPlan Guide");
+                $userMsg->setHtmlBody(Craft::$app->getView()->renderTemplate('_emails/confirmation', [
+                    'submission' => $submission,
+                    'emailEntry' => $emailEntry
+                ]));
+
+                if ($guideAsset) {
+                    $path = $guideAsset->getCopyOfFile();
+                    if ($path && file_exists($path)) {
+                        $userMsg->attach($path, ['fileName' => $guideAsset->filename]);
+                    }
+                }
+                Craft::$app->getMailer()->send($userMsg);
+            }
+
+            // ADMIN NOTIFICATION
+            $adminMsg = new Message();
+            $adminMsg->setFrom([$systemEmail => $fromName]);
+            $adminMsg->setTo($adminRecipient);
+            $adminMsg->setReplyTo($submission->fromEmail);
+
+            $formName = $submission->message['formName'] ?? 'Lead';
+            $adminMsg->setSubject("New Lead: " . $formName);
+
+            $adminMsg->setHtmlBody(Craft::$app->getView()->renderTemplate('_emails/notification', [
                 'submission' => $submission
             ]));
-            Craft::$app->getMailer()->send($message);
+
+            Craft::$app->getMailer()->send($adminMsg);
+
         } catch (\Exception $e) {
-            Craft::error("Admin Email Error: " . $e->getMessage(), __METHOD__);
+            Craft::error("Landing Page Email Error: " . $e->getMessage(), __METHOD__);
         }
     }
 
-    private function _sendUserConfirmation($submission, $emailEntry, $guideAsset, $systemEmail, $fromName) {
+    private function _sendStandardEmails($submission, $systemEmail, $fromName, $adminRecipient) {
         try {
-            $message = new Message();
-            $message->setFrom([$systemEmail => $fromName]);
-            $message->setTo($submission->fromEmail);
-            $message->setSubject($emailEntry->emailHeadline ?? "Your FoxPlan Guide");
-            $message->setHtmlBody(Craft::$app->getView()->renderTemplate('_emails/confirmation', [
-                'submission' => $submission,
-                'emailEntry' => $emailEntry
-            ]));
-
-            if ($guideAsset) {
-                $filePath = $guideAsset->getCopyOfFile();
-                if ($filePath && file_exists($filePath)) {
-                    $message->attach($filePath, [
-                        'fileName' => $guideAsset->filename,
-                        'contentType' => 'application/pdf',
-                    ]);
-                    Craft::$app->getMailer()->send($message);
-                    @unlink($filePath);
-                    return;
-                }
-            }
-            Craft::$app->getMailer()->send($message);
-        } catch (\Exception $e) {
-            Craft::error("User Email Error: " . $e->getMessage(), __METHOD__);
-        }
-    }
-
-    private function _sendStandardEmails($submission, $systemEmail, $fromName, $adminRecipient, $replyTo) {
-        $this->_sendAdminNotification($submission, $systemEmail, $fromName, $adminRecipient, $replyTo);
-        try {
+            // USER CONFIRMATION
             $userMsg = new Message();
             $userMsg->setFrom([$systemEmail => $fromName]);
             $userMsg->setTo($submission->fromEmail);
@@ -129,8 +106,22 @@ class Module extends \yii\base\Module
                 ]
             ]));
             Craft::$app->getMailer()->send($userMsg);
+
+            // ADMIN NOTIFICATION
+            $adminMsg = new Message();
+            $adminMsg->setFrom([$systemEmail => $fromName]);
+            $adminMsg->setTo($adminRecipient);
+            $adminMsg->setReplyTo($submission->fromEmail);
+            $adminMsg->setSubject("New Website Contact: General Enquiry");
+
+            $adminMsg->setHtmlBody(Craft::$app->getView()->renderTemplate('_emails/notification', [
+                'submission' => $submission
+            ]));
+
+            Craft::$app->getMailer()->send($adminMsg);
+
         } catch (\Exception $e) {
-            Craft::error("Standard User Email Error: " . $e->getMessage(), __METHOD__);
+            Craft::error("Standard Email Error: " . $e->getMessage(), __METHOD__);
         }
     }
 }

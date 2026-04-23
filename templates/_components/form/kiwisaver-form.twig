@@ -8,29 +8,29 @@
 } %}
 
 <div class="w-full max-w-4xl">
+
     <div class="font-aktiv {{ colors.text }} mb-12 font-light max-w-3xl"
          style="font-size: clamp(1.1rem, 1.5vw, 1.6rem); line-height: 1.15; letter-spacing: -0.01em; margin-top: 0;">
         {{ entry ? entry.largeParagraph | raw : 'Fill in your details to receive your free guide.' }}
     </div>
 
-    <form id="kiwi-js-form" method="post" action="" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+
+    <form method="post" action=""  class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
         {{ actionInput('contact-form/send') }}
         {{ csrfInput() }}
 
+        {# Keep the landing page redirect logic #}
         {{ redirectInput(url(entry.slug, { thanks: 1 })) }}
+
         {{ craft.contactFormExtensions.recaptcha | raw }}
 
-        {# --- HIDDEN FIELDS --- #}
+        {# Hidden fields for backend logic #}
         <input type="hidden" name="message[entryId]" value="{{ entry.id }}">
+        <input type="hidden" name="message[formName]" value="{{ entry.title }} Guide">
+        <input type="hidden" name="subject" value="{{ entry.title }} Guide Request">
+        <input type="hidden" name="message[body]" value="A new download request has been submitted for the {{ entry.title }}.">
 
-        {# IMPORTANT: Ensure the entry title contains 'Guide' so isGuideRequest triggers in notification.twig #}
-        <input type="hidden" name="message[formName]" value="{{ entry.title }}">
-        <input type="hidden" name="subject" value="{{ entry.title }} Request">
-
-        {# This content shows in the Message section for admins #}
-        <input type="hidden" name="message[body]" value="A new guide download request has been submitted.">
-
-        {# --- CONTACT FIELDS --- #}
+        {# Form Fields #}
         <div class="relative">
             <input type="text" name="fromName" id="firstName" placeholder="First name" required
                    class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none placeholder:{{ colors.text }} font-aktiv text-lg">
@@ -51,7 +51,6 @@
                    class="w-full bg-transparent border-b {{ colors.border }} py-2 focus:outline-none placeholder:{{ colors.text }} font-aktiv text-lg">
         </div>
 
-        {# SPECIFIC TO LANDING PAGE: Preference dropdown #}
         <div class="relative" x-data="{ open: false }">
             <select required name="message[preference]"
                     @click="open = !open"
@@ -77,12 +76,13 @@
         </div>
 
         <div class="col-span-full pt-4">
+
             {% include '_components/ui/button/button.twig' with {
                 props: {
                     text: 'SUBMIT',
                     backgroundColor: colors.buttonBg,
                     textColor: colors.buttonText,
-                    attributes: { 'type': 'submit', 'id': 'form-submit-btn' }
+                    attributes: { 'type': 'submit' }
                 }
             } only %}
         </div>

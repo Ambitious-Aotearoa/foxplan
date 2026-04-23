@@ -42,7 +42,7 @@
                                 <td style="padding: 5px 0; color: #404040; font-size: 14px;">{{ submission.fromEmail }}</td>
                             </tr>
 
-                            {# Smart Row: Phone #}
+                            {# Show Phone ONLY if provided #}
                             {% set phone = submission.message.phone ?? submission.message.Phone ?? null %}
                             {% if phone %}
                                 <tr>
@@ -51,7 +51,7 @@
                                 </tr>
                             {% endif %}
 
-                            {# Smart Row: Preference #}
+                            {# Show Preference ONLY if provided #}
                             {% if submission.message.preference is defined %}
                                 <tr>
                                     <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Call Preference: </strong></td>
@@ -59,7 +59,7 @@
                                 </tr>
                             {% endif %}
 
-                            {# Standard Contact Fields #}
+                            {# Standard Contact Fields (Skip for Guides) #}
                             {% if not isGuideRequest %}
                                 <tr>
                                     <td style="padding: 5px 0; color: #666; font-size: 14px;"><strong>Interest: </strong></td>
