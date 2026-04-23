@@ -118,6 +118,7 @@
 
                     {{ craft.contactFormExtensions.recaptcha | raw }}
 
+                    {# First Name and Last Name Grid #}
                     <div class="grid grid-cols-2 gap-8">
                         <div>
                             <label class="block text-xs font-bold uppercase mb-2">First Name</label>
@@ -129,13 +130,19 @@
                         </div>
                     </div>
 
-                    <div class="mt-8">
-                        <label class="block text-xs font-bold uppercase mb-2">Email Address</label>
-                        <input type="email" name="fromEmail" required class="w-full border-b border-black bg-transparent py-2 outline-none">
+                    {# Email and Phone Number Grid #}
+                    <div class="grid grid-cols-2 gap-8 mt-8">
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-2">Email Address</label>
+                            <input type="email" name="fromEmail" required class="w-full border-b border-black bg-transparent py-2 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-2">Phone Number</label>
+                            <input type="tel" name="message[phone]" required class="w-full border-b border-black bg-transparent py-2 outline-none">
+                        </div>
                     </div>
 
                     <div class="relative inline-block mt-10">
-                        {# Corrected: No Twig variable 'loading' here #}
                         <div :class="loading ? 'opacity-50 pointer-events-none' : ''">
                             {{ include('_components/ui/button/button.twig', { props: { text: data.buttonText, tag: 'span' } }) }}
                         </div>

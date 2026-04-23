@@ -20,8 +20,6 @@ class Module extends \yii\base\Module
             Mailer::class,
             Mailer::EVENT_BEFORE_SEND,
             function (SendEvent $event) {
-                // 1. Clear the default recipients so the plugin's default mailer
-                // effectively sends to "no one," allowing our custom logic to take over.
                 $event->toEmails = [];
 
                 $submission = $event->submission;
@@ -29,7 +27,6 @@ class Module extends \yii\base\Module
                 $formType = $messageData['formType'] ?? 'dynamic';
                 $entryId = $messageData['entryId'] ?? null;
 
-                // 2. Use Environment Variables
                 $systemEmail = App::env('SYSTEM_EMAIL') ?: "noreply@mg.foxplan.nz";
                 $fromName = App::env('EMAIL_SENDER_NAME') ?: "Foxplan";
                 $adminRecipient = App::env('ADMIN_RECIPIENT_EMAIL') ?: "accounts@ambitious.co.nz";
@@ -49,9 +46,11 @@ class Module extends \yii\base\Module
     private function _sendLandingPageEmails($submission, $entry, $systemEmail, $fromName, $adminRecipient) {
         try {
             $emailEntry = $entry->emailMessageLink->one() ?? null;
+
+            // Logic: Try to find a PDF explicitly related to this entry
             $guideAsset = Asset::find()->relatedTo($entry)->kind('pdf')->one();
 
-            // USER CONFIRMATION
+            // USER CONFIRMATION (With PDF Attachment)
             if ($emailEntry) {
                 $userMsg = new Message();
                 $userMsg->setFrom([$systemEmail => $fromName]);
@@ -62,12 +61,14 @@ class Module extends \yii\base\Module
                     'emailEntry' => $emailEntry
                 ]));
 
+                // Attach PDF only if it exists
                 if ($guideAsset) {
                     $path = $guideAsset->getCopyOfFile();
                     if ($path && file_exists($path)) {
                         $userMsg->attach($path, ['fileName' => $guideAsset->filename]);
                     }
                 }
+
                 Craft::$app->getMailer()->send($userMsg);
             }
 
@@ -77,8 +78,11 @@ class Module extends \yii\base\Module
             $adminMsg->setTo($adminRecipient);
             $adminMsg->setReplyTo($submission->fromEmail);
 
-            $formName = $submission->message['formName'] ?? 'Lead';
-            $adminMsg->setSubject("New Lead: " . $formName);
+            // FIX: Prevent "Guide Guide" by checking if it already exists in the title
+            $formName = $submission->message['formName'] ?? $entry->title;
+            $cleanName = str_ireplace(' Guide', '', $formName); // Strip it if it's there
+
+            $adminMsg->setSubject("New Lead: " . $cleanName . " Guide");
 
             $adminMsg->setHtmlBody(Craft::$app->getView()->renderTemplate('_emails/notification', [
                 'submission' => $submission
