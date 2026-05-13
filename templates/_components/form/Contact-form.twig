@@ -12,9 +12,7 @@
     {{ craft.contactFormExtensions.recaptcha | raw }}
 
     {# --- HYBRID TRIGGER --- #}
-
     <input type="hidden" name="message[formType]" value="contact">
-
     <input type="hidden" name="redirect" value="{{ 'pages/Thank-You'|hash }}">
 
     <div class="grid grid-cols-12 gap-x-8 gap-y-12 pb-12">
@@ -29,37 +27,45 @@
         {# Last Name #}
         <div class="col-span-12 md:col-span-6">
             <label for="last_name" class="{{ labelClasses }}">Last Name</label>
-            <input type="text" id="last_name" name="message[LastName]" placeholder="Doe"
-                   class="{{ inputClasses }}" required>
+            <input type="text" id="last_name" name="fields[LastName]" placeholder="Doe"
+                   class="{{ inputClasses }}" required
+                   oninput="document.getElementById('msg-lastname').value = this.value">
+            <input type="hidden" id="msg-lastname" name="message[LastName]">
         </div>
 
         {# Interest #}
         <div class="col-span-12 md:col-span-6">
             <label for="interest" class="{{ labelClasses }}">I am interested in</label>
-            <select id="interest" name="message[Interest]" class="{{ inputClasses }}" required>
+            <select id="interest" name="fields[Interest]" class="{{ inputClasses }}" required
+                    onchange="document.getElementById('msg-interest').value = this.value">
                 <option value="" disabled selected>Select a service</option>
                 {% for service in serviceOptions %}
                     <option value="{{ service }}">{{ service }}</option>
                 {% endfor %}
             </select>
+            <input type="hidden" id="msg-interest" name="message[Interest]">
         </div>
 
         {# Best Time to Call #}
         <div class="col-span-12 md:col-span-6">
             <label for="call_time" class="{{ labelClasses }}">Best time to call</label>
-            <select id="call_time" name="message[BestTimeToCall]" class="{{ inputClasses }}" required>
+            <select id="call_time" name="fields[BestTimeToCall]" class="{{ inputClasses }}" required
+                    onchange="document.getElementById('msg-calltime').value = this.value">
                 <option value="" disabled selected>Select a time</option>
                 <option value="Morning">Morning</option>
                 <option value="Afternoon">Afternoon</option>
                 <option value="Evening">Evening</option>
             </select>
+            <input type="hidden" id="msg-calltime" name="message[BestTimeToCall]">
         </div>
 
         {# Phone #}
         <div class="col-span-12 md:col-span-6">
             <label for="phone" class="{{ labelClasses }}">Phone</label>
-            <input type="tel" id="phone" name="message[Phone]" placeholder="1234 567 890"
-                   class="{{ inputClasses }}">
+            <input type="tel" id="phone" name="fields[Phone]" placeholder="1234 567 890"
+                   class="{{ inputClasses }}"
+                   oninput="document.getElementById('msg-phone').value = this.value">
+            <input type="hidden" id="msg-phone" name="message[Phone]">
         </div>
 
         {# Email #}
@@ -91,7 +97,6 @@
         const form = document.getElementById('foxplan-js-form');
         const btn = document.getElementById('form-submit-btn');
 
-        // Reset form on page load
         form.reset();
 
         const updateCursor = () => {

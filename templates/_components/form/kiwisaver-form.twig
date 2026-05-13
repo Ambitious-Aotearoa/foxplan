@@ -18,8 +18,6 @@
     <form method="post" action=""  class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
         {{ actionInput('contact-form/send') }}
         {{ csrfInput() }}
-
-        {# Keep the landing page redirect logic #}
         {{ redirectInput(url(entry.slug, { thanks: 1 })) }}
 
         {{ craft.contactFormExtensions.recaptcha | raw }}

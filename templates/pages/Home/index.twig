@@ -35,8 +35,6 @@
         }
     } %}
         {# testimonials #}
-        {% set testimonialEntries = craft.entries().section('testimonials').all() %}
-
         {{ include('_sections/testimonials/testimonial-two.twig', {
             data: {
                 paragraphHeading4: entry.paragraphHeading3 ?? 'Hear what our clients are saying',
@@ -47,11 +45,8 @@
                 btnBgColor: 'bg-foxplan-charcoal-brown',
                 btnTextColor: 'text-foxplan-yellow',
                 arrowPath: '@webroot/dist/images/placeholder/Arrow_1.svg'
-            },
-            testimonials: testimonialEntries
+            }
         }) }}
-
-
 
     {#    hero grow section #}
     {{ include('_sections/content-sections/hero-grow.twig') }}

@@ -218,6 +218,22 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: '2026-05-13T02:44:46+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 7233ecec-c0c0-4f3b-abde-7bc0900b1035 # Featured Testimonial
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9ba03b8c-8ee8-4756-b1ff-4e316c1eaef9
+            userCondition: null
+            warning: null
+            width: 100
         name: Testimonials
         uid: 26bdd69a-9aaa-45cb-84c3-ecaf970aedf4
         userCondition: null

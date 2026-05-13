@@ -67,15 +67,8 @@
         } only %}
 
         {# Testimonials #}
-        {% set testimonialEntries = craft.entries().section('testimonials').all() %}
-
-        {{ include('_sections/testimonials/testimonial-two.twig', {
-            data: {
-                paragraphHeading4: block.paragraphHeading4 ?? 'Hear what our clients are saying',
-                borderColor: 'border-foxplan-charcoal-brown'
-            },
-            testimonials: testimonialEntries
-        }) }}
+        {# 1. Get the pinned testimonial #}
+        {% include "_sections/testimonials/testimonial-two.twig" %}
 
 
 

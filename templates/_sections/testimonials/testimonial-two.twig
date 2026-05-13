@@ -1,7 +1,18 @@
-{# 1. Fetching the entries #}
-{% set testimonials = craft.entries().section('testimonials').all() %}
+{# 1. Fetching the entries with prioritization #}
+{# Get the pinned testimonial from your new field #}
+{% set featured = entry.featuredTestimonial.one() %}
 
-{# 2. Define your baseline defaults #}
+{# Fetch all other testimonials from the Structure, excluding the featured one to avoid duplicates #}
+{% set otherTestimonials = craft.entries()
+    .section('testimonials')
+    .id(featured ? ['not', featured.id] : null)
+    .all()
+%}
+
+{# Combine them: Featured first, then the rest of the structure #}
+{% set testimonials = featured ? [featured] | merge(otherTestimonials) : otherTestimonials %}
+
+{# 2. Define baseline defaults #}
 {% set defaults = {
     sectionTitle: 'Hear what our clients are saying',
     backgroundColor: 'bg-foxplan-neutral-beige',
@@ -13,29 +24,48 @@
     arrowPath: '@webroot/dist/images/placeholder/Arrow_1.svg'
 } %}
 
-
 {% set settings = defaults | merge(data ?? {}) | merge(props ?? {}) %}
 
 {% if testimonials | length %}
     <section
-            {# Use 'settings' here instead of 'props' #}
             class="relative {{ settings.backgroundColor }} overflow-hidden border-t-[20px] border-r-[20px] border-b-[20px] {{ settings.borderColor }}"
             x-data="{
                 active: 0,
                 revealed: false,
                 total: {{ testimonials | length }},
-                next() { this.active = (this.active + 1) % this.total },
-                prev() { this.active = (this.active - 1 + this.total) % this.total },
+                autoplayInterval: null,
+                next() {
+                    this.active = (this.active + 1) % this.total
+                },
+                prev() {
+                    this.active = (this.active - 1 + this.total) % this.total
+                },
+                startAutoplay() {
+                    this.stopAutoplay();
+                    {# Only start the timer if the section has been revealed to the user #}
+                    if (this.total > 1 && this.revealed) {
+                        this.autoplayInterval = setInterval(() => { this.next() }, 4000);
+                    }
+                },
+                stopAutoplay() {
+                    if (this.autoplayInterval) {
+                        clearInterval(this.autoplayInterval);
+                        this.autoplayInterval = null;
+                    }
+                },
                 checkScroll() {
                     if (this.revealed) return;
                     let rect = this.$el.getBoundingClientRect();
                     if (rect.top < window.innerHeight && rect.bottom >= 0) {
                         this.revealed = true;
+                        this.startAutoplay();
                     }
                 }
             }"
             x-init="setTimeout(() => checkScroll(), 200)"
             @scroll.window.passive="checkScroll()"
+            @mouseenter="stopAutoplay()"
+            @mouseleave="startAutoplay()"
     >
         <div class="w-full pt-10 lg:pt-24 pb-10 lg:pb-24">
 
@@ -72,36 +102,41 @@
                 <div class="hidden md:block md:w-[30%]"></div>
 
                 <div class="w-full {{ settings.sectionTitle is not empty ? 'md:w-[70%]' : 'md:w-full' }} px-4 lg:px-8 md:px-0 pr-8 md:pr-24 lg:pr-32">
-                    <div class="relative min-h-[250px] lg:min-h-[350px]">
-                        {% for index, testimonialEntry in testimonials %}
-                            <div x-show="active === {{ index }}" class="w-full">
-                                <div class="w-12 h-12 {{ settings.quoteIconColor }} flex items-center justify-center mb-10">
-                                    <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10.7805 24H0V13.7436L8.87805 0H10.0406L4.22764 15.0769L10.7805 13.7436V24ZM26 24H15.2195V13.7436L24.0976 0H25.3659L19.4472 15.0769L26 13.7436V24Z"  fill="currentColor" class="{{ settings.textColor }}"/>
-                                    </svg>
-                                </div>
 
-                                <div class="font-aktiv leading-[1.15] mb-10 {{ settings.textColor }} w-full break-normal"
-                                     style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.5rem); word-break: keep-all; font-weight: 300;">
-                                    {{ testimonialEntry.blockBodyText | raw }}
-                                </div>
+                    <div class="relative overflow-hidden">
+                        <div
+                                class="flex transition-transform duration-500 ease-in-out"
+                                :style="'transform: translateX(-' + (active * 100) + '%)'"
+                        >
+                            {% for index, testimonialEntry in testimonials %}
+                                <div class="w-full flex-shrink-0">
+                                    <div class="w-12 h-12 {{ settings.quoteIconColor }} flex items-center justify-center mb-10">
+                                        <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.7805 24H0V13.7436L8.87805 0H10.0406L4.22764 15.0769L10.7805 13.7436V24ZM26 24H15.2195V13.7436L24.0976 0H25.3659L19.4472 15.0769L26 13.7436V24Z"  fill="currentColor" class="{{ settings.textColor }}"/>
+                                        </svg>
+                                    </div>
 
-                                <div class="font-aktiv text-sm font-bold tracking-[0.2em] uppercase {{ settings.textColor }} font-medium opacity-80 ">
+                                    <div class="font-aktiv leading-[1.15] mb-10 {{ settings.textColor }} w-full break-normal"
+                                         style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.5rem); word-break: keep-all; font-weight: 300;">
+                                        {{ testimonialEntry.blockBodyText | raw }}
+                                    </div>
 
-                                    — {{ testimonialEntry.title }}
+                                    <div class="font-aktiv text-sm font-bold tracking-[0.2em] uppercase {{ settings.textColor }} font-medium opacity-80 ">
+                                        — {{ testimonialEntry.title }}
+                                    </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
                     </div>
 
                     {% if testimonials | length > 1 %}
                         <div class="flex flex-row justify-center md:justify-start items-center gap-4 mt-8 pb-4">
-                            <button @click="prev()" class="w-12 h-12 rounded-full border border-solid border-foxplan-charcoal-brown {{ settings.btnBgColor }} {{ settings.btnTextColor }} flex items-center justify-center transition-all duration-300 hover:opacity-80" aria-label="Previous Slide">
+                            <button @click="startAutoplay(); prev()" class="w-12 h-12 rounded-full border border-solid border-foxplan-charcoal-brown {{ settings.btnBgColor }} {{ settings.btnTextColor }} flex items-center justify-center transition-all duration-300 hover:opacity-80" aria-label="Previous Slide">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.21 15.41" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
                                     <path d="M14.71,7.71H1.71"/><path d="M7.71.71L.71,7.71l7,7"/>
                                 </svg>
                             </button>
-                            <button @click="next()" class="w-12 h-12 rounded-full border border-solid border-foxplan-charcoal-brown {{ settings.btnBgColor }} {{ settings.btnTextColor }} flex items-center justify-center transition-all duration-300 hover:opacity-80" aria-label="Next Slide">
+                            <button @click="startAutoplay(); next()" class="w-12 h-12 rounded-full border border-solid border-foxplan-charcoal-brown {{ settings.btnBgColor }} {{ settings.btnTextColor }} flex items-center justify-center transition-all duration-300 hover:opacity-80" aria-label="Next Slide">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.21 15.41" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
                                     <path d="M.5,7.71h13"/><path d="M7.5,14.71l7-7L7.5.71"/>
                                 </svg>

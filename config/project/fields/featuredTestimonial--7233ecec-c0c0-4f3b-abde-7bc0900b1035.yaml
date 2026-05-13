@@ -1,0 +1,25 @@
+columnSuffix: null
+handle: featuredTestimonial
+instructions: null
+name: 'Featured Testimonial'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: 1
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:f42469eb-08c1-411f-a288-bc2841425be9' # Testimonials
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

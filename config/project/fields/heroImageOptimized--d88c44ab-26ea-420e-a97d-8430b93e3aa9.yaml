@@ -4,134 +4,42 @@ instructions: null
 name: 'Hero Image Optimized'
 searchable: false
 settings:
-  displayDominantColorPalette: true
-  displayLazyLoadPlaceholderImages: true
-  displayOptimizedImageVariants: true
-  ignoreFilesOfType:
-    - image/svg
-    - image/gif
-    - application/pdf
-  variants:
-    -
-      __assoc__:
+  advancedFields:
+    - download
+  fullGraphqlData: true
+  maxLength: 255
+  showLabelField: false
+  typeSettings:
+    __assoc__:
+      -
+        - entry
         -
-          - width
-          - '1920'
+          __assoc__:
+            -
+              - sources
+              - '*'
+            -
+              - showUnpermittedSections
+              - ''
+            -
+              - showUnpermittedEntries
+              - ''
+      -
+        - url
         -
-          - useAspectRatio
-          - '1'
-        -
-          - aspectRatioX
-          - '16'
-        -
-          - aspectRatioY
-          - '9'
-        -
-          - retinaSizes
-          -
-            - '1'
-        -
-          - quality
-          - '82'
-        -
-          - format
-          - jpg
-    -
-      __assoc__:
-        -
-          - width
-          - '1024'
-        -
-          - useAspectRatio
-          - '1'
-        -
-          - aspectRatioX
-          - '16'
-        -
-          - aspectRatioY
-          - '9'
-        -
-          - retinaSizes
-          -
-            - '1'
-        -
-          - quality
-          - '82'
-        -
-          - format
-          - jpg
-    -
-      __assoc__:
-        -
-          - width
-          - '768'
-        -
-          - useAspectRatio
-          - '1'
-        -
-          - aspectRatioX
-          - '4'
-        -
-          - aspectRatioY
-          - '3'
-        -
-          - retinaSizes
-          -
-            - '1'
-        -
-          - quality
-          - '60'
-        -
-          - format
-          - jpg
-    -
-      __assoc__:
-        -
-          - width
-          - '400'
-        -
-          - useAspectRatio
-          - '1'
-        -
-          - aspectRatioX
-          - '4'
-        -
-          - aspectRatioY
-          - '3'
-        -
-          - retinaSizes
-          -
-            - '1'
-        -
-          - quality
-          - '60'
-        -
-          - format
-          - jpg
-    -
-      __assoc__:
-        -
-          - width
-          - '1200'
-        -
-          - useAspectRatio
-          - '1'
-        -
-          - aspectRatioX
-          - '16'
-        -
-          - aspectRatioY
-          - '9'
-        -
-          - retinaSizes
-          -
-            - '1'
-        -
-          - quality
-          - '82'
-        -
-          - format
-          - jpg
+          __assoc__:
+            -
+              - allowRootRelativeUrls
+              - ''
+            -
+              - allowAnchors
+              - ''
+            -
+              - allowCustomSchemes
+              - ''
+  types:
+    - entry
+    - url
 translationKeyFormat: null
 translationMethod: none
-type: nystudio107\imageoptimize\fields\OptimizedImages
+type: craft\fields\Link

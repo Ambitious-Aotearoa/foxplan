@@ -14,7 +14,7 @@
             yPos: 0,
             lineStart: 0,
             updateMetrics() {
-                {# FIXED: Now treats screens < 1280px (xl) as the mobile-style layout #}
+
                 if (window.innerWidth < 1280 && this.$refs.accordionContainer) {
                     this.lineStart = this.$refs.accordionContainer.offsetTop;
                 } else {

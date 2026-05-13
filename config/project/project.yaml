@@ -1,4 +1,4 @@
-dateModified: 1776920633
+dateModified: 1778640286
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -158,6 +158,7 @@ meta:
     6389e4d4-c725-4073-ba17-8aac55dc636c: 'Page Builder' # Page Builder
     7069f7fb-6f5c-4fcc-8032-a42dc3ea3d4b: 'Investment planning' # Investment planning
     7104b304-163f-4e10-bee8-5a82a8edeb29: 'Equity Partners' # Equity Partners
+    7233ecec-c0c0-4f3b-abde-7bc0900b1035: 'Featured Testimonial' # Featured Testimonial
     09254da4-cb4e-42da-881d-bc3b55500a8f: 'Landing Page' # Landing Page
     9315bb88-5d25-4861-81a8-0919dd5ba2b9: 'Newsletter Heading' # Newsletter Heading
     9968cc7c-feec-4d2d-a698-e5a687b167f9: Our-Investment-Committee # Our-Investment-Committee
@@ -292,10 +293,10 @@ plugins:
       enableRecaptchaOverride: ''
       enableTemplateOverwrite: '1'
       notificationTemplate: _emails/notification.twig
-      recaptcha: ''
+      recaptcha: '1'
       recaptchaDataBadge: bottomright
       recaptchaDebug: ''
-      recaptchaHideBadge: ''
+      recaptchaHideBadge: '1'
       recaptchaSecretKey: 6LcyPLYsAAAAALdGo4iQxptRTRF62Si0i0S-Cue-
       recaptchaSiteKey: 6LcyPLYsAAAAANQmukUZ-5BHnUsisHmmsnBJxeeT
       recaptchaThreshold: '0.5'
