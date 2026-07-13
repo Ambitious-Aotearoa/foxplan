@@ -197,11 +197,6 @@ fieldLayouts:
         userCondition: null
       -
         elementCondition: null
-        name: 'Who we work with'
-        uid: 3f505c68-af18-478e-81c1-f2b3f05fef23
-        userCondition: null
-      -
-        elementCondition: null
         elements:
           -
             dateAdded: '2026-01-19T23:00:41+00:00'
@@ -216,6 +211,22 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: 236a0ed6-f1ab-4a5b-be7b-e184048d5ba4
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-06-17T04:36:10+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 5489f944-c690-47d1-b188-fe7fe3bb9bab # Featured Testimonial
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 25d45cd7-a00a-417c-992b-73dc871dbc57
             userCondition: null
             warning: null
             width: 100

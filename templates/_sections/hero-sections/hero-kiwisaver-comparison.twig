@@ -1,0 +1,116 @@
+{# templates/_sections/hero-sections/hero-kiwisaver-comparison.twig #}
+
+{% set sourceEntry = entry ?? craft.entries.section('accounting').one() %}
+
+{% set heroImageAsset = props.imageAsset ?? null %}
+{% if not heroImageAsset and sourceEntry %}
+    {% set heroImageAsset = sourceEntry.heroImage.one() ?? null %}
+{% endif %}
+
+{% set arrowPath = '@webroot/dist/images/placeholder/Arrow_1.svg' %}
+
+{% set defaults = {
+    backgroundColor: 'bg-foxplan-yellow',
+    heading: sourceEntry.title ?? 'Does your KiwiSaver fund match your plans?',
+    heroBodyText: sourceEntry.heroBodyText ?? '',
+    bodyText: sourceEntry.bodyText ?? '',
+    buttonField: sourceEntry.button ?? null,
+    textColor: 'text-foxplan-charcoal-brown',
+    buttonBgColor: 'bg-foxplan-charcoal-brown',
+    buttonTextColor: 'text-foxplan-yellow'
+} %}
+
+{% set data = defaults | merge(props ?? {}) %}
+
+<section class="w-full py-16 {{ data.backgroundColor }} overflow-hidden"
+         x-data="{ revealed: false }"
+         x-init="setTimeout(() => revealed = true, 150)">
+
+    {# Heading row: dotted arrow + headline (Title field) #}
+    <div class="flex flex-wrap w-full items-center mb-10 relative">
+        <div class="hidden md:flex w-[30%] items-center justify-start pr-8 lg:pr-12">
+            <div class="w-full h-8 flex items-center">
+                <div class="transition-all duration-[2500ms] overflow-hidden"
+                     style="transition-timing-function: steps(15); width: 0px; opacity: 0;"
+                     :style="revealed ? 'width: 100%; opacity: 1;' : 'width: 0px; opacity: 0;'">
+                    {{ svg(alias(arrowPath))|attr({
+                        class: 'w-full h-auto block object-contain max-h-6 object-left fill-current ' ~ data.textColor,
+                        role: 'presentation',
+                        style: 'fill: currentColor !important;'
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full md:w-[70%] px-4 md:px-6 lg:px-8">
+            <h2 class="font-serif leading-[0.95] tracking-tight {{ data.textColor }}"
+                style="font-size: clamp(3.5rem, 10vw + 1.5rem, 9.5rem);">
+                {{ data.heading | raw }}
+            </h2>
+        </div>
+    </div>
+
+    {# Full width hero image (Hero Image field) #}
+    <div class="w-full pr-5">
+        <div class="relative w-full aspect-[16/10] lg:h-[600px]">
+            {% if heroImageAsset %}
+                {% set thumbSmall  = heroImageAsset.getUrl('heroSmall') ?: heroImageAsset.url %}
+                {% set thumbMedium = heroImageAsset.getUrl('heroMedium') ?: heroImageAsset.url %}
+                {% set thumbLarge  = heroImageAsset.getUrl('heroLarge') ?: heroImageAsset.url %}
+
+                <picture>
+                    <source media="(min-width: 1025px)"
+                            srcset="{{ thumbLarge }} 1920w, {{ thumbMedium }} 1200w"
+                            sizes="100vw">
+
+                    <source media="(min-width: 769px)"
+                            srcset="{{ thumbMedium }} 1200w">
+
+                    <img
+                            src="{{ thumbMedium }}"
+                            srcset="{{ thumbSmall }} 768w, {{ thumbMedium }} 1200w"
+                            sizes="100vw"
+                            alt="{{ heroImageAsset.alt | default(heroImageAsset.title) | striptags }}"
+                            class="w-full h-full object-cover"
+                            loading="eager"
+                            fetchpriority="high">
+                </picture>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="flex flex-wrap lg:flex-nowrap items-end justify-between gap-6 px-4 md:px-6 lg:px-8 pt-10 pb-16 lg:pb-20">
+        <div class="w-full lg:w-[70%] lg:pl-[25%] xl:pl-[28%]">
+            {% if data.heroBodyText %}
+                <h1 class="font-serif leading-[0.95] tracking-tight {{ data.textColor }}"
+                    style="font-size: clamp(2rem, 4vw + 1rem, 3.5rem);">
+                    {{ data.heroBodyText | raw }}
+                </h1>
+            {% endif %}
+
+            {% if data.bodyText %}
+                <div class="font-aktiv leading-[1.15] {{ data.textColor }} font-medium mt-10
+                        [&_p]:mb-4 [&_p:last-child]:mb-0
+                        [&_br]:content-[''] [&_br]:block [&_br]:mb-4"
+                     style="font-size: clamp(1.125rem, 1vw + 0.5rem, 1.5rem); font-weight: 300;">
+                    {{ data.bodyText | raw }}
+                </div>
+            {% endif %}
+        </div>
+
+        {% if data.buttonField %}
+            <div class="w-full lg:w-auto flex justify-end shrink-0">
+                {% include '_components/ui/button/button.twig' with {
+                    props: {
+                        text: data.buttonField.text ?? data.buttonField.customText ?? 'Download the guide',
+                        style: 'primary',
+                        url: data.buttonField.url ?? '#',
+                        target: data.buttonField.target ?? '_self',
+                        backgroundColor: data.buttonBgColor,
+                        textColor: data.buttonTextColor
+                    }
+                } only %}
+            </div>
+        {% endif %}
+    </div>
+</section>

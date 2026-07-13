@@ -1,4 +1,4 @@
-dateModified: 1778640286
+dateModified: 1783985078
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -131,6 +131,7 @@ meta:
     85d0c31a-4e01-4008-8444-58f23d57cc31: 'Featured Image' # Featured Image
     088a5779-5bd0-497e-990e-16bf40180ec5: 'Email Messages' # Email Messages
     88b4df68-e829-47e4-82a6-2e91359feb20: 'Hero Matrix' # Hero Matrix
+    88b581cb-b371-49b6-ac98-39106fe56517: 'Kiwisaver Comparison Guide' # Kiwisaver Comparison Guide
     91c97dc7-2308-4ea3-9a03-3661bc6237c9: 'Site Images' # Site Images
     93cc1844-5f6e-4858-86da-315bd52cda7c: 'Property Upgrade' # Property Upgrade
     096b02a8-7b14-4611-b1ca-1e82e3dd704a: 'Newsletter Image' # Newsletter Image
@@ -153,6 +154,7 @@ meta:
     2366b4a5-f9f9-445f-a1fa-af2aed24c996: KiwiSaver # KiwiSaver
     3270e53f-a3c4-4994-8f80-9f1a9d8c1fdb: Accordion-Arrow # Accordion-Arrow
     4768ec2a-8f50-4698-80e6-75c7975086db: 'Email Message Link' # Email Message Link
+    5489f944-c690-47d1-b188-fe7fe3bb9bab: 'Featured Testimonial' # Featured Testimonial
     5818d753-48f4-4d4b-afc0-1de4ad2a820a: 'Displaying on site' # Displaying on site
     6389bccc-1b55-4096-821e-192e6a2bd80a: 'Business Page' # Business Page
     6389e4d4-c725-4073-ba17-8aac55dc636c: 'Page Builder' # Page Builder
@@ -229,6 +231,7 @@ meta:
     d2442bfd-d769-4080-9505-d553f86821d8: 'Tabs Subheading' # Tabs Subheading
     d4886813-ca9f-4b8a-a82c-097ea4232f7e: 'Insight Body' # Insight Body
     da547108-c5ee-4f88-b8f8-3fc04c77235a: 'Downloadable Item' # Downloadable Item
+    db0749a0-6681-46e4-85c4-5091be254a84: 'Kiwisaver Comparison Guide' # Kiwisaver Comparison Guide
     db3f4be3-1c80-405f-840c-01dddd834e4f: 'Meet the Team' # Meet the Team
     dd0c598b-fc22-4c8d-9255-b3c858be4247: 'Savings and Investment Page' # Savings and Investment Page
     dea17b71-6636-4cf4-a0a2-6bc13ce85dfb: 'Email Messages' # Email Messages
