@@ -14,7 +14,8 @@
     heading: sourceEntry.title ?? 'Does your KiwiSaver fund match your plans?',
     heroBodyText: sourceEntry.heroBodyText ?? '',
     bodyText: sourceEntry.bodyText ?? '',
-    buttonField: sourceEntry.button ?? null,
+    buttonText: sourceEntry.button ?? 'Download the guide',
+    buttonUrl: sourceEntry.buttonUrl ?? '#',
     textColor: 'text-foxplan-charcoal-brown',
     buttonBgColor: 'bg-foxplan-charcoal-brown',
     buttonTextColor: 'text-foxplan-yellow'
@@ -98,14 +99,13 @@
             {% endif %}
         </div>
 
-        {% if data.buttonField %}
+        {% if data.buttonText %}
             <div class="w-full lg:w-auto flex justify-end shrink-0">
                 {% include '_components/ui/button/button.twig' with {
                     props: {
-                        text: data.buttonField.text ?? data.buttonField.customText ?? 'Download the guide',
+                        text: data.buttonText,
                         style: 'primary',
-                        url: data.buttonField.url ?? '#',
-                        target: data.buttonField.target ?? '_self',
+                        url: data.buttonUrl,
                         backgroundColor: data.buttonBgColor,
                         textColor: data.buttonTextColor
                     }
