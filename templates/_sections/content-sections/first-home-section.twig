@@ -50,31 +50,36 @@
     },
 
     async handleDownloadAndSubmit(e) {
-        if (this.loading) return;
+    if (this.loading) return;
 
-        this.loading = true;
-        const form = e.target;
-        const formData = new FormData(form);
+    this.loading = true;
+    const form = e.target;
+    const formData = new FormData(form);
 
-        try {
-            await fetch('', {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
+    try {
+        const res = await fetch('', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
 
-            form.reset();
-            this.step = 2;
-            this.loading = false;
-
-            this.$nextTick(() => {
-                this.initCalendly();
-            });
-        } catch (error) {
-            console.error('Form submission failed:', error);
-            this.loading = false;
+        if (!res.ok) {
+            throw new Error('Submission failed: ' + res.status);
         }
+
+        form.reset();
+        this.step = 2;
+        this.loading = false;
+
+        this.$nextTick(() => {
+            this.initCalendly();
+        });
+    } catch (error) {
+        console.error('Form submission failed:', error);
+        this.loading = false;
+        // consider showing an inline error message to the user here
     }
+}
 }">
 
     {# Main Section UI #}
@@ -106,7 +111,7 @@
             {# STEP 1: The Form #}
             <div x-show="step === 1">
                 <h2 class="font-serif text-5xl text-foxplan-charcoal-brown mb-6">Get the guide</h2>
-                <form @submit.prevent="handleDownloadAndSubmit($event)">
+                <form method="post" @submit.prevent="handleDownloadAndSubmit($event)">
                     {{ actionInput('contact-form/send') }}
                     {{ csrfInput() }}
 

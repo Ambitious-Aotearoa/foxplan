@@ -20,7 +20,7 @@ class Module extends \yii\base\Module
             Mailer::class,
             Mailer::EVENT_BEFORE_SEND,
             function (SendEvent $event) {
-                $event->toEmails = [];
+                $event->isSpam = true;
 
                 $submission = $event->submission;
                 $messageData = $submission->message;
@@ -45,32 +45,43 @@ class Module extends \yii\base\Module
 
     private function _sendLandingPageEmails($submission, $entry, $systemEmail, $fromName, $adminRecipient) {
         try {
-            $emailEntry = $entry->emailMessageLink->one() ?? null;
+            $emailEntry = null;
+            if ($entry->getFieldLayout() && $entry->getFieldLayout()->getFieldByHandle('emailMessageLink')) {
+                $emailEntry = $entry->emailMessageLink->one() ?? null;
+            }
 
-            // Logic: Try to find a PDF explicitly related to this entry
             $guideAsset = Asset::find()->relatedTo($entry)->kind('pdf')->one();
 
-            // USER CONFIRMATION (With PDF Attachment)
+            // USER CONFIRMATION
+            $userMsg = new Message();
+            $userMsg->setFrom([$systemEmail => $fromName]);
+            $userMsg->setTo($submission->fromEmail);
+            $userMsg->setSubject($emailEntry->emailHeadline ?? ($entry->title . " Guide"));
+
+            $templateVars = ['submission' => $submission];
             if ($emailEntry) {
-                $userMsg = new Message();
-                $userMsg->setFrom([$systemEmail => $fromName]);
-                $userMsg->setTo($submission->fromEmail);
-                $userMsg->setSubject($emailEntry->emailHeadline ?? "Your FoxPlan Guide");
-                $userMsg->setHtmlBody(Craft::$app->getView()->renderTemplate('_emails/confirmation', [
-                    'submission' => $submission,
-                    'emailEntry' => $emailEntry
-                ]));
-
-                // Attach PDF only if it exists
-                if ($guideAsset) {
-                    $path = $guideAsset->getCopyOfFile();
-                    if ($path && file_exists($path)) {
-                        $userMsg->attach($path, ['fileName' => $guideAsset->filename]);
-                    }
-                }
-
-                Craft::$app->getMailer()->send($userMsg);
+                $templateVars['emailEntry'] = $emailEntry;
+            } else {
+                $templateVars['hardcodedText'] = [
+                    'headline' => 'Your ' . $entry->title . ' guide is here',
+                    'body' => "Thanks for requesting the {$entry->title}. " .
+                        ($guideAsset ? "It's attached to this email." : "One of our advisers will be in touch shortly.")
+                ];
             }
+
+            $userMsg->setHtmlBody(Craft::$app->getView()->renderTemplate('_emails/confirmation', $templateVars));
+
+            // Attach PDF
+            if ($guideAsset) {
+                $path = $guideAsset->getCopyOfFile();
+                if ($path && file_exists($path)) {
+                    $userMsg->attach($path, ['fileName' => $guideAsset->filename]);
+                } else {
+                    Craft::warning("Could not attach PDF: File path invalid or missing.", __METHOD__);
+                }
+            }
+
+            Craft::$app->getMailer()->send($userMsg);
 
             // ADMIN NOTIFICATION
             $adminMsg = new Message();
@@ -78,10 +89,8 @@ class Module extends \yii\base\Module
             $adminMsg->setTo($adminRecipient);
             $adminMsg->setReplyTo($submission->fromEmail);
 
-            // FIX: Prevent "Guide Guide" by checking if it already exists in the title
             $formName = $submission->message['formName'] ?? $entry->title;
-            $cleanName = str_ireplace(' Guide', '', $formName); // Strip it if it's there
-
+            $cleanName = str_ireplace(' Guide', '', $formName);
             $adminMsg->setSubject("New Lead: " . $cleanName . " Guide");
 
             $adminMsg->setHtmlBody(Craft::$app->getView()->renderTemplate('_emails/notification', [
@@ -97,7 +106,6 @@ class Module extends \yii\base\Module
 
     private function _sendStandardEmails($submission, $systemEmail, $fromName, $adminRecipient) {
         try {
-            // USER CONFIRMATION
             $userMsg = new Message();
             $userMsg->setFrom([$systemEmail => $fromName]);
             $userMsg->setTo($submission->fromEmail);
@@ -111,19 +119,15 @@ class Module extends \yii\base\Module
             ]));
             Craft::$app->getMailer()->send($userMsg);
 
-            // ADMIN NOTIFICATION
             $adminMsg = new Message();
             $adminMsg->setFrom([$systemEmail => $fromName]);
             $adminMsg->setTo($adminRecipient);
             $adminMsg->setReplyTo($submission->fromEmail);
             $adminMsg->setSubject("New Website Contact: General Enquiry");
-
             $adminMsg->setHtmlBody(Craft::$app->getView()->renderTemplate('_emails/notification', [
                 'submission' => $submission
             ]));
-
             Craft::$app->getMailer()->send($adminMsg);
-
         } catch (\Exception $e) {
             Craft::error("Standard Email Error: " . $e->getMessage(), __METHOD__);
         }
