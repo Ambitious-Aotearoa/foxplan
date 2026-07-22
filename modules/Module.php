@@ -12,35 +12,134 @@ use yii\base\Event;
 
 class Module extends \yii\base\Module
 {
+    /**
+     * Hidden honeypot field rendered on the public forms. Bots that blindly fill
+     * every field populate it; real users never see it, so a non-empty value = spam.
+     */
+    private const HONEYPOT_FIELD = 'website';
+
+    /**
+     * Max submissions allowed per client IP within RATE_WINDOW seconds. This handler
+     * only runs for submissions that already passed reCAPTCHA, so a genuine visitor
+     * will never come close to this.
+     */
+    private const RATE_LIMIT = 6;
+    private const RATE_WINDOW = 3600;
+
     public function init(): void
     {
         parent::init();
 
-        Event::on(
-            Mailer::class,
-            Mailer::EVENT_BEFORE_SEND,
-            function (SendEvent $event) {
-                $event->isSpam = true;
+        // Attach AFTER the app has fully initialised so this handler runs *after*
+        // Contact Form Extensions' reCAPTCHA handler. That ordering guarantees any
+        // upstream spam verdict ($event->isSpam) is already set before we send, and
+        // if reCAPTCHA marks the submission spam it sets $event->handled = true, so
+        // this handler never runs for those. Attaching directly in init() is NOT
+        // safe: the module could run before the plugin and send before the spam
+        // check happened (the original bug that let the spam through).
+        Craft::$app->onInit(function () {
+            Event::on(
+                Mailer::class,
+                Mailer::EVENT_BEFORE_SEND,
+                [$this, 'handleBeforeSend']
+            );
+        });
+    }
 
-                $submission = $event->submission;
-                $messageData = $submission->message;
-                $formType = $messageData['formType'] ?? 'dynamic';
-                $entryId = $messageData['entryId'] ?? null;
+    /**
+     * Gatekeeper + custom mail routing for every contact-form submission.
+     */
+    public function handleBeforeSend(SendEvent $event): void
+    {
+        $submission = $event->submission;
+        $messageData = is_array($submission->message) ? $submission->message : [];
 
-                $systemEmail = App::env('SYSTEM_EMAIL') ?: "noreply@mg.foxplan.nz";
-                $fromName = App::env('EMAIL_SENDER_NAME') ?: "Foxplan";
-                $adminRecipient = App::env('ADMIN_RECIPIENT_EMAIL') ?: "accounts@ambitious.co.nz";
+        // 1. Respect a spam verdict already set upstream (reCAPTCHA / honeypot plugin).
+        if ($event->isSpam) {
+            $event->toEmails = [];
+            return;
+        }
 
-                if ($formType === 'contact') {
-                    $this->_sendStandardEmails($submission, $systemEmail, $fromName, $adminRecipient);
-                } elseif ($entryId) {
-                    $entry = Entry::find()->id((int)$entryId)->one();
-                    if ($entry) {
-                        $this->_sendLandingPageEmails($submission, $entry, $systemEmail, $fromName, $adminRecipient);
-                    }
-                }
+        // 2. Block the reCAPTCHA-disable bypass. Legitimate forms never send this;
+        //    Contact Form Extensions skips reCAPTCHA entirely when
+        //    message[disableRecaptcha] is truthy, so its mere presence is hostile.
+        if (array_key_exists('disableRecaptcha', $messageData)) {
+            $this->rejectAsSpam($event, 'disableRecaptcha param present');
+            return;
+        }
+
+        // 3. Honeypot: a hidden field only bots fill in.
+        if (!empty($messageData[self::HONEYPOT_FIELD])) {
+            $this->rejectAsSpam($event, 'honeypot filled');
+            return;
+        }
+
+        // 4. Per-IP rate limit.
+        if ($this->isRateLimited()) {
+            $this->rejectAsSpam($event, 'rate limit exceeded');
+            return;
+        }
+
+        // --- Past the gate: genuine submission. We build and send our own emails,
+        //     so stop the contact-form plugin from mailing its configured recipients. ---
+        $event->toEmails = [];
+
+        $formType = $messageData['formType'] ?? 'dynamic';
+        $entryId = $messageData['entryId'] ?? null;
+
+        $systemEmail = App::env('SYSTEM_EMAIL') ?: "noreply@mg.foxplan.nz";
+        $fromName = App::env('EMAIL_SENDER_NAME') ?: "Foxplan";
+        $adminRecipient = App::env('ADMIN_RECIPIENT_EMAIL') ?: "accounts@ambitious.co.nz";
+
+        if ($formType === 'contact') {
+            $this->_sendStandardEmails($submission, $systemEmail, $fromName, $adminRecipient);
+        } elseif ($entryId) {
+            $entry = Entry::find()->id((int)$entryId)->one();
+            if ($entry) {
+                $this->_sendLandingPageEmails($submission, $entry, $systemEmail, $fromName, $adminRecipient);
             }
-        );
+        }
+    }
+
+    /**
+     * Flags the submission as spam (so the contact-form Mailer skips its own send)
+     * and stops this handler from sending anything.
+     */
+    private function rejectAsSpam(SendEvent $event, string $reason): void
+    {
+        $event->isSpam = true;
+        $event->handled = true;
+        $event->toEmails = [];
+
+        $ip = Craft::$app->getRequest()->getUserIP() ?: 'unknown';
+        Craft::warning("Contact form submission blocked ({$reason}) from {$ip}.", __METHOD__);
+    }
+
+    /**
+     * Sliding-window per-IP rate limit backed by Craft's cache.
+     */
+    private function isRateLimited(): bool
+    {
+        $request = Craft::$app->getRequest();
+        if ($request->getIsConsoleRequest()) {
+            return false;
+        }
+
+        $ip = $request->getUserIP();
+        if (!$ip) {
+            return false;
+        }
+
+        $cache = Craft::$app->getCache();
+        $key = 'fpFormRate:' . md5($ip);
+        $count = (int)$cache->get($key);
+
+        if ($count >= self::RATE_LIMIT) {
+            return true;
+        }
+
+        $cache->set($key, $count + 1, self::RATE_WINDOW);
+        return false;
     }
 
     private function _sendLandingPageEmails($submission, $entry, $systemEmail, $fromName, $adminRecipient) {

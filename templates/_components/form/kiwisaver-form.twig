@@ -22,6 +22,13 @@
 
         {{ craft.contactFormExtensions.recaptcha | raw }}
 
+        {# Honeypot — must stay empty. Off-screen, hidden from real users; bots that fill
+           every field trip it and are rejected server-side (see modules/Module.php). #}
+        <div aria-hidden="true" style="position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden;">
+            <label>Website</label>
+            <input type="text" name="message[website]" tabindex="-1" autocomplete="off">
+        </div>
+
         {# Hidden fields for backend logic #}
         <input type="hidden" name="message[entryId]" value="{{ entry.id }}">
         <input type="hidden" name="message[formName]" value="{{ entry.title|trim }}">

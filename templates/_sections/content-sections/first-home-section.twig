@@ -123,6 +123,13 @@
 
                     {{ craft.contactFormExtensions.recaptcha | raw }}
 
+                    {# Honeypot — must stay empty. Off-screen, hidden from real users; bots that fill
+                       every field trip it and are rejected server-side (see modules/Module.php). #}
+                    <div aria-hidden="true" style="position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden;">
+                        <label>Website</label>
+                        <input type="text" name="message[website]" tabindex="-1" autocomplete="off">
+                    </div>
+
                     {# First Name and Last Name Grid #}
                     <div class="grid grid-cols-2 gap-8">
                         <div>
