@@ -5,6 +5,7 @@ entryTypes:
     uid: 3b71bc5d-7102-44d9-ba91-bfb278ee369a # investment calculator
 handle: investmentCalculator
 maxAuthors: 1
+minAuthors: 1
 name: 'Investment Calculator'
 previewTargets:
   -

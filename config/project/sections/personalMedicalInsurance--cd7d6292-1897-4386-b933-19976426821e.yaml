@@ -5,6 +5,7 @@ entryTypes:
     uid: ab6e0b50-c8e4-46a6-87e1-30dc93191009 # Personal & Medical  Insurance
 handle: personalMedicalInsurance
 maxAuthors: 1
+minAuthors: 1
 name: "Personal\_& Medical  Insurance"
 previewTargets:
   -

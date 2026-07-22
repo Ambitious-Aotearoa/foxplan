@@ -5,6 +5,7 @@ entryTypes:
     uid: db3f4be3-1c80-405f-840c-01dddd834e4f # Meet the Team
 handle: meetTheTeam
 maxAuthors: 1
+minAuthors: 1
 name: 'Meet the team'
 previewTargets:
   -

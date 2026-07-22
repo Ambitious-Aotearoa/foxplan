@@ -5,6 +5,7 @@ entryTypes:
     uid: 20a2a580-d219-4d89-85de-c3cef6cd5616 # First Home Buyers
 handle: firstHomeBuyers
 maxAuthors: 1
+minAuthors: 1
 name: 'First Home Buyers'
 previewTargets:
   -

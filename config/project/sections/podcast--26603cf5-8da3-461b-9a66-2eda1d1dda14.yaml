@@ -5,6 +5,7 @@ entryTypes:
     uid: 40a75dcf-4e4f-46ec-98ec-9424fc33fa4b # Podcast Page
 handle: podcast
 maxAuthors: 1
+minAuthors: 1
 name: Podcast
 previewTargets:
   -

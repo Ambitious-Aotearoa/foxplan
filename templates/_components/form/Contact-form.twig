@@ -120,13 +120,6 @@
         form.addEventListener('input', updateCursor);
         form.addEventListener('change', updateCursor);
 
-        form.addEventListener('submit', function() {
-            setTimeout(() => {
-                this.reset();
-                updateCursor();
-            }, 100);
-        });
-
         updateCursor();
     });
 

@@ -5,6 +5,7 @@ entryTypes:
     uid: cf5b357a-5522-4b07-8228-b736b93a7cba # Disclaimer
 handle: disclaimer
 maxAuthors: 1
+minAuthors: 1
 name: Disclaimer
 previewTargets:
   -

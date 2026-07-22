@@ -5,6 +5,7 @@ entryTypes:
     uid: 43ae8319-1d1a-467f-a54f-c45fae2a173d # Accounting
 handle: accounting
 maxAuthors: 1
+minAuthors: 1
 name: Accounting
 previewTargets:
   -

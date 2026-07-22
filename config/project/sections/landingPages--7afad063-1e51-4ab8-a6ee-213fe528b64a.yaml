@@ -5,6 +5,7 @@ entryTypes:
     uid: ada40f32-30fb-4a3e-8e4a-8c7eaf79db73 # Landing Pages
 handle: landingPages
 maxAuthors: 1
+minAuthors: 1
 name: 'Landing Pages'
 previewTargets:
   -

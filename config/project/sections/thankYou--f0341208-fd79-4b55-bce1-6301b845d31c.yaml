@@ -5,6 +5,7 @@ entryTypes:
     uid: 1cae6508-6f15-4d3b-ac58-8fea7303e323 # Thankyou Page
 handle: thankYou
 maxAuthors: 1
+minAuthors: 1
 name: 'Thank You'
 previewTargets:
   -

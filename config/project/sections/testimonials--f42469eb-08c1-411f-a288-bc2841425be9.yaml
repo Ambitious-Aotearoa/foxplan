@@ -5,6 +5,7 @@ entryTypes:
     uid: fe20e1d7-e0c5-4e62-80f5-8fc24cea698d # Client Testimonial
 handle: testimonials
 maxAuthors: 1
+minAuthors: 1
 name: Testimonials
 previewTargets:
   -

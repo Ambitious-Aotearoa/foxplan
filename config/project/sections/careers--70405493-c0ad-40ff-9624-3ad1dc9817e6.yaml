@@ -5,6 +5,7 @@ entryTypes:
     uid: b8dfe219-cd2b-4062-b6c5-2a0b07241d1a # Careers Page
 handle: careers
 maxAuthors: 1
+minAuthors: 1
 name: Careers
 previewTargets:
   -

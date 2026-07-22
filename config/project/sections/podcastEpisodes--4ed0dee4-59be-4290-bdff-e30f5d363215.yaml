@@ -5,6 +5,7 @@ entryTypes:
     uid: b692872d-72dd-446b-9762-81992436c375 # podcasts
 handle: podcastEpisodes
 maxAuthors: 1
+minAuthors: 1
 name: 'Podcast Episodes'
 previewTargets:
   -

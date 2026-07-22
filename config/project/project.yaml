@@ -1,4 +1,4 @@
-dateModified: 1784511496
+dateModified: 1784689862
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: Foxplan
@@ -65,7 +65,7 @@ meta:
     3df564bb-a8ff-48d9-88c0-1e1fec7a3cff: 'Accordion new' # Accordion new
     3f29f8f9-323f-4a3c-95a6-70ec3c79160e: 'Paragraph Subheading' # Paragraph Subheading
     04a2bc2e-175b-46fd-bb75-a4b8f4b663f0: Our-Investment-Committee # Our-Investment-Committee
-    4a5c0332-8175-4c2d-b8c5-0e1602083956: 'Insights Heading ' # Insights Heading 
+    4a5c0332-8175-4c2d-b8c5-0e1602083956: 'Insights Heading ' # Insights Heading
     4c9973ff-0107-4739-a889-f352e62eca08: 'Large Paragraph' # Large Paragraph
     4dea1fe8-e9c5-4649-9256-e46d676283cc: 'Social Links' # Social Links
     4ed0dee4-59be-4290-bdff-e30f5d363215: 'Podcast Episodes' # Podcast Episodes
@@ -110,7 +110,7 @@ meta:
     38fb1215-8745-4b26-a4bc-fa81375d8e56: 'Guide PDF' # Guide PDF
     40a75dcf-4e4f-46ec-98ec-9424fc33fa4b: 'Podcast Page' # Podcast Page
     40dc7ecc-2b48-42e9-ba8d-6b387ee26597: 'Advisors Image' # Advisors Image
-    41c2fab6-c090-4ba5-bd9b-34b43172425a: 'Milestone Year ' # Milestone Year 
+    41c2fab6-c090-4ba5-bd9b-34b43172425a: 'Milestone Year ' # Milestone Year
     43ae8319-1d1a-467f-a54f-c45fae2a173d: Accounting # Accounting
     44bb6238-457d-4a5b-a629-437f6ae0260d: Guide # Guide
     47d7c8bb-a751-46b1-9d2e-5ad509c8c477: 'Milestone Text' # Milestone Text
@@ -354,5 +354,5 @@ system:
   live: true
   name: foxplan
   retryDuration: null
-  schemaVersion: 5.9.0.8
+  schemaVersion: 5.10.0.0
   timeZone: Pacific/Auckland

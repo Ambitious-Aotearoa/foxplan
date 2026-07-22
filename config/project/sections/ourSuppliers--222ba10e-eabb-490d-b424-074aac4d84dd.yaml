@@ -5,6 +5,7 @@ entryTypes:
     uid: 442aaa5f-2531-4a40-a133-1b9bcbd25b08 # Our Suppliers
 handle: ourSuppliers
 maxAuthors: 1
+minAuthors: 1
 name: 'Our Suppliers'
 previewTargets:
   -

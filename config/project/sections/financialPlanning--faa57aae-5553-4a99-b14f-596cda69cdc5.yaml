@@ -5,6 +5,7 @@ entryTypes:
     uid: c91c8b47-5983-4466-94b4-44c6cce8e323 # Financial Planning
 handle: financialPlanning
 maxAuthors: 1
+minAuthors: 1
 name: 'Financial Planning'
 previewTargets:
   -

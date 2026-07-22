@@ -5,6 +5,7 @@ entryTypes:
     uid: 3cd32da9-06b0-44c6-a0a8-54568bfbb9b3 # Group-workplace-insurance
 handle: groupWorkplaceInsurance
 maxAuthors: 1
+minAuthors: 1
 name: Group-workplace-insurance
 previewTargets:
   -

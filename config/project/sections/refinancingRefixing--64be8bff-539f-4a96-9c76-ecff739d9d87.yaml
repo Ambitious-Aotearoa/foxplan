@@ -5,6 +5,7 @@ entryTypes:
     uid: 6389e4d4-c725-4073-ba17-8aac55dc636c # Page Builder
 handle: refinancingRefixing
 maxAuthors: 1
+minAuthors: 1
 name: 'Refinancing & Refixing'
 previewTargets:
   -

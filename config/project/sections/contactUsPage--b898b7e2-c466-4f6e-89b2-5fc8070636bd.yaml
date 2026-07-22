@@ -5,6 +5,7 @@ entryTypes:
     uid: 06624620-5204-452f-a746-b5d70f1641a4 # Contact Us Page
 handle: contactUsPage
 maxAuthors: 1
+minAuthors: 1
 name: 'Contact Us Page'
 previewTargets:
   -

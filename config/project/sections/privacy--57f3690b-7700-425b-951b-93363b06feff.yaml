@@ -5,6 +5,7 @@ entryTypes:
     uid: c24360ac-4126-48c2-9825-57239c96bd5e # Privacy
 handle: privacy
 maxAuthors: 1
+minAuthors: 1
 name: Privacy
 previewTargets:
   -

@@ -5,6 +5,7 @@ entryTypes:
     uid: d71d9025-4b25-42b3-956c-faa7e975d728 # Page Builder2
 handle: retirementPlanning
 maxAuthors: 1
+minAuthors: 1
 name: 'Retirement Planning'
 previewTargets:
   -

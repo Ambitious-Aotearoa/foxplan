@@ -5,6 +5,7 @@ entryTypes:
     uid: b8fb7c6f-f535-4aa2-9285-e31412193b9b # Complaints
 handle: complaintsPolicy
 maxAuthors: 1
+minAuthors: 1
 name: 'Complaints Policy'
 previewTargets:
   -

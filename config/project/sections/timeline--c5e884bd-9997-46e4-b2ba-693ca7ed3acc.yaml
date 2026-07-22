@@ -5,6 +5,7 @@ entryTypes:
     uid: 60ac3db5-de5e-4810-a0b1-4743170e9b60 # Timeline
 handle: timeline
 maxAuthors: 1
+minAuthors: 1
 name: Timeline
 previewTargets:
   -

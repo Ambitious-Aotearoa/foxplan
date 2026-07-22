@@ -5,6 +5,7 @@ entryTypes:
     uid: 1e5a8282-7128-4cdd-8a59-3356f7b08ffe # Partners
 handle: whoWeWorkWith
 maxAuthors: 1
+minAuthors: 1
 name: 'Who we work with'
 previewTargets:
   -

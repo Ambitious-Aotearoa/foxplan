@@ -5,6 +5,7 @@ entryTypes:
     uid: f2060445-14a6-448a-bba6-d1ff5aaa0f5e # thank you
 handle: thankYouLanding
 maxAuthors: 1
+minAuthors: 1
 name: 'Thank You Landing'
 previewTargets:
   -

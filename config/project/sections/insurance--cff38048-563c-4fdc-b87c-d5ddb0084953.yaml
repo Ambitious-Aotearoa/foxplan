@@ -5,6 +5,7 @@ entryTypes:
     uid: 1692277e-675a-4ebf-8998-6eb58cf9709f # Insurance
 handle: insurance
 maxAuthors: 1
+minAuthors: 1
 name: Insurance
 previewTargets:
   -

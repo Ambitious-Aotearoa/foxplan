@@ -5,6 +5,7 @@ entryTypes:
     uid: 5e5bb650-f40f-4a0a-b4e2-96821fdaae9a # Committee Members
 handle: committeeMembers
 maxAuthors: 1
+minAuthors: 1
 name: 'Committee Members'
 previewTargets:
   -

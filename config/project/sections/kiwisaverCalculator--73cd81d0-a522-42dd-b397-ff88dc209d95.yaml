@@ -5,6 +5,7 @@ entryTypes:
     uid: b235fa17-3de1-4a26-b99a-80ca66a403ed # kiwisaver calculator
 handle: kiwisaverCalculator
 maxAuthors: 1
+minAuthors: 1
 name: 'Kiwisaver Calculator'
 previewTargets:
   -

@@ -5,6 +5,7 @@ entryTypes:
     uid: dd0c598b-fc22-4c8d-9255-b3c858be4247 # Savings and Investment Page
 handle: savingsAndInvestmentPage
 maxAuthors: 1
+minAuthors: 1
 name: 'Savings and Investment Page'
 previewTargets:
   -

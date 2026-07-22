@@ -5,6 +5,7 @@ entryTypes:
     uid: 6e33f140-29a4-43ee-ac85-18ee6e66c2ef # Home
 handle: home
 maxAuthors: 1
+minAuthors: 1
 name: Home
 previewTargets:
   -

@@ -5,6 +5,7 @@ entryTypes:
     uid: 04a2bc2e-175b-46fd-bb75-a4b8f4b663f0 # Our-Investment-Committee
 handle: ourInvestmentCommittee
 maxAuthors: 1
+minAuthors: 1
 name: Our-Investment-Committee
 previewTargets:
   -

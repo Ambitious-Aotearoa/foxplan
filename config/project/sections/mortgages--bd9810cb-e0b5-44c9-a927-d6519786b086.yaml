@@ -5,6 +5,7 @@ entryTypes:
     uid: 184304c2-0776-48be-b918-b0c1ec2dc0ee # Mortgages
 handle: mortgages
 maxAuthors: 1
+minAuthors: 1
 name: Mortgages
 previewTargets:
   -

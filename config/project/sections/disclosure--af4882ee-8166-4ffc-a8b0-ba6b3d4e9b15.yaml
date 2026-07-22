@@ -5,6 +5,7 @@ entryTypes:
     uid: 6f417e1b-aeca-45dd-a6c4-f44be7f2bcbe # Disclosure
 handle: disclosure
 maxAuthors: 1
+minAuthors: 1
 name: Disclosure
 previewTargets:
   -

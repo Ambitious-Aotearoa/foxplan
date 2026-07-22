@@ -5,6 +5,7 @@ entryTypes:
     uid: 088a5779-5bd0-497e-990e-16bf40180ec5 # Email Messages
 handle: emailMessages
 maxAuthors: 1
+minAuthors: 1
 name: 'Email Messages'
 previewTargets:
   -

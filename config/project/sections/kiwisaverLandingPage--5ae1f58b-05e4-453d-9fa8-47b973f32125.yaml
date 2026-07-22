@@ -5,6 +5,7 @@ entryTypes:
     uid: 09254da4-cb4e-42da-881d-bc3b55500a8f # Landing Page
 handle: kiwisaverLandingPage
 maxAuthors: 1
+minAuthors: 1
 name: 'Kiwisaver Landing Page'
 previewTargets:
   -

@@ -5,6 +5,7 @@ entryTypes:
     uid: f36e735a-60ff-4440-89e5-8e1111da491c # First Home Guide
 handle: leadMagnet
 maxAuthors: 1
+minAuthors: 1
 name: 'lead magnet'
 previewTargets:
   -

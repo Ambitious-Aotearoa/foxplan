@@ -5,6 +5,7 @@ entryTypes:
     uid: 848be098-6f72-402d-97ad-5f23465fa79f # Business Page
 handle: businessPage
 maxAuthors: 1
+minAuthors: 1
 name: 'Business Page'
 previewTargets:
   -

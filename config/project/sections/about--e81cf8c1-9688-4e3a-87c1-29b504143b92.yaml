@@ -5,6 +5,7 @@ entryTypes:
     uid: 83ab9fed-c6f6-4bc3-868d-78df435d9da2 # About
 handle: about
 maxAuthors: 1
+minAuthors: 1
 name: About
 previewTargets:
   -

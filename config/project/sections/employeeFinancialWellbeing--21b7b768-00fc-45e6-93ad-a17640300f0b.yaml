@@ -5,6 +5,7 @@ entryTypes:
     uid: ecf3a398-13d9-4319-a852-69760e9374a9 # financial wellbeing page
 handle: employeeFinancialWellbeing
 maxAuthors: 1
+minAuthors: 1
 name: 'Employee financial wellbeing'
 previewTargets:
   -

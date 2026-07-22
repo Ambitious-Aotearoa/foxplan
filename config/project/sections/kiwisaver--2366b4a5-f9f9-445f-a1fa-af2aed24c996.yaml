@@ -5,6 +5,7 @@ entryTypes:
     uid: 7f5a1f9e-4127-43e0-b85e-6f3b9c4221ad # KiwiSaver
 handle: kiwisaver
 maxAuthors: 1
+minAuthors: 1
 name: KiwiSaver
 previewTargets:
   -
