@@ -75,9 +75,16 @@
         </div>
 
         <div class="col-span-full pt-2">
-            <div class="text-sm leading-tight opacity-70 {{ colors.text }} font-aktiv max-w-3xl">
-                {{ entry ? entry.bodyText2 | raw : 'By downloading this guide, you consent to being contacted by a FoxPlan adviser.' }}
-            </div>
+            <label for="consent" class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox"
+                       name="message[consent]"
+                       id="consent"
+                       required
+                       class="mt-1 h-4 w-4 shrink-0 rounded border-foxplan-charcoal-brown cursor-pointer accent-foxplan-charcoal-brown">
+                <span class="text-sm leading-tight opacity-80 {{ colors.text }} font-aktiv max-w-3xl">
+            {{ entry ? entry.bodyText2 | raw : 'By downloading this guide, you consent to being contacted by a FoxPlan adviser.' }}
+        </span>
+            </label>
         </div>
 
         <div class="col-span-full pt-4">
