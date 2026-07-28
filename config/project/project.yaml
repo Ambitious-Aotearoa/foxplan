@@ -1,8 +1,8 @@
-dateModified: 1785116206
+dateModified: 1785214307
 email:
-  fromEmail: $SYSTEM_EMAIL
+  fromEmail: rupindernz17@gmail.com
   fromName: Foxplan
-  replyToEmail: $REPLY_TO_EMAIL
+  replyToEmail: jamie@ambitious.co.nz
   template: null
   transportSettings:
     apiKey: $MAILGUN_API_KEY

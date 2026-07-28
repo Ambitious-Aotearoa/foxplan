@@ -101,18 +101,18 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2026-07-27T01:36:44+00:00'
+            dateAdded: '2026-07-28T04:51:47+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: a60554c1-42e9-4a93-b213-3950bf23db7d # Button URL
+            fieldUid: fba1ff8e-0b24-45ff-8403-da24499dfef2 # buttonLink
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 7f63ef9f-0851-4afa-9279-f4bd0b6f6b64
+            uid: f4802137-3501-4210-8487-916f2227ab6a
             userCondition: null
             warning: null
             width: 100
@@ -263,7 +263,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2026-07-27T01:36:44+00:00'
+            dateAdded: '2026-07-28T04:51:47+00:00'
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -274,11 +274,97 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 3fd84510-7274-4823-abf9-386f14d095cf
+            uid: bd165bf1-2f3d-4d6f-9cc8-5609112dc126
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-07-28T04:51:47+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 38fb1215-8745-4b26-a4bc-fa81375d8e56 # Guide PDF
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f02c2f83-3a4d-4fef-bccd-48c161947b95
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-07-28T04:51:47+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4768ec2a-8f50-4698-80e6-75c7975086db # Email Message Link
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9bbdd7c2-0f6c-487b-a251-14c238bdb3fd
             userCondition: null
             warning: null
             width: 100
         name: 'get the guide'
+        uid: 103c3bc9-8b6a-4262-8683-d09a1ad6ee54
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-07-28T04:51:47+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: cbd26eb9-425b-4f80-b796-58d777f40b96 # Main Headline
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 27580ee0-007e-4a3a-9f4c-759a6e7f820f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-07-28T04:51:47+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9501fa8-ddf7-45c9-848a-c7ece198f27a # Paragraph Heading
+            handle: paragraphHeading3
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 57f08ea3-7f13-4583-976b-44aea1787394
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-07-28T04:21:04+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 383dafac-19c3-4559-9459-54a9919aada4 # Body Text
+            handle: bodyText5
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ec828f28-a054-4219-af57-5300d1fc96ed
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'thank you'
         uid: 6a068079-6d55-4e55-b0c1-e9841f56848c
         userCondition: null
     thumbFieldKey: null
