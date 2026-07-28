@@ -36,7 +36,7 @@
                             <tr>
                                 <td style="padding: 8px 0; color: #666; font-size: 14px; width: 140px;"><strong>Name:</strong></td>
                                 <td style="padding: 8px 0; color: #270E15; font-size: 14px; font-weight: 500;">
-                                    {{ submission.fromName }} {{ messageData.lastName ?? '' }}
+                                    {{ submission.fromName }} {{ messageData.LastName ?? '' }}
                                 </td>
                             </tr>
                             <tr>
@@ -47,7 +47,7 @@
                             </tr>
 
                             {# Phone Field  #}
-                            {% set phone = messageData.phone ?? null %}
+                            {% set phone = messageData.Phone ?? null %}
                             {% if phone %}
                                 <tr>
                                     <td style="padding: 8px 0; color: #666; font-size: 14px;"><strong>Phone:</strong></td>
@@ -56,10 +56,10 @@
                             {% endif %}
 
                             {# Call Preference #}
-                            {% if messageData.preference is defined and messageData.preference is not empty %}
+                            {% if messageData.BestTimeToCall is defined and messageData.BestTimeToCall is not empty %}
                                 <tr>
                                     <td style="padding: 8px 0; color: #666; font-size: 14px;"><strong>Call Preference:</strong></td>
-                                    <td style="padding: 8px 0; color: #270E15; font-size: 14px; text-transform: capitalize;">{{ messageData.preference }}</td>
+                                    <td style="padding: 8px 0; color: #270E15; font-size: 14px; text-transform: capitalize;">{{ messageData.BestTimeToCall }}</td>
                                 </tr>
                             {% endif %}
 
@@ -75,7 +75,7 @@
                 </tr>
 
                 {# Submission Details / Body #}
-                {% set bodyMessage = messageData.body ?? null %}
+                {% set bodyMessage = messageData.Body ?? null %}
                 {% if bodyMessage %}
                     <tr>
                         <td style="padding: 30px; background-color: #fafafa;">
