@@ -23,8 +23,8 @@
 
     {# --- DYNAMIC DATA FETCHING --- #}
     {% set tabDefinitions = [
-        { id: 'accountingWealthManagement', label: 'Accounting & Wealth Management' },
         { id: 'financialAdvisers', label: 'Financial Advisers' },
+        { id: 'accountingWealthManagement', label: 'Accounting & Wealth Management' },
         { id: 'headOfficeStaff', label: 'Head Office Staff' }
     ] %}
 
@@ -45,7 +45,7 @@
 
     {# 3. INTERACTIVE SECTION WRAPPER #}
     <div x-data="{
-        activeTab: 'accountingWealthManagement',
+        activeTab: 'financialAdvisers',
         mobileMenuOpen: false,
         getActiveLabel() {
             const labels = {
@@ -108,9 +108,21 @@
 
                                 <div class="aspect-square bg-foxplan-charcoal-brown/5 mb-8 overflow-hidden">
                                     {% set portrait = member.memberImage.one() %}
-                                    <img src="{{ portrait ? portrait.url : craft.vite.asset('images/About_1.jpg') }}"
-                                         alt="{{ portrait.alt | default(member.memberName) | striptags }}"
-                                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    {% if portrait %}
+                                        {% set transformedImage = portrait.getUrl({
+                                            mode: 'crop',
+                                            width: 800,
+                                            height: 800,
+                                            position: 'top-center'
+                                        }) %}
+                                        <img src="{{ transformedImage }}"
+                                             alt="{{ portrait.alt | default(member.memberName) | striptags }}"
+                                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    {% else %}
+                                        <img src="{{ craft.vite.asset('images/About_1.jpg') }}"
+                                             alt="{{ member.memberName }}"
+                                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    {% endif %}
                                 </div>
 
 

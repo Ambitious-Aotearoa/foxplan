@@ -1,4 +1,4 @@
-dateModified: 1785214307
+dateModified: 1789941395
 email:
   fromEmail: rupindernz17@gmail.com
   fromName: Foxplan
@@ -173,6 +173,7 @@ meta:
     98874d4e-7f67-4c96-8e6a-1ae5b6fc4961: Services # Services
     184304c2-0776-48be-b918-b0c1ec2dc0ee: Mortgages # Mortgages
     331970c8-e670-403b-8550-b3a3214d6a62: 'Member Name' # Member Name
+    861025f3-cd4e-48a9-bba2-d8f58c52f6e0: 'Email message link' # Email message link
     1692277e-675a-4ebf-8998-6eb58cf9709f: Insurance # Insurance
     06624620-5204-452f-a746-b5d70f1641a4: 'Contact Us Page' # Contact Us Page
     09381442-8ef2-4c26-89d0-aee12518b1a1: Accordion # Accordion
@@ -205,6 +206,7 @@ meta:
     b898b7e2-c466-4f6e-89b2-5fc8070636bd: 'Contact Us Page' # Contact Us Page
     b974ddd6-5e6a-460f-8100-45bdf6fe5c1d: 'Provider Name' # Provider Name
     b692872d-72dd-446b-9762-81992436c375: podcasts # podcasts
+    bb9fb260-13d8-439d-a16f-0daa1e4d2441: 'Kiwisaver Comparison' # Kiwisaver Comparison
     bc06dd7f-b2cc-4005-af2e-87b42e0fa14f: 'Hero Large' # Hero Large
     bd9810cb-e0b5-44c9-a927-d6519786b086: Mortgages # Mortgages
     bed732d3-f5cc-42ac-bfc9-d5d1666a7a29: 'Page Builder2' # Page Builder2
