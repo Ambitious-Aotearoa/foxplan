@@ -7,6 +7,16 @@
 } %}
 
 {% block blockAppBody %}
+
+    {# Meta Pixel: Lead event — KiwiSaver guide requested #}
+    {% if craft.app.env == 'production' %}
+        <script>
+            if (window.fbq) {
+                fbq('track', 'Lead', { content_name: 'KiwiSaver Guide' });
+            }
+        </script>
+    {% endif %}
+
     <section class="bg-foxplan-charcoal-brown w-full min-h-screen overflow-hidden relative">
 
         <style>
@@ -54,6 +64,19 @@
                         </div>
                         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"
                                 async></script>
+
+                        {# Meta Pixel: Schedule event — fires only when a Calendly booking is completed #}
+                        {% if craft.app.env == 'production' %}
+                            <script>
+                                window.addEventListener('message', function (e) {
+                                    if (e.origin === 'https://calendly.com'
+                                        && e.data && e.data.event === 'calendly.event_scheduled'
+                                        && window.fbq) {
+                                        fbq('track', 'Schedule');
+                                    }
+                                });
+                            </script>
+                        {% endif %}
                     </div>
                 </div>
             </div>

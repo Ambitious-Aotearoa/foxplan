@@ -52,7 +52,7 @@
                             {% if block.blockLinkUrl %}
                                 <div class="mt-4">
                                     <a href="{{ block.blockLinkUrl }}" class="text-[10px] font-bold tracking-[0.2em] uppercase underline {{ data.textColor }} hover:opacity-70 transition-opacity">
-                                        Learn More
+                                        Learn More{% if block.blockHeading %}<span class="sr-only"> about {{ block.blockHeading|striptags }}</span>{% endif %}
                                     </a>
                                 </div>
                             {% endif %}

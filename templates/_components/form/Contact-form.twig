@@ -103,10 +103,12 @@
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('foxplan-js-form');
         const btn = document.getElementById('form-submit-btn');
+        let isSubmitting = false;
 
         form.reset();
 
         const updateCursor = () => {
+            if (isSubmitting) return;
             const isValid = form.checkValidity();
             if (isValid) {
                 btn.classList.add('cursor-pointer');
@@ -119,6 +121,20 @@
 
         form.addEventListener('input', updateCursor);
         form.addEventListener('change', updateCursor);
+
+        form.addEventListener('submit', function(e) {
+            // Prevent duplicate submit if already in progress or form is invalid
+            if (isSubmitting || !form.checkValidity()) {
+                e.preventDefault();
+                return;
+            }
+
+            isSubmitting = true;
+            btn.disabled = true;
+            btn.style.opacity = '0.6';
+            btn.style.cursor = 'not-allowed';
+            btn.textContent = 'Submitting...';
+        });
 
         updateCursor();
     });

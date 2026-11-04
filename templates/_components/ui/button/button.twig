@@ -2,6 +2,7 @@
 
 {% set defaults = {
     text: 'Learn More',
+    srText: null,
     style: 'primary',
     url: none,
     backgroundColor: null,
@@ -27,15 +28,16 @@
     props.classes
 ] | filter | join(' ') %}
 
-
 {% set textScaleStyle = 'font-size: clamp(0.75rem, 0.9vw, 0.875rem);' %}
 {% set tag = props.url ? 'a' : 'button' %}
 
 <{{ tag }} class="{{ buttonClasses }}" style="{{ textScaleStyle }}" {% if props.url %}href="{{ props.url }}"{% endif %}{% for attrName, attrValue in props.attributes %} {{ attrName }}="{{ attrValue }}"{% endfor %}>
 
-    <span class="btn__text flex items-center justify-center gap-1.5 md:gap-2 lg:gap-4">
-        {{ props.text }}
-        <svg class="transition-transform duration-300 shrink-0"
+<span class="btn__text flex items-center justify-center gap-1.5 md:gap-2 lg:gap-4">
+        <span>
+            {{ props.text }}{% if props.srText %}<span class="sr-only"> {{ props.srText }}</span>{% endif %}
+        </span>
+        <svg class="transition-transform duration-300 shrink-0" aria-hidden="true" focusable="false"
              style="width: clamp(0.9rem, 1.1vw, 1.3rem); height: clamp(0.9rem, 1.1vw, 1.3rem);"
              viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.5 4.5L17.5 8.5L13.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>

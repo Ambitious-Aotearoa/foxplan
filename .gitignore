@@ -10,3 +10,5 @@ node_modules/
 
 # Vite pre-bundled deps cache
 node_modules/.vite/
+*.sql
+*.sql.gz
