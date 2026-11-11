@@ -36,7 +36,7 @@
 
     {# Tailwind, Alpine, and GSAP are all bundled via Vite — no CDN scripts needed #}
 
-    {# Meta Pixel — production only #}
+    {# Meta Pixel — production only (disabled for now)
     {% if craft.app.env == 'production' %}
         <!-- Meta Pixel Code -->
         <script>
@@ -53,17 +53,19 @@
         </script>
         <!-- End Meta Pixel Code -->
     {% endif %}
+    #}
 </head>
 
 <body class="antialiased font-aktiv text-foxplan-charcoal-brown bg-foxplan-neutral-beige" style="opacity: 0;">
 
-{# Meta Pixel fallback for visitors without JavaScript — production only #}
+{# Meta Pixel fallback for visitors without JavaScript — production only (disabled for now)
 {% if craft.app.env == 'production' %}
     <noscript>
         <img height="1" width="1" style="display:none"
              src="https://www.facebook.com/tr?id=2515419318850381&ev=PageView&noscript=1" alt=""/>
     </noscript>
 {% endif %}
+#}
 
 {# Wrap the nav in a block called 'navigation' #}
 {% block navigation %}
