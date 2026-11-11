@@ -5,6 +5,17 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+    {# Google Tag Manager — production only #}
+    {% if craft.app.env == 'production' %}
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-M8QS965D');</script>
+        <!-- End Google Tag Manager -->
+    {% endif %}
+
     {% set seo = seo ?? entry ?? null %}
 
     {# This is for Title #}
@@ -57,6 +68,12 @@
 </head>
 
 <body class="antialiased font-aktiv text-foxplan-charcoal-brown bg-foxplan-neutral-beige" style="opacity: 0;">
+
+{# Google Tag Manager (noscript) — production only #}
+{% if craft.app.env == 'production' %}
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8QS965D"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+{% endif %}
 
 {# Meta Pixel fallback for visitors without JavaScript — production only (disabled for now)
 {% if craft.app.env == 'production' %}
